@@ -1,0 +1,25 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch Chrome and new instance of Chrome",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:8080/Test/index.html",
+            "sourceMaps": true,
+            "webRoot": "E:/apache-tomcat-8.0.21/webapps/Test"
+        },
+        {
+            "name": "Attach to Chrome",
+            "type": "chrome",
+            "request": "attach",
+            "port": 9222,
+            "sourceMaps": true,
+            "webRoot": "${workspaceRoot}"
+        }
+    ]
+}
