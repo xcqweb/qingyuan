@@ -31,6 +31,13 @@ export default {
         idName:String,
         pieData:Array,
         scenic:String,
+        isActive:Boolean,
+    },
+    watch:{
+        isActive:function(val){
+            this.option.series[0].startAngle =60+Math.random()*221;
+            this.chart.setOption(this.option);
+        }
     },
     data(){
     return{

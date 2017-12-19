@@ -119,11 +119,16 @@ export default {
     props:{
         idName:String,
         scenics:String,
+        isActive:Boolean,
+    },
+    watch:{
+        isActive:function(val){
+            val === false ? this.redom14():this.redom7();
+        }
     },
     data() {
       return {
         chart: null,
-        isActive:true,
         xnub:null,
         ynub:null,
         loading:true,
@@ -179,7 +184,7 @@ export default {
         if(this.chart){
             this.chart.dispose();
         }
-      this.isActive=true;
+    //   this.isActive=true;
       let dataY=[];
       let dataX=[];
       for (var i = 0; i < this.oneweekMock.length; i++) {
@@ -198,7 +203,7 @@ export default {
             dataY.push(this.twoWeekMock[i].nub);
             dataX.push(this.twoWeekMock[i].date)
         }
-    this.isActive=false;
+    // this.isActive=false;
     this.$nextTick(echarts_resize(this.idName,this,dataX,dataY))
     },
       redom (id,xyfonsiz,datax,datay) {

@@ -1,31 +1,32 @@
 <style lang="less" scoped>
-.c4s{
+.d1s{
     width:90%;
     height:80%;
     .item{
         width:22%;
-        height:42%;
+        height:40%;
         float: left;
         position: relative;
     }
 }
 </style>
 <template>
-    <div class="c4s">
+    <div class="d1s">
         <div v-for="(item,index) in scenics" :key="idName[index]" class="item">
-            <a5ss 
+            <d1ss 
             class="c211" 
             :idName='idName[index]' 
             :scenics='scenics[index]' 
-            ></a5ss>
+            :lenLat = 'lenLat[index]' 
+            ></d1ss>
         </div>
     </div>
 </template>
 
 <script>
-import a5ss from '@/pages/home/showMore/smallComponent/a5ss.vue'
+import d1ss from '@/pages/home/showMore/smallComponent/d1ss.vue'
   export default {
-    name:'C4S',
+    name:'D1S',
     props:{
         scenics:Array,
     },
@@ -35,6 +36,7 @@ import a5ss from '@/pages/home/showMore/smallComponent/a5ss.vue'
             // ['#FF8885','#57ABFE', '#368DF7', '#7E6AF6', '#E39A50','#FFCD38',  '#4EBBFC', '#75CF65','#B8E986', '#86E9E8', '#58E5E1','#4BCEDD']
             // scenics:['风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区',],
             idName:['c4s1','c4s2','c4s3','c4s4','c4s5','c4s6','c4s7','c4s8','c4s9'],
+            lenLat:[{len:4,lat:6},{len:4,lat:6},{len:4,lat:6},{len:4,lat:6},{len:4,lat:6},{len:4,lat:6},{len:4,lat:6},{len:4,lat:6},],
       }
     },
     // props: {
@@ -46,14 +48,13 @@ import a5ss from '@/pages/home/showMore/smallComponent/a5ss.vue'
     //     },
     // },
     components: {
-        a5ss,
+        d1ss,
     },
     methods:{
 
     },
     mounted(){
-        this.$emit('showWeeks')
-        this.$emit('showDoubleDate')
+        this.$emit('showWeeks',false)
     }
   }
 </script>

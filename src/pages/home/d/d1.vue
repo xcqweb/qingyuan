@@ -293,10 +293,10 @@ display:none !important;
             addHot(map){
                     var points =[];
                     let makeMap = function(){
-                        let minX = 119.919801;
-                        let minY = 29.512922;
-                        let lenX = 119.913692 - 119.932808;
-                        let lenY = 29.518155 - 29.510533;
+                        let minX = 112.739365;
+                        let minY = 23.554996;
+                        let lenX = 113.362574 - 112.739365;
+                        let lenY = 23.847771 - 23.554996;
                         for (var i = 0; i < 80; i++) {
                             let lng = Math.abs(Math.random()-0.7)*Math.abs(lenX)+minX
                             let lat = Math.abs(Math.random()-0.7)*Math.abs(lenY)+minY
@@ -375,7 +375,7 @@ display:none !important;
                     _self.videoToast=false;
                 },false)
                 // 初始化地图,设置中心点坐标和地图级别
-                map.centerAndZoom(new BMap.Point(119.923671,29.514494), 16);
+                map.centerAndZoom(new BMap.Point(113.062468,23.690613), 12);
                 // 添加地图类型控件
                 // map.addControl(new BMap.MapTypeControl());  
                 // 设置地图显示的城市 此项是必须设置的

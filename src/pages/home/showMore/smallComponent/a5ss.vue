@@ -67,7 +67,7 @@ export default {
           var option = {
               grid: {
                  show: true,
-                 left: '10%',
+                 left: '20%',
                  top: '15%',
                  right: '10%',
                  bottom: '20%',
@@ -110,7 +110,9 @@ export default {
                            color: '#ffffff',//x坐标轴标签字体颜色
                            fontSize: 12,
                        },
+                       formatter: '{value}人'
                   },
+                  min:0,
                   splitLine:{
                       show:true,
                       lineStyle:{

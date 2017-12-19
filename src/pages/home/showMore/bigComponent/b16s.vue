@@ -2,6 +2,7 @@
    .b16s{
         height: 91%;
         width:100%;
+        overflow: hidden;
         .midContent{
             height: 60%;
             width:100%;
@@ -70,7 +71,10 @@
 <template>
     <div class="b16s">
         <div class="midContent">
-            <vmap  class="vMap"></vmap>
+            <vmap  
+            class="vMap"
+            :isActive ='isActive'
+            ></vmap>
             <rank class="rank"></rank>
         </div>
         <div class="buttom">
@@ -93,10 +97,10 @@ import vmap from '@/pages/home/showMore/smallComponent/guonei_map.vue'
     name:'B16S',
     props:{
         scenics:Array,
+        isActive:Boolean,
     },
     data() {
       return {
-          
           items:[
               {title:'2017年累计接待游客(人)',context:'323,232,523',rise:''},
               {title:'2017年累计接待本地游客(人)',context:'323,232,523',rise:''},

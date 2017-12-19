@@ -2,7 +2,6 @@
 .c4s{
     width:90%;
     height:80%;
-    transform: translate(5%,10%);
     .item{
         width:22%;
         height:40%;
@@ -55,7 +54,7 @@ import traffic from '@/pages/home/showMore/smallComponent/traffic.vue'
 
     },
     mounted(){
-        
+        this.$emit('showWeeks',false)
     }
   }
 </script>

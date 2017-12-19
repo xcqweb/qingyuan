@@ -56,6 +56,12 @@ export default {
             ],
       }
     },
+    props:{
+        
+    },
+    watch:{
+
+    },
     components:{}
 }
 </script>
@@ -101,6 +107,7 @@ ul{
 .cell3{
     float:left;
     width:33%;
+    text-align: center;
     .footerRise{
         display: inline-block;
          transform: translateY(10%);

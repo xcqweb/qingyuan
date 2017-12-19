@@ -2,7 +2,6 @@
 .c8s{
     width:90%;
     height:80%;
-    transform: translate(5%,10%);
     .item{
         width:20%;
         height:44%;

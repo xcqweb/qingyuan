@@ -69,7 +69,15 @@ import 'echarts/lib/chart/map';
 import 'echarts/map/js/china.js';
 import zhejiangJson from 'echarts/map/json/province/zhejiang.json'
 export default {
-  name: '',
+name: '',
+props:{
+    isActive:Boolean,
+},
+watch:{
+    isActive:function(val){
+        
+    }
+},
   data () {
     return {
         chart:null,

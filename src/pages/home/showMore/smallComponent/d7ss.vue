@@ -51,6 +51,13 @@ export default {
     props:{
         idName:String,
         scenics:String,
+        isActive:Boolean,
+    },
+    watch:{
+        isActive:function(val){
+            this.option.series[0].startAngle =60+Math.random()*221;
+            this.chart.setOption(this.option);
+        }
     },
     data(){
     return{
@@ -196,9 +203,6 @@ export default {
     mounted() {
           this.$nextTick(echarts_resize(this.idName,this))
     },
-    update(){
-        this.$nextTick(echarts_resize(this.idName,this))
-    }
 }
 </script>
 

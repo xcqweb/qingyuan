@@ -2,7 +2,6 @@
 .c2s{
     width:90%;
     height:80%;
-    transform: translate(5%,10%);
     .c211{
         width:22%;
         height:38%;
@@ -42,6 +41,7 @@
         :idName='idName[index]' 
         :pieData='dataItems[index]' 
         :scenic = 'scenics[index]'
+        :isActive ='isActive'
         ></nianling>
     </div>
 </template>
@@ -52,6 +52,7 @@ import nianling from '@/pages/home/showMore/smallComponent/nialing_pie.vue'
     name:'C2S',
     props:{
         scenics:Array,
+         isActive:Boolean,
     },
     data() {
       return {

@@ -2,7 +2,6 @@
 .c4s{
     width:90%;
     height:80%;
-    transform: translate(5%,10%);
     .item{
         width:22%;
         height:42%;
@@ -20,6 +19,7 @@
             :scenics='item' 
             :women ='items[index].women' 
             :men = 'items[index].men'
+            :isActive ='isActive' 
             ></menWomen>
         </div>
     </div>
@@ -31,6 +31,7 @@ import menWomen from '@/pages/home/showMore/smallComponent/men_women.vue'
     name:'C4S',
     props:{
         scenics:Array,
+        isActive:Boolean,
     },
     data() {
       return {

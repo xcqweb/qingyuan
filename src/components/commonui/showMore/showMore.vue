@@ -61,6 +61,7 @@ img{
             width:10%;
             height: 100%;
             float: left;
+            margin-left: 1rem;
             position: relative;
             font-size: 1.3rem;
             color:white;
@@ -80,17 +81,18 @@ img{
         }
     }
     .morePlace{
-            position: absolute;
-            top: 3%;
             height: 88% !important;
             width:100%;
             overflow-y: auto;
+             transform: translate(5%,3%);
         }
   }
 .vueDate{
     width:20%;
-    position: absolute;
-    right: 30%;
+    float: left;
+    margin-top:-2px;
+    position: relative !important;
+   margin-left: 4rem;
 }
 .week{
     width:15%;
@@ -116,10 +118,10 @@ img{
       line-height:1.8rem;
       width: 47%;
       color: #abb5d3;
-      background-image:url('../../../assets/images/home/991513311442_.pic.jpg');
+      background-image:url('../../../assets/images/home/981513311442_.pic.jpg');
       background-size: 100% 100%;
       &.chose{
-        background-image:url('../../../assets/images/home/981513311442_.pic.jpg');
+        background-image:url('../../../assets/images/home/991513311442_.pic.jpg');
           background-size: 100% 100%;
           color:#d3ddf9;
       }
@@ -131,10 +133,10 @@ img{
       line-height:1.8rem;
       width: 47%;
       color: #abb5d3;
-      background-image:url('../../../assets/images/home/991513311442_.pic.jpg');
+      background-image:url('../../../assets/images/home/981513311442_.pic.jpg');
       background-size: 100% 100%;
       &.chose{
-        background-image:url('../../../assets/images/home/981513311442_.pic.jpg');
+        background-image:url('../../../assets/images/home/991513311442_.pic.jpg');
           background-size: 100% 100%;
           color:#d3ddf9;
       }
@@ -166,18 +168,24 @@ img{
                     class="oneSelection"
                     ></sleckte>
                 </div>
-                <div class="week">
+                <div class="week" v-if="weekStatus">
                     <span class="oneweek " v-bind:class="{ chose: isActive }" @click='redom7'>7日</span>
                     <span class="twoweek" v-bind:class="{ chose: !isActive }" @click='redom14'>14日</span>
                 </div>
-                <vDate class='vueDate' @pageDate='getDate'></vDate>
+                <vDate class='vueDate' 
+                 @pageDate='getDate'
+                 :isActive = 'isEndDate' 
+                 ></vDate>
                 <!-- <vue-datetime-picker></vue-datetime-picker> -->
                 
             </div>
             <componet
                 :is='mainContent' 
                 class="morePlace" 
-                :scenics = 'cityData'
+                :scenics = 'cityData' 
+                :isActive ='isActive'
+                @showWeeks = 'showWeeks'
+                @showDoubleDate = 'showDoubleDate'
             ></componet>
         </div>
     </div>
@@ -196,7 +204,9 @@ var _ = require('lodash');
     data() {
       return {
             visiable: false,
+            isEndDate:true,
             isActive:true,
+            weekStatus:true,
             qyselectlist:{
                 title:'英德 ',
                 width:'80%',
@@ -225,6 +235,8 @@ var _ = require('lodash');
     methods:{
         close(){
             this.visiable=false;
+            this.weekStatus = true;
+            this.isEndDate = true;
         },
         catchmsg1(data){
            this.updateData.palce = data;
@@ -238,7 +250,12 @@ var _ = require('lodash');
         },
         redom14(){
             this.isActive = false;
-            console.log(this.isActive)
+        },
+        showWeeks(obj){
+            this.weekStatus = false;
+        },
+        showDoubleDate(){
+            this.isEndDate = false;
         },
         switch(val){
             const  cityData = {
@@ -256,7 +273,7 @@ var _ = require('lodash');
         },  
     },
     mounted(){
-        console.log(this.mainContent)
+        
     }
   }
 </script>

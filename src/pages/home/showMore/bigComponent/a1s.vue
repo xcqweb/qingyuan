@@ -2,7 +2,7 @@
 .c4s{
     width:90%;
     height:80%;
-    transform: translate(5%,10%);
+   
     .item{
         width:22%;
         height:42%;
@@ -18,6 +18,7 @@
             class="c211" 
             :idName='idName[index]' 
             :scenics='scenics[index]' 
+            :isActive ='isActive' 
             ></a1ss>
         </div>
     </div>
@@ -29,6 +30,7 @@ import a1ss from '@/pages/home/showMore/smallComponent/a1ss.vue'
     name:'C4S',
     props:{
         scenics:Array,
+        isActive:Boolean,
     },
     data() {
       return {

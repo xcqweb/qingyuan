@@ -86,6 +86,7 @@ export default {
                            color: '#ffffff',//x坐标轴标签字体颜色
                            fontSize: 12,
                        },
+                       formatter: '{value}人'
                   },
                   splitLine:{
                       show:true,

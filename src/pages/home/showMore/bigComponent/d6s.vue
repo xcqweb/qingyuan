@@ -1,31 +1,32 @@
 <style lang="less" scoped>
-.c4s{
+.c8s{
     width:90%;
     height:80%;
     .item{
-        width:22%;
-        height:42%;
+        width:20%;
+        height:44%;
         float: left;
+        margin-left:2%;
         position: relative;
     }
 }
 </style>
 <template>
-    <div class="c4s">
+    <div class="c8s">
         <div v-for="(item,index) in scenics" :key="idName[index]" class="item">
-            <a5ss 
+            <d6ss 
             class="c211" 
             :idName='idName[index]' 
             :scenics='scenics[index]' 
-            ></a5ss>
+            ></d6ss>
         </div>
     </div>
 </template>
 
 <script>
-import a5ss from '@/pages/home/showMore/smallComponent/a5ss.vue'
+import d6ss from '@/pages/home/showMore/smallComponent/d6ss.vue'
   export default {
-    name:'C4S',
+    name:'d6s',
     props:{
         scenics:Array,
     },
@@ -46,14 +47,13 @@ import a5ss from '@/pages/home/showMore/smallComponent/a5ss.vue'
     //     },
     // },
     components: {
-        a5ss,
+        d6ss,
     },
     methods:{
 
     },
     mounted(){
-        this.$emit('showWeeks')
-        this.$emit('showDoubleDate')
+        
     }
   }
 </script>

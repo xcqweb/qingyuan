@@ -89,7 +89,13 @@ export default {
       women:Number,
       men:Number,
       scenics:String,
+      isActive:Boolean,
   },
+  watch:{
+        isActive:function(val){
+
+        }
+    },
   data () {
     
     return {

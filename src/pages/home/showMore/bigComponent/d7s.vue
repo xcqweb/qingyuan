@@ -2,7 +2,6 @@
 .d7s{
     width:90%;
     height:80%;
-    transform: translate(5%,10%);
     .item{
         width:20%;
         height:44%;
@@ -42,6 +41,7 @@
             class="c211" 
             :idName='idName[index]' 
             :scenics='scenics[index]' 
+            :isActive ='isActive' 
             ></d7ss>
         </div>
     </div>
@@ -53,6 +53,7 @@ import d7ss from '@/pages/home/showMore/smallComponent/d7ss.vue'
     name:'d7s',
     props:{
         scenics:Array,
+        isActive:Boolean,
     },
     data() {
       return {

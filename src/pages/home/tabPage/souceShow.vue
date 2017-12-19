@@ -17,7 +17,7 @@
         <div class="leftScope" >
             <div class="item"
                 v-for='item in leftComponents' 
-                @dblclick='showMore(item.name)'  
+                @dblclick='showMore(item.name,item.title)'  
                 :class="item.id">
                 <h1>{{item.title}}</h1>
                 <span @click='cutover(item,leftComponents)' >
@@ -36,7 +36,7 @@
         <div class="rightScope">
             <div class="item" 
                 v-for='item in rightComponents' 
-                @dblclick='showMore(item.name)'  
+                @dblclick='showMore(item.name,item.title)'  
                 :class="item.id">
                 <h1>{{item.title}}</h1>
                 <span @click='cutover(item,rightComponents)' >
@@ -181,9 +181,9 @@ export default {
         catchmsg2(data){
            this.updateData.turist = data;
         },
-        showMore:function(name){
+        showMore:function(name,title){
             let mainContent = name+'S';
-            $showMore.open(mainContent)
+            $showMore.open(mainContent,title)
         },
         update(){
              this.barChartOption.series[0].data[3]={
