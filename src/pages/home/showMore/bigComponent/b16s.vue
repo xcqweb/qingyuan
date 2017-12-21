@@ -99,16 +99,30 @@ import vmap from '@/pages/home/showMore/smallComponent/guonei_map.vue'
         scenics:Array,
         isActive:Boolean,
     },
+    watch:{
+        isActive:function(val){
+            this.items=[
+              {title:'2017年累计接待游客(万人)',context:'23.32',rise:''},
+              {title:'2017年累计接待本地游客(万人)',context:'323.23',rise:''},
+              {title:'2017年累本地游客与总游客占比',context:'23%',rise:''},
+              {title:'2017年累国内游客与总游客占比',context:'87%',rise:''},
+              {title:'6月份持续接待人数(万人)',context:'232.5',rise:''},
+              {title:'6月份持续接待人数同比',context:'12.3%',rise:''},
+              {title:'6月份持续接待人数环比',context:'23.2%',rise:'up'},
+              {title:'6月份持续接待人数占比',context:'87.1%',rise:'up'},
+          ]
+        }
+    },
     data() {
       return {
           items:[
-              {title:'2017年累计接待游客(人)',context:'323,232,523',rise:''},
-              {title:'2017年累计接待本地游客(人)',context:'323,232,523',rise:''},
+              {title:'2017年累计接待游客(万人)',context:'323.32',rise:''},
+              {title:'2017年累计接待本地游客(万人)',context:'323.23',rise:''},
               {title:'2017年累本地游客与总游客占比',context:'23%',rise:''},
               {title:'2017年累国内游客与总游客占比',context:'87%',rise:''},
-              {title:'6月份持续接待人数(人)',context:'232,523',rise:''},
-              {title:'6月份持续接待人数同比',context:'2,143',rise:''},
-              {title:'6月份持续接待人数环比',context:'232',rise:'up'},
+              {title:'6月份持续接待人数(万人)',context:'232.5',rise:''},
+              {title:'6月份持续接待人数同比',context:'12.3%',rise:''},
+              {title:'6月份持续接待人数环比',context:'23.2%',rise:'up'},
               {title:'6月份持续接待人数占比',context:'87.1%',rise:'up'},
           ]
       }
@@ -128,7 +142,7 @@ import vmap from '@/pages/home/showMore/smallComponent/guonei_map.vue'
 
     },
     mounted(){
-        
+        this.$emit('hideWeeks')
     }
   }
 </script>

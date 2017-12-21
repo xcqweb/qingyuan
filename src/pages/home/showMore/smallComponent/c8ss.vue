@@ -129,22 +129,22 @@ export default {
         msg:'Hello Vue 来自App.vue',
         items:[
                 {
-                numb:'32,001',place:'广东省 ',rise:'up',percent:'423',
+                numb:'32,001',place:'广东省 ',rise:'up',percent:'4.2%',
                 },
                 {
-                numb:'26,102',place:'上海 ',rise:'down',percent:'423',
+                numb:'26,102',place:'上海 ',rise:'down',percent:'3.3%',
                 },
                 {
-                numb:'13,003',place:'北京 ',rise:'up',percent:'423',
+                numb:'13,003',place:'北京 ',rise:'up',percent:'23.1%',
                 },
                 {
-                numb:'10,304',place:'湖北省',rise:'up',percent:'423',
+                numb:'10,304',place:'湖北省',rise:'up',percent:'13.7%',
                 },
                 {
-                numb:'8,405',place:'陕西省',rise:'up',percent:'423',
+                numb:'8,405',place:'陕西省',rise:'up',percent:'19.2%',
                 },
                 {
-                numb:'6,326',place:'江西省 ',rise:'up',percent:'423',
+                numb:'6,326',place:'江西省 ',rise:'up',percent:'13.2%',
                 }
             ],
       }

@@ -19,7 +19,6 @@
 </style>
 <template>
     <div class="main_content">
-        <h1>{{place}}</h1>
         <div id="d2"></div>
     </div>
 </template>
@@ -43,11 +42,9 @@
         loading:true,
         reloading:false,
         oneweekMock:[
-            {"nub":50,"date":"东坡腊肉"},
-            {"nub":33,"date":"阳山淮山"},
-            {"nub":60,"date":"连山大米"},
-            {"nub":39,"date":"瑶山茶油"},
-            {"nub":52,"date":"清远麻鸡"},
+            {"nub":501,"date":"景区"},
+            {"nub":331,"date":"旅行社"},
+            {"nub":601,"date":"酒店"},
         ],
       }
     },
@@ -55,14 +52,6 @@
     props:[
             'place'
     ],
-    computed:{
-
-      isCase:{
-        get: function(){
-          return window.location.hash.length > 3 ? true :false;
-        } 
-      },
-    },
     methods: {
     redom7(){
         if(this.chart){
@@ -86,7 +75,7 @@
                     color: ['#1F6ABB','#3897C5','#A4C5E6'],
                     grid: {
                          show: true,
-                         left: '15%',
+                         left: '18%',
                          top: '20%',
                          right: '5%',
                          bottom: '20%',

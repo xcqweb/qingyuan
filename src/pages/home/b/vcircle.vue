@@ -28,7 +28,7 @@ export default {
         cut:require('../../../assets/images/circle/violet/cut.png'),
         half:require('../../../assets/images/circle/violet/half.png'),
         line:require('../../../assets/images/circle/violet/line.png'),
-        percent:'80%',
+        percent:'2.7',
         text:'较为拥堵',
     }
   },

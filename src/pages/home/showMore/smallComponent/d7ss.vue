@@ -74,15 +74,66 @@ export default {
                 color:'#fe6e40',
             }
             ],
-        option:{
+         option:{
           backgroundColor: 'rgba(0,0,0,0)',
           color: ['#368DF7', '#6F5DDA', '#75CF65'],
           series : [
+                {
+                    name: '访问来源',
+                    type: 'pie',
+                    radius : '0',
+                    center: ['50%', '58%'],
+                    data:[{
+                        value:20.5, 
+                        name:'39%',
+                        itemStyle: {
+                            normal:{
+
+                                    color:'rgba(0, 0, 0, 0)'
+                                },
+                            emphasis: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                            },
+                             labelLine:{
+                                normal:{
+                                    show:true,
+                                    length:0,
+                                    length2:0,
+                                    lineStyle:{
+                                        color:'rgba(0,0,0,0)'
+                                    }
+                                }
+                            },
+                            label:{
+                                    normal:{
+                                        show:true,
+                                        position:'inside',
+                                        align:'center',
+                                        textStyle:{
+                                            color:'white'
+                                        },
+                                        formatter:function(params){
+                                            var msgs = ['321万元','521万元','821万元',]
+                                            var msg = (1000+Math.round(Math.random()*100))+'万元';
+                                            var index = params.dataIndex ;
+                                            return msg
+                                        },
+                                        fontSize:18,
+                                        
+                                    },
+                            },
+                        }
+                    ],
+                    
+                },
               {
                 name:'访问来源',
                 type:'pie',
-                radius: ['51%', '57%'],
-                center: ['50%', '45%'],
+                radius: ['41%', '47%'],
+                center: ['50%', '55%'],
                 // selecteMode:'single',
                 // selectedOffset:30,
                 // roseType:"area",
@@ -106,13 +157,27 @@ export default {
                                 textStyle:{
                                     color:'#368df7'
                                 }
+                            },
+                            emphasis:{
+                                show:true,
+                                position:'outside',
+                                align:'left',
+                                formatter:function(params){
+                                    var msgs = ['321万元','521万元','821万元',]
+                                    var msg = '';
+                                    var index = params.dataIndex ;
+                                    return msgs[1]
+                                },
+                                textStyle:{
+                                    color:'#368df7'
+                                }
                             }
                         },
                         labelLine:{
                             normal:{
                                 show:true,
-                                length:5,
-                                length2:5,
+                                length:10,
+                                length2:10,
                                 lineStyle:{
                                     color:'rgba(0,0,0,0)'
                                 }
@@ -142,13 +207,28 @@ export default {
                                 textStyle:{
                                     color:'#75cf65'
                                 }
+                            },
+                            emphasis:{
+                                show:true,
+                                position:'outside',
+                                align:'right',
+                                formatter:function(params){
+                                    var msgs = ['321万元','521万元','821万元',]
+                                    var msg = '';
+                                    var index = params.dataIndex ;
+                           
+                                    return msgs[0]
+                                },
+                                textStyle:{
+                                    color:'#75cf65'
+                                }
                             }
                         },
                         labelLine:{
                             normal:{
                                 show:true,
-                                length:5,
-                                length2:5,
+                                length:10,
+                                length2:10,
                                 lineStyle:{
                                     color:'rgba(0,0,0,0)'
                                 }
@@ -170,13 +250,27 @@ export default {
                                 textStyle:{
                                     color:'#fe6e40'
                                 }
+                            },
+                            emphasis:{
+                                show:true,
+                                position:'outside',
+                                align:'right',
+                                formatter:function(params){
+                                    var msgs = ['321万元','521万元','821万元',]
+                                    var msg = '';
+                                    var index = params.dataIndex ;
+                                    return msgs[2]
+                                },
+                                textStyle:{
+                                    color:'#fe6e40'
+                                }
                             }
                         },
                         labelLine:{
                             normal:{
                                 show:true,
-                                length:2,
-                                length2:2,
+                                length:5,
+                                length2:5,
                                 lineStyle:{
                                     color:'rgba(0,0,0,0)'
                                 }

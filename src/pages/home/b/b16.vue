@@ -68,8 +68,8 @@ export default {
     props:['placeName',],
     data () {
         return {
-            yearNumb:32603958,
-            mouthNumb:11952186,
+            yearNumb:'32,603,958',
+            mouthNumb:'11,952,186',
         }
     },
     components:{

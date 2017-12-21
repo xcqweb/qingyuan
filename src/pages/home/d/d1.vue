@@ -66,7 +66,7 @@ display:none !important;
 </style>
 <template>
     <div class="d1">
-        <h1>{{place}}</h1>
+        <!-- <h1>{{place}}</h1> -->
         <div id="XSDFXPaged" class="XSDFXPaged"></div>
         <canvas class="lineVideo" v-show='videoToast'></canvas>
         <div class="toast-video" v-if='videoToast'>
@@ -375,7 +375,7 @@ display:none !important;
                     _self.videoToast=false;
                 },false)
                 // 初始化地图,设置中心点坐标和地图级别
-                map.centerAndZoom(new BMap.Point(113.062468,23.690613), 12);
+                map.centerAndZoom(new BMap.Point(113.046945,23.692731), 12);
                 // 添加地图类型控件
                 // map.addControl(new BMap.MapTypeControl());  
                 // 设置地图显示的城市 此项是必须设置的

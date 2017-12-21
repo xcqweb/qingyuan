@@ -54,7 +54,7 @@ import traffic from '@/pages/home/showMore/smallComponent/traffic.vue'
 
     },
     mounted(){
-        this.$emit('showWeeks',false)
+        this.$emit('hideWeeks')
     }
   }
 </script>

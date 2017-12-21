@@ -53,7 +53,8 @@ import d6ss from '@/pages/home/showMore/smallComponent/d6ss.vue'
 
     },
     mounted(){
-        
+        this.$emit('hideWeeks')
+        this.$emit('hideDoubleDate')
     }
   }
 </script>

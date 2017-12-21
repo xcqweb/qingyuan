@@ -54,7 +54,8 @@ import d1ss from '@/pages/home/showMore/smallComponent/d1ss.vue'
 
     },
     mounted(){
-        this.$emit('showWeeks',false)
+        this.$emit('hideWeeks')
+        this.$emit('hideDoubleDate')
     }
   }
 </script>

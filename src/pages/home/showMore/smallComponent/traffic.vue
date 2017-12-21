@@ -212,11 +212,11 @@ require('@/common/js/baidumap/TrafficControl_min.js')
             const _self= this;
             var map = new BMap.Map(this.idName,{enableMapClick:true});
             // 初始化地图,设置中心点坐标和地图级别
-            map.centerAndZoom(new BMap.Point(120.018874,29.48683), 9);
+            map.centerAndZoom(new BMap.Point(113.046945,23.692731), 9);
             // 添加地图类型控件
             // map.addControl(new BMap.MapTypeControl());  
             // 设置地图显示的城市 此项是必须设置的
-            map.setCurrentCity("浦江");    
+            map.setCurrentCity("清远");    
             // 开启鼠标滚轮缩放      
             map.enableScrollWheelZoom(true);
             // 设置定时器，对地图进行自动移动

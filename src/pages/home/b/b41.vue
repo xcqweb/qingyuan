@@ -187,7 +187,7 @@ require('../../../common/js/baidumap/TrafficControl_min.js?dd')
             const _self= this;
             var map = new BMap.Map("XSDFXPage",{enableMapClick:true});
             // 初始化地图,设置中心点坐标和地图级别
-            map.centerAndZoom(new BMap.Point(120.018874,29.48683), 9);
+            map.centerAndZoom(new BMap.Point(113.046945,23.692731), 9);
             // 添加地图类型控件
             // map.addControl(new BMap.MapTypeControl());  
             // 设置地图显示的城市 此项是必须设置的

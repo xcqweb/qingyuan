@@ -148,7 +148,7 @@
 
 <template>
     <div class="d3">
-        <h1>{{place}}</h1>
+        <!-- <h1>{{place}}</h1> -->
         <vstar 
         class='title-star'
         :star='topStar.numb' 

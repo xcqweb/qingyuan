@@ -26,12 +26,12 @@ let A8S = rresolve => {require.ensure(['@/pages/home/showMore/bigComponent/devel
 let A9S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/develping.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/develping.vue'))})}
 //消费属性分析
 let B1S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/develping.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/develping.vue'))})}
-let B2S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/develping.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/develping.vue'))})}
+let B2S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/b2s.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/b2s.vue'))})}
 // let B4 = resolve => {require.ensure(['@/pages/home/b/b4.vue'], () => {resolve(require('@/pages/home/b/b4.vue'))})}
 let B4S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/b4s.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/b4s.vue'))})}
 
 let B5S = resolve => resolve => {require.ensure(['@/pages/home/showMore/bigComponent/develping.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/develping.vue'))})}
-let B6S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/develping.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/develping.vue'))})}
+let B6S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/b6s.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/b6s.vue'))})}
 let B7S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/develping.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/develping.vue'))})}
 let B8S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/develping.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/develping.vue'))})}
 let B9S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/develping.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/develping.vue'))})}
@@ -50,7 +50,7 @@ let C9S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/develp
 let C10S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/develping.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/develping.vue'))})}
 let C15S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/develping.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/develping.vue'))})}
 let D1S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/d1s.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/d1s.vue'))})}
-let D2S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/develping.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/develping.vue'))})}
+let D2S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/d2s.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/d2s.vue'))})}
 let D3S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/develping.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/develping.vue'))})}
 
 let D4S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/develping.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/develping.vue'))})}
@@ -59,7 +59,7 @@ let D5S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/develp
 let D6S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/d6s.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/d6s.vue'))})}
 let D7S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/d7s.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/d7s.vue'))})}
 
-let D8S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/develping.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/develping.vue'))})}
+let D8S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/d8s.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/d8s.vue'))})}
 
 //存放当前模块状态，数组字符串
 let status =[

@@ -11,7 +11,7 @@
   ul{
     position:absolute;
     right:20px;
-    top:40%;
+    top:50%;
     li{
         margin-top:10px;
         text-align:left;
@@ -61,11 +61,52 @@ export default {
           backgroundColor: 'rgba(0,0,0,0)',
           color: ['#368DF7', '#6F5DDA', '#75CF65'],
           series : [
+                {
+                    name: '访问来源',
+                    type: 'pie',
+                    radius : '28%',
+                    center: ['39%', '48%'],
+                    data:[{
+                        value:20.5, 
+                        name:'39%',
+                        itemStyle: {
+                            normal:{
+
+                                    color:'rgba(0, 0, 0, 0)'
+                                },
+                            emphasis: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                            },
+                            label:{
+                                    normal:{
+                                        show:true,
+                                        position:'inside',
+                                        align:'center',
+                                        textStyle:{
+                                            color:'white'
+                                        },
+                                        formatter:function(params){
+                                            var msgs = ['321万元','521万元','821万元',]
+                                            var msg = '';
+                                            var index = params.dataIndex ;
+                                            return '1663万元'
+                                        },
+                                        fontSize:18,
+                                        
+                                    },
+                            },
+                        }
+                    ],
+                    
+                },
               {
                 name:'访问来源',
                 type:'pie',
                 radius: ['41%', '47%'],
-                center: ['35%', '55%'],
+                center: ['39%', '55%'],
                 // selecteMode:'single',
                 // selectedOffset:30,
                 // roseType:"area",
@@ -89,13 +130,27 @@ export default {
                                 textStyle:{
                                     color:'#368df7'
                                 }
+                            },
+                            emphasis:{
+                                show:true,
+                                position:'outside',
+                                align:'left',
+                                formatter:function(params){
+                                    var msgs = ['321万元','521万元','821万元',]
+                                    var msg = '';
+                                    var index = params.dataIndex ;
+                                    return msgs[1]
+                                },
+                                textStyle:{
+                                    color:'#368df7'
+                                }
                             }
                         },
                         labelLine:{
                             normal:{
                                 show:true,
-                                length:5,
-                                length2:5,
+                                length:10,
+                                length2:10,
                                 lineStyle:{
                                     color:'rgba(0,0,0,0)'
                                 }
@@ -125,13 +180,28 @@ export default {
                                 textStyle:{
                                     color:'#75cf65'
                                 }
+                            },
+                            emphasis:{
+                                show:true,
+                                position:'outside',
+                                align:'right',
+                                formatter:function(params){
+                                    var msgs = ['321万元','521万元','821万元',]
+                                    var msg = '';
+                                    var index = params.dataIndex ;
+                           
+                                    return msgs[0]
+                                },
+                                textStyle:{
+                                    color:'#75cf65'
+                                }
                             }
                         },
                         labelLine:{
                             normal:{
                                 show:true,
-                                length:5,
-                                length2:5,
+                                length:10,
+                                length2:10,
                                 lineStyle:{
                                     color:'rgba(0,0,0,0)'
                                 }
@@ -153,13 +223,27 @@ export default {
                                 textStyle:{
                                     color:'#fe6e40'
                                 }
+                            },
+                            emphasis:{
+                                show:true,
+                                position:'outside',
+                                align:'right',
+                                formatter:function(params){
+                                    var msgs = ['321万元','521万元','821万元',]
+                                    var msg = '';
+                                    var index = params.dataIndex ;
+                                    return msgs[2]
+                                },
+                                textStyle:{
+                                    color:'#fe6e40'
+                                }
                             }
                         },
                         labelLine:{
                             normal:{
                                 show:true,
-                                length:2,
-                                length2:2,
+                                length:5,
+                                length2:5,
                                 lineStyle:{
                                     color:'rgba(0,0,0,0)'
                                 }

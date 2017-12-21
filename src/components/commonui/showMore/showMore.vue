@@ -184,8 +184,8 @@ img{
                 class="morePlace" 
                 :scenics = 'cityData' 
                 :isActive ='isActive'
-                @showWeeks = 'showWeeks'
-                @showDoubleDate = 'showDoubleDate'
+                @hideWeeks = 'hideWeeks'
+                @hideDoubleDate = 'hideDoubleDate'
             ></componet>
         </div>
     </div>
@@ -251,10 +251,10 @@ var _ = require('lodash');
         redom14(){
             this.isActive = false;
         },
-        showWeeks(obj){
+        hideWeeks(obj){
             this.weekStatus = false;
         },
-        showDoubleDate(){
+        hideDoubleDate(){
             this.isEndDate = false;
         },
         switch(val){
@@ -273,7 +273,8 @@ var _ = require('lodash');
         },  
     },
     mounted(){
-        
+    },
+    beforeDestroy(){
     }
   }
 </script>

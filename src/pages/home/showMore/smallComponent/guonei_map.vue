@@ -57,7 +57,7 @@
 </style>
 <template>
     <div class="map_content">
-        <div id="fromEcharts"></div>
+        <div v-if="isActive" id="fromEcharts"></div>
     </div>
 </template>
 
@@ -75,13 +75,13 @@ props:{
 },
 watch:{
     isActive:function(val){
-        
+         
     }
 },
   data () {
     return {
         chart:null,
-        isActive:false,
+        // isActive:false,
         zhejiang:{
             geoCoordMap:{
             '浦江县': [120.105537,29.508488],
@@ -354,10 +354,10 @@ watch:{
   },
   methods: {
     redom7(){
-        this.isActive=true;
+        // this.isActive=true;
     },
     redom14(){
-        this.isActive=false;
+        // this.isActive=false;
     },
     convertData(data){
         var res = [];
