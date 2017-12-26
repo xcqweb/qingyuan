@@ -54,7 +54,8 @@ import traffic from '@/pages/home/showMore/smallComponent/traffic.vue'
 
     },
     mounted(){
-        this.$emit('hideWeeks')
+        this.$emit('hideWeeks');
+        this.$emit('hideVdate');
     }
   }
 </script>

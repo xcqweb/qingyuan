@@ -53,9 +53,9 @@
 .XSDFXPaged{
     position:absolute;
     width: 95%;
-    height: 85%;
+    height: 80%;
     overflow: hidden;
-    top:12%;
+    top:15%;
     left:2.5%;
     font-family: "微软雅黑";
 }

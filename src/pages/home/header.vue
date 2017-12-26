@@ -93,6 +93,7 @@ a:visited { text-decoration: none;}
                 .item:nth-of-type(1){
                     margin-top: 7px;
                     border-top: 3px solid #133596;
+                    z-index: 100;
                     &.unchose font{
                         color:#6dffeb;
                     }
@@ -149,20 +150,20 @@ a:visited { text-decoration: none;}
     <p>{{title}}</p>
     <ul>
         <router-link :to="{path: '/precision'}" tag="li"   @click="toggle('choseAbove')" :class='choseAbove'>
-                <span class="aimg"></span>
-                <font class="afont">4A以上景区</font>
+                <span class="aimg"  @click="toggle('choseAbove')"></span>
+                <font class="afont"  @click="toggle('choseAbove')">4A以上景区</font>
         </router-link>
         <li :class='choseDown' v-on:mouseenter="headerEnter" v-on:mouseleave="headerLeave">
                 <span class="aimg"></span>
                 <font class="">4A以下景区</font>
                 <div class="down_item" v-show="down_show">
                     <router-link :to="{path: '/'}" tag="div" class="item " @click="toggledown('zonglan')" :class='zonglan'>
-                        <span class="downimg"></span>
-                        <font>总览</font>
+                        <span class="downimg" @click="toggledown('zonglan')"></span>
+                        <font @click="toggledown('zonglan')">总览</font>
                     </router-link>
                     <router-link :to="{path: '/command'}" tag="div" class="item" @click="toggledown('yingji')" :class='yingji'>
-                        <span class="downimg"></span>
-                        <font>应急指挥平台</font>
+                        <span class="downimg" @click="toggledown('yingji')"></span>
+                        <font @click="toggledown('yingji')">应急指挥平台</font>
                     </router-link>
                 </div>
         </li>
@@ -203,8 +204,8 @@ export default {
   },
   watch:{
       hash:function (val) {
-            
-              this.changelink()
+            console.log(val)
+            this.changelink()
           },
   },
   computed: { 

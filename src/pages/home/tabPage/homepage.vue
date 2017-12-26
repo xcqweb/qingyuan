@@ -101,7 +101,7 @@ export default {
                 ],
                 rightComponents:[
                     {name:'D7',id:'one',index:1,time:1200,show:false,title:'支付方式分析'},
-                    {name:'C8',id:'two',index:2,time:1500,show:false,title:'游客来源排行'},
+                   {name:'C8',id:'two',index:2,time:1500,show:false,title:'游客来源排行'},
                 ],
                 
                 text:'headerBody',

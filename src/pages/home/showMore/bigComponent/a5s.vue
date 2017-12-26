@@ -52,8 +52,9 @@ import a5ss from '@/pages/home/showMore/smallComponent/a5ss.vue'
 
     },
     mounted(){
-        this.$emit('hideWeeks')
-        this.$emit('hideDoubleDate')
+        this.$emit('hideWeeks');
+        this.$emit('hideDoubleDate');
+        this.$emit('hideVdate');
     }
   }
 </script>

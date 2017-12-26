@@ -1,5 +1,5 @@
 <style lang="less">
-.d3{
+.d31{
     width:100%;
     height:100%;
     position:relative;
@@ -130,11 +130,13 @@
             .msgItem{
                 // height: 32%;
                 width: 100%;
+                overflow: hidden;
                 
                 position: relative;
-                &:nth-of-type(1){
-                    margin-top: 10px;
-                }
+                // &:nth-of-type(1){
+                    
+                // }
+                margin-top: 10px;
                 img{                  
                 max-width: 100%;
                 max-height: 100%;
@@ -195,8 +197,8 @@
 </style>
 
 <template>
-    <div class="d3">
-        <h1>{{place}}</h1>
+    <div class="d31">
+        <!-- <h1>{{place}}</h1> -->
         <vstar 
         class='title-star'
         :star='topStar.numb' 

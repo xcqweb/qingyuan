@@ -44,7 +44,7 @@ export default {
               grid: {
                  show: true,
                  left: '10%',
-                 top: '15%',
+                 top: '20%',
                  right: '10%',
                  bottom: '20%',
                  borderWidth: 0,

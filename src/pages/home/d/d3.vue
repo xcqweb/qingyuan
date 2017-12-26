@@ -219,7 +219,7 @@ export default {
                 leftProcess:55,
                 rightProcess:45,
                 leftColor:'#ffdd6c',
-                rightColor:'#ff719c',
+                rightColor:'rgb(255, 221, 108)',
                 leftTitle:'自驾游',
                 rightTitle:'团队游',
             },

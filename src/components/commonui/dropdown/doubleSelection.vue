@@ -25,7 +25,7 @@
     }
     .row{
         .oneSelection{
-            left: 11%;
+            left: 10%;
             width: 18%;
         }
         .twoSelection{
@@ -71,6 +71,7 @@ export default {
                         "清城","清新","佛冈","英德","连州","连南","连山","阳山"
                     ]
                 },
+                startData:['飞霞风景名胜区','牛鱼嘴原始生态风景区','天子山瀑布风景区','白庙渔村','飞来寺','美林湖及大家元摩天轮片区'],
                 cityData:['飞霞风景名胜区','牛鱼嘴原始生态风景区','天子山瀑布风景区','白庙渔村','飞来寺','美林湖及大家元摩天轮片区'],
                  updateData:{
                     palce:'',
@@ -84,12 +85,13 @@ export default {
             inItems: 'version/inItems',
           }),
          jqselectlist:function(){
-            if(!this.cityData){
+            if(this.cityData ===undefined){
                 this.cityData = this.startData;
             }
+            
             return {
                 width:'38%',
-                left:'53%',
+                left:'48%',
                 title:this.cityData[0],
                 selectStatus:false,
                 place:this.cityData,
@@ -101,11 +103,12 @@ export default {
     methods: {
         catchmsg1(data){
            this.updateData.palce = data;
-           return  this.cityData = this.switch(data)
+           return  this.cityData = this.switch(data);
+           this.$emit('listenDoubleSelection',this.updateData);
         },
         catchmsg2(data){
-           this.updateData.turist = data;
-        //    this.$emit('listenDoubleSelection',this.updateData)
+            this.updateData.turist = data;
+            this.$emit('listenDoubleSelection',this.updateData)
         },
         switch(val){
             const  cityData = {

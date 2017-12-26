@@ -2,16 +2,16 @@
     <div class="ta_c">
         <div class='rotImg'>
             <div class="Rotation1 img ">
-                <img :src="circle"/>
+                <img :src="item.circle"/>
             </div>
             <div class="Rotation2 img ">
-                <img :src="cut"/>
+                <img :src="item.cut"/>
             </div>
             <div class="Rotation3 img ">
-                <img :src="half"/>
+                <img :src="item.half"/>
             </div>
             <div class=" line">
-                <img :src="line"/>
+                <img :src="item.line"/>
             </div>
             <font>{{overcrow}}</font>
         </div>
@@ -35,15 +35,32 @@ export default {
     },
   data () {
     return {
-        circle:require('../../../../assets/images/circle/violet/item-circle.png'),
-        cut:require('../../../../assets/images/circle/violet/cut.png'),
-        half:require('../../../../assets/images/circle/violet/half.png'),
-        line:require('../../../../assets/images/circle/violet/line.png'),
+        items:[
+            {
+                circle:require('../../../../assets/images/circle/violet/item-circle.png'),
+                cut:require('../../../../assets/images/circle/violet/cut.png'),
+                half:require('../../../../assets/images/circle/violet/half.png'),
+                line:require('../../../../assets/images/circle/violet/line.png'),
+            },
+            {
+                circle:require('../../../../assets/images/circle/red/item-circle.png'),
+                cut:require('../../../../assets/images/circle/red/cut.png'),
+                half:require('../../../../assets/images/circle/red/half.png'),
+                line:require('../../../../assets/images/circle/red/line.png'),
+            },
+        ],
         percent:'80%',
         text:'较为拥堵',
     }
   },
-  computed: { 
+  computed: {
+      item:function(){
+          if(this.overcrow>5){
+              return this.items[1];
+          }else{
+              return this.items[0];
+          }
+      }
   },
   methods: {
     getwidth(){

@@ -94,6 +94,39 @@ img{
     position: relative !important;
    margin-left: 4rem;
 }
+.row{
+    width:28%;
+    float: left;
+    min-height: 1rem;
+    margin-top:1rem;
+    position: relative !important;
+   margin-left: 1rem;
+}
+.starList{
+    width:28%;
+    float: left;
+    min-height: 2rem;
+    margin-top:.6rem;
+    position: relative !important;
+   margin-left: 0;
+   background-color: rgba(0, 0, 0, 0);
+   li{
+        min-height: 1.8rem;
+        text-align: center;
+        line-height:2rem;
+       float: left;
+       width: 19%;
+       color:white;
+       cursor: pointer;
+       background-image:url('../../../assets/images/home/981513311442_.pic.jpg');
+      background-size: 100% 100%;
+      &.chose{
+        background-image:url('../../../assets/images/home/991513311442_.pic.jpg');
+          background-size: 100% 100%;
+          color:#d3ddf9;
+      }
+   }
+}
 .week{
     width:15%;
     height: 1.8rem;
@@ -160,7 +193,7 @@ img{
         <div class="cutover">
             <div class="header">
                 <div class="title">{{title}}</div>
-                <div class="placeSlect">
+                <div class="placeSlect" v-if="placeSlect">
                     <div class="qylable">区域：</div>
                     <sleckte 
                     :selectList="qyselectlist" 
@@ -168,11 +201,24 @@ img{
                     class="oneSelection"
                     ></sleckte>
                 </div>
+                <doubleSelection
+                v-if="!placeSlect"
+                v-on:listenDoubleSelection="catchmsg" 
+                class="row"
+                ></doubleSelection>
                 <div class="week" v-if="weekStatus">
                     <span class="oneweek " v-bind:class="{ chose: isActive }" @click='redom7'>7日</span>
                     <span class="twoweek" v-bind:class="{ chose: !isActive }" @click='redom14'>14日</span>
                 </div>
-                <vDate class='vueDate' 
+                <ul class="starList"  v-if="!placeSlect">
+                    <li 
+                    v-for="(item,index) in starList" 
+                    :class="item.class" 
+                    @click="starClick(index)"
+                    >{{item.context}}</li>
+                </ul>
+                <vDate class='vueDate'
+                 v-if="vDateStatus"
                  @pageDate='getDate'
                  :isActive = 'isEndDate' 
                  ></vDate>
@@ -183,9 +229,13 @@ img{
                 :is='mainContent' 
                 class="morePlace" 
                 :scenics = 'cityData' 
-                :isActive ='isActive'
+                :isActive ='isActive' 
+                :updateTurist = 'updateData.turist' 
+                :starNub = 'starNub'
                 @hideWeeks = 'hideWeeks'
                 @hideDoubleDate = 'hideDoubleDate'
+                @showComment ='showComment' 
+                @hideVdate = 'hideVdate'
             ></componet>
         </div>
     </div>
@@ -207,6 +257,16 @@ var _ = require('lodash');
             isEndDate:true,
             isActive:true,
             weekStatus:true,
+            placeSlect:true,
+            vDateStatus:true,
+            starNub :5,
+            starList:[
+                {context:'五星',class:'chose'},
+                {context:'四星',class:''},
+                {context:'三星',class:''},
+                {context:'二星',class:''},
+                {context:'一星',class:''},
+            ],
             qyselectlist:{
                 title:'英德 ',
                 width:'80%',
@@ -233,14 +293,29 @@ var _ = require('lodash');
         ...componets,vDate, 
     },
     methods:{
+        starClick(indexClick){
+            this.starList.forEach((item,index)=>{
+                if(index === indexClick){
+                    item.class = 'chose';
+                    this.starNub = 5 - index;
+                }else{
+                    item.class = '';
+                }
+            })
+        },
         close(){
             this.visiable=false;
             this.weekStatus = true;
             this.isEndDate = true;
+            this.vDateStatus=true;
+            this.placeSlect = true;
         },
         catchmsg1(data){
            this.updateData.palce = data;
-           return  this.cityData = this.switch(data)
+           this.cityData = this.switch(data);
+        },
+        catchmsg(data){
+            this.updateData  = data;
         },
         getDate(value){
             console.log(value);
@@ -256,6 +331,14 @@ var _ = require('lodash');
         },
         hideDoubleDate(){
             this.isEndDate = false;
+        },
+        hideVdate(){
+            this.vDateStatus =false;
+        },
+        showComment(){
+            this.weekStatus = false;
+            this.isEndDate = true;
+            this.placeSlect = false;
         },
         switch(val){
             const  cityData = {

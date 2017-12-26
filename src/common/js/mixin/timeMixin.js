@@ -9,9 +9,6 @@
             }
         };
     },
-    computed(){
-
-    },
     mounted () {
         // this.$emit('lazyLoad')
     }

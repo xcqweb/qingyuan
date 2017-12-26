@@ -64,14 +64,6 @@ export default {
       }
     },
     store:store,
-    computed:{
-
-      isCase:{
-        get: function(){
-          return window.location.hash.length > 3 ? true :false;
-        } 
-      },
-    },
     methods: {
     redom7(){
         if(this.chart){
