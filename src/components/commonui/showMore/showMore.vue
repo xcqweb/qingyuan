@@ -102,13 +102,13 @@ img{
     position: relative !important;
    margin-left: 1rem;
 }
-.starList{
+.starList,.dateChose{
     width:28%;
     float: left;
     min-height: 2rem;
     margin-top:.6rem;
     position: relative !important;
-   margin-left: 0;
+   margin-left: 3rem;
    background-color: rgba(0, 0, 0, 0);
    li{
         min-height: 1.8rem;
@@ -206,10 +206,18 @@ img{
                 v-on:listenDoubleSelection="catchmsg" 
                 class="row"
                 ></doubleSelection>
-                <div class="week" v-if="weekStatus">
+                <!-- 7-14单选组件 -->
+                <!-- <div class="week" v-if="weekStatus">
                     <span class="oneweek " v-bind:class="{ chose: isActive }" @click='redom7'>7日</span>
                     <span class="twoweek" v-bind:class="{ chose: !isActive }" @click='redom14'>14日</span>
-                </div>
+                </div> -->
+                <ul class="dateChose"  v-if="placeSlect">
+                    <li 
+                    v-for="(item,index) in dateChoseList" 
+                    :class="item.class" 
+                    @click="dateClick(index)"
+                    >{{item.context}}</li>
+                </ul>
                 <ul class="starList"  v-if="!placeSlect">
                     <li 
                     v-for="(item,index) in starList" 
@@ -217,11 +225,12 @@ img{
                     @click="starClick(index)"
                     >{{item.context}}</li>
                 </ul>
-                <vDate class='vueDate'
+                <!-- 时间下拉框组件 -->
+                <!-- <vDate class='vueDate'
                  v-if="vDateStatus"
                  @pageDate='getDate'
                  :isActive = 'isEndDate' 
-                 ></vDate>
+                 ></vDate> -->
                 <!-- <vue-datetime-picker></vue-datetime-picker> -->
                 
             </div>
@@ -231,7 +240,8 @@ img{
                 :scenics = 'cityData' 
                 :isActive ='isActive' 
                 :updateTurist = 'updateData.turist' 
-                :starNub = 'starNub'
+                :starNub = 'starNub' 
+                :dateIndex = 'dateIndex' 
                 @hideWeeks = 'hideWeeks'
                 @hideDoubleDate = 'hideDoubleDate'
                 @showComment ='showComment' 
@@ -257,15 +267,23 @@ var _ = require('lodash');
             isEndDate:true,
             isActive:true,
             weekStatus:true,
+            dateChose:false,
             placeSlect:true,
             vDateStatus:true,
             starNub :5,
+            dateIndex:1,
             starList:[
                 {context:'五星',class:'chose'},
                 {context:'四星',class:''},
                 {context:'三星',class:''},
                 {context:'二星',class:''},
                 {context:'一星',class:''},
+            ],
+            dateChoseList:[
+                {context:'日',class:'chose'},
+                {context:'周',class:''},
+                {context:'月',class:''},
+                {context:'年',class:''},
             ],
             qyselectlist:{
                 title:'全部',
@@ -311,6 +329,16 @@ var _ = require('lodash');
                 }
             })
         },
+        dateClick(indexClick){
+            this.dateChoseList.forEach((item,index)=>{
+                if(index === indexClick){
+                    item.class = 'chose';
+                    this.dateIndex = 4 - index;
+                }else{
+                    item.class = '';
+                }
+            })
+        },
         close(){
             this.visiable=false;
             this.weekStatus = true;
@@ -319,10 +347,8 @@ var _ = require('lodash');
             this.placeSlect = true;
         },
         catchmsgSingle(data){
-            console.log(data)
            this.updateData.palce = data;
            this.cityData = this.switch(data);
-           console.log(this.cityData)
         },
         catchmsg(data){
             this.updateData  = data;
