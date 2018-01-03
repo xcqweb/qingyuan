@@ -48,6 +48,7 @@
 
 <script>
 import nianling from '@/pages/home/showMore/smallComponent/nialing_pie.vue'
+import c2sJson from '@/pages/home/showMore/bigComponent/json/c2s.json'
 import showMoreData from '@/common/js/mixin/showMoreData.js'
   export default {
     name:'C2S',
@@ -55,34 +56,22 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
     props:{
         scenics:Array,
          isActive:Boolean,
+         dateIndex:Number,
+    },
+    watch:{
+        dateIndex:function(){
+            console.log(dateChose[dateIndex])
+        }
     },
     data() {
       return {
         //   idName:['c4s1','c4s2','c4s3','c4s4','c4s5','c4s6','c4s7','c4s8','c4s9'],
-            responseDataObj:{
-                "全部":{
-                    "日":[
-                        {name:'feixi',data:1}
-                    ],
-                    "月":[
-                       {name:'feixi',data:2}
-                    ],
-                    "年":[
-                       {name:'feixi',data:2}
-                    ],
-                },
-                "清城":{
-                    "日":[
-                        {name:'feixi',data:1}
-                    ],
-                    "月":[
-                       {name:'feixi',data:2}
-                    ],
-                    "年":[
-                       {name:'feixi',data:2}
-                    ],
-                },
-            },
+            responseDataObj:c2sJson,
+             dateChose:[
+                {context:'日',class:'chose'},
+                {context:'月',class:''},
+                {context:'年',class:''},
+            ],
             ageitems:[{
                 year:'0-17',
                 color:'#FF8885',
@@ -240,7 +229,7 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
 
     },
     mounted(){
-        console.log(this.responseDataObj['全部']['日'])
+        this.$emit('showDateFormatChose',this.dateChose)
     }
   }
 </script>

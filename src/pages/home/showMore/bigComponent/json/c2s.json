@@ -1,0 +1,1278 @@
+{
+    "全部":{
+        "日":[
+            {"name":"feixi","data":1}
+        ],
+        "月":[
+           {"name":"feixi","data":2}
+        ],
+        "年":[
+           {"name":"feixi","data":2}
+        ]
+    },
+    "清城":{
+        "日":[
+            {"name":"飞霞风景名胜区",
+                    "data":[
+                    {"value":15, "name":"0-19"},
+                    {"value":17, "name":"19-25"},
+                    {"value":22, "name":"26-35"},
+                    {"value":22, "name":"36-45"},
+                    {"value":19, "name":"46-55"},
+                    {"value":5, "name":"55以上"}
+                ]
+            },
+            {"name":"牛鱼嘴原始生态风景区","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]},
+            {"name":"天子山瀑布风景区","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]},
+            {"name":"白庙渔村","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]},
+            {"name":"飞来寺","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]},
+            {"name":"美林湖及大家元摩天轮片区","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]}
+        ],
+        "月":[
+            {"name":"飞霞风景名胜区",
+                "data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]
+        },
+        {"name":"牛鱼嘴原始生态风景区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"天子山瀑布风景区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"白庙渔村","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"飞来寺","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"美林湖及大家元摩天轮片区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]}
+        ],
+        "年":[
+            {"name":"飞霞风景名胜区",
+                "data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]
+        },
+        {"name":"牛鱼嘴原始生态风景区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"天子山瀑布风景区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"白庙渔村","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"飞来寺","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"美林湖及大家元摩天轮片区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]}
+        ]
+    },
+    "清新":{
+        "日":[
+            {"name":"飞霞风景名胜区",
+                    "data":[
+                    {"value":15, "name":"0-19"},
+                    {"value":17, "name":"19-25"},
+                    {"value":22, "name":"26-35"},
+                    {"value":22, "name":"36-45"},
+                    {"value":19, "name":"46-55"},
+                    {"value":5, "name":"55以上"}
+                ]
+            },
+            {"name":"牛鱼嘴原始生态风景区","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]},
+            {"name":"天子山瀑布风景区","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]},
+            {"name":"白庙渔村","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]},
+            {"name":"飞来寺","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]},
+            {"name":"美林湖及大家元摩天轮片区","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]}
+        ],
+        "月":[
+            {"name":"飞霞风景名胜区",
+                "data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]
+        },
+        {"name":"牛鱼嘴原始生态风景区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"天子山瀑布风景区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"白庙渔村","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"飞来寺","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"美林湖及大家元摩天轮片区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]}
+        ],
+        "年":[
+            {"name":"飞霞风景名胜区",
+                "data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]
+        },
+        {"name":"牛鱼嘴原始生态风景区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"天子山瀑布风景区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"白庙渔村","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"飞来寺","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"美林湖及大家元摩天轮片区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]}
+        ]
+    },
+    "佛冈":{
+        "日":[
+            {"name":"飞霞风景名胜区",
+                    "data":[
+                    {"value":15, "name":"0-19"},
+                    {"value":17, "name":"19-25"},
+                    {"value":22, "name":"26-35"},
+                    {"value":22, "name":"36-45"},
+                    {"value":19, "name":"46-55"},
+                    {"value":5, "name":"55以上"}
+                ]
+            },
+            {"name":"牛鱼嘴原始生态风景区","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]},
+            {"name":"天子山瀑布风景区","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]},
+            {"name":"白庙渔村","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]},
+            {"name":"飞来寺","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]},
+            {"name":"美林湖及大家元摩天轮片区","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]}
+        ],
+        "月":[
+            {"name":"飞霞风景名胜区",
+                "data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]
+        },
+        {"name":"牛鱼嘴原始生态风景区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"天子山瀑布风景区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"白庙渔村","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"飞来寺","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"美林湖及大家元摩天轮片区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]}
+        ],
+        "年":[
+            {"name":"飞霞风景名胜区",
+                "data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]
+        },
+        {"name":"牛鱼嘴原始生态风景区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"天子山瀑布风景区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"白庙渔村","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"飞来寺","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"美林湖及大家元摩天轮片区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]}
+        ]
+    },
+    "英德":{
+        "日":[
+            {"name":"飞霞风景名胜区",
+                    "data":[
+                    {"value":15, "name":"0-19"},
+                    {"value":17, "name":"19-25"},
+                    {"value":22, "name":"26-35"},
+                    {"value":22, "name":"36-45"},
+                    {"value":19, "name":"46-55"},
+                    {"value":5, "name":"55以上"}
+                ]
+            },
+            {"name":"牛鱼嘴原始生态风景区","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]},
+            {"name":"天子山瀑布风景区","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]},
+            {"name":"白庙渔村","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]},
+            {"name":"飞来寺","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]},
+            {"name":"美林湖及大家元摩天轮片区","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]}
+        ],
+        "月":[
+            {"name":"飞霞风景名胜区",
+                "data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]
+        },
+        {"name":"牛鱼嘴原始生态风景区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"天子山瀑布风景区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"白庙渔村","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"飞来寺","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"美林湖及大家元摩天轮片区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]}
+        ],
+        "年":[
+            {"name":"飞霞风景名胜区",
+                "data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]
+        },
+        {"name":"牛鱼嘴原始生态风景区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"天子山瀑布风景区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"白庙渔村","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"飞来寺","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"美林湖及大家元摩天轮片区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]}
+        ]
+    },
+    "连州":{
+        "日":[
+            {"name":"飞霞风景名胜区",
+                    "data":[
+                    {"value":15, "name":"0-19"},
+                    {"value":17, "name":"19-25"},
+                    {"value":22, "name":"26-35"},
+                    {"value":22, "name":"36-45"},
+                    {"value":19, "name":"46-55"},
+                    {"value":5, "name":"55以上"}
+                ]
+            },
+            {"name":"牛鱼嘴原始生态风景区","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]},
+            {"name":"天子山瀑布风景区","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]},
+            {"name":"白庙渔村","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]},
+            {"name":"飞来寺","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]},
+            {"name":"美林湖及大家元摩天轮片区","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]}
+        ],
+        "月":[
+            {"name":"飞霞风景名胜区",
+                "data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]
+        },
+        {"name":"牛鱼嘴原始生态风景区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"天子山瀑布风景区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"白庙渔村","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"飞来寺","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"美林湖及大家元摩天轮片区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]}
+        ],
+        "年":[
+            {"name":"飞霞风景名胜区",
+                "data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]
+        },
+        {"name":"牛鱼嘴原始生态风景区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"天子山瀑布风景区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"白庙渔村","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"飞来寺","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"美林湖及大家元摩天轮片区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]}
+        ]
+    },
+    "连南":{
+        "日":[
+            {"name":"飞霞风景名胜区",
+                    "data":[
+                    {"value":15, "name":"0-19"},
+                    {"value":17, "name":"19-25"},
+                    {"value":22, "name":"26-35"},
+                    {"value":22, "name":"36-45"},
+                    {"value":19, "name":"46-55"},
+                    {"value":5, "name":"55以上"}
+                ]
+            },
+            {"name":"牛鱼嘴原始生态风景区","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]},
+            {"name":"天子山瀑布风景区","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]},
+            {"name":"白庙渔村","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]},
+            {"name":"飞来寺","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]},
+            {"name":"美林湖及大家元摩天轮片区","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]}
+        ],
+        "月":[
+            {"name":"飞霞风景名胜区",
+                "data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]
+        },
+        {"name":"牛鱼嘴原始生态风景区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"天子山瀑布风景区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"白庙渔村","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"飞来寺","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"美林湖及大家元摩天轮片区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]}
+        ],
+        "年":[
+            {"name":"飞霞风景名胜区",
+                "data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]
+        },
+        {"name":"牛鱼嘴原始生态风景区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"天子山瀑布风景区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"白庙渔村","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"飞来寺","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"美林湖及大家元摩天轮片区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]}
+        ]
+    },
+    "连山":{
+        "日":[
+            {"name":"飞霞风景名胜区",
+                    "data":[
+                    {"value":15, "name":"0-19"},
+                    {"value":17, "name":"19-25"},
+                    {"value":22, "name":"26-35"},
+                    {"value":22, "name":"36-45"},
+                    {"value":19, "name":"46-55"},
+                    {"value":5, "name":"55以上"}
+                ]
+            },
+            {"name":"牛鱼嘴原始生态风景区","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]},
+            {"name":"天子山瀑布风景区","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]},
+            {"name":"白庙渔村","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]},
+            {"name":"飞来寺","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]},
+            {"name":"美林湖及大家元摩天轮片区","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]}
+        ],
+        "月":[
+            {"name":"飞霞风景名胜区",
+                "data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]
+        },
+        {"name":"牛鱼嘴原始生态风景区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"天子山瀑布风景区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"白庙渔村","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"飞来寺","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"美林湖及大家元摩天轮片区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]}
+        ],
+        "年":[
+            {"name":"飞霞风景名胜区",
+                "data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]
+        },
+        {"name":"牛鱼嘴原始生态风景区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"天子山瀑布风景区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"白庙渔村","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"飞来寺","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"美林湖及大家元摩天轮片区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]}
+        ]
+    },
+    "阳山":{
+        "日":[
+            {"name":"飞霞风景名胜区",
+                    "data":[
+                    {"value":15, "name":"0-19"},
+                    {"value":17, "name":"19-25"},
+                    {"value":22, "name":"26-35"},
+                    {"value":22, "name":"36-45"},
+                    {"value":19, "name":"46-55"},
+                    {"value":5, "name":"55以上"}
+                ]
+            },
+            {"name":"牛鱼嘴原始生态风景区","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]},
+            {"name":"天子山瀑布风景区","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]},
+            {"name":"白庙渔村","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]},
+            {"name":"飞来寺","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]},
+            {"name":"美林湖及大家元摩天轮片区","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]}
+        ],
+        "月":[
+            {"name":"飞霞风景名胜区",
+                "data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]
+        },
+        {"name":"牛鱼嘴原始生态风景区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"天子山瀑布风景区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"白庙渔村","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"飞来寺","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"美林湖及大家元摩天轮片区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]}
+        ],
+        "年":[
+            {"name":"飞霞风景名胜区",
+                "data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]
+        },
+        {"name":"牛鱼嘴原始生态风景区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"天子山瀑布风景区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"白庙渔村","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"飞来寺","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]},
+        {"name":"美林湖及大家元摩天轮片区","data":[
+            {"value":15, "name":"0-19"},
+            {"value":17, "name":"19-25"},
+            {"value":22, "name":"26-35"},
+            {"value":22, "name":"36-45"},
+            {"value":19, "name":"46-55"},
+            {"value":5, "name":"55以上"}
+        ]}
+        ]
+    }
+}
+   

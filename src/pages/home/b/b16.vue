@@ -50,7 +50,7 @@
             <font>{{yearNumb}}</font>
         </div>
         <div>
-            <span>6月份持续接待游客(人)</span>
+            <span>12月份持续接待游客(人)</span>
             <font>{{mouthNumb}}</font>
         </div>
     </div>

@@ -12,7 +12,7 @@
                 同比
             </div>
         </li>
-        <li v-for='(item,index) in items'>
+        <li v-for='(item,index) in rankItems'>
             <div class="cell1">
                 {{index+1}}、{{item.place}}
             </div>
@@ -31,38 +31,41 @@
 <script type="text/javascript">
 export default {
     name:'c8',
+    props:{
+        rankItems:Array,
+    },
     data(){
         return{
         msg:'Hello Vue 来自App.vue',
-        items:[
-                {
-                numb:'32,001',place:' 深圳市',rise:'up',percent:'4.2%',
-                },
-                {
-                numb:'26,102',place:'上海市 ',rise:'down',percent:'3.3%',
-                },
-                {
-                numb:'13,003',place:'广州市 ',rise:'up',percent:'23.1%',
-                },
-                {
-                numb:'10,304',place:'北京市',rise:'up',percent:'13.7%',
-                },
-                {
-                numb:'8,405',place:'武汉市',rise:'up',percent:'19.2%',
-                },
-                {
-                numb:'6,326',place:'重庆市 ',rise:'up',percent:'13.2%',
-                }
-            ],
+        // items:[
+        //         {
+        //         numb:'32,001',place:' 深圳市',rise:'up',percent:'4.2%',
+        //         },
+        //         {
+        //         numb:'26,102',place:'上海市 ',rise:'down',percent:'3.3%',
+        //         },
+        //         {
+        //         numb:'13,003',place:'广州市 ',rise:'up',percent:'23.1%',
+        //         },
+        //         {
+        //         numb:'10,304',place:'北京市',rise:'up',percent:'13.7%',
+        //         },
+        //         {
+        //         numb:'8,405',place:'武汉市',rise:'up',percent:'19.2%',
+        //         },
+        //         {
+        //         numb:'6,326',place:'重庆市 ',rise:'up',percent:'13.2%',
+        //         }
+        //     ],
       }
-    },
-    props:{
-        
     },
     watch:{
 
     },
-    components:{}
+    components:{},
+    mounted(){
+        console.log(this.rankItems)
+    }
 }
 </script>
 

@@ -6,11 +6,11 @@
     position:relative;
 }
 .XSDFXPage{
-    width: 90%;
-    height: 76%;
+    width: 95%;
+    height: 90%;
     overflow: hidden;
-    top:10%;
-    left:5%;
+    top:7%;
+    left:-5%;
     font-family: "微软雅黑";
 }
 .scenics{
