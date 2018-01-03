@@ -98,6 +98,7 @@ import vmap from '@/pages/home/showMore/smallComponent/guonei_map.vue'
     props:{
         scenics:Array,
         isActive:Boolean,
+        dateIndex:Number,
     },
     watch:{
         isActive:function(val){
@@ -111,10 +112,18 @@ import vmap from '@/pages/home/showMore/smallComponent/guonei_map.vue'
               {title:'6月份持续接待人数环比',context:'23.2%',rise:'up'},
               {title:'6月份持续接待人数占比',context:'87.1%',rise:'up'},
           ]
+        },
+        dateIndex:function(){
+            console.log(dateChose[dateIndex])
         }
     },
     data() {
       return {
+          dateChose:[
+                    {context:'日',class:'chose'},
+                    {context:'月',class:''},
+                    {context:'年',class:''},
+                    ],
           items:[
               {title:'2017年累计接待游客(万人)',context:'323.32',rise:''},
               {title:'2017年累计接待本地游客(万人)',context:'323.23',rise:''},
@@ -143,6 +152,7 @@ import vmap from '@/pages/home/showMore/smallComponent/guonei_map.vue'
     },
     mounted(){
         this.$emit('hideWeeks')
+        this.$emit('showDateFormatChose',this.dateChose)
     }
   }
 </script>

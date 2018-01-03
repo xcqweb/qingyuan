@@ -242,6 +242,7 @@ img{
                 :updateTurist = 'updateData.turist' 
                 :starNub = 'starNub' 
                 :dateIndex = 'dateIndex' 
+                @showDateFormatChose = 'showDateFormatChose'
                 @hideWeeks = 'hideWeeks'
                 @hideDoubleDate = 'hideDoubleDate'
                 @showComment ='showComment' 
@@ -271,7 +272,14 @@ var _ = require('lodash');
             placeSlect:true,
             vDateStatus:true,
             starNub :5,
-            dateIndex:1,
+            dateIndex:0,
+            dateChoseList:[
+                {context:'日',class:''},
+                {context:'周',class:''},
+                {context:'月',class:''},
+                {context:'年',class:''},
+            ],
+            
             starList:[
                 {context:'五星',class:'chose'},
                 {context:'四星',class:''},
@@ -279,12 +287,7 @@ var _ = require('lodash');
                 {context:'二星',class:''},
                 {context:'一星',class:''},
             ],
-            dateChoseList:[
-                {context:'日',class:'chose'},
-                {context:'周',class:''},
-                {context:'月',class:''},
-                {context:'年',class:''},
-            ],
+            
             qyselectlist:{
                 title:'全部',
                 width:'80%',
@@ -333,11 +336,16 @@ var _ = require('lodash');
             this.dateChoseList.forEach((item,index)=>{
                 if(index === indexClick){
                     item.class = 'chose';
-                    this.dateIndex = 4 - index;
+                    this.dateIndex = index;
                 }else{
                     item.class = '';
                 }
             })
+        },
+        //更改时间选项显示
+        showDateFormatChose(dateChoseList){
+            this.dateChoseList = dateChoseList ;
+            this.dateChoseList[0].class = 'chose' ;
         },
         close(){
             this.visiable=false;
