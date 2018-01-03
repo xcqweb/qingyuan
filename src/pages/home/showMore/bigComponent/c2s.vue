@@ -59,10 +59,35 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
     data() {
       return {
         //   idName:['c4s1','c4s2','c4s3','c4s4','c4s5','c4s6','c4s7','c4s8','c4s9'],
+            responseDataObj:{
+                "全部":{
+                    "日":[
+                        {name:'feixi',data:1}
+                    ],
+                    "月":[
+                       {name:'feixi',data:2}
+                    ],
+                    "年":[
+                       {name:'feixi',data:2}
+                    ],
+                },
+                "清城":{
+                    "日":[
+                        {name:'feixi',data:1}
+                    ],
+                    "月":[
+                       {name:'feixi',data:2}
+                    ],
+                    "年":[
+                       {name:'feixi',data:2}
+                    ],
+                },
+            },
             ageitems:[{
                 year:'0-17',
                 color:'#FF8885',
             },
+
             {
                 year:'18-24',
                 color:'#57ABFE',
@@ -215,7 +240,7 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
 
     },
     mounted(){
-
+        console.log(this.responseDataObj['全部']['日'])
     }
   }
 </script>
