@@ -4,7 +4,7 @@
         <div class="circle">
             <img :src="imgacircle"/>
         </div>
-        <span>87.3%</span>
+        <span>{{dataItem}}%</span>
         <div class="text"><font>预警客流</font><font>12000</font></div>
         <div class="scenic">{{scenics}}</div>
     </div>
@@ -19,6 +19,7 @@ export default {
     props:{
         idName:String,
         scenics:String,
+        dataItem:Number,
     },
   data () {
     return {
@@ -44,18 +45,18 @@ export default {
                     data:[
                         
                         {
-                        value:335,
+                        value:this.dataItem,
                         name:'',
                         itemStyle:{
                             normal:{
-                                color:'#1da7fe',
+                                color:this.dataItem<90?'#1da7fe':'#fe6e40',
                                 
 
                             }
                         }
                     },
                         {
-                        value:40, 
+                        value:100-this.dataItem, 
                         name:'',
                         itemStyle:{
                             normal:{

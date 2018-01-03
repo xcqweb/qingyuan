@@ -38,6 +38,11 @@ git add .
 git commit -m ""
 git push -u origin master
 
+在本地创建新的分支 git branch newbranch
+切换到新的分支 git checkout newbranch
+将新的分支推送到github git push origin newbranch
+在本地删除一个分支： git branch -d newbranch
+在github远程端删除一个分支： git push origin :newbranch (分支名前的冒号代表删除)
 
 git --version   查询版本号
 git config --global user.name" "    名字

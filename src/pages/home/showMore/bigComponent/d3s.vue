@@ -25,6 +25,7 @@
         height:4rem;
         float: left;
         overflow: hidden;
+        cursor: pointer;
         .title{
             position:absolute;
             top:0;
@@ -99,9 +100,11 @@
     <div class="d3s">
         <div class="lineItem">
              <vline v-for = "(item,index) in progressItems" 
-             :key="index"
+              :key="index"
               :progressbar='item' 
-              class='progress'></vline>
+              class='progress' 
+              @changebad='changebad'
+              ></vline>
               <div style="clear:both;height:0;overflow:hidden;"></div>
         </div>
         <div class="d3sItems">
@@ -323,7 +326,15 @@ import d3ss from '@/pages/home/showMore/smallComponent/d3ss.vue'
         d3ss,
     },
     methods:{
-       
+       changebad:function(){
+           this.starNub = 1;
+            this.commentProp = [];
+            var nubb = Math.random()*10;
+            for(let i = 0;i<Math.round( nubb < 1?3:nubb);i++){
+                this.commentProp.push(this.commentProps[Math.round(Math.random()*5)])
+            }
+           
+        },
     },
     mounted(){
         this.$emit('showComment');
@@ -338,7 +349,7 @@ import d3ss from '@/pages/home/showMore/smallComponent/d3ss.vue'
             }
         },
         template:`
-        <div class='linebox'>
+        <div class='linebox' @click="changebad">
             <span class='title'>{{progressbar.title}}</span>
             <div class='imgleft'>
                 <span :style="{color:progressbar.leftColor}">{{progressbar.leftProcess}}%</span>
@@ -363,7 +374,12 @@ import d3ss from '@/pages/home/showMore/smallComponent/d3ss.vue'
         methods:{
             chosen:function(){
             },
+            changebad:function(){
+                if(this.progressbar.title === '投诉率'){
+                    this.$emit('changebad');
+                }
                 
+            }
         },
     }
 )
