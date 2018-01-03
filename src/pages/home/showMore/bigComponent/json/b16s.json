@@ -1,37 +1,77 @@
 {
     "全部":[
         {"place":"深圳市","numb":"415,686","rise":"up","percent":"37.85%"},
-        {"place":"北京","numb":"343,146","rise":"up","percent":"31.25%"},
-        {"place":"武汉","numb":"285.127","rise":"up","percent":"25.96%"},
-        {"place":"上海","numb":"181,456","rise":"up","percent":"25.96%"},
-        {"place":"成都","numb":"52,036","rise":"up","percent":"16.52%"},
-        {"place":"长春","numb":"37,292","rise":"up","percent":"4.2%"}
+        {"place":"北京市","numb":"343,146","rise":"down","percent":"31.25%"},
+        {"place":"武汉市","numb":"285.127","rise":"up","percent":"25.96%"},
+        {"place":"上海市","numb":"181,456","rise":"up","percent":"25.96%"},
+        {"place":"成都市","numb":"52,036","rise":"up","percent":"16.52%"},
+        {"place":"长春市","numb":"37,292","rise":"down","percent":"4.2%"}
     ],
     "清城":[
-        {"place":"深圳市","numb":"32,001","rise":"up","percent":"4.2%"}
+        {"place":"深圳市","numb":"86,283","rise":"up","percent":"7.86%"},
+        {"place":"北京市","numb":"64,356","rise":"down","percent":"5.86%"},
+        {"place":"上海市","numb":"49,253","rise":"up","percent":"4.48%"},
+        {"place":"武汉市","numb":"24,452","rise":"up","percent":" 2.23%"},
+        {"place":"成都市","numb":"18,363","rise":"down","percent":"1.67%"},
+        {"place":"重庆市","numb":"17,292","rise":"up","percent":"1.57%"}
     ]
     ,
     "清新":[
-        {"place":"深圳市","numb":"32,001","rise":"up","percent":"4.2%"}
+        {"place":"深圳市","numb":"71,383","rise":"up","percent":"6.50%"},
+        {"place":"北京市","numb":"68,356","rise":"down","percent":"6.22%"},
+        {"place":"上海市","numb":"53,253","rise":"up","percent":"4.85%"},
+        {"place":"大连市","numb":"30,452","rise":"up","percent":"2.77%"},
+        {"place":"昆明市","numb":"19,363","rise":"up","percent":"1.76%"},
+        {"place":"武汉市","numb":"18,292","rise":"up","percent":"1.67%"}
     ] 
     ,
     "佛冈":[
-        {"place":"深圳市","numb":"32,001","rise":"up","percent":"4.2%"}
+        {"place":"深圳市","numb":"64,383","rise":"up","percent":"5.86%"},
+        {"place":"北京市","numb":"51,356","rise":"up","percent":"4.68%"},
+        {"place":"上海市","numb":"40,253","rise":"up","percent":"3.67%"},
+        {"place":"武汉市","numb":"28,452","rise":"up","percent":"2.59%"},
+        {"place":"成都市","numb":"17,363","rise":"up","percent":"1.58%"},
+        {"place":"长春市","numb":"16,292","rise":"up","percent":"1.48%"}
     ],
     "英德":[
-        {"place":"深圳市","numb":"32,001","rise":"up","percent":"4.2%"}
+        {"place":"深圳市","numb":"55,342","rise":"up","percent":"6.50%"},
+        {"place":"北京市","numb":"37,356","rise":"down","percent":"5.04%"},
+        {"place":"上海市","numb":"31,253","rise":"up","percent":"4.85%"},
+        {"place":"武汉市","numb":"29,452","rise":"down","percent":"3.40%"},
+        {"place":"厦门市","numb":"27,363","rise":"up","percent":"2.49%"},
+        {"place":"西安市","numb":"18,292","rise":"up","percent":"1.67%"}
     ],
     "连州":[
-        {"place":"深圳市","numb":"32,001","rise":"up","percent":"4.2%"}
+        {"place":"深圳市","numb":"41,443","rise":"up","percent":"3.77%"},
+        {"place":"北京市","numb":"32,356","rise":"up","percent":"2.95%"},
+        {"place":"上海市","numb":"20,253","rise":"up","percent":"1.84%"},
+        {"place":"武汉市","numb":"18,452","rise":"down","percent":"1.68%"},
+        {"place":"成都市","numb":"16,363","rise":"up","percent":"1.49%"},
+        {"place":"黑龙江市","numb":"14,292","rise":"up","percent":"1.30%"}
     ],
     "连南":[
-        {"place":"深圳市","numb":"32,001","rise":"up","percent":"4.2%"}
+        {"place":"深圳市","numb":"35,746","rise":"down","percent":"3.25%"},
+        {"place":"北京市","numb":"30,356","rise":"up","percent":"2.76%"},
+        {"place":"上海市","numb":"29,253","rise":"up","percent":"2.66%"},
+        {"place":"武汉市","numb":"27,452","rise":"up","percent":"2.50%"},
+        {"place":"成都市","numb":"26,363","rise":"down","percent":"1.76%"},
+        {"place":"长春市","numb":"24,292","rise":"up","percent":"1.67%"}
     ],
     "连山":[
-        {"place":"深圳市","numb":"32,001","rise":"up","percent":"4.2%"}
-    ],
+        {"place":"深圳市","numb":"30,746","rise":"up","percent":"2.85%"},
+        {"place":"北京市","numb":"29,356","rise":"down","percent":"2.66%"},
+        {"place":"上海市","numb":"28,253","rise":"up","percent":"2.56%"},
+        {"place":"武汉市","numb":"17,452","rise":"up","percent":"1.50%"},
+        {"place":"成都市","numb":"16,363","rise":"down","percent":"1.46%"},
+        {"place":"长春市","numb":"14,292","rise":"up","percent":"1.27%"}
+    ],	
     "阳山":[
-        {"place":"深圳市","numb":"32,001","rise":"up","percent":"4.2%"}
+        {"place":"深圳市","numb":"30,253","rise":"up","percent":"2.75%"},
+        {"place":"北京市","numb":"29,654","rise":"down","percent":"2.70%"},
+        {"place":"上海市","numb":"18,253","rise":"up","percent":"1.66%"},
+        {"place":"武汉市","numb":"17,452","rise":"up","percent":"1.59%"},
+        {"place":"成都市","numb":"16,363","rise":"down","percent":"1.49%"},
+        {"place":"福州市","numb":"15,292","rise":"up","percent":"1.39%"}
     ]
 }
    

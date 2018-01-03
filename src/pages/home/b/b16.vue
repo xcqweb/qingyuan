@@ -46,11 +46,11 @@
      v-show = 'changeModel' 
     >
         <div>
-            <span>2017年累计接待游客(人)</span>
+            <span>2018年累计接待游客(人)</span>
             <font>{{yearNumb}}</font>
         </div>
         <div>
-            <span>12月份持续接待游客(人)</span>
+            <span>1月份持续接待游客(人)</span>
             <font>{{mouthNumb}}</font>
         </div>
     </div>
@@ -68,8 +68,8 @@ export default {
     props:['placeName',],
     data () {
         return {
-            yearNumb:'32,603,958',
-            mouthNumb:'11,952,186',
+            yearNumb:'2,373,403',
+            mouthNumb:'2,373,403',
         }
     },
     components:{

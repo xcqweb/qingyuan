@@ -36,11 +36,12 @@
         </ul>
         <nianling 
         class="c211" 
-        v-for="(item,index) in scenics" 
+        v-if="c2sShow"
+        v-for="(item,index) in nianItems" 
         :key="idName[index]"
         :idName='idName[index]' 
-        :pieData='dataItems[index]' 
-        :scenic = 'scenics[index]'
+        :pieData='item["data"]' 
+        :scenic = 'item["name"]'
         :isActive ='isActive'
         ></nianling>
     </div>
@@ -57,58 +58,109 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
         scenics:Array,
          isActive:Boolean,
          dateIndex:Number,
+         updatePlace:String,
     },
     watch:{
-        dateIndex:function(){
-            console.log(dateChose[dateIndex])
+        dateIndex:function(val){
+            let _self = this;
+            this.nianItems = c2sJson[this.updatePlace][this.dateChose[val].context];
+            this.c2sShow = false;
+            setTimeout(() =>{_self.c2sShow = true},0)
+        },
+        updatePlace:function(val){
+            let _self = this;
+            this.nianItems = c2sJson[val][this.dateChose[this.dateIndex].context];
+            this.c2sShow = false;
+            setTimeout(() =>{_self.c2sShow = true},0)
         }
     },
     data() {
       return {
         //   idName:['c4s1','c4s2','c4s3','c4s4','c4s5','c4s6','c4s7','c4s8','c4s9'],
             responseDataObj:c2sJson,
+            c2sShow:true,
+            nianItems:[
+            {"name":"飞霞风景名胜区",
+                    "data":[
+                    {"value":15, "name":"0-19"},
+                    {"value":17, "name":"19-25"},
+                    {"value":22, "name":"26-35"},
+                    {"value":22, "name":"36-45"},
+                    {"value":19, "name":"46-55"},
+                    {"value":5, "name":"55以上"}
+                ]
+            },
+            {"name":"牛鱼嘴原始生态风景区","data":[
+                {"value":12, "name":"0-19"},
+                {"value":11, "name":"19-25"},
+                {"value":24, "name":"26-35"},
+                {"value":18, "name":"36-45"},
+                {"value":27, "name":"46-55"},
+                {"value":8, "name":"55以上"}
+            ]},
+            {"name":"天子山瀑布风景区","data":[
+                {"value":8, "name":"0-19"},
+                {"value":12, "name":"19-25"},
+                {"value":19, "name":"26-35"},
+                {"value":24, "name":"36-45"},
+                {"value":25, "name":"46-55"},
+                {"value":12, "name":"55以上"}
+            ]},
+            {"name":"白庙渔村","data":[
+                {"value":10, "name":"0-19"},
+                {"value":15, "name":"19-25"},
+                {"value":20, "name":"26-35"},
+                {"value":27, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":9, "name":"55以上"}
+            ]},
+            {"name":"飞来寺","data":[
+                {"value":9, "name":"0-19"},
+                {"value":13, "name":"19-25"},
+                {"value":23, "name":"26-35"},
+                {"value":26, "name":"36-45"},
+                {"value":18, "name":"46-55"},
+                {"value":11, "name":"55以上"}
+            ]},
+            {"name":"美林湖及大家元摩天轮片区","data":[
+                {"value":13, "name":"0-19"},
+                {"value":8, "name":"19-25"},
+                {"value":26, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":22, "name":"46-55"},
+                {"value":9, "name":"55以上"}
+            ]}
+        ],
              dateChose:[
                 {context:'日',class:'chose'},
                 {context:'月',class:''},
                 {context:'年',class:''},
             ],
             ageitems:[{
-                year:'0-17',
+                year:'0-19',
                 color:'#FF8885',
             },
 
             {
-                year:'18-24',
+                year:'19-25',
                 color:'#57ABFE',
             },
             {
-                year:'25-29',
+                year:'26-35',
                 color:'#368DF7',
             },
             {
-                year:'30-34',
+                year:'36-45',
                 color:'#7E6AF6',
             },
             {
-                year:'35-39',
+                year:'46-55',
                 color:'#E39A50',
             },
             {
-                year:'40-44',
+                year:'55以上',
                 color:'#FFCD38',
             },
-            {
-                year:'45-49',
-                color:'#4EBBFC',
-            },
-            {
-                year:'50-54',
-                color:'#75CF65',
-            },
-            {
-                year:'55以上',
-                color:'#B8E986',
-            }
             ],
             // ['#FF8885','#57ABFE', '#368DF7', '#7E6AF6', '#E39A50','#FFCD38',  '#4EBBFC', '#75CF65','#B8E986', '#86E9E8', '#58E5E1','#4BCEDD']
             dataItems:[

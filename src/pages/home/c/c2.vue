@@ -32,28 +32,19 @@ export default {
                 },
                 data:[{
                     icon:'circle',
-                    name:'0-17'
+                    name:'0-19'
                 }, {
                     icon:'circle',
-                    name:'18-24'
+                    name:'19-25'
                 }, {
                     icon:'circle',
-                    name:'25-29'
+                    name:'26-35'
                 }, {
                     icon:'circle',
-                    name:'30-34'
+                    name:'36-45'
                 }, {
                     icon:'circle',
-                    name:'35-39'
-                }, {
-                    icon:'circle',
-                    name:'40-44'
-                }, {
-                    icon:'circle',
-                    name:'45-49'
-                }, {
-                    icon:'circle',
-                    name:'50-54'
+                    name:'46-55'
                 }, {
                     icon:'circle',
                     name:'55以上'
@@ -89,15 +80,12 @@ export default {
                         }
                 },
                 data:[
-            {value:335, name:'0-17'},
-            {value:231, name:'18-24'},
-            {value:174, name:'25-29'},
-            {value:135, name:'30-34'},
-            {value:237, name:'35-39'},
-            {value:432, name:'40-44'},
-            {value:135, name:'45-49'},
-            {value:93, name:'50-54'},
-            {value:111, name:'55以上'},
+            {"value":11, "name":"0-19"},
+            {"value":12, "name":"19-25"},
+            {"value":23, "name":"26-35"},
+            {"value":23, "name":"36-45"},
+            {"value":20, "name":"46-55"},
+            {"value":10, "name":"55以上"}
         ],
       }],
     }
