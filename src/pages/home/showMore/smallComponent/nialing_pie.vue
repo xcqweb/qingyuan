@@ -37,6 +37,13 @@ export default {
         isActive:function(val){
             this.option.series[0].startAngle =60+Math.random()*221;
             this.chart.setOption(this.option);
+        },
+        pieData:{
+            handler: function (val, oldVal) {
+                
+                this.chart.setOption(this.option);
+            },
+            deep: true
         }
     },
     data(){
@@ -59,28 +66,19 @@ export default {
                 },
                 data:[{
                     icon:'circle',
-                    name:'0-17'
+                    name:'0-19'
                 }, {
                     icon:'circle',
-                    name:'18-24'
+                    name:'19-25'
                 }, {
                     icon:'circle',
-                    name:'25-29'
+                    name:'26-35'
                 }, {
                     icon:'circle',
-                    name:'30-34'
+                    name:'36-45'
                 }, {
                     icon:'circle',
-                    name:'35-39'
-                }, {
-                    icon:'circle',
-                    name:'40-44'
-                }, {
-                    icon:'circle',
-                    name:'45-49'
-                }, {
-                    icon:'circle',
-                    name:'50-54'
+                    name:'46-55'
                 }, {
                     icon:'circle',
                     name:'55以上'

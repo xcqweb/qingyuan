@@ -73,10 +73,12 @@
         <div class="midContent">
             <vmap  
             class="vMap"
-            :isActive ='isActive'
+            :isActive ='isActive' 
+            :rankItems ='rankItems' 
+            :updatePlace = 'updatePlace'
             ></vmap>
             <rank class="rank"
-            :rankItems ='rankItems'
+            :rankItems ='rankItems' 
             ></rank>
         </div>
         <div class="buttom">
@@ -122,25 +124,34 @@ import vmap from '@/pages/home/showMore/smallComponent/guonei_map.vue'
         }
     },
     data() {
+        
       return {
-          rankItems:[],
+          rankItems:[
+              {"place":"深圳市","numb":"415,686","rise":"up","percent":"37.85%"},
+        {"place":"北京市","numb":"343,146","rise":"down","percent":"31.25%"},
+        {"place":"武汉市","numb":"285.127","rise":"up","percent":"25.96%"},
+        {"place":"上海市","numb":"181,456","rise":"up","percent":"25.96%"},
+        {"place":"成都市","numb":"52,036","rise":"up","percent":"16.52%"},
+        {"place":"长春市","numb":"37,292","rise":"down","percent":"4.2%"}
+          ],
           dateChose:[
                     {context:'日',class:'chose'},
                     {context:'月',class:''},
                     {context:'年',class:''},
                     ],
           items:[
-              {title:'本年累计接待游客(万人)',context:'323.32',rise:''},
-              {title:'本年累计接待市内游客(万人)',context:'323.23',rise:''},
-              {title:'本年累计接待市内游客占比',context:'23%',rise:''},
-              {title:'本年累计接待市外游客',context:'87%',rise:''},
-              {title:'本年累计接待市外游客占比',context:'87%',rise:''},
               
-              {title:'本月接待游客(万人)',context:'232.5',rise:''},
-              {title:'本月接待市内游客(万人)',context:'12.3%',rise:''},
-              {title:'本月接待市内游客占比',context:'23.2%',rise:'up'},
-              {title:'本月接待市外游客(万人)',context:'87.1%',rise:'up'},
-              {title:'本月接待市外游客占比',context:'87.1%',rise:'up'},
+              {title:'2018年累计接待游客(万人)',context:'237.34',rise:''},
+              {title:'2018年累计接待市内游客(万人)',context:'84.75',rise:''},
+              {title:'2018年累计接待市内游客占比',context:'35.71%',rise:'pu'},
+              {title:'2018年累计接待市外游客(万人)',context:'152.59',rise:''},
+              {title:'2018年累计接待市外游客占比',context:'64.29%',rise:'up'},
+              
+              {title:'1月接待游客(万人)',context:'237.34',rise:''},
+              {title:'1月接待市内游客(万人)',context:'84.75',rise:''},
+              {title:'1月接待市内游客占比',context:'35.71%',rise:'up'},
+              {title:'1月接待市外游客(万人)',context:'152.59',rise:''},
+              {title:'1月接待市外游客占比',context:'64.29%',rise:'up'},
           ]
       }
     },
