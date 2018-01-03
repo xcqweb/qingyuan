@@ -84,7 +84,7 @@ img{
             height: 88% !important;
             width:100%;
             overflow-y: auto;
-             transform: translate(5%,3%);
+             transform: translate(3%,3%);
         }
   }
 .vueDate{
@@ -240,6 +240,7 @@ img{
                 :scenics = 'cityData' 
                 :isActive ='isActive' 
                 :updateTurist = 'updateData.turist' 
+                :updatePlace ='updateData.place'
                 :starNub = 'starNub' 
                 :dateIndex = 'dateIndex' 
                 @showDateFormatChose = 'showDateFormatChose'
@@ -298,7 +299,7 @@ var _ = require('lodash');
                 ]
             },
             updateData:{
-                palce:'',
+                place:'',
                 turist:'',
             },
             cityData:['飞霞风景名胜区','牛鱼嘴原始生态风景区','天子山瀑布风景区','白庙渔村','飞来寺','美林湖及大家元摩天轮片区',
@@ -344,8 +345,12 @@ var _ = require('lodash');
         },
         //更改时间选项显示
         showDateFormatChose(dateChoseList){
+            let len = dateChoseList.length;
             this.dateChoseList = dateChoseList ;
-            this.dateChoseList[0].class = 'chose' ;
+            if(len>1){
+                this.dateChoseList[0].class = 'chose' ;   
+            }
+            
         },
         close(){
             this.visiable=false;
@@ -355,7 +360,7 @@ var _ = require('lodash');
             this.placeSlect = true;
         },
         catchmsgSingle(data){
-           this.updateData.palce = data;
+           this.updateData.place = data;
            this.cityData = this.switch(data);
         },
         catchmsg(data){

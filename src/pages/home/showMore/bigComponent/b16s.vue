@@ -27,7 +27,7 @@
                 height:100%;
                 transform: translate(5%,0);
                 li{
-                    width:25%;
+                    width:20%;
                     height: 45%;
                     float: left;
                     .title{
@@ -75,7 +75,9 @@
             class="vMap"
             :isActive ='isActive'
             ></vmap>
-            <rank class="rank"></rank>
+            <rank class="rank"
+            :rankItems ='rankItems'
+            ></rank>
         </div>
         <div class="buttom">
             <ul >
@@ -92,6 +94,7 @@
 
 <script>
 import rank from '@/pages/home/c/c8.vue'
+import b16sJson from '@/pages/home/showMore/bigComponent/json/b16s.json'
 import vmap from '@/pages/home/showMore/smallComponent/guonei_map.vue'
   export default {
     name:'B16S',
@@ -99,6 +102,7 @@ import vmap from '@/pages/home/showMore/smallComponent/guonei_map.vue'
         scenics:Array,
         isActive:Boolean,
         dateIndex:Number,
+        updatePlace:String,
     },
     watch:{
         isActive:function(val){
@@ -107,43 +111,44 @@ import vmap from '@/pages/home/showMore/smallComponent/guonei_map.vue'
               {title:'2017年累计接待本地游客(万人)',context:'323.23',rise:''},
               {title:'2017年累本地游客与总游客占比',context:'23%',rise:''},
               {title:'2017年累国内游客与总游客占比',context:'87%',rise:''},
-              {title:'6月份持续接待人数(万人)',context:'232.5',rise:''},
-              {title:'6月份持续接待人数同比',context:'12.3%',rise:''},
-              {title:'6月份持续接待人数环比',context:'23.2%',rise:'up'},
-              {title:'6月份持续接待人数占比',context:'87.1%',rise:'up'},
+              {title:'12月份持续接待人数(万人)',context:'232.5',rise:''},
+              {title:'12月份持续接待人数同比',context:'12.3%',rise:''},
+              {title:'12月份持续接待人数环比',context:'23.2%',rise:'up'},
+              {title:'12月份持续接待人数占比',context:'87.1%',rise:'up'},
           ]
         },
-        dateIndex:function(){
-            console.log(dateChose[dateIndex])
+        updatePlace:function(val){
+            this.rankItems = b16sJson[val]
         }
     },
     data() {
       return {
+          rankItems:[],
           dateChose:[
                     {context:'日',class:'chose'},
                     {context:'月',class:''},
                     {context:'年',class:''},
                     ],
           items:[
-              {title:'2017年累计接待游客(万人)',context:'323.32',rise:''},
-              {title:'2017年累计接待本地游客(万人)',context:'323.23',rise:''},
-              {title:'2017年累本地游客与总游客占比',context:'23%',rise:''},
-              {title:'2017年累国内游客与总游客占比',context:'87%',rise:''},
-              {title:'6月份持续接待人数(万人)',context:'232.5',rise:''},
-              {title:'6月份持续接待人数同比',context:'12.3%',rise:''},
-              {title:'6月份持续接待人数环比',context:'23.2%',rise:'up'},
-              {title:'6月份持续接待人数占比',context:'87.1%',rise:'up'},
+              {title:'本年累计接待游客(万人)',context:'323.32',rise:''},
+              {title:'本年累计接待市内游客(万人)',context:'323.23',rise:''},
+              {title:'本年累计接待市内游客占比',context:'23%',rise:''},
+              {title:'本年累计接待市外游客',context:'87%',rise:''},
+              {title:'本年累计接待市外游客占比',context:'87%',rise:''},
+              
+              {title:'本月接待游客(万人)',context:'232.5',rise:''},
+              {title:'本月接待市内游客(万人)',context:'12.3%',rise:''},
+              {title:'本月接待市内游客占比',context:'23.2%',rise:'up'},
+              {title:'本月接待市外游客(万人)',context:'87.1%',rise:'up'},
+              {title:'本月接待市外游客占比',context:'87.1%',rise:'up'},
           ]
       }
     },
-    // props: {
-    //     mainContent: {
-    //         type: String,
-    //         default: function () {
-    //                 return 'D2S'
-    //         }
-    //     },
-    // },
+    computed:{
+        toChirldItems:function () {
+            return 
+        }
+    },
     components: {
         vmap,rank
     },
@@ -151,8 +156,9 @@ import vmap from '@/pages/home/showMore/smallComponent/guonei_map.vue'
 
     },
     mounted(){
+        
         this.$emit('hideWeeks')
-        this.$emit('showDateFormatChose',this.dateChose)
+        this.$emit('showDateFormatChose',[])
     }
   }
 </script>
