@@ -1,3 +1,6 @@
+/**
+ * 控制ss级模块对应id
+ */
 let showMoreData =  {
     props: {
 
