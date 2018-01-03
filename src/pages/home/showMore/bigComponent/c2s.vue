@@ -48,15 +48,17 @@
 
 <script>
 import nianling from '@/pages/home/showMore/smallComponent/nialing_pie.vue'
+import showMoreData from '@/common/js/mixin/showMoreData.js'
   export default {
     name:'C2S',
+    mixins: [showMoreData],
     props:{
         scenics:Array,
          isActive:Boolean,
     },
     data() {
       return {
-          idName:['c4s1','c4s2','c4s3','c4s4','c4s5','c4s6','c4s7','c4s8','c4s9'],
+        //   idName:['c4s1','c4s2','c4s3','c4s4','c4s5','c4s6','c4s7','c4s8','c4s9'],
             ageitems:[{
                 year:'0-17',
                 color:'#FF8885',

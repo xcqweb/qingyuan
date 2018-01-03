@@ -37,13 +37,19 @@ git status
 git add .
 git commit -m ""
 git push -u origin master
-
+###新建分支并切换到新分支
+git checkout -b 分支名
+###查看当前分支
+git branch
 在本地创建新的分支 git branch newbranch
 切换到新的分支 git checkout newbranch
 将新的分支推送到github git push origin newbranch
 在本地删除一个分支： git branch -d newbranch
 在github远程端删除一个分支： git push origin :newbranch (分支名前的冒号代表删除)
-
+###拉取分支
+git pull
+### 拉取某分支下的项目
+git merge origin/master
 git --version   查询版本号
 git config --global user.name" "    名字
 git config --global user.email" "   邮箱

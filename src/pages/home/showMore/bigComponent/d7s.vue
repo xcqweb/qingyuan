@@ -49,8 +49,10 @@
 
 <script>
 import d7ss from '@/pages/home/showMore/smallComponent/d7ss.vue'
+import showMoreData from '@/common/js/mixin/showMoreData.js'
   export default {
     name:'d7s',
+    mixins: [showMoreData],
     props:{
         scenics:Array,
         isActive:Boolean,
@@ -72,7 +74,7 @@ import d7ss from '@/pages/home/showMore/smallComponent/d7ss.vue'
             ],
             // ['#FF8885','#57ABFE', '#368DF7', '#7E6AF6', '#E39A50','#FFCD38',  '#4EBBFC', '#75CF65','#B8E986', '#86E9E8', '#58E5E1','#4BCEDD']
             // scenics:['风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区',],
-            idName:['c4s1','c4s2','c4s3','c4s4','c4s5','c4s6','c4s7','c4s8','c4s9'],
+            // idName:['c4s1','c4s2','c4s3','c4s4','c4s5','c4s6','c4s7','c4s8','c4s9'],
       }
     },
     // props: {
