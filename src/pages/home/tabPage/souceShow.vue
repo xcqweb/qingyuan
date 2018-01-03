@@ -131,7 +131,7 @@ export default {
                     {name:'D1',id:'six',index:6,time:900,show:false,title:'景区客流热力图'},
                 ],
                 rightComponents:[
-                    {name:'D2',id:'one',index:1,time:1200,show:false,title:'旅游收入排行'},
+                    {name:'C10',id:'one',index:1,time:1200,show:false,title:'粉丝关注渠道'},
                     {name:'B4',id:'two',index:2,time:1500,show:false,title:'路况监控'},
                     {name:'D3',id:'three',index:3,time:1800,show:false,title:'最新舆论'},
                 ],

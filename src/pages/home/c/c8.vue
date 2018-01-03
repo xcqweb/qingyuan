@@ -42,7 +42,7 @@ export default {
                 numb:'26,102',place:'上海市 ',rise:'down',percent:'3.3%',
                 },
                 {
-                numb:'13,003',place:'广州 ',rise:'up',percent:'23.1%',
+                numb:'13,003',place:'广州市 ',rise:'up',percent:'23.1%',
                 },
                 {
                 numb:'10,304',place:'北京市',rise:'up',percent:'13.7%',

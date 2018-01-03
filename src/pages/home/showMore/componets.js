@@ -47,7 +47,7 @@ let C6S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/develp
 let C7S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/develping.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/develping.vue'))})}
 let C8S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/c8s.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/c8s.vue'))})}
 let C9S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/develping.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/develping.vue'))})}
-let C10S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/develping.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/develping.vue'))})}
+let C10S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/c10s.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/c10s.vue'))})}
 let C15S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/develping.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/develping.vue'))})}
 let D1S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/d1s.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/d1s.vue'))})}
 let D2S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/d2s.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/d2s.vue'))})}
