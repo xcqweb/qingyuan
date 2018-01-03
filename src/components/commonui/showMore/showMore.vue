@@ -197,7 +197,7 @@ img{
                     <div class="qylable">区域：</div>
                     <sleckte 
                     :selectList="qyselectlist" 
-                    v-on:listenAtparent="catchmsg1" 
+                    v-on:listenAtparent="catchmsgSingle" 
                     class="oneSelection"
                     ></sleckte>
                 </div>
@@ -268,7 +268,7 @@ var _ = require('lodash');
                 {context:'一星',class:''},
             ],
             qyselectlist:{
-                title:'全部 ',
+                title:'全部',
                 width:'80%',
                 left:'30%',
                 selectStatus:false,
@@ -318,13 +318,16 @@ var _ = require('lodash');
             this.vDateStatus=true;
             this.placeSlect = true;
         },
-        catchmsg1(data){
+        catchmsgSingle(data){
+            console.log(data)
            this.updateData.palce = data;
            this.cityData = this.switch(data);
+           console.log(this.cityData)
         },
         catchmsg(data){
             this.updateData  = data;
         },
+        //获取时间
         getDate(value){
             console.log(value);
         },
@@ -334,12 +337,15 @@ var _ = require('lodash');
         redom14(){
             this.isActive = false;
         },
+        //隐藏7，14天
         hideWeeks(obj){
             this.weekStatus = false;
         },
+        //隐藏时间双选按钮
         hideDoubleDate(){
             this.isEndDate = false;
         },
+        //隐藏时间单选选按钮
         hideVdate(){
             this.vDateStatus =false;
         },
@@ -350,6 +356,15 @@ var _ = require('lodash');
         },
         switch(val){
             const  cityData = {
+                "全部":['飞霞风景名胜区','牛鱼嘴原始生态风景区','天子山瀑布风景区','白庙渔村','飞来寺','美林湖及大家元摩天轮片区',
+                            '太和古洞旅游区','笔架山度假区','安庆村','清泉湾生态旅游度假区','金龙洞','九牛洞村',
+                            '观音山王山寺','田野绿世界','熹乐谷','金龟泉生态度假村','上岳古民居',
+                            '峰林胜境景区','英德老虎谷暗河漂流','九龙小镇','铁溪小镇','仙湖温泉旅游度假区','浈阳坊旅游小镇','大樟沙滩度假村','云水谣','彭家祠',
+                            '清远市连州福山景区','大东山温泉度假区','李屋村','潭岭天湖',
+                            '油岭瑶寨','瑶族舞曲实景演出','云海花谷',
+                            '大旭山瀑布群旅游景区','皇后山','鹰扬关景区','雾山梯田',
+                            '北山古寺','鱼水旅游风景区','龙凤温泉'
+                ],
                 "清城":['飞霞风景名胜区','牛鱼嘴原始生态风景区','天子山瀑布风景区','白庙渔村','飞来寺','美林湖及大家元摩天轮片区'],
                 "清新":['太和古洞旅游区','笔架山度假区','安庆村','清泉湾生态旅游度假区','金龙洞','九牛洞村',],
                 "佛冈":['观音山王山寺','田野绿世界','熹乐谷','金龟泉生态度假村','上岳古民居'],
