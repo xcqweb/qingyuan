@@ -112,5 +112,4 @@ for (var i = 0; i < status.length; i++) {
 let index=status[i]
 conponets[index]=eval(index)
 } 
-console.log(conponets)
 export default conponets;
