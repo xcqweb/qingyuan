@@ -243,6 +243,7 @@ img{
                 :updatePlace ='updateData.place'
                 :starNub = 'starNub' 
                 :dateIndex = 'dateIndex' 
+                :title = 'updateData.place'
                 @showDateFormatChose = 'showDateFormatChose'
                 @hideWeeks = 'hideWeeks'
                 @hideDoubleDate = 'hideDoubleDate'
