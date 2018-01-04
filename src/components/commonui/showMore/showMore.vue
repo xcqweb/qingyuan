@@ -103,7 +103,7 @@ img{
    margin-left: 1rem;
 }
 .starList,.dateChose{
-    width:28%;
+    width:auto;
     float: left;
     min-height: 2rem;
     margin-top:.6rem;
@@ -112,6 +112,7 @@ img{
    background-color: rgba(0, 0, 0, 0);
    li{
         min-height: 1.8rem;
+        min-width: 4rem;
         text-align: center;
         line-height:2rem;
        float: left;
@@ -211,7 +212,7 @@ img{
                     <span class="oneweek " v-bind:class="{ chose: isActive }" @click='redom7'>7日</span>
                     <span class="twoweek" v-bind:class="{ chose: !isActive }" @click='redom14'>14日</span>
                 </div> -->
-                <ul class="dateChose"  v-if="placeSlect">
+                <ul class="dateChose"  v-if="dateChoseList">
                     <li 
                     v-for="(item,index) in dateChoseList" 
                     :class="item.class" 
@@ -226,11 +227,11 @@ img{
                     >{{item.context}}</li>
                 </ul>
                 <!-- 时间下拉框组件 -->
-                <!-- <vDate class='vueDate'
+                <vDate class='vueDate'
                  v-if="vDateStatus"
                  @pageDate='getDate'
                  :isActive = 'isEndDate' 
-                 ></vDate> -->
+                 ></vDate>
                 <!-- <vue-datetime-picker></vue-datetime-picker> -->
                 
             </div>
@@ -367,6 +368,9 @@ var _ = require('lodash');
             this.isEndDate = true;
             this.vDateStatus=true;
             this.placeSlect = true;
+            this.qyselectlist.title ="全部";
+            this.updateData.place ="全部";
+            this.cityData = this.updateData.turist;
         },
         catchmsgSingle(data){
            this.updateData.place = data;
@@ -428,8 +432,7 @@ var _ = require('lodash');
     },
     mounted(){
     },
-    beforeDestroy(){
-    }
+
   }
 </script>
 

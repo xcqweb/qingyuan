@@ -1,74 +1,3 @@
-<template>
-  <div class="c8">
-    <ul>
-        <li for='item in items'>
-            <div class="cell1">
-                来源地
-            </div>
-            <div class="cell2">
-                人数
-            </div>
-            <div class="cell3">
-                同比
-            </div>
-        </li>
-        <li v-for='(item,index) in rankItems'>
-            <div class="cell1">
-                {{index+1}}、{{item.place}}
-            </div>
-            <div class="cell2">
-                {{item.numb}}<font>人</font>
-            </div>
-            <div class="cell3">
-                <span class='footerCotext'>{{item.percent}}</span>
-                <span class='footerRise' :class='item.rise'></span>
-            </div>
-        </li>
-    </ul>
-  </div>
-</template>
-
-<script type="text/javascript">
-export default {
-    name:'c8',
-    props:{
-        rankItems:Array,
-    },
-    data(){
-        return{
-        msg:'Hello Vue 来自App.vue',
-        // items:[
-        //         {
-        //         numb:'32,001',place:' 深圳市',rise:'up',percent:'4.2%',
-        //         },
-        //         {
-        //         numb:'26,102',place:'上海市 ',rise:'down',percent:'3.3%',
-        //         },
-        //         {
-        //         numb:'13,003',place:'广州市 ',rise:'up',percent:'23.1%',
-        //         },
-        //         {
-        //         numb:'10,304',place:'北京市',rise:'up',percent:'13.7%',
-        //         },
-        //         {
-        //         numb:'8,405',place:'武汉市',rise:'up',percent:'19.2%',
-        //         },
-        //         {
-        //         numb:'6,326',place:'重庆市 ',rise:'up',percent:'13.2%',
-        //         }
-        //     ],
-      }
-    },
-    watch:{
-
-    },
-    components:{},
-    mounted(){
-
-    }
-}
-</script>
-
 <style lang="less" scoped>
 .c8{
     height:100%;
@@ -80,8 +9,9 @@ export default {
 }
 ul{
     margin-top:12%;
-    height:90%;
+    height:80%;
     width:100%;
+    box-shadow:3px 4px 20px #191970;
     li{
         height:14%;
         display:flex;
@@ -147,4 +77,80 @@ li:nth-of-type(2n){
 li:nth-of-type(2n+1){
     background-color:#1f3f9d;
 }
+.scenic{
+    text-align: center;
+    color: white;
+    width:100%;
+    height: 1.2rem;
+    bottom:0;
+    position: absolute;
+}
 </style>
+<template>
+  <div class="c8">
+    <ul>
+        <li for='item in items'>
+            <div class="cell1">
+                景区
+            </div>
+            <div class="cell2">
+                人数
+            </div>
+            <div class="cell3">
+                同比
+            </div>
+        </li>
+        <li v-for='(item,index) in items'>
+            <div class="cell1">
+                {{index+1}}、{{item.place}}
+            </div>
+            <div class="cell2">
+                {{item.numb}}<font>人</font>
+            </div>
+            <div class="cell3">
+                <span class='footerCotext'>{{item.percent}}</span>
+                <span class='footerRise' :class='item.rise'></span>
+            </div>
+        </li>
+         <div class="scenic">{{scenics}}</div>
+    </ul>
+  </div>
+</template>
+
+<script type="text/javascript">
+export default {
+    name:'c8ss',
+    props:{
+        idName:String,
+        scenics:String,
+    },
+    data(){
+        return{
+        msg:'Hello Vue 来自App.vue',
+        items:[
+                {
+                numb:'32,001',place:'广东省 ',rise:'up',percent:'4.2%',
+                },
+                {
+                numb:'26,102',place:'上海 ',rise:'down',percent:'3.3%',
+                },
+                {
+                numb:'13,003',place:'北京 ',rise:'up',percent:'23.1%',
+                },
+                {
+                numb:'10,304',place:'湖北省',rise:'up',percent:'13.7%',
+                },
+                {
+                numb:'8,405',place:'陕西省',rise:'up',percent:'19.2%',
+                },
+                {
+                numb:'6,326',place:'江西省 ',rise:'up',percent:'13.2%',
+                }
+            ],
+      }
+    },
+    components:{}
+}
+</script>
+
+

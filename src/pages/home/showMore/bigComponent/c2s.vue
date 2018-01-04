@@ -129,7 +129,131 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
                 {"value":22, "name":"36-45"},
                 {"value":22, "name":"46-55"},
                 {"value":9, "name":"55以上"}
-            ]}
+            ]},
+            {"name":"清远市连州福山景区",
+                    "data":[
+                    {"value":8, "name":"0-19"},
+                    {"value":11, "name":"19-25"},
+                    {"value":22, "name":"26-35"},
+                    {"value":21, "name":"36-45"},
+                    {"value":27, "name":"46-55"},
+                    {"value":11, "name":"55以上"}
+                ]
+            },
+            {"name":"大东山温泉度假区","data":[
+                {"value":12, "name":"0-19"},
+                {"value":9, "name":"19-25"},
+                {"value":26, "name":"26-35"},
+                {"value":25, "name":"36-45"},
+                {"value":25, "name":"46-55"},
+                {"value":3, "name":"55以上"}
+            ]},
+            {"name":"李屋村","data":[
+                {"value":15, "name":"0-19"},
+                {"value":15, "name":"19-25"},
+                {"value":20, "name":"26-35"},
+                {"value":19, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":12, "name":"55以上"}
+            ]},
+            {"name":"潭岭天湖","data":[
+                {"value":13, "name":"0-19"},
+                {"value":14, "name":"19-25"},
+                {"value":25, "name":"26-35"},
+                {"value":18, "name":"36-45"},
+                {"value":18, "name":"46-55"},
+                {"value":12, "name":"55以上"}
+            ]},
+            {"name":"飞来寺","data":[
+                {"value":11, "name":"0-19"},
+                {"value":13, "name":"19-25"},
+                {"value":27, "name":"26-35"},
+                {"value":20, "name":"36-45"},
+                {"value":18, "name":"46-55"},
+                {"value":11, "name":"55以上"}
+            ]},
+            {"name":"美林湖及大家元摩天轮片区","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]},
+            {"name":"峰林胜境景区",
+                    "data":[
+                    {"value":14, "name":"0-19"},
+                    {"value":17, "name":"19-25"},
+                    {"value":22, "name":"26-35"},
+                    {"value":25, "name":"36-45"},
+                    {"value":20, "name":"46-55"},
+                    {"value":2, "name":"55以上"}
+                ]
+            },
+            {"name":"英德老虎谷暗河漂流","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]},
+            {"name":"九龙小镇","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]},
+            {"name":"铁溪小镇","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]},
+            {"name":"仙湖温泉旅游度假区","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]},
+            {"name":"浈阳坊旅游小镇","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]},
+            {"name":"大樟沙滩度假村","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]},
+            {"name":"云水谣","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]},
+            {"name":"彭家祠","data":[
+                {"value":15, "name":"0-19"},
+                {"value":17, "name":"19-25"},
+                {"value":22, "name":"26-35"},
+                {"value":22, "name":"36-45"},
+                {"value":19, "name":"46-55"},
+                {"value":5, "name":"55以上"}
+            ]},
         ],
              dateChose:[
                 {context:'日',class:'chose'},
