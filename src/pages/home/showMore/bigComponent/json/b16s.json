@@ -2,10 +2,10 @@
     "全部":[
         {"place":"深圳市","numb":"415,686","rise":"up","percent":"37.85%"},
         {"place":"北京市","numb":"343,146","rise":"down","percent":"31.25%"},
-        {"place":"武汉市","numb":"285.127","rise":"up","percent":"25.96%"},
+        {"place":"武汉市","numb":"285,127","rise":"up","percent":"25.96%"},
         {"place":"上海市","numb":"181,456","rise":"up","percent":"25.96%"},
         {"place":"成都市","numb":"52,036","rise":"up","percent":"16.52%"},
-        {"place":"长春市","numb":"37,292","rise":"down","percent":"4.2%"}
+        {"place":"长春市","numb":"37,292","rise":"down","percent":"4.21%"}
     ],
     "清城":[
         {"place":"深圳市","numb":"86,283","rise":"up","percent":"7.86%"},

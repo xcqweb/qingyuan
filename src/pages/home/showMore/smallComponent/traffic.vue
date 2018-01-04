@@ -42,10 +42,16 @@ require('@/common/js/baidumap/TrafficControl_min.js')
             idName:String,
             lenLat:null,
             scenics:String,
+            updatePlace:String,
         },
         data () {
             return {
 
+            }
+        },
+        watch:{
+            updatePlace:function(val){
+                this.init(val)
             }
         },
         methods:{
@@ -205,54 +211,78 @@ require('@/common/js/baidumap/TrafficControl_min.js')
                 ctrl.show();
                 ctrl.setAnchor(BMAP_ANCHOR_BOTTOM_RIGHT);  
             },
+            moveTo(map,lon,lat,zoom){
+                    if(lon){
+                         map.panTo(new BMap.Point(lon,lat));
+                         map.setZoom(zoom);
+                    }
+                   
+            },
+            init(val){
+                // 百度地图API功能
+                // 创建Map实例
+                const _self= this;
+                const lenObj ={
+                    "全部":{lon:113.06689,lat:23.699107,zoom:12},
+                    "清远市":{lon:113.0323,lat:23.699107,zoom:13},
+                    "清城":{lon:113.06689,lat:23.704022,zoom:13},
+                    "清新":{lon:112.991271,lat:23.75427,zoom:13},
+                    "佛冈":{lon:113.539303,lat:23.886532,zoom:13},
+                    "英德":{lon:113.418281,lat:24.192466,zoom:13},
+                    "连州":{lon:112.38616,lat:24.786467,zoom:13},
+                    "连南":{lon:112.290355,lat:24.732074,zoom:13},
+                    "连山":{lon:112.102727,lat:24.582118,zoom:13},
+                    "阳山":{lon:112.646658,lat:24.47147,zoom:13},
+                }; 
+                var map = new BMap.Map(this.idName,{enableMapClick:true});
+                // 初始化地图,设置中心点坐标和地图级别
+                map.centerAndZoom(new BMap.Point(113.046945,23.692731), 12);
+                
+                // 添加地图类型控件
+                // map.addControl(new BMap.MapTypeControl());  
+                // 设置地图显示的城市 此项是必须设置的
+                map.setCurrentCity("清远");    
+                // 开启鼠标滚轮缩放      
+                map.enableScrollWheelZoom(true);
+                _self.moveTo(map,lenObj[val].lon,lenObj[val].lat,lenObj[val].zoom);
+                // 设置定时器，对地图进行自动移动
+                // this.mapMoveSelf
+                /************************************************
+                添加折线
+                *************************************************/
+                // var pointGZ = new BMap.Point(119.923671,29.514494);
+                // var pointHK = new BMap.Point(110.35,20.02);
+                // setTimeout(function(){
+                //     var polyline = new BMap.Polyline([pointGZ,pointHK],{strokeColor:"blue",strokeWeight:5,strokeOpacity:0.5});
+                //     map.addOverlay(polyline);
+                // },6000);
+                _self.addLoad(map);
+                // _self.addControl(map);
+                // _self.addLocaPosition(map);
+                /************************************************
+                添加自定义控件类，放大ZoomControl
+                *************************************************/
+
+                /************************************************
+                添加添加城市列表控件
+                *************************************************/
+                // _self.addControlCityList(map);
+                /************************************************
+                添加新图标
+                *************************************************/
+                // _self.addIcon(map);
+                /************************************************
+                添加曲线
+                *************************************************/
+            
+                /************************************************
+                给地图添加右键菜单
+                *************************************************/
+                // _self.addMenu(map);
+            }
         },
         mounted() {
-            // 百度地图API功能
-            // 创建Map实例
-            const _self= this;
-            var map = new BMap.Map(this.idName,{enableMapClick:true});
-            // 初始化地图,设置中心点坐标和地图级别
-            map.centerAndZoom(new BMap.Point(113.046945,23.692731), 9);
-            // 添加地图类型控件
-            // map.addControl(new BMap.MapTypeControl());  
-            // 设置地图显示的城市 此项是必须设置的
-            map.setCurrentCity("清远");    
-            // 开启鼠标滚轮缩放      
-            map.enableScrollWheelZoom(true);
-            // 设置定时器，对地图进行自动移动
-            // this.mapMoveSelf
-            /************************************************
-            添加折线
-            *************************************************/
-            // var pointGZ = new BMap.Point(119.923671,29.514494);
-            // var pointHK = new BMap.Point(110.35,20.02);
-            // setTimeout(function(){
-            //     var polyline = new BMap.Polyline([pointGZ,pointHK],{strokeColor:"blue",strokeWeight:5,strokeOpacity:0.5});
-            //     map.addOverlay(polyline);
-            // },6000);
-            _self.addLoad(map);
-            // _self.addControl(map);
-            // _self.addLocaPosition(map);
-            /************************************************
-            添加自定义控件类，放大ZoomControl
-            *************************************************/
-
-            /************************************************
-            添加添加城市列表控件
-            *************************************************/
-            // _self.addControlCityList(map);
-            /************************************************
-            添加新图标
-            *************************************************/
-            // _self.addIcon(map);
-            /************************************************
-            添加曲线
-            *************************************************/
-        
-            /************************************************
-            给地图添加右键菜单
-            *************************************************/
-            // _self.addMenu(map);
+            this.init();
         } ,
     }
 </script>

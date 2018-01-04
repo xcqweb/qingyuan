@@ -95,7 +95,7 @@
 </template>
 
 <script>
-import rank from '@/pages/home/c/c8.vue'
+import rank from '@/pages/home/showMore/smallComponent/c8ss.vue'
 import b16sJson from '@/pages/home/showMore/bigComponent/json/b16s.json'
 import vmap from '@/pages/home/showMore/smallComponent/guonei_map.vue'
   export default {
@@ -128,11 +128,11 @@ import vmap from '@/pages/home/showMore/smallComponent/guonei_map.vue'
       return {
           rankItems:[
               {"place":"深圳市","numb":"415,686","rise":"up","percent":"37.85%"},
-        {"place":"北京市","numb":"343,146","rise":"down","percent":"31.25%"},
-        {"place":"武汉市","numb":"285.127","rise":"up","percent":"25.96%"},
-        {"place":"上海市","numb":"181,456","rise":"up","percent":"25.96%"},
-        {"place":"成都市","numb":"52,036","rise":"up","percent":"16.52%"},
-        {"place":"长春市","numb":"37,292","rise":"down","percent":"4.2%"}
+            {"place":"北京市","numb":"343,146","rise":"down","percent":"31.25%"},
+            {"place":"武汉市","numb":"285,127","rise":"up","percent":"25.96%"},
+            {"place":"上海市","numb":"181,456","rise":"up","percent":"25.96%"},
+            {"place":"成都市","numb":"52,036","rise":"up","percent":"16.52%"},
+            {"place":"长春市","numb":"37,292","rise":"down","percent":"4.23%"}
           ],
           dateChose:[
                     {context:'日',class:'chose'},
@@ -143,15 +143,15 @@ import vmap from '@/pages/home/showMore/smallComponent/guonei_map.vue'
               
               {title:'2018年累计接待游客(万人)',context:'237.34',rise:''},
               {title:'2018年累计接待市内游客(万人)',context:'84.75',rise:''},
-              {title:'2018年累计接待市内游客占比',context:'35.71%',rise:'pu'},
+              {title:'2018年累计接待市内游客占比',context:'35.71%',rise:''},
               {title:'2018年累计接待市外游客(万人)',context:'152.59',rise:''},
-              {title:'2018年累计接待市外游客占比',context:'64.29%',rise:'up'},
+              {title:'2018年累计接待市外游客占比',context:'64.29%',rise:''},
               
               {title:'1月接待游客(万人)',context:'237.34',rise:''},
               {title:'1月接待市内游客(万人)',context:'84.75',rise:''},
-              {title:'1月接待市内游客占比',context:'35.71%',rise:'up'},
+              {title:'1月接待市内游客占比',context:'35.71%',rise:''},
               {title:'1月接待市外游客(万人)',context:'152.59',rise:''},
-              {title:'1月接待市外游客占比',context:'64.29%',rise:'up'},
+              {title:'1月接待市外游客占比',context:'64.29%',rise:''},
           ]
       }
     },
@@ -169,7 +169,7 @@ import vmap from '@/pages/home/showMore/smallComponent/guonei_map.vue'
     mounted(){
         
         this.$emit('hideWeeks')
-        this.$emit('showDateFormatChose',[])
+        this.$emit('showDateFormatChose',this.dateChose)
     }
   }
 </script>

@@ -67,7 +67,7 @@ import echarts_resize from '@/common/js/echarts_resize.js'
 import echarts from 'echarts';
 import 'echarts/lib/chart/map';
 import 'echarts/map/js/china.js';
-import b16sJson from '@/pages/home/showMore/bigComponent/json/b16s.json'
+// import b16sJson from '@/pages/home/showMore/bigComponent/json/b16s.json'
 import zhejiangJson from 'echarts/map/json/province/zhejiang.json'
 export default {
 name: '',
@@ -88,7 +88,7 @@ watch:{
     return {
         chart:null,
         // isActive:false,
-        b16sJson:b16sJson,
+        // b16sJson:b16sJson,
         zhejiang:{
             geoCoordMap:{
             '浦江县': [120.105537,29.508488],
@@ -362,6 +362,18 @@ watch:{
             }
             return res;
     },
+    addDot(nub){
+        var n= nub;
+        var m =n +'',
+        len= m.length
+        if (len>3) {
+        var aa=len-3
+        var bb=m.slice(aa,len)
+        var cc=m.slice(0,aa)
+        m=cc+','+bb
+        }
+        return m
+    },
     redom(){
         let _self=this
         if(this.chart){
@@ -372,27 +384,27 @@ watch:{
         var color =['#f18790', '#75c774', '#5aa7fd','#f1c54b','#c184ff','6792fb'];
         var series = [];
         var rankItemsMap = _self.rankItems
-        rankItemsMap.map((item)=>{item.numb = Number(item.numb.replace(/,/g,""))/1000})
+        rankItemsMap.forEach((item)=>{item.numb = Number(item.numb.replace(/,/g,""))})
         var BJData =[
-            [{name: '清远'}, {name:rankItemsMap[0].place , value: rankItemsMap[0].numb}],
+            [{name: '清远'}, {name:rankItemsMap[0].place , value: rankItemsMap[0].numb/1000}],
             
         ];
         var GUANG = [
-            [{name: '清远'}, {name:rankItemsMap[1].place , value: rankItemsMap[1].numb}],
+            [{name: '清远'}, {name:rankItemsMap[1].place , value: rankItemsMap[1].numb/1000}],
             
         ];
         var SHData = [
-             [{name: '清远'}, {name:rankItemsMap[2].place , value: rankItemsMap[2].numb}],
+             [{name: '清远'}, {name:rankItemsMap[2].place , value: rankItemsMap[2].numb/1000}],
             
         ];
         var SHENZHEN = [
-             [{name: '清远'}, {name:rankItemsMap[3].place , value: rankItemsMap[3].numb}],
+             [{name: '清远'}, {name:rankItemsMap[3].place , value: rankItemsMap[3].numb/1000}],
         ];
         var XIAN = [
-             [{name: '清远'}, {name:rankItemsMap[4].place , value: rankItemsMap[4].numb}],
+             [{name: '清远'}, {name:rankItemsMap[4].place , value: rankItemsMap[4].numb/1000}],
         ];
         var FENGD = [
-            [{name: '清远'}, {name:rankItemsMap[5].place , value: rankItemsMap[5].numb}],
+            [{name: '清远'}, {name:rankItemsMap[5].place , value: rankItemsMap[5].numb/1000}],
         ];
        
         
@@ -474,7 +486,7 @@ watch:{
                     },
                     tooltip:{
                         formatter:function(params){
-                            return params.value[2]+'万人'
+                            return _self.addDot(params.value[2]*1000)+'人'
                         }
                     },
                     itemStyle: {

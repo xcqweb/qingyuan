@@ -20,6 +20,7 @@
             :idName='idName[0]' 
             :scenics='scenicsep' 
             :lenLat = 'lenLat[0]' 
+            :updatePlace ='updatePlace'
             ></traffic>
     </div>
 </template>
@@ -32,6 +33,7 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
     mixins: [showMoreData],
     props:{
         scenics:Array,
+        updatePlace:String,
     },
     data() {
       return {
