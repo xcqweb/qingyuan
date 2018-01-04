@@ -223,7 +223,7 @@ require('@/common/js/baidumap/TrafficControl_min.js')
                 // 创建Map实例
                 const _self= this;
                 const lenObj ={
-                    "全部":{lon:113.06689,lat:23.699107,zoom:12},
+                    "全部":{lon:113.06689,lat:23.699107,zoom:11},
                     "清远市":{lon:113.0323,lat:23.699107,zoom:13},
                     "清城":{lon:113.06689,lat:23.704022,zoom:13},
                     "清新":{lon:112.991271,lat:23.75427,zoom:13},
@@ -244,7 +244,8 @@ require('@/common/js/baidumap/TrafficControl_min.js')
                 map.setCurrentCity("清远");    
                 // 开启鼠标滚轮缩放      
                 map.enableScrollWheelZoom(true);
-                _self.moveTo(map,lenObj[val].lon,lenObj[val].lat,lenObj[val].zoom);
+                // debugger
+                _self.moveTo(map,lenObj[val  ===  undefined ?"全部": val].lon,lenObj[val  ===  undefined ?"全部": val].lat,lenObj[val  ===  undefined ?"全部": val].zoom);
                 // 设置定时器，对地图进行自动移动
                 // this.mapMoveSelf
                 /************************************************

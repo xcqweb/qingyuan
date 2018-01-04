@@ -120,10 +120,29 @@ export default {
         idName:String,
         scenics:String,
         isActive:Boolean,
+        barData:Array,
     },
     watch:{
         isActive:function(val){
             val === false ? this.redom14():this.redom7();
+        },
+        barData:{
+            handler: function (val, oldVal) {
+                if(this.chart){
+                        this.chart.dispose();
+                    }
+                //   this.isActive=true;
+                let dataY=[];
+                let dataX=[];
+                debugger
+                for (var i = 0; i < this.barData.length; i++) {
+                    dataY.push(this.barData[i].num);
+                    dataX.push(this.barData[i].date)
+                }
+                
+                this.$nextTick(echarts_resize(this.idName,this,dataX,dataY))
+            },
+            deep: true
         }
     },
     data() {
@@ -142,22 +161,6 @@ export default {
             {"nub":"2122","date":"6/19"},
             {"nub":"1789","date":"6/20"}
         ],
-        twoWeekMock:[
-           {"nub":"1293","date":"6/14"},
-            {"nub":"2331","date":"6/15"},
-            {"nub":"1312","date":"6/16"},
-            {"nub":"999","date":"6/17"},
-            {"nub":"2458","date":"6/18"},
-            {"nub":"2122","date":"6/19"},
-            {"nub":"1789","date":"6/20"},
-            {"nub":"1293","date":"6/21"},
-            {"nub":"2331","date":"6/22"},
-            {"nub":"1012","date":"6/23"},
-            {"nub":"1929","date":"6/24"},
-            {"nub":"2458","date":"6/25"},
-            {"nub":"2122","date":"6/26"},
-            {"nub":"1789","date":"6/27"}
-        ],
         opinion: ['学习氛围差', '学习氛围一般', '学习氛围很好'],
         opinionData1: [
 
@@ -168,50 +171,7 @@ export default {
             {value:31, name:'学习氛围一般'},
             {value:8, name:'学习氛围很好'}
           ],
-      }
-    },
-    store:store,
-    computed:{
-
-      isCase:{
-        get: function(){
-          return window.location.hash.length > 3 ? true :false;
-        } 
-      },
-    },
-    methods: {
-    redom7(){
-        if(this.chart){
-            this.chart.dispose();
-        }
-    //   this.isActive=true;
-      let dataY=[];
-      let dataX=[];
-      for (var i = 0; i < this.oneweekMock.length; i++) {
-          dataY.push(this.oneweekMock[i].nub);
-          dataX.push(this.oneweekMock[i].date)
-      }
-      this.$nextTick(echarts_resize(this.idName,this,dataX,dataY))
-    },
-    redom14(){
-        if(this.chart){
-            this.chart.dispose();
-        }
-        let dataY=[];
-        let dataX=[];
-        for (var i = 0; i < this.twoWeekMock.length; i++) {
-            dataY.push(this.twoWeekMock[i].nub);
-            dataX.push(this.twoWeekMock[i].date)
-        }
-    // this.isActive=false;
-    this.$nextTick(echarts_resize(this.idName,this,dataX,dataY))
-    },
-      redom (id,xyfonsiz,datax,datay) {
-        var _self= this;
-        _self.loading=false;
-        this.chart = echarts.init(document.getElementById(id))
-        
-        let option={
+        option:{
                     backgroundColor: 'rgba(0,0,0,0)',
                     color: ['#1F6ABB','#3897C5','#A4C5E6'],
                     grid: {
@@ -235,7 +195,7 @@ export default {
                         padding:0,
                         barMaxWidth:6,
                         type: 'category',
-                        data: datax,
+                        // data: datax,
                         fontSize: 6,
                         scale: true,
                         lineStyle:2,
@@ -250,7 +210,7 @@ export default {
                          axisLabel: {
                              textStyle: {
                                  color: '#ffffff',//x坐标轴标签字体颜色
-                                 fontSize: xyfonsiz,
+                                 fontSize: 12,
                              },
                         },
                         axisTick:{
@@ -279,7 +239,7 @@ export default {
                             showMinLabel:true,
                           textStyle:{
                             color:'rgba(0,0,0,0)',
-                            fontSize: xyfonsiz,
+                            fontSize: 12,
                           }
                         },
                         axisLine: { //坐标轴轴线相关设置。就是数学上的y轴
@@ -297,7 +257,7 @@ export default {
                         name:'计划',
                         type:'bar',
                         barMaxWidth:'50%',
-                        data:datay,
+                        // data:datay,
                         itemStyle:{
                             normal: {
                                 color: new echarts.graphic.LinearGradient(
@@ -351,7 +311,52 @@ export default {
             //     }
             // }
         // }
-        this.chart.setOption(option)
+      }
+    },
+    store:store,
+    computed:{
+
+      isCase:{
+        get: function(){
+          return window.location.hash.length > 3 ? true :false;
+        } 
+      },
+    },
+    methods: {
+    redom7(){
+        if(this.chart){
+            this.chart.dispose();
+        }
+    //   this.isActive=true;
+      let dataY=[];
+      let dataX=[];
+    //   debugger
+      for (var i = 0; i < this.barData.length; i++) {
+          dataY.push(this.barData[i].num);
+          dataX.push(this.barData[i].date);
+      }
+      this.$nextTick(echarts_resize(this.idName,this,dataX,dataY))
+    },
+    redom14(){
+        if(this.chart){
+            this.chart.dispose();
+        }
+        let dataY=[];
+        let dataX=[];
+        for (var i = 0; i < this.twoWeekMock.length; i++) {
+            dataY.push(this.twoWeekMock[i].nub);
+            dataX.push(this.twoWeekMock[i].date)
+        }
+    // this.isActive=false;
+    this.$nextTick(echarts_resize(this.idName,this,dataX,dataY))
+    },
+      redom (id,xyfonsiz,datax,datay) {
+        var _self= this;
+        _self.loading=false;
+        this.chart = echarts.init(document.getElementById(id))
+         _self.option.xAxis[0].data=datax;
+        _self.option.series[0].data=datay;
+        this.chart.setOption(_self.option)
       }
     },
     components:{},

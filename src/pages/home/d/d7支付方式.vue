@@ -7,13 +7,14 @@
 }
 #d7{
     width:100%;
-    height:100%;
-  margin-top: -50px;
+    height:80%;
+    transform: translate(0,5%)
 }
   ul{
     position:absolute;
-    right:100px;
-    top:82%;
+    left:50%;
+    transform: translate(-70%,0);
+    top:72%;
     li{
         margin-top:10px;
         text-align:left;
@@ -55,7 +56,7 @@ export default {
                 color:'#75cf65',
             },
             {
-                year:'3001元以上',
+                year:'3000元以上',
                 color:'#fe6e40',
             }
             ],
@@ -67,7 +68,7 @@ export default {
                     name: '访问来源',
                     type: 'pie',
                     radius : '28%',
-                    center: [ '48%'],
+                    center: [ '48%',"10%"],
                     data:[{
                         value:20.5,
                         name:'39%',
@@ -90,7 +91,15 @@ export default {
                 type:'pie',
                 radius: ['33%', '40%'],
                 center: ['39%', '55%'],
+                // selecteMode:'single',
+                // selectedOffset:30,
+                // roseType:"area",
                 startAngle:90,
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
                 // animation:false,
                 animationType:'expansion',
                 data:[
@@ -111,12 +120,24 @@ export default {
                                 position:'outside',
                                 align:'left',
                                 formatter:function(params){
-                                    var index = params.data[0];
-                                    return index
+                                    var msgs = ['321万元','521万元','821万元',]
+                                    var msg = '';
+                                    var index = params.dataIndex ;
+                                    return msgs[1]
                                 },
                                 textStyle:{
                                     color:'#368df7',
                                     fontSize:14
+                                }
+                            }
+                        },
+                        labelLine:{
+                            normal:{
+                                show:true,
+                                length:10,
+                                length2:10,
+                                lineStyle:{
+                                    color:'rgba(0,0,0,0)'
                                 }
                             }
                         },
@@ -149,13 +170,26 @@ export default {
                                 show:true,
                                 position:'outside',
                                 align:'right',
-                              formatter:function(params) {
-                                var index = params.data[1];
-                                return index
-                              },
+                                formatter:function(params){
+                                    var msgs = ['321万元','521万元','821万元',]
+                                    var msg = '';
+                                    var index = params.dataIndex ;
+
+                                    return msgs[0]
+                                },
                                 textStyle:{
                                     color:'#75cf65',
                                     fontSize:14
+                                }
+                            }
+                        },
+                        labelLine:{
+                            normal:{
+                                show:true,
+                                length:10,
+                                length2:10,
+                                lineStyle:{
+                                    color:'rgba(0,0,0,0)'
                                 }
                             }
                         },
@@ -180,13 +214,25 @@ export default {
                                 show:true,
                                 position:'outside',
                                 align:'right',
-                              formatter:function(params) {
-                                var index = params.data[2];
-                                return index
-                              },
+                                formatter:function(params){
+                                    var msgs = ['321万元','521万元','821万元',]
+                                    var msg = '';
+                                    var index = params.dataIndex ;
+                                    return msgs[2]
+                                },
                                 textStyle:{
                                     color:'#fe6e40',
                                     fontSize:14
+                                }
+                            }
+                        },
+                        labelLine:{
+                            normal:{
+                                show:true,
+                                length:5,
+                                length2:5,
+                                lineStyle:{
+                                    color:'rgba(0,0,0,0)'
                                 }
                             }
                         },

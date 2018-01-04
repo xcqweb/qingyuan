@@ -57,6 +57,7 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
         this.$emit('hideWeeks');
         this.$emit('hideDoubleDate');
         this.$emit('hideVdate');
+        this.$emit('showDateFormatChose',[])
     }
   }
 </script>
