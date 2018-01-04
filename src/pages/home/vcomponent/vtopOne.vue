@@ -1,10 +1,10 @@
 <template>
   <div class="main_content" v-show='show' id="A1loding">
     <div id="righthz"></div>
-    <div class="week">
+    <!-- <div class="week">
         <span class="oneweek " v-bind:class="{ chose: isActive }" @click='redom7'>7日</span>
         <span class="twoweek" v-bind:class="{ chose: !isActive }" @click='redom14'>14日</span>
-    </div>
+    </div> -->
   </div>
 </template>
 <script>
@@ -27,13 +27,13 @@ export default {
         loading:true,
         reloading:false,
         oneweekMock:[
-            {"nub":"1293","date":"6/14"},
-            {"nub":"2331","date":"6/15"},
-            {"nub":"1012","date":"6/16"},
-            {"nub":"999","date":"6/17"},
-            {"nub":"2458","date":"6/18"},
-            {"nub":"2122","date":"6/19"},
-            {"nub":"1789","date":"6/20"}
+            {"nub":"293","date":"12/29"},
+            {"nub":"331","date":"12/30"},
+            {"nub":"112","date":"12/31"},
+            {"nub":"199","date":"1/1"},
+            {"nub":"258","date":"1/2"},
+            {"nub":"122","date":"1/3"},
+            {"nub":"189","date":"1/4"}
         ],
         twoWeekMock:[
             {"nub":"1293","date":"6/14"},

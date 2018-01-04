@@ -22,63 +22,91 @@ export default {
           this.chart = echarts.init(document.getElementById(id));
           function randomData() {
               now = new Date(+now + oneDay);
-              value = value + Math.random() * 21 - 10;
+              var value = Math.random() * 600+100;
+              if(now.getMinutes() > 10){
+                  var minutes =now.getMinutes() 
+              }else{
+                  var minutes ="0"+now.getMinutes()
+              }
+              if(now.getSeconds()>10){
+                  var seconds =now.getSeconds() 
+              }else{
+                  var seconds ="0"+now.getSeconds()
+              }
+              if(now.getHours()>10){
+                  var hours =now.getHours() 
+              }else{
+                  var hours ="0"+now.getHours()
+              }
               return {
-                  name: now.toString(),
-                  value: [
-                      [now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/'),
-                      Math.round(value)
-                  ]
+                    xData: [ hours,minutes,seconds].join(':'),
+                    sData: Math.round(value)
               }
           }
 
-          var data = [];
-          var now = +new Date(2001, 9, 3);
-          var oneDay = 24 * 3600 * 1000;
-          var value = Math.random() * 700;
-          for (var i = 0; i < 50; i++) {
-              data.push(randomData());
+          var xdata = [];
+          var sdata = [];
+          var j = 8;
+          var now = +new Date();
+          var oneDay = 5 * 1000;
+          
+          for (var i = 0; i < 200; i++) {
+            //   debugger;
+            let  dataObji = randomData();
+            xdata.push(dataObji.xData);
+            sdata.push(dataObji.sData);
           }
-
+        let date=xdata.slice(0,8);
+        let data=sdata.slice(0,8);
           var option = {
-              grid: {
-                 show: true,
-                 left: '10%',
-                 top: '20%',
-                 right: '10%',
-                 bottom: '20%',
-                 borderWidth: 0,
-                 borderColor: 'rgba(170,172,178,0.33)',
-                 backgroundColor: 'rgba(0,0,0,0)',
-             },
-
-              xAxis: {
-                  type: 'time',
-                  splitLine: {
-                      show: false
-                  },
-                   axisLabel: {
-                       textStyle: {
-                           color: '#ffffff',//x坐标轴标签字体颜色
-                           fontSize: 12,
-                       },
-                  },
-                  splitLine:{
-                      show:true,
-                      lineStyle:{
-                          color:'#20549f',
-                          width:1,
-                          type:'solid'
-                      },
-                  },
-                  axisLine: { //坐标轴轴线相关设置。就是数学上的x轴
-                       show: true,
-                          lineStyle: {
-                              color: '#20549f'
-                       },
-                  },
-              },
-              yAxis: {
+            backgroundColor: 'rgba(0,0,0,0)',
+            color: ['#00ffff', '#00ffa2', '#f0e750'],
+            grid: {
+               show: true,
+               left: '10%',
+               top: '15%',
+               right: '5%',
+               bottom: '10%',
+               borderWidth: 0,
+               borderColor: 'rgba(170,172,178,0.33)',
+               backgroundColor: 'rgba(0,0,0,0)',
+           },
+           tooltip:{
+                show:true,
+                trigger:'axis',
+                formatter:function(params){
+                    return params[0].name+"<br>游客人数："+ params[0].value+"人"
+                },
+            },
+           calculable: true,
+           xAxis: [{
+               type: 'category',
+               //在（type: 'category'）中设置data有效
+               splitLine: { //坐标轴在 grid 区域中的分隔线；
+                   show: false,
+                   lineStyle: { //分割线颜色，可设单个，也可以设置数组。
+                       color: 'rgba(170,172,178,0.33)'
+                   }
+               },
+               axisLine: { //坐标轴轴线相关设置。就是数学上的x轴
+                   show: true,
+                   lineStyle: {
+                       color: '#20549f',
+                       shadowBlur:50,
+                       shadowColor:'#05a1cd',
+                   },
+               },
+               axisLabel: {
+                   textStyle: {
+                       color: '#ffffff',//x坐标轴标签字体颜色
+                       fontSize: 15,
+                   },
+               },
+               axisTick:{
+                    show:false,
+                }
+           }],
+           yAxis: {
                   type: 'value',
                   boundaryGap: [0, '100%'],
                   axisLabel: {
@@ -104,21 +132,65 @@ export default {
                   },
 
               },
-              series: [{
-                  name: '模拟数据',
-                  type: 'line',
-                  showSymbol: false,
-                  hoverAnimation: false,
-                  lineStyle:{
-                      normal:{
-                          color:'#6e8bf9',
-                          shadowColor: 'rgba(0, 0, 0, 0.5)',
-                          shadowBlur: 4,
-                          shadowOffsetY:14,
-                      }
-                  },
-                  data: data
-              }]
+           series: [{
+                       type: 'line',
+                    //    smooth: true, //是否平滑曲线显示
+                       lineStyle:{
+                            normal:{
+                                color:'#6e8bf9',
+                                shadowColor: 'rgba(0, 0, 0, 0.5)',
+                                shadowBlur: 4,
+                                shadowOffsetY:14,
+                            }
+                        },
+                       
+
+                    //    areaStyle: { //区域填充样式
+                    //        normal: {
+                    //            //线性渐变，前4个参数分别是x0,y0,x2,y2(范围0~1);相当于图形包围盒中的百分比。如果最后一个参数是‘true’，则该四个值是绝对像素位置。
+                    //            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    //                offset: 0,
+                    //                color: 'rgba(0,222,255,0.4)'
+                    //            }, {
+                    //                offset: 1,
+                    //                color: 'rgba(0,222,255,0)'
+                    //            }], false),
+                    //            opacity:0.8,
+                    //        }
+                    //    },
+                       itemStyle: { //折现拐点标志的样式
+                           normal: {
+                               color: 'rgba(113,191,255,1)',
+                               borderColor:'rgba(113,191,255,1)',
+                               borderWidth:10,
+                               opacity:0,
+                           }
+                       },
+                       label:{
+                            normal:{
+                                show:true,
+                                color:'#ffffff',
+                                fontSize:14,
+                                color:'#6e8bf9',
+                                formatter:function(params){
+                                    return params.value
+                                },
+                            },
+                            emphasis:{
+                                show:true,
+                                color:'#ffffff',
+                                fontSize:14,
+                                color:'#6e8bf9',
+                                formatter:function(params){
+                                    
+                                    return  params.value
+                                },
+                            },
+
+                        },
+                   }
+
+               ] //series结束
           };
           let _self=this;
           this.chart.setOption(option);
@@ -126,16 +198,22 @@ export default {
             window.clearInterval(this.reTimer)
           }
           this.reTimer=setInterval(function () {
-              for (var i = 0; i < 5; i++) {
-                  data.shift();
-                  data.push(randomData());
-              }
+              j++
+                date.shift();
+                data.shift();
+                date.push(xdata[j]);
+                data.push(sdata[j]);
+                option.xAxis.data=date;
+                option.series.data=data;
                 _self.chart.setOption({
+                    xAxis: {
+                        data: date
+                    },
                   series: [{
                       data: data
                   }]
               });
-          }, 3000);
+          }, 5000);
       }
     },
     mounted() {

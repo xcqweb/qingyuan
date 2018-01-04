@@ -244,7 +244,7 @@ img{
                 :updatePlace ='updateData.place'
                 :starNub = 'starNub' 
                 :dateIndex = 'dateIndex' 
-                :title = 'updateData.place'
+                :title = 'qyselectlist.title'
                 @showDateFormatChose = 'showDateFormatChose'
                 @hideWeeks = 'hideWeeks'
                 @hideDoubleDate = 'hideDoubleDate'

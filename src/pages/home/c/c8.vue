@@ -97,7 +97,7 @@ li:nth-of-type(2n+1){
                 人数
             </div>
             <div class="cell3">
-                同比
+                占比
             </div>
         </li>
         <li v-for='(item,index) in items'>
