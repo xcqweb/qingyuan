@@ -27,13 +27,13 @@ export default {
         loading:true,
         reloading:false,
         oneweekMock:[
-            {"nub":"293","date":"12/29"},
-            {"nub":"331","date":"12/30"},
-            {"nub":"112","date":"12/31"},
-            {"nub":"199","date":"1/1"},
-            {"nub":"258","date":"1/2"},
-            {"nub":"122","date":"1/3"},
-            {"nub":"189","date":"1/4"}
+            {"nub":"6293","date":"12/29"},
+            {"nub":"5331","date":"12/30"},
+            {"nub":"8112","date":"12/31"},
+            {"nub":"4199","date":"1/1"},
+            {"nub":"7258","date":"1/2"},
+            {"nub":"9122","date":"1/3"},
+            {"nub":"6189","date":"1/4"}
         ],
         twoWeekMock:[
             {"nub":"1293","date":"6/14"},

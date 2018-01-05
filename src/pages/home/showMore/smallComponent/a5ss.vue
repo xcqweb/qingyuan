@@ -47,17 +47,17 @@ export default {
           function randomData() {
               now = new Date(+now + oneDay);
               var value = Math.random() * 600+100;
-              if(now.getMinutes() > 10){
+              if(now.getMinutes() > 9){
                   var minutes =now.getMinutes() 
               }else{
                   var minutes ="0"+now.getMinutes()
               }
-              if(now.getSeconds()>10){
+              if(now.getSeconds()>9){
                   var seconds =now.getSeconds() 
               }else{
                   var seconds ="0"+now.getSeconds()
               }
-              if(now.getHours()>10){
+              if(now.getHours()>9){
                   var hours =now.getHours() 
               }else{
                   var hours ="0"+now.getHours()
@@ -71,7 +71,8 @@ export default {
           var xdata = [];
           var sdata = [];
           var j = 8;
-          var now = +new Date();
+          var nowDate = new Date();
+          var now = +new Date(nowDate.getTime() - 45 * 1000);
           var oneDay = 5 * 1000;
           
           for (var i = 0; i < 40; i++) {
@@ -226,6 +227,9 @@ export default {
                 data.shift();
                 date.push(xdata[j]);
                 data.push(sdata[j]);
+                if(date[7] ===undefined){
+                    _self.redom(_self.idName)
+                }
                 option.xAxis.data=date;
                 option.series.data=data;
                 _self.chart.setOption({

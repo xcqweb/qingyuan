@@ -172,6 +172,17 @@ require('../../../common/js/baidumap/TrafficControl_min.js')
                 ctrl.show();
                 ctrl.setAnchor(BMAP_ANCHOR_BOTTOM_RIGHT);  
             },
+            addScript(map){
+                let _self = this;
+                var oS=document.createElement('script');
+                oS.src='http://lbsyun.baidu.com/custom/stylelist.js?'+Math.random();
+                this.$el.appendChild(oS)
+                oS.onload=function(){
+                    map.setMapStyle({style:'light'})
+                
+                }
+                this.$el.removeChild(oS);
+            },
         },
         mounted() {
             // 百度地图API功能
@@ -184,6 +195,7 @@ require('../../../common/js/baidumap/TrafficControl_min.js')
             // map.addControl(new BMap.MapTypeControl());  
             // 设置地图显示的城市 此项是必须设置的
             map.setCurrentCity("清远");    
+            _self.addScript(map);
             // 开启鼠标滚轮缩放      
             map.enableScrollWheelZoom(true);
             // 设置定时器，对地图进行自动移动

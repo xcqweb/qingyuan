@@ -366,6 +366,17 @@ display:none !important;
                 }
                 this.$el.removeChild(oS);
             },
+             addScriptForStyle(map){
+                let _self = this;
+                var oS=document.createElement('script');
+                oS.src='http://lbsyun.baidu.com/custom/stylelist.js?'+Math.random();
+                this.$el.appendChild(oS)
+                oS.onload=function(){
+                    map.setMapStyle({style:'light'})
+                
+                }
+                this.$el.removeChild(oS);
+            },
             rodomMap(){
                 const _self= this;
                 //绘制牵引线
@@ -380,6 +391,7 @@ display:none !important;
                 // map.addControl(new BMap.MapTypeControl());  
                 // 设置地图显示的城市 此项是必须设置的
                 map.setCurrentCity("浦江");    
+                _self.addScriptForStyle(map); 
                 // 开启鼠标滚轮缩放      
                 map.enableScrollWheelZoom(true);
                 // 设置定时器，对地图进行自动移动

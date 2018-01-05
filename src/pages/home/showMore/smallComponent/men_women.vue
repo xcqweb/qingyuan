@@ -91,11 +91,18 @@ export default {
       men:Array,
       scenics:String,
       isActive:Boolean,
-      index:Number
+      index:Number,
+      dateIndex:Number,
   },
   watch:{
         isActive:function(val){
-          console.log(this.women)
+            this.setWomen();
+            this.setMen();
+        },
+        dateIndex:function(){
+
+            this.setWomen();
+            this.setMen();
         }
 
     },
@@ -168,7 +175,7 @@ export default {
                         {img:men},
                 ];
                 for(var i;i < Math.round(this.men[this.index].men);i++){
-                    men.img = men
+                    men[i].img = men
                 }
                 return mene
                 this.menes = mene;
@@ -180,9 +187,46 @@ export default {
       }
   },
   methods: {
+      setWomen(){
+            var womene = [
+                {img:women},
+                {img:women},
+                {img:women},
+                {img:women},
+                {img:women},
+                {img:women},
+                {img:women},
+                {img:women},
+            ];
+            for(var i = 0;i < Math.round(this.women[this.index].women);i++){
+
+                womene[i].img = womenE
+                
+            }
+            
+            this.womens = womene;
+      },
+      setMen(){
+          var mene = [
+                        {img:men},
+                        {img:men},
+                        {img:men},
+                        {img:men},
+                        {img:men},
+                        {img:men},
+                        {img:men},
+                        {img:men},
+                ];
+                for(var i=0;i < Math.round(this.men[this.index].men);i++){
+                    mene[i].img = menE
+                }
+                this.mens = mene;
+            },
+      
   },
     mounted(){
-    //console.log(this.women[this.index],this.men[this.index],this.scenics)
+        this.setWomen();
+        this.setMen();
     },
   components:{
   }

@@ -4,8 +4,8 @@
         <div class="circle">
             <img :src="imgacircle"/>
         </div>
-        <span>{{dataItem}}%</span>
-        <div class="text"><font>预警客流</font><font>12000</font></div>
+        <span>{{dataItem.warningPer}}%</span>
+        <div class="text"><font>预警客流</font><font>{{dataItem.warningNub}}</font></div>
         <div class="scenic">{{scenics}}</div>
     </div>
 </template>
@@ -19,7 +19,7 @@ export default {
     props:{
         idName:String,
         scenics:String,
-        dataItem:Number,
+        dataItem:Object,
     },
   data () {
     return {
@@ -45,18 +45,18 @@ export default {
                     data:[
                         
                         {
-                        value:this.dataItem,
+                        value:this.dataItem.warningPer,
                         name:'',
                         itemStyle:{
                             normal:{
-                                color:this.dataItem<90?'#1da7fe':'#fe6e40',
+                                color:this.dataItem.warningPer<90?'#1da7fe':'#fe6e40',
                                 
 
                             }
                         }
                     },
                         {
-                        value:100-this.dataItem, 
+                        value:100-this.dataItem.warningPer, 
                         name:'',
                         itemStyle:{
                             normal:{

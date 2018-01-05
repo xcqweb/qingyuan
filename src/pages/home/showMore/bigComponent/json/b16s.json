@@ -1,77 +1,77 @@
 {
     "全部":[
-        {"place":"深圳市","numb":"415,686","rise":"up","percent":"37.85%"},
-        {"place":"北京市","numb":"343,146","rise":"down","percent":"31.25%"},
-        {"place":"武汉市","numb":"285,127","rise":"up","percent":"25.96%"},
-        {"place":"上海市","numb":"181,456","rise":"up","percent":"25.96%"},
-        {"place":"成都市","numb":"52,036","rise":"up","percent":"16.52%"},
-        {"place":"长春市","numb":"37,292","rise":"down","percent":"4.21%"}
+        {"place":"深圳市","numb":"415,686", "zhanRate":"27.18","tongRate": "11.46","huanRate": "12.28"},
+        {"place":"广州市","numb":"343,146", "zhanRate":"21.12","tongRate": "-3.44","huanRate": "4.48"},
+        {"place":"中山市","numb":"285,127", "zhanRate":"15.19","tongRate": "31.24","huanRate": "33.55"},
+        {"place":"清远市","numb":"181,456", "zhanRate":"12.22","tongRate": "54.35","huanRate": "31.38"},
+        {"place":"珠海市","numb":"52,036", "zhanRate":"3.25","tongRate": "12.38","huanRate": "54.37"},
+        {"place":"东莞市","numb":"37,292", "zhanRate":"2.32","tongRate": "23.12","huanRate": "4.18"}
     ],
     "清城":[
-        {"place":"深圳市","numb":"86,283","rise":"up","percent":"7.86%"},
-        {"place":"北京市","numb":"64,356","rise":"down","percent":"5.86%"},
-        {"place":"上海市","numb":"49,253","rise":"up","percent":"4.48%"},
-        {"place":"武汉市","numb":"24,452","rise":"up","percent":" 2.23%"},
-        {"place":"成都市","numb":"18,363","rise":"down","percent":"1.67%"},
-        {"place":"重庆市","numb":"17,292","rise":"up","percent":"1.57%"}
+        {"place":"深圳市","numb":"86,283", "zhanRate":"7.86","tongRate": "13.62","huanRate": "6.22"},
+        {"place":"广州市","numb":"64,353", "zhanRate":"5.86","tongRate": "54.83","huanRate": "23.83"},
+        {"place":"清远市","numb":"49,253", "zhanRate":"4.48","tongRate": "13.83","huanRate": "6.22"},
+        {"place":"中山市","numb":"24,452", "zhanRate":" 2.23","tongRate": "13.13","huanRate": "12.92"},
+        {"place":"珠海市","numb":"18,363", "zhanRate":"1.67","tongRate": "54.19","huanRate": "27.14"},
+        {"place":"惠州市","numb":"17,292", "zhanRate":"1.57","tongRate": "13.24","huanRate": "32.94"}
     ]
     ,
     "清新":[
-        {"place":"深圳市","numb":"71,383","rise":"up","percent":"6.50%"},
-        {"place":"北京市","numb":"68,356","rise":"down","percent":"6.22%"},
-        {"place":"上海市","numb":"53,253","rise":"up","percent":"4.85%"},
-        {"place":"大连市","numb":"30,452","rise":"up","percent":"2.77%"},
-        {"place":"昆明市","numb":"19,363","rise":"up","percent":"1.76%"},
-        {"place":"武汉市","numb":"18,292","rise":"up","percent":"1.67%"}
+        {"place":"深圳市","numb":"71,383", "zhanRate":"6.50","tongRate": "13.12","huanRate": "46.03"},
+        {"place":"广州市","numb":"68,356", "zhanRate":"6.22","tongRate": "54.63","huanRate": "4.85"},
+        {"place":"清远市","numb":"53,253", "zhanRate":"4.85","tongRate": "43.24","huanRate": "13.93"},
+        {"place":"惠州市","numb":"30,452", "zhanRate":"2.77","tongRate": "11.97","huanRate": "15.84"},
+        {"place":"汕头市","numb":"19,363", "zhanRate":"1.76","tongRate": "34.37","huanRate": "45.31"},
+        {"place":"中山市","numb":"18,292", "zhanRate":"1.67","tongRate": "45.19","huanRate": "31.73"}
     ] 
     ,
     "佛冈":[
-        {"place":"深圳市","numb":"64,383","rise":"up","percent":"5.86%"},
-        {"place":"北京市","numb":"51,356","rise":"up","percent":"4.68%"},
-        {"place":"上海市","numb":"40,253","rise":"up","percent":"3.67%"},
-        {"place":"武汉市","numb":"28,452","rise":"up","percent":"2.59%"},
-        {"place":"成都市","numb":"17,363","rise":"up","percent":"1.58%"},
-        {"place":"长春市","numb":"16,292","rise":"up","percent":"1.48%"}
+        {"place":"深圳市","numb":"64,383", "zhanRate":"5.86","tongRate": "43.26","huanRate": "22.43"},
+        {"place":"广州市","numb":"51,356", "zhanRate":"4.68","tongRate": "21.83","huanRate": "45.32"},
+        {"place":"清远市","numb":"40,253", "zhanRate":"3.67","tongRate": "26.37","huanRate": "77.03"},
+        {"place":"中山市","numb":"28,452", "zhanRate":"2.59","tongRate": "13.92","huanRate": "23.83"},
+        {"place":"珠海市","numb":"17,363", "zhanRate":"1.58","tongRate": "-7.43","huanRate": "4.85"},
+        {"place":"东莞市","numb":"16,292", "zhanRate":"1.48","tongRate": "54.28","huanRate": "32.35"}
     ],
     "英德":[
-        {"place":"深圳市","numb":"55,342","rise":"up","percent":"6.50%"},
-        {"place":"北京市","numb":"37,356","rise":"down","percent":"5.04%"},
-        {"place":"上海市","numb":"31,253","rise":"up","percent":"4.85%"},
-        {"place":"武汉市","numb":"29,452","rise":"down","percent":"3.40%"},
-        {"place":"厦门市","numb":"27,363","rise":"up","percent":"2.49%"},
-        {"place":"西安市","numb":"18,292","rise":"up","percent":"1.67%"}
+        {"place":"深圳市","numb":"55,342", "zhanRate":"6.50","tongRate": "13.38","huanRate": "45.12"},
+        {"place":"广州市","numb":"37,356", "zhanRate":"5.04","tongRate": "54.73","huanRate": "45.57"},
+        {"place":"清远市","numb":"31,253", "zhanRate":"4.85","tongRate": "15.82","huanRate": "12.18"},
+        {"place":"中山市","numb":"29,452", "zhanRate":"3.40","tongRate": "22.14","huanRate": "43.52"},
+        {"place":"汕尾市","numb":"27,363", "zhanRate":"2.49","tongRate": "11.34","huanRate": "37.32"},
+        {"place":"湛江市","numb":"18,292", "zhanRate":"1.67","tongRate": "35.26","huanRate": "-6.22"}
     ],
     "连州":[
-        {"place":"深圳市","numb":"41,443","rise":"up","percent":"3.77%"},
-        {"place":"北京市","numb":"32,356","rise":"up","percent":"2.95%"},
-        {"place":"上海市","numb":"20,253","rise":"up","percent":"1.84%"},
-        {"place":"武汉市","numb":"18,452","rise":"down","percent":"1.68%"},
-        {"place":"成都市","numb":"16,363","rise":"up","percent":"1.49%"},
-        {"place":"黑龙江市","numb":"14,292","rise":"up","percent":"1.30%"}
+        {"place":"深圳市","numb":"41,443", "zhanRate":"3.77","tongRate": "23.23","huanRate": "45.03"},
+        {"place":"广州市","numb":"32,356", "zhanRate":"2.95","tongRate": "18.25","huanRate": "31.93"},
+        {"place":"清远市","numb":"20,253", "zhanRate":"1.84","tongRate": "41.52","huanRate": "45.63"},
+        {"place":"中山市","numb":"18,452", "zhanRate":"1.68","tongRate": "33.24","huanRate": "45.72"},
+        {"place":"珠海市","numb":"16,363", "zhanRate":"1.49","tongRate": "20.25","huanRate": "6.22"},
+        {"place":"湛江市","numb":"14,292", "zhanRate":"1.30","tongRate": "13.14","huanRate": "31.82"}
     ],
     "连南":[
-        {"place":"深圳市","numb":"35,746","rise":"down","percent":"3.25%"},
-        {"place":"北京市","numb":"30,356","rise":"up","percent":"2.76%"},
-        {"place":"上海市","numb":"29,253","rise":"up","percent":"2.66%"},
-        {"place":"武汉市","numb":"27,452","rise":"up","percent":"2.50%"},
-        {"place":"成都市","numb":"26,363","rise":"down","percent":"1.76%"},
-        {"place":"长春市","numb":"24,292","rise":"up","percent":"1.67%"}
+        {"place":"深圳市","numb":"35,746", "zhanRate":"3.25","tongRate": "54.56","huanRate": "15.35"},
+        {"place":"广州市","numb":"30,356", "zhanRate":"2.76","tongRate": "13.23","huanRate": "23.73"},
+        {"place":"清远市","numb":"29,253", "zhanRate":"2.66","tongRate": "31.63","huanRate": "35.92"},
+        {"place":"中山市","numb":"27,452", "zhanRate":"2.50","tongRate": "19.25","huanRate": "25.26"},
+        {"place":"珠海市","numb":"26,363", "zhanRate":"1.76","tongRate": "54.24","huanRate": "23.37"},
+        {"place":"东莞市","numb":"24,292", "zhanRate":"1.67","tongRate": "54.15","huanRate": "19.75"}
     ],
     "连山":[
-        {"place":"深圳市","numb":"30,746","rise":"up","percent":"2.85%"},
-        {"place":"北京市","numb":"29,356","rise":"down","percent":"2.66%"},
-        {"place":"上海市","numb":"28,253","rise":"up","percent":"2.56%"},
-        {"place":"武汉市","numb":"17,452","rise":"up","percent":"1.50%"},
-        {"place":"成都市","numb":"16,363","rise":"down","percent":"1.46%"},
-        {"place":"长春市","numb":"14,292","rise":"up","percent":"1.27%"}
+        {"place":"深圳市","numb":"30,746", "zhanRate":"2.85","tongRate": "43.14","huanRate": "6.22"},
+        {"place":"广州市","numb":"29,356", "zhanRate":"2.66","tongRate": "33.19","huanRate": "41.25"},
+        {"place":"清远市","numb":"28,253", "zhanRate":"2.56","tongRate": "22.26","huanRate": "45.24"},
+        {"place":"中山市","numb":"17,452", "zhanRate":"1.50","tongRate": "18.72","huanRate": "31.62"},
+        {"place":"珠海市","numb":"16,363", "zhanRate":"1.46","tongRate": "42.25","huanRate": "42.28"},
+        {"place":"东莞市","numb":"14,292", "zhanRate":"1.27","tongRate": "32.17","huanRate": "32.81"}
     ],	
     "阳山":[
-        {"place":"深圳市","numb":"30,253","rise":"up","percent":"2.75%"},
-        {"place":"北京市","numb":"29,654","rise":"down","percent":"2.70%"},
-        {"place":"上海市","numb":"18,253","rise":"up","percent":"1.66%"},
-        {"place":"武汉市","numb":"17,452","rise":"up","percent":"1.59%"},
-        {"place":"成都市","numb":"16,363","rise":"down","percent":"1.49%"},
-        {"place":"福州市","numb":"15,292","rise":"up","percent":"1.39%"}
+        {"place":"深圳市","numb":"30,253", "zhanRate":"2.75","tongRate": "13.23","huanRate": "45.63"},
+        {"place":"广州市","numb":"29,654", "zhanRate":"2.70","tongRate": "13.12","huanRate": "31.36"},
+        {"place":"清远市","numb":"18,253", "zhanRate":"1.66","tongRate": "54.34","huanRate": "23.53"},
+        {"place":"中山市","numb":"17,452", "zhanRate":"1.59","tongRate": "13.56","huanRate": "26.73"},
+        {"place":"珠海市","numb":"16,363", "zhanRate":"1.49","tongRate": "13.62","huanRate": "35.42"},
+        {"place":"东莞市","numb":"15,292", "zhanRate":"1.39","tongRate": "4.73","huanRate": "6.22"}
     ]
-}
+,"tongRate": "13","huanRate": "45"}
    

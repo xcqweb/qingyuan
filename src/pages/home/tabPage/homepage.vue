@@ -92,11 +92,11 @@ export default {
                     {name:'C8',title:'游客来源排行'},
                 ],
                 leftComponents:[
-                    {name:'B16',id:'one',index:1,time:100,show:true,title:`国内游客来源地`,},
+                    {name:'B16',id:'one',index:1,time:100,show:true,title:`省内游客来源地`,},
                     {name:'C2',id:'two',index:2,time:300,show:false,title:'年龄分析'},
                     {name:'C4',id:'three',index:3,time:600,show:false,title:'游客男女比例'},
                     {name:'B4',id:'four',index:4,time:900,show:false,title:'路况监测'},
-                    {name:'A1',id:'five',index:5,time:600,show:false,title:'客流人数分析(单位/万人)'},
+                    {name:'A1',id:'five',index:5,time:600,show:false,title:'客流人数分析(单位/人)'},
                     {name:'A5',id:'six',index:6,time:900,show:false,title:'客流实时监测'},
                 ],
                 rightComponents:[

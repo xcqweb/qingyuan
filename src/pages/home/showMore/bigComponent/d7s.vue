@@ -59,7 +59,7 @@ import d7data from '@/pages/home/showMore/bigComponent/json/d7-payway.json'
     props:{
         scenics:Array,
         isActive:Boolean,
-        title:String,
+        titles:String,
         dateIndex:Number
     },
     data() {
@@ -96,7 +96,7 @@ import d7data from '@/pages/home/showMore/bigComponent/json/d7-payway.json'
       datas(){
           
           
-        let data = this.reoponseData[this.title][this.dateChose[this.dateIndex].context];
+        let data = this.reoponseData[this.titles][this.dateChose[this.dateIndex].context];
         return data;
       }
     },
