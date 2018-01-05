@@ -74,11 +74,14 @@
             <vmap  
             class="vMap"
             :isActive ='isActive' 
-            :rankItems ='rankItems' 
+            :rankItems ='mapItems' 
+            :dateIndex = 'dateIndex'
             :updatePlace = 'updatePlace'
             ></vmap>
             <rank class="rank"
             :rankItems ='rankItems' 
+            :updateSheng ='"市"'
+            :scenics="''"
             ></rank>
         </div>
         <div class="buttom">
@@ -120,20 +123,30 @@ import vmap from '@/pages/home/showMore/smallComponent/guonei_map.vue'
           ]
         },
         updatePlace:function(val){
-            this.rankItems = b16sJson[val]
+            // this.rankItems = b16sJson[val]//data[全部][省][日]
+            this.rankItems = b16sJson[val];
+            this.mapItems = b16sJson[val];
+        },
+        dateIndex:function(val){
+            if(val ===0){
+                this.rankItems =  b16sJson["清新"];
+                this.mapItems=  b16sJson["清新"];
+            }else if(val ===1 ){
+                this.rankItems =  b16sJson["连山"];
+                this.mapItems =  b16sJson["连山"];
+            }else if(val ===2 ){
+                this.rankItems =  b16sJson["连州"];
+                this.mapItems =  b16sJson["连州"];
+            }
+            
+
         }
     },
     data() {
         
       return {
-          rankItems:[
-              {"place":"深圳市","numb":"415,686","rise":"up","percent":"37.85%"},
-            {"place":"北京市","numb":"343,146","rise":"down","percent":"31.25%"},
-            {"place":"武汉市","numb":"285,127","rise":"up","percent":"25.96%"},
-            {"place":"上海市","numb":"181,456","rise":"up","percent":"25.96%"},
-            {"place":"成都市","numb":"52,036","rise":"up","percent":"16.52%"},
-            {"place":"长春市","numb":"37,292","rise":"down","percent":"4.23%"}
-          ],
+          rankItems: b16sJson["全部"],
+          mapItems:b16sJson["全部"],
           dateChose:[
                     {context:'日',class:'chose'},
                     {context:'月',class:''},

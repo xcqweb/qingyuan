@@ -180,6 +180,20 @@ img{
           background-image:url('../../../assets/images/home/透明框—7日.png');
           background-size: 100% 100%;
       }
+  .c8select{
+     min-width: 6rem;
+     max-width: 7rem;
+     height: 1.8rem;
+     position: relative;
+     width:auto;
+    float: left;
+    margin-left: 3rem;
+    margin-top:.7rem;
+     .itemBox{
+         width: 60% !important;
+         
+     }
+  }
   .fade-enter-active, .fade-leave-active {
     transition: .4s;
   }
@@ -207,6 +221,20 @@ img{
                 v-on:listenDoubleSelection="catchmsg" 
                 class="row"
                 ></doubleSelection>
+                <ul class="c8select" v-if="shengNeiStatus">
+                    <li 
+                    is="sleckte"
+                    :selectList="shengnei" 
+                    v-on:listenAtparent="catchForShengnei" 
+                    class="itemBox"
+                    ></li>
+                    <!-- <li 
+                    is="sleckte"
+                    :selectList="shengneiObj.bili" 
+                    v-on:listenAtparent="catchmsgSingle" 
+                    class="itemBox"
+                    ></li> -->
+                </ul>
                 <!-- 7-14单选组件 -->
                 <!-- <div class="week" v-if="weekStatus">
                     <span class="oneweek " v-bind:class="{ chose: isActive }" @click='redom7'>7日</span>
@@ -241,15 +269,17 @@ img{
                 :scenics = 'cityData' 
                 :isActive ='isActive' 
                 :updateTurist = 'updateData.turist' 
-                :updatePlace ='updateData.place'
+                :updatePlace ='updateData.place' 
+                :updateSheng = 'updateData.sheng'
                 :starNub = 'starNub' 
                 :dateIndex = 'dateIndex' 
-                :title = 'qyselectlist.title'
+                :titles = 'qyselectlist.title'
                 @showDateFormatChose = 'showDateFormatChose'
                 @hideWeeks = 'hideWeeks'
                 @hideDoubleDate = 'hideDoubleDate'
                 @showComment ='showComment' 
                 @hideVdate = 'hideVdate'
+                @showShennei ='showShennei'
             ></componet>
         </div>
     </div>
@@ -272,15 +302,16 @@ var _ = require('lodash');
             isActive:true,
             weekStatus:true,
             dateChose:false,
+            //地区选择
             placeSlect:true,
+            //时间控件
             vDateStatus:true,
+            //省
+            shengNeiStatus:false,
             starNub :5,
             dateIndex:0,
             dateChoseList:[
                 {context:'日',class:''},
-                {context:'周',class:''},
-                {context:'月',class:''},
-                {context:'年',class:''},
             ],
             
             starList:[
@@ -290,7 +321,16 @@ var _ = require('lodash');
                 {context:'二星',class:''},
                 {context:'一星',class:''},
             ],
-            
+            //省内
+            shengnei:{
+                title:'省',
+                width:'60%',
+                left:'10%',
+                selectStatus:false,
+                place:[
+                "省", "市"
+                ]
+            },
             qyselectlist:{
                 title:'全部',
                 width:'80%',
@@ -302,6 +342,7 @@ var _ = require('lodash');
             },
             updateData:{
                 place:'全部',
+                sheng:'省',
                 turist:['飞霞风景名胜区','牛鱼嘴原始生态风景区','天子山瀑布风景区','白庙渔村','飞来寺','美林湖及大家元摩天轮片区',
                             '太和古洞旅游区','笔架山度假区','安庆村','清泉湾生态旅游度假区','金龙洞','九牛洞村',
                             '观音山王山寺','田野绿世界','熹乐谷','金龟泉生态度假村','上岳古民居',
@@ -368,13 +409,18 @@ var _ = require('lodash');
             this.isEndDate = true;
             this.vDateStatus=true;
             this.placeSlect = true;
+            this.shengNeiStatus = false;
             this.qyselectlist.title ="全部";
             this.updateData.place ="全部";
+            
             this.cityData = this.updateData.turist;
         },
         catchmsgSingle(data){
            this.updateData.place = data;
            this.cityData = this.switch(data);
+        },
+        catchForShengnei(data){
+            this.updateData.sheng = data;
         },
         catchmsg(data){
             this.updateData  = data;
@@ -405,6 +451,9 @@ var _ = require('lodash');
             this.weekStatus = false;
             this.isEndDate = true;
             this.placeSlect = false;
+        },
+        showShennei(){
+            this.shengNeiStatus =true;
         },
         switch(val){
             const  cityData = {

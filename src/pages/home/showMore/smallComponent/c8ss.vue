@@ -3,13 +3,19 @@
     <ul>
         <li for='item in items'>
             <div class="cell1">
-                来源地
+               来源地( {{updateSheng}})
             </div>
             <div class="cell2">
                 人数
             </div>
             <div class="cell3">
+                同比
+            </div>
+            <div class="cell3">
                 占比
+            </div>
+            <div class="cell3">
+                环比
             </div>
         </li>
         <li v-for='(item,index) in rankItems'>
@@ -20,11 +26,20 @@
                 {{addDot(item.numb)}}<font>人</font>
             </div>
             <div class="cell3">
-                <span class='footerCotext'>{{item.percent}}</span>
+                <span class='footerCotext'>{{item.tongRate}}%</span>
+                <span class='footerRise' :class='item.rise'></span>
+            </div>
+            <div class="cell3">
+                <span class='footerCotext'>{{item.zhanRate}}%</span>
+                <span class='footerRise' :class='item.rise'></span>
+            </div>
+            <div class="cell3">
+                <span class='footerCotext'>{{item.huanRate}}%</span>
                 <span class='footerRise' :class='item.rise'></span>
             </div>
         </li>
     </ul>
+    <div class="scenic">{{scenics}}</div>
   </div>
 </template>
 
@@ -33,6 +48,8 @@ export default {
     name:'c8',
     props:{
         rankItems:Array,
+        updateSheng:String,
+        scenics:String,
     },
     computed:{
         addDotItems:function () {
@@ -93,8 +110,16 @@ export default {
         font-size: 0.6rem;
     }
 }
+.scenic{
+    text-align: center;
+    color: white;
+    width:100%;
+    height: 1.2rem;
+    bottom:0;
+    position: absolute;
+}
 ul{
-    margin-top:12%;
+    margin-top:2%;
     height:90%;
     width:100%;
     li{
@@ -113,18 +138,18 @@ ul{
 }
 .cell1{
     float:left;
-    width:35%;
+    width:20%;
     text-align: left;
-    margin-left: 6%;
+    margin-left: 3rem
 }
 .cell2{
     float:left;
-    width:31%;
+    width:20%;
     text-align: center;
 }
 .cell3{
     float:left;
-    width:33%;
+    width:20%;
     text-align: center;
     .footerRise{
         display: inline-block;
@@ -147,7 +172,8 @@ li:nth-of-type(1){
     text-align: center !important;
     .cell1{
         width:31%;
-        margin-left:12%;
+        margin-left:8%;
+        margin-right:5%;
     }
     .cell2{
         width:22%;

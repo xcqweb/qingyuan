@@ -28,7 +28,8 @@
             :scenics='item'
             :women ='women'
             :men = 'men'
-            :isActive ='isActive'
+            :isActive ='isActive' 
+            :dateIndex ='dateIndex'
           ></menWomen>
         </div>
     </div>
@@ -44,7 +45,7 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
         scenics:Array,
         isActive:Boolean,
         dateIndex:Number,
-        title:String
+        titles:String
     },
     data() {
       return {
@@ -522,10 +523,10 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
 //      }
       women(){
 
-        return this.responseData[this.title][this.dateIndex];
+        return this.responseData[this.titles][this.dateIndex];
       },
       men(){
-        return this.responseData[this.title][this.dateIndex];
+        return this.responseData[this.titles][this.dateIndex];
       }
     },
      mounted(){

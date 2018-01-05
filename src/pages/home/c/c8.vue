@@ -91,7 +91,7 @@ li:nth-of-type(2n+1){
     <ul>
         <li for='item in items'>
             <div class="cell1">
-                景区
+                来源地
             </div>
             <div class="cell2">
                 人数

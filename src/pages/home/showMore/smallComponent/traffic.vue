@@ -10,7 +10,7 @@
     height: 90%;
     overflow: hidden;
     top:7%;
-    left:-5%;
+    left: -3%;
     font-family: "微软雅黑";
 }
 .scenics{
@@ -19,6 +19,7 @@
     width:100%;
     text-align: center;
     color: white;
+    
 }
 .anchorBL{ 
 display:none !important; 
@@ -36,6 +37,7 @@ display:none !important;
 
 <script>
 require('@/common/js/baidumap/TrafficControl_min.js')
+import traffic_points from '@/pages/home/showMore/bigComponent/json/traffic_points.json'
     export default {
         name:'traffic',
         props:{
@@ -64,29 +66,35 @@ require('@/common/js/baidumap/TrafficControl_min.js')
                 },4000);
             },
             addIcon(map){
-                var points = [
-                        [120.018874,29.48683],
-                        [119.923671,29.514494],
-                        [119.906441,29.457793],
-                        [119.965029,29.403953],
-                        [119.915029,29.303953],
-                        [119.935029,29.203953],
-                        [119.945029,29.453953],
-                        [119.765029,29.363953]
-                    ];
+                var points = traffic_points;
                 // 向地图添加标注
                 for( var i = 0;i < points.length; i++){
-                //定义新图标
-                var myIcon = new BMap.Icon(require("../../../../assets/images/wifi.png"), new BMap.Size(44, 44), {
-                // 指定定位位置
-                offset: new BMap.Size(10, 25),
-                // 当需要从一幅较大的图片中截取某部分作为标注图标时，需要指定大图的偏移位置 
-                //imageOffset: new BMap.Size(0, 0 - i * 25)  设置图片偏移 
-                });
-                var point = new BMap.Point(points[i][0],points[i][1]);
-                // 创建标注对象并添加到地图 
-                var marker = new BMap.Marker(point,{icon: myIcon});
-                map.addOverlay(marker);
+                    //定义新图标
+                    var myIcon = new BMap.Icon(require("../../../../assets/images/lable.jpg"), new BMap.Size(44, 44), {
+                    // 指定定位位置
+                    offset: new BMap.Size(10, 25),
+                    // 当需要从一幅较大的图片中截取某部分作为标注图标时，需要指定大图的偏移位置 
+                    //imageOffset: new BMap.Size(0, 0 - i * 25)  设置图片偏移 
+                    });
+
+                    var point = new BMap.Point(points[i].point[0],points[i].point[1]);
+                    // 创建标注对象并添加到地图 
+                    //自定义图标
+                    // var marker = new BMap.Marker(point,{icon: myIcon});
+                    var marker = new BMap.Marker(point);
+                    var label = new BMap.Label(points[i].label,{offset:new BMap.Size(20,-20)});
+                    label.setStyle({
+                        color : "#153081",
+                        border:"1px solid #153081",
+                        fontSize : "12px",
+                        height : "20px",
+                        lineHeight : "20px",
+                        fontFamily:"微软雅黑",
+                        borderRadius:"4px",
+                    });
+	                marker.setLabel(label);
+                    map.addOverlay(marker);
+                    marker.setAnimation(BMAP_ANIMATION_BOUNCE);
                 };
                 //添加新图标的监听事件
                 marker.addEventListener('click',function(){
@@ -218,9 +226,23 @@ require('@/common/js/baidumap/TrafficControl_min.js')
                     }
                    
             },
+            addScript(map){
+                let _self = this;
+                var oS=document.createElement('script');
+                oS.src='http://lbsyun.baidu.com/custom/stylelist.js?'+Math.random();
+                this.$el.appendChild(oS)
+                oS.onload=function(){
+                    map.setMapStyle({style:'light'})
+                
+                }
+                this.$el.removeChild(oS);
+            },
+            
             init(val){
                 // 百度地图API功能
                 // 创建Map实例
+               
+                
                 const _self= this;
                 const lenObj ={
                     "全部":{lon:113.06689,lat:23.699107,zoom:11},
@@ -237,7 +259,7 @@ require('@/common/js/baidumap/TrafficControl_min.js')
                 var map = new BMap.Map(this.idName,{enableMapClick:true});
                 // 初始化地图,设置中心点坐标和地图级别
                 map.centerAndZoom(new BMap.Point(113.046945,23.692731), 12);
-                
+                 _self.addScript(map);
                 // 添加地图类型控件
                 // map.addControl(new BMap.MapTypeControl());  
                 // 设置地图显示的城市 此项是必须设置的
@@ -257,6 +279,7 @@ require('@/common/js/baidumap/TrafficControl_min.js')
                 //     var polyline = new BMap.Polyline([pointGZ,pointHK],{strokeColor:"blue",strokeWeight:5,strokeOpacity:0.5});
                 //     map.addOverlay(polyline);
                 // },6000);
+                _self.addIcon(map);
                 _self.addLoad(map);
                 // _self.addControl(map);
                 // _self.addLocaPosition(map);
@@ -279,7 +302,7 @@ require('@/common/js/baidumap/TrafficControl_min.js')
                 /************************************************
                 给地图添加右键菜单
                 *************************************************/
-                // _self.addMenu(map);
+                _self.addMenu(map);
             }
         },
         mounted() {

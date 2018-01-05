@@ -23,17 +23,17 @@ export default {
           function randomData() {
               now = new Date(+now + oneDay);
               var value = Math.random() * 600+100;
-              if(now.getMinutes() > 10){
+              if(now.getMinutes() > 9){
                   var minutes =now.getMinutes() 
               }else{
                   var minutes ="0"+now.getMinutes()
               }
-              if(now.getSeconds()>10){
+              if(now.getSeconds()>9){
                   var seconds =now.getSeconds() 
               }else{
                   var seconds ="0"+now.getSeconds()
               }
-              if(now.getHours()>10){
+              if(now.getHours()>9){
                   var hours =now.getHours() 
               }else{
                   var hours ="0"+now.getHours()
@@ -47,7 +47,8 @@ export default {
           var xdata = [];
           var sdata = [];
           var j = 8;
-          var now = +new Date();
+          var nowDate = new Date();
+          var now = +new Date(nowDate.getTime() - 45 * 1000);
           var oneDay = 5 * 1000;
           
           for (var i = 0; i < 200; i++) {
@@ -63,10 +64,10 @@ export default {
             color: ['#00ffff', '#00ffa2', '#f0e750'],
             grid: {
                show: true,
-               left: '10%',
-               top: '15%',
+               left: '15%',
+               top: '20%',
                right: '5%',
-               bottom: '10%',
+               bottom: '14%',
                borderWidth: 0,
                borderColor: 'rgba(170,172,178,0.33)',
                backgroundColor: 'rgba(0,0,0,0)',

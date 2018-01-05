@@ -7,13 +7,14 @@
 }
 #d7{
     width:100%;
-    height:100%;
-  margin-top: -50px;
+    height:80%;
+    transform: translate(0,5%)
 }
   ul{
-    position:absolute;
-    right:100px;
-    top:82%;
+   position:absolute;
+    left:50%;
+    transform: translate(-70%,0);
+    top:72%;
     li{
         margin-top:10px;
         text-align:left;
@@ -67,7 +68,7 @@ export default {
                     name: '访问来源',
                     type: 'pie',
                     radius : '28%',
-                    center: [ '48%'],
+                    center: [ '48%',"10%"],
                     data:[{
                         value:20.5,
                         name:'39%',

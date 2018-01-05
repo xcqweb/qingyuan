@@ -52,10 +52,10 @@
 }
 .XSDFXPaged{
     position:absolute;
-    width: 95%;
-    height: 80%;
+    width: 90%;
+    height: 90%;
     overflow: hidden;
-    top:12%;
+    top:5%;
     left:2.5%;
     font-family: "微软雅黑";
 }
@@ -89,19 +89,23 @@ display:none !important;
 
 
 <script>
-// import BMapLib from '../../../common/js/baidumap/heatmap.js?fdwe'
-// require('../../../common/js/baidumap/heatmap.js?fdwe')
-
+import traffic_points from '@/pages/home/showMore/bigComponent/json/traffic_points.json'
     export default {
         name:'D1SS',
         props:{
             idName:String,
             scenics:String,
+            updatePlace:String,
         },
         data () {
             return {
                 videoName:'摄像头1',
                 videoToast:false,
+            }
+        },
+        watch:{
+            updatePlace:function(val){
+                this.addScript(val)
             }
         },
         methods:{
@@ -147,45 +151,41 @@ display:none !important;
                 },4000);
             },
             addIcon(map){
-                let _self = this
-                let lenY = 29.518155 - 29.510533;
-                let lenX = 119.913692 - 119.932808;
-                var points = [
-                        [119.923671,29.513494],
-                        [119.919621,29.516494],
-                        [119.930621,29.518494],
-                        [119.925621,29.512494],
-                        [119.931621,29.511494],
-                        [119.924621,29.514494],
-                        [119.912621,29.515494],
-                    ];
-                // 向地图添加标注
-                for( let i = 0;i < points.length; i++){
-                    //定义新图标
-                    var myIcon = new BMap.Icon(require("../../../../assets/images/watch31.png"), new BMap.Size(30, 30), {
-                    // 指定定位位置
-                    offset: new BMap.Size(10, 25),
-                    // 当需要从一幅较大的图片中截取某部分作为标注图标时，需要指定大图的偏移位置 
-                    //imageOffset: new BMap.Size(0, 0 - i * 25)  设置图片偏移 
-                    });
-                    
-                    (function() {
-                        var point = new BMap.Point(points[i][0],points[i][1]);
+                    var points = traffic_points;
+                    // 向地图添加标注
+                    for( var i = 0;i < points.length; i++){
+                        //定义新图标
+                        var myIcon = new BMap.Icon(require("../../../../assets/images/lable.jpg"), new BMap.Size(44, 44), {
+                        // 指定定位位置
+                        offset: new BMap.Size(10, 25),
+                        // 当需要从一幅较大的图片中截取某部分作为标注图标时，需要指定大图的偏移位置 
+                        //imageOffset: new BMap.Size(0, 0 - i * 25)  设置图片偏移 
+                        });
+
+                        var point = new BMap.Point(points[i].point[0],points[i].point[1]);
                         // 创建标注对象并添加到地图 
-                        var marker = new BMap.Marker(point,{icon: myIcon});
+                        //自定义图标
+                        // var marker = new BMap.Marker(point,{icon: myIcon});
+                        var marker = new BMap.Marker(point);
+                        var label = new BMap.Label(points[i].label,{offset:new BMap.Size(20,-20)});
+                        label.setStyle({
+                            color : "#153081",
+                            border:"1px solid #153081",
+                            fontSize : "12px",
+                            height : "20px",
+                            lineHeight : "20px",
+                            fontFamily:"微软雅黑",
+                            borderRadius:"4px",
+                        });
+                        marker.setLabel(label);
                         map.addOverlay(marker);
-                        
-                        //添加新图标的监听事件
-                        marker.addEventListener("click",
-                            function(event) {
-                            var p = marker.getPosition();       //获取marker的位置
-                            map.centerAndZoom(new BMap.Point(p.lng+lenY*0.25,p.lat+lenY*0.25), 16);
-                            _self.videoToast=true;
-                            
-                            window.event?window.event.cancelBubble=true:event.stopPropagation();
-                        },false);
-                    })(i);
-                };
+                        marker.setAnimation(BMAP_ANIMATION_BOUNCE);
+                    };
+                    //添加新图标的监听事件
+                    marker.addEventListener('click',function(){
+                        var p = marker1.getPosition();//获取位置
+                        // alert("点击的位置是：" + p.lng + ',' + p.lat);
+                    })
             },
             addMenu(map){
                 var menu = new BMap.ContextMenu();
@@ -301,20 +301,29 @@ display:none !important;
             },
             addHot(map){
                     var points =[];
-                    let makeMap = function(){
-                        let minX = 112.739365;
-                        let minY = 23.554996;
-                        let lenX = 113.362574 - 112.739365;
-                        let lenY = 23.847771 - 23.554996;
-                        for (var i = 0; i < 180; i++) {
-                            let lng = Math.abs(Math.random()-0.7)*Math.abs(lenX)+minX
-                            let lat = Math.abs(Math.random()-0.7)*Math.abs(lenY)+minY
-                            let count = Math.random()*150
-                            let point = {"lng":lng,"lat":lat,"count":count}
-                            points.push(point)
+                    var hotPointA = traffic_points;
+                    // 向地图添加标注
+                    
+                     for( var j = 0;j < hotPointA.length; j++){
+                        
+                        let makeMap = function(){
+                            
+                            let minX = hotPointA[j].point[0];
+                            
+                            let minY = hotPointA[j].point[1];
+                           
+                            let lenX = 113.329229-113.069942  ;
+                            let lenY = 23.694848 - 23.576725;
+                            for (var i = 0; i < 100; i++) {
+                                let lng = Math.abs(Math.random()-0.7)*Math.abs(2*lenX)+minX
+                                let lat = Math.abs(Math.random()-0.7)*Math.abs(2*lenY)+minY
+                                let count = Math.random()*150
+                                let point = {"lng":lng,"lat":lat,"count":count}
+                                points.push(point)
+                            }
                         }
+                        makeMap();
                     }
-                    makeMap();
                     map.enableScrollWheelZoom(); // 允许滚轮缩放
                    
                     if(!isSupportCanvas()){
@@ -365,18 +374,48 @@ display:none !important;
                         return !!(elem.getContext && elem.getContext('2d'));
                     }
             },
-            addScript(){
+            moveTo(map,lon,lat,zoom){
+                    if(lon){
+                         map.panTo(new BMap.Point(lon,lat));
+                         map.setZoom(zoom);
+                    }
+                   
+            },
+            addScript(val){
                 let _self = this;
                 var oS=document.createElement('script');
                 oS.src='http://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js?'+Math.random();
                 this.$el.appendChild(oS)
                 oS.onload=function(){
-                    _self.rodomMap();
+                    _self.rodomMap(val);
                 }
                 this.$el.removeChild(oS);
             },
-            rodomMap(){
+            addScriptForStyle(map){
+                let _self = this;
+                var oS=document.createElement('script');
+                oS.src='http://lbsyun.baidu.com/custom/stylelist.js?'+Math.random();
+                this.$el.appendChild(oS)
+                oS.onload=function(){
+                    map.setMapStyle({style:'light'})
+                
+                }
+                this.$el.removeChild(oS);
+            },
+            rodomMap(val){
                 const _self= this;
+                 const lenObj ={
+                    "全部":{lon:113.06689,lat:23.699107,zoom:11},
+                    "清远市":{lon:113.0323,lat:23.699107,zoom:13},
+                    "清城":{lon:113.06689,lat:23.704022,zoom:13},
+                    "清新":{lon:112.991271,lat:23.75427,zoom:13},
+                    "佛冈":{lon:113.539303,lat:23.886532,zoom:13},
+                    "英德":{lon:113.418281,lat:24.192466,zoom:13},
+                    "连州":{lon:112.38616,lat:24.786467,zoom:13},
+                    "连南":{lon:112.290355,lat:24.732074,zoom:13},
+                    "连山":{lon:112.102727,lat:24.582118,zoom:13},
+                    "阳山":{lon:112.646658,lat:24.47147,zoom:13},
+                }; 
                 //绘制牵引线
                 _self.addLineVideo();
                 var map = new BMap.Map(_self.idName,{enableMapClick:true});
@@ -388,14 +427,17 @@ display:none !important;
                 // 添加地图类型控件
                 // map.addControl(new BMap.MapTypeControl());  
                 // 设置地图显示的城市 此项是必须设置的
-                map.setCurrentCity("清远");    
+                map.setCurrentCity("清远");   
+                _self.addScriptForStyle(map); 
                 // 开启鼠标滚轮缩放      
                 map.enableScrollWheelZoom(true);
                 // 设置定时器，对地图进行自动移动
                 // this.mapMoveSelf
                 /************************************************
+                
                 添加折线
                 *************************************************/
+                _self.moveTo(map,lenObj[val  ===  undefined ?"全部": val].lon,lenObj[val  ===  undefined ?"全部": val].lat,lenObj[val  ===  undefined ?"全部": val].zoom);
                 var pointGZ = new BMap.Point(119.923671,29.514494);
                 var pointHK = new BMap.Point(110.35,20.02);
                 // setTimeout(function(){
@@ -405,6 +447,7 @@ display:none !important;
                 
                 _self.addHot(map);
                 // _self.addControl(map);
+                 _self.addIcon(map);
                 _self.addLocaPosition(map);
                 /************************************************
                 添加自定义控件类，放大ZoomControl
