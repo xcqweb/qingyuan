@@ -1,0 +1,287 @@
+@screen-xs:                  480px;
+@screen-sm:                  768px;
+@screen-md:                  992px;
+@screen-lg:                  1200px;
+@screen-xl:                  1400px;
+/*h1标题颜色，当前颜色白*/
+@hColor:#efeefd;
+/*文本内容颜色*/
+@textColor:#8687c0;
+@headerBackColor:#133596;
+@topBottomColor:#163387;
+@borderColor:#49d9fe;
+@borderLen: 18px;
+/** item**/
+.qylable{
+    height:1.8rem;
+    line-height: 1.8rem;
+    position: absolute;
+    top: 50%;
+    transform: translate(0,-50%);
+    left: 10%;
+    font-size: 16px;
+}
+.jqlable{
+    height:1.8rem;
+    line-height: 1.8rem;
+    position: absolute;
+    top: 50%;
+    transform: translate(0,-50%);
+    left: 43%;
+    font-size: 16px;
+}
+.item{
+    height: auto;
+    text-align: center;
+    background-color: #163387;
+    position: relative;
+    .close {
+        position: absolute;
+        top: 1rem;
+        right: 2rem;
+        width: 40px !important;
+        height: 40px !important;
+        background-image: url("../images/back.png");
+        background-size: 100% 100%;
+        background-position: center;
+        z-index: 133;
+        cursor: pointer;
+    }
+    &:before {
+        position:absolute;
+        bottom: 0 ;
+        left: 0 ;
+        width: @borderLen;
+        height: @borderLen;
+        border-bottom:2px solid @borderColor;
+        border-left:2px solid @borderColor;
+        
+        content: " ";
+    }
+    &:after {
+        position:absolute;
+        top: 0;
+        right: 0;
+        width: @borderLen;
+        height: @borderLen;
+        border-top:2px solid @borderColor ;
+        border-right:2px solid @borderColor ;
+        content: " ";
+    }
+    .border{
+        height: 100%;
+        width: 100%;
+        &:before {
+            position:absolute;
+            top: 0 ;
+            left: 0 ;
+            width: @borderLen;
+            height: @borderLen;
+            border-top:2px solid @borderColor ;
+            border-left:2px solid @borderColor ;
+            content: " ";
+        }
+        &:after {
+            position:absolute;
+            bottom: 0;
+            right: 0;
+            width: @borderLen;
+            height: @borderLen;
+            border-bottom:2px solid @borderColor;
+            border-right:2px solid @borderColor;
+            content: " ";
+        }
+    }
+}
+h1{
+    position:absolute;
+    top: 1rem;
+    left: 2rem;
+    z-index: 2;
+    color:#efeefd;
+    font-size: 1.1rem;
+    font-weight: 590;
+    
+}
+span{
+    position:absolute;
+    top: 8px;
+    display: inline-block;
+    z-index: 2;
+    cursor: pointer;
+    width: 18/1920*100vw;
+    height: auto;
+    text-align: center;
+    img{                  
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+    }
+    @media screen and(min-width: 801px){
+        right:8px;
+    }
+    @media screen and(max-width: 800px){
+        right:5%;
+    }
+}
+.chose{
+    background-image: url('../images/home/d/unchose.png');
+    background-size: 100% 100%;
+}
+.unchose{
+    background-image: url('../images/home/d/chose.png');
+    background-size: 100% 100%;
+}
+.box{
+    background-color: #0a1e64;
+    position: relative;
+    .rightScope{
+        position: absolute;
+        .three{
+            h1{
+                //  left: 13rem;
+                top: .8rem !important;
+            }
+        }
+
+    }
+    .leftScope{
+        position: absolute;
+        .six{
+            h1{
+                top: .8rem !important;
+                //  left: 15rem;
+            }
+        }
+    }
+}
+@media screen and(min-width: 801px){
+    .box{
+        height: 90vh;
+        width: 99vw;
+        overflow: hidden;
+        margin-left: .5vw;
+        min-height: 500px;
+        position: relative;
+        .border{
+
+        }
+        .tabList{
+            position: absolute;
+            width:598/1920*100%;;
+            height: 80/1048*100%;
+            left: 16/1920*100%;
+            font-size: 1.3rem;
+            color:white;
+        }
+        .leftScope{
+            height: 100%;
+            width: 1028/1920*100%;
+            top: 0;
+            left: 16/1920*100%;
+            div{
+               position: absolute; 
+            }
+            .one{
+                height: 264/1048*100%;
+                width: 598/1028*100%;
+                top: (80+14)/1048*100%;
+                left: 0;
+            }
+            .two{
+                top:(80+14+16+264)/1048*100%;
+                left: 0;
+                height:  214/1048*100%;
+                width: 356/1028*100%;   
+            }
+            .three{
+                height: 214/1048*100%;
+                width: 226/1028*100%;
+                left: (356+16)/1028*100%;
+                top:(80+14+16+264)/1048*100%;
+            }
+            .four{
+                height: 358/1048*100%;
+                width: 414/1028*100%;
+                top: 0;
+                right: 0;
+            }
+            .five{
+                top: (16+358)/1048*100%;
+                right:0;
+                width: 414/1028*100%;
+                height: 214/1048*100%;
+            }
+            .six{
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 445/1048*100%;
+            }
+        }
+        .rightScope{
+            height: 100%;
+            width: 843/1920*100%;
+            top: 0;
+            right:16/1920*100%;
+            div{
+               position: absolute; 
+               height: 100%;
+            }
+            .one{
+                width: 414/846*100%;
+                height: 588/1048*100%;
+                top: 0;
+                left: 0;
+
+            }
+            .two{
+                width: 414/846*100%;;
+                height: 444/1048*100%;
+                left: 0%;
+                bottom: 0;
+            }
+            .three{
+                top: 0;
+                right: 0;
+                width: 414/846*100%;
+                height: 100%;
+            }
+            
+        }
+    }
+    
+}
+@media screen and(max-width: 800px){
+    .box{
+        height: auto;
+        width: 100vw;
+        flex-direction: column;
+        flex-wrap: wrap;
+        .tabList{
+            width:90%;
+            margin-left: 5%;
+            height: 90/1040*100%;
+            font-size: 1.3rem;
+            color:white;
+        }
+        .leftScope{
+            width: 100%;
+            .item{
+                height: 300px;
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+        .rightScope{
+            margin-top: 10px;
+            width: 100%;
+            .item{
+                height: 300px;
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+    }
+}
