@@ -5,7 +5,7 @@
             <img :src="imgacircle"/>
         </div>
         <span>{{dataItem.warningPer}}%</span>
-        <div class="text"><font>预警客流</font><font>{{dataItem.warningNub}}</font></div>
+        <div class="text"><font>{{warningText}}</font></div>
         <div class="scenic">{{scenics}}</div>
     </div>
 </template>
@@ -21,6 +21,13 @@ export default {
         scenics:String,
         dataItem:Object,
     },
+    watch:{
+        dataItem: function (val, oldVal) {
+            this.chart = echarts.init(document.getElementById(id));
+         this.chart.setOption(this.option);
+        },
+            deep:true,
+    },
   data () {
     return {
         imgacircle:require('../../../../assets/images/home/b/circle.png'),
@@ -30,7 +37,7 @@ export default {
                 {
                     name: '消费情况',
                     type: 'pie',
-                    radius:  ['43%', '49%'],
+                    radius: this.dataItem.noTitle ===undefined ?['45%','49%']: ['63%', '79%'],
                     center: ['50%', '50%'],
                     label: {
                         normal: {
@@ -73,6 +80,9 @@ export default {
     }
   },
   computed: { 
+      warningText:function(){
+          return this.dataItem.noTitle === false ? '客流预警'+this.dataItem.warningNub : '';
+      }
   },
   methods:{
       redom(id){

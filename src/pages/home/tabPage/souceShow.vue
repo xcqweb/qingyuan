@@ -28,6 +28,7 @@
                     :is='item.name' 
                     :key="item.id"  
                     :place='updateData.turist' 
+                    :mainPageSelect = 'updateData'
                     :commentProp = 'comment'
                     ></componet>
                 </div>
@@ -38,7 +39,7 @@
                 v-for='item in rightComponents' 
                 @dblclick='showMore(item.name,item.title)'  
                 :class="item.id">
-                <h1>{{item.title}}</h1>
+                <h1 v-bind:style="{ color: item.color }" >{{item.title}}</h1>
                 <span @click='cutover(item,rightComponents)' >
                     <img :src="cutoverImg"/>
                 </span>
@@ -47,6 +48,7 @@
                     :is='item.name' 
                     :key="item.id"  
                     :place='updateData.turist' 
+                    :mainPageSelect = 'updateData'
                     :commentProp = 'comment' 
                     :placeAttractionsProps = 'updateData.turist' 
                     :inItemsProps = 'inItems' 
@@ -78,18 +80,18 @@ export default {
                 qyselectlist:{
                     width:'18%',
                     left:'20%',
-                    title:'清城 ',
+                    title:'全部',
                     selectStatus:false,
                     place:[
-                        "清城","清新","佛冈","英德","连州","连南","连山","阳山"
+                        '全部',"清城","清新","佛冈","英德","连州","连南","连山","阳山"
                     ]
                 },
                 updateData:{
-                    palce:'清城',
-                    turist:'飞霞风景名胜区',
+                    palce:'全部',
+                    turist:'全部',
                 },
-                startData:['飞霞风景名胜区','牛鱼嘴原始生态风景区','天子山瀑布风景区','白庙渔村','飞来寺','美林湖及大家元摩天轮片区'],                
-                cityData:['飞霞风景名胜区','牛鱼嘴原始生态风景区','天子山瀑布风景区','白庙渔村','飞来寺','美林湖及大家元摩天轮片区'],
+                startData:['全部','飞霞风景名胜区','牛鱼嘴原始生态风景区','天子山瀑布风景区','白庙渔村','飞来寺','美林湖及大家元摩天轮片区'],                
+                cityData:['全部','飞霞风景名胜区','牛鱼嘴原始生态风景区','天子山瀑布风景区','白庙渔村','飞来寺','美林湖及大家元摩天轮片区'],
                 moudle:[
                     {name:'A5',title:'实时客流监测'},
                     {name:'B2',title:'客流预警'},
@@ -124,10 +126,10 @@ export default {
                 cutoverStatus:null,
                 leftComponents:[
                     {name:'A5',id:'one',index:1,time:100,show:false,title:'实时客流监测'},
-                    {name:'B2',id:'two',index:2,time:300,show:false,title:'客流预警'},
+                    {name:'B2',id:'two',index:2,time:300,show:false,title:'客流预警',color:'red',},
                     {name:'B6',id:'three',index:3,time:600,show:false,title:'实时天气'},
                     {name:'D6',id:'four',index:4,time:900,show:false,title:'景区当前客流'},
-                    {name:'D8',id:'five',index:5,time:600,show:false,title:'交通拥堵指数'},
+                    {name:'A3',id:'five',index:5,time:600,show:false,title:'游客评价'},
                     {name:'D1',id:'six',index:6,time:900,show:false,title:'景区客流热力图'},
                 ],
                 rightComponents:[
@@ -176,14 +178,22 @@ export default {
     methods: {
         catchmsg1(data){
             this.updateData.palce = data;
-           return  this.cityData = this.switch(data)
+            this.cityData = this.switch(data)
         },
         catchmsg2(data){
            this.updateData.turist = data;
         },
+        waringColor(val){
+            this.leftComponents[1].color = val;
+        },
         showMore:function(name,title){
             let mainContent = name+'S';
-            $showMore.open(mainContent,title)
+            if(name ==='A3'){
+                console.log("ToDo")
+            }else{
+                $showMore.open(mainContent,title)
+            }
+            
         },
         update(){
              this.barChartOption.series[0].data[3]={
@@ -204,14 +214,23 @@ export default {
         },
         switch(val){
             const  cityData = {
-                "清城":['飞霞风景名胜区','牛鱼嘴原始生态风景区','天子山瀑布风景区','白庙渔村','飞来寺','美林湖及大家元摩天轮片区'],
-                "清新":['太和古洞旅游区','笔架山度假区','安庆村','清泉湾生态旅游度假区','金龙洞','九牛洞村',],
-                "佛冈":['观音山王山寺','田野绿世界','熹乐谷','金龟泉生态度假村','上岳古民居'],
-                "英德":['峰林胜境景区','英德老虎谷暗河漂流','九龙小镇','铁溪小镇','仙湖温泉旅游度假区','浈阳坊旅游小镇','大樟沙滩度假村','云水谣','彭家祠'],
-                "连州":['清远市连州福山景区','大东山温泉度假区','李屋村','潭岭天湖'],
-                "连南":['油岭瑶寨','瑶族舞曲实景演出','云海花谷'],
-                "连山":['大旭山瀑布群旅游景区','皇后山','鹰扬关景区','雾山梯田'],
-                "阳山":['北山古寺','鱼水旅游风景区','龙凤温泉'],
+                "全部":["全部",'飞霞风景名胜区','牛鱼嘴原始生态风景区','天子山瀑布风景区','白庙渔村','飞来寺','美林湖及大家元摩天轮片区',
+                            '太和古洞旅游区','笔架山度假区','安庆村','清泉湾生态旅游度假区','金龙洞','九牛洞村',
+                            '观音山王山寺','田野绿世界','熹乐谷','金龟泉生态度假村','上岳古民居',
+                            '峰林胜境景区','英德老虎谷暗河漂流','九龙小镇','铁溪小镇','仙湖温泉旅游度假区','浈阳坊旅游小镇','大樟沙滩度假村','云水谣','彭家祠',
+                            '清远市连州福山景区','大东山温泉度假区','李屋村','潭岭天湖',
+                            '油岭瑶寨','瑶族舞曲实景演出','云海花谷',
+                            '大旭山瀑布群旅游景区','皇后山','鹰扬关景区','雾山梯田',
+                            '北山古寺','鱼水旅游风景区','龙凤温泉'
+                ],
+                "清城":['全部','飞霞风景名胜区','牛鱼嘴原始生态风景区','天子山瀑布风景区','白庙渔村','飞来寺','美林湖及大家元摩天轮片区'],
+                "清新":['全部','太和古洞旅游区','笔架山度假区','安庆村','清泉湾生态旅游度假区','金龙洞','九牛洞村',],
+                "佛冈":['全部','观音山王山寺','田野绿世界','熹乐谷','金龟泉生态度假村','上岳古民居'],
+                "英德":['全部','峰林胜境景区','英德老虎谷暗河漂流','九龙小镇','铁溪小镇','仙湖温泉旅游度假区','浈阳坊旅游小镇','大樟沙滩度假村','云水谣','彭家祠'],
+                "连州":['全部','清远市连州福山景区','大东山温泉度假区','李屋村','潭岭天湖'],
+                "连南":['全部','油岭瑶寨','瑶族舞曲实景演出','云海花谷'],
+                "连山":['全部','大旭山瀑布群旅游景区','皇后山','鹰扬关景区','雾山梯田'],
+                "阳山":['全部','北山古寺','鱼水旅游风景区','龙凤温泉'],
 
             }
            return cityData[val]

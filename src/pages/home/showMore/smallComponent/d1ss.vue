@@ -182,10 +182,10 @@ import traffic_points from '@/pages/home/showMore/bigComponent/json/traffic_poin
                         marker.setAnimation(BMAP_ANIMATION_BOUNCE);
                     };
                     //添加新图标的监听事件
-                    marker.addEventListener('click',function(){
-                        var p = marker1.getPosition();//获取位置
-                        // alert("点击的位置是：" + p.lng + ',' + p.lat);
-                    })
+                    // marker.addEventListener('click',function(){
+                    //     var p = marker1.getPosition();//获取位置
+                    //     // alert("点击的位置是：" + p.lng + ',' + p.lat);
+                    // })
             },
             addMenu(map){
                 var menu = new BMap.ContextMenu();

@@ -91,7 +91,7 @@ li:nth-of-type(2n+1){
     <ul>
         <li for='item in items'>
             <div class="cell1">
-                来源地
+                来源地(省)
             </div>
             <div class="cell2">
                 人数
@@ -132,10 +132,10 @@ export default {
                 numb:'32,001',place:'广东省 ',rise:'up',percent:'4.2%',
                 },
                 {
-                numb:'26,102',place:'上海 ',rise:'down',percent:'3.3%',
+                numb:'26,102',place:'浙江省 ',rise:'down',percent:'3.3%',
                 },
                 {
-                numb:'13,003',place:'北京 ',rise:'up',percent:'23.1%',
+                numb:'13,003',place:'湖南省 ',rise:'up',percent:'23.1%',
                 },
                 {
                 numb:'10,304',place:'湖北省',rise:'up',percent:'13.7%',

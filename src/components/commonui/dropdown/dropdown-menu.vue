@@ -108,8 +108,20 @@ import Vue from 'vue'
                  showstatus:true,
             }
         },
-        template:`<div class='listdiv'><div class="overlay" v-if='status' @click.stop='hidelist'></div><ul v-if='status'><li class="v-dropdown-menu_list" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}
+        template:`<div class='listdiv' v-bind:style="{height: (list.length+1)*1.8+'rem' }" v-bind:class="{ more: isMore }" v-if='status'><div class="overlay" v-if='status' @click.stop='hidelist'></div><ul  v-if='status'><li class="v-dropdown-menu_list" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}
     </li></ul></div>`,
+        computed:{
+            isMore:function(){
+                if('s'){
+                    if(this.list.length>6){
+                        return true
+                    }else{
+                        return false
+                    }
+                }
+                
+            }
+        },
         methods:{
             chosen:function(){
             },
@@ -178,20 +190,42 @@ import Vue from 'vue'
     position: absolute;
     left:0;
     top:100%;
-    height: 100%;
+    max-height: 10.8rem;
     width: 100%;
+    overflow: hidden;
+    box-shadow: 1px 0 30px  rgba(1,1,13,0.4);
+    border: 1px solid #1b44ba;
+    background-color: #193583;
+    &.more{
+            &:after{
+                content: "";
+                width:0;
+                height: 0;
+                position: absolute;
+                bottom: 10px;
+                left: 50%;
+                transform: translate(-50%,0);
+                border-left: solid 10px transparent;
+                border-top:solid 5px white;
+                border-right: solid 10px transparent;
+            }
+            li:nth-of-type(6){
+                margin-top: 1.8rem;
+            }
+        }
     ul{
         position: absolute;
         left:0;
         top:0;
+        transform: translate(-9%,0);
         height: auto;
-        width: 100%;
+        width: 120%;
         margin-left: -1px;
-        box-shadow: 1px 0 30px  rgba(1,1,13,0.4);
-        border: 1px solid #1b44ba;
-        background-color: #193583;
         z-index:444;
+        max-height: 10.8rem;
+        overflow-y: auto;
         li {
+            // transform: translate(-20%,0);
             list-style: none;
             color: white;
             background-color: #193583;

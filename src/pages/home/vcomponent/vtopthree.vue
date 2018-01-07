@@ -3,7 +3,7 @@
     <ul>
         <li v-for="item in items">
             <p>{{item.title}}</p>
-            <div><p>{{item.nub}}</p></div>
+            <div><p :style="{ 'color': item.color }">{{item.nub}}</p></div>
             <p :style="{ 'color': item.color }">{{item.font}}</p>
             <p :style="{ 'background-color': item.color }"></p>
         </li>
@@ -18,9 +18,9 @@ export default {
   data () {
     return {
         items:[
-            {title:'客流总数',nub:'6902',font:'万人',color:'#6dffeb'},
-            {title:'经济贡献',nub:'15,801',font:'万元',color:'#ffe86e'},
-            {title:'富民指数',nub:'32986',font:'万点',color:'#ff719c'},
+            {title:'',nub:'评论数',font:'2635',color:'#6dffeb'},
+            {title:'',nub:'差评数',font:'137',color:'#ffe86e'},
+            {title:'',nub:'隐患数',font:'10',color:'#ff719c'},
         ],
     }
   },
@@ -48,6 +48,7 @@ ul{
         height:100%;
         width:132/464*100%;
         margin-left:4%;
+        margin-top: 5%;
 
         p:nth-of-type(1){
             font-size: 1.1rem;
@@ -60,16 +61,16 @@ ul{
             
             p{
                 color: white;
-                height:100%;
+                height:90%;
                 width:100%;
-                font-size: 1.6rem !important;
+                font-size: 1.2rem !important;
                 display: table-cell;
                 vertical-align:middle;
                 text-align:center;
             }
         }
         p:nth-of-type(2){
-            font-size: 1rem;
+            font-size: 1.4rem;
             margin-bottom:6px;
         }
         p:nth-of-type(3){

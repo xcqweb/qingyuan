@@ -75,7 +75,7 @@ export default {
           var now = +new Date(nowDate.getTime() - 45 * 1000);
           var oneDay = 5 * 1000;
           
-          for (var i = 0; i < 40; i++) {
+          for (var i = 0; i < 200; i++) {
             //   debugger;
             let  dataObji = randomData();
             xdata.push(dataObji.xData);

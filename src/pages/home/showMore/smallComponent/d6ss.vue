@@ -50,11 +50,11 @@
 <template>
     <div class="b6">
         <div class="b6_top">
-            <span>68，288<font>人次</font></span>
+            <span>{{addDot(dataItem[1].num)}}<font>人次</font></span>
             <font>当前客流总数</font>
         </div>
         <div class="b6_bottom" >
-            <span>86，188<font>人次</font></span>
+            <span>{{addDot(dataItem[2].num)}}<font>人次</font></span>
             <font>昨日客流总数</font>
         </div>
         <div class="scenic">{{scenics}}</div>
@@ -69,6 +69,7 @@ export default {
     props:{
         idName:String,
         scenics:String,
+        dataItem:Array,
     },
     // mixins: [adaptation],
     data () {
@@ -83,7 +84,18 @@ export default {
 
     },
     methods: {
-
+        addDot(nub){
+        var n= nub;
+        var m =n +'',
+        len= m.length
+        if (len>3) {
+        var aa=len-3
+        var bb=m.slice(aa,len)
+        var cc=m.slice(0,aa)
+        m=cc+','+bb
+        }
+        return m
+    }
     },
     mounted(){
     

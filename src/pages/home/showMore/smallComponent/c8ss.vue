@@ -27,15 +27,15 @@
             </div>
             <div class="cell3">
                 <span class='footerCotext'>{{item.tongRate}}%</span>
-                <span class='footerRise' :class='item.rise'></span>
+                <span class='footerRise' :class="item.tongRate>0? 'up':'down'"></span>
             </div>
             <div class="cell3">
                 <span class='footerCotext'>{{item.zhanRate}}%</span>
-                <span class='footerRise' :class='item.rise'></span>
+                <span class='footerRise' :class="item.zhanRate>0? 'up':'down'"></span>
             </div>
             <div class="cell3">
                 <span class='footerCotext'>{{item.huanRate}}%</span>
-                <span class='footerRise' :class='item.rise'></span>
+                <span class='footerRise' :class="item.huanRate>0? 'up':'down'"></span>
             </div>
         </li>
     </ul>
