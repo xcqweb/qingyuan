@@ -87,7 +87,7 @@ export default {
                     ]
                 },
                 updateData:{
-                    palce:'全部',
+                    place:'全部',
                     turist:'全部',
                 },
                 startData:['全部','飞霞风景名胜区','牛鱼嘴原始生态风景区','天子山瀑布风景区','白庙渔村','飞来寺','美林湖及大家元摩天轮片区'],                
@@ -134,7 +134,7 @@ export default {
                 ],
                 rightComponents:[
                     {name:'D9',id:'one',index:1,time:1200,show:false,title:'游客路线排行'},
-                    {name:'B4',id:'two',index:2,time:1500,show:false,title:'路况监控'},
+                    {name:'D12',id:'two',index:2,time:1500,show:false,title:'客流停留时长分析'},
                     {name:'D10',id:'three',index:3,time:1800,show:false,title:'维度正负面分析'},
                     {name:'D11',id:'four',index:4,time:2100,show:false,title:'旅游关键词'},
                 ],
@@ -178,7 +178,7 @@ export default {
     },
     methods: {
         catchmsg1(data){
-            this.updateData.palce = data;
+            this.updateData.place = data;
             this.cityData = this.switch(data)
         },
         catchmsg2(data){

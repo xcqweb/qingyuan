@@ -61,6 +61,7 @@ let D7S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/d7s.vu
 
 let D8S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/d8s.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/d8s.vue'))})}
 let D9S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/d9s.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/d9s.vue'))})}
+let D12S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/d12s.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/d12s.vue'))})}
 
 //存放当前模块状态，数组字符串
 let status =[
@@ -107,6 +108,7 @@ let status =[
     'D7S',
     'D8S',
     'D9S',
+    'D12S'
     ]
 let conponets={}
 //字符串转对象变量

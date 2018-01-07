@@ -55,7 +55,7 @@ export default {
   methods:{
       checkWaringStatus(val){
           if(val.turist ==="全部"){
-                 var warningArr = b2sjson[val.palce];
+                 var warningArr = b2sjson[val.place];
                  warningArr.forEach(item => {
                      if(item.data.warningPer>90){
                          this.warningTeam.push(item);
@@ -69,7 +69,7 @@ export default {
                  }    
              }else{
                  //二级为详细景区时精确定位
-                 var warningArr = b2sjson[val.palce];
+                 var warningArr = b2sjson[val.place];
                  warningArr.forEach(item => {
                      if(item.name === val.turist ){
                          if(item.data.warningPer>90){

@@ -161,7 +161,7 @@
             <span class="title">评论</span>
             <div class="comment">
                 <span class="name">{{commentProp.name}}</span>
-                <span class="place">来自：{{commentProp.palce}}</span>
+                <span class="place">来自：{{commentProp.place}}</span>
                 <vstar 
                 class='comment-star'
                 :star='topStar.numb'>
