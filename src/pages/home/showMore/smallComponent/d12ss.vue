@@ -134,9 +134,9 @@ export default {
                 //   this.isActive=true;
                 let dataY=[];
                 let dataX=[];
-                debugger
                 for (var i = 0; i < this.barData.length; i++) {
-                    dataY.push(this.barData[i].num);
+                    var itemDat = (Number(this.barData[i].num)/200).toFixed(1);
+                    dataY.push(itemDat);
                     dataX.push(this.barData[i].date)
                 }
                 
@@ -176,13 +176,20 @@ export default {
                     color: ['#1F6ABB','#3897C5','#A4C5E6'],
                     grid: {
                          show: true,
-                         left: '15%',
-                         top: '30%',
-                         right: '10%',
+                         left: '13%',
+                         top: '20%',
+                         right: '8%',
                          bottom: '10%',
                          borderWidth: 0,
                          backgroundColor: 'rgba(0,0,0,0)',
                      },
+                     tooltip:{
+                        show:true,
+                        trigger:'axis',
+                        formatter:function(params){
+                            return params[0].name+"<br>停留时长："+ params[0].value+"小时"
+                        },
+                    },
                     xAxis: [
                         {
                         axisLabel :{  
@@ -217,7 +224,7 @@ export default {
                                 show:false,
                         },
                         splitLine:{
-                            show:true,
+                            show:false,
                             lineStyle:{
                                 color:'#20549f',
                                 width:1,
@@ -233,12 +240,17 @@ export default {
                           color:'#ffffff'
                         },
                         splitLine:{
-                          show:false,
+                            show:true,
+                            lineStyle:{
+                                color:'#20549f',
+                                width:1,
+                                type:'solid'
+                            },
                         },
                         axisLabel:{
                             showMinLabel:true,
-                          textStyle:{
-                            color:'rgba(0,0,0,0)',
+                            textStyle:{
+                            color:'#ffffff',
                             fontSize: 12,
                           }
                         },
@@ -255,9 +267,10 @@ export default {
                     series : [
                     {
                         name:'计划',
-                        type:'bar',
+                        type:'line',
                         barMaxWidth:'50%',
                         // data:datay,
+                        areaStyle: {normal: {}},
                         itemStyle:{
                             normal: {
                                 color: new echarts.graphic.LinearGradient(
@@ -332,7 +345,7 @@ export default {
       let dataX=[];
     //   debugger
       for (var i = 0; i < this.barData.length; i++) {
-          dataY.push(this.barData[i].num);
+          dataY.push((Number(this.barData[i].num)/200).toFixed(1));
           dataX.push(this.barData[i].date);
       }
       this.$nextTick(echarts_resize(this.idName,this,dataX,dataY))

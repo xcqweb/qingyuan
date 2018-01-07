@@ -52,8 +52,8 @@
     }
     &:before {
         position:absolute;
-        bottom: 0 ;
-        left: 0 ;
+        bottom: -2px ;
+        left: -2px ;
         width: @borderLen;
         height: @borderLen;
         border-bottom:2px solid @borderColor;
@@ -63,8 +63,8 @@
     }
     &:after {
         position:absolute;
-        top: 0;
-        right: 0;
+        top: -2px;
+        right: -2px;
         width: @borderLen;
         height: @borderLen;
         border-top:2px solid @borderColor ;
@@ -76,8 +76,8 @@
         width: 100%;
         &:before {
             position:absolute;
-            top: 0 ;
-            left: 0 ;
+            top: -2px ;
+            left: -2px ;
             width: @borderLen;
             height: @borderLen;
             border-top:2px solid @borderColor ;
@@ -86,8 +86,8 @@
         }
         &:after {
             position:absolute;
-            bottom: 0;
-            right: 0;
+            bottom: -2px;
+            right: -2px;
             width: @borderLen;
             height: @borderLen;
             border-bottom:2px solid @borderColor;
@@ -175,13 +175,14 @@ span{
             width:598/1920*100%;;
             height: 80/1048*100%;
             left: 16/1920*100%;
+            top:2px;
             font-size: 1.3rem;
             color:white;
         }
         .leftScope{
-            height: 100%;
+            height: 99%;
             width: 1028/1920*100%;
-            top: 0;
+            top: 2px;
             left: 16/1920*100%;
             div{
                position: absolute; 
@@ -189,7 +190,7 @@ span{
             .one{
                 height: 264/1048*100%;
                 width: 598/1028*100%;
-                top: (80+14)/1048*100%;
+                top: (80+16)/1048*100%;
                 left: 0;
             }
             .two{
@@ -224,9 +225,9 @@ span{
             }
         }
         .rightScope{
-            height: 100%;
+            height: 99%;
             width: 843/1920*100%;
-            top: 0;
+            top: 2px;
             right:16/1920*100%;
             div{
                position: absolute; 
@@ -277,6 +278,7 @@ span{
         }
         .leftScope{
             width: 100%;
+            margin-top: 2px;
             .item{
                 height: 300px;
                 width: 100%;

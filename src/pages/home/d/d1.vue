@@ -93,8 +93,16 @@ display:none !important;
             }
         },
         props:[
-            'place'
+            'place','mainPageSelect'
         ],
+        watch:{
+            mainPageSelect:{
+                handler: function (val, oldVal) {
+                     this.addScript(val.place)
+                },
+                deep:true,
+            }
+        },
         methods:{
             addLineVideo(){
                 var canvas = document.getElementsByClassName('lineVideo')[0];
@@ -356,13 +364,13 @@ display:none !important;
                         return !!(elem.getContext && elem.getContext('2d'));
                     }
             },
-            addScript(){
+            addScript(val){
                 let _self = this;
                 var oS=document.createElement('script');
                 oS.src='http://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js?'+Math.random();
                 this.$el.appendChild(oS)
                 oS.onload=function(){
-                    _self.rodomMap();
+                    _self.rodomMap(val);
                 }
                 this.$el.removeChild(oS);
             },
@@ -377,8 +385,27 @@ display:none !important;
                 }
                 this.$el.removeChild(oS);
             },
-            rodomMap(){
+            moveTo(map,lon,lat,zoom){
+                    if(lon){
+                         map.panTo(new BMap.Point(lon,lat));
+                         map.setZoom(zoom);
+                    }
+                   
+            },
+            rodomMap(val){
                 const _self= this;
+                const lenObj ={
+                    "全部":{lon:113.06689,lat:23.699107,zoom:11},
+                    "清远市":{lon:113.0323,lat:23.699107,zoom:13},
+                    "清城":{lon:113.06689,lat:23.704022,zoom:13},
+                    "清新":{lon:112.991271,lat:23.75427,zoom:13},
+                    "佛冈":{lon:113.539303,lat:23.886532,zoom:13},
+                    "英德":{lon:113.418281,lat:24.192466,zoom:13},
+                    "连州":{lon:112.38616,lat:24.786467,zoom:13},
+                    "连南":{lon:112.290355,lat:24.732074,zoom:13},
+                    "连山":{lon:112.102727,lat:24.582118,zoom:13},
+                    "阳山":{lon:112.646658,lat:24.47147,zoom:13},
+                }; 
                 //绘制牵引线
                 _self.addLineVideo();
                 var map = new BMap.Map("XSDFXPaged",{enableMapClick:true});
@@ -399,6 +426,7 @@ display:none !important;
                 /************************************************
                 添加折线
                 *************************************************/
+                _self.moveTo(map,lenObj[val  ===  undefined ?"全部": val].lon,lenObj[val  ===  undefined ?"全部": val].lat,lenObj[val  ===  undefined ?"全部": val].zoom);
                 var pointGZ = new BMap.Point(119.923671,29.514494);
                 var pointHK = new BMap.Point(110.35,20.02);
                 // setTimeout(function(){

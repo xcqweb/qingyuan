@@ -36,8 +36,8 @@ export default {
                 },
                 nowRes:{
                      code:"13",
-                    temperature:"loading",
-                    text:"loading",
+                    temperature:"...",
+                    text:"...",
                 },
                 lifeRes:{
                     

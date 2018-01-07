@@ -79,15 +79,19 @@ li:nth-of-type(1){
     }
     .cell3{
         width:33%;
+         font-size: 12px !important;
     }
 }
 li:nth-of-type(2){
     box-shadow:3px 4px 20px #191970;
-    font-size: .6rem;
+    font-size: 12px !important;
 }
 li:nth-of-type(3){
     box-shadow:3px 4px 20px #191970;
-    font-size: .6rem;
+    font-size: 12px !important;
+}
+li:nth-of-type(4){
+    font-size: 12px !important;
 }
 .scenic{
     text-align: center;
@@ -147,13 +151,12 @@ export default {
    },
     data(){
         return{
-        items:d9sJson["全部"]["日"].slice(0,3),
+        items:d9sJson["全部"]["日"].slice(0,3).reverse(),
       }
     },
     methods:{
         checkRankPlace(val,oldVal){
             if(val.place ===oldVal.place){
-                console.log(val.turist)
                 if(val.turist === "全部"){
                     this.items = d9sJson[val.place]["日"].slice(0,3);
                 }else if(val.turist != "全部"){
@@ -167,11 +170,14 @@ export default {
                         });
                     })
                 }
-                console.log(this.items)
             }else if(val.place !=oldVal.place){
                  this.items = d9sJson[val.place]["日"].slice(0,3);
+
+            }else{
+                this.items = d9sJson[val.place]["日"].slice(0,3);
+
             }
-            
+            this.items.reverse();
         }
     },
     components:{}

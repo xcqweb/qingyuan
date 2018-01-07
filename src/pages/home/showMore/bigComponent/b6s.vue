@@ -258,9 +258,9 @@ Vue.use(vAjax);
   export default {
     name:'B6S',
     mixins: [showMoreData],
-    props:['updateTurist'],
+    props:['updateTurist','updatePlace'],
     watch:{
-        updateTurist:function(val){
+        updatePlace:function(val){
             let _self = this
             _self.showStatus =false;
             setTimeout(function(){
@@ -450,7 +450,7 @@ Vue.use(vAjax);
         this.sendRequest();
         this.$emit('hideWeeks');
         this.$emit('hideVdate')
-        this.$emit('showDoubleSelect');
+        // this.$emit('showDoubleSelect');
         this.$emit('showDateFormatChose',[])
     }
   }

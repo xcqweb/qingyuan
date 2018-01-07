@@ -4,8 +4,8 @@
         <div class="circle">
             <img :src="imgacircle"/>
         </div>
-        <span>{{dataItem.warningPer}}%</span>
-        <div class="text"><font>{{warningText}}</font></div>
+        <span v-bind:class="{fontRed:fontRedData}">{{dataItem.warningPer}}%</span>
+        <div class="text"><font >{{warningText}}</font></div>
         <div class="scenic">{{scenics}}</div>
     </div>
 </template>
@@ -56,7 +56,7 @@ export default {
                         name:'',
                         itemStyle:{
                             normal:{
-                                color:this.dataItem.warningPer<90?'#1da7fe':'#fe6e40',
+                                color:this.dataItem.warningPer < 90 ? '#1da7fe' : '#FF0000',
                                 
 
                             }
@@ -82,6 +82,9 @@ export default {
   computed: { 
       warningText:function(){
           return this.dataItem.noTitle === false ? '客流预警'+this.dataItem.warningNub : '';
+      },
+      fontRedData:function(){
+         return this.dataItem.warningPer<90 ? false : true;
       }
   },
   methods:{
@@ -118,6 +121,9 @@ export default {
         color:#1da7fe;
         transform: translate(-50%,-50%);
         font-size:.8rem;
+        &.fontRed{
+                color:red;
+            }
     }
     .pieB2{
         height:100%;
@@ -145,6 +151,7 @@ export default {
             margin-left:.6rem;
             color:#1da7fe;
             font-size:1rem;
+            
         }
     }
     img{                  

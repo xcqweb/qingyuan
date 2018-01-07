@@ -1,6 +1,7 @@
 <template>
-    <div class="b2" v-bind:class="{ active: isActive }">
-        <b2ss 
+    <div class="b2" >
+        <div v-bind:class="{ active: isActive }" style="height:100%;width:100%;">
+            <b2ss 
             class="c211" 
             :idName='"b2bb"' 
             :scenics='""' 
@@ -9,6 +10,8 @@
         <ul class="text" style="color:white;font-size:12px;">
             <li v-for="item in warningTeam">{{item.name}}</li>
         </ul>
+        </div>
+        
     </div>
 </template>
 
@@ -101,8 +104,8 @@ export default {
     height:100%;
     width:100%;
     position:relative;
-    &.active{
-        background-color: red;
+    .active{
+        background-color: #600000;
     }
     .c211{
         position: absolute;

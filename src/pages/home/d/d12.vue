@@ -1,337 +1,93 @@
+<style lang="less" scoped>
+.d12{
+    width:95%;
+    height:80%;
+   
+    .d12_chart{
+        width:100%;
+        height:125%;
+        position: relative;
+    }
+}
+</style>
 <template>
-  <div class="main_content" v-show='show' id="A1loding">
-    <div id="righthz"></div>
-    <!-- <div class="week">
-        <span class="oneweek " v-bind:class="{ chose: isActive }" @click='redom7'>7日</span>
-        <span class="twoweek" v-bind:class="{ chose: !isActive }" @click='redom14'>14日</span>
-    </div> -->
-  </div>
+    <div class="d12">
+        <div class="d12_chart">
+            <d12ss 
+            class="" 
+            :idName='"d12"' 
+            :scenics='""'
+            :barData='propsData' 
+            ></d12ss>
+        </div>
+    </div>
 </template>
+
 <script>
-import echarts_resize from '../../../common/js/echarts_resize.js'
- import echarts from 'echarts';
-import { mapGetters } from 'vuex'
-import store from '../../../vuex/index' 
-import { mapActions } from 'vuex'
-import timeMixin from '@/common/js/mixin/timeMixin.js'
-import Vue from 'vue'
-export default {
-    name:'a1',
-    mixins: [timeMixin],
+import d12ss from '@/pages/home/showMore/smallComponent/d12ss.vue'
+import showMoreData from '@/common/js/mixin/showMoreData.js'
+import a1sJson from '@/pages/home/showMore/bigComponent/json/a1s.json'
+  export default {
+    name:'A1S',
+    props:{
+        mainPageSelect:Object,
+    },
+    watch:{
+        // mainPageSelect:function(val){
+            
+        // }
+        mainPageSelect:{
+            handler: function (val, oldVal) {
+                
+                 //判断是否直接点击二级下拉
+                if(val.place ===oldVal.place){
+                    //如果点击“全部”则：···
+                    if(val.turist === "全部"){
+                    this.propsData = a1sJson[val.place]["周"][1]["data"];
+                    //如果点击“全部按钮以外”
+                    }else if(val.turist != "全部"){
+                    this.propsData = a1sJson[val.place]["周"][2]["data"];
+                    }
+
+                //如果直接点击一级下拉框
+                }else if(val.place !=oldVal.place){
+                    this.propsData = a1sJson[val.place]["周"][2]["data"];
+                }
+            },
+            deep:true,
+        }
+    },
     data() {
       return {
-        chart: null,
-        isActive:true,
-        xnub:null,
-        ynub:null,
-        loading:true,
-        reloading:false,
-        oneweekMock:[
-            {"nub":"6293","date":"12/29"},
-            {"nub":"5331","date":"12/30"},
-            {"nub":"8112","date":"12/31"},
-            {"nub":"4199","date":"1/1"},
-            {"nub":"7258","date":"1/2"},
-            {"nub":"9122","date":"1/3"},
-            {"nub":"6189","date":"1/4"}
-        ],
-        twoWeekMock:[
-            {"nub":"1293","date":"6/14"},
-            {"nub":"2331","date":"6/15"},
-            {"nub":"1312","date":"6/16"},
-            {"nub":"999","date":"6/17"},
-            {"nub":"2458","date":"6/18"},
-            {"nub":"2122","date":"6/19"},
-            {"nub":"1789","date":"6/20"},
-            {"nub":"1293","date":"6/21"},
-            {"nub":"2331","date":"6/22"},
-            {"nub":"1012","date":"6/23"},
-            {"nub":"1929","date":"6/24"},
-            {"nub":"2458","date":"6/25"},
-            {"nub":"2122","date":"6/26"},
-            {"nub":"1789","date":"6/27"}
-        ],
-        opinion: ['学习氛围差', '学习氛围一般', '学习氛围很好'],
-        opinionData1: [
+          a1sShow:true,
+           propsData:a1sJson["全部"]["周"][0]["data"],
+          dateChose:[
+                {context:'周',class:'chose'},
+                {context:'月',class:''},
+                {context:'年',class:''},
+            ],
+            // ['#FF8885','#57ABFE', '#368DF7', '#7E6AF6', '#E39A50','#FFCD38',  '#4EBBFC', '#75CF65','#B8E986', '#86E9E8', '#58E5E1','#4BCEDD']
+            // scenics:['风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区',],
+            // idName:['c4s1','c4s2','c4s3','c4s4','c4s5','c4s6','c4s7','c4s8','c4s9'],
+      }
+    },
+    // props: {
+    //     mainContent: {
+    //         type: String,
+    //         default: function () {
+    //                 return 'D2S'
+    //         }
+    //     },
+    // },
+    components: {
+        d12ss,
+    },
+    methods:{
 
-        ],
-        opinionData2: this.$store.state.data,
-        opinionData: [
-            {value:26, name:'学习氛围差'},
-            {value:31, name:'学习氛围一般'},
-            {value:8, name:'学习氛围很好'}
-          ],
-      }
     },
-    store:store,
-    methods: {
-    redom7(){
-        if(this.chart){
-            this.chart.dispose();
-        }
-      this.isActive=true;
-      let dataY=[];
-      let dataX=[];
-      for (var i = 0; i < this.oneweekMock.length; i++) {
-          dataY.push(this.oneweekMock[i].nub);
-          dataX.push(this.oneweekMock[i].date)
-      }
-      this.$nextTick(echarts_resize('righthz',this,dataX,dataY))
-    },
-    redom14(){
-        if(this.chart){
-            this.chart.dispose();
-        }
-        let dataY=[];
-        let dataX=[];
-        for (var i = 0; i < this.twoWeekMock.length; i++) {
-            dataY.push(this.twoWeekMock[i].nub);
-            dataX.push(this.twoWeekMock[i].date)
-        }
-    this.isActive=false;
-    this.$nextTick(echarts_resize('righthz',this,dataX,dataY))
-    },
-      redom (id,xyfonsiz,datax,datay) {
-        var _self= this;
-        _self.loading=false;
-        this.chart = echarts.init(document.getElementById(id))
-        
-        let option={
-                    backgroundColor: 'rgba(0,0,0,0)',
-                    color: ['#1F6ABB','#3897C5','#A4C5E6'],
-                    grid: {
-                         show: true,
-                         left: '15%',
-                         top: '30%',
-                         right: '10%',
-                         bottom: '10%',
-                         borderWidth: 0,
-                         backgroundColor: 'rgba(0,0,0,0)',
-                     },
-                    xAxis: [
-                        {
-                        axisLabel :{  
-                            interval:0   
-                        }  ,
-                        show:true,
-                        barGap: 0,
-                      //  boundaryGap: false,
-                        
-                        padding:0,
-                        barMaxWidth:6,
-                        type: 'category',
-                        data: datax,
-                        fontSize: 6,
-                        scale: true,
-                        lineStyle:2,
-                        splitNumber:14,
-                        minInterval:7,
-                        axisLine: { //坐标轴轴线相关设置。就是数学上的x轴
-                             show: true,
-                                lineStyle: {
-                                    color: 'rgba(170,172,178,0.53)'
-                             },
-                        },
-                         axisLabel: {
-                             textStyle: {
-                                 color: '#ffffff',//x坐标轴标签字体颜色
-                                 fontSize: xyfonsiz,
-                             },
-                        },
-                        axisTick:{
-                                show:false,
-                        },
-                        splitLine:{
-                            show:true,
-                            lineStyle:{
-                                color:'#20549f',
-                                width:1,
-                                type:'solid'
-                            },
-                        }
-
-                        }
-                    ],
-                    yAxis:{
-                        show:true,
-                        nameTextStyle:{
-                          color:'#ffffff'
-                        },
-                        splitLine:{
-                          show:false,
-                        },
-                        axisLabel:{
-                            showMinLabel:true,
-                          textStyle:{
-                            color:'rgba(0,0,0,0)',
-                            fontSize: xyfonsiz,
-                          }
-                        },
-                        axisLine: { //坐标轴轴线相关设置。就是数学上的y轴
-                            show: false,
-                            lineStyle: {
-                                color: 'rgba(170,172,178,0.53)'
-                            },
-                        },
-                        axisTick:{
-                            show:false,
-                        }
-                    },
-                    series : [
-                    {
-                        name:'计划',
-                        type:'bar',
-                        barMaxWidth:'50%',
-                        data:datay,
-                        itemStyle:{
-                            normal: {
-                                color: new echarts.graphic.LinearGradient(
-                                    0, 0, 0, 1,
-                                    [
-                                    {offset: 0, color: '#86b6ff'},
-                                    {offset: 0.5,color:'#6a95fe'},
-                                    {offset: 1, color: '#5d88f7'}
-                                    ]
-                                )
-                            }
-                        },
-                        label:{
-                        normal:{
-                            show:true,
-                            position:'top',
-                            textStyle:{
-                                color:'#2CC9E2',
-                            }
-                        }
-                       },
-                    }
-                
-                ]
-            }//option
-        // for (var n = 0; n < 7; n++) {   
-            // option.series[0].data[2*n+1]={
-            //     itemStyle: {
-            //         normal: {
-            //             color: new echarts.graphic.LinearGradient(
-            //                 0, 0, 0, 1,
-            //                 [
-            //                     {offset: 0, color: '#86b6ff'},
-            //                     {offset: 1, color: '#405596'}
-            //                 ]
-            //             )
-            //         }
-            //     }
-            // }
-            // option.series[0].data[2*n]={
-            //     itemStyle: {
-            //         normal: {
-            //             color: new echarts.graphic.LinearGradient(
-            //                 0, 0, 0, 1,
-            //                 [
-            //                     {offset: 0, color: '#c688ff'},
-            //                     {offset: 1, color: '#905aee'}
-            //                 ]
-            //             )
-            //         }
-            //     }
-            // }
-        // }
-        this.chart.setOption(option)
-      }
-    },
-    components:{},
-    mounted() {
-      this.redom7();
+    mounted(){
+        this.$emit('showDateFormatChose',this.dateChose)
     }
   }
 </script>
-<style lang="less" type="text/less" scoped>
-.main_content {
-  width: 100%;
-  height: 100%;
-  position: relative;
-}
-.load{
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  
-}
-.loading{
-    margin-top: 30%;
-    height: 50px;
-    color: #05a1cd;
-     font-size: 30px;
-  }
-  .reload{
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  
-}
-.reloading{
-    margin-top: 30%;
-    height: 150px;
-    width: 200px;
-    margin-left: 37%;
-    font-size: 30px;
-  }
-#righthz{
-  width: 100%;
-  height: 90%;
-  div{
-    width: 100%;
-    height: 100%;
-  }
-}
-.week{
-    height: 1.5rem !important;
-    width: 7rem !important;
-    position: absolute;
-    top: 5%;
-    right: 10%;
-    font-size:0.8rem;
-    &:after {
-        content: ".";
-        display: block;
-        height: 0;
-        clear: both;
-        visibility: hidden;
-        line-height: 25px;
-     }
-    .oneweek{
-      cursor: pointer;
-      float: left;
-      height: 1.5rem;
-      line-height:1.5rem;
-      width: 47%;
-      color: #abb5d3;
-      background-image:url('../../../assets/images/home/透明框—14日.png');
-      background-size: 100% 100%;
-      &.chose{
-        background-image:url('../../../assets/images/home/透明框—7日.png');
-          background-size: 100% 100%;
-          color:#d3ddf9;
-      }
-    }
-    .twoweek{
-      cursor: pointer;
-      float: right;
-      height: 1.5rem;
-      line-height:1.5rem;
-      width: 47%;
-      color: #abb5d3;
-      background-image:url('../../../assets/images/home/透明框—14日.png');
-      background-size: 100% 100%;
-      &.chose{
-        background-image:url('../../../assets/images/home/透明框—7日.png');
-          background-size: 100% 100%;
-          color:#d3ddf9;
-      }
-    }
-  }
-      .chose{
-          background-image:url('../../../assets/images/home/透明框—7日.png');
-          background-size: 100% 100%;
-      }
-</style>
+

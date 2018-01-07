@@ -19,7 +19,7 @@
             class="c211" 
             :idName='"d9ss"' 
             :scenics='""' 
-            :rankItems ='rankItems' 
+            :rankItems ='rankItems.reverse()' 
             ></d9ss>
         </div>
     </div>
