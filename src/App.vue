@@ -40,7 +40,7 @@ export default {
 </script>
 <style lang="less">
 /* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
+   v2.0 | 20110126----
    License: none (public domain)
 */
 
