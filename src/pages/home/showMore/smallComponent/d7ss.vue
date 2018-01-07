@@ -122,10 +122,10 @@ export default {
                         value:this.data[this.index].data[2].percent,
                          name:this.data[this.index].data[2].percent+"%",
                          label:{
-                            normal:{
+                           emphasis :{
                                 show:true,
-                                position:'outside',
-                                textStyle:{
+                              formatter:'{a}',
+                              textStyle:{
                                     color:'#fe6e40'
                                 }
                             },

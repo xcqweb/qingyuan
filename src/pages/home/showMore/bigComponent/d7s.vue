@@ -94,7 +94,7 @@ import data from '@/pages/home/showMore/d7-payway.json'
       }
     },
     mounted(){
-        console.log(this.reoponseData[this.title][this.dateIndex][0].data[0].percent)
+        console.log(this.reoponseData[this.title][this.dateIndex][0].data[0].percent);
     }
   }
 </script>

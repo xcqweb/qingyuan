@@ -60,6 +60,8 @@ let D7 = resolve => {require.ensure(['@/pages/home/d/d7.vue'], () => {resolve(re
 
 let D8 = resolve => {require.ensure(['@/pages/home/d/d8.vue'], () => {resolve(require('@/pages/home/d/d8.vue'))})}
 
+let D10 = resolve => {require.ensure(['@/pages/home/d/d10.vue'], () => {resolve(require('@/pages/home/d/d10.vue'))})}
+
 //存放当前模块状态，数组字符串
 let status =[
     'sleckte',
@@ -103,11 +105,12 @@ let status =[
     'D6',
     'D7',
     'D8',
+    'D10'
     ]
 let conponets={}
 //字符串转对象变量
 for (var i = 0; i < status.length; i++) {
 let index=status[i]
 conponets[index]=eval(index)
-} 
+}
 export default conponets;

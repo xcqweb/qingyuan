@@ -80,6 +80,7 @@ export default {
                     {name:'A9',title:'视频监控'},
                     {name:'B4',title:'路况监控'},
                     {name:'D3',title:'最新舆论'},
+                    {name:'D10',title:'维度正负面分析'},
                 ],
                 current:[
                     {name:'B16',title:`国内游客来源地`},
@@ -89,7 +90,8 @@ export default {
                     {name:'A1',title:'客流人数分析'},
                     {name:'A5',title:'客流实时监测'},
                     {name:'A9',title:'视频监控'},
-                    {name:'C8',title:'游客来源排行'},
+                     {name:'D1',title:'维度正负面分析'}
+                    //{name:'C8',title:'游客来源排行'},
                 ],
                 leftComponents:[
                     {name:'B16',id:'one',index:1,time:100,show:true,title:`国内游客来源地`,},
@@ -101,7 +103,8 @@ export default {
                 ],
                 rightComponents:[
                     {name:'D7',id:'one',index:1,time:1200,show:false,title:'消费水平分析'},
-                   {name:'C8',id:'two',index:2,time:1500,show:false,title:'游客来源排行'},
+                   //{name:'C8',id:'two',index:2,time:1500,show:false,title:'游客来源排行'},
+                  {name:'D10',id:'two',index:2,time:1500,show:true,title:'纬度正负面分析'},
                 ],
 
                 text:'headerBody',

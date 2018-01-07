@@ -35,6 +35,7 @@
 </template>
 
 <script>
+  //下面两个需按顺序引入
 import menWomen from '@/pages/home/showMore/smallComponent/men_women.vue'
 import showMoreData from '@/common/js/mixin/showMoreData.js'
   export default {
@@ -396,6 +397,9 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
     watch:{
       dateIndex:function(val){
       }
+    },
+    mounted(){
+      console.log(this.responseData[this.title])
     },
     computed:{
       women(){

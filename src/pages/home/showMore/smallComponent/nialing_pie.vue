@@ -17,7 +17,7 @@
     <div class="content">
         <div :id="idName" class="c985"></div>
         <div class="scenic">{{scenic}}</div>
-    </div>  
+    </div>
 </template>
 
 <script type="text/javascript">
