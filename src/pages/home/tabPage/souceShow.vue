@@ -20,9 +20,9 @@
                 @dblclick='showMore(item.name,item.title)'  
                 :class="item.id">
                 <h1>{{item.title}}</h1>
-                <span @click='cutover(item,leftComponents)' >
+                <!-- <span @click='cutover(item,leftComponents)' >
                     <img :src="cutoverImg"/>
-                </span>
+                </span> -->
                 <div class="border" v-if='item.show'>
                     <componet
                     :is='item.name' 
@@ -40,9 +40,9 @@
                 @dblclick='showMore(item.name,item.title)'  
                 :class="item.id">
                 <h1 v-bind:style="{ color: item.color }" >{{item.title}}</h1>
-                <span @click='cutover(item,rightComponents)' >
+                <!-- <span @click='cutover(item,rightComponents)' >
                     <img :src="cutoverImg"/>
-                </span>
+                </span> -->
                 <div class="border" v-if='item.show'>
                     <componet
                     :is='item.name' 
@@ -133,9 +133,10 @@ export default {
                     {name:'D1',id:'six',index:6,time:900,show:false,title:'景区客流热力图'},
                 ],
                 rightComponents:[
-                    {name:'C10',id:'one',index:1,time:1200,show:false,title:'粉丝关注渠道'},
+                    {name:'D9',id:'one',index:1,time:1200,show:false,title:'游客路线排行'},
                     {name:'B4',id:'two',index:2,time:1500,show:false,title:'路况监控'},
-                    {name:'D3',id:'three',index:3,time:1800,show:false,title:'最新舆论'},
+                    {name:'D10',id:'three',index:3,time:1800,show:false,title:'维度正负面分析'},
+                    {name:'D11',id:'four',index:4,time:2100,show:false,title:'旅游关键词'},
                 ],
                 
             }

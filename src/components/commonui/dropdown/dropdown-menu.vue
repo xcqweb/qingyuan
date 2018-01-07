@@ -106,20 +106,18 @@ import Vue from 'vue'
             return{
                  msg:'jfdksjfk',
                  showstatus:true,
+                 isMore:true,
             }
         },
-        template:`<div class='listdiv' v-bind:style="{height: (list.length+1)*1.8+'rem' }" v-bind:class="{ more: isMore }" v-if='status'><div class="overlay" v-if='status' @click.stop='hidelist'></div><ul  v-if='status'><li class="v-dropdown-menu_list" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}
+        template:`<div class='listdiv'  v-bind:style="{height: (list.length+1)*1.8+'rem',maxHeight:maxHeight+'rem' }" v-bind:class="{ more: isMore }" v-if='status'><div class="overlay" v-if='status' @click.stop='hidelist'></div><ul @mousewheel='moreStatus'  v-if='status'><li class="v-dropdown-menu_list" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}
     </li></ul></div>`,
         computed:{
-            isMore:function(){
-                if('s'){
-                    if(this.list.length>6){
-                        return true
-                    }else{
-                        return false
-                    }
+            maxHeight:function(){
+                if(this.list.length>5){
+                    return 10.8
+                }else{
+                    return (list.length+1)*1.8
                 }
-                
             }
         },
         methods:{
@@ -128,18 +126,32 @@ import Vue from 'vue'
             showselect(){
             this.selectList.selectStatus=true;
             },
+
             increment:function(item){
                 this.showstatus= !this.showstatus;
+                this.isMore = true;
                 this.$emit('itemtodo',item === undefined ? this.list[0] : item);
             },
             test:function(){
 
             },
+            moreStatus(event){
+                this.isMore = false;
+            },
+            //点击浮框背景未选中元素时 隐藏下拉框并传默认值；
             hidelist(){
+                this.isMore = true;
                 this.$emit('itemtodo');
             },
                 
         },
+        mounted(){
+            if(this.list.length>6){
+                this.isMore =  true
+            }else{
+                this.isMore = false
+            }
+        }
     }
 )
 </script>
@@ -190,7 +202,7 @@ import Vue from 'vue'
     position: absolute;
     left:0;
     top:100%;
-    max-height: 10.8rem;
+    // max-height: 10.8rem;
     width: 100%;
     overflow: hidden;
     box-shadow: 1px 0 30px  rgba(1,1,13,0.4);
@@ -217,9 +229,9 @@ import Vue from 'vue'
         position: absolute;
         left:0;
         top:0;
-        transform: translate(-9%,0);
+        transform: translate(-13%,0);
         height: auto;
-        width: 120%;
+        width: 140%;
         margin-left: -1px;
         z-index:444;
         max-height: 10.8rem;

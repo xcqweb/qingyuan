@@ -6,9 +6,9 @@
         @dblclick='showMore(topItem.name,topItem.title)'  
         class="item">
             <h1>{{topItem.title}}</h1>
-            <span @click='cutover(topItem,leftComponents)' >
+            <!-- <span @click='cutover(topItem,leftComponents)' >
                 <img :src="cutoverImg"/>
-            </span>
+            </span> -->
              <!-- <span class="close" @click='closeMid(topItem)' v-if="!topItem.icon"></span> -->
             <div class="border" v-if='topItem.show'>
                 <componet 
@@ -26,9 +26,9 @@
         @dblclick='showMore(topItem.name,topItem.title)'  
         class="item">
             <h1>{{topItem.title}}</h1>
-            <span @click='cutover(topItem,rightComponents)'>
+            <!-- <span @click='cutover(topItem,rightComponents)'>
                 <img :src="cutoverImg"/>
-            </span>
+            </span> -->
             <!-- <span class="close" @click='closeMid(topItem)' v-if="!topItem.icon"></span> -->
             <div class="border" v-if='topItem.show'>
                 <componet
