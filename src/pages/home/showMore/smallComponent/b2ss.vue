@@ -22,22 +22,41 @@ export default {
         dataItem:Object,
     },
     watch:{
-        dataItem: function (val, oldVal) {
-            this.chart = echarts.init(document.getElementById(id));
-         this.chart.setOption(this.option);
-        },
+        dataItem: {
+            handler: function (val, oldVal) {
+
+                this.$nextTick(echarts_resize(this.idName,this))
+            },
             deep:true,
+        }
     },
   data () {
     return {
         imgacircle:require('../../../../assets/images/home/b/circle.png'),
-        option:{
+        
+    }
+  },
+  computed: { 
+      warningText:function(){
+          return this.dataItem.noTitle === false ? '客流预警'+this.dataItem.warningNub : '';
+      },
+      fontRedData:function(){
+         return this.dataItem.warningPer<90 ? false : true;
+      }
+  },
+  methods:{
+      redom(id){
+           if(this.chart){
+                this.chart.dispose();
+            }
+          this.chart = echarts.init(document.getElementById(id));
+          let option={
             backgroundColor: 'rgba(0,0,0,0)',
             series: [
                 {
                     name: '消费情况',
                     type: 'pie',
-                    radius: this.dataItem.noTitle ===undefined ?['45%','49%']: ['63%', '79%'],
+                    radius: this.dataItem.noTitle ===undefined ?['42%','49%']: ['69%', '75%'],
                     center: ['50%', '50%'],
                     label: {
                         normal: {
@@ -77,20 +96,7 @@ export default {
                 }
             ]
         }
-    }
-  },
-  computed: { 
-      warningText:function(){
-          return this.dataItem.noTitle === false ? '客流预警'+this.dataItem.warningNub : '';
-      },
-      fontRedData:function(){
-         return this.dataItem.warningPer<90 ? false : true;
-      }
-  },
-  methods:{
-      redom(id){
-          this.chart = echarts.init(document.getElementById(id));
-          this.chart.setOption(this.option);
+          this.chart.setOption(option);
       }
   },
   mounted() {

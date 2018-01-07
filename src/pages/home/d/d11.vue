@@ -235,6 +235,7 @@ require('echarts-wordcloud');
             option : {
                 tooltip: {},
                 series: [{
+                    name: '旅游关键词',
                     type: 'wordCloud',
                     gridSize: 20,
                     sizeRange: [12, 50],

@@ -19,7 +19,7 @@
             class="c211" 
             :idName='"d9ss"' 
             :scenics='""' 
-            :rankItems ='rankItems.reverse()' 
+            :rankItems ='rankItems' 
             ></d9ss>
         </div>
     </div>
@@ -36,23 +36,31 @@ import d9sJson from '@/pages/home/showMore/bigComponent/json/d9s.json'
         scenics:Array,
         dateIndex:Number,
         updatePlace:String,
-        updateSheng:String,
+        updateTurist:{
+            default: "全部"
+        },
     },
     watch:{
         updatePlace:function(val){
             // this.rankItems = b16sJson[val]//data[全部][省][日]
             if(this.dateIndex ===2){
-                 this.rankItems = d9sJson[val][this.dateChose[0].context]
+                 this.rankItems = d9sJson[val][this.dateChose[0].context].reverse()
             }else{
-                 this.rankItems = d9sJson[val][this.dateChose[this.dateIndex].context]
+                this.rankItems = d9sJson[val][this.dateChose[this.dateIndex].context].reverse()
             }
            
         },
-
+        updateTurist:function(val){
+            // this.rankItems = b16sJson[val]//data[全部][省][日]
+            console.log(val)
+            // debugger
+            // console.log(d9sJson[this.updatePlace][this.dateChose[this.dateIndex].context])
+           
+        },
         dateIndex:function(val){
-            this.rankItems = d9sJson[this.updatePlace][this.dateChose[val].context]
+            this.rankItems = d9sJson[this.updatePlace][this.dateChose[val].context].reverse()
             if(val ===2){
-                this.rankItems = d9sJson[this.updatePlace][this.dateChose[0].context]
+                this.rankItems = d9sJson[this.updatePlace][this.dateChose[0].context].reverse()
             }
         }
     },
@@ -63,7 +71,7 @@ import d9sJson from '@/pages/home/showMore/bigComponent/json/d9s.json'
             {context:'月',class:''},
             {context:'年',class:''},
             ],
-            rankItems:d9sJson["全部"]["日"],
+            rankItems:d9sJson["全部"]["日"].reverse(),
             // ['#FF8885','#57ABFE', '#368DF7', '#7E6AF6', '#E39A50','#FFCD38',  '#4EBBFC', '#75CF65','#B8E986', '#86E9E8', '#58E5E1','#4BCEDD']
             // scenics:['风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区',],
             // idName:['c4s1','c4s2','c4s3','c4s4','c4s5','c4s6','c4s7','c4s8','c4s9'],
@@ -85,7 +93,7 @@ import d9sJson from '@/pages/home/showMore/bigComponent/json/d9s.json'
     },
     mounted(){
         this.$emit('showDateFormatChose',this.dateChose);
-        // this.$emit('showShennei');
+         this.$emit('showDoubleSelect');
     }
   }
 </script>

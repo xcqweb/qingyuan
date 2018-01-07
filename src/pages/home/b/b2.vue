@@ -27,23 +27,20 @@ export default {
         mainPageSelect:Object,
     },
     watch:{
-        // mainPageSelect:function(val){
-            
-        // }
         mainPageSelect:{
             handler: function (val, oldVal) {
                 this.warningTeam=[] ;
                 this.isActive= false ;
-             this.checkWaringStatus(val)
+                this.checkWaringStatus(val)
             },
             deep:true,
         }
     },
   data () {
     return {
-         isActive:false,
+        isActive:false,
         dataItem:{
-            warningPer:98,
+            warningPer:32,
             warningNub:null,
             noTitle:true,
            
@@ -61,8 +58,10 @@ export default {
                  var warningArr = b2sjson[val.place];
                  warningArr.forEach(item => {
                      if(item.data.warningPer>90){
-                         this.warningTeam.push(item);
-                         this.isActive = true;
+                        this.warningTeam.push(item);
+                        this.isActive = true;
+                     }else{
+                         this.dataItem.warningPer =item.data.warningPer;
                      }
                  });
                  if(this.warningTeam[0]){
@@ -76,17 +75,18 @@ export default {
                  warningArr.forEach(item => {
                      if(item.name === val.turist ){
                          if(item.data.warningPer>90){
-                             this.warningTeam.push(item);
-                             this.isActive = true;
+                            this.warningTeam.push(item);
+                            this.isActive = true;
+                            this.dataItem.warningPer = this.warningTeam[0].data.warningPer;
+                         }else{
+                            //如果没有大于90的元素，则直接推当前元素进入列表，并且
+                            this.dataItem.warningPer =item.data.warningPer;
+                            this.warningTeam = [item]
                          }
-                         
                      }
+                     
                  });
-                 if(this.warningTeam[0]){
-                     this.dataItem.warningPer = this.warningTeam[0].data.warningPer;
-                 }else{
-                     this.dataItem.warningPer = 0;
-                 } 
+                 
              }
       }
   },

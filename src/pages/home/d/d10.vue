@@ -122,7 +122,6 @@
         },
         mounted() {
          this.redom("latitudeAnalyse");
-          console.log(111);
         }
     }
 </script>

@@ -79,6 +79,28 @@ img{
                 width: 18%;
             }
         }
+        .comentSlect{
+            width:10%;
+            height: 100%;
+            float: left;
+            margin-left: 3rem;
+            position: relative;
+            font-size: 1.3rem;
+            color:white;
+            .qylable{
+                min-width: 10%;
+                height:1.8rem;
+                line-height: 1.8rem;
+                position: absolute;
+                top: 50%;
+                transform: translate(0,-50%);
+                font-size: 13px;
+            }
+            .oneSelection{
+                left: 11%;
+                width: 18%;
+            }
+        }
     }
     .morePlace{
             height: 88% !important;
@@ -216,6 +238,14 @@ img{
                     class="oneSelection"
                     ></sleckte>
                 </div>
+                <div class="comentSlect" v-if="conmentPlatform.status">
+                    <div class="qylable">发布平台：</div>
+                    <sleckte 
+                    :selectList="conmentPlatform.list" 
+                    v-on:listenAtparent="conmentPlatformCatch" 
+                    class="oneSelection"
+                    ></sleckte>
+                </div>
                 <doubleSelection
                 v-if="!placeSlect"
                 v-on:listenDoubleSelection="catchmsg" 
@@ -272,6 +302,7 @@ img{
                 :updateTurist = 'updateData.turist' 
                 :updatePlace ='updateData.place' 
                 :updateSheng = 'updateData.sheng'
+                :conmentPlatformProp = 'updateData.conmentPlatform'
                 :starNub = 'starNub' 
                 :dateIndex = 'dateIndex' 
                 :titles = 'qyselectlist.title'
@@ -279,6 +310,7 @@ img{
                 @hideWeeks = 'hideWeeks'
                 @hideDoubleDate = 'hideDoubleDate'
                 @showComment ='showComment' 
+                @showCommentSlect = 'showCommentSlect'
                 @hideVdate = 'hideVdate'
                 @showShennei ='showShennei'
                 @showDoubleSelect = 'showDoubleSelect'
@@ -310,6 +342,10 @@ var _ = require('lodash');
             vDateStatus:true,
             //省
             shengNeiStatus:false,
+            conmentPlatform:{
+                status:false,
+                list:{},
+            },
             starNub :5,
             dateIndex:0,
             dateChoseList:[
@@ -345,6 +381,7 @@ var _ = require('lodash');
             updateData:{
                 place:'全部',
                 sheng:'省',
+                conmentPlatform:'全部',
                 turist:['飞霞风景名胜区','牛鱼嘴原始生态风景区','天子山瀑布风景区','白庙渔村','飞来寺','美林湖及大家元摩天轮片区',
                             '太和古洞旅游区','笔架山度假区','安庆村','清泉湾生态旅游度假区','金龙洞','九牛洞村',
                             '观音山王山寺','田野绿世界','熹乐谷','金龟泉生态度假村','上岳古民居',
@@ -414,15 +451,20 @@ var _ = require('lodash');
             this.shengNeiStatus = false;
             this.qyselectlist.title ="全部";
             this.updateData.place ="全部";
-            
+            this.conmentPlatform = {status:false,list:{}} ;
+            this.updateData.conmentPlatform ="全部"
             this.cityData = this.updateData.turist;
         },
         catchmsgSingle(data){
            this.updateData.place = data;
+           this.updateData.conmentPlatform ="全部"
            this.cityData = this.switch(data);
         },
         catchForShengnei(data){
             this.updateData.sheng = data;
+        },
+        conmentPlatformCatch(data){
+            this.updateData.conmentPlatform = data;
         },
         catchmsg(data){
             this.updateData  = data;
@@ -461,6 +503,13 @@ var _ = require('lodash');
         },
         showShennei(){
             this.shengNeiStatus =true;
+        },
+        //显示平台下拉框
+        showCommentSlect(data){
+            this.conmentPlatform = {
+                status:true,
+                list:data,
+            };
         },
         switch(val){
             const  cityData = {

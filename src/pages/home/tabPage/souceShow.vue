@@ -202,8 +202,8 @@ export default {
         },
         showMore:function(name,title){
             let mainContent = name+'S';
-            if(name ==='A3'||name ==='D10'||name ==='D11'){
-                console.log("ToDo")
+            if(name ==='D10'||name ==='D11'){
+                $showMore.open('A3S',title)
             }else{
                 $showMore.open(mainContent,title)
             }

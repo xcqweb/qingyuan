@@ -39,11 +39,11 @@
 <template>
     <div class="b6">
         <div class="b6_top">
-            <span>28,288<font>人次</font></span>
+            <span>{{dataMsg[0].num}}<font>人次</font></span>
             <font>当前客流总数</font>
         </div>
         <div class="b6_bottom" v-show="level_xs">
-            <span>86,188<font>人次</font></span>
+            <span>{{dataMsg[2].num}}<font>人次</font></span>
             <font>昨日客流总数</font>
         </div>
     </div>
@@ -62,14 +62,15 @@ export default {
     watch:{
         mainPageSelect:{
             handler: function (val, oldVal) {
-                
+                let _self = this;
+                this.dataMsg = a1sJson[val.place]["年"][0]["data"];      
             },
             deep:true,
         }
     },
     data () {
         return {
-            dataMsg:a1sJson["全部"]["年"]
+            dataMsg:a1sJson["全部"]["年"][0]["data"],
         }
     },
     components:{
@@ -79,11 +80,21 @@ export default {
 
     },
     methods: {
-
+        addDot(nub){
+                var n= nub;
+                var m =n +'',
+                len= m.length
+                if (len>3) {
+                var aa=len-3
+                var bb=m.slice(aa,len)
+                var cc=m.slice(0,aa)
+                m=cc+','+bb
+                }
+                return m
+            }
     },
     mounted(){
-    
-    },
+    },  
 }
 </script>
 
