@@ -166,7 +166,7 @@ ul{
 background-image: url('../../../../assets/images/down.png');
 background-size: 100% 100%;
 width: 8px;
-  height: 12.8px;
+height: 12.8px;
 }
 li:nth-of-type(1){
     text-align: center !important;

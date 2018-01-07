@@ -1,129 +1,19 @@
-<template>
-  <div class="c8">
-    <ul>
-        <li for='item in items'>
-            <div class="cell1">
-               来源地( {{updateSheng}})
-            </div>
-            <div class="cell2">
-                人数
-            </div>
-            <div class="cell3">
-                同比
-            </div>
-            <div class="cell3">
-                占比
-            </div>
-            <div class="cell3">
-                环比
-            </div>
-        </li>
-        <li v-for='(item,index) in rankItems'>
-            <div class="cell1">
-                {{index+1}}、{{item.place}}
-            </div>
-            <div class="cell2">
-                {{addDot(item.numb)}}<font>人</font>
-            </div>
-            <div class="cell3">
-                <span class='footerCotext'>{{item.tongRate}}%</span>
-                <span class='footerRise' :class="item.tongRate>0? 'up':'down'"></span>
-            </div>
-            <div class="cell3">
-                <span class='footerCotext'>{{item.zhanRate}}%</span>
-                <span class='footerRise' :class="item.zhanRate>0? 'up':'down'"></span>
-            </div>
-            <div class="cell3">
-                <span class='footerCotext'>{{item.huanRate}}%</span>
-                <span class='footerRise' :class="item.huanRate>0? 'up':'down'"></span>
-            </div>
-        </li>
-    </ul>
-    <div class="scenic">{{scenics}}</div>
-  </div>
-</template>
-
-<script type="text/javascript">
-export default {
-    name:'c8',
-    props:{
-        rankItems:Array,
-        updateSheng:String,
-        scenics:String,
-    },
-    computed:{
-        addDotItems:function () {
-            
-        }
-    },
-    data(){
-        return{
-        msg:'Hello Vue 来自App.vue',
-        // items:[
-        //         {
-        //         numb:'32,001',place:' 深圳市',rise:'up',percent:'4.2%',
-        //         },
-        //         {
-        //         numb:'26,102',place:'上海市 ',rise:'down',percent:'3.3%',
-        //         },
-        //         {
-        //         numb:'13,003',place:'广州市 ',rise:'up',percent:'23.1%',
-        //         },
-        //         {
-        //         numb:'10,304',place:'北京市',rise:'up',percent:'13.7%',
-        //         },
-        //         {
-        //         numb:'8,405',place:'武汉市',rise:'up',percent:'19.2%',
-        //         },
-        //         {
-        //         numb:'6,326',place:'重庆市 ',rise:'up',percent:'13.2%',
-        //         }
-        //     ],
-      }
-    },
-    methods:{
-        addDot(nub){
-        var n= nub;
-        var m =n +'',
-        len= m.length
-        if (len>3) {
-        var aa=len-3
-        var bb=m.slice(aa,len)
-        var cc=m.slice(0,aa)
-        m=cc+','+bb
-        }
-        return m
-    }
-    },
-    components:{},
-    mounted(){
-    }
-}
-</script>
-
 <style lang="less" scoped>
 .c8{
     height:100%;
     width:100%;
     color: white;
     font{
-        font-size: 0.6rem;
+        font-size: 0.8rem;
     }
 }
-.scenic{
-    text-align: center;
-    color: white;
-    width:100%;
-    height: 1.2rem;
-    bottom:0;
-    position: absolute;
-}
 ul{
-    margin-top:2%;
-    height:90%;
+    margin-top:3%;
+    height:80%;
     width:100%;
+    
     li{
-        height:14%;
+        height:33%;
         display:flex;
         align-items:center;
         justify-content:center;
@@ -135,16 +25,20 @@ ul{
             visibility: hidden;
           }
     }
+    .header{
+        height: 15%;
+        background-color:#1f3f9d;
+    }
 }
 .cell1{
     float:left;
     width:20%;
     text-align: left;
-    margin-left: 3rem
+    margin-left: 6%;
 }
 .cell2{
     float:left;
-    width:20%;
+    width:60%;
     text-align: center;
 }
 .cell3{
@@ -172,8 +66,7 @@ li:nth-of-type(1){
     text-align: center !important;
     .cell1{
         width:31%;
-        margin-left:8%;
-        margin-right:5%;
+        margin-left:12%;
     }
     .cell2{
         width:22%;
@@ -182,10 +75,78 @@ li:nth-of-type(1){
         width:33%;
     }
 }
-li:nth-of-type(2n){
-    background-color:#163387;
+li:nth-of-type(2){
+    box-shadow:3px 4px 20px #191970;
+    &:hover{
+                background-color:#3c69bd;
+            }
 }
-li:nth-of-type(2n+1){
-    background-color:#1f3f9d;
+li:nth-of-type(2n){
+    box-shadow:3px 4px 20px #191970;
+    &:hover{
+                background-color:#3c69bd;
+            }
+}
+li:nth-of-type(2n+3){
+    box-shadow:3px 4px 20px #191970;
+    &:hover{
+                background-color:#3c69bd;
+            }
+}
+.scenic{
+    text-align: center;
+    color: white;
+    width:100%;
+    height: 1.2rem;
+    bottom:0;
+    position: absolute;
 }
 </style>
+<template>
+  <div class="c8">
+    <ul>
+        <li class="header">
+            <div class="cell1">
+                排名
+            </div>
+            <div class="cell2">
+                路线
+            </div>
+            <div class="cell3">
+                人气<font>(万人)</font>
+            </div>
+        </li>
+        <li v-for='(item,index) in rankItems'>
+            <div class="cell1">
+                {{index+1}}
+            </div>
+            <div class="cell2">
+                <div class="cell2_box" v-for = "(ite,i) in item.route " >
+                    <div >{{ite}}</div>
+                    <div v-if=" i+1 < item.route.length">↓</div>
+                </div>
+            </div>
+            <div class="cell3">
+                <span class='footerCotext'>{{(item.popularity/1000).toFixed(2)}}</span>
+            </div>
+        </li>
+    </ul>
+  </div>
+</template>
+
+<script type="text/javascript">
+import d9sJson from '@/pages/home/showMore/bigComponent/json/d9s.json'
+export default {
+    name:'d9',
+    props:{
+        rankItems:Array,
+    },
+    data(){
+        return{
+        msg:'Hello Vue 来自App.vue',
+        items:d9sJson["全部"]["日"],
+      }
+    },
+    components:{}
+}
+</script>

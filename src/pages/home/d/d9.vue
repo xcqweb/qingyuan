@@ -4,16 +4,16 @@
     width:100%;
     color: white;
     font{
-        font-size: 0.8rem;
+        font-size: 0.6rem;
     }
 }
 ul{
     margin-top:12%;
     height:80%;
     width:100%;
-    box-shadow:3px 4px 20px #191970;
+    
     li{
-        height:30%;
+        height:33%;
         display:flex;
         align-items:center;
         justify-content:center;
@@ -40,6 +40,12 @@ ul{
     float:left;
     width:60%;
     text-align: center;
+    .cell2_box{
+        margin-top: .3rem;
+        div{
+            margin-top: .3rem;
+        }
+    }
 }
 .cell3{
     float:left;
@@ -75,11 +81,13 @@ li:nth-of-type(1){
         width:33%;
     }
 }
-li:nth-of-type(2n){
-    background-color:#163387;
+li:nth-of-type(2){
+    box-shadow:3px 4px 20px #191970;
+    font-size: .6rem;
 }
-li:nth-of-type(2n+1){
-    
+li:nth-of-type(3){
+    box-shadow:3px 4px 20px #191970;
+    font-size: .6rem;
 }
 .scenic{
     text-align: center;
@@ -111,11 +119,11 @@ li:nth-of-type(2n+1){
             <div class="cell2">
                 <div class="cell2_box" v-for = "(ite,i) in item.route " >
                     <div >{{ite}}</div>
-                    <div v-if=" i+2 < ite.length">↓</div>
+                    <div v-if=" i+1 < item.route.length">↓</div>
                 </div>
             </div>
             <div class="cell3">
-                <span class='footerCotext'>{{item.popularity}}</span>
+                <span class='footerCotext'>{{(item.popularity/1000).toFixed(2)}}</span>
             </div>
         </li>
     </ul>
@@ -129,11 +137,42 @@ export default {
     props:{
         mainPageSelect:Object,
     },
+   watch:{
+        mainPageSelect:{
+        handler: function (val, oldVal) {
+            this.checkRankPlace(val,oldVal)
+        },
+        deep:true,
+    },
+   },
     data(){
         return{
-        msg:'Hello Vue 来自App.vue',
-        items:d9sJson["全部"]["日"],
+        items:d9sJson["全部"]["日"].slice(0,3),
       }
+    },
+    methods:{
+        checkRankPlace(val,oldVal){
+            if(val.place ===oldVal.place){
+                console.log(val.turist)
+                if(val.turist === "全部"){
+                    this.items = d9sJson[val.place]["日"].slice(0,3);
+                }else if(val.turist != "全部"){
+                   
+                    d9sJson[val.place]["日"].forEach((item,index)=>{
+                        item.route.forEach((ite,i) => {
+                            if(ite ===val.turist){
+                                this.items = [];
+                                this.items.push(item)
+                            }
+                        });
+                    })
+                }
+                console.log(this.items)
+            }else if(val.place !=oldVal.place){
+                 this.items = d9sJson[val.place]["日"].slice(0,3);
+            }
+            
+        }
     },
     components:{}
 }
