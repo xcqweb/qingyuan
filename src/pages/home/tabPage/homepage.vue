@@ -69,7 +69,6 @@ export default {
                     {name:'B4',title:'路况监测'},
                     {name:'A1',title:'客流人数分析'},
                     {name:'A5',title:'客流实时监测'},
-                    {name:'A9',title:'视频监控'},
                     {name:'C8',title:'游客来源排行'},
                     {name:'A5',title:'实时客流监测'},
                     {name:'B2',title:'客流预警'},
@@ -77,7 +76,6 @@ export default {
                     {name:'D6',title:'景区当前客流'},
                     {name:'D8',title:'交通拥堵指数'},
                     {name:'D1',title:'景区客流热力图'},
-                    {name:'A9',title:'视频监控'},
                     {name:'B4',title:'路况监控'},
                     {name:'D3',title:'最新舆论'},
                 ],
@@ -88,7 +86,6 @@ export default {
                     {name:'B4',title:'路况监测'},
                     {name:'A1',title:'客流人数分析'},
                     {name:'A5',title:'客流实时监测'},
-                    {name:'A9',title:'视频监控'},
                     {name:'C8',title:'游客来源排行'},
                 ],
                 leftComponents:[

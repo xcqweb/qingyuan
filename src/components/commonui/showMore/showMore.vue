@@ -247,13 +247,14 @@ img{
                     @click="dateClick(index)"
                     >{{item.context}}</li>
                 </ul>
-                <ul class="starList"  v-if="!placeSlect">
+                <!-- 五星评价 -->
+                <!-- <ul class="starList"  v-if="!placeSlect">
                     <li 
                     v-for="(item,index) in starList" 
                     :class="item.class" 
                     @click="starClick(index)"
                     >{{item.context}}</li>
-                </ul>
+                </ul> -->
                 <!-- 时间下拉框组件 -->
                 <vDate class='vueDate'
                  v-if="vDateStatus"
@@ -280,6 +281,7 @@ img{
                 @showComment ='showComment' 
                 @hideVdate = 'hideVdate'
                 @showShennei ='showShennei'
+                @showDoubleSelect = 'showDoubleSelect'
             ></componet>
         </div>
     </div>
@@ -447,9 +449,14 @@ var _ = require('lodash');
         hideVdate(){
             this.vDateStatus =false;
         },
+        //显示双选框，五星评论
         showComment(){
             this.weekStatus = false;
             this.isEndDate = true;
+            this.placeSlect = false;
+        },
+        //显示双选框
+        showDoubleSelect(){
             this.placeSlect = false;
         },
         showShennei(){

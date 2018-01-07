@@ -39,11 +39,11 @@
 <template>
     <div class="b6">
         <div class="b6_top">
-            <span>68，288<font>人次</font></span>
+            <span>28,288<font>人次</font></span>
             <font>当前客流总数</font>
         </div>
         <div class="b6_bottom" v-show="level_xs">
-            <span>86，188<font>人次</font></span>
+            <span>86,188<font>人次</font></span>
             <font>昨日客流总数</font>
         </div>
     </div>
@@ -52,12 +52,24 @@
 <script>
 import Vue from 'vue'
 import adaptation from '@/common/js/mixin/adaptation.js'
+import a1sJson from '@/pages/home/showMore/bigComponent/json/a1s.json'
 export default {
     name:'d6',
     mixins: [adaptation],
+     props:{
+        mainPageSelect:Object,
+    },
+    watch:{
+        mainPageSelect:{
+            handler: function (val, oldVal) {
+                
+            },
+            deep:true,
+        }
+    },
     data () {
         return {
-
+            dataMsg:a1sJson["全部"]["年"]
         }
     },
     components:{

@@ -36,7 +36,6 @@ import b2sjson from '@/pages/home/showMore/bigComponent/json/b2s.json'
         updatePlace:String,
     },
     watch:{
-
         updatePlace:function(val){
             let _self = this;
             this.dataItems = b2sjson[val];

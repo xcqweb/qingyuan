@@ -12,7 +12,7 @@
                             "huanRate": "45"
                         },
                         {
-                            "zhanRate": "14",
+                            "zhanRate": "-14",
                             "place": "湖北省",
                             "numb": "13407",
                             "tongRate": "54",
@@ -30,13 +30,13 @@
                             "place": "浙江省",
                             "numb": "9377",
                             "tongRate": "24",
-                            "huanRate": "16"
+                            "huanRate": "-16"
                         },
                         {
                             "zhanRate": "25",
                             "place": "河北省",
                             "numb": "6366",
-                            "tongRate": "80",
+                            "tongRate": "-80",
                             "huanRate": "67"
                         },
                         {
@@ -91,7 +91,7 @@
                             "place": "四川省",
                             "numb": "3411",
                             "tongRate": "66",
-                            "huanRate": "26"
+                            "huanRate": "-26"
                         }
                     ],
                     "name": "牛鱼嘴原始生态风景区"
@@ -123,7 +123,7 @@
                             "zhanRate": "48",
                             "place": "浙江省",
                             "numb": "8626",
-                            "tongRate": "12",
+                            "tongRate": "-12",
                             "huanRate": "40"
                         },
                         {
@@ -146,11 +146,11 @@
                 {
                     "data": [
                         {
-                            "zhanRate": "19",
+                            "zhanRate": "-19",
                             "place": "广东省",
                             "numb": "15184",
-                            "tongRate": "5",
-                            "huanRate": "9"
+                            "tongRate": "-5",
+                            "huanRate": "-9"
                         },
                         {
                             "zhanRate": "41",
@@ -163,7 +163,7 @@
                             "zhanRate": "34",
                             "place": "河南省",
                             "numb": "10048",
-                            "tongRate": "48",
+                            "tongRate": "-48",
                             "huanRate": "60"
                         },
                         {
@@ -177,7 +177,7 @@
                             "zhanRate": "20",
                             "place": "河北省",
                             "numb": "6117",
-                            "tongRate": "35",
+                            "tongRate": "-35",
                             "huanRate": "67"
                         },
                         {
@@ -207,7 +207,7 @@
                             "huanRate": "40"
                         },
                         {
-                            "zhanRate": "25",
+                            "zhanRate": "-25",
                             "place": "河南省",
                             "numb": "11450",
                             "tongRate": "58",
@@ -225,14 +225,14 @@
                             "place": "河北省",
                             "numb": "7192",
                             "tongRate": "86",
-                            "huanRate": "34"
+                            "huanRate": "-34"
                         },
                         {
                             "zhanRate": "84",
                             "place": "四川省",
                             "numb": "4293",
                             "tongRate": "21",
-                            "huanRate": "16"
+                            "huanRate": "-16"
                         }
                     ],
                     "name": "飞来寺"
@@ -290,7 +290,7 @@
                             "zhanRate": "6",
                             "place": "广东省",
                             "numb": "16408",
-                            "tongRate": "29",
+                            "tongRate": "-29",
                             "huanRate": "50"
                         },
                         {
@@ -305,7 +305,7 @@
                             "place": "河南省",
                             "numb": "11686",
                             "tongRate": "43",
-                            "huanRate": "8"
+                            "huanRate": "-8"
                         },
                         {
                             "zhanRate": "66",
@@ -319,7 +319,7 @@
                             "place": "河北省",
                             "numb": "6288",
                             "tongRate": "9",
-                            "huanRate": "10"
+                            "huanRate": "-10"
                         },
                         {
                             "zhanRate": "82",
@@ -882,7 +882,7 @@
                             "zhanRate": "53",
                             "place": "河北省",
                             "numb": "6685",
-                            "tongRate": "15",
+                            "tongRate": "-15",
                             "huanRate": "22"
                         },
                         {
@@ -923,7 +923,7 @@
                             "place": "浙江省",
                             "numb": "9476",
                             "tongRate": "86",
-                            "huanRate": "18"
+                            "huanRate": "-18"
                         },
                         {
                             "zhanRate": "87",
@@ -1346,10 +1346,10 @@
                             "place": "浙江省",
                             "numb": "8221",
                             "tongRate": "52",
-                            "huanRate": "9"
+                            "huanRate": "-9"
                         },
                         {
-                            "zhanRate": "19",
+                            "zhanRate": "-19",
                             "place": "河北省",
                             "numb": "7299",
                             "tongRate": "69",
@@ -1472,7 +1472,7 @@
                             "zhanRate": "79",
                             "place": "湖北省",
                             "numb": "13616",
-                            "tongRate": "25",
+                            "tongRate": "-25",
                             "huanRate": "10"
                         },
                         {
@@ -1830,7 +1830,7 @@
                             "place": "四川省",
                             "numb": "4330",
                             "tongRate": "70",
-                            "huanRate": "18"
+                            "huanRate": "-18"
                         }
                     ],
                     "name": "水口鱼水旅游风景区"
@@ -1901,7 +1901,7 @@
                             "huanRate": "20"
                         },
                         {
-                            "zhanRate": "18",
+                            "zhanRate": "-18",
                             "place": "河南省",
                             "numb": "11466",
                             "tongRate": "62",
@@ -2294,7 +2294,7 @@
                             "zhanRate": "38",
                             "place": "河北省",
                             "numb": "7882",
-                            "tongRate": "12",
+                            "tongRate": "-12",
                             "huanRate": "34"
                         },
                         {
@@ -2758,7 +2758,7 @@
                             "place": "浙江省",
                             "numb": "8857",
                             "tongRate": "63",
-                            "huanRate": "12"
+                            "huanRate": "-12"
                         },
                         {
                             "zhanRate": "37",
@@ -2804,7 +2804,7 @@
                             "zhanRate": "50",
                             "place": "浙江省",
                             "numb": "8218",
-                            "tongRate": "12",
+                            "tongRate": "-12",
                             "huanRate": "19"
                         },
                         {
@@ -2834,7 +2834,7 @@
                             "huanRate": "46"
                         },
                         {
-                            "zhanRate": "12",
+                            "zhanRate": "-12",
                             "place": "湖北省",
                             "numb": "14748",
                             "tongRate": "78",
@@ -2924,7 +2924,7 @@
                             "zhanRate": "13",
                             "place": "广东省",
                             "numb": "15621",
-                            "tongRate": "12",
+                            "tongRate": "-12",
                             "huanRate": "71"
                         },
                         {
@@ -3288,7 +3288,7 @@
                             "zhanRate": "43",
                             "place": "四川省",
                             "numb": "4796",
-                            "tongRate": "12",
+                            "tongRate": "-12",
                             "huanRate": "15"
                         }
                     ],
@@ -3800,7 +3800,7 @@
                             "zhanRate": "85",
                             "place": "河北省",
                             "numb": "7059",
-                            "tongRate": "12",
+                            "tongRate": "-12",
                             "huanRate": "80"
                         },
                         {
@@ -3830,7 +3830,7 @@
                             "huanRate": "17"
                         },
                         {
-                            "zhanRate": "12",
+                            "zhanRate": "-12",
                             "place": "河南省",
                             "numb": "12232",
                             "tongRate": "21",
@@ -3948,7 +3948,7 @@
                             "zhanRate": "81",
                             "place": "四川省",
                             "numb": "5253",
-                            "tongRate": "12",
+                            "tongRate": "-12",
                             "huanRate": "29"
                         }
                     ],
@@ -3957,7 +3957,7 @@
                 {
                     "data": [
                         {
-                            "zhanRate": "12",
+                            "zhanRate": "-12",
                             "place": "广东省",
                             "numb": "16049",
                             "tongRate": "78",
@@ -4263,7 +4263,7 @@
                             "zhanRate": "61",
                             "place": "浙江省",
                             "numb": "9441",
-                            "tongRate": "12",
+                            "tongRate": "-12",
                             "huanRate": "31"
                         },
                         {
@@ -4431,7 +4431,7 @@
                             "place": "广东省",
                             "numb": "19726",
                             "tongRate": "17",
-                            "huanRate": "12"
+                            "huanRate": "-12"
                         },
                         {
                             "zhanRate": "16",
@@ -4445,7 +4445,7 @@
                             "place": "河南省",
                             "numb": "12345",
                             "tongRate": "21",
-                            "huanRate": "12"
+                            "huanRate": "-12"
                         },
                         {
                             "zhanRate": "13",
@@ -4904,7 +4904,7 @@
                             "huanRate": "87"
                         },
                         {
-                            "zhanRate": "17",
+                            "zhanRate": "-15",
                             "place": "湖北省",
                             "numb": "14749",
                             "tongRate": "68",
@@ -5258,7 +5258,7 @@
                             "place": "河北省",
                             "numb": "6114",
                             "tongRate": "75",
-                            "huanRate": "17"
+                            "huanRate": "-15"
                         },
                         {
                             "zhanRate": "84",
@@ -5405,8 +5405,8 @@
                             "zhanRate": "31",
                             "place": "四川省",
                             "numb": "5728",
-                            "tongRate": "17",
-                            "huanRate": "17"
+                            "tongRate": "-15",
+                            "huanRate": "-15"
                         }
                     ],
                     "name": "皇后山"
@@ -6068,7 +6068,7 @@
                             "place": "合肥市",
                             "numb": "4278",
                             "tongRate": "50",
-                            "huanRate": "17"
+                            "huanRate": "-15"
                         }
                     ],
                     "name": "安庆村"
@@ -6430,7 +6430,7 @@
                             "place": "南京市",
                             "numb": "9832",
                             "tongRate": "87",
-                            "huanRate": "17"
+                            "huanRate": "-15"
                         },
                         {
                             "zhanRate": "82",
@@ -6960,7 +6960,7 @@
                             "zhanRate": "20",
                             "place": "合肥市",
                             "numb": "3265",
-                            "tongRate": "17",
+                            "tongRate": "-15",
                             "huanRate": "35"
                         }
                     ],
@@ -6969,7 +6969,7 @@
                 {
                     "data": [
                         {
-                            "zhanRate": "17",
+                            "zhanRate": "-15",
                             "place": "深圳市",
                             "numb": "16709",
                             "tongRate": "18",
@@ -7326,7 +7326,7 @@
                             "huanRate": "83"
                         },
                         {
-                            "zhanRate": "17",
+                            "zhanRate": "-15",
                             "place": "长沙市",
                             "numb": "6332",
                             "tongRate": "64",
@@ -7359,7 +7359,7 @@
                             "huanRate": "11"
                         },
                         {
-                            "zhanRate": "17",
+                            "zhanRate": "-15",
                             "place": "武汉市",
                             "numb": "11618",
                             "tongRate": "28",
@@ -7834,7 +7834,7 @@
                             "zhanRate": "14",
                             "place": "武汉市",
                             "numb": "11303",
-                            "tongRate": "17",
+                            "tongRate": "-15",
                             "huanRate": "61"
                         },
                         {
@@ -8073,7 +8073,7 @@
                             "huanRate": "55"
                         },
                         {
-                            "zhanRate": "17",
+                            "zhanRate": "-15",
                             "place": "南京市",
                             "numb": "9978",
                             "tongRate": "72",
@@ -8185,7 +8185,7 @@
                             "place": "合肥市",
                             "numb": "4754",
                             "tongRate": "10",
-                            "huanRate": "17"
+                            "huanRate": "-15"
                         }
                     ],
                     "name": "田野绿世界"
@@ -8431,7 +8431,7 @@
                             "zhanRate": "31",
                             "place": "深圳市",
                             "numb": "19169",
-                            "tongRate": "17",
+                            "tongRate": "-15",
                             "huanRate": "82"
                         },
                         {
@@ -8937,7 +8937,7 @@
                             "place": "合肥市",
                             "numb": "4090",
                             "tongRate": "56",
-                            "huanRate": "17"
+                            "huanRate": "-15"
                         }
                     ],
                     "name": "潭岭天湖"
@@ -8995,7 +8995,7 @@
                             "zhanRate": "67",
                             "place": "深圳市",
                             "numb": "18729",
-                            "tongRate": "17",
+                            "tongRate": "-15",
                             "huanRate": "71"
                         },
                         {
@@ -9097,7 +9097,7 @@
                             "place": "广州市",
                             "numb": "14675",
                             "tongRate": "18",
-                            "huanRate": "17"
+                            "huanRate": "-15"
                         },
                         {
                             "zhanRate": "85",
@@ -9262,7 +9262,7 @@
                             "huanRate": "66"
                         },
                         {
-                            "zhanRate": "17",
+                            "zhanRate": "-15",
                             "place": "合肥市",
                             "numb": "4981",
                             "tongRate": "85",
@@ -9561,7 +9561,7 @@
                             "zhanRate": "13",
                             "place": "深圳市",
                             "numb": "18374",
-                            "tongRate": "17",
+                            "tongRate": "-15",
                             "huanRate": "23"
                         },
                         {
@@ -9749,7 +9749,7 @@
                             "zhanRate": "32",
                             "place": "深圳市",
                             "numb": "16477",
-                            "tongRate": "17",
+                            "tongRate": "-15",
                             "huanRate": "22"
                         },
                         {
@@ -9831,7 +9831,7 @@
                             "zhanRate": "46",
                             "place": "合肥市",
                             "numb": "3513",
-                            "tongRate": "17",
+                            "tongRate": "-15",
                             "huanRate": "39"
                         }
                     ],
@@ -10313,7 +10313,7 @@
                             "zhanRate": "49",
                             "place": "深圳市",
                             "numb": "19393",
-                            "tongRate": "17",
+                            "tongRate": "-15",
                             "huanRate": "88"
                         },
                         {
@@ -10458,7 +10458,7 @@
                             "huanRate": "86"
                         },
                         {
-                            "zhanRate": "17",
+                            "zhanRate": "-15",
                             "place": "广州市",
                             "numb": "13242",
                             "tongRate": "9",
@@ -10798,7 +10798,7 @@
                             "place": "武汉市",
                             "numb": "12407",
                             "tongRate": "56",
-                            "huanRate": "17"
+                            "huanRate": "-15"
                         },
                         {
                             "zhanRate": "35",
@@ -10812,7 +10812,7 @@
                             "place": "长沙市",
                             "numb": "6814",
                             "tongRate": "35",
-                            "huanRate": "17"
+                            "huanRate": "-15"
                         },
                         {
                             "zhanRate": "43",
@@ -10885,7 +10885,7 @@
                             "place": "广州市",
                             "numb": "13895",
                             "tongRate": "65",
-                            "huanRate": "17"
+                            "huanRate": "-15"
                         },
                         {
                             "zhanRate": "66",
@@ -11289,7 +11289,7 @@
                             "place": "合肥市",
                             "numb": "3574",
                             "tongRate": "29",
-                            "huanRate": "17"
+                            "huanRate": "-15"
                         }
                     ],
                     "name": "龙凤温泉"
@@ -11444,7 +11444,7 @@
                 {
                     "data": [
                         {
-                            "zhanRate": "17",
+                            "zhanRate": "-15",
                             "place": "广东省",
                             "numb": "17092",
                             "tongRate": "62",
@@ -11469,7 +11469,7 @@
                             "place": "浙江省",
                             "numb": "9045",
                             "tongRate": "32",
-                            "huanRate": "17"
+                            "huanRate": "-15"
                         },
                         {
                             "zhanRate": "61",
@@ -11502,7 +11502,7 @@
                             "place": "湖北省",
                             "numb": "13841",
                             "tongRate": "28",
-                            "huanRate": "17"
+                            "huanRate": "-15"
                         },
                         {
                             "zhanRate": "39",
@@ -11799,7 +11799,7 @@
                             "zhanRate": "43",
                             "place": "浙江省",
                             "numb": "9836",
-                            "tongRate": "17",
+                            "tongRate": "-15",
                             "huanRate": "71"
                         },
                         {
@@ -12211,7 +12211,7 @@
                             "place": "湖北省",
                             "numb": "14736",
                             "tongRate": "44",
-                            "huanRate": "17"
+                            "huanRate": "-15"
                         },
                         {
                             "zhanRate": "20",
@@ -12384,7 +12384,7 @@
                             "place": "合肥市",
                             "numb": "3775",
                             "tongRate": "36",
-                            "huanRate": "17"
+                            "huanRate": "-15"
                         }
                     ],
                     "name": "牛鱼嘴原始生态风景区"
@@ -12406,7 +12406,7 @@
                             "huanRate": "53"
                         },
                         {
-                            "zhanRate": "17",
+                            "zhanRate": "-15",
                             "place": "武汉市",
                             "numb": "11859",
                             "tongRate": "39",
@@ -12708,7 +12708,7 @@
                             "place": "长沙市",
                             "numb": "6823",
                             "tongRate": "33",
-                            "huanRate": "17"
+                            "huanRate": "-15"
                         },
                         {
                             "zhanRate": "40",
@@ -13028,7 +13028,7 @@
                             "huanRate": "78"
                         },
                         {
-                            "zhanRate": "17",
+                            "zhanRate": "-15",
                             "place": "南京市",
                             "numb": "9239",
                             "tongRate": "87",
@@ -13148,7 +13148,7 @@
                 {
                     "data": [
                         {
-                            "zhanRate": "17",
+                            "zhanRate": "-15",
                             "place": "深圳市",
                             "numb": "15770",
                             "tongRate": "88",
@@ -13245,7 +13245,7 @@
                             "zhanRate": "76",
                             "place": "深圳市",
                             "numb": "18489",
-                            "tongRate": "17",
+                            "tongRate": "-15",
                             "huanRate": "64"
                         },
                         {
@@ -13281,7 +13281,7 @@
                             "place": "合肥市",
                             "numb": "3903",
                             "tongRate": "38",
-                            "huanRate": "17"
+                            "huanRate": "-15"
                         }
                     ],
                     "name": "太和古洞旅游区"
@@ -13522,7 +13522,7 @@
                             "place": "四川省",
                             "numb": "5774",
                             "tongRate": "68",
-                            "huanRate": "17"
+                            "huanRate": "-15"
                         }
                     ],
                     "name": "九牛洞村"
@@ -13751,7 +13751,7 @@
                             "zhanRate": "21",
                             "place": "河北省",
                             "numb": "6855",
-                            "tongRate": "17",
+                            "tongRate": "-15",
                             "huanRate": "76"
                         },
                         {
@@ -13842,7 +13842,7 @@
                             "huanRate": "83"
                         },
                         {
-                            "zhanRate": "17",
+                            "zhanRate": "-15",
                             "place": "河北省",
                             "numb": "7570",
                             "tongRate": "72",
@@ -14079,7 +14079,7 @@
                             "huanRate": "5"
                         },
                         {
-                            "zhanRate": "17",
+                            "zhanRate": "-15",
                             "place": "河北省",
                             "numb": "6891",
                             "tongRate": "50",
@@ -14271,7 +14271,7 @@
                             "huanRate": "6"
                         },
                         {
-                            "zhanRate": "17",
+                            "zhanRate": "-15",
                             "place": "长沙市",
                             "numb": "7260",
                             "tongRate": "59",
@@ -14318,7 +14318,7 @@
                             "huanRate": "11"
                         },
                         {
-                            "zhanRate": "17",
+                            "zhanRate": "-15",
                             "place": "长沙市",
                             "numb": "7024",
                             "tongRate": "64",
@@ -14464,7 +14464,7 @@
                             "zhanRate": "84",
                             "place": "长沙市",
                             "numb": "6774",
-                            "tongRate": "17",
+                            "tongRate": "-15",
                             "huanRate": "47"
                         },
                         {
@@ -14612,7 +14612,7 @@
                             "zhanRate": "20",
                             "place": "合肥市",
                             "numb": "3428",
-                            "tongRate": "17",
+                            "tongRate": "-15",
                             "huanRate": "49"
                         }
                     ],
@@ -14656,7 +14656,7 @@
                             "huanRate": "46"
                         },
                         {
-                            "zhanRate": "17",
+                            "zhanRate": "-15",
                             "place": "合肥市",
                             "numb": "3922",
                             "tongRate": "61",
@@ -14707,7 +14707,7 @@
                             "place": "合肥市",
                             "numb": "5704",
                             "tongRate": "74",
-                            "huanRate": "17"
+                            "huanRate": "-15"
                         }
                     ],
                     "name": "熹乐谷"
@@ -15037,7 +15037,7 @@
                             "place": "河北省",
                             "numb": "7427",
                             "tongRate": "14",
-                            "huanRate": "17"
+                            "huanRate": "-15"
                         },
                         {
                             "zhanRate": "88",
@@ -15130,7 +15130,7 @@
                             "zhanRate": "59",
                             "place": "河北省",
                             "numb": "6105",
-                            "tongRate": "17",
+                            "tongRate": "-15",
                             "huanRate": "56"
                         },
                         {
@@ -15197,7 +15197,7 @@
                             "place": "广东省",
                             "numb": "19084",
                             "tongRate": "44",
-                            "huanRate": "17"
+                            "huanRate": "-15"
                         },
                         {
                             "zhanRate": "26",
@@ -15221,7 +15221,7 @@
                             "huanRate": "70"
                         },
                         {
-                            "zhanRate": "17",
+                            "zhanRate": "-15",
                             "place": "河北省",
                             "numb": "7792",
                             "tongRate": "52",
@@ -15246,7 +15246,7 @@
                             "place": "广东省",
                             "numb": "15293",
                             "tongRate": "37",
-                            "huanRate": "17"
+                            "huanRate": "-15"
                         },
                         {
                             "zhanRate": "64",
@@ -15303,7 +15303,7 @@
                             "huanRate": "8"
                         },
                         {
-                            "zhanRate": "17",
+                            "zhanRate": "-15",
                             "place": "河南省",
                             "numb": "12455",
                             "tongRate": "84",
@@ -15580,7 +15580,7 @@
                             "huanRate": "37"
                         },
                         {
-                            "zhanRate": "17",
+                            "zhanRate": "-15",
                             "place": "湖北省",
                             "numb": "14889",
                             "tongRate": "33",
@@ -15598,7 +15598,7 @@
                             "place": "浙江省",
                             "numb": "9353",
                             "tongRate": "36",
-                            "huanRate": "17"
+                            "huanRate": "-15"
                         },
                         {
                             "zhanRate": "60",
@@ -15659,7 +15659,7 @@
                             "place": "四川省",
                             "numb": "4645",
                             "tongRate": "70",
-                            "huanRate": "17"
+                            "huanRate": "-15"
                         }
                     ],
                     "name": "金龟泉生态度假村"
@@ -15815,7 +15815,7 @@
                             "zhanRate": "45",
                             "place": "深圳市",
                             "numb": "18229",
-                            "tongRate": "17",
+                            "tongRate": "-15",
                             "huanRate": "74"
                         },
                         {
@@ -16120,7 +16120,7 @@
                             "zhanRate": "21",
                             "place": "南京市",
                             "numb": "9499",
-                            "tongRate": "17",
+                            "tongRate": "-15",
                             "huanRate": "80"
                         },
                         {
@@ -16286,7 +16286,7 @@
                 {
                     "data": [
                         {
-                            "zhanRate": "17",
+                            "zhanRate": "-15",
                             "place": "深圳市",
                             "numb": "15391",
                             "tongRate": "39",
@@ -16511,7 +16511,7 @@
                             "zhanRate": "50",
                             "place": "河北省",
                             "numb": "6729",
-                            "tongRate": "17",
+                            "tongRate": "-15",
                             "huanRate": "76"
                         },
                         {
@@ -16592,7 +16592,7 @@
                             "place": "河南省",
                             "numb": "10671",
                             "tongRate": "8",
-                            "huanRate": "17"
+                            "huanRate": "-15"
                         },
                         {
                             "zhanRate": "71",
@@ -16933,7 +16933,7 @@
                             "huanRate": "42"
                         },
                         {
-                            "zhanRate": "17",
+                            "zhanRate": "-15",
                             "place": "河北省",
                             "numb": "6749",
                             "tongRate": "74",
@@ -17171,7 +17171,7 @@
                             "zhanRate": "21",
                             "place": "河北省",
                             "numb": "7552",
-                            "tongRate": "17",
+                            "tongRate": "-15",
                             "huanRate": "49"
                         },
                         {
@@ -17333,7 +17333,7 @@
                             "zhanRate": "76",
                             "place": "广东省",
                             "numb": "17506",
-                            "tongRate": "17",
+                            "tongRate": "-15",
                             "huanRate": "79"
                         },
                         {
@@ -17377,7 +17377,7 @@
                 {
                     "data": [
                         {
-                            "zhanRate": "17",
+                            "zhanRate": "-15",
                             "place": "广东省",
                             "numb": "17064",
                             "tongRate": "65",
@@ -17579,7 +17579,7 @@
                             "huanRate": "21"
                         },
                         {
-                            "zhanRate": "17",
+                            "zhanRate": "-15",
                             "place": "河南省",
                             "numb": "12986",
                             "tongRate": "20",
@@ -17858,7 +17858,7 @@
                             "huanRate": "60"
                         },
                         {
-                            "zhanRate": "17",
+                            "zhanRate": "-15",
                             "place": "广州市",
                             "numb": "14227",
                             "tongRate": "37",
@@ -18186,7 +18186,7 @@
                             "place": "深圳市",
                             "numb": "15990",
                             "tongRate": "46",
-                            "huanRate": "17"
+                            "huanRate": "-15"
                         },
                         {
                             "zhanRate": "71",
@@ -18711,7 +18711,7 @@
                             "zhanRate": "21",
                             "place": "广州市",
                             "numb": "14157",
-                            "tongRate": "17",
+                            "tongRate": "-15",
                             "huanRate": "65"
                         },
                         {
@@ -19250,7 +19250,7 @@
                             "zhanRate": "79",
                             "place": "浙江省",
                             "numb": "9362",
-                            "tongRate": "17",
+                            "tongRate": "-15",
                             "huanRate": "15"
                         },
                         {
@@ -19426,7 +19426,7 @@
                             "zhanRate": "89",
                             "place": "湖北省",
                             "numb": "14701",
-                            "tongRate": "17",
+                            "tongRate": "-15",
                             "huanRate": "27"
                         },
                         {
@@ -19467,7 +19467,7 @@
                             "place": "广东省",
                             "numb": "19245",
                             "tongRate": "7",
-                            "huanRate": "17"
+                            "huanRate": "-15"
                         },
                         {
                             "zhanRate": "26",
