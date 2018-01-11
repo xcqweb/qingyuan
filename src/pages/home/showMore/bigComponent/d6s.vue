@@ -18,8 +18,8 @@
             v-if="a1sShow"
             class="c211" 
             :idName='idName[index]' 
-            :scenics='item["name"]'
-            :dataItem = 'item.data'
+            :scenics='item.name'
+            :dataItem = 'item'
             ></d6ss>
         </div>
     </div>
@@ -40,10 +40,9 @@ import a1sJson from '@/pages/home/showMore/bigComponent/json/a1s.json'
     },
     watch:{
         updatePlace:function(val){
-            let _self = this;
-            this.nianItems = a1sJson[val]["年"];
+            this.getResponse();
             this.a1sShow = false;
-            setTimeout(() =>{_self.a1sShow = true},0)
+            setTimeout(() =>{this.a1sShow = true},0)
         },
     },
     data() {
@@ -67,7 +66,19 @@ import a1sJson from '@/pages/home/showMore/bigComponent/json/a1s.json'
         d6ss,
     },
     methods:{
-
+        getResponse(val){
+            var paramsObj = {
+                area:this.updatePlace,
+            }
+            this.$axios.get('http://120.55.190.57/qy/api/command/getCommandCurrentPersonDetail',{params:paramsObj}).then(r => {
+                if(r.data.code ==="200"||r.data.code ===200){
+                    this.nianItems = r.data.data;
+                }   
+            })
+        }
+    },
+    created () {
+        this.getResponse();
     },
     mounted(){
         this.$emit('hideWeeks')

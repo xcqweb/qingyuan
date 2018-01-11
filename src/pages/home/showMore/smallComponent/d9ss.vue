@@ -124,7 +124,7 @@ li:nth-of-type(2n+3){
                 路线
             </div>
             <div class="cell3">
-                人气<font>(万人)</font>
+                人气<font>(人)</font>
             </div>
         </li>
         <li v-for='(item,index) in rankItems'>
@@ -132,13 +132,13 @@ li:nth-of-type(2n+3){
                 {{index+1}}
             </div>
             <div class="cell2">
-                <div class="cell2_box" v-for = "(ite,i) in item.route " >
+                <div class="cell2_box" v-for = "(ite,i) in item.track " >
                     <div >{{ite}}</div>
-                    <div v-if=" i+1 < item.route.length">→</div>
+                    <div v-if=" i+1 < item.track.length">→</div>
                 </div>
             </div>
             <div class="cell3">
-                <span class='footerCotext'>{{(item.popularity/1000).toFixed(2)}}</span>
+                <span class='footerCotext'>{{item.num}}</span>
             </div>
         </li>
     </ul>

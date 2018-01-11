@@ -101,6 +101,7 @@ import traffic_points from '@/pages/home/showMore/bigComponent/json/traffic_poin
             return {
                 videoName:'摄像头1',
                 videoToast:false,
+                arrHotPoint:[],
             }
         },
         watch:{
@@ -151,41 +152,41 @@ import traffic_points from '@/pages/home/showMore/bigComponent/json/traffic_poin
                 },4000);
             },
             addIcon(map){
-                    var points = traffic_points;
-                    // 向地图添加标注
-                    for( var i = 0;i < points.length; i++){
-                        //定义新图标
-                        var myIcon = new BMap.Icon(require("../../../../assets/images/lable.jpg"), new BMap.Size(44, 44), {
-                        // 指定定位位置
-                        offset: new BMap.Size(10, 25),
-                        // 当需要从一幅较大的图片中截取某部分作为标注图标时，需要指定大图的偏移位置 
-                        //imageOffset: new BMap.Size(0, 0 - i * 25)  设置图片偏移 
-                        });
+                var points = traffic_points;
+                // 向地图添加标注
+                for( var i = 0;i < points.length; i++){
+                    //定义新图标
+                    var myIcon = new BMap.Icon(require("../../../../assets/images/lable.jpg"), new BMap.Size(44, 44), {
+                    // 指定定位位置
+                    offset: new BMap.Size(10, 25),
+                    // 当需要从一幅较大的图片中截取某部分作为标注图标时，需要指定大图的偏移位置 
+                    //imageOffset: new BMap.Size(0, 0 - i * 25)  设置图片偏移 
+                    });
 
-                        var point = new BMap.Point(points[i].point[0],points[i].point[1]);
-                        // 创建标注对象并添加到地图 
-                        //自定义图标
-                        // var marker = new BMap.Marker(point,{icon: myIcon});
-                        var marker = new BMap.Marker(point);
-                        var label = new BMap.Label(points[i].label,{offset:new BMap.Size(20,-20)});
-                        label.setStyle({
-                            color : "#153081",
-                            border:"1px solid #153081",
-                            fontSize : "12px",
-                            height : "20px",
-                            lineHeight : "20px",
-                            fontFamily:"微软雅黑",
-                            borderRadius:"4px",
-                        });
-                        marker.setLabel(label);
-                        map.addOverlay(marker);
-                        marker.setAnimation(BMAP_ANIMATION_BOUNCE);
-                    };
-                    //添加新图标的监听事件
-                    // marker.addEventListener('click',function(){
-                    //     var p = marker1.getPosition();//获取位置
-                    //     // alert("点击的位置是：" + p.lng + ',' + p.lat);
-                    // })
+                    var point = new BMap.Point(points[i].point[0],points[i].point[1]);
+                    // 创建标注对象并添加到地图 
+                    //自定义图标
+                    // var marker = new BMap.Marker(point,{icon: myIcon});
+                    var marker = new BMap.Marker(point);
+                    var label = new BMap.Label(points[i].label,{offset:new BMap.Size(20,-20)});
+                    label.setStyle({
+                        color : "#153081",
+                        border:"1px solid #153081",
+                        fontSize : "12px",
+                        height : "20px",
+                        lineHeight : "20px",
+                        fontFamily:"微软雅黑",
+                        borderRadius:"4px",
+                    });
+	                marker.setLabel(label);
+                    map.addOverlay(marker);
+                    marker.setAnimation(BMAP_ANIMATION_BOUNCE);
+                };
+                //添加新图标的监听事件
+                marker.addEventListener('click',function(){
+                    var p = marker1.getPosition();//获取位置
+                    // alert("点击的位置是：" + p.lng + ',' + p.lat);
+                })
             },
             addMenu(map){
                 var menu = new BMap.ContextMenu();
@@ -300,30 +301,31 @@ import traffic_points from '@/pages/home/showMore/bigComponent/json/traffic_poin
                 ctrl.setAnchor(BMAP_ANCHOR_BOTTOM_RIGHT);  
             },
             addHot(map){
-                    var points =[];
-                    var hotPointA = traffic_points;
-                    // 向地图添加标注
+                    var points = this.arrHotPoint;
+                    console.log(this.arrHotPoint)
+                    // var hotPointA = traffic_points;
+                    // // 向地图添加标注
                     
-                     for( var j = 0;j < hotPointA.length; j++){
+                    //  for( var j = 0;j < hotPointA.length; j++){
                         
-                        let makeMap = function(){
+                    //     let makeMap = function(){
                             
-                            let minX = hotPointA[j].point[0];
+                    //         let minX = hotPointA[j].point[0];
                             
-                            let minY = hotPointA[j].point[1];
+                    //         let minY = hotPointA[j].point[1];
                            
-                            let lenX = 113.329229-113.069942  ;
-                            let lenY = 23.694848 - 23.576725;
-                            for (var i = 0; i < 100; i++) {
-                                let lng = Math.abs(Math.random()-0.7)*Math.abs(2*lenX)+minX
-                                let lat = Math.abs(Math.random()-0.7)*Math.abs(2*lenY)+minY
-                                let count = Math.random()*150
-                                let point = {"lng":lng,"lat":lat,"count":count}
-                                points.push(point)
-                            }
-                        }
-                        makeMap();
-                    }
+                    //         let lenX = 113.329229-113.069942  ;
+                    //         let lenY = 23.694848 - 23.576725;
+                    //         for (var i = 0; i < 100; i++) {
+                    //             let lng = Math.abs(Math.random()-0.7)*Math.abs(2*lenX)+minX
+                    //             let lat = Math.abs(Math.random()-0.7)*Math.abs(2*lenY)+minY
+                    //             let count = Math.random()*150
+                    //             let point = {"lng":lng,"lat":lat,"count":count}
+                    //             points.push(point)
+                    //         }
+                    //     }
+                    //     makeMap();
+                    // }
                     map.enableScrollWheelZoom(); // 允许滚轮缩放
                    
                     if(!isSupportCanvas()){
@@ -460,7 +462,6 @@ import traffic_points from '@/pages/home/showMore/bigComponent/json/traffic_poin
                 /************************************************
                 添加新图标
                 *************************************************/
-                _self.addIcon(map);
                 /************************************************
                 添加曲线
                 *************************************************/
@@ -469,10 +470,26 @@ import traffic_points from '@/pages/home/showMore/bigComponent/json/traffic_poin
                 给地图添加右键菜单
                 *************************************************/
                 _self.addMenu(map);
+            },
+            getResponse(val){
+            let _self = this;
+            var paramsObj = {
+                area:"全部",
             }
+            this.$axios.get('http://120.55.190.57/qy/api/command/getCommandScenicHotDetail',{params:paramsObj}).then(r => {
+
+                if(r.status ===200){
+                    this.arrHotPoint = r.data.data
+                    this.addScript("全部");
+                }
+            })
+        }
+        },
+        created(){
+            this.getResponse("全部");
         },
         mounted() {
-            this.addScript();
+            
             // 百度地图API功能
             // 创建Map实例
         

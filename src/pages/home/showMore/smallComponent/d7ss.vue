@@ -38,7 +38,7 @@
 <div class="content">
     <div :id="idName" class="d7ss">
     </div>
-    <div class="scenic">{{datas[index].name}}</div>
+    <div class="scenic">{{datas.name}}</div>
 </div>
 </template>
 
@@ -52,8 +52,9 @@ export default {
         idName:String,
         scenics:String,
         isActive:Boolean,
-        datas:Array,
-        index:Number
+        datas:Object,
+        index:Number,
+        dateIndex:Number,
     },
     watch:{
 //        isActive:function(val){
@@ -61,9 +62,29 @@ export default {
 //            this.chart.setOption(this.option);
 //        },
       //监听数据变化重新渲染echarts
-      datas:function(){
-        this.option.series[0].startAngle =60+Math.random()*221;
-        this.chart.setOption(this.option);
+      datas:{
+          handler: function (val, oldVal) {
+                this.option.series[0].data.forEach((item,index)=>{
+                    item.value = val[item.ffname]
+                    item.name = val[item.ffname]+'%';
+                })
+                this.$nextTick(()=>{
+                    this.chart.setOption(this.option);
+                })
+            },
+            deep: true
+      },
+      dateIndex:{
+          handler:function(){
+              this.option.series[0].data.forEach((item,index)=>{
+                    item.value = this.datas[item.ffname]
+                    item.name = this.datas[item.ffname]+'%';
+                })
+                this.$nextTick(()=>{
+                    this.chart.setOption(this.option);
+                })
+          },
+          deep: true
       }
     },
     data(){
@@ -94,8 +115,9 @@ export default {
                 animationType:'expansion',
                 data:[
                     {
-                        value:this.datas[this.index].data[0].percent,
-                        name: this.datas[this.index].data[0].percent+"%",
+                        value:0,
+                        name: "%",
+                        ffname:'1000元-3000元',
                         itemStyle:{
                             normal:{
                                 color:'#368DF7'
@@ -110,8 +132,9 @@ export default {
 
                     },
                     {
-                        value:this.datas[this.index].data[1].percent,
-                         name:this.datas[this.index].data[1].percent+"%",
+                        value:0,
+                         name:"%",
+                         ffname:'1000元以下',
                          itemStyle:{
                             normal:{
                                 color:'#75cf65'
@@ -119,8 +142,9 @@ export default {
                         }
                      },
                     {
-                        value:this.datas[this.index].data[2].percent,
-                         name:this.datas[this.index].data[2].percent+"%",
+                        value:0,
+                         name:"%",
+                         ffname:'3001元以上',
                          label:{
                             normal:{
                                 show:true,
@@ -153,12 +177,15 @@ export default {
     methods:{
         redom(id){
             this.chart = echarts.init(document.getElementById(id));
+            this.option.series[0].data.forEach((item,index)=>{
+            item.value = this.datas[item.ffname]
+            item.name = this.datas[item.ffname]+'%';
+        })
             this.chart.setOption(this.option);
         }
     },
     mounted() {
-        
-          this.$nextTick(echarts_resize(this.idName,this))
+        this.$nextTick(echarts_resize(this.idName,this))
     },
 }
 </script>

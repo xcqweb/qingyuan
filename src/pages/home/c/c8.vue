@@ -102,14 +102,14 @@ li:nth-of-type(2n+1){
         </li>
         <li v-for='(item,index) in items'>
             <div class="cell1">
-                {{index+1}}、{{item.place}}
+                {{index+1}}、{{item.province}}
             </div>
             <div class="cell2">
-                {{item.numb}}<font>人</font>
+                {{item.num}}<font>人</font>
             </div>
             <div class="cell3">
-                <span class='footerCotext'>{{item.percent}}</span>
-                <span class='footerRise' :class='item.rise'></span>
+                <span class='footerCotext'>{{item.rate}}%</span>
+                <!-- <span class='footerRise' :class='item.rise'></span> -->
             </div>
         </li>
          <div class="scenic">{{scenics}}</div>
@@ -128,28 +128,47 @@ export default {
         return{
         msg:'Hello Vue 来自App.vue',
         items:[
-                {
-                numb:'32,001',place:'广东省 ',rise:'up',percent:'4.2%',
-                },
-                {
-                numb:'26,102',place:'浙江省 ',rise:'down',percent:'3.3%',
-                },
-                {
-                numb:'13,003',place:'湖南省 ',rise:'up',percent:'23.1%',
-                },
-                {
-                numb:'10,304',place:'湖北省',rise:'up',percent:'13.7%',
-                },
-                {
-                numb:'8,405',place:'陕西省',rise:'up',percent:'19.2%',
-                },
-                {
-                numb:'6,326',place:'江西省 ',rise:'up',percent:'13.2%',
-                }
+                // {
+                // num:'32,001',province:'广东省 ',rise:'up',rate:'4.2%',
+                // },
+                // {
+                // num:'26,102',province:'浙江省 ',rise:'down',rate:'3.3%',
+                // },
+                // {
+                // num:'13,003',province:'湖南省 ',rise:'up',rate:'23.1%',
+                // },
+                // {
+                // num:'10,304',province:'湖北省',rise:'up',rate:'13.7%',
+                // },
+                // {
+                // num:'8,405',province:'陕西省',rise:'up',rate:'19.2%',
+                // },
+                // {
+                // num:'6,326',province:'江西省 ',rise:'up',rate:'13.2%',
+                // }
             ],
       }
     },
-    components:{}
+    components:{},
+    methods:{
+        getResponse(){
+            let _self = this ;
+            this.$axios.get('http://120.55.190.57/qy/api/view/getTouristSourceData').then(r => {
+                if(r.data.code ==="200"||r.data.code ===200){
+                    _self.items= r.data.data;
+                      r.data.data.forEach( (item,index) =>{
+                         _self.items[index].num =_self.$Rw.string_until.addPoint(item.num)
+                    } )
+                }
+            })
+        },
+        addDot(num){
+            this.$Rw.string_until.addPoint(num)
+        }
+    },
+    created(){
+        this.getResponse()
+    },
 }
 </script>
 

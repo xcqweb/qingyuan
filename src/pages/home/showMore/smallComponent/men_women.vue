@@ -87,24 +87,21 @@ let womenE= require('@/assets/images/home/womenE.png')
 export default {
   name: 'c4ss',
   props:{
-      women:Array,
-      men:Array,
+      women:Number,
+      men:Number,
       scenics:String,
       isActive:Boolean,
       index:Number,
-      dateIndex:Number,
   },
   watch:{
-        isActive:function(val){
-            this.setWomen();
-            this.setMen();
-        },
-        dateIndex:function(){
-
-            this.setWomen();
-            this.setMen();
-        }
-
+      women:function(){
+        this.setWomen();
+        this.setMen();
+      },
+      men:function(){
+        this.setWomen();
+        this.setMen();
+      },
     },
   data () {
     return {
@@ -135,56 +132,56 @@ export default {
   },
   computed: {
       womenPercent:function(){
-          return this.women[this.index].women*10+'%'
+          return this.women+'%'
       },
       menPercent:function(){
-        return this.men[this.index].men*10+'%'
+        return this.men+'%'
       },
-      womene:{
-          set: function(value) {
-                    var womene = [
-                        {img:women},
-                        {img:women},
-                        {img:women},
-                        {img:women},
-                        {img:women},
-                        {img:women},
-                        {img:women},
-                        {img:women},
-                ];
-                for(var i;i < Math.round(this.women[this.index].women);i++){
-                    women.img = womenE
-                }
-                this.womens = womene;
-            },
-            get: function() {
-                return this.foo
-            }
+    //   womene:{
+    //       set: function(value) {
+    //                 var womene = [
+    //                     {img:women},
+    //                     {img:women},
+    //                     {img:women},
+    //                     {img:women},
+    //                     {img:women},
+    //                     {img:women},
+    //                     {img:women},
+    //                     {img:women},
+    //             ];
+    //             for(var i;i < Math.round(this.women);i++){
+    //                 womene.img = womenE
+    //             }
+    //             this.womens = womene;
+    //         },
+    //         get: function() {
+    //             return this.foo
+    //         }
 
-      },
-      mene:{
-          set: function(value) {
-                var mene = [
-                        {img:men},
-                        {img:men},
-                        {img:men},
-                        {img:men},
-                        {img:men},
-                        {img:men},
-                        {img:men},
-                        {img:men},
-                ];
-                for(var i;i < Math.round(this.men[this.index].men);i++){
-                    men[i].img = men
-                }
-                return mene
-                this.menes = mene;
-            },
-            get: function() {
-                return this.menes
-            }
+    //   },
+    //   mene:{
+    //       set: function(value) {
+    //             var mene = [
+    //                     {img:men},
+    //                     {img:men},
+    //                     {img:men},
+    //                     {img:men},
+    //                     {img:men},
+    //                     {img:men},
+    //                     {img:men},
+    //                     {img:men},
+    //             ];
+    //             for(var i;i < Math.round(this.men);i++){
+    //                 mene[i].img = men
+    //             }
+    //             return mene
+    //             this.menes = mene;
+    //         },
+    //         get: function() {
+    //             return this.menes
+    //         }
 
-      }
+    //   }
   },
   methods: {
       setWomen(){
@@ -197,8 +194,10 @@ export default {
                 {img:women},
                 {img:women},
                 {img:women},
+                {img:women},
+                {img:women},
             ];
-            for(var i = 0;i < Math.round(this.women[this.index].women);i++){
+            for(var i = 0;i < Math.round(this.women/10);i++){
 
                 womene[i].img = womenE
                 
@@ -216,8 +215,11 @@ export default {
                         {img:men},
                         {img:men},
                         {img:men},
+                        {img:men},
+                        {img:men},
                 ];
-                for(var i=0;i < Math.round(this.men[this.index].men);i++){
+                for(var i=0;i < Math.round(this.men/10);i++){
+                
                     mene[i].img = menE
                 }
                 this.mens = mene;

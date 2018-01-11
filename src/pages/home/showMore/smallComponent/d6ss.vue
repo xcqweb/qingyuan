@@ -50,11 +50,11 @@
 <template>
     <div class="b6">
         <div class="b6_top">
-            <span>{{addDot(dataItem[1].num)}}<font>人次</font></span>
+            <span>{{addDot(dataItem.currentNum)}}<font>人次</font></span>
             <font>当前客流总数</font>
         </div>
         <div class="b6_bottom" >
-            <span>{{addDot(dataItem[2].num)}}<font>人次</font></span>
+            <span>{{addDot(dataItem.yesterdayNum)}}<font>人次</font></span>
             <font>昨日客流总数</font>
         </div>
         <div class="scenic">{{scenics}}</div>
@@ -69,7 +69,7 @@ export default {
     props:{
         idName:String,
         scenics:String,
-        dataItem:Array,
+        dataItem:Object,
     },
     // mixins: [adaptation],
     data () {

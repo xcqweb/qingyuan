@@ -117,10 +117,22 @@ import Vue from 'vue'
 export default {
     name:'a1',
     props:{
-        idName:String,
-        scenics:String,
-        isActive:Boolean,
-        barData:Array,
+        idName:{
+            type: String,
+            required: true
+        },
+        scenics:{
+            type: String,
+            required: false
+        },
+        isActive:{
+            type: Boolean,
+            required: false
+        },
+        barData:{
+            type: Array,
+            required: false
+        },
     },
     watch:{
         isActive:function(val){
@@ -134,12 +146,10 @@ export default {
                 //   this.isActive=true;
                 let dataY=[];
                 let dataX=[];
-                debugger
                 for (var i = 0; i < this.barData.length; i++) {
                     dataY.push(this.barData[i].num);
-                    dataX.push(this.barData[i].date)
+                    dataX.push(this.barData[i].dayId.replace(/-/g,"/"))
                 }
-                
                 this.$nextTick(echarts_resize(this.idName,this,dataX,dataY))
             },
             deep: true
@@ -333,7 +343,8 @@ export default {
     //   debugger
       for (var i = 0; i < this.barData.length; i++) {
           dataY.push(this.barData[i].num);
-          dataX.push(this.barData[i].date);
+          dataX.push(this.barData[i].dayId);
+          
       }
       this.$nextTick(echarts_resize(this.idName,this,dataX,dataY))
     },
@@ -344,8 +355,8 @@ export default {
         let dataY=[];
         let dataX=[];
         for (var i = 0; i < this.twoWeekMock.length; i++) {
-            dataY.push(this.twoWeekMock[i].nub);
-            dataX.push(this.twoWeekMock[i].date)
+            dataY.push(this.twoWeekMock[i].num);
+            dataX.push(this.twoWeekMock[i].dayId)
         }
     // this.isActive=false;
     this.$nextTick(echarts_resize(this.idName,this,dataX,dataY))
@@ -356,12 +367,13 @@ export default {
         this.chart = echarts.init(document.getElementById(id))
          _self.option.xAxis[0].data=datax;
         _self.option.series[0].data=datay;
+    
         this.chart.setOption(_self.option)
       }
     },
     components:{},
     mounted() {
-      this.redom7();
+      
     }
   }
 </script>

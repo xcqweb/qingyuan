@@ -121,13 +121,13 @@ li:nth-of-type(4){
                 {{index+1}}
             </div>
             <div class="cell2">
-                <div class="cell2_box" v-for = "(ite,i) in item.route " >
+                <div class="cell2_box" v-for = "(ite,i) in item.track" >
                     <div >{{ite}}</div>
-                    <div v-if=" i+1 < item.route.length">↓</div>
+                    <div v-if=" i+1 < item.track.length">↓</div>
                 </div>
             </div>
             <div class="cell3">
-                <span class='footerCotext'>{{(item.popularity/1000).toFixed(2)}}</span>
+                <span class='footerCotext'>{{item.num}}</span>
             </div>
         </li>
     </ul>
@@ -144,14 +144,14 @@ export default {
    watch:{
         mainPageSelect:{
         handler: function (val, oldVal) {
-            this.checkRankPlace(val,oldVal)
+            this.getResponse();
         },
         deep:true,
     },
    },
     data(){
         return{
-        items:d9sJson["全部"]["日"].slice(0,3).reverse(),
+        items:[],
       }
     },
     methods:{
@@ -178,7 +178,26 @@ export default {
 
             }
             this.items.reverse();
+        },
+        getResponse(){
+            let _self = this;
+            var paramsObj = {
+                area:this.mainPageSelect.place,
+                name:this.mainPageSelect.turist
+            }
+            this.$axios.get('http://120.55.190.57/qy/api/command/getCommandScenicTrack',{params:paramsObj}).then(r => {
+                if(r.status ===200){
+                    this.items = r.data.data
+                    this.items.forEach((item,index)=>{
+                        this.items[index].track = item.track.split("==>").slice(0,3) ;
+                    })
+                    
+                }
+            })
         }
+    },
+    created(){
+        this.getResponse();
     },
     components:{}
 }

@@ -4,8 +4,8 @@
         <div class="circle">
             <img :src="imgacircle"/>
         </div>
-        <span v-bind:class="{fontRed:fontRedData}">{{dataItem.warningPer}}%</span>
-        <div class="text"><font >{{warningText}}</font></div>
+        <span v-bind:class="{fontRed:fontRedData}">{{dataItem.percent}}%</span>
+        <div class="text"><font >{{dataItem.warnNum}}</font></div>
         <div class="scenic">{{scenics}}</div>
     </div>
 </template>
@@ -41,7 +41,7 @@ export default {
           return this.dataItem.noTitle === false ? '客流预警'+this.dataItem.warningNub : '';
       },
       fontRedData:function(){
-         return this.dataItem.warningPer<90 ? false : true;
+         return this.dataItem.percent<90 ? false : true;
       }
   },
   methods:{
@@ -71,18 +71,18 @@ export default {
                     data:[
                         
                         {
-                        value:this.dataItem.warningPer,
+                        value:this.dataItem.percent,
                         name:'',
                         itemStyle:{
                             normal:{
-                                color:this.dataItem.warningPer < 90 ? '#1da7fe' : '#FF0000',
+                                color:this.dataItem.percent < 90 ? '#1da7fe' : '#FF0000',
                                 
 
                             }
                         }
                     },
                         {
-                        value:100-this.dataItem.warningPer, 
+                        value:100-this.dataItem.percent, 
                         name:'',
                         itemStyle:{
                             normal:{

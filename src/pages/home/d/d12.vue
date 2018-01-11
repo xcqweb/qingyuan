@@ -26,7 +26,7 @@
 <script>
 import d12ss from '@/pages/home/showMore/smallComponent/d12ss.vue'
 import showMoreData from '@/common/js/mixin/showMoreData.js'
-import a1sJson from '@/pages/home/showMore/bigComponent/json/a1s.json'
+// import a1sJson from '@/pages/home/showMore/bigComponent/json/a1s.json'
   export default {
     name:'A1S',
     props:{
@@ -38,21 +38,21 @@ import a1sJson from '@/pages/home/showMore/bigComponent/json/a1s.json'
         // }
         mainPageSelect:{
             handler: function (val, oldVal) {
-                
+                 this.getResponse()
                  //判断是否直接点击二级下拉
-                if(val.place ===oldVal.place){
-                    //如果点击“全部”则：···
-                    if(val.turist === "全部"){
-                    this.propsData = a1sJson[val.place]["周"][1]["data"];
-                    //如果点击“全部按钮以外”
-                    }else if(val.turist != "全部"){
-                    this.propsData = a1sJson[val.place]["周"][2]["data"];
-                    }
+                // if(val.place ===oldVal.place){
+                //     //如果点击“全部”则：···
+                //     if(val.turist === "全部"){
+                //     this.propsData = a1sJson[val.place]["周"][1]["data"];
+                //     //如果点击“全部按钮以外”
+                //     }else if(val.turist != "全部"){
+                //     this.propsData = a1sJson[val.place]["周"][2]["data"];
+                //     }
 
-                //如果直接点击一级下拉框
-                }else if(val.place !=oldVal.place){
-                    this.propsData = a1sJson[val.place]["周"][2]["data"];
-                }
+                // //如果直接点击一级下拉框
+                // }else if(val.place !=oldVal.place){
+                //     this.propsData = a1sJson[val.place]["周"][2]["data"];
+                // }
             },
             deep:true,
         }
@@ -60,7 +60,7 @@ import a1sJson from '@/pages/home/showMore/bigComponent/json/a1s.json'
     data() {
       return {
           a1sShow:true,
-           propsData:a1sJson["全部"]["周"][0]["data"],
+           propsData:[],
           dateChose:[
                 {context:'周',class:'chose'},
                 {context:'月',class:''},
@@ -83,7 +83,22 @@ import a1sJson from '@/pages/home/showMore/bigComponent/json/a1s.json'
         d12ss,
     },
     methods:{
-
+        getResponse(){
+            let _self = this;
+            var paramsObj = {
+                area:this.mainPageSelect.place,
+                name:this.mainPageSelect.turist
+            }
+            this.$axios.get('http://120.55.190.57/qy/api/command/selectCommandScenicStayHours',{params:paramsObj}).then(r => {
+                
+                if(r.status ===200){
+                    this.propsData = r.data.data
+                }
+            })
+        }
+    },
+    created(){
+        this.getResponse()
     },
     mounted(){
         this.$emit('showDateFormatChose',this.dateChose)

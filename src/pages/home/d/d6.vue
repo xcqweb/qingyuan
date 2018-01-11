@@ -39,11 +39,11 @@
 <template>
     <div class="b6">
         <div class="b6_top">
-            <span>{{dataMsg[0].num}}<font>人次</font></span>
-            <font>当前客流总数</font>
+            <span>{{dataMsg.num}}<font>人次</font></span>
+            <font>当前客流人数</font>
         </div>
         <div class="b6_bottom" v-show="level_xs">
-            <span>{{dataMsg[2].num}}<font>人次</font></span>
+            <span>{{dataMsg.yesterdayNum}}<font>人次</font></span>
             <font>昨日客流总数</font>
         </div>
     </div>
@@ -52,7 +52,7 @@
 <script>
 import Vue from 'vue'
 import adaptation from '@/common/js/mixin/adaptation.js'
-import a1sJson from '@/pages/home/showMore/bigComponent/json/a1s.json'
+
 export default {
     name:'d6',
     mixins: [adaptation],
@@ -63,14 +63,17 @@ export default {
         mainPageSelect:{
             handler: function (val, oldVal) {
                 let _self = this;
-                this.dataMsg = a1sJson[val.place]["年"][0]["data"];      
+               this.getResponse();
             },
             deep:true,
         }
     },
     data () {
         return {
-            dataMsg:a1sJson["全部"]["年"][0]["data"],
+            dataMsg:{
+                yesterdayNum:'',
+                num:''
+            }
         }
     },
     components:{
@@ -80,20 +83,35 @@ export default {
 
     },
     methods: {
-        addDot(nub){
-                var n= nub;
-                var m =n +'',
-                len= m.length
-                if (len>3) {
-                var aa=len-3
-                var bb=m.slice(aa,len)
-                var cc=m.slice(0,aa)
-                m=cc+','+bb
-                }
-                return m
+    addDot(nub){
+            var n= nub;
+            var m =n +'',
+            len= m.length
+            if (len>3) {
+            var aa=len-3
+            var bb=m.slice(aa,len)
+            var cc=m.slice(0,aa)
+            m=cc+','+bb
             }
+            return m
+        },
+        getResponse(){
+            let _self = this;
+            var paramsObj = {
+                area:this.mainPageSelect.place,
+                name:this.mainPageSelect.turist
+            }
+        
+            this.$axios.get('http://120.55.190.57/qy/api/command/getCommandCurrentPerson',{params:paramsObj}).then(r => {
+                if(r.status ===200){
+                    this.dataMsg.num =_self.$Rw.string_until.addPoint(r.data.data.num);
+                    this.dataMsg.yesterdayNum =_self.$Rw.string_until.addPoint(r.data.data.yesterdayNum)
+                }
+            })
+        }
     },
     mounted(){
+        this.getResponse();
     },  
 }
 </script>

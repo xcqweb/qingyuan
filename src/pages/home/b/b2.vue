@@ -31,7 +31,7 @@ export default {
             handler: function (val, oldVal) {
                 this.warningTeam=[] ;
                 this.isActive= false ;
-                this.checkWaringStatus(val)
+                this.getResponse();
             },
             deep:true,
         }
@@ -40,7 +40,7 @@ export default {
     return {
         isActive:false,
         dataItem:{
-            warningPer:32,
+            percent:32,
             warningNub:null,
             noTitle:true,
            
@@ -53,45 +53,66 @@ export default {
   computed: { 
   },
   methods:{
-      checkWaringStatus(val){
+      checkWaringStatus(val,arrItems){
+          //如果是全部则筛选，如果不是，则精确查询
           if(val.turist ==="全部"){
-                 var warningArr = b2sjson[val.place];
+                 var warningArr = arrItems;
                  warningArr.forEach(item => {
-                     if(item.data.warningPer>90){
+                    if(item.percent>90){
                         this.warningTeam.push(item);
                         this.isActive = true;
                      }else{
-                         this.dataItem.warningPer =item.data.warningPer;
+                         this.dataItem.percent =item.percent;
                      }
                  });
                  if(this.warningTeam[0]){
-                     this.dataItem.warningPer = this.warningTeam[0].data.warningPer;
+                     this.dataItem.percent = this.warningTeam[0].percent;
                  }else{
-                     this.dataItem.warningPer = 0;
-                 }    
+                     this.dataItem.percent = 0;
+                 }   
+               
              }else{
                  //二级为详细景区时精确定位
-                 var warningArr = b2sjson[val.place];
+                 var warningArr = arrItems;
                  warningArr.forEach(item => {
+                     
                      if(item.name === val.turist ){
-                         if(item.data.warningPer>90){
+                        
+                         if(item.percent>90){
                             this.warningTeam.push(item);
                             this.isActive = true;
-                            this.dataItem.warningPer = this.warningTeam[0].data.warningPer;
+                            this.dataItem.percent = this.warningTeam[0].percent;
                          }else{
                             //如果没有大于90的元素，则直接推当前元素进入列表，并且
-                            this.dataItem.warningPer =item.data.warningPer;
+                            this.dataItem.percent =item.percent;
                             this.warningTeam = [item]
                          }
-                     }
+                    }else{
+                        this.dataItem.percent = 0;
+                    }
                      
                  });
                  
              }
-      }
+      },
+      getResponse(){
+            let _self = this;
+            var paramsObj = {
+                area:this.mainPageSelect.place,
+                name:this.mainPageSelect.turist
+            }
+            this.$axios.get('http://120.55.190.57/qy/api/command/selectCommandScenicWarning',{params:paramsObj}).then(r => {
+                
+                if(r.status ===200){
+                    this.checkWaringStatus(this.mainPageSelect,r.data.data)
+                }
+            })
+        }
   },
   mounted() {
-    this.checkWaringStatus(this.mainPageSelect)
+    this.getResponse();
+    // this.checkWaringStatus(this.mainPageSelect)
+    
   },
   components:{
       b2ss

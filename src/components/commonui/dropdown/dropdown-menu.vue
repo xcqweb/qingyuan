@@ -234,9 +234,9 @@ import Vue from 'vue'
         position: absolute;
         left:0;
         top:0;
-        transform: translate(-13%,0);
+        transform: translate(-15%,0);
         height: auto;
-        width: 140%;
+        width: 150%;
         margin-left: -1px;
         z-index:444;
         max-height: 10.8rem;

@@ -19,7 +19,7 @@
             class="c211" 
             :idName='idName[index]' 
             :scenics='item.name' 
-            :rankItems ='item.data' 
+            :rankItems ='item.value' 
             :updateSheng ='updateSheng'
             ></c8ss>
         </div>
@@ -38,17 +38,46 @@ import c8sJson from '@/pages/home/showMore/bigComponent/json/c8s.json'
         dateIndex:Number,
         updatePlace:String,
         updateSheng:String,
+        timeDate:Object,
     },
     watch:{
         updatePlace:function(val){
-            // this.rankItems = b16sJson[val]//data[全部][省][日]
-            this.rankItems = c8sJson[val][this.updateSheng][this.dateChose[this.dateIndex].context]
+            var paramsObj = {
+                area:this.updatePlace,
+                city:this.updateSheng==="省"?1:2,
+                type:["day","month","year"][this.dateIndex],
+            }
+            this.getResponse(paramsObj);
         },
         updateSheng:function(val){
-            this.rankItems = c8sJson[this.updatePlace][val][this.dateChose[this.dateIndex].context]
+            var paramsObj = {
+                    area:this.updatePlace,
+                    city:this.updateSheng==="省"?1:2,
+                    type:["day","month","year"][this.dateIndex],
+                }
+            this.getResponse(paramsObj);
         },
         dateIndex:function(val){
-            this.rankItems = c8sJson[this.updatePlace][this.updateSheng][this.dateChose[val].context]
+            var paramsObj = {
+                area:this.updatePlace,
+                city:this.updateSheng==="省"?1:2,
+                type:["day","month","year"][this.dateIndex],
+            }
+            this.getResponse(paramsObj);
+        },
+        timeDate:{
+             handler:function(val, oldVal){
+                 let end = val.end.join("-")
+                 let begin = val.begin.join("-")
+                 var paramsObj = {
+                    area:this.updatePlace,
+                    city:this.updateSheng==="省"?1:2,
+                    beginTime:begin,
+                    endTime:end
+                }
+                 this.getResponse(paramsObj);
+             },
+             deep:true,
         }
     },
     data() {
@@ -58,7 +87,7 @@ import c8sJson from '@/pages/home/showMore/bigComponent/json/c8s.json'
             {context:'月',class:''},
             {context:'年',class:''},
             ],
-            rankItems:c8sJson["全部"]["省"]["日"],
+            rankItems:[],
             // ['#FF8885','#57ABFE', '#368DF7', '#7E6AF6', '#E39A50','#FFCD38',  '#4EBBFC', '#75CF65','#B8E986', '#86E9E8', '#58E5E1','#4BCEDD']
             // scenics:['风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区',],
             // idName:['c4s1','c4s2','c4s3','c4s4','c4s5','c4s6','c4s7','c4s8','c4s9'],
@@ -76,7 +105,22 @@ import c8sJson from '@/pages/home/showMore/bigComponent/json/c8s.json'
         c8ss,
     },
     methods:{
-
+        getResponse(paramsObj){
+            this.$axios.get('http://120.55.190.57/qy/api/view/getTouristSourceDetailData',{params:paramsObj}).then(r => {
+                    
+                if(r.data.code ==="200"||r.data.code ===200){
+                    this.rankItems = r.data.data; 
+                }
+            })
+        }
+    },
+    created () {
+        var paramsObj = {
+                area:"全部",
+                type:"day",
+                city:1
+            }
+       this.getResponse(paramsObj);
     },
     mounted(){
         this.$emit('showDateFormatChose',this.dateChose);

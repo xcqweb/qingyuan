@@ -20,10 +20,10 @@
         </li>
         <li v-for='(item,index) in rankItems'>
             <div class="cell1">
-                {{index+1}}、{{item.place}}
+                {{index+1}}、{{item.city}}
             </div>
             <div class="cell2">
-                {{addDot(item.numb)}}<font>人</font>
+                {{addDot(item.num)}}<font>人</font>
             </div>
             <div class="cell3">
                 <span class='footerCotext'>{{item.tongRate}}%</span>
@@ -61,22 +61,22 @@ export default {
         msg:'Hello Vue 来自App.vue',
         // items:[
         //         {
-        //         numb:'32,001',place:' 深圳市',rise:'up',percent:'4.2%',
+        //         num:'32,001',city:' 深圳市',rise:'up',percent:'4.2%',
         //         },
         //         {
-        //         numb:'26,102',place:'上海市 ',rise:'down',percent:'3.3%',
+        //         num:'26,102',city:'上海市 ',rise:'down',percent:'3.3%',
         //         },
         //         {
-        //         numb:'13,003',place:'广州市 ',rise:'up',percent:'23.1%',
+        //         num:'13,003',city:'广州市 ',rise:'up',percent:'23.1%',
         //         },
         //         {
-        //         numb:'10,304',place:'北京市',rise:'up',percent:'13.7%',
+        //         num:'10,304',city:'北京市',rise:'up',percent:'13.7%',
         //         },
         //         {
-        //         numb:'8,405',place:'武汉市',rise:'up',percent:'19.2%',
+        //         num:'8,405',city:'武汉市',rise:'up',percent:'19.2%',
         //         },
         //         {
-        //         numb:'6,326',place:'重庆市 ',rise:'up',percent:'13.2%',
+        //         num:'6,326',city:'重庆市 ',rise:'up',percent:'13.2%',
         //         }
         //     ],
       }

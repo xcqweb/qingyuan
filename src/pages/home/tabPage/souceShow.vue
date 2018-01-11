@@ -27,6 +27,7 @@
                     <componet
                     :is='item.name' 
                     :key="item.id"  
+                    :tip = "item.tip"
                     :place='updateData.turist' 
                     :mainPageSelect = 'updateData'
                     :commentProp = 'comment'
@@ -125,7 +126,7 @@ export default {
                 ],
                 cutoverStatus:null,
                 leftComponents:[
-                    {name:'A5',id:'one',index:1,time:100,show:false,title:'实时客流监测'},
+                    {name:'A5',id:'one',index:1,time:100,show:false,title:'实时客流监测',tip:true},
                     {name:'B2',id:'two',index:2,time:300,show:false,title:'客流预警',color:'red',},
                     {name:'B6',id:'three',index:3,time:600,show:false,title:'实时天气'},
                     {name:'D6',id:'four',index:4,time:900,show:false,title:'景区当前客流'},

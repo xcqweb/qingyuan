@@ -135,9 +135,9 @@ export default {
                 let dataY=[];
                 let dataX=[];
                 for (var i = 0; i < this.barData.length; i++) {
-                    var itemDat = (Number(this.barData[i].num)/200).toFixed(1);
+                    var itemDat = Number(this.barData[i].avgHour).toFixed(1);
                     dataY.push(itemDat);
-                    dataX.push(this.barData[i].date)
+                    dataX.push(this.barData[i].dayId)
                 }
                 
                 this.$nextTick(echarts_resize(this.idName,this,dataX,dataY))
@@ -153,13 +153,13 @@ export default {
         loading:true,
         reloading:false,
         oneweekMock:[
-            {"nub":"1293","date":"6/14"},
-            {"nub":"2331","date":"6/15"},
-            {"nub":"1012","date":"6/16"},
-            {"nub":"999","date":"6/17"},
-            {"nub":"2458","date":"6/18"},
-            {"nub":"2122","date":"6/19"},
-            {"nub":"1789","date":"6/20"}
+            {"nub":"1293","dayId":"6/14"},
+            {"nub":"2331","dayId":"6/15"},
+            {"nub":"1012","dayId":"6/16"},
+            {"nub":"999","dayId":"6/17"},
+            {"nub":"2458","dayId":"6/18"},
+            {"nub":"2122","dayId":"6/19"},
+            {"nub":"1789","dayId":"6/20"}
         ],
         opinion: ['学习氛围差', '学习氛围一般', '学习氛围很好'],
         opinionData1: [
@@ -345,8 +345,8 @@ export default {
       let dataX=[];
     //   debugger
       for (var i = 0; i < this.barData.length; i++) {
-          dataY.push((Number(this.barData[i].num)/200).toFixed(1));
-          dataX.push(this.barData[i].date);
+          dataY.push(Number(this.barData[i].avgHour).toFixed(1));
+          dataX.push(this.barData[i].dayId);
       }
       this.$nextTick(echarts_resize(this.idName,this,dataX,dataY))
     },
@@ -358,7 +358,7 @@ export default {
         let dataX=[];
         for (var i = 0; i < this.twoWeekMock.length; i++) {
             dataY.push(this.twoWeekMock[i].nub);
-            dataX.push(this.twoWeekMock[i].date)
+            dataX.push(this.twoWeekMock[i].dayId)
         }
     // this.isActive=false;
     this.$nextTick(echarts_resize(this.idName,this,dataX,dataY))
