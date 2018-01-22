@@ -40,7 +40,7 @@ img{
         z-index:31;
         background-color:#153081;
         overflow: hidden;
-
+        box-shadow:0px 0 30px rgba(39, 81, 197, 0.9) inset;
     }
     .header{
         height: 6%;
@@ -470,7 +470,7 @@ var _ = require('lodash');
         },
         catchmsg(data){
             this.updateData  = data;
-            
+           
         },
         //获取时间
         getDate(value){

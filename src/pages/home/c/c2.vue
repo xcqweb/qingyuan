@@ -99,7 +99,7 @@ export default {
             this.chart.setOption(this.option);
         },
         getResponse(){
-            this.$axios.get('http://120.55.190.57/qy/api/view/getDayAgeData').then(r => {
+            this.$axios.get(API_URL+'/qy/api/view/getDayAgeData').then(r => {
                 if(r.data.code ==="200"||r.data.code ===200){
                     this.option.series[0].data.forEach((item,index)=>{
                         item.value = r.data.data[item.name]

@@ -153,7 +153,7 @@ export default {
     methods:{
         getResponse(){
             let _self = this ;
-            this.$axios.get('http://120.55.190.57/qy/api/view/getTouristSourceData').then(r => {
+            this.$axios.get(API_URL+'/qy/api/view/getTouristSourceData').then(r => {
                 if(r.data.code ==="200"||r.data.code ===200){
                     _self.items= r.data.data;
                       r.data.data.forEach( (item,index) =>{

@@ -168,7 +168,7 @@ a:visited { text-decoration: none;}
                 </div>
         </li>
         <li>
-            <a href="http://120.55.190.57:8081">
+            <a v-bind:href="return_url">
             <span></span>
             <font>返回后台管理</font>
             </a>
@@ -193,6 +193,7 @@ export default {
         choseDown:'chose',
         zonglan:'chose',
         yingji:'chose',
+        return_url:API_URL,
         aboverItem:[
             {name:'总览',link:'/',status:'unchose'},
         // {name:'产业监测平台',link:'/prodcut',status:'chose'},

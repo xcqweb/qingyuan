@@ -43,7 +43,7 @@ ul{
 }
 .cell4{
     height: 90%;
-    overflow: hidden;
+    overflow-y: scroll;
     text-align: left;
 }
 .up{
@@ -65,7 +65,7 @@ li:nth-of-type(1){
     }
     .cell4{
         height: 90%;
-        overflow: hidden;
+        overflow-x: hidden;
         text-align: center;
     }
 }
@@ -111,19 +111,19 @@ li:nth-of-type(2n+3){
         </li>
         <li v-for='(item,index) in rankItems'>
             <div class="cell1">
-               {{item.tourist}}
+               {{item.name}}
             </div>
             <div class="cell2">
-                 {{item.from}}
+                 {{item.source}}
             </div>
             <div class="cell3">
-                {{item.userName}}
+                {{item.uid}}
             </div>
             <div class="cell4">
-                {{item.comment}}
+                {{item.con}}
             </div>
             <div class="cell5">
-                 {{item.creatTime}}
+                 {{item.date}}
             </div>
         </li>
     </ul>
@@ -131,7 +131,7 @@ li:nth-of-type(2n+3){
 </template>
 
 <script type="text/javascript">
-import d9sJson from '@/pages/home/showMore/bigComponent/json/d9s.json'
+// import d9sJson from '@/pages/home/showMore/bigComponent/json/d9s.json'
 export default {
     name:'d9',
     props:{

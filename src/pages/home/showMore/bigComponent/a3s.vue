@@ -20,6 +20,7 @@
             :idName='"d9ss"' 
             :scenics='""' 
             :rankItems ='rankItems' 
+            @mousewheel.native='morePage'
             ></a3ss>
         </div>
     </div>
@@ -36,33 +37,41 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
         scenics:Array,
         dateIndex:Number,
         conmentPlatformProp:String,
-        scenics:Array,
+        updatePlace:String,
+        timeDate:Object,
     },
     watch:{
         conmentPlatformProp:function(val){
-            let _arr = [];
-            if(val ==="全部"){
-                _arr =this.items_read;
-            }else{
-                this.items_read.forEach((item,index)=>{
-                    if(item.from === val){
-                        _arr.push(item)
-                    }
-                })
+            let end = this.timeDate.end.join("-")
+            let begin = this.timeDate.begin.join("-")
+            var paramsObj = {
+                area:this.updatePlace,
+                source:val,
+                beginTime:begin,
+                endTime:end
             }
-            this.rankItems = _arr;
+            this.getResponse(paramsObj);
         },
-        scenics:function(val){
-            let _arr =[];
-            this.items_read.forEach((item,index)=>{
-                val.forEach(ite =>{
-                    if(item.tourist === ite){
-                        _arr.push(item)
-                    }
-                })
-            })
-            console.log(this.conmentPlatform)
-            this.rankItems = _arr;
+        updatePlace:function(val){
+            var paramsObj = {
+                area:this.updatePlace,
+                source:this.conmentPlatformProp,
+            }
+            this.getResponse(paramsObj);
+        },
+        timeDate:{
+             handler:function(val, oldVal){
+                 let end = val.end.join("-")
+                 let begin = val.begin.join("-")
+                 var paramsObj = {
+                    area:this.updatePlace,
+                    source:this.conmentPlatformProp,
+                    beginTime:begin,
+                    endTime:end
+                }
+                 this.getResponse(paramsObj);
+             },
+             deep:true,
         }
     },
     data() {
@@ -72,8 +81,11 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
             left:'60%',
             title:'全部',
             selectStatus:false,
-            place:['全部',"携程旅游"]
+            place:['全部',"携程网","12301"]
         },
+        pageId:2,
+        layerY:0,
+        onceStatus:true,
         dateChose:[
             
         ],
@@ -105,7 +117,54 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
         a3ss,
     },
     methods:{
-
+        getResponse(paramsObj){
+            this.$axios.get(API_URL+'/qy/api/command/getCommandCommentsDetail',{params:paramsObj}).then(r => {
+                console.log(r)
+                if(r.data.code ==="200"||r.data.code ===200){
+                    this.rankItems = r.data.data; 
+                }
+            })
+        },
+        
+        pullRequest(){
+            if(this.onceStatus){
+                let end = this.timeDate.end.join("-")
+                let begin = this.timeDate.begin.join("-")
+                let paramsObj = {
+                        area:this.updatePlace,
+                        source:this.conmentPlatformProp,
+                        beginTime:begin,
+                        endTime:end,
+                        pageId:this.pageId,
+                    }
+                this.$axios.get(API_URL+'/qy/api/command/getCommandCommentsDetail',{params:paramsObj}).then(r => {
+                    if(r.data.code ==="200"||r.data.code ===200){
+                        console.log(r)
+                        this.rankItems = this.rankItems.concat(r.data.data); 
+                        let pagei = this.pageId+1;
+                        this.pageId = pagei ;
+                    }
+                });
+                // debugger;
+                this.onceStatus = false;
+                setTimeout(()=>{
+                    this.onceStatus = true
+                },3000)
+            }
+            
+        },
+        morePage(e){
+            // this.pullRequest()
+            e.layerY-this.layerY >0 ? null :this.pullRequest();  
+            this.layerY =e.layerY
+        },
+    },
+    created () {
+        var paramsObj = {
+                source:'全部',
+                area:"全部",
+            }
+       this.getResponse(paramsObj);
     },
     mounted(){
         this.$emit('showDateFormatChose',this.dateChose);

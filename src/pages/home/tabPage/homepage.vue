@@ -190,11 +190,22 @@ export default {
             },
             lazy(){
 
-            }
+            },
+            getResponse(){
+                this.$axios.get(API_URL+'/qy/api/view/checkLogin').then(r => {
+                    
+                        if(r.data.code ==="-1"||r.data.code ===-1){
+                        window.location.href=API_URL+":8081/login"
+                        }
+                })
+            },
             
         },
+        created () {
+            
+            this.getResponse();
+        },
         mounted() {
-
         }
     }
 </script>

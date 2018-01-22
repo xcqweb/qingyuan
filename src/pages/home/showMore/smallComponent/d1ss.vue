@@ -476,7 +476,7 @@ import traffic_points from '@/pages/home/showMore/bigComponent/json/traffic_poin
             var paramsObj = {
                 area:"全部",
             }
-            this.$axios.get('http://120.55.190.57/qy/api/command/getCommandScenicHotDetail',{params:paramsObj}).then(r => {
+            this.$axios.get(API_URL+'/qy/api/command/getCommandScenicHotDetail',{params:paramsObj}).then(r => {
 
                 if(r.status ===200){
                     this.arrHotPoint = r.data.data

@@ -28,7 +28,7 @@
 <script>
 import d6ss from '@/pages/home/showMore/smallComponent/d6ss.vue'
 import showMoreData from '@/common/js/mixin/showMoreData.js'
-import a1sJson from '@/pages/home/showMore/bigComponent/json/a1s.json'
+// import a1sJson from '@/pages/home/showMore/bigComponent/json/a1s.json'
   export default {
     name:'d6s',
     mixins: [showMoreData],
@@ -47,7 +47,7 @@ import a1sJson from '@/pages/home/showMore/bigComponent/json/a1s.json'
     },
     data() {
       return {
-            nianItems:a1sJson["全部"]["年"],
+            nianItems:[],
             a1sShow:true,
             // ['#FF8885','#57ABFE', '#368DF7', '#7E6AF6', '#E39A50','#FFCD38',  '#4EBBFC', '#75CF65','#B8E986', '#86E9E8', '#58E5E1','#4BCEDD']
             // scenics:['风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区',],
@@ -70,7 +70,7 @@ import a1sJson from '@/pages/home/showMore/bigComponent/json/a1s.json'
             var paramsObj = {
                 area:this.updatePlace,
             }
-            this.$axios.get('http://120.55.190.57/qy/api/command/getCommandCurrentPersonDetail',{params:paramsObj}).then(r => {
+            this.$axios.get(API_URL+'/qy/api/command/getCommandCurrentPersonDetail',{params:paramsObj}).then(r => {
                 if(r.data.code ==="200"||r.data.code ===200){
                     this.nianItems = r.data.data;
                 }   

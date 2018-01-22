@@ -20,7 +20,7 @@ import Vue from 'vue'
 import echarts_resize from '../../../common/js/echarts_resize.js'
 import echarts from 'echarts'
 import b2ss from '@/pages/home/showMore/smallComponent/b2ss.vue'
-import b2sjson from '@/pages/home/showMore/bigComponent/json/b2s.json'
+// import b2sjson from '@/pages/home/showMore/bigComponent/json/b2s.json'
 export default {
     name: 'b2',
     props:{
@@ -101,7 +101,7 @@ export default {
                 area:this.mainPageSelect.place,
                 name:this.mainPageSelect.turist
             }
-            this.$axios.get('http://120.55.190.57/qy/api/command/selectCommandScenicWarning',{params:paramsObj}).then(r => {
+            this.$axios.get(API_URL+'/qy/api/command/selectCommandScenicWarning',{params:paramsObj}).then(r => {
                 
                 if(r.status ===200){
                     this.checkWaringStatus(this.mainPageSelect,r.data.data)

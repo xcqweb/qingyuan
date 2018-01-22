@@ -103,17 +103,22 @@ export default {
     methods: {
             //一级下拉框下拉事件
         catchmsg1(data){
-           this.updateData.palce = data;
+            this.updateData ={
+                place:data,
+                turist:this.updateData.turist
+            }
            this.cityData = this.switch(data);
            //将所选城市传到父组件
            this.$emit('listenDoubleSelection',this.updateData);
         },
            //二级下拉框选择事件
         catchmsg2(data){
-            this.updateData.turist = data;
+            this.updateData ={
+                place:this.updateData.place,
+                turist:data,
+            }
             //将所选城市传到父组件
-            
-            this.$emit('listenDoubleSelection',this.updateData)
+            this.$emit('listenDoubleSelection',this.updateData);
         },
         switch(val){
             const  cityData = {

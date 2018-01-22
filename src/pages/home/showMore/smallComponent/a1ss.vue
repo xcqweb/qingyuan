@@ -373,7 +373,14 @@ export default {
     },
     components:{},
     mounted() {
-      
+                //   this.isActive=true;
+                let dataY=[];
+                let dataX=[];
+                for (var i = 0; i < this.barData.length; i++) {
+                    dataY.push(this.barData[i].num);
+                    dataX.push(this.barData[i].dayId.replace(/-/g,"/"))
+                }
+                this.$nextTick(echarts_resize(this.idName,this,dataX,dataY))
     }
   }
 </script>

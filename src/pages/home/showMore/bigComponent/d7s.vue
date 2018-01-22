@@ -123,7 +123,7 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
     },
     methods:{
         getResponse(paramsObj){
-            this.$axios.get('http://120.55.190.57/qy/api/view/getSpendMoneyPowerDetailData',{params:paramsObj}).then(r => {
+            this.$axios.get(API_URL+'/qy/api/view/getSpendMoneyPowerDetailData',{params:paramsObj}).then(r => {
                 if(r.data.code ==="200"||r.data.code ===200){
                     this.propsToSmall = r.data.data; 
                 }

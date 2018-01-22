@@ -102,7 +102,7 @@ export default {
                 name:this.mainPageSelect.turist
             }
         
-            this.$axios.get('http://120.55.190.57/qy/api/command/getCommandCurrentPerson',{params:paramsObj}).then(r => {
+            this.$axios.get(API_URL+'/qy/api/command/getCommandCurrentPerson',{params:paramsObj}).then(r => {
                 if(r.status ===200){
                     this.dataMsg.num =_self.$Rw.string_until.addPoint(r.data.data.num);
                     this.dataMsg.yesterdayNum =_self.$Rw.string_until.addPoint(r.data.data.yesterdayNum)

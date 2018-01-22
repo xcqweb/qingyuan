@@ -24,12 +24,12 @@ require('echarts-wordcloud');
   export default {
     name:'d11',
     props:{
-         mainPageSelect:Object,
+        mainPageSelect:Object,
     },
-    watch:{
+   watch:{
         mainPageSelect:{
         handler: function (val, oldVal) {
-            
+            this.getResponse();
         },
         deep:true,
         },
@@ -284,9 +284,25 @@ require('echarts-wordcloud');
             this.option.series[0].data = JosnList;
             this.chart.setOption(this.option);
         },
+        getResponse(paramsObj){
+            this.$axios.get(API_URL+'/qy/api/command/getKeWords',{params:paramsObj}).then(r => {
+
+                if(r.data.code ==="200"||r.data.code ===200){
+                    this.yunData = r.data.data;
+                     this.$nextTick(echarts_resize('chartId',this))
+                }
+            })
+        }
+    },
+    created () {
+        var paramsObj = {
+                area:"全部",
+                name:"全部",
+            }
+       this.getResponse(paramsObj);
     },
     mounted(){
-        this.$nextTick(echarts_resize('chartId',this))
+       
     }
   }
 </script>

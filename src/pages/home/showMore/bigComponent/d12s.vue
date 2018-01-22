@@ -29,12 +29,14 @@
 <script>
 import d12ss from '@/pages/home/showMore/smallComponent/d12ss.vue'
 import showMoreData from '@/common/js/mixin/showMoreData.js'
-import a1sJson from '@/pages/home/showMore/bigComponent/json/a1s.json'
+// import a1sJson from '@/pages/home/showMore/bigComponent/json/a1s.json'
   export default {
     name:'A1S',
     mixins: [showMoreData],
     props:{
-        scenics:Array,
+        scenics:{
+            required:false,
+        },
         isActive:Boolean,
         dateIndex:Number,
         updatePlace:String,
@@ -96,7 +98,7 @@ import a1sJson from '@/pages/home/showMore/bigComponent/json/a1s.json'
     },
     methods:{
         getResponse(paramsObj){
-            this.$axios.get('http://120.55.190.57/qy/api/command/selectCommandScenicStayHoursDetail',{params:paramsObj}).then(r => {
+            this.$axios.get(API_URL+'/qy/api/command/selectCommandScenicStayHoursDetail',{params:paramsObj}).then(r => {
                 
                 if(r.data.code ==="200"||r.data.code ===200){
                     this.rankItems = r.data.data;

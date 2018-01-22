@@ -70,7 +70,7 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
             var paramsObj = {
                 area:this.mainPageSelect.place,
             }
-            this.$axios.get('http://120.55.190.57/qy/api/command/getCommandPassengerData',{params:paramsObj}).then(r => {
+            this.$axios.get(API_URL+'/qy/api/command/getCommandPassengerData',{params:paramsObj}).then(r => {
                 if(r.data.code ==="200"||r.data.code ===200){
                     this.barNum = r.data.data.num+Math.random();
                 }

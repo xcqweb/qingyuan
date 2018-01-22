@@ -135,20 +135,20 @@ li:nth-of-type(4){
 </template>
 
 <script type="text/javascript">
-import d9sJson from '@/pages/home/showMore/bigComponent/json/d9s.json'
+// import d9sJson from '@/pages/home/showMore/bigComponent/json/d9s.json'
 export default {
     name:'d9',
     props:{
         mainPageSelect:Object,
     },
-   watch:{
+    watch:{
         mainPageSelect:{
         handler: function (val, oldVal) {
             this.getResponse();
         },
         deep:true,
+        },
     },
-   },
     data(){
         return{
         items:[],
@@ -185,7 +185,7 @@ export default {
                 area:this.mainPageSelect.place,
                 name:this.mainPageSelect.turist
             }
-            this.$axios.get('http://120.55.190.57/qy/api/command/getCommandScenicTrack',{params:paramsObj}).then(r => {
+            this.$axios.get(API_URL+'/qy/api/command/getCommandScenicTrack',{params:paramsObj}).then(r => {
                 if(r.status ===200){
                     this.items = r.data.data
                     this.items.forEach((item,index)=>{

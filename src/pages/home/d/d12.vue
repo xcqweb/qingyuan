@@ -89,7 +89,7 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
                 area:this.mainPageSelect.place,
                 name:this.mainPageSelect.turist
             }
-            this.$axios.get('http://120.55.190.57/qy/api/command/selectCommandScenicStayHours',{params:paramsObj}).then(r => {
+            this.$axios.get(API_URL+'/qy/api/command/selectCommandScenicStayHours',{params:paramsObj}).then(r => {
                 
                 if(r.status ===200){
                     this.propsData = r.data.data

@@ -50,18 +50,21 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
             handler: function (val, oldVal) {
                 var paramsObj = {
                     area:val,
-                   type: ["day","month","year"][this.dateIndex]
-                }
-               this.getResponse();
+                    type: ["day","month","year"][this.dateIndex]
+                    }
+                this.getResponse(paramsObj);
             },
             deep:true,
         },
-        updateTurist:function(val){
-            // this.rankItems = b16sJson[val]//data[全部][省][日]
-            // console.log(val)
-            // debugger
-            // console.log(d9sJson[this.updatePlace][this.dateChose[this.dateIndex].context])
-            this.getResponse();
+        updateTurist:{
+            handler: function (val, oldVal) {
+                var paramsObj = {
+                    name:val,
+                    type: ["day","month","year"][this.dateIndex]
+                    }
+                this.getResponse(paramsObj);
+            },
+            deep:true,
         },
         timeDate:{
              handler:function(val, oldVal){
@@ -111,8 +114,7 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
     methods:{
         getResponse(paramsObj){
             
-            this.$axios.get('http://120.55.190.57/qy/api/command/getCommandScenicTrackDetail',{params:paramsObj}).then(r => {
-                
+            this.$axios.get(API_URL+'/qy/api/command/getCommandScenicTrackDetail',{params:paramsObj}).then(r => {
                 if(r.data.code ==="200"||r.data.code ===200){
                     this.rankItems = r.data.data;
                     this.rankItems.forEach((item,index)=>{

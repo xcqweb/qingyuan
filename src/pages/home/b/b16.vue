@@ -111,7 +111,7 @@ export default {
     },
     methods: {
     getResponse(){
-            this.$axios.get('http://120.55.190.57/qy/api/view/getInProvinceData').then(r => {
+            this.$axios.get(API_URL+'/qy/api/view/getInProvinceData').then(r => {
                 
                 if(r.data.code ==="200"||r.data.code ===200){
                     this.montSum =this.$Rw.string_until.addPoint(r.data.data.monthSum);

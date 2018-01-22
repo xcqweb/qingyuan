@@ -295,8 +295,8 @@ Vue.use(vAjax);
             },
             nowRes:{
                     code:"13",
-                    temperature:"loading",
-                    text:"loading",
+                    temperature:"..",
+                    text:"..",
             },
             lifeRes:{
                 car_washing:{brief:"loading"},

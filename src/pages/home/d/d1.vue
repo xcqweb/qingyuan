@@ -464,7 +464,7 @@ display:none !important;
                 area:this.mainPageSelect.place,
                 name:this.mainPageSelect.turist
             }
-            this.$axios.get('http://120.55.190.57/qy/api/command/getCommandScenicHot',{params:paramsObj}).then(r => {
+            this.$axios.get(API_URL+'/qy/api/command/getCommandScenicHot',{params:paramsObj}).then(r => {
 
                 if(r.status ===200){
                     var arrHotPoint = r.data.data

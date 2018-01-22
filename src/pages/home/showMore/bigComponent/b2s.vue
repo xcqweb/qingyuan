@@ -31,7 +31,9 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
     name:'B2S',
     mixins: [showMoreData],
     props:{
-        scenics:Array,
+        scenics:{
+            required:false,
+        },
         updatePlace:String,
     },
     watch:{
@@ -66,7 +68,7 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
     methods:{
 
         getResponse(paramsObj){
-            this.$axios.get('http://120.55.190.57/qy/api/command/selectCommandScenicWarningDetail',{params:paramsObj}).then(r => {
+            this.$axios.get(API_URL+'/qy/api/command/selectCommandScenicWarningDetail',{params:paramsObj}).then(r => {
                  
                 if(r.data.code ==="200"||r.data.code ===200){
                     this.dataItems = r.data.data; 

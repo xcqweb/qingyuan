@@ -17,7 +17,8 @@ Vue.prototype.$axios = axios;
 Vue.prototype.$Rw = Rw;
 Vue.config.productionTip = false
 Vue.config.devtools = true
-
+var API_URL = "http://120.55.190.57"
+window.API_URL = API_URL
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

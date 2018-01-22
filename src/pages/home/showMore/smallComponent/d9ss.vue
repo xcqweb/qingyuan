@@ -146,7 +146,7 @@ li:nth-of-type(2n+3){
 </template>
 
 <script type="text/javascript">
-import d9sJson from '@/pages/home/showMore/bigComponent/json/d9s.json'
+// import d9sJson from '@/pages/home/showMore/bigComponent/json/d9s.json'
 export default {
     name:'d9',
     props:{
@@ -155,7 +155,6 @@ export default {
     data(){
         return{
         msg:'Hello Vue 来自App.vue',
-        items:d9sJson["全部"]["日"],
       }
     },
     components:{}
