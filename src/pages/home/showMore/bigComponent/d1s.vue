@@ -56,8 +56,9 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
         d1ss,
     },
     methods:{
-
+        
     },
+    
     mounted(){
         this.$emit('hideWeeks')
          this.$emit('hideVdate')

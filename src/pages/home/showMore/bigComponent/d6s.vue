@@ -18,8 +18,8 @@
             v-if="a1sShow"
             class="c211" 
             :idName='idName[index]' 
-            :scenics='item["name"]'
-            :dataItem = 'item.data'
+            :scenics='item.name'
+            :dataItem = 'item'
             ></d6ss>
         </div>
     </div>
@@ -28,7 +28,7 @@
 <script>
 import d6ss from '@/pages/home/showMore/smallComponent/d6ss.vue'
 import showMoreData from '@/common/js/mixin/showMoreData.js'
-import a1sJson from '@/pages/home/showMore/bigComponent/json/a1s.json'
+// import a1sJson from '@/pages/home/showMore/bigComponent/json/a1s.json'
   export default {
     name:'d6s',
     mixins: [showMoreData],
@@ -40,15 +40,14 @@ import a1sJson from '@/pages/home/showMore/bigComponent/json/a1s.json'
     },
     watch:{
         updatePlace:function(val){
-            let _self = this;
-            this.nianItems = a1sJson[val]["年"];
+            this.getResponse();
             this.a1sShow = false;
-            setTimeout(() =>{_self.a1sShow = true},0)
+            setTimeout(() =>{this.a1sShow = true},0)
         },
     },
     data() {
       return {
-            nianItems:a1sJson["全部"]["年"],
+            nianItems:[],
             a1sShow:true,
             // ['#FF8885','#57ABFE', '#368DF7', '#7E6AF6', '#E39A50','#FFCD38',  '#4EBBFC', '#75CF65','#B8E986', '#86E9E8', '#58E5E1','#4BCEDD']
             // scenics:['风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区',],
@@ -67,7 +66,19 @@ import a1sJson from '@/pages/home/showMore/bigComponent/json/a1s.json'
         d6ss,
     },
     methods:{
-
+        getResponse(val){
+            var paramsObj = {
+                area:this.updatePlace,
+            }
+            this.$axios.get(API_URL+'/qy/api/command/getCommandCurrentPersonDetail',{params:paramsObj}).then(r => {
+                if(r.data.code ==="200"||r.data.code ===200){
+                    this.nianItems = r.data.data;
+                }   
+            })
+        }
+    },
+    created () {
+        this.getResponse();
     },
     mounted(){
         this.$emit('hideWeeks')

@@ -89,16 +89,16 @@ export default {
                     {name:'C8',title:'游客来源排行'},
                 ],
                 leftComponents:[
-                    {name:'B16',id:'one',index:1,time:100,show:true,title:`省内游客来源地`,},
-                    {name:'C2',id:'two',index:2,time:300,show:false,title:'年龄分析'},
+                     {name:'B16',id:'one',index:1,time:100,show:false,title:`省内游客来源地`,},
+                     {name:'C2',id:'two',index:2,time:300,show:false,title:'年龄分析'},
                     {name:'C4',id:'three',index:3,time:600,show:false,title:'游客男女比例'},
                     {name:'B4',id:'four',index:4,time:900,show:false,title:'路况监测'},
-                    {name:'A1',id:'five',index:5,time:600,show:false,title:'客流人数分析(单位/人)'},
-                    {name:'A5',id:'six',index:6,time:900,show:false,title:'客流实时监测'},
+                     {name:'A1',id:'five',index:5,time:600,show:false,title:'客流人数分析(单位/人)'},
+                      {name:'A5',id:'six',index:6,time:900,show:false,title:'客流实时监测'},
                 ],
                 rightComponents:[
-                    {name:'D7',id:'one',index:1,time:1200,show:false,title:'消费水平分析'},
-                   {name:'C8',id:'two',index:2,time:1500,show:false,title:'游客来源排行'},
+                     {name:'D7',id:'one',index:1,time:1200,show:false,title:'消费水平分析'},
+                     {name:'C8',id:'two',index:2,time:1500,show:false,title:'游客来源排行'},
                 ],
                 
                 text:'headerBody',
@@ -125,7 +125,6 @@ export default {
             },
             showMore:function(name,title){
                 let mainContent = name+'S';
-                console.log(mainContent)
                 $showMore.open(mainContent,title)
             },
             add: function() {
@@ -191,11 +190,22 @@ export default {
             },
             lazy(){
 
-            }
+            },
+            getResponse(){
+                this.$axios.get(API_URL+'/qy/api/view/checkLogin').then(r => {
+                    
+                        if(r.data.code ==="-1"||r.data.code ===-1){
+                        window.location.href=API_URL+":8081/login"
+                        }
+                })
+            },
             
         },
+        created () {
+            
+            this.getResponse();
+        },
         mounted() {
-
         }
     }
 </script>

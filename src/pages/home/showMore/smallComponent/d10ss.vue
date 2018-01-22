@@ -1,25 +1,28 @@
 <!--维度正负面分析-->
 <style lang="less" scoped>
-  .d10{
-    width: 100%;
-    height: 100%;
-    position: relative;
+  .content{
+    width:100%;
+    height:100%;
+    //position:relative;
   }
-  #latitudeAnalyse{
-    width: 100%;
-    height: 100%;
-    position:absolute;
-    left: 10px;
-    right: 0;
-    top: 0px;
-    bottom: 0;
-    margin: auto;
-    transform: scale(0.90);
+  .d10ss{
+    width:100%;
+    height:100%;
+  }
+  .scenic{
+    text-align: center;
+    color: white;
+    width:100%;
+    height: 1.2rem;
+    bottom:-18px;
+    position: absolute;
   }
 </style>
 <template>
-  <div class="d10">
-    <div id="latitudeAnalyse"></div>
+  <div class="content">
+    <div :id="idName" class="d10ss">
+    </div>
+    <div class="scenic">{{scenics}}</div>
   </div>
 </template>
 
@@ -29,7 +32,7 @@
   import echarts from 'echarts';
 
     export default {
-        name:'d10',
+        name:'d10ss',
         data () {
             return {
               option :{
@@ -39,33 +42,25 @@
                   fontSize:12
                 },
                 tooltip: {},
-                legend: {
-                  label:{
-                    show:true,
-                    position:'outside'
-                  },
-                 // data:['纬度正面','纬度负面'],
-                  data: [
-
-                    {name:'纬度正面',
-                      textStyle:{
-                        color:'#fff',
-                        fontWeight: 'bold'
-                      },
-                      icon:'circle',
-
-                    },
-                    {name:'纬度负面',
-                      textStyle:{
-                        color:'#fff',
-                        fontWeight: 'bold'
-                      },
-                      icon:'circle'
-                    }
-                  ],
-                  bottom:-5,
-                  left:0
-                },
+//                legend: {
+//                  label:{
+//                    show:true,
+//                    position:'outside'
+//                  },
+//                  data: [
+//                    {name:'纬度正面',
+//                      textStyle:{
+//                        color:'#76DBF7',
+//
+//                      }
+//                    } ,
+//                    {name:'纬度负面',
+//                      textStyle:{
+//                        color:'#BAE710',
+//                      }
+//                    }
+//                  ]
+//                },
                 radar: {
                   indicator: [
                     { name: '景区管理', max: 6500},
@@ -108,20 +103,22 @@
             }
         },
         props: {
-          scenics: Array,
+          scenics: String,
           isActive: Boolean,
-          title: String,
-          dateIndex: Number
+          dateIndex: Number,
+          idName:String,
+          data:Array
         },
         methods:{
             redom(id){
               this.chart = echarts.init(document.getElementById(id));
               this.chart.setOption(this.option);
-              //this.$nextTick(echarts_resize('latitudeAnalyse',this));
             }
         },
         mounted() {
-         this.redom("latitudeAnalyse");
+          this.redom(this.idName);
+          this.$nextTick(echarts_resize(this.idName,this));
+          console.log(this.dataSingle);
         }
     }
 </script>

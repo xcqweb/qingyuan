@@ -27,6 +27,7 @@
                     <componet
                     :is='item.name' 
                     :key="item.id"  
+                    :tip = "item.tip"
                     :place='updateData.turist' 
                     :mainPageSelect = 'updateData'
                     :commentProp = 'comment'
@@ -125,7 +126,7 @@ export default {
                 ],
                 cutoverStatus:null,
                 leftComponents:[
-                    {name:'A5',id:'one',index:1,time:100,show:false,title:'实时客流监测'},
+                    {name:'A5',id:'one',index:1,time:100,show:false,title:'实时客流监测',tip:true},
                     {name:'B2',id:'two',index:2,time:300,show:false,title:'客流预警',color:'red',},
                     {name:'B6',id:'three',index:3,time:600,show:false,title:'实时天气'},
                     {name:'D6',id:'four',index:4,time:900,show:false,title:'景区当前客流'},
@@ -134,7 +135,7 @@ export default {
                 ],
                 rightComponents:[
                     {name:'D9',id:'one',index:1,time:1200,show:false,title:'游客路线排行'},
-                    {name:'D12',id:'two',index:2,time:1500,show:false,title:'客流停留时长分析'},
+                    {name:'D12',id:'two',index:2,time:1500,show:false,title:'客流停留时长分析(平均)'},
                     {name:'D10',id:'three',index:3,time:1800,show:false,title:'维度正负面分析'},
                     {name:'D11',id:'four',index:4,time:2100,show:false,title:'旅游关键词'},
                 ],
@@ -178,19 +179,32 @@ export default {
     },
     methods: {
         catchmsg1(data){
-            this.updateData.place = data;
+            if(data === "全部"){
+                this.updateData ={
+                    place:data,
+                    turist:"全部"
+                }
+            }else{
+                this.updateData ={
+                    place:data,
+                    turist:this.updateData.turist
+                }
+            }
             this.cityData = this.switch(data)
         },
         catchmsg2(data){
-           this.updateData.turist = data;
+           this.updateData ={
+                place:this.updateData.place,
+                turist:data,
+            }
         },
         waringColor(val){
             this.leftComponents[1].color = val;
         },
         showMore:function(name,title){
             let mainContent = name+'S';
-            if(name ==='A3'){
-                console.log("ToDo")
+            if(name ==='D10'||name ==='D11'){
+                $showMore.open('A3S',title)
             }else{
                 $showMore.open(mainContent,title)
             }
@@ -308,11 +322,22 @@ export default {
         },
         lazy(){
 
-        }
+        },
+        getResponse(){
+                this.$axios.get(API_URL+'/qy/api/view/checkLogin').then(r => {
+                    
+                        if(r.data.code ==="-1"||r.data.code ===-1){
+                        window.location.href=API_URL+"/login"
+                        }
+                })
+            },
                     
     },
     components:{
         ...componetstatus,
+    },
+    created () {
+        this.getResponse();
     },
     mounted(){
 

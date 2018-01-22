@@ -93,8 +93,16 @@ display:none !important;
             }
         },
         props:[
-            'place'
+            'place','mainPageSelect'
         ],
+        watch:{
+            mainPageSelect:{
+                handler: function (val, oldVal) {
+                     this.getResponse(val.place)
+                },
+                deep:true,
+            }
+        },
         methods:{
             addLineVideo(){
                 var canvas = document.getElementsByClassName('lineVideo')[0];
@@ -129,7 +137,7 @@ display:none !important;
                 }
             },
             mapMoveSelf(map){
-                console.log(map)
+      
                 setTimeout(function(){
                     map.panTo(new BMap.Point(119.906441,29.457793));
                 }, 1000);
@@ -290,8 +298,8 @@ display:none !important;
                 map.addControl(ctrl);
                 ctrl.setAnchor(BMAP_ANCHOR_BOTTOM_RIGHT);  
             },
-            addHot(map){
-                    var points =[];
+            addHot(map,arrHotPoint){
+                    var points =arrHotPoint;
                     let makeMap = function(){
                         let minX = 112.739365;
                         let minY = 23.554996;
@@ -356,13 +364,13 @@ display:none !important;
                         return !!(elem.getContext && elem.getContext('2d'));
                     }
             },
-            addScript(){
+            addScript(val,arrHotPoint){
                 let _self = this;
                 var oS=document.createElement('script');
                 oS.src='http://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js?'+Math.random();
                 this.$el.appendChild(oS)
                 oS.onload=function(){
-                    _self.rodomMap();
+                    _self.rodomMap(val,arrHotPoint);
                 }
                 this.$el.removeChild(oS);
             },
@@ -377,8 +385,27 @@ display:none !important;
                 }
                 this.$el.removeChild(oS);
             },
-            rodomMap(){
+            moveTo(map,lon,lat,zoom){
+                    if(lon){
+                         map.panTo(new BMap.Point(lon,lat));
+                         map.setZoom(zoom);
+                    }
+                   
+            },
+            rodomMap(val,arrHotPoint){
                 const _self= this;
+                const lenObj ={
+                    "全部":{lon:113.06689,lat:23.699107,zoom:11},
+                    "清远市":{lon:113.0323,lat:23.699107,zoom:13},
+                    "清城":{lon:113.06689,lat:23.704022,zoom:13},
+                    "清新":{lon:112.991271,lat:23.75427,zoom:13},
+                    "佛冈":{lon:113.539303,lat:23.886532,zoom:13},
+                    "英德":{lon:113.418281,lat:24.192466,zoom:13},
+                    "连州":{lon:112.38616,lat:24.786467,zoom:13},
+                    "连南":{lon:112.290355,lat:24.732074,zoom:13},
+                    "连山":{lon:112.102727,lat:24.582118,zoom:13},
+                    "阳山":{lon:112.646658,lat:24.47147,zoom:13},
+                }; 
                 //绘制牵引线
                 _self.addLineVideo();
                 var map = new BMap.Map("XSDFXPaged",{enableMapClick:true});
@@ -399,6 +426,7 @@ display:none !important;
                 /************************************************
                 添加折线
                 *************************************************/
+                _self.moveTo(map,lenObj[val  ===  undefined ?"全部": val].lon,lenObj[val  ===  undefined ?"全部": val].lat,lenObj[val  ===  undefined ?"全部": val].zoom);
                 var pointGZ = new BMap.Point(119.923671,29.514494);
                 var pointHK = new BMap.Point(110.35,20.02);
                 // setTimeout(function(){
@@ -406,7 +434,7 @@ display:none !important;
                 //     map.addOverlay(polyline);
                 // },6000);
                 
-                _self.addHot(map);
+                _self.addHot(map,arrHotPoint);
                 // _self.addControl(map);
                 _self.addLocaPosition(map);
                 /************************************************
@@ -429,16 +457,34 @@ display:none !important;
                 给地图添加右键菜单
                 *************************************************/
                 _self.addMenu(map);
+            },
+            getResponse(val){
+            let _self = this;
+            var paramsObj = {
+                area:this.mainPageSelect.place,
+                name:this.mainPageSelect.turist
             }
+            this.$axios.get(API_URL+'/qy/api/command/getCommandScenicHot',{params:paramsObj}).then(r => {
+
+                if(r.status ===200){
+                    var arrHotPoint = r.data.data
+                  
+                   this.addScript(val,arrHotPoint);
+                }
+            })
+        }
+        },
+        created(){
+            this.getResponse("全部");
         },
         mounted() {
-            this.addScript();
+            
             // 百度地图API功能
             // 创建Map实例
         
         } ,
         update(){
-            console.log(BMapLib)
+     
         }
     }
 </script>

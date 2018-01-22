@@ -109,15 +109,18 @@ import Vue from 'vue'
                  isMore:true,
             }
         },
-        template:`<div class='listdiv'  v-bind:style="{height: (list.length+1)*1.8+'rem',maxHeight:maxHeight+'rem' }" v-bind:class="{ more: isMore }" v-if='status'><div class="overlay" v-if='status' @click.stop='hidelist'></div><ul @mousewheel='moreStatus'  v-if='status'><li class="v-dropdown-menu_list" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}
+        template:`<div class='listdiv'  v-bind:style="{height: listDivHeight+'rem',maxHeight:maxHeight+'rem' }" v-bind:class="{ more: isMore }" v-if='status'><div class="overlay" v-if='status' @click.stop='hidelist'></div><ul @mousewheel='moreStatus'  v-if='status'><li class="v-dropdown-menu_list" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}
     </li></ul></div>`,
         computed:{
             maxHeight:function(){
                 if(this.list.length>5){
                     return 10.8
                 }else{
-                    return (list.length+1)*1.8
+                    return (this.list.length+1)*1.8
                 }
+            },
+            listDivHeight:function(){
+                return (this.list.length)*1.8
             }
         },
         methods:{
@@ -146,11 +149,13 @@ import Vue from 'vue'
                 
         },
         mounted(){
+            
             if(this.list.length>6){
                 this.isMore =  true
             }else{
                 this.isMore = false
             }
+            
         }
     }
 )
@@ -229,9 +234,9 @@ import Vue from 'vue'
         position: absolute;
         left:0;
         top:0;
-        transform: translate(-13%,0);
+        transform: translate(-15%,0);
         height: auto;
-        width: 140%;
+        width: 150%;
         margin-left: -1px;
         z-index:444;
         max-height: 10.8rem;

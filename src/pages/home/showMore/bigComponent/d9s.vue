@@ -28,32 +28,63 @@
 <script>
 import d9ss from '@/pages/home/showMore/smallComponent/d9ss.vue'
 import showMoreData from '@/common/js/mixin/showMoreData.js'
-import d9sJson from '@/pages/home/showMore/bigComponent/json/d9s.json'
+// import d9sJson from '@/pages/home/showMore/bigComponent/json/d9s.json'
   export default {
     name:'c8s',
     mixins: [showMoreData],
     props:{
-        scenics:Array,
+        scenics:{
+            required:false,
+        },
         dateIndex:Number,
-        updatePlace:String,
-        updateSheng:String,
+        updatePlace:{
+            default: "全部"
+        },
+        updateTurist:{
+            default: "全部"
+        },
+        timeDate:Object,
     },
     watch:{
-        updatePlace:function(val){
-            // this.rankItems = b16sJson[val]//data[全部][省][日]
-            if(this.dateIndex ===2){
-                 this.rankItems = d9sJson[val][this.dateChose[0].context]
-            }else{
-                 this.rankItems = d9sJson[val][this.dateChose[this.dateIndex].context]
-            }
-           
+        updatePlace:{
+            handler: function (val, oldVal) {
+                var paramsObj = {
+                    area:val,
+                    type: ["day","month","year"][this.dateIndex]
+                    }
+                this.getResponse(paramsObj);
+            },
+            deep:true,
         },
-
+        updateTurist:{
+            handler: function (val, oldVal) {
+                var paramsObj = {
+                    name:val,
+                    type: ["day","month","year"][this.dateIndex]
+                    }
+                this.getResponse(paramsObj);
+            },
+            deep:true,
+        },
+        timeDate:{
+             handler:function(val, oldVal){
+                 let end = val.end.join("-")
+                 let begin = val.begin.join("-")
+                 var paramsObj = {
+                    area:this.updatePlace,
+                    beginTime:begin,
+                    endTime:end
+                }
+                 this.getResponse(paramsObj);
+             },
+             deep:true,
+        },
         dateIndex:function(val){
-            this.rankItems = d9sJson[this.updatePlace][this.dateChose[val].context]
-            if(val ===2){
-                this.rankItems = d9sJson[this.updatePlace][this.dateChose[0].context]
+            var paramsObj = {
+                area:this.updatePlace,
+                type: ["day","month","year"][val]
             }
+             this.getResponse(paramsObj);
         }
     },
     data() {
@@ -63,7 +94,7 @@ import d9sJson from '@/pages/home/showMore/bigComponent/json/d9s.json'
             {context:'月',class:''},
             {context:'年',class:''},
             ],
-            rankItems:d9sJson["全部"]["日"],
+            rankItems:[],
             // ['#FF8885','#57ABFE', '#368DF7', '#7E6AF6', '#E39A50','#FFCD38',  '#4EBBFC', '#75CF65','#B8E986', '#86E9E8', '#58E5E1','#4BCEDD']
             // scenics:['风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区',],
             // idName:['c4s1','c4s2','c4s3','c4s4','c4s5','c4s6','c4s7','c4s8','c4s9'],
@@ -81,11 +112,29 @@ import d9sJson from '@/pages/home/showMore/bigComponent/json/d9s.json'
         d9ss,
     },
     methods:{
-
+        getResponse(paramsObj){
+            
+            this.$axios.get(API_URL+'/qy/api/command/getCommandScenicTrackDetail',{params:paramsObj}).then(r => {
+                if(r.data.code ==="200"||r.data.code ===200){
+                    this.rankItems = r.data.data;
+                    this.rankItems.forEach((item,index)=>{
+                        this.rankItems[index].track = item.track.split("==>").slice(0,3) ;
+                    })
+                }
+            })
+        }
+    },
+    created () {
+        var paramsObj = {
+                area:this.updatePlace,
+                name:this.updateTurist,
+                type:"day"
+            }
+        this.getResponse(paramsObj);
     },
     mounted(){
         this.$emit('showDateFormatChose',this.dateChose);
-        // this.$emit('showShennei');
+         this.$emit('showDoubleSelect');
     }
   }
 </script>

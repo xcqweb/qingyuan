@@ -51,7 +51,7 @@ export default {
     },
     data(){
         return {
-            calendar1:{
+            calendar:{
                 value:[2018,2,16], //默认日期
                 // lunar:true, //显示农历
                 weeks:['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
@@ -99,6 +99,12 @@ export default {
                     this.$emit('pageDate',{begin,end})
                 }
             },
+        }
+    },
+    computed: {
+        calendar1:function(){
+            calendar.value= [new Date().getFullYear(),new Date().getMonth()+1,new Date().getDate()]
+            return calendar
         }
     },
     methods:{

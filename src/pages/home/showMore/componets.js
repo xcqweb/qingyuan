@@ -11,7 +11,7 @@ let A1S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/a1s.vu
 //概况
 let A2S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/develping.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/develping.vue'))})}
 //客流总数，经济分析，富民指数
-let A3S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/develping.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/develping.vue'))})}
+let A3S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/a3s.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/a3s.vue'))})}
 //客户满意度
 let A4S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/develping.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/develping.vue'))})}
 //实时监控

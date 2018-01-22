@@ -4,8 +4,8 @@
         <div class="circle">
             <img :src="imgacircle"/>
         </div>
-        <span>{{dataItem.warningPer}}%</span>
-        <div class="text"><font>{{warningText}}</font></div>
+        <span v-bind:class="{fontRed:fontRedData}">{{dataItem.percent}}%</span>
+        <div class="text"><font >{{dataItem.warnNum}}</font></div>
         <div class="scenic">{{scenics}}</div>
     </div>
 </template>
@@ -22,22 +22,41 @@ export default {
         dataItem:Object,
     },
     watch:{
-        dataItem: function (val, oldVal) {
-            this.chart = echarts.init(document.getElementById(id));
-         this.chart.setOption(this.option);
-        },
+        dataItem: {
+            handler: function (val, oldVal) {
+
+                this.$nextTick(echarts_resize(this.idName,this))
+            },
             deep:true,
+        }
     },
   data () {
     return {
         imgacircle:require('../../../../assets/images/home/b/circle.png'),
-        option:{
+        
+    }
+  },
+  computed: { 
+      warningText:function(){
+          return this.dataItem.noTitle === false ? '客流预警'+this.dataItem.warningNub : '';
+      },
+      fontRedData:function(){
+         return this.dataItem.percent<90 ? false : true;
+      }
+  },
+  methods:{
+      redom(id){
+           if(this.chart){
+                this.chart.dispose();
+            }
+          this.chart = echarts.init(document.getElementById(id));
+          let option={
             backgroundColor: 'rgba(0,0,0,0)',
             series: [
                 {
                     name: '消费情况',
                     type: 'pie',
-                    radius: this.dataItem.noTitle ===undefined ?['45%','49%']: ['63%', '79%'],
+                    radius: this.dataItem.noTitle ===undefined ?['42%','49%']: ['69%', '75%'],
                     center: ['50%', '50%'],
                     label: {
                         normal: {
@@ -52,18 +71,18 @@ export default {
                     data:[
                         
                         {
-                        value:this.dataItem.warningPer,
+                        value:this.dataItem.percent,
                         name:'',
                         itemStyle:{
                             normal:{
-                                color:this.dataItem.warningPer<90?'#1da7fe':'#fe6e40',
+                                color:this.dataItem.percent < 90 ? '#1da7fe' : '#FF0000',
                                 
 
                             }
                         }
                     },
                         {
-                        value:100-this.dataItem.warningPer, 
+                        value:100-this.dataItem.percent, 
                         name:'',
                         itemStyle:{
                             normal:{
@@ -77,17 +96,7 @@ export default {
                 }
             ]
         }
-    }
-  },
-  computed: { 
-      warningText:function(){
-          return this.dataItem.noTitle === false ? '客流预警'+this.dataItem.warningNub : '';
-      }
-  },
-  methods:{
-      redom(id){
-          this.chart = echarts.init(document.getElementById(id));
-          this.chart.setOption(this.option);
+          this.chart.setOption(option);
       }
   },
   mounted() {
@@ -118,6 +127,9 @@ export default {
         color:#1da7fe;
         transform: translate(-50%,-50%);
         font-size:.8rem;
+        &.fontRed{
+                color:red;
+            }
     }
     .pieB2{
         height:100%;
@@ -145,6 +157,7 @@ export default {
             margin-left:.6rem;
             color:#1da7fe;
             font-size:1rem;
+            
         }
     }
     img{                  

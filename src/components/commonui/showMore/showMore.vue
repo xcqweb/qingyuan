@@ -40,7 +40,7 @@ img{
         z-index:31;
         background-color:#153081;
         overflow: hidden;
-
+        box-shadow:0px 0 30px rgba(39, 81, 197, 0.9) inset;
     }
     .header{
         height: 6%;
@@ -62,6 +62,28 @@ img{
             height: 100%;
             float: left;
             margin-left: 1rem;
+            position: relative;
+            font-size: 1.3rem;
+            color:white;
+            .qylable{
+                min-width: 10%;
+                height:1.8rem;
+                line-height: 1.8rem;
+                position: absolute;
+                top: 50%;
+                transform: translate(0,-50%);
+                font-size: 13px;
+            }
+            .oneSelection{
+                left: 11%;
+                width: 18%;
+            }
+        }
+        .comentSlect{
+            width:10%;
+            height: 100%;
+            float: left;
+            margin-left: 3rem;
             position: relative;
             font-size: 1.3rem;
             color:white;
@@ -216,6 +238,14 @@ img{
                     class="oneSelection"
                     ></sleckte>
                 </div>
+                <div class="comentSlect" v-if="conmentPlatform.status">
+                    <div class="qylable">发布平台：</div>
+                    <sleckte 
+                    :selectList="conmentPlatform.list" 
+                    v-on:listenAtparent="conmentPlatformCatch" 
+                    class="oneSelection"
+                    ></sleckte>
+                </div>
                 <doubleSelection
                 v-if="!placeSlect"
                 v-on:listenDoubleSelection="catchmsg" 
@@ -272,13 +302,16 @@ img{
                 :updateTurist = 'updateData.turist' 
                 :updatePlace ='updateData.place' 
                 :updateSheng = 'updateData.sheng'
+                :conmentPlatformProp = 'updateData.conmentPlatform'
                 :starNub = 'starNub' 
                 :dateIndex = 'dateIndex' 
                 :titles = 'qyselectlist.title'
+                :timeDate ='timeDate'
                 @showDateFormatChose = 'showDateFormatChose'
                 @hideWeeks = 'hideWeeks'
                 @hideDoubleDate = 'hideDoubleDate'
                 @showComment ='showComment' 
+                @showCommentSlect = 'showCommentSlect'
                 @hideVdate = 'hideVdate'
                 @showShennei ='showShennei'
                 @showDoubleSelect = 'showDoubleSelect'
@@ -310,6 +343,10 @@ var _ = require('lodash');
             vDateStatus:true,
             //省
             shengNeiStatus:false,
+            conmentPlatform:{
+                status:false,
+                list:{},
+            },
             starNub :5,
             dateIndex:0,
             dateChoseList:[
@@ -342,9 +379,11 @@ var _ = require('lodash');
                    "全部", "清城","清新","佛冈","英德","连州","连南","连山","阳山"
                 ]
             },
+            timeDate:{begin:[],end:[]},
             updateData:{
                 place:'全部',
                 sheng:'省',
+                conmentPlatform:'全部',
                 turist:['飞霞风景名胜区','牛鱼嘴原始生态风景区','天子山瀑布风景区','白庙渔村','飞来寺','美林湖及大家元摩天轮片区',
                             '太和古洞旅游区','笔架山度假区','安庆村','清泉湾生态旅游度假区','金龙洞','九牛洞村',
                             '观音山王山寺','田野绿世界','熹乐谷','金龟泉生态度假村','上岳古民居',
@@ -414,22 +453,31 @@ var _ = require('lodash');
             this.shengNeiStatus = false;
             this.qyselectlist.title ="全部";
             this.updateData.place ="全部";
-            
+            this.conmentPlatform = {status:false,list:{}} ;
+            this.updateData.conmentPlatform ="全部"
             this.cityData = this.updateData.turist;
         },
         catchmsgSingle(data){
            this.updateData.place = data;
+           this.updateData.conmentPlatform ="全部"
            this.cityData = this.switch(data);
         },
         catchForShengnei(data){
             this.updateData.sheng = data;
         },
+        conmentPlatformCatch(data){
+            this.updateData.conmentPlatform = data;
+        },
         catchmsg(data){
             this.updateData  = data;
+           
         },
         //获取时间
         getDate(value){
-            console.log(value);
+            this.timeDate ={
+                end:value.end,
+                begin:value.begin,
+            }
         },
         redom7(){
             this.isActive = true;
@@ -462,9 +510,16 @@ var _ = require('lodash');
         showShennei(){
             this.shengNeiStatus =true;
         },
+        //显示平台下拉框
+        showCommentSlect(data){
+            this.conmentPlatform = {
+                status:true,
+                list:data,
+            };
+        },
         switch(val){
             const  cityData = {
-                "全部":['飞霞风景名胜区','牛鱼嘴原始生态风景区','天子山瀑布风景区','白庙渔村','飞来寺','美林湖及大家元摩天轮片区',
+                "全部":["全部",'飞霞风景名胜区','牛鱼嘴原始生态风景区','天子山瀑布风景区','白庙渔村','飞来寺','美林湖及大家元摩天轮片区',
                             '太和古洞旅游区','笔架山度假区','安庆村','清泉湾生态旅游度假区','金龙洞','九牛洞村',
                             '观音山王山寺','田野绿世界','熹乐谷','金龟泉生态度假村','上岳古民居',
                             '峰林胜境景区','英德老虎谷暗河漂流','九龙小镇','铁溪小镇','仙湖温泉旅游度假区','浈阳坊旅游小镇','大樟沙滩度假村','云水谣','彭家祠',
@@ -473,14 +528,14 @@ var _ = require('lodash');
                             '大旭山瀑布群旅游景区','皇后山','鹰扬关景区','雾山梯田',
                             '北山古寺','鱼水旅游风景区','龙凤温泉'
                 ],
-                "清城":['飞霞风景名胜区','牛鱼嘴原始生态风景区','天子山瀑布风景区','白庙渔村','飞来寺','美林湖及大家元摩天轮片区'],
-                "清新":['太和古洞旅游区','笔架山度假区','安庆村','清泉湾生态旅游度假区','金龙洞','九牛洞村',],
-                "佛冈":['观音山王山寺','田野绿世界','熹乐谷','金龟泉生态度假村','上岳古民居'],
-                "英德":['峰林胜境景区','英德老虎谷暗河漂流','九龙小镇','铁溪小镇','仙湖温泉旅游度假区','浈阳坊旅游小镇','大樟沙滩度假村','云水谣','彭家祠'],
-                "连州":['清远市连州福山景区','大东山温泉度假区','李屋村','潭岭天湖'],
-                "连南":['油岭瑶寨','瑶族舞曲实景演出','云海花谷'],
-                "连山":['大旭山瀑布群旅游景区','皇后山','鹰扬关景区','雾山梯田'],
-                "阳山":['北山古寺','鱼水旅游风景区','龙凤温泉'],
+                "清城":["全部",'飞霞风景名胜区','牛鱼嘴原始生态风景区','天子山瀑布风景区','白庙渔村','飞来寺','美林湖及大家元摩天轮片区'],
+                "清新":["全部",'太和古洞旅游区','笔架山度假区','安庆村','清泉湾生态旅游度假区','金龙洞','九牛洞村',],
+                "佛冈":["全部",'观音山王山寺','田野绿世界','熹乐谷','金龟泉生态度假村','上岳古民居'],
+                "英德":["全部",'峰林胜境景区','英德老虎谷暗河漂流','九龙小镇','铁溪小镇','仙湖温泉旅游度假区','浈阳坊旅游小镇','大樟沙滩度假村','云水谣','彭家祠'],
+                "连州":["全部",'清远市连州福山景区','大东山温泉度假区','李屋村','潭岭天湖'],
+                "连南":["全部",'油岭瑶寨','瑶族舞曲实景演出','云海花谷'],
+                "连山":["全部",'大旭山瀑布群旅游景区','皇后山','鹰扬关景区','雾山梯田'],
+                "阳山":["全部",'北山古寺','鱼水旅游风景区','龙凤温泉'],
 
             }
            return cityData[val]

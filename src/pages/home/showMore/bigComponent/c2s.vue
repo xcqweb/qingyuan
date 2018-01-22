@@ -40,16 +40,16 @@
         v-for="(item,index) in nianItems" 
         :key="idName[index]"
         :idName='idName[index]' 
-        :pieData='item["data"]' 
+        :pieData='item' 
         :scenic = 'item["name"]'
-        :isActive ='isActive'
+        :isActive ='isActive' 
+        :dateIndex ='dateIndex'
         ></nianling>
     </div>
 </template>
 
 <script>
 import nianling from '@/pages/home/showMore/smallComponent/nialing_pie.vue'
-import c2sJson from '@/pages/home/showMore/bigComponent/json/c2s.json'
 import showMoreData from '@/common/js/mixin/showMoreData.js'
   export default {
     name:'C2S',
@@ -59,201 +59,42 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
          isActive:Boolean,
          dateIndex:Number,
          updatePlace:String,
+         timeDate:Object,
     },
     watch:{
-        dateIndex:function(val){
-            let _self = this;
-            this.nianItems = c2sJson[this.updatePlace][this.dateChose[val].context];
-            this.c2sShow = false;
-            setTimeout(() =>{_self.c2sShow = true},0)
-        },
         updatePlace:function(val){
-            let _self = this;
-            this.nianItems = c2sJson[val][this.dateChose[this.dateIndex].context];
-            this.c2sShow = false;
-            setTimeout(() =>{_self.c2sShow = true},0)
+            var paramsObj = {
+                area:this.updatePlace,
+                type:["day","month","year"][this.dateIndex],
+            }
+            this.getResponse(paramsObj);
+        },
+        dateIndex:function(val){
+            var paramsObj = {
+                area:this.updatePlace,
+                type:["day","month","year"][this.dateIndex],
+            }
+            this.getResponse(paramsObj);
+        },
+        timeDate:{
+             handler:function(val, oldVal){
+                 let end = val.end.join("-")
+                 let begin = val.begin.join("-")
+                 var paramsObj = {
+                    area:this.updatePlace,
+                    beginTime:begin,
+                    endTime:end
+				}
+                 this.getResponse(paramsObj);
+             },
+             deep:true,
         }
     },
     data() {
       return {
         //   idName:['c4s1','c4s2','c4s3','c4s4','c4s5','c4s6','c4s7','c4s8','c4s9'],
-            responseDataObj:c2sJson,
             c2sShow:true,
             nianItems:[
-            {"name":"飞霞风景名胜区",
-                    "data":[
-                    {"value":15, "name":"0-19"},
-                    {"value":17, "name":"19-25"},
-                    {"value":22, "name":"26-35"},
-                    {"value":22, "name":"36-45"},
-                    {"value":19, "name":"46-55"},
-                    {"value":5, "name":"55以上"}
-                ]
-            },
-            {"name":"牛鱼嘴原始生态风景区","data":[
-                {"value":12, "name":"0-19"},
-                {"value":11, "name":"19-25"},
-                {"value":24, "name":"26-35"},
-                {"value":18, "name":"36-45"},
-                {"value":27, "name":"46-55"},
-                {"value":8, "name":"55以上"}
-            ]},
-            {"name":"天子山瀑布风景区","data":[
-                {"value":8, "name":"0-19"},
-                {"value":12, "name":"19-25"},
-                {"value":19, "name":"26-35"},
-                {"value":24, "name":"36-45"},
-                {"value":25, "name":"46-55"},
-                {"value":12, "name":"55以上"}
-            ]},
-            {"name":"白庙渔村","data":[
-                {"value":10, "name":"0-19"},
-                {"value":15, "name":"19-25"},
-                {"value":20, "name":"26-35"},
-                {"value":27, "name":"36-45"},
-                {"value":19, "name":"46-55"},
-                {"value":9, "name":"55以上"}
-            ]},
-            {"name":"飞来寺","data":[
-                {"value":9, "name":"0-19"},
-                {"value":13, "name":"19-25"},
-                {"value":23, "name":"26-35"},
-                {"value":26, "name":"36-45"},
-                {"value":18, "name":"46-55"},
-                {"value":11, "name":"55以上"}
-            ]},
-            {"name":"美林湖及大家元摩天轮片区","data":[
-                {"value":13, "name":"0-19"},
-                {"value":8, "name":"19-25"},
-                {"value":26, "name":"26-35"},
-                {"value":22, "name":"36-45"},
-                {"value":22, "name":"46-55"},
-                {"value":9, "name":"55以上"}
-            ]},
-            {"name":"清远市连州福山景区",
-                    "data":[
-                    {"value":8, "name":"0-19"},
-                    {"value":11, "name":"19-25"},
-                    {"value":22, "name":"26-35"},
-                    {"value":21, "name":"36-45"},
-                    {"value":27, "name":"46-55"},
-                    {"value":11, "name":"55以上"}
-                ]
-            },
-            {"name":"大东山温泉度假区","data":[
-                {"value":12, "name":"0-19"},
-                {"value":9, "name":"19-25"},
-                {"value":26, "name":"26-35"},
-                {"value":25, "name":"36-45"},
-                {"value":25, "name":"46-55"},
-                {"value":3, "name":"55以上"}
-            ]},
-            {"name":"李屋村","data":[
-                {"value":15, "name":"0-19"},
-                {"value":15, "name":"19-25"},
-                {"value":20, "name":"26-35"},
-                {"value":19, "name":"36-45"},
-                {"value":19, "name":"46-55"},
-                {"value":12, "name":"55以上"}
-            ]},
-            {"name":"潭岭天湖","data":[
-                {"value":13, "name":"0-19"},
-                {"value":14, "name":"19-25"},
-                {"value":25, "name":"26-35"},
-                {"value":18, "name":"36-45"},
-                {"value":18, "name":"46-55"},
-                {"value":12, "name":"55以上"}
-            ]},
-            {"name":"飞来寺","data":[
-                {"value":11, "name":"0-19"},
-                {"value":13, "name":"19-25"},
-                {"value":27, "name":"26-35"},
-                {"value":20, "name":"36-45"},
-                {"value":18, "name":"46-55"},
-                {"value":11, "name":"55以上"}
-            ]},
-            {"name":"美林湖及大家元摩天轮片区","data":[
-                {"value":15, "name":"0-19"},
-                {"value":17, "name":"19-25"},
-                {"value":22, "name":"26-35"},
-                {"value":22, "name":"36-45"},
-                {"value":19, "name":"46-55"},
-                {"value":5, "name":"55以上"}
-            ]},
-            {"name":"峰林胜境景区",
-                    "data":[
-                    {"value":14, "name":"0-19"},
-                    {"value":17, "name":"19-25"},
-                    {"value":22, "name":"26-35"},
-                    {"value":25, "name":"36-45"},
-                    {"value":20, "name":"46-55"},
-                    {"value":2, "name":"55以上"}
-                ]
-            },
-            {"name":"英德老虎谷暗河漂流","data":[
-                {"value":15, "name":"0-19"},
-                {"value":17, "name":"19-25"},
-                {"value":22, "name":"26-35"},
-                {"value":22, "name":"36-45"},
-                {"value":19, "name":"46-55"},
-                {"value":5, "name":"55以上"}
-            ]},
-            {"name":"九龙小镇","data":[
-                {"value":15, "name":"0-19"},
-                {"value":17, "name":"19-25"},
-                {"value":22, "name":"26-35"},
-                {"value":22, "name":"36-45"},
-                {"value":19, "name":"46-55"},
-                {"value":5, "name":"55以上"}
-            ]},
-            {"name":"铁溪小镇","data":[
-                {"value":15, "name":"0-19"},
-                {"value":17, "name":"19-25"},
-                {"value":22, "name":"26-35"},
-                {"value":22, "name":"36-45"},
-                {"value":19, "name":"46-55"},
-                {"value":5, "name":"55以上"}
-            ]},
-            {"name":"仙湖温泉旅游度假区","data":[
-                {"value":15, "name":"0-19"},
-                {"value":17, "name":"19-25"},
-                {"value":22, "name":"26-35"},
-                {"value":22, "name":"36-45"},
-                {"value":19, "name":"46-55"},
-                {"value":5, "name":"55以上"}
-            ]},
-            {"name":"浈阳坊旅游小镇","data":[
-                {"value":15, "name":"0-19"},
-                {"value":17, "name":"19-25"},
-                {"value":22, "name":"26-35"},
-                {"value":22, "name":"36-45"},
-                {"value":19, "name":"46-55"},
-                {"value":5, "name":"55以上"}
-            ]},
-            {"name":"大樟沙滩度假村","data":[
-                {"value":15, "name":"0-19"},
-                {"value":17, "name":"19-25"},
-                {"value":22, "name":"26-35"},
-                {"value":22, "name":"36-45"},
-                {"value":19, "name":"46-55"},
-                {"value":5, "name":"55以上"}
-            ]},
-            {"name":"云水谣","data":[
-                {"value":15, "name":"0-19"},
-                {"value":17, "name":"19-25"},
-                {"value":22, "name":"26-35"},
-                {"value":22, "name":"36-45"},
-                {"value":19, "name":"46-55"},
-                {"value":5, "name":"55以上"}
-            ]},
-            {"name":"彭家祠","data":[
-                {"value":15, "name":"0-19"},
-                {"value":17, "name":"19-25"},
-                {"value":22, "name":"26-35"},
-                {"value":22, "name":"36-45"},
-                {"value":19, "name":"46-55"},
-                {"value":5, "name":"55以上"}
-            ]},
         ],
              dateChose:[
                 {context:'日',class:'chose'},
@@ -288,105 +129,7 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
             ],
             // ['#FF8885','#57ABFE', '#368DF7', '#7E6AF6', '#E39A50','#FFCD38',  '#4EBBFC', '#75CF65','#B8E986', '#86E9E8', '#58E5E1','#4BCEDD']
             dataItems:[
-                [
-                    {value:335, name:'0-17'},
-                    {value:231, name:'18-24'},
-                    {value:174, name:'25-29'},
-                    {value:135, name:'30-34'},
-                    {value:237, name:'35-39'},
-                    {value:432, name:'40-44'},
-                    {value:135, name:'45-49'},
-                    {value:93, name:'50-54'},
-                    {value:111, name:'55以上'},
-                ],
-                [
-                    {value:335, name:'0-17'},
-                    {value:231, name:'18-24'},
-                    {value:174, name:'25-29'},
-                    {value:135, name:'30-34'},
-                    {value:237, name:'35-39'},
-                    {value:432, name:'40-44'},
-                    {value:135, name:'45-49'},
-                    {value:93, name:'50-54'},
-                    {value:111, name:'55以上'},
-                ],
-                 [
-                    {value:335, name:'0-17'},
-                    {value:231, name:'18-24'},
-                    {value:174, name:'25-29'},
-                    {value:135, name:'30-34'},
-                    {value:237, name:'35-39'},
-                    {value:432, name:'40-44'},
-                    {value:135, name:'45-49'},
-                    {value:93, name:'50-54'},
-                    {value:111, name:'55以上'},
-                ],
-                [
-                    {value:335, name:'0-17'},
-                    {value:231, name:'18-24'},
-                    {value:174, name:'25-29'},
-                    {value:135, name:'30-34'},
-                    {value:237, name:'35-39'},
-                    {value:432, name:'40-44'},
-                    {value:135, name:'45-49'},
-                    {value:93, name:'50-54'},
-                    {value:111, name:'55以上'},
-                ],
-                [
-                    {value:335, name:'0-17'},
-                    {value:231, name:'18-24'},
-                    {value:174, name:'25-29'},
-                    {value:135, name:'30-34'},
-                    {value:237, name:'35-39'},
-                    {value:432, name:'40-44'},
-                    {value:135, name:'45-49'},
-                    {value:93, name:'50-54'},
-                    {value:111, name:'55以上'},
-                ],
-                [
-                    {value:335, name:'0-17'},
-                    {value:231, name:'18-24'},
-                    {value:174, name:'25-29'},
-                    {value:135, name:'30-34'},
-                    {value:237, name:'35-39'},
-                    {value:432, name:'40-44'},
-                    {value:135, name:'45-49'},
-                    {value:93, name:'50-54'},
-                    {value:111, name:'55以上'},
-                ],
-                [
-                    {value:335, name:'0-17'},
-                    {value:231, name:'18-24'},
-                    {value:174, name:'25-29'},
-                    {value:135, name:'30-34'},
-                    {value:237, name:'35-39'},
-                    {value:432, name:'40-44'},
-                    {value:135, name:'45-49'},
-                    {value:93, name:'50-54'},
-                    {value:111, name:'55以上'},
-                ],
-                [
-                    {value:335, name:'0-17'},
-                    {value:231, name:'18-24'},
-                    {value:174, name:'25-29'},
-                    {value:135, name:'30-34'},
-                    {value:237, name:'35-39'},
-                    {value:432, name:'40-44'},
-                    {value:135, name:'45-49'},
-                    {value:93, name:'50-54'},
-                    {value:111, name:'55以上'},
-                ],
-                [
-                    {value:335, name:'0-17'},
-                    {value:231, name:'18-24'},
-                    {value:174, name:'25-29'},
-                    {value:135, name:'30-34'},
-                    {value:237, name:'35-39'},
-                    {value:432, name:'40-44'},
-                    {value:135, name:'45-49'},
-                    {value:93, name:'50-54'},
-                    {value:111, name:'55以上'},
-                ],
+               
           ]
       }
     },
@@ -402,9 +145,25 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
         nianling,
     },
     methods:{
-
+        getResponse(paramsObj){
+            this.$axios.get(API_URL+'/qy/api/view/getDayAgeDetailData',{params:paramsObj}).then(r => {
+                    
+                if(r.data.code ==="200"||r.data.code ===200){
+                    this.nianItems = r.data.data; 
+                }
+            })
+        }
+    },
+    created () {
+        var paramsObj = {
+                area:"全部",
+                type:"day",
+                city:1
+            }
+       this.getResponse(paramsObj);
     },
     mounted(){
+
         this.$emit('showDateFormatChose',this.dateChose)
     }
   }

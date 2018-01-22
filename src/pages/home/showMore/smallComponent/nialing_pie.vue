@@ -29,19 +29,28 @@ export default {
     // mixins: [adaptation],
     props:{
         idName:String,
-        pieData:Array,
+        pieData:Object,
         scenic:String,
         isActive:Boolean,
+        dateIndex:Number,
     },
     watch:{
         isActive:function(val){
             this.option.series[0].startAngle =60+Math.random()*221;
             this.chart.setOption(this.option);
         },
+        dateIndex:function(){
+            this.$nextTick($sheet.echartRL(this.idName,this))
+        },
         pieData:{
             handler: function (val, oldVal) {
                 
-                this.chart.setOption(this.option);
+                this.option.series[0].data.forEach((item,index)=>{
+                        item.value = val[item.name];
+                    })
+                this.$nextTick(()=>{
+                    this.chart.setOption(this.option);
+                })
             },
             deep: true
         }
@@ -113,7 +122,14 @@ export default {
                             show: false
                         }
                 },
-                data:this.pieData,
+                data:[
+            {"value":0, "name":"0-19"},
+            {"value":0, "name":"19-25"},
+            {"value":0, "name":"26-35"},
+            {"value":0, "name":"36-45"},
+            {"value":0, "name":"46-55"},
+            {"value":0, "name":"55以上"}
+        ],
       }],
     }
     }
@@ -121,9 +137,16 @@ export default {
     methods:{
         redom(id){
             this.chart = echarts.init(document.getElementById(id));
-            let w=this.chart.getWidth()
-            let d=this.chart.getDom()
-            this.chart.setOption(this.option);
+            // console.log(this.pieData)
+            //  debugger
+            this.option.series[0].data.forEach((item,index)=>{
+                        item.value = this.pieData[item.name];
+                       
+                    })
+            this.$nextTick(()=>{
+                this.chart.setOption(this.option);
+            })
+            
 
         }
     },

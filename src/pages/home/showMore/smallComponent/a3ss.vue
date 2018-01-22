@@ -13,7 +13,7 @@ ul{
     width:100%;
     
     li{
-        height:33%;
+        height:8rem;
         display:flex;
         align-items:center;
         justify-content:center;
@@ -36,31 +36,15 @@ ul{
     text-align: left;
     margin-left: 6%;
 }
-.cell2{
-    float:left;
-    width:60%;
-    text-align: center;
-    .cell2_box{
+.cell1,.cell2,.cell3,.cell4,.cell5{
+        width:20%;
         float: left;
-        width: 33%;
-        div:nth-of-type(1){
-            float: left;
-            width:80%;
-        }
-        div:nth-of-type(2){
-            float: left;
-            width:20%;
-        }
-    }
+        text-align: center;
 }
-.cell3{
-    float:left;
-    width:20%;
-    text-align: center;
-    .footerRise{
-        display: inline-block;
-         transform: translateY(10%);
-    }
+.cell4{
+    height: 90%;
+    overflow-y: scroll;
+    text-align: left;
 }
 .up{
   background-image: url('../../../../assets/images/up.png');
@@ -76,33 +60,25 @@ width: 8px;
 }
 li:nth-of-type(1){
     text-align: center !important;
-    .cell1{
+    .cell1,.cell2,.cell3,.cell4,.cell5{
         width:20%;
     }
-    .cell2{
-        width:60%;
-    }
-    .cell3{
-        width:20%;
+    .cell4{
+        height: 90%;
+        overflow-x: hidden;
+        text-align: center;
     }
 }
 li:nth-of-type(2){
     box-shadow:3px 4px 20px #191970;
-    &:hover{
-                background-color:#3c69bd;
-            }
 }
 li:nth-of-type(2n){
     box-shadow:3px 4px 20px #191970;
-    &:hover{
-                background-color:#3c69bd;
-            }
+
 }
 li:nth-of-type(2n+3){
     box-shadow:3px 4px 20px #191970;
-    &:hover{
-                background-color:#3c69bd;
-            }
+
 }
 .scenic{
     text-align: center;
@@ -118,27 +94,36 @@ li:nth-of-type(2n+3){
     <ul>
         <li class="header">
             <div class="cell1">
-                排名
+                景区
             </div>
             <div class="cell2">
-                路线
+                发布平台
             </div>
             <div class="cell3">
-                人气<font>(人)</font>
+                用户昵称
+            </div>
+            <div class="cell4">
+               评论内容
+            </div>
+            <div class="cell5">
+                发布时间
             </div>
         </li>
         <li v-for='(item,index) in rankItems'>
             <div class="cell1">
-                {{index+1}}
+               {{item.name}}
             </div>
             <div class="cell2">
-                <div class="cell2_box" v-for = "(ite,i) in item.track " >
-                    <div >{{ite}}</div>
-                    <div v-if=" i+1 < item.track.length">→</div>
-                </div>
+                 {{item.source}}
             </div>
             <div class="cell3">
-                <span class='footerCotext'>{{item.num}}</span>
+                {{item.uid}}
+            </div>
+            <div class="cell4">
+                {{item.con}}
+            </div>
+            <div class="cell5">
+                 {{item.date}}
             </div>
         </li>
     </ul>
@@ -154,7 +139,7 @@ export default {
     },
     data(){
         return{
-        msg:'Hello Vue 来自App.vue',
+        
       }
     },
     components:{}

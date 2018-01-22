@@ -80,12 +80,12 @@ export default {
                         }
                 },
                 data:[
-            {"value":11, "name":"0-19"},
-            {"value":12, "name":"19-25"},
-            {"value":23, "name":"26-35"},
-            {"value":23, "name":"36-45"},
-            {"value":20, "name":"46-55"},
-            {"value":10, "name":"55以上"}
+            {"value":0, "name":"0-19"},
+            {"value":0, "name":"19-25"},
+            {"value":0, "name":"26-35"},
+            {"value":0, "name":"36-45"},
+            {"value":0, "name":"46-55"},
+            {"value":0, "name":"55以上"}
         ],
       }],
     }
@@ -97,11 +97,25 @@ export default {
             let w=this.chart.getWidth()
             let d=this.chart.getDom()
             this.chart.setOption(this.option);
-
+        },
+        getResponse(){
+            this.$axios.get(API_URL+'/qy/api/view/getDayAgeData').then(r => {
+                if(r.data.code ==="200"||r.data.code ===200){
+                    this.option.series[0].data.forEach((item,index)=>{
+                        item.value = r.data.data[item.name]
+                    })
+                    this.$nextTick(()=>{
+                        this.$nextTick($sheet.echartRL('c2',this))
+                    })
+                }
+            })
         }
-    },
+    },   
+    created(){
+       this.getResponse();
+   },
     mounted() {
-          this.$nextTick($sheet.echartRL('c2',this))
+         
     }
 }
 </script>

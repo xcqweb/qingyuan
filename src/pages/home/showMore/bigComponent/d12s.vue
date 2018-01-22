@@ -13,14 +13,14 @@
 </style>
 <template>
     <div class="c4s">
-        <div v-for="(item,index) in nianItems" :key="idName[index]" class="item">
+        <div v-for="(item,index) in rankItems" :key="idName[index]" class="item">
             <d12ss 
             v-if="a1sShow"
             class="c211" 
             :idName='idName[index]' 
-            :scenics='item["name"]'
+            :scenics='item.name'
             :isActive ='isActive' 
-            :barData='item["data"]' 
+            :barData='item.value' 
             ></d12ss>
         </div>
     </div>
@@ -29,34 +29,52 @@
 <script>
 import d12ss from '@/pages/home/showMore/smallComponent/d12ss.vue'
 import showMoreData from '@/common/js/mixin/showMoreData.js'
-import a1sJson from '@/pages/home/showMore/bigComponent/json/a1s.json'
+// import a1sJson from '@/pages/home/showMore/bigComponent/json/a1s.json'
   export default {
     name:'A1S',
     mixins: [showMoreData],
     props:{
-        scenics:Array,
+        scenics:{
+            required:false,
+        },
         isActive:Boolean,
         dateIndex:Number,
         updatePlace:String,
+        timeDate:Object,
     },
     watch:{
-        dateIndex:function(val){
-            let _self = this;
-            this.nianItems = a1sJson[this.updatePlace][this.dateChose[val].context];
-            this.a1sShow = false;
-            setTimeout(() =>{_self.a1sShow = true},0)
-        },
         updatePlace:function(val){
-            let _self = this;
-            this.nianItems = a1sJson[val][this.dateChose[this.dateIndex].context];
-            this.a1sShow = false;
-            setTimeout(() =>{_self.a1sShow = true},0)
+            var paramsObj = {
+                area:val,
+                type:["day","month","year"][this.dateIndex],
+            }
+            this.getResponse(paramsObj);
+        },
+         timeDate:{
+             handler:function(val, oldVal){
+                 let end = val.end.join("-")
+                 let begin = val.begin.join("-")
+                 var paramsObj = {
+                    area:this.updatePlace,
+                    beginTime:begin,
+                    endTime:end
+                }
+                 this.getResponse(paramsObj);
+             },
+             deep:true,
+        },
+        dateIndex:function(val){
+            var paramsObj = {
+                area:this.updatePlace,
+                type:["day","month","year"][val]
+            }
+             this.getResponse(paramsObj);
         }
     },
     data() {
       return {
           a1sShow:true,
-           nianItems:a1sJson["全部"]["周"],
+           rankItems:[],
           dateChose:[
                 {context:'周',class:'chose'},
                 {context:'月',class:''},
@@ -79,7 +97,22 @@ import a1sJson from '@/pages/home/showMore/bigComponent/json/a1s.json'
         d12ss,
     },
     methods:{
-
+        getResponse(paramsObj){
+            this.$axios.get(API_URL+'/qy/api/command/selectCommandScenicStayHoursDetail',{params:paramsObj}).then(r => {
+                
+                if(r.data.code ==="200"||r.data.code ===200){
+                    this.rankItems = r.data.data;
+                    
+                }
+            })
+        }
+    },
+    created () {
+        var paramsObj = {
+                area:"全部",
+                type:"day",
+            }
+        this.getResponse(paramsObj);
     },
     mounted(){
         this.$emit('showDateFormatChose',this.dateChose)

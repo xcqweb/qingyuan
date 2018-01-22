@@ -65,7 +65,7 @@ import Bus from '@/common/js/bus.js'
                 down:{link:'/login/pagetwo',show:true}
             },
             initialized:false,
-            src:'http://120.55.190.57/bigdata/servlet/validateCodeServlet',
+            src:API_URL+'/bigdata/servlet/validateCodeServlet',
             redome:true,
             rules: { //验证规则
                 username: [
@@ -84,7 +84,7 @@ import Bus from '@/common/js/bus.js'
             this.$router.go(-1 );
         },
         redom(){
-            this.src='http://120.55.190.57/bigdata/servlet/validateCodeServlet?'+Math.random()
+            this.src=API_URL+'/bigdata/servlet/validateCodeServlet?'+Math.random()
         },
         scroll(event){
             let _self=this
@@ -105,7 +105,18 @@ import Bus from '@/common/js/bus.js'
                 }
         },
         loginmock(){
-            this.$router.push({ path: '/' });
+            var paramsObj = this.loginForm ;
+            this.$axios.get(API_URL+'/login',{params:paramsObj}).then(r => {
+                console.log(r)
+                if(r.data.code ==="200"||r.data.code ===200){
+                    this.$router.push({ path: '/' });
+                }else{
+                    alert("登录失败")
+                    this.$router.push({ path: '/login' })
+                }
+            })
+            
+            
         },
         login() {
             let timestamp= Date.parse( new Date())+'';

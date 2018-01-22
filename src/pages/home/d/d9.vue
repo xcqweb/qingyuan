@@ -79,15 +79,19 @@ li:nth-of-type(1){
     }
     .cell3{
         width:33%;
+         font-size: 12px !important;
     }
 }
 li:nth-of-type(2){
     box-shadow:3px 4px 20px #191970;
-    font-size: .6rem;
+    font-size: 12px !important;
 }
 li:nth-of-type(3){
     box-shadow:3px 4px 20px #191970;
-    font-size: .6rem;
+    font-size: 12px !important;
+}
+li:nth-of-type(4){
+    font-size: 12px !important;
 }
 .scenic{
     text-align: center;
@@ -117,13 +121,13 @@ li:nth-of-type(3){
                 {{index+1}}
             </div>
             <div class="cell2">
-                <div class="cell2_box" v-for = "(ite,i) in item.route " >
+                <div class="cell2_box" v-for = "(ite,i) in item.track" >
                     <div >{{ite}}</div>
-                    <div v-if=" i+1 < item.route.length">↓</div>
+                    <div v-if=" i+1 < item.track.length">↓</div>
                 </div>
             </div>
             <div class="cell3">
-                <span class='footerCotext'>{{(item.popularity/1000).toFixed(2)}}</span>
+                <span class='footerCotext'>{{item.num}}</span>
             </div>
         </li>
     </ul>
@@ -131,29 +135,28 @@ li:nth-of-type(3){
 </template>
 
 <script type="text/javascript">
-import d9sJson from '@/pages/home/showMore/bigComponent/json/d9s.json'
+// import d9sJson from '@/pages/home/showMore/bigComponent/json/d9s.json'
 export default {
     name:'d9',
     props:{
         mainPageSelect:Object,
     },
-   watch:{
+    watch:{
         mainPageSelect:{
         handler: function (val, oldVal) {
-            this.checkRankPlace(val,oldVal)
+            this.getResponse();
         },
         deep:true,
+        },
     },
-   },
     data(){
         return{
-        items:d9sJson["全部"]["日"].slice(0,3),
+        items:[],
       }
     },
     methods:{
         checkRankPlace(val,oldVal){
             if(val.place ===oldVal.place){
-                console.log(val.turist)
                 if(val.turist === "全部"){
                     this.items = d9sJson[val.place]["日"].slice(0,3);
                 }else if(val.turist != "全部"){
@@ -167,12 +170,34 @@ export default {
                         });
                     })
                 }
-                console.log(this.items)
             }else if(val.place !=oldVal.place){
                  this.items = d9sJson[val.place]["日"].slice(0,3);
+
+            }else{
+                this.items = d9sJson[val.place]["日"].slice(0,3);
+
             }
-            
+            this.items.reverse();
+        },
+        getResponse(){
+            let _self = this;
+            var paramsObj = {
+                area:this.mainPageSelect.place,
+                name:this.mainPageSelect.turist
+            }
+            this.$axios.get(API_URL+'/qy/api/command/getCommandScenicTrack',{params:paramsObj}).then(r => {
+                if(r.status ===200){
+                    this.items = r.data.data
+                    this.items.forEach((item,index)=>{
+                        this.items[index].track = item.track.split("==>").slice(0,3) ;
+                    })
+                    
+                }
+            })
         }
+    },
+    created(){
+        this.getResponse();
     },
     components:{}
 }

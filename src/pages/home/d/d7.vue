@@ -98,6 +98,7 @@ export default {
                     {
                         value:20.5,
                         name:'39%',
+                        ffname:'1000元-3000元',
                         label:{
                             normal:{
                                 show:true,
@@ -137,6 +138,7 @@ export default {
                     {
                         value:16.0,
                          name:'26%',
+                          ffname:'1000元以下',
                          label:{
                             normal:{
                                 show:true,
@@ -169,6 +171,7 @@ export default {
                     {
                         value:19.8,
                          name:'33%',
+                        ffname:'3001元以上',
                          label:{
                             normal:{
                                 show:true,
@@ -207,10 +210,26 @@ export default {
         redom(id){
             this.chart = echarts.init(document.getElementById(id));
             this.chart.setOption(this.option);
+        },
+        getResponse(){
+            this.$axios.get(API_URL+'/qy/api/view/getSpendMoneyPowerData').then(r => {
+                if(r.data.code ==="200"||r.data.code ===200){
+                    this.option.series[1].data.forEach((item,index)=>{
+                        item.value = r.data.data[item.ffname]
+                        item.name = r.data.data[item.ffname]+'%';
+                    })
+                    this.$nextTick(()=>{
+                       this.$nextTick(echarts_resize('d7',this))
+                    })
+                }
+            })
         }
     },
+    created(){
+       this.getResponse();
+   },
     mounted() {
-          this.$nextTick(echarts_resize('d7',this))
+          
     }
 }
 </script>
