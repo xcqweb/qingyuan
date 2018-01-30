@@ -43,7 +43,7 @@ export default {
             },
   },
   created(){
-      this.getResponse();
+      // this.getResponse();
   }
 }
 </script>
