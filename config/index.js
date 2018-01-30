@@ -30,7 +30,7 @@ module.exports = {
     proxyTable: {
        // 匹配项
         '/api': {
-          target: 'http://120.55.190.57:8088/bigdata',
+          target: 'http://120.55.190.57:8081',
           changeOrigin: true,
           pathRewrite: {
             '^/api': '/'

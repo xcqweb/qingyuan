@@ -108,7 +108,7 @@ import Bus from '@/common/js/bus.js'
             var paramsObj = this.loginForm ;
             this.$axios.get(API_URL+'/login',{params:paramsObj}).then(r => {
                 console.log(r)
-                if(r.data.code ==="200"||r.data.code ===200){
+                if(r.data.code =="200"||r.data.code ===200){
                     this.$router.push({ path: '/' });
                 }else{
                     alert("登录失败")

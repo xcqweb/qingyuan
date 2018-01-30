@@ -26,7 +26,7 @@
 
 <script>
   import echarts_resize from '@/common/js/echarts_resize.js'
-  import echarts from 'echarts';
+  import echarts from 'echarts'
 
     export default {
         name:'d10',
