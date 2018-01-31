@@ -132,6 +132,7 @@ export default {
                     {name:'D6',id:'four',index:4,time:900,show:false,title:'景区当前客流'},
                     {name:'A3',id:'five',index:5,time:600,show:false,title:'游客评价'},
                     {name:'D1',id:'six',index:6,time:900,show:false,title:'景区客流热力图'},
+                    {name:'D13',id:'seven',index:7,time:900,show:false,title:'景点可提升度'},
                 ],
                 rightComponents:[
                     {name:'D9',id:'one',index:1,time:1200,show:false,title:'游客路线排行'},
@@ -337,7 +338,7 @@ export default {
         ...componetstatus,
     },
     created () {
-        this.getResponse();
+        // this.getResponse();
     },
     mounted(){
 
