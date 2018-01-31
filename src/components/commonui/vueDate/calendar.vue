@@ -356,7 +356,11 @@ export default {
                     this.rangeBeginTemp = this.rangeBegin
                     this.rangeEnd = [this.year, this.month, this.days[k1][k2].day]
                     this.rangeEndTemp = 0
+<<<<<<< HEAD
                     
+=======
+                   
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
                 } else {
                     this.rangeEnd = [this.year, this.month,this.days[k1][k2].day]
                     this.rangeEndTemp = 1
@@ -382,7 +386,23 @@ export default {
                         end=this.rangeEnd
                     }
                     // console.log("选中日期",begin,end)
+<<<<<<< HEAD
                     this.$emit('select',begin,end)
+=======
+                    // console.log(new Date(begin).getTime()/1000)
+                    let lev = new Date(end).getTime()/1000-new Date(begin).getTime()/1000
+                    if(new Date(end)>new Date()||new Date(begin)>new Date() ){
+                           alert('所选时间不能大于当前时间')
+                    }else{
+                          if(lev>12*24*60*60){
+                            alert('时间跨度不能大于十二天')
+                        }else{
+                            this.$emit('select',begin,end)
+                        }
+                    }
+                    
+                    
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
                 }
                 this.render(this.year, this.month)
             } else {
@@ -498,14 +518,22 @@ export default {
     pointer-events:none !important;
     cursor: default !important;    
 }
+<<<<<<< HEAD
 .calendar td.disabled {
+=======
+/* .calendar td.disabled {
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
     color: #ccc;
     pointer-events:none !important;
     cursor: default !important;
 }
 .calendar td.disabled div{
     color: #ccc;
+<<<<<<< HEAD
 }
+=======
+} */
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
 .calendar td span{
     display:block;
     max-width:40px;

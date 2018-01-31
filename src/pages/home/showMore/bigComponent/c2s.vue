@@ -36,12 +36,23 @@
         </ul>
         <nianling 
         class="c211" 
+<<<<<<< HEAD
         v-for="(item,index) in scenics" 
         :key="idName[index]"
         :idName='idName[index]' 
         :pieData='dataItems[index]' 
         :scenic = 'scenics[index]'
         :isActive ='isActive'
+=======
+        v-if="c2sShow"
+        v-for="(item,index) in nianItems" 
+        :key="idName[index]"
+        :idName='idName[index]' 
+        :pieData='item' 
+        :scenic = 'item["name"]'
+        :isActive ='isActive' 
+        :dateIndex ='dateIndex'
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
         ></nianling>
     </div>
 </template>
@@ -55,10 +66,46 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
     props:{
         scenics:Array,
          isActive:Boolean,
+<<<<<<< HEAD
+=======
+         dateIndex:Number,
+         updatePlace:String,
+         timeDate:Object,
+    },
+    watch:{
+        updatePlace:function(val){
+            var paramsObj = {
+                area:this.updatePlace,
+                type:["day","month","year"][this.dateIndex],
+            }
+            this.getResponse(paramsObj);
+        },
+        dateIndex:function(val){
+            var paramsObj = {
+                area:this.updatePlace,
+                type:["day","month","year"][this.dateIndex],
+            }
+            this.getResponse(paramsObj);
+        },
+        timeDate:{
+             handler:function(val, oldVal){
+                 let end = val.end.join("-")
+                 let begin = val.begin.join("-")
+                 var paramsObj = {
+                    area:this.updatePlace,
+                    beginTime:begin,
+                    endTime:end
+				}
+                 this.getResponse(paramsObj);
+             },
+             deep:true,
+        }
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
     },
     data() {
       return {
         //   idName:['c4s1','c4s2','c4s3','c4s4','c4s5','c4s6','c4s7','c4s8','c4s9'],
+<<<<<<< HEAD
             ageitems:[{
                 year:'0-17',
                 color:'#FF8885',
@@ -197,6 +244,45 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
                     {value:93, name:'50-54'},
                     {value:111, name:'55以上'},
                 ],
+=======
+            c2sShow:true,
+            nianItems:[
+        ],
+             dateChose:[
+                {context:'日',class:'chose'},
+                {context:'月',class:''},
+                {context:'年',class:''},
+            ],
+            ageitems:[{
+                year:'0-19',
+                color:'#FF8885',
+            },
+
+            {
+                year:'19-25',
+                color:'#57ABFE',
+            },
+            {
+                year:'26-35',
+                color:'#368DF7',
+            },
+            {
+                year:'36-45',
+                color:'#7E6AF6',
+            },
+            {
+                year:'46-55',
+                color:'#E39A50',
+            },
+            {
+                year:'55以上',
+                color:'#FFCD38',
+            },
+            ],
+            // ['#FF8885','#57ABFE', '#368DF7', '#7E6AF6', '#E39A50','#FFCD38',  '#4EBBFC', '#75CF65','#B8E986', '#86E9E8', '#58E5E1','#4BCEDD']
+            dataItems:[
+               
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
           ]
       }
     },
@@ -212,10 +298,33 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
         nianling,
     },
     methods:{
+<<<<<<< HEAD
 
     },
     mounted(){
 
+=======
+        getResponse(paramsObj){
+            this.$axios.get(API_URL+'/qy/api/view/getDayAgeDetailData',{params:paramsObj}).then(r => {
+                    
+                if(r.data.code ==="200"||r.data.code ===200){
+                    this.nianItems = r.data.data; 
+                }
+            })
+        }
+    },
+    created () {
+        var paramsObj = {
+                area:"全部",
+                type:"day",
+                city:1
+            }
+       this.getResponse(paramsObj);
+    },
+    mounted(){
+
+        this.$emit('showDateFormatChose',this.dateChose)
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
     }
   }
 </script>

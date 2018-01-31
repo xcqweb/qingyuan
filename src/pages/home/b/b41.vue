@@ -178,7 +178,23 @@ require('../../../common/js/baidumap/TrafficControl_min.js?dd')
                     this.$el.appendChild(oS);
                         // oHead.removeChild(oS);
                         
+<<<<<<< HEAD
             }
+=======
+            },
+            addScriptForStyle(map){
+                let _self = this;
+                var oS=document.createElement('script');
+                oS.src='http://lbsyun.baidu.com/custom/stylelist.js?'+Math.random();
+                this.$el.appendChild(oS)
+                oS.onload=function(){
+                    map.setMapStyle({style:'light'})
+                
+                }
+                this.$el.removeChild(oS);
+            },
+            
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
         },
 
         mounted() {
@@ -192,6 +208,10 @@ require('../../../common/js/baidumap/TrafficControl_min.js?dd')
             // map.addControl(new BMap.MapTypeControl());  
             // 设置地图显示的城市 此项是必须设置的
             map.setCurrentCity("浦江");    
+<<<<<<< HEAD
+=======
+            _self.addScriptForStyle(map);
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
             // 开启鼠标滚轮缩放      
             map.enableScrollWheelZoom(true);
             // 设置定时器，对地图进行自动移动

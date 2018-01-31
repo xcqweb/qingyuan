@@ -12,7 +12,11 @@
 </style>
 <template>
     <div class="c4s" v-if="isActive">
+<<<<<<< HEAD
         <div v-for="(item , index) in scenics" class="item" :key="idName[index]">
+=======
+        <div v-for="(item , index) in responseData" class="item" :key="idName[index]">
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
             <!--<menWomen-->
             <!--class="c211"-->
             <!--:idName='idName[index]'-->
@@ -25,17 +29,28 @@
             class="c211"
             :idName='idName[index]'
             :index="index"
+<<<<<<< HEAD
             :scenics='item'
             :women ='women'
             :men = 'men'
             :isActive ='isActive'
+=======
+            :scenics='item.name'
+            :women ='item.femaleNum'
+            :men = 'item.maleNum'
+            :isActive ='isActive' 
+            :dateIndex ='dateIndex'
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
           ></menWomen>
         </div>
     </div>
 </template>
 
 <script>
+<<<<<<< HEAD
   //下面两个需按顺序引入
+=======
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
 import menWomen from '@/pages/home/showMore/smallComponent/men_women.vue'
 import showMoreData from '@/common/js/mixin/showMoreData.js'
   export default {
@@ -45,11 +60,46 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
         scenics:Array,
         isActive:Boolean,
         dateIndex:Number,
+<<<<<<< HEAD
         title:String
+=======
+		updatePlace:String,
+		timeDate:Object,
+	},
+	watch:{
+        updatePlace:function(val){
+            var paramsObj = {
+                area:this.updatePlace,
+                type:["day","month","year"][this.dateIndex],
+            }
+            this.getResponse(paramsObj);
+        },
+        dateIndex:function(val){
+            var paramsObj = {
+                area:this.updatePlace,
+                type:["day","month","year"][this.dateIndex],
+            }
+            this.getResponse(paramsObj);
+        },
+        timeDate:{
+             handler:function(val, oldVal){
+                 let end = val.end.join("-")
+                 let begin = val.begin.join("-")
+                 var paramsObj = {
+                    area:this.updatePlace,
+                    beginTime:begin,
+                    endTime:end
+				}
+                 this.getResponse(paramsObj);
+             },
+             deep:true,
+        }
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
     },
     data() {
       return {
           //idName:['c4s1','c4s2','c4s3','c4s4','c4s5','c4s6','c4s7','c4s8','c4s9'],
+<<<<<<< HEAD
             // ['#FF8885','#57ABFE', '#368DF7', '#7E6AF6', '#E39A50','#FFCD38',  '#4EBBFC', '#75CF65','#B8E986', '#86E9E8', '#58E5E1','#4BCEDD']
             // scenics:['风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区',],
 //            items:[
@@ -387,12 +437,22 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
           ]
         }
         }
+=======
+        //模拟数据
+        dateChose:[
+          {context:'日',class:'chose'},
+          {context:'月',class:''},
+          {context:'年',class:''},
+          ],
+        responseData:[],
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
       }
     },
     components: {
         menWomen,
     },
     methods:{
+<<<<<<< HEAD
     },
     watch:{
       dateIndex:function(val){
@@ -408,6 +468,52 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
       men(){
         return this.responseData[this.title][this.dateIndex];
       }
+=======
+		getResponse(paramsObj){
+            this.$axios.get(API_URL+'/qy/api/view/getDaySexDetailData',{params:paramsObj}).then(r => {
+                    
+                if(r.data.code ==="200"||r.data.code ===200){
+                    this.responseData = r.data.data; 
+                }
+            })
+        }
+    },
+    computed:{
+//      women:{
+//        get:function(){
+//          return this.responseData[this.title][this.dateIndex];
+//        },
+//        set:function(val){
+//          this.responseData[this.title][this.dateIndex] = val;
+//        }
+//      },
+//      men:{
+//        get:function(){
+//          return this.responseData[this.title][this.dateIndex];
+//        },
+//        set:function(val){
+//          this.responseData[this.title][this.dateIndex] = val;
+//        }
+//      }
+      women(){
+
+        return this.responseData[this.titles][this.dateIndex];
+      },
+      men(){
+        return this.responseData[this.titles][this.dateIndex];
+      }
+	},
+	created () {
+        var paramsObj = {
+                area:"全部",
+                type:"day",
+                city:1
+            }
+       this.getResponse(paramsObj);
+    },
+     mounted(){
+        this.$emit('showDateFormatChose',this.dateChose)
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
     }
   }
 </script>

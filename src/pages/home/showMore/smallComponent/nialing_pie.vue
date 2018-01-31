@@ -17,7 +17,11 @@
     <div class="content">
         <div :id="idName" class="c985"></div>
         <div class="scenic">{{scenic}}</div>
+<<<<<<< HEAD
     </div>
+=======
+    </div>  
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
 </template>
 
 <script type="text/javascript">
@@ -29,14 +33,39 @@ export default {
     // mixins: [adaptation],
     props:{
         idName:String,
+<<<<<<< HEAD
         pieData:Array,
         scenic:String,
         isActive:Boolean,
+=======
+        pieData:Object,
+        scenic:String,
+        isActive:Boolean,
+        dateIndex:Number,
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
     },
     watch:{
         isActive:function(val){
             this.option.series[0].startAngle =60+Math.random()*221;
             this.chart.setOption(this.option);
+<<<<<<< HEAD
+=======
+        },
+        dateIndex:function(){
+            this.$nextTick($sheet.echartRL(this.idName,this))
+        },
+        pieData:{
+            handler: function (val, oldVal) {
+                
+                this.option.series[0].data.forEach((item,index)=>{
+                        item.value = val[item.name];
+                    })
+                this.$nextTick(()=>{
+                    this.chart.setOption(this.option);
+                })
+            },
+            deep: true
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
         }
     },
     data(){
@@ -59,6 +88,7 @@ export default {
                 },
                 data:[{
                     icon:'circle',
+<<<<<<< HEAD
                     name:'0-17'
                 }, {
                     icon:'circle',
@@ -81,6 +111,21 @@ export default {
                 }, {
                     icon:'circle',
                     name:'50-54'
+=======
+                    name:'0-19'
+                }, {
+                    icon:'circle',
+                    name:'19-25'
+                }, {
+                    icon:'circle',
+                    name:'26-35'
+                }, {
+                    icon:'circle',
+                    name:'36-45'
+                }, {
+                    icon:'circle',
+                    name:'46-55'
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
                 }, {
                     icon:'circle',
                     name:'55以上'
@@ -115,7 +160,18 @@ export default {
                             show: false
                         }
                 },
+<<<<<<< HEAD
                 data:this.pieData,
+=======
+                data:[
+            {"value":0, "name":"0-19"},
+            {"value":0, "name":"19-25"},
+            {"value":0, "name":"26-35"},
+            {"value":0, "name":"36-45"},
+            {"value":0, "name":"46-55"},
+            {"value":0, "name":"55以上"}
+        ],
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
       }],
     }
     }
@@ -123,9 +179,22 @@ export default {
     methods:{
         redom(id){
             this.chart = echarts.init(document.getElementById(id));
+<<<<<<< HEAD
             let w=this.chart.getWidth()
             let d=this.chart.getDom()
             this.chart.setOption(this.option);
+=======
+            // console.log(this.pieData)
+            //  debugger
+            this.option.series[0].data.forEach((item,index)=>{
+                        item.value = this.pieData[item.name];
+                       
+                    })
+            this.$nextTick(()=>{
+                this.chart.setOption(this.option);
+            })
+            
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
 
         }
     },

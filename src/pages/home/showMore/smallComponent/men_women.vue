@@ -87,6 +87,7 @@ let womenE= require('@/assets/images/home/womenE.png')
 export default {
   name: 'c4ss',
   props:{
+<<<<<<< HEAD
       women:Array,
       men:Array,
       scenics:String,
@@ -98,6 +99,23 @@ export default {
           console.log(this.women)
         }
 
+=======
+      women:Number,
+      men:Number,
+      scenics:String,
+      isActive:Boolean,
+      index:Number,
+  },
+  watch:{
+      women:function(){
+        this.setWomen();
+        this.setMen();
+      },
+      men:function(){
+        this.setWomen();
+        this.setMen();
+      },
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
     },
   data () {
     return {
@@ -128,6 +146,7 @@ export default {
   },
   computed: {
       womenPercent:function(){
+<<<<<<< HEAD
           return this.women[this.index].women*10+'%'
       },
       menPercent:function(){
@@ -158,6 +177,85 @@ export default {
       mene:{
           set: function(value) {
                 var mene = [
+=======
+          return this.women+'%'
+      },
+      menPercent:function(){
+        return this.men+'%'
+      },
+    //   womene:{
+    //       set: function(value) {
+    //                 var womene = [
+    //                     {img:women},
+    //                     {img:women},
+    //                     {img:women},
+    //                     {img:women},
+    //                     {img:women},
+    //                     {img:women},
+    //                     {img:women},
+    //                     {img:women},
+    //             ];
+    //             for(var i;i < Math.round(this.women);i++){
+    //                 womene.img = womenE
+    //             }
+    //             this.womens = womene;
+    //         },
+    //         get: function() {
+    //             return this.foo
+    //         }
+
+    //   },
+    //   mene:{
+    //       set: function(value) {
+    //             var mene = [
+    //                     {img:men},
+    //                     {img:men},
+    //                     {img:men},
+    //                     {img:men},
+    //                     {img:men},
+    //                     {img:men},
+    //                     {img:men},
+    //                     {img:men},
+    //             ];
+    //             for(var i;i < Math.round(this.men);i++){
+    //                 mene[i].img = men
+    //             }
+    //             return mene
+    //             this.menes = mene;
+    //         },
+    //         get: function() {
+    //             return this.menes
+    //         }
+
+    //   }
+  },
+  methods: {
+      setWomen(){
+            var womene = [
+                {img:women},
+                {img:women},
+                {img:women},
+                {img:women},
+                {img:women},
+                {img:women},
+                {img:women},
+                {img:women},
+                {img:women},
+                {img:women},
+            ];
+            for(var i = 0;i < Math.round(this.women/10);i++){
+
+                womene[i].img = womenE
+                
+            }
+            
+            this.womens = womene;
+      },
+      setMen(){
+          var mene = [
+                        {img:men},
+                        {img:men},
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
                         {img:men},
                         {img:men},
                         {img:men},
@@ -167,6 +265,7 @@ export default {
                         {img:men},
                         {img:men},
                 ];
+<<<<<<< HEAD
                 for(var i;i < Math.round(this.men[this.index].men);i++){
                     men.img = men
                 }
@@ -183,6 +282,19 @@ export default {
   },
     mounted(){
     //console.log(this.women[this.index],this.men[this.index],this.scenics)
+=======
+                for(var i=0;i < Math.round(this.men/10);i++){
+                
+                    mene[i].img = menE
+                }
+                this.mens = mene;
+            },
+      
+  },
+    mounted(){
+        this.setWomen();
+        this.setMen();
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
     },
   components:{
   }

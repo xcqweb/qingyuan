@@ -26,7 +26,11 @@
 
 <script>
   import echarts_resize from '@/common/js/echarts_resize.js'
+<<<<<<< HEAD
   import echarts from 'echarts';
+=======
+  import echarts from 'echarts'
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
 
     export default {
         name:'d10',
@@ -122,7 +126,10 @@
         },
         mounted() {
          this.redom("latitudeAnalyse");
+<<<<<<< HEAD
           console.log(111);
+=======
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
         }
     }
 </script>

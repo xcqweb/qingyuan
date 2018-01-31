@@ -32,15 +32,34 @@ export default {
   ,
   store:store,
 
+<<<<<<< HEAD
   methods:{},
   created(){
     
+=======
+  methods:{
+    getResponse(){
+                this.$axios.get(API_URL+'/qy/api/view/checkLogin').then(r => {
+                    
+                        if(r.data.code ==="-1"||r.data.code ===-1){
+                        window.location.href=API_URL+"/login"
+                        }
+                })
+            },
+  },
+  created(){
+      this.getResponse();
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
   }
 }
 </script>
 <style lang="less">
 /* http://meyerweb.com/eric/tools/css/reset/ 
+<<<<<<< HEAD
    v2.0 | 20110126----
+=======
+   v2.0 | 20110126
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
    License: none (public domain)
 */
 

@@ -1,3 +1,109 @@
+<<<<<<< HEAD
+=======
+<template>
+  <div class="c8">
+    <ul>
+        <li for='item in items'>
+            <div class="cell1">
+               来源地( {{updateSheng}})
+            </div>
+            <div class="cell2">
+                人数
+            </div>
+            <div class="cell3">
+                同比
+            </div>
+            <div class="cell3">
+                占比
+            </div>
+            <div class="cell3">
+                环比
+            </div>
+        </li>
+        <li v-for='(item,index) in rankItems'>
+            <div class="cell1">
+                {{index+1}}、{{item.city}}
+            </div>
+            <div class="cell2">
+                {{addDot(item.num)}}<font>人</font>
+            </div>
+            <div class="cell3">
+                <span class='footerCotext'>{{item.tongRate}}%</span>
+                <span class='footerRise' :class="item.tongRate>0? 'up':'down'"></span>
+            </div>
+            <div class="cell3">
+                <span class='footerCotext'>{{item.zhanRate}}%</span>
+                <span class='footerRise' :class="item.zhanRate>0? 'up':'down'"></span>
+            </div>
+            <div class="cell3">
+                <span class='footerCotext'>{{item.huanRate}}%</span>
+                <span class='footerRise' :class="item.huanRate>0? 'up':'down'"></span>
+            </div>
+        </li>
+    </ul>
+    <div class="scenic">{{scenics}}</div>
+  </div>
+</template>
+
+<script type="text/javascript">
+export default {
+    name:'c8',
+    props:{
+        rankItems:Array,
+        updateSheng:String,
+        scenics:String,
+    },
+    computed:{
+        addDotItems:function () {
+            
+        }
+    },
+    data(){
+        return{
+        msg:'Hello Vue 来自App.vue',
+        // items:[
+        //         {
+        //         num:'32,001',city:' 深圳市',rise:'up',percent:'4.2%',
+        //         },
+        //         {
+        //         num:'26,102',city:'上海市 ',rise:'down',percent:'3.3%',
+        //         },
+        //         {
+        //         num:'13,003',city:'广州市 ',rise:'up',percent:'23.1%',
+        //         },
+        //         {
+        //         num:'10,304',city:'北京市',rise:'up',percent:'13.7%',
+        //         },
+        //         {
+        //         num:'8,405',city:'武汉市',rise:'up',percent:'19.2%',
+        //         },
+        //         {
+        //         num:'6,326',city:'重庆市 ',rise:'up',percent:'13.2%',
+        //         }
+        //     ],
+      }
+    },
+    methods:{
+        addDot(nub){
+        var n= nub;
+        var m =n +'',
+        len= m.length
+        if (len>3) {
+        var aa=len-3
+        var bb=m.slice(aa,len)
+        var cc=m.slice(0,aa)
+        m=cc+','+bb
+        }
+        return m
+    }
+    },
+    components:{},
+    mounted(){
+    }
+}
+</script>
+
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
 <style lang="less" scoped>
 .c8{
     height:100%;
@@ -7,11 +113,26 @@
         font-size: 0.6rem;
     }
 }
+<<<<<<< HEAD
 ul{
     margin-top:12%;
     height:80%;
     width:100%;
     box-shadow:3px 4px 20px #191970;
+=======
+.scenic{
+    text-align: center;
+    color: white;
+    width:100%;
+    height: 1.2rem;
+    bottom:0;
+    position: absolute;
+}
+ul{
+    margin-top:2%;
+    height:90%;
+    width:100%;
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
     li{
         height:14%;
         display:flex;
@@ -28,6 +149,7 @@ ul{
 }
 .cell1{
     float:left;
+<<<<<<< HEAD
     width:35%;
     text-align: left;
     margin-left: 6%;
@@ -35,11 +157,24 @@ ul{
 .cell2{
     float:left;
     width:31%;
+=======
+    width:20%;
+    text-align: left;
+    margin-left: 3rem
+}
+.cell2{
+    float:left;
+    width:20%;
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
     text-align: center;
 }
 .cell3{
     float:left;
+<<<<<<< HEAD
     width:33%;
+=======
+    width:20%;
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
     text-align: center;
     .footerRise{
         display: inline-block;
@@ -56,13 +191,22 @@ ul{
 background-image: url('../../../../assets/images/down.png');
 background-size: 100% 100%;
 width: 8px;
+<<<<<<< HEAD
   height: 12.8px;
+=======
+height: 12.8px;
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
 }
 li:nth-of-type(1){
     text-align: center !important;
     .cell1{
         width:31%;
+<<<<<<< HEAD
         margin-left:12%;
+=======
+        margin-left:8%;
+        margin-right:5%;
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
     }
     .cell2{
         width:22%;
@@ -77,6 +221,7 @@ li:nth-of-type(2n){
 li:nth-of-type(2n+1){
     background-color:#1f3f9d;
 }
+<<<<<<< HEAD
 .scenic{
     text-align: center;
     color: white;
@@ -155,3 +300,6 @@ export default {
 </script>
 
 
+=======
+</style>
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19

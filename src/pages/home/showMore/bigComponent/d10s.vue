@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <!--纬度正负面分析-->
+=======
+<!--维度正负面分析-->
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
 <style lang="less" scoped>
   .d10s{
     width:90%;
@@ -61,7 +65,11 @@
   import echarts from 'echarts';
   import showMoreData from '@/common/js/mixin/showMoreData.js'
   import d10ss from '@/pages/home/showMore/smallComponent/d10ss.vue'
+<<<<<<< HEAD
   import data from '@/pages/home/showMore/d7-payway.json'
+=======
+
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
     export default {
         name:'d10s',
         mixins: [showMoreData],
@@ -88,7 +96,11 @@
         }
       },
         mounted() {
+<<<<<<< HEAD
          console.log(data[this.title][this.dateIndex]);
+=======
+         console.log(this.reoponseData['全部']);
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
           //console.log(typeof this.title,this.dateIndex)
         }
     }

@@ -117,13 +117,51 @@ import Vue from 'vue'
 export default {
     name:'a1',
     props:{
+<<<<<<< HEAD
         idName:String,
         scenics:String,
         isActive:Boolean,
+=======
+        idName:{
+            type: String,
+            required: true
+        },
+        scenics:{
+            type: String,
+            required: false
+        },
+        isActive:{
+            type: Boolean,
+            required: false
+        },
+        barData:{
+            type: Array,
+            required: false
+        },
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
     },
     watch:{
         isActive:function(val){
             val === false ? this.redom14():this.redom7();
+<<<<<<< HEAD
+=======
+        },
+        barData:{
+            handler: function (val, oldVal) {
+                if(this.chart){
+                        this.chart.dispose();
+                    }
+                //   this.isActive=true;
+                let dataY=[];
+                let dataX=[];
+                for (var i = 0; i < this.barData.length; i++) {
+                    dataY.push(this.barData[i].num);
+                    dataX.push(this.barData[i].dayId.replace(/-/g,"/"))
+                }
+                this.$nextTick(echarts_resize(this.idName,this,dataX,dataY))
+            },
+            deep: true
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
         }
     },
     data() {
@@ -142,6 +180,7 @@ export default {
             {"nub":"2122","date":"6/19"},
             {"nub":"1789","date":"6/20"}
         ],
+<<<<<<< HEAD
         twoWeekMock:[
            {"nub":"1293","date":"6/14"},
             {"nub":"2331","date":"6/15"},
@@ -158,6 +197,8 @@ export default {
             {"nub":"2122","date":"6/26"},
             {"nub":"1789","date":"6/27"}
         ],
+=======
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
         opinion: ['学习氛围差', '学习氛围一般', '学习氛围很好'],
         opinionData1: [
 
@@ -168,6 +209,7 @@ export default {
             {value:31, name:'学习氛围一般'},
             {value:8, name:'学习氛围很好'}
           ],
+<<<<<<< HEAD
       }
     },
     store:store,
@@ -212,6 +254,9 @@ export default {
         this.chart = echarts.init(document.getElementById(id))
         
         let option={
+=======
+        option:{
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
                     backgroundColor: 'rgba(0,0,0,0)',
                     color: ['#1F6ABB','#3897C5','#A4C5E6'],
                     grid: {
@@ -235,7 +280,11 @@ export default {
                         padding:0,
                         barMaxWidth:6,
                         type: 'category',
+<<<<<<< HEAD
                         data: datax,
+=======
+                        // data: datax,
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
                         fontSize: 6,
                         scale: true,
                         lineStyle:2,
@@ -250,7 +299,11 @@ export default {
                          axisLabel: {
                              textStyle: {
                                  color: '#ffffff',//x坐标轴标签字体颜色
+<<<<<<< HEAD
                                  fontSize: xyfonsiz,
+=======
+                                 fontSize: 12,
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
                              },
                         },
                         axisTick:{
@@ -279,7 +332,11 @@ export default {
                             showMinLabel:true,
                           textStyle:{
                             color:'rgba(0,0,0,0)',
+<<<<<<< HEAD
                             fontSize: xyfonsiz,
+=======
+                            fontSize: 12,
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
                           }
                         },
                         axisLine: { //坐标轴轴线相关设置。就是数学上的y轴
@@ -297,7 +354,11 @@ export default {
                         name:'计划',
                         type:'bar',
                         barMaxWidth:'50%',
+<<<<<<< HEAD
                         data:datay,
+=======
+                        // data:datay,
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
                         itemStyle:{
                             normal: {
                                 color: new echarts.graphic.LinearGradient(
@@ -351,12 +412,74 @@ export default {
             //     }
             // }
         // }
+<<<<<<< HEAD
         this.chart.setOption(option)
+=======
+      }
+    },
+    store:store,
+    computed:{
+
+      isCase:{
+        get: function(){
+          return window.location.hash.length > 3 ? true :false;
+        } 
+      },
+    },
+    methods: {
+    redom7(){
+        if(this.chart){
+            this.chart.dispose();
+        }
+    //   this.isActive=true;
+      let dataY=[];
+      let dataX=[];
+    //   debugger
+      for (var i = 0; i < this.barData.length; i++) {
+          dataY.push(this.barData[i].num);
+          dataX.push(this.barData[i].dayId);
+          
+      }
+      this.$nextTick(echarts_resize(this.idName,this,dataX,dataY))
+    },
+    redom14(){
+        if(this.chart){
+            this.chart.dispose();
+        }
+        let dataY=[];
+        let dataX=[];
+        for (var i = 0; i < this.twoWeekMock.length; i++) {
+            dataY.push(this.twoWeekMock[i].num);
+            dataX.push(this.twoWeekMock[i].dayId)
+        }
+    // this.isActive=false;
+    this.$nextTick(echarts_resize(this.idName,this,dataX,dataY))
+    },
+      redom (id,xyfonsiz,datax,datay) {
+        var _self= this;
+        _self.loading=false;
+        this.chart = echarts.init(document.getElementById(id))
+         _self.option.xAxis[0].data=datax;
+        _self.option.series[0].data=datay;
+    
+        this.chart.setOption(_self.option)
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
       }
     },
     components:{},
     mounted() {
+<<<<<<< HEAD
       this.redom7();
+=======
+                //   this.isActive=true;
+                let dataY=[];
+                let dataX=[];
+                for (var i = 0; i < this.barData.length; i++) {
+                    dataY.push(this.barData[i].num);
+                    dataX.push(this.barData[i].dayId.replace(/-/g,"/"))
+                }
+                this.$nextTick(echarts_resize(this.idName,this,dataX,dataY))
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
     }
   }
 </script>

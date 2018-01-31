@@ -47,6 +47,10 @@
     "css-loader": "^0.26.4",
     "echarts": "^3.7.2",
     "echarts-liquidfill": "^1.0.5",
+<<<<<<< HEAD
+=======
+    "echarts-wordcloud": "^1.1.3",
+>>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
     "eventsource-polyfill": "^0.9.6",
     "express": "^4.14.1",
     "extract-text-webpack-plugin": "^2.0.0",
