@@ -13,14 +13,6 @@
 </style>
 <template>
     <div class="c4s">
-<<<<<<< HEAD
-        <div v-for="(item,index) in scenics" :key="idName[index]" class="item">
-            <a1ss 
-            class="c211" 
-            :idName='idName[index]' 
-            :scenics='scenics[index]' 
-            :isActive ='isActive' 
-=======
         <div v-for="(item,index) in rankItems" :key="idName[index]" class="item">
             <a1ss 
             v-if="a1sShow"
@@ -29,7 +21,6 @@
             :scenics='item["name"]'
             :isActive ='isActive' 
             :barData='item["value"]' 
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
             ></a1ss>
         </div>
     </div>
@@ -38,24 +29,13 @@
 <script>
 import a1ss from '@/pages/home/showMore/smallComponent/a1ss.vue'
 import showMoreData from '@/common/js/mixin/showMoreData.js'
-<<<<<<< HEAD
-  export default {
-    name:'C4S',
-=======
 // import a1sJson from '@/pages/home/showMore/bigComponent/json/a1s.json'
   export default {
     name:'A1S',
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
     mixins: [showMoreData],
     props:{
         scenics:Array,
         isActive:Boolean,
-<<<<<<< HEAD
-    },
-    data() {
-      return {
-
-=======
         dateIndex:Number,
         updatePlace:String,
         timeDate:Object,
@@ -114,7 +94,6 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
                 {context:'月',class:''},
                 {context:'年',class:''},
             ],
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
             // ['#FF8885','#57ABFE', '#368DF7', '#7E6AF6', '#E39A50','#FFCD38',  '#4EBBFC', '#75CF65','#B8E986', '#86E9E8', '#58E5E1','#4BCEDD']
             // scenics:['风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区',],
             // idName:['c4s1','c4s2','c4s3','c4s4','c4s5','c4s6','c4s7','c4s8','c4s9'],
@@ -132,12 +111,6 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
         a1ss,
     },
     methods:{
-<<<<<<< HEAD
-
-    },
-    mounted(){
-        
-=======
         getResponse(paramsObj){
             this.$axios.get(API_URL+'/qy/api/view/getDayCountDetailData',{params:paramsObj}).then(r => {
 
@@ -157,7 +130,6 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
     },
     mounted(){
         this.$emit('showDateFormatChose',this.dayChose)
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
     }
   }
 </script>

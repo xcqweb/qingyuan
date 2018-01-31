@@ -6,19 +6,11 @@
     position:relative;
 }
 .XSDFXPage{
-<<<<<<< HEAD
-    width: 90%;
-    height: 76%;
-    overflow: hidden;
-    top:10%;
-    left:5%;
-=======
     width: 95%;
     height: 90%;
     overflow: hidden;
     top:7%;
     left: -3%;
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
     font-family: "微软雅黑";
 }
 .scenics{
@@ -27,10 +19,7 @@
     width:100%;
     text-align: center;
     color: white;
-<<<<<<< HEAD
-=======
     
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
 }
 .anchorBL{ 
 display:none !important; 
@@ -48,34 +37,25 @@ display:none !important;
 
 <script>
 require('@/common/js/baidumap/TrafficControl_min.js')
-<<<<<<< HEAD
-=======
 import traffic_points from '@/pages/home/showMore/bigComponent/json/traffic_points.json'
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
     export default {
         name:'traffic',
         props:{
             idName:String,
             lenLat:null,
             scenics:String,
-<<<<<<< HEAD
-=======
             updatePlace:String,
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
         },
         data () {
             return {
 
             }
         },
-<<<<<<< HEAD
-=======
         watch:{
             updatePlace:function(val){
                 this.init(val)
             }
         },
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
         methods:{
             mapMoveSelf(map){
                 setTimeout(function(){
@@ -86,31 +66,6 @@ import traffic_points from '@/pages/home/showMore/bigComponent/json/traffic_poin
                 },4000);
             },
             addIcon(map){
-<<<<<<< HEAD
-                var points = [
-                        [120.018874,29.48683],
-                        [119.923671,29.514494],
-                        [119.906441,29.457793],
-                        [119.965029,29.403953],
-                        [119.915029,29.303953],
-                        [119.935029,29.203953],
-                        [119.945029,29.453953],
-                        [119.765029,29.363953]
-                    ];
-                // 向地图添加标注
-                for( var i = 0;i < points.length; i++){
-                //定义新图标
-                var myIcon = new BMap.Icon(require("../../../../assets/images/wifi.png"), new BMap.Size(44, 44), {
-                // 指定定位位置
-                offset: new BMap.Size(10, 25),
-                // 当需要从一幅较大的图片中截取某部分作为标注图标时，需要指定大图的偏移位置 
-                //imageOffset: new BMap.Size(0, 0 - i * 25)  设置图片偏移 
-                });
-                var point = new BMap.Point(points[i][0],points[i][1]);
-                // 创建标注对象并添加到地图 
-                var marker = new BMap.Marker(point,{icon: myIcon});
-                map.addOverlay(marker);
-=======
                 var points = traffic_points;
                 // 向地图添加标注
                 for( var i = 0;i < points.length; i++){
@@ -140,7 +95,6 @@ import traffic_points from '@/pages/home/showMore/bigComponent/json/traffic_poin
 	                marker.setLabel(label);
                     map.addOverlay(marker);
                     marker.setAnimation(BMAP_ANIMATION_BOUNCE);
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
                 };
                 //添加新图标的监听事件
                 marker.addEventListener('click',function(){
@@ -265,56 +219,6 @@ import traffic_points from '@/pages/home/showMore/bigComponent/json/traffic_poin
                 ctrl.show();
                 ctrl.setAnchor(BMAP_ANCHOR_BOTTOM_RIGHT);  
             },
-<<<<<<< HEAD
-        },
-        mounted() {
-            // 百度地图API功能
-            // 创建Map实例
-            const _self= this;
-            var map = new BMap.Map(this.idName,{enableMapClick:true});
-            // 初始化地图,设置中心点坐标和地图级别
-            map.centerAndZoom(new BMap.Point(113.046945,23.692731), 9);
-            // 添加地图类型控件
-            // map.addControl(new BMap.MapTypeControl());  
-            // 设置地图显示的城市 此项是必须设置的
-            map.setCurrentCity("清远");    
-            // 开启鼠标滚轮缩放      
-            map.enableScrollWheelZoom(true);
-            // 设置定时器，对地图进行自动移动
-            // this.mapMoveSelf
-            /************************************************
-            添加折线
-            *************************************************/
-            // var pointGZ = new BMap.Point(119.923671,29.514494);
-            // var pointHK = new BMap.Point(110.35,20.02);
-            // setTimeout(function(){
-            //     var polyline = new BMap.Polyline([pointGZ,pointHK],{strokeColor:"blue",strokeWeight:5,strokeOpacity:0.5});
-            //     map.addOverlay(polyline);
-            // },6000);
-            _self.addLoad(map);
-            // _self.addControl(map);
-            // _self.addLocaPosition(map);
-            /************************************************
-            添加自定义控件类，放大ZoomControl
-            *************************************************/
-
-            /************************************************
-            添加添加城市列表控件
-            *************************************************/
-            // _self.addControlCityList(map);
-            /************************************************
-            添加新图标
-            *************************************************/
-            // _self.addIcon(map);
-            /************************************************
-            添加曲线
-            *************************************************/
-        
-            /************************************************
-            给地图添加右键菜单
-            *************************************************/
-            // _self.addMenu(map);
-=======
             moveTo(map,lon,lat,zoom){
                     if(lon){
                          map.panTo(new BMap.Point(lon,lat));
@@ -403,7 +307,6 @@ import traffic_points from '@/pages/home/showMore/bigComponent/json/traffic_poin
         },
         mounted() {
             this.init();
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
         } ,
     }
 </script>

@@ -7,15 +7,6 @@
 }
 #d7{
     width:100%;
-<<<<<<< HEAD
-    height:100%;
-  margin-top: -50px;
-}
-  ul{
-    position:absolute;
-    right:100px;
-    top:82%;
-=======
     height:80%;
     transform: translate(0,5%)
 }
@@ -24,7 +15,6 @@
     left:50%;
     transform: translate(-70%,0);
     top:72%;
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
     li{
         margin-top:10px;
         text-align:left;
@@ -78,11 +68,7 @@ export default {
                     name: '访问来源',
                     type: 'pie',
                     radius : '28%',
-<<<<<<< HEAD
-                    center: [ '48%'],
-=======
                     center: [ '48%',"10%"],
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
                     data:[{
                         value:20.5,
                         name:'39%',
@@ -112,10 +98,7 @@ export default {
                     {
                         value:20.5,
                         name:'39%',
-<<<<<<< HEAD
-=======
                         ffname:'1000元-3000元',
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
                         label:{
                             normal:{
                                 show:true,
@@ -155,10 +138,7 @@ export default {
                     {
                         value:16.0,
                          name:'26%',
-<<<<<<< HEAD
-=======
                           ffname:'1000元以下',
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
                          label:{
                             normal:{
                                 show:true,
@@ -191,10 +171,7 @@ export default {
                     {
                         value:19.8,
                          name:'33%',
-<<<<<<< HEAD
-=======
                         ffname:'3001元以上',
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
                          label:{
                             normal:{
                                 show:true,
@@ -233,12 +210,6 @@ export default {
         redom(id){
             this.chart = echarts.init(document.getElementById(id));
             this.chart.setOption(this.option);
-<<<<<<< HEAD
-        }
-    },
-    mounted() {
-          this.$nextTick(echarts_resize('d7',this))
-=======
         },
         getResponse(){
             this.$axios.get(API_URL+'/qy/api/view/getSpendMoneyPowerData').then(r => {
@@ -259,7 +230,6 @@ export default {
    },
     mounted() {
           
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
     }
 }
 </script>

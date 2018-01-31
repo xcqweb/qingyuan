@@ -87,19 +87,6 @@ let womenE= require('@/assets/images/home/womenE.png')
 export default {
   name: 'c4ss',
   props:{
-<<<<<<< HEAD
-      women:Array,
-      men:Array,
-      scenics:String,
-      isActive:Boolean,
-      index:Number
-  },
-  watch:{
-        isActive:function(val){
-          console.log(this.women)
-        }
-
-=======
       women:Number,
       men:Number,
       scenics:String,
@@ -115,7 +102,6 @@ export default {
         this.setWomen();
         this.setMen();
       },
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
     },
   data () {
     return {
@@ -146,38 +132,6 @@ export default {
   },
   computed: {
       womenPercent:function(){
-<<<<<<< HEAD
-          return this.women[this.index].women*10+'%'
-      },
-      menPercent:function(){
-        return this.men[this.index].men*10+'%'
-      },
-      womene:{
-          set: function(value) {
-                    var womene = [
-                        {img:women},
-                        {img:women},
-                        {img:women},
-                        {img:women},
-                        {img:women},
-                        {img:women},
-                        {img:women},
-                        {img:women},
-                ];
-                for(var i;i < Math.round(this.women[this.index].women);i++){
-                    women.img = womenE
-                }
-                this.womens = womene;
-            },
-            get: function() {
-                return this.foo
-            }
-
-      },
-      mene:{
-          set: function(value) {
-                var mene = [
-=======
           return this.women+'%'
       },
       menPercent:function(){
@@ -255,7 +209,6 @@ export default {
           var mene = [
                         {img:men},
                         {img:men},
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
                         {img:men},
                         {img:men},
                         {img:men},
@@ -265,24 +218,6 @@ export default {
                         {img:men},
                         {img:men},
                 ];
-<<<<<<< HEAD
-                for(var i;i < Math.round(this.men[this.index].men);i++){
-                    men.img = men
-                }
-                return mene
-                this.menes = mene;
-            },
-            get: function() {
-                return this.menes
-            }
-
-      }
-  },
-  methods: {
-  },
-    mounted(){
-    //console.log(this.women[this.index],this.men[this.index],this.scenics)
-=======
                 for(var i=0;i < Math.round(this.men/10);i++){
                 
                     mene[i].img = menE
@@ -294,7 +229,6 @@ export default {
     mounted(){
         this.setWomen();
         this.setMen();
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
     },
   components:{
   }

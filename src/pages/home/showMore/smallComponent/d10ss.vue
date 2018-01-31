@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-<!--纬度正负面分析-->
-=======
 <!--维度正负面分析-->
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
 <style lang="less" scoped>
   .content{
     width:100%;
@@ -42,11 +38,7 @@
               option :{
                 color:['#76DBF7','#BAE710'],
                 textStyle:{
-<<<<<<< HEAD
-                  color: '#eee',
-=======
                   color: '#fff',
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
                   fontSize:12
                 },
                 tooltip: {},
@@ -117,49 +109,16 @@
           idName:String,
           data:Array
         },
-<<<<<<< HEAD
-      watch:{
-        data:function(){
-          this.redom(this.idName);
-        }
-      },
-        methods:{
-            redom(id){
-              this.chart = echarts.init(document.getElementById(id));
-//              this.chart.showLoading({
-//                text: 'loading',
-//                  color: '#000',
-//                  left:0,
-//                textColor: '#fff',
-//                fontSize:20,
-//                backgroundcolor:'rgba(0, 0, 0, 0.2)',
-//                maskColor: 'rgba(0, 0, 0, 0.2)',
-//                zlevel: 0
-//
-//              });
-// setTimeout(() => {
-//                //this.chart.hideLoading();
-//              },16000)
-              this.chart.setOption(this.option);
-
-=======
         methods:{
             redom(id){
               this.chart = echarts.init(document.getElementById(id));
               this.chart.setOption(this.option);
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
             }
         },
         mounted() {
           this.redom(this.idName);
-<<<<<<< HEAD
-
-         this.$nextTick(echarts_resize(this.idName,this));
-          //console.log(this.data);
-=======
           this.$nextTick(echarts_resize(this.idName,this));
           console.log(this.dataSingle);
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
         }
     }
 </script>

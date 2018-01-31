@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <style lang="less" scoped>
 .d8{
     height: 100%;
@@ -62,68 +61,3 @@ export default {
 }
 </script>
 
-=======
-<style lang="less" scoped>
-.d8{
-    height: 100%;
-    width: 100%;
-    position: relative;
-    .box{
-        position: absolute;
-        width: 65/223*100%;
-        height: 112/223*100%;
-        top: 69/260*100%;
-        left: 35/226*100%;
-        
-    }
-    span{
-        position: absolute;
-        top: 50%;
-        right:1%;
-        display: inline-block;
-        width: 50%;
-        height: 10%;
-        font-size: 1.3rem;
-        color: #c7c8f9;
-        
-    }
-
-}
-</style>
-<template>
-    <div class="d8">
-        <div class="box">
-            <vcircle class='item'></vcircle>
-            
-        </div>
-        <span>{{text}}</span>
-    </div>
-</template>
-
-<script>
-import Vue from 'vue'
-import vcircle from '../b/vcircle.vue'
-export default {
-    name: 'd8',
-    data () {
-    return {
-        text:'一般'
-    }
-    },
-    computed: { 
-    },
-    methods: {
-    getwidth(){
-
-    }
-    },
-    mounted(){
-
-    },
-    components:{
-    vcircle
-    }
-}
-</script>
-
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19

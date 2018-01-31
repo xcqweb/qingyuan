@@ -27,11 +27,7 @@
                 height:100%;
                 transform: translate(5%,0);
                 li{
-<<<<<<< HEAD
-                    width:25%;
-=======
                     width:20%;
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
                     height: 45%;
                     float: left;
                     .title{
@@ -77,18 +73,6 @@
         <div class="midContent">
             <vmap  
             class="vMap"
-<<<<<<< HEAD
-            :isActive ='isActive'
-            ></vmap>
-            <rank class="rank"></rank>
-        </div>
-        <div class="buttom">
-            <ul >
-                <li v-for='(item,index) in items'>
-                    <div class="title">{{item.title}}</div>
-                    <div class="context">{{item.context}}
-                        <span class='footerRise' :class='item.rise'></span>
-=======
             :isActive ='isActive' 
             :rankItems ='mapItems' 
             :dateIndex = 'dateIndex'
@@ -164,7 +148,6 @@
                     <div class="context">{{monthOutCityZhanRate}}
                         <span class='footerRise' :class="monthOutCityZhanRate>0? 'up':'down'" ></span>
                         
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
                     </div>
                 </li>
             </ul>
@@ -173,11 +156,7 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-import rank from '@/pages/home/c/c8.vue'
-=======
 import rank from '@/pages/home/showMore/smallComponent/c8ss.vue'
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
 import vmap from '@/pages/home/showMore/smallComponent/guonei_map.vue'
   export default {
     name:'B16S',
@@ -185,53 +164,6 @@ import vmap from '@/pages/home/showMore/smallComponent/guonei_map.vue'
         scenics:Array,
         isActive:Boolean,
         dateIndex:Number,
-<<<<<<< HEAD
-    },
-    watch:{
-        isActive:function(val){
-            this.items=[
-              {title:'2017年累计接待游客(万人)',context:'23.32',rise:''},
-              {title:'2017年累计接待本地游客(万人)',context:'323.23',rise:''},
-              {title:'2017年累本地游客与总游客占比',context:'23%',rise:''},
-              {title:'2017年累国内游客与总游客占比',context:'87%',rise:''},
-              {title:'6月份持续接待人数(万人)',context:'232.5',rise:''},
-              {title:'6月份持续接待人数同比',context:'12.3%',rise:''},
-              {title:'6月份持续接待人数环比',context:'23.2%',rise:'up'},
-              {title:'6月份持续接待人数占比',context:'87.1%',rise:'up'},
-          ]
-        },
-        dateIndex:function(){
-            console.log(dateChose[dateIndex])
-        }
-    },
-    data() {
-      return {
-          dateChose:[
-                    {context:'日',class:'chose'},
-                    {context:'月',class:''},
-                    {context:'年',class:''},
-                    ],
-          items:[
-              {title:'2017年累计接待游客(万人)',context:'323.32',rise:''},
-              {title:'2017年累计接待本地游客(万人)',context:'323.23',rise:''},
-              {title:'2017年累本地游客与总游客占比',context:'23%',rise:''},
-              {title:'2017年累国内游客与总游客占比',context:'87%',rise:''},
-              {title:'6月份持续接待人数(万人)',context:'232.5',rise:''},
-              {title:'6月份持续接待人数同比',context:'12.3%',rise:''},
-              {title:'6月份持续接待人数环比',context:'23.2%',rise:'up'},
-              {title:'6月份持续接待人数占比',context:'87.1%',rise:'up'},
-          ]
-      }
-    },
-    // props: {
-    //     mainContent: {
-    //         type: String,
-    //         default: function () {
-    //                 return 'D2S'
-    //         }
-    //     },
-    // },
-=======
         updatePlace:String,
         timeDate:Object,
     },
@@ -309,16 +241,10 @@ import vmap from '@/pages/home/showMore/smallComponent/guonei_map.vue'
             return 
         }
     },
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
     components: {
         vmap,rank
     },
     methods:{
-<<<<<<< HEAD
-
-    },
-    mounted(){
-=======
         addPoint:function(num){
             if(num)
                 {
@@ -377,7 +303,6 @@ import vmap from '@/pages/home/showMore/smallComponent/guonei_map.vue'
     },
     mounted(){
         
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
         this.$emit('hideWeeks')
         this.$emit('showDateFormatChose',this.dateChose)
     }

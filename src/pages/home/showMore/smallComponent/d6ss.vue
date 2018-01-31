@@ -50,19 +50,11 @@
 <template>
     <div class="b6">
         <div class="b6_top">
-<<<<<<< HEAD
-            <span>68，288<font>人次</font></span>
-            <font>当前客流总数</font>
-        </div>
-        <div class="b6_bottom" >
-            <span>86，188<font>人次</font></span>
-=======
             <span>{{addDot(dataItem.currentNum)}}<font>人次</font></span>
             <font>当前客流总数</font>
         </div>
         <div class="b6_bottom" >
             <span>{{addDot(dataItem.yesterdayNum)}}<font>人次</font></span>
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
             <font>昨日客流总数</font>
         </div>
         <div class="scenic">{{scenics}}</div>
@@ -77,10 +69,7 @@ export default {
     props:{
         idName:String,
         scenics:String,
-<<<<<<< HEAD
-=======
         dataItem:Object,
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
     },
     // mixins: [adaptation],
     data () {
@@ -95,9 +84,6 @@ export default {
 
     },
     methods: {
-<<<<<<< HEAD
-
-=======
         addDot(nub){
         var n= nub;
         var m =n +'',
@@ -110,7 +96,6 @@ export default {
         }
         return m
     }
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
     },
     mounted(){
     

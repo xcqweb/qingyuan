@@ -4,9 +4,5 @@ npm-debug.log
 yarn-error.log
 test/
 charts/
-<<<<<<< HEAD
-案例/
-=======
 dieToStudy/
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
 dist/

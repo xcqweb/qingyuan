@@ -11,11 +11,7 @@ let A1S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/a1s.vu
 //概况
 let A2S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/develping.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/develping.vue'))})}
 //客流总数，经济分析，富民指数
-<<<<<<< HEAD
-let A3S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/develping.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/develping.vue'))})}
-=======
 let A3S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/a3s.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/a3s.vue'))})}
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
 //客户满意度
 let A4S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/develping.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/develping.vue'))})}
 //实时监控
@@ -64,12 +60,8 @@ let D6S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/d6s.vu
 let D7S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/d7s.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/d7s.vue'))})}
 
 let D8S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/d8s.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/d8s.vue'))})}
-<<<<<<< HEAD
-let D10S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/d10s.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/d10s.vue'))})}
-=======
 let D9S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/d9s.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/d9s.vue'))})}
 let D12S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/d12s.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/d12s.vue'))})}
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
 
 //存放当前模块状态，数组字符串
 let status =[
@@ -115,22 +107,13 @@ let status =[
     'D6S',
     'D7S',
     'D8S',
-<<<<<<< HEAD
-    'D10S'
-=======
     'D9S',
     'D12S'
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
     ]
 let conponets={}
 //字符串转对象变量
 for (var i = 0; i < status.length; i++) {
 let index=status[i]
 conponets[index]=eval(index)
-<<<<<<< HEAD
-}
-export default conponets;
-=======
 } 
 export default conponets;
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19

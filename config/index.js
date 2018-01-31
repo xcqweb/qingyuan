@@ -30,11 +30,7 @@ module.exports = {
     proxyTable: {
        // 匹配项
         '/api': {
-<<<<<<< HEAD
-          target: 'http://120.55.190.57:8088/bigdata',
-=======
           target: 'http://120.55.190.57:8081',
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
           changeOrigin: true,
           pathRewrite: {
             '^/api': '/'

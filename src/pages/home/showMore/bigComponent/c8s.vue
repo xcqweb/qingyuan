@@ -3,32 +3,17 @@
     width:90%;
     height:80%;
     .item{
-<<<<<<< HEAD
-        width:20%;
-        height:44%;
-=======
         width:45%;
         height:54%;
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
         float: left;
         margin-left:2%;
         position: relative;
     }
-<<<<<<< HEAD
-=======
     
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
 }
 </style>
 <template>
     <div class="c8s">
-<<<<<<< HEAD
-        <div v-for="(item,index) in scenics" :key="idName[index]" class="item">
-            <c8ss 
-            class="c211" 
-            :idName='idName[index]' 
-            :scenics='scenics[index]' 
-=======
         <div v-for="(item,index) in rankItems" :key="idName[index]" class="item">
             <c8ss 
             class="c211" 
@@ -36,7 +21,6 @@
             :scenics='item.name' 
             :rankItems ='item.value' 
             :updateSheng ='updateSheng'
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
             ></c8ss>
         </div>
     </div>
@@ -45,21 +29,12 @@
 <script>
 import c8ss from '@/pages/home/showMore/smallComponent/c8ss.vue'
 import showMoreData from '@/common/js/mixin/showMoreData.js'
-<<<<<<< HEAD
-=======
 // import c8sJson from '@/pages/home/showMore/bigComponent/json/c8s.json'
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
   export default {
     name:'c8s',
     mixins: [showMoreData],
     props:{
         scenics:Array,
-<<<<<<< HEAD
-    },
-    data() {
-      return {
-
-=======
         dateIndex:Number,
         updatePlace:String,
         updateSheng:String,
@@ -113,7 +88,6 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
             {context:'年',class:''},
             ],
             rankItems:[],
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
             // ['#FF8885','#57ABFE', '#368DF7', '#7E6AF6', '#E39A50','#FFCD38',  '#4EBBFC', '#75CF65','#B8E986', '#86E9E8', '#58E5E1','#4BCEDD']
             // scenics:['风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区',],
             // idName:['c4s1','c4s2','c4s3','c4s4','c4s5','c4s6','c4s7','c4s8','c4s9'],
@@ -131,12 +105,6 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
         c8ss,
     },
     methods:{
-<<<<<<< HEAD
-
-    },
-    mounted(){
-        
-=======
         getResponse(paramsObj){
             this.$axios.get(API_URL+'/qy/api/view/getTouristSourceDetailData',{params:paramsObj}).then(r => {
                     
@@ -157,7 +125,6 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
     mounted(){
         this.$emit('showDateFormatChose',this.dateChose);
         this.$emit('showShennei');
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
     }
   }
 </script>

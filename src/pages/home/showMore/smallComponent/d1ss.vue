@@ -52,17 +52,10 @@
 }
 .XSDFXPaged{
     position:absolute;
-<<<<<<< HEAD
-    width: 95%;
-    height: 80%;
-    overflow: hidden;
-    top:12%;
-=======
     width: 90%;
     height: 90%;
     overflow: hidden;
     top:5%;
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
     left:2.5%;
     font-family: "微软雅黑";
 }
@@ -96,36 +89,24 @@ display:none !important;
 
 
 <script>
-<<<<<<< HEAD
-// import BMapLib from '../../../common/js/baidumap/heatmap.js?fdwe'
-// require('../../../common/js/baidumap/heatmap.js?fdwe')
-
-=======
 import traffic_points from '@/pages/home/showMore/bigComponent/json/traffic_points.json'
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
     export default {
         name:'D1SS',
         props:{
             idName:String,
             scenics:String,
-<<<<<<< HEAD
-=======
             updatePlace:String,
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
         },
         data () {
             return {
                 videoName:'摄像头1',
                 videoToast:false,
-<<<<<<< HEAD
-=======
                 arrHotPoint:[],
             }
         },
         watch:{
             updatePlace:function(val){
                 this.addScript(val)
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
             }
         },
         methods:{
@@ -171,55 +152,16 @@ import traffic_points from '@/pages/home/showMore/bigComponent/json/traffic_poin
                 },4000);
             },
             addIcon(map){
-<<<<<<< HEAD
-                let _self = this
-                let lenY = 29.518155 - 29.510533;
-                let lenX = 119.913692 - 119.932808;
-                var points = [
-                        [119.923671,29.513494],
-                        [119.919621,29.516494],
-                        [119.930621,29.518494],
-                        [119.925621,29.512494],
-                        [119.931621,29.511494],
-                        [119.924621,29.514494],
-                        [119.912621,29.515494],
-                    ];
-                // 向地图添加标注
-                for( let i = 0;i < points.length; i++){
-                    //定义新图标
-                    var myIcon = new BMap.Icon(require("../../../../assets/images/watch31.png"), new BMap.Size(30, 30), {
-=======
                 var points = traffic_points;
                 // 向地图添加标注
                 for( var i = 0;i < points.length; i++){
                     //定义新图标
                     var myIcon = new BMap.Icon(require("../../../../assets/images/lable.jpg"), new BMap.Size(44, 44), {
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
                     // 指定定位位置
                     offset: new BMap.Size(10, 25),
                     // 当需要从一幅较大的图片中截取某部分作为标注图标时，需要指定大图的偏移位置 
                     //imageOffset: new BMap.Size(0, 0 - i * 25)  设置图片偏移 
                     });
-<<<<<<< HEAD
-                    
-                    (function() {
-                        var point = new BMap.Point(points[i][0],points[i][1]);
-                        // 创建标注对象并添加到地图 
-                        var marker = new BMap.Marker(point,{icon: myIcon});
-                        map.addOverlay(marker);
-                        
-                        //添加新图标的监听事件
-                        marker.addEventListener("click",
-                            function(event) {
-                            var p = marker.getPosition();       //获取marker的位置
-                            map.centerAndZoom(new BMap.Point(p.lng+lenY*0.25,p.lat+lenY*0.25), 16);
-                            _self.videoToast=true;
-                            
-                            window.event?window.event.cancelBubble=true:event.stopPropagation();
-                        },false);
-                    })(i);
-                };
-=======
 
                     var point = new BMap.Point(points[i].point[0],points[i].point[1]);
                     // 创建标注对象并添加到地图 
@@ -245,7 +187,6 @@ import traffic_points from '@/pages/home/showMore/bigComponent/json/traffic_poin
                     var p = marker1.getPosition();//获取位置
                     // alert("点击的位置是：" + p.lng + ',' + p.lat);
                 })
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
             },
             addMenu(map){
                 var menu = new BMap.ContextMenu();
@@ -360,23 +301,6 @@ import traffic_points from '@/pages/home/showMore/bigComponent/json/traffic_poin
                 ctrl.setAnchor(BMAP_ANCHOR_BOTTOM_RIGHT);  
             },
             addHot(map){
-<<<<<<< HEAD
-                    var points =[];
-                    let makeMap = function(){
-                        let minX = 112.739365;
-                        let minY = 23.554996;
-                        let lenX = 113.362574 - 112.739365;
-                        let lenY = 23.847771 - 23.554996;
-                        for (var i = 0; i < 180; i++) {
-                            let lng = Math.abs(Math.random()-0.7)*Math.abs(lenX)+minX
-                            let lat = Math.abs(Math.random()-0.7)*Math.abs(lenY)+minY
-                            let count = Math.random()*150
-                            let point = {"lng":lng,"lat":lat,"count":count}
-                            points.push(point)
-                        }
-                    }
-                    makeMap();
-=======
                     var points = this.arrHotPoint;
                     console.log(this.arrHotPoint)
                     // var hotPointA = traffic_points;
@@ -402,7 +326,6 @@ import traffic_points from '@/pages/home/showMore/bigComponent/json/traffic_poin
                     //     }
                     //     makeMap();
                     // }
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
                     map.enableScrollWheelZoom(); // 允许滚轮缩放
                    
                     if(!isSupportCanvas()){
@@ -453,9 +376,6 @@ import traffic_points from '@/pages/home/showMore/bigComponent/json/traffic_poin
                         return !!(elem.getContext && elem.getContext('2d'));
                     }
             },
-<<<<<<< HEAD
-            addScript(){
-=======
             moveTo(map,lon,lat,zoom){
                     if(lon){
                          map.panTo(new BMap.Point(lon,lat));
@@ -464,20 +384,11 @@ import traffic_points from '@/pages/home/showMore/bigComponent/json/traffic_poin
                    
             },
             addScript(val){
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
                 let _self = this;
                 var oS=document.createElement('script');
                 oS.src='http://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js?'+Math.random();
                 this.$el.appendChild(oS)
                 oS.onload=function(){
-<<<<<<< HEAD
-                    _self.rodomMap();
-                }
-                this.$el.removeChild(oS);
-            },
-            rodomMap(){
-                const _self= this;
-=======
                     _self.rodomMap(val);
                 }
                 this.$el.removeChild(oS);
@@ -507,7 +418,6 @@ import traffic_points from '@/pages/home/showMore/bigComponent/json/traffic_poin
                     "连山":{lon:112.102727,lat:24.582118,zoom:13},
                     "阳山":{lon:112.646658,lat:24.47147,zoom:13},
                 }; 
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
                 //绘制牵引线
                 _self.addLineVideo();
                 var map = new BMap.Map(_self.idName,{enableMapClick:true});
@@ -519,26 +429,17 @@ import traffic_points from '@/pages/home/showMore/bigComponent/json/traffic_poin
                 // 添加地图类型控件
                 // map.addControl(new BMap.MapTypeControl());  
                 // 设置地图显示的城市 此项是必须设置的
-<<<<<<< HEAD
-                map.setCurrentCity("清远");    
-=======
                 map.setCurrentCity("清远");   
                 _self.addScriptForStyle(map); 
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
                 // 开启鼠标滚轮缩放      
                 map.enableScrollWheelZoom(true);
                 // 设置定时器，对地图进行自动移动
                 // this.mapMoveSelf
                 /************************************************
-<<<<<<< HEAD
-                添加折线
-                *************************************************/
-=======
                 
                 添加折线
                 *************************************************/
                 _self.moveTo(map,lenObj[val  ===  undefined ?"全部": val].lon,lenObj[val  ===  undefined ?"全部": val].lat,lenObj[val  ===  undefined ?"全部": val].zoom);
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
                 var pointGZ = new BMap.Point(119.923671,29.514494);
                 var pointHK = new BMap.Point(110.35,20.02);
                 // setTimeout(function(){
@@ -548,10 +449,7 @@ import traffic_points from '@/pages/home/showMore/bigComponent/json/traffic_poin
                 
                 _self.addHot(map);
                 // _self.addControl(map);
-<<<<<<< HEAD
-=======
                  _self.addIcon(map);
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
                 _self.addLocaPosition(map);
                 /************************************************
                 添加自定义控件类，放大ZoomControl
@@ -564,10 +462,6 @@ import traffic_points from '@/pages/home/showMore/bigComponent/json/traffic_poin
                 /************************************************
                 添加新图标
                 *************************************************/
-<<<<<<< HEAD
-                _self.addIcon(map);
-=======
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
                 /************************************************
                 添加曲线
                 *************************************************/
@@ -576,12 +470,6 @@ import traffic_points from '@/pages/home/showMore/bigComponent/json/traffic_poin
                 给地图添加右键菜单
                 *************************************************/
                 _self.addMenu(map);
-<<<<<<< HEAD
-            }
-        },
-        mounted() {
-            this.addScript();
-=======
             },
             getResponse(val){
             let _self = this;
@@ -602,7 +490,6 @@ import traffic_points from '@/pages/home/showMore/bigComponent/json/traffic_poin
         },
         mounted() {
             
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
             // 百度地图API功能
             // 创建Map实例
         

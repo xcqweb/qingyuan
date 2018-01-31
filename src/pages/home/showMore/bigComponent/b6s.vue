@@ -1,14 +1,4 @@
 <style lang="less" scoped>
-<<<<<<< HEAD
-.b6s{
-    width:90%;
-    height:80%;
-    .item{
-        width:22%;
-        height:42%;
-        float: left;
-        position: relative;
-=======
 .car_washing{
         background-image: url(../../../../assets/images/life/xiche.png);
          background-size:100% 100%;
@@ -209,24 +199,17 @@
                  border-bottom: 3px solid #43dbff;
             }
         }
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
     }
 }
 </style>
 <template>
     <div class="b6s">
-<<<<<<< HEAD
-        <div v-for="(item,index) in scenics" :key="idName[index]" class="item">
-=======
         <!-- <div v-for="(item,index) in scenics" :key="idName[index]" class="item">
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
             <b6ss 
             class="c211" 
             :idName='idName[index]' 
             :scenics='scenics[index]' 
             ></b6ss>
-<<<<<<< HEAD
-=======
         </div> -->
         <div class="box" v-if="showStatus">
             <div class="box_left">
@@ -262,47 +245,11 @@
                     <div style="font-size:1.2rem;margin-left:6rem;margin-top:1rem;">{{dailyRes[2].text_day}}</div>
                 </div>
             </div>
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
         </div>
     </div>
 </template>
 
 <script>
-<<<<<<< HEAD
-import b6ss from '@/pages/home/showMore/smallComponent/b6ss.vue'
-import showMoreData from '@/common/js/mixin/showMoreData.js'
-  export default {
-    name:'B6S',
-    mixins: [showMoreData],
-    props:{
-        scenics:Array,
-    },
-    data() {
-      return {
-
-            // ['#FF8885','#57ABFE', '#368DF7', '#7E6AF6', '#E39A50','#FFCD38',  '#4EBBFC', '#75CF65','#B8E986', '#86E9E8', '#58E5E1','#4BCEDD']
-            // scenics:['风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区','风林胜风景区',],
-            // idName:['c4s1','c4s2','c4s3','c4s4','c4s5','c4s6','c4s7','c4s8','c4s9'],
-      }
-    },
-    // props: {
-    //     mainContent: {
-    //         type: String,
-    //         default: function () {
-    //                 return 'D2S'
-    //         }
-    //     },
-    // },
-    components: {
-        b6ss,
-    },
-    methods:{
-
-    },
-    mounted(){
-        this.$emit('hideWeeks')
-        this.$emit('hideDoubleDate')
-=======
 import Vue from 'vue'
 // import b6ss from '@/pages/home/showMore/smallComponent/b6ss.vue'
 import showMoreData from '@/common/js/mixin/showMoreData.js'
@@ -505,7 +452,6 @@ Vue.use(vAjax);
         this.$emit('hideVdate')
         // this.$emit('showDoubleSelect');
         this.$emit('showDateFormatChose',[])
->>>>>>> d36520eaf32dca37f3de581be37cd3e750e00f19
     }
   }
 </script>
