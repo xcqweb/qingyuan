@@ -121,7 +121,11 @@
             }
         },
         mounted() {
-         this.redom("latitudeAnalyse");
+        	this.$nextTick( () => {
+        		this.redom("latitudeAnalyse");
+        		echarts_resize("latitudeAnalyse",this);
+        	})
+         
         }
     }
 </script>

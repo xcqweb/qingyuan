@@ -109,7 +109,7 @@ import Bus from '@/common/js/bus.js'
             this.$axios.get(API_URL+'/login',{params:paramsObj}).then(r => {
                 console.log(r)
                 if(r.data.code =="200"||r.data.code ===200){
-                    this.$router.push({ path: '/' });
+                    this.$router.push({ path: API_URL });
                 }else{
                     alert("登录失败")
                     this.$router.push({ path: '/login' })

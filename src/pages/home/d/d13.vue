@@ -9,6 +9,8 @@
 	import echarts_resize from '@/common/js/echarts_resize.js'
 	import echarts from 'echarts'
 	
+	import '@/common/js/d3/jquery.js'
+	import '@/common/js/d3/3Dpie.js'
 	export default {
 		data(){
 			return {
@@ -57,9 +59,63 @@
 	    },
 		 methods:{
             redom(id){
-            	
-                this.chart = echarts.init(document.getElementById(id));
-                this.chart.setOption(this.option);
+//          	let salesData = [{
+//				    label: "Basic",
+//				    color: "#427EFF"
+//				}, {
+//				    label: "Plus",
+//				    color: "#7F6AF7"
+//				}, {
+//				    label: "Lite",
+//				    color: "#BB68F4"
+//				}, {
+//				    label: "Elite",
+//				    color: "#FF8882"
+//				}, {
+//				    label: "Delux",
+//				    color: "#F7C935"
+//				}, {
+//				    label: "Delux",
+//				    color: "#F7C935"
+//				}, {
+//				    label: "Delux",
+//				    color: "#FFFD37"
+//				}, {
+//				    label: "Delux",
+//				    color: "#B1F223"
+//				}, {
+//				    label: "Delux",
+//				   color: "#76CD66"
+//				}, {
+//				    label: "Delux",
+//				    color: "#B7E986"
+//				}, {
+//				    label: "Delux",
+//				    color: "#86EACD"
+//				}];
+//				
+//				
+//				
+//				
+//				var width = document.getElementById('d13').clientWidth/0.6,
+//				    height = document.getElementById('d13').clientHeight/0.6;
+//				var svg = d3.select("#d13").append("svg")
+//				    .attr("width", width)
+//				    .attr("height", height)
+//				    .append("g").attr("id", "circleDonut");
+//				Donut3D.draw("circleDonut", randomData(), 150, 150, 130, 100, 30, 0);
+//				function randomData() {
+//				    return salesData.map(function(d) {
+//				        return {
+//				            label: d.label,
+//				            value: 1000 * Math.random(),
+//				            color: d.color
+//				        };
+//				    });
+//				}
+//				$('#d13 div').css('display', 'none')
+                  this.chart = echarts.init(document.getElementById(id));
+                  this.chart.setOption(this.option);
                 
             },
             getResponse(){
@@ -108,10 +164,12 @@
         },
         created(){
         	this.getResponse();
+        	console.log(d3)
    		 },
         mounted(){
         	this.$nextTick( ()=> {
-        		this.redom("d13")
+        		echarts_resize("d13",this);
+        		this.redom("d13");
         	})
         }
 	}
@@ -129,7 +187,7 @@
     position:absolute;
     left: 1.2rem;
     right: 0;
-    top: 0px;
+    top: 10%;
     bottom: 0;
     margin: auto;
     transform: scale(0.90);
