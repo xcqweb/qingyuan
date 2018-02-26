@@ -71,5 +71,25 @@ git remote add origin 添加新的远程仓库
 git pull origin master  将远程的代码直接合并到本地master上确保远程与本地 
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
+1 .切换到主干
+
+ $ git checkout master
+
+ 2. 更新主干代码
+
+ $ git pull origin master
+
+3. 切换回分支
+
+ $ git checkout feature
+
+4. 执行合并操作
+
+ $ git merge master
+
+ 这样就对了，剩下的就是解决冲突，然后提交代码
+
+##返回上一布，merge太多
+git reset --hard HEAD
 sublime 文件地址
 C:\Users\Administrator\AppData\Roaming\Sublime Text 3\Packages\SublimeTmpl\templates

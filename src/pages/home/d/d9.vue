@@ -113,7 +113,7 @@ li:nth-of-type(4){
                 路线
             </div>
             <div class="cell3">
-                人气<font>(万人)</font>
+                人气<font>(人)</font>
             </div>
         </li>
         <li v-for='(item,index) in items'>

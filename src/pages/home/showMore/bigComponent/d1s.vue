@@ -15,22 +15,25 @@
             :lenLat = 'lenLat[index]' 
             ></d1ss>
         </div> -->
-        <d1ss 
+        <div 
+            :is='hotMapOption' 
             class="c211 item" 
             :scenics='scenicsep' 
             :updatePlace ='updatePlace' 
             :idName = 'idSingle'
-            ></d1ss>
+            ></div>
     </div>
 </template>
 
 <script>
 import d1ss from '@/pages/home/showMore/smallComponent/d1ss.vue'
+import d1ss4A from '@/pages/home/showMore/smallComponent/d1ss4A.vue'
 import showMoreData from '@/common/js/mixin/showMoreData.js'
   export default {
     name:'D1S',
     mixins: [showMoreData],
     props:{
+        hotMapOption:String,
         scenics:Array,
         updatePlace:String,
     },
@@ -53,7 +56,7 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
     //     },
     // },
     components: {
-        d1ss,
+        d1ss,d1ss4A
     },
     methods:{
         
@@ -63,6 +66,7 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
         this.$emit('hideWeeks')
          this.$emit('hideVdate')
         this.$emit('showDateFormatChose',[])
+        this.$emit('showFourA')
     }
   }
 </script>

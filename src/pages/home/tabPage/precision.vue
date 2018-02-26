@@ -1,35 +1,7 @@
 <template>
     <div class="box">
-        <div class="leftSide" >
-            <div class="item"
-                v-for='item in leftComponents' 
-                :class="item.id">
-                <h1></h1>
-                <span >
-
-                </span>
-                <div class="border" >
-
-                </div>
-            </div>
-        </div>
-        <div class="rightSide">
-            <div class="item" 
-                v-for='item in rightComponents' 
-                :class="item.id">
-                <doubleSelection
-                v-on:listenDoubleSelection="" 
-                class="row"
-                ></doubleSelection>
-                <h1></h1>
-                <span>
-
-                </span>
-                <div class="border" >
-
-                </div>
-            </div>
-        </div>
+        <iframe src="http://zb.zjht100.com/LiveVideo/MapVideo/Index?id=qylyj
+"></iframe>
     </div>
 </template>
 
@@ -176,7 +148,10 @@ export default {
                 this.$axios.get(API_URL+'/qy/api/view/checkLogin').then(r => {
                     
                         if(r.data.code ==="-1"||r.data.code ===-1){
-                        window.location.href=API_URL+":8081/login"
+                        //测试
+						//   window.location.href=API_URL+":8081/login"
+						//旅游局
+						window.location.href=API_LOGIN
                         }
                 })
             },

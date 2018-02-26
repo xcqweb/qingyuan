@@ -204,7 +204,7 @@ export default {
         },
         showMore:function(name,title){
             let mainContent = name+'S';
-            if(name ==='D10'||name ==='D11'){
+            if(name ==='D10'||name ==='D11'||name==='D13'){
                 $showMore.open('A3S',title)
             }else{
                 $showMore.open(mainContent,title)
@@ -328,7 +328,10 @@ export default {
                 this.$axios.get(API_URL+'/qy/api/view/checkLogin').then(r => {
                     
                         if(r.data.code ==="-1"||r.data.code ===-1){
-                        window.location.href=API_URL+"/login"
+                        //测试
+						//   window.location.href=API_URL+":8081/login"
+						//旅游局
+						window.location.href=API_LOGIN
                         }
                 })
             },

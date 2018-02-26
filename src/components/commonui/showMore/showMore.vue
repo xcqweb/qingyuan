@@ -150,6 +150,19 @@ img{
       }
    }
 }
+.hot_map_4a{
+    width:8%;
+    height: 1.8rem;
+    line-height: 1.8rem;
+    float: left;
+    margin-left: 1rem;
+    margin-top:.7rem;
+    font-size:1em;
+    text-align: center;
+    color: #d3ddf9;
+    border: 1px solid #1b44ba;
+    cursor: pointer;
+}
 .week{
     width:15%;
     height: 1.8rem;
@@ -285,6 +298,14 @@ img{
                     @click="starClick(index)"
                     >{{item.context}}</li>
                 </ul> -->
+
+
+                 <div class="hot_map_4a"
+                 v-if="hotMapStatus"
+                 @click = 'showHotMapOption'
+                 
+                >A级景区</div>
+                
                 <!-- 时间下拉框组件 -->
                 <vDate class='vueDate'
                  v-if="vDateStatus"
@@ -307,6 +328,7 @@ img{
                 :dateIndex = 'dateIndex' 
                 :titles = 'qyselectlist.title'
                 :timeDate ='timeDate'
+                :hotMapOption ='hotMapOption'
                 @showDateFormatChose = 'showDateFormatChose'
                 @hideWeeks = 'hideWeeks'
                 @hideDoubleDate = 'hideDoubleDate'
@@ -315,6 +337,7 @@ img{
                 @hideVdate = 'hideVdate'
                 @showShennei ='showShennei'
                 @showDoubleSelect = 'showDoubleSelect'
+                @showFourA='showFourA'
             ></componet>
         </div>
     </div>
@@ -337,6 +360,9 @@ var _ = require('lodash');
             isActive:true,
             weekStatus:true,
             dateChose:false,
+            //A级景区
+            hotMapOption:'d1ss',
+            hotMapStatus:false,
             //地区选择
             placeSlect:true,
             //时间控件
@@ -444,6 +470,11 @@ var _ = require('lodash');
             }
             
         },
+        showHotMapOption(){
+            // this.hotMapOption = 'd1ss4A'
+            window.open("http://yj.gdtadbs.com/Account/EnterpriseLogin");
+            this.hotMapOption = 'd1ss'
+        },
         close(){
             this.visiable=false;
             this.weekStatus = true;
@@ -451,6 +482,7 @@ var _ = require('lodash');
             this.vDateStatus=true;
             this.placeSlect = true;
             this.shengNeiStatus = false;
+            this.hotMapStatus = false;
             this.qyselectlist.title ="全部";
             this.updateData.place ="全部";
             this.conmentPlatform = {status:false,list:{}} ;
@@ -497,6 +529,7 @@ var _ = require('lodash');
         hideVdate(){
             this.vDateStatus =false;
         },
+        
         //显示双选框，五星评论
         showComment(){
             this.weekStatus = false;
@@ -516,6 +549,9 @@ var _ = require('lodash');
                 status:true,
                 list:data,
             };
+        },
+        showFourA(){
+            this.hotMapStatus = true;
         },
         switch(val){
             const  cityData = {

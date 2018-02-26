@@ -1,3 +1,21 @@
+<style scoped="scoped">
+	 .content{
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  #d13{
+    width: 100%;
+    height: 100%;
+    position:absolute;
+    /* left: 1.2rem; */
+    right: 0;
+    top: 0px;
+    bottom: 0;
+    margin: auto;
+    /* transform: scale(0.90); */
+  }
+</style>
 <template>
 	<div class="content">
 		<div id="d13">
@@ -18,26 +36,22 @@
 				        {
 				            name: '签到比例分析',
 				            type: 'pie',
-				            radius : '55%',
-				            center: ['40%', '50%'],
+				            radius : '35%',
+				            center: ['50%', '55%'],
 				            data:[],
-				            itemStyle: {
-				                emphasis: {
-				                    shadowBlur: 10,
-				                    shadowOffsetX: 0,
-				                    shadowColor: 'rgba(0, 0, 0, 0.5)'
-				                }
-				            },
-				            itemStyle: {
-				                normal: {
-				                    label:{ 
-			                            show: true, 
-				                            //position:'inside',
-			                            formatter: '{b}' 
-			                        }
-				                },
-			                    labelLine :{show:true}
-				            }
+                            labelLine :{
+                                normal:{
+                                    show:true,
+                                    length:0,
+                                    length2:10,
+                                }
+                                
+                            },
+                            label:{
+                                normal:{
+                                    formatter:'{b}\n{d}%'
+                                }
+                            }
 				        }
 				    ]
 				}
@@ -117,21 +131,3 @@
 	}
 </script>
 
-<style scoped="scoped">
-	 .content{
-    width: 100%;
-    height: 100%;
-    position: relative;
-  }
-  #d13{
-    width: 90%;
-    height: 90%;
-    position:absolute;
-    left: 1.2rem;
-    right: 0;
-    top: 0px;
-    bottom: 0;
-    margin: auto;
-    transform: scale(0.90);
-  }
-</style>
