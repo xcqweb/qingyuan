@@ -85,7 +85,7 @@ export default {
             inItems: 'version/inItems',
           }),
          jqselectlist:function(){
-            if(this.cityData ===undefined){
+            if(this.cityData === undefined){
                 this.cityData = this.startData;
             }
             
