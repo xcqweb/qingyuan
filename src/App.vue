@@ -81,6 +81,10 @@ footer, header, hgroup, menu, nav, section {
 body {
   line-height: 1;
   background: #F2F7FA;
+  width: 3840px !important;
+  height: 100vh;
+  overflow-x: auto;
+  /*overflow-y: hidden;*/
 }
 /*a:link { text-decoration: none;color: blue}
 a:active { text-decoration:blink}

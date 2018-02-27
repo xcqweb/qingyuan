@@ -68,11 +68,12 @@ export default {
 @borderLen: 18px;
 
 #mainhome{
-    width:100vw;
-    height: 100vh;
+    width: 3840px !important;
+  	height: 100vh;
     position: relative;
     background-color: #0d1f6d;
-    overflow: hidden;
+    overflow-x: scroll;
+  overflow-y: hidden;
     .header{
         width: 100%;
         height: 90/1080*100%;
