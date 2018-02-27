@@ -1,12 +1,11 @@
 <template>
   <div id="mainhome">
     <transition name="slide-fade">
-        <!-- v-show='headerStatus'  -->
         <div class="header" v-on:mouseenter="headerEnter" v-on:mouseleave="headerLeave">
             <headerBody ></headerBody>
         </div>
     </transition>
-    <!-- <vmask ></vmask> -->
+     <!--<vmask ></vmask>--> 
     <div class="headmock" v-on:mouseenter="headerEnter"></div>
     <router-view class='mockrouter' 
     :placeName = 'placeName' 

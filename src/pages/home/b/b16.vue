@@ -50,7 +50,7 @@
             <font>{{yearSum}}</font>
         </div>
         <div>
-            <span>1月份持续接待游客(人)</span>
+            <span>{{month}}月份持续接待游客(人)</span>
             <font>{{montSum}}</font>
         </div>
     </div>
@@ -72,6 +72,7 @@ export default {
     props:['placeName',],
     data () {
         return {
+            month:'',
             rankItems: [
                 {
                 "num": 4323,
@@ -114,6 +115,7 @@ export default {
             this.$axios.get(API_URL+'/qy/api/view/getInProvinceData').then(r => {
                 
                 if(r.data.code ==="200"||r.data.code ===200){
+                     this.month = new Date().getMonth()+1;
                     this.montSum =this.$Rw.string_until.addPoint(r.data.data.monthSum);
                     this.yearSum =this.$Rw.string_until.addPoint(r.data.data.yearSum);
                     this.rankItems = r.data.data.topSixCity;

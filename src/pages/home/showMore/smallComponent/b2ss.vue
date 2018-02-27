@@ -71,7 +71,7 @@ export default {
                     data:[
                         
                         {
-                        value:this.dataItem.percent,
+                        value:this.dataItem.percent >101? 100 : this.dataItem.percent ,
                         name:'',
                         itemStyle:{
                             normal:{
@@ -82,7 +82,7 @@ export default {
                         }
                     },
                         {
-                        value:100-this.dataItem.percent, 
+                        value:this.dataItem.percent >101? 0 : (100- this.dataItem.percent), 
                         name:'',
                         itemStyle:{
                             normal:{

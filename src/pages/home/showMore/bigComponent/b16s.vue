@@ -282,13 +282,16 @@ import vmap from '@/pages/home/showMore/smallComponent/guonei_map.vue'
         },
         getResponse(paramsObj){
             this.$axios.get(API_URL+'/qy/api/view/getInProvinceDetailData',{params:paramsObj}).then(r => {
-                    
+                    console.log(r)
                 if(r.data.code ==="200"||r.data.code ===200){
+                    debugger;
                     this.nianItems = r.data.data; 
                     this.year = new Date(this.nianItems.currentDate).getFullYear()
                     this.month = new Date(this.nianItems.currentDate).getMonth()+1;
+                    debugger;
                     this.rankItems = r.data.data.topCity;
                     this.mapItems = r.data.data.topCity;
+                    debugger;
                 }
             })
         }

@@ -54,7 +54,7 @@ export default {
                 grid: {
                     show: true,
                     left: this.scenics ===""?'10%':'18%',
-                    top: '20%',
+                    top: '27%',
                     right: '5%',
                     bottom: '16%',
                     borderWidth: 0,

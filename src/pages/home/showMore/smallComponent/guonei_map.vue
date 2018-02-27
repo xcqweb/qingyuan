@@ -238,7 +238,7 @@ watch:{
                         },
                         tooltip:{
                             formatter:function(params){
-                                return _self.$Rw.string_until.addPoint(params.value[2]*scal)+'人'
+                                return _self.$Rw.string_until.addPoint((params.value[2]*scal).toFixed(2))+'人'
                             }
                         },
                         itemStyle: {

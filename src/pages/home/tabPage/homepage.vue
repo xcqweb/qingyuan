@@ -195,7 +195,10 @@ export default {
                 this.$axios.get(API_URL+'/qy/api/view/checkLogin').then(r => {
                     
                         if(r.data.code ==="-1"||r.data.code ===-1){
-                        window.location.href=API_URL+":8081/login"
+                        //测试
+						//   window.location.href=API_URL+":8081/login"
+						//旅游局
+						window.location.href=API_LOGIN
                         }
                 })
             },
@@ -203,7 +206,7 @@ export default {
         },
         created () {
             
-            this.getResponse();
+            // this.getResponse();
         },
         mounted() {
         }

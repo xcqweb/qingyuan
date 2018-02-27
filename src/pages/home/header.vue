@@ -57,11 +57,11 @@ a:visited { text-decoration: none;}
         }
         li:nth-of-type(1){
             &.unchose .aimg{
-                background-image:url('../../assets/images/home/above2.png');
+                background-image:url('../../assets/images/home/dashuju2.png');
                 background-size: 100% 100%;
             }
             &.chose .aimg{
-                background-image:url('../../assets/images/home/above1.png');
+                background-image:url('../../assets/images/home/dashuju1.png');
                 background-size: 100% 100%;
             }
         }
@@ -121,13 +121,13 @@ a:visited { text-decoration: none;}
                 }
             }
             &.unchose .aimg{
-                background-image:url('../../assets/images/home/down1.png');
+                background-image:url('../../assets/images/home/shipin1.png');
                 background-size: 100% 100%;
                 
                 
             }
             &.chose .aimg{
-                background-image:url('../../assets/images/home/down1.png');
+                background-image:url('../../assets/images/home/shipin1.png');
                 background-size: 100% 100%;
             }
             
@@ -151,11 +151,11 @@ a:visited { text-decoration: none;}
     <ul>
         <router-link :to="{path: '/precision'}" tag="li"   @click="toggle('choseAbove')" :class='choseAbove'>
                 <span class="aimg"  @click="toggle('choseAbove')"></span>
-                <font class="afont"  @click="toggle('choseAbove')">4A以上景区</font>
+                <font class="afont"  @click="toggle('choseAbove')">视频监控</font>
         </router-link>
         <li :class='choseDown' v-on:mouseenter="headerEnter" v-on:mouseleave="headerLeave">
                 <span class="aimg"></span>
-                <font class="">4A以下景区</font>
+                <font class="">大数据</font>
                 <div class="down_item" v-show="down_show">
                     <router-link :to="{path: '/'}" tag="div" class="item " @click="toggledown('zonglan')" :class='zonglan'>
                         <span class="downimg" @click="toggledown('zonglan')"></span>
@@ -193,7 +193,7 @@ export default {
         choseDown:'chose',
         zonglan:'chose',
         yingji:'chose',
-        return_url:API_URL,
+        return_url:API_LOGIN,
         aboverItem:[
             {name:'总览',link:'/',status:'unchose'},
         // {name:'产业监测平台',link:'/prodcut',status:'chose'},
