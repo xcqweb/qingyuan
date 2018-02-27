@@ -6,11 +6,7 @@
         @dblclick='showMore(topItem.name,topItem.title)'  
         class="item">
             <h1>{{topItem.title}}</h1>
-            <!-- <span @click='cutover(topItem,leftComponents)' >
-                <img :src="cutoverImg"/>
-            </span> -->
-             <!-- <span class="close" @click='closeMid(topItem)' v-if="!topItem.icon"></span> -->
-            <div class="border" v-if='topItem.show'>
+            <div v-if='topItem.show'>
                 <componet 
                 :is='topItem.name'  
                 :key="topItem.id" 
@@ -20,17 +16,30 @@
             </div>
         </div>
     </div>
-    <div class="rightScope">
-        <div v-for='topItem in rightComponents' 
+    <div class="rightScopetop">
+        <div v-for='topItem in rightTop' 
         :class='topItem.id' 
         @dblclick='showMore(topItem.name,topItem.title)'  
         class="item">
             <h1>{{topItem.title}}</h1>
-            <!-- <span @click='cutover(topItem,rightComponents)'>
-                <img :src="cutoverImg"/>
-            </span> -->
-            <!-- <span class="close" @click='closeMid(topItem)' v-if="!topItem.icon"></span> -->
-            <div class="border" v-if='topItem.show'>
+            <div v-if='topItem.show'>
+                <componet
+                :is='topItem.name' 
+                :key="topItem.id" 
+                :chosemMoudle='cutoverMoudle' 
+                :lazyLoad='setLazy'
+                ></componet>
+            </div>
+        </div>
+    </div>
+    
+     <div class="rightScopebtm">
+        <div v-for='topItem in rightBottom' 
+        :class='topItem.id' 
+        @dblclick='showMore(topItem.name,topItem.title)'  
+        class="item">
+            <h1>{{topItem.title}}</h1>
+            <div v-if='topItem.show'>
                 <componet
                 :is='topItem.name' 
                 :key="topItem.id" 
@@ -89,16 +98,16 @@ export default {
                     {name:'C8',title:'游客来源排行'},
                 ],
                 leftComponents:[
-                     {name:'B16',id:'one',index:1,time:100,show:false,title:`省内游客来源地`,},
-                     {name:'C2',id:'two',index:2,time:300,show:false,title:'年龄分析'},
-                    {name:'C4',id:'three',index:3,time:600,show:false,title:'游客男女比例'},
-                    {name:'B4',id:'four',index:4,time:900,show:false,title:'路况监测'},
-                     {name:'A1',id:'five',index:5,time:600,show:false,title:'客流人数分析(单位/人)'},
-                      {name:'A5',id:'six',index:6,time:900,show:false,title:'客流实时监测'},
+                     {name:'D6',id:'one',index:1,time:100,show:false,title:`省内游客来源地`,},
+                     {name:'B16',id:'two',index:2,time:100,show:false,title:``,},
+                     {name:'C8',id:'three',index:3,time:100,show:false,title:``,},
                 ],
-                rightComponents:[
+                rightTop:[
                      {name:'D7',id:'one',index:1,time:1200,show:false,title:'消费水平分析'},
-                     {name:'C8',id:'two',index:2,time:1500,show:false,title:'游客来源排行'},
+                     
+                ],
+                rightBottom:[
+                		{name:'C8',id:'one',index:1,time:1500,show:false,title:'游客来源排行'},
                 ],
                 
                 text:'headerBody',

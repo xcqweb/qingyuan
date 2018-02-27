@@ -12,11 +12,22 @@ const NotFound =resolve => require(['@/pages/404.vue'], resolve);
 // const loginseven =resolve => require(['@/pages/login/loginseven.vue'], resolve);
 // const homepage = resolve => {require.ensure(['@/pages/homepage.vue'], () => {resolve(require('@/pages/homepage.vue'))})}
 const homepage = resolve => {require.ensure(['@/pages/home/tabPage/homepage.vue'], () => {resolve(require('@/pages/home/tabPage/homepage.vue'))})}
+
  const Precision = resolve => {require.ensure(['@/pages/home/tabPage/precision.vue'], () => {resolve(require('@/pages/home/tabPage/precision.vue'))})}
-// const prodcut = resolve => {require.ensure(['@/pages/home/tabPage/prodcut.vue'], () => {resolve(require('@/pages/home/tabPage/prodcut.vue'))})}
+   const prodcut = resolve => {require.ensure(['@/pages/home/tabPage/prodcut.vue'], () => {resolve(require('@/pages/home/tabPage/prodcut.vue'))})}
+  
+  //应急指挥
 const souceShow = resolve => {require.ensure(['@/pages/home/tabPage/souceShow.vue'], () => {resolve(require('@/pages/home/tabPage/souceShow.vue'))})}
 const homemain = resolve => {require.ensure(['@/pages/homemain.vue'], () => {resolve(require('@/pages/homemain.vue'))})}
 // const loginmain = resolve => {require.ensure(['@/pages/loginmain.vue'], () => {resolve(require('@/pages/loginmain.vue'))})}
+
+//舆情分析
+const publicOpinion = resolve => {require.ensure(['@/pages/home/tabPage/publicOpinion.vue'], () => {resolve(require('@/pages/home/tabPage/publicOpinion.vue'))})}
+
+//游客画像
+const Portrait = resolve => {require.ensure(['@/pages/home/tabPage/Portrait.vue'], () => {resolve(require('@/pages/home/tabPage/Portrait.vue'))})}
+
+const video = resolve => {require.ensure(['@/pages/home/tabPage/video.vue'], () => {resolve(require('@/pages/home/tabPage/video.vue'))})}
 
 const test =resolve => require(['@/pages/test.vue'], resolve);
 
@@ -50,9 +61,11 @@ const router= new Router({
         iconCls: 'el-icon-message',//图标样式class
         children: [
             { path: '', component: homepage, name: 'homepage' },
-            // { path: 'prodcut', component: prodcut, name: 'prodcut' },
-            { path: 'precision', component: Precision, name: 'Precision' },
-            { path: 'command', component: souceShow, name: 'souceShow' },
+            { path: 'Portrait', component: Portrait, name: 'Portrait' },
+            //{ path: 'precision', component: Precision, name: 'Precision' },
+            { path: 'command', component: souceShow, name: 'command' },
+            { path: 'option', component: publicOpinion, name: 'publicOpinion' },
+            { path: 'video', component: video, name: 'video' },
         ]
     },
   ]

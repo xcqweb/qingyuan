@@ -1,16 +1,12 @@
 <template>
   <div class="headertext">
-    <p v-show="showTitle">{{title}}</p>
+    <!--<p v-show="showTitle">{{title}}</p>-->
     <ul>
         <li v-for='(item, index) in items' :class='item.status' @click='toggle(item,index)'>
             <router-link v-bind:to={path:item.link}>
                 <span :class='item.status'></span>
                 <font>{{item.name}}</font>
             </router-link>          
-        </li>
-        <li @click='logout'>
-            <span></span>
-            <font>退出登录</font>
         </li>
     </ul>
   </div>
@@ -19,20 +15,18 @@
 <script>
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
-import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
-import api from '@/api/index.js'
+//import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
+//import api from '@/api/index.js'
 export default {
   name: '',
   data () {
     return {
       items:[
-//      {name:'总览',link:'/',status:'unchose'},
-        {name:'总览',link:'/',status:'unchose'},
-        {name:'产业监测平台',link:'/prodcut',status:'chose'},
-        {name:'精准营销平台',link:'/precision',status:'chose'},
-        {name:'应急指挥平台',link:'/souceShow',status:'chose'},
-        {name:'旅游资源平台',link:'/iframeMap',status:'chose'},
-
+        {name:'大数据',link:'/',status:'unchose'},
+        {name:'应急指挥',link:'/command',status:'chose'},
+        {name:'游客画像',link:'/Portrait',status:'chose'},
+        {name:'舆情分析',link:'/option',status:'chose'},
+        {name:'视频监控',link:'/video',status:'chose'},
       ],
       hash:'',
       wid:window.innerWidth
@@ -69,7 +63,7 @@ export default {
     	api.loginOut(api.params).then( (re) => {
     		//console.log(re.data)
     		if(re.data.code===200){
-    			setCookie('token','',-1);
+    			//setCookie('token','',-1);
         	this.$router.push({ path: '/login' });
         	alert('退出成功!')
     		}
@@ -136,8 +130,6 @@ a:visited { text-decoration: none;}
     width:100%;
     height:100%;
     position:relative;
-    box-shadow: 0 2px 25px black;
-    padding-bottom: 1%;
     background-color: #133596;
     p{  
         position: absolute;
@@ -149,10 +141,10 @@ a:visited { text-decoration: none;}
     }
     ul{
         position: absolute;
-        top: 20%;
-        right: 1rem;
+        top: 50;
+        width:100%;
         li{
-            margin-left: 1rem;
+            margin-top: 1.8rem;
             cursor: pointer;
             a{
                 display:inline-block;
@@ -166,18 +158,23 @@ a:visited { text-decoration: none;}
             }
             font{
                 display: block;
-                font-size: 1rem;
-                margin-top:7px;
+                font-size: 0.6rem;
+                margin-top:0.6rem;
             }
             &.chose{
                 a{
-                    color: #368df7 !important;  
+                    color: #368df7 !important;
+                    
                 }
                 
             }   
             &.unchose{
                 a{
-                    color: #6dffeb !important;  
+                    color: #6dffeb !important; 
+                    border-left: 2px solid rgb(21, 213, 249);
+                    box-sizing: border-box;
+                    background-color: rgba(4, 16, 54,0.6);
+                    padding: 10px 0px 10px 0px;   
                 }
                 
             }
@@ -240,9 +237,6 @@ a:visited { text-decoration: none;}
                 background-image:url('../../assets/images/home/退出登录.png');
                 background-size: 100% 100%;
             }
-            font{
-                color:#ff719c !important;
-            }
         }
         
         
@@ -261,36 +255,6 @@ a:visited { text-decoration: none;}
     }
 }
 
-  @media screen and(max-width: 800px){
-  	.headertext{
-  		ul{
-  			top:12% !important;
-  			span{
-                display:inline-block;
-                width: 30px;
-                height: 28px;
-            }
-            font{
-                display: block;
-                font-size: 0.8rem !important;
-                margin-top:-0.5rem !important;
-                text-align: center;
-            }
-            
-            li .chose,li .unchose{
-            	
-                background-size: 80% 80% !important;
-                background-repeat: no-repeat;
-            }
-            li:last-child{
-            	span{
-            		background-size: 80% 80% !important;
-            	  background-repeat: no-repeat;
-            	}
-            	
-            }
-        }
-  		}
-  	}
+  
         	
 </style>

@@ -9,35 +9,18 @@
 @textColor:#8687c0;
 @headerBackColor:#133596;
 @topBottomColor:#163387;
-@borderColor:#49d9fe;
+@borderColor:#355BFA;
 @borderLen: 18px;
 .titleRed{
     color: red;
 }
 /** item**/
-.qylable{
-    height:1.8rem;
-    line-height: 1.8rem;
-    position: absolute;
-    top: 50%;
-    transform: translate(0,-50%);
-    left: 10%;
-    font-size: 16px;
-}
-.jqlable{
-    height:1.8rem;
-    line-height: 1.8rem;
-    position: absolute;
-    top: 50%;
-    transform: translate(0,-50%);
-    left: 43%;
-    font-size: 16px;
-}
+    
+
 .item{
-    height: auto;
-    text-align: center;
-    background-color: #163387;
-    position: relative;
+     text-align: center;
+     background-color: #163387;
+     position: absolute;
     .close {
         position: absolute;
         top: 1rem;
@@ -49,51 +32,6 @@
         background-position: center;
         z-index: 133;
         cursor: pointer;
-    }
-    &:before {
-        position:absolute;
-        bottom: -2px ;
-        left: -2px ;
-        width: @borderLen;
-        height: @borderLen;
-        border-bottom:2px solid @borderColor;
-        border-left:2px solid @borderColor;
-        
-        content: " ";
-    }
-    &:after {
-        position:absolute;
-        top: -2px;
-        right: -2px;
-        width: @borderLen;
-        height: @borderLen;
-        border-top:2px solid @borderColor ;
-        border-right:2px solid @borderColor ;
-        content: " ";
-    }
-    .border{
-        height: 100%;
-        width: 100%;
-        &:before {
-            position:absolute;
-            top: -2px ;
-            left: -2px ;
-            width: @borderLen;
-            height: @borderLen;
-            border-top:2px solid @borderColor ;
-            border-left:2px solid @borderColor ;
-            content: " ";
-        }
-        &:after {
-            position:absolute;
-            bottom: -2px;
-            right: -2px;
-            width: @borderLen;
-            height: @borderLen;
-            border-bottom:2px solid @borderColor;
-            border-right:2px solid @borderColor;
-            content: " ";
-        }
     }
 }
 h1{
@@ -138,12 +76,11 @@ span{
 }
 .box{
     background-color: #0a1e64;
-    position: relative;
+    position: absolute;
     .rightScope{
         position: absolute;
         .three{
             h1{
-                //  left: 13rem;
                 top: .8rem !important;
             }
         }
@@ -154,30 +91,26 @@ span{
         .six{
             h1{
                 top: .8rem !important;
-                //  left: 15rem;
             }
         }
     }
 }
 @media screen and(min-width: 801px){
     .box{
-        height: 90vh;
-        width: 99vw;
-        overflow: hidden;
-        margin-left: .5vw;
-        min-height: 500px;
-        position: relative;
-        .border{
-
-        }
+         width:  1830/1920*100%;
+         height: 990/1080*100%;
+         left: 105/1920*100%;
+         top: 110/1080*100%;
+         background-color: #0D1A47;
         .tabList{
             position: absolute;
-            width:598/1920*100%;;
-            height: 80/1048*100%;
-            left: 16/1920*100%;
+            width:260/1920*100%;;
+            height: 1045/1080*100%;
             top:2px;
             font-size: 1.3rem;
-            color:white;
+            color:#fff;
+            border: 0.1rem solid @borderColor;
+            border-radius: 0.3rem;
         }
         .leftScope{
             height: 99%;

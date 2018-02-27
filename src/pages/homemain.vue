@@ -22,19 +22,6 @@ export default {
                 headerStatus:false,
                 allComponents: [],
                 componentName: '',
-                topComponents:[
-                    {name:'vtopOne',id:'one',title:'浦江客流人数分析'},
-                    {name:'vprofies',id:'two',title:'景区概况'},
-                    {name:'vtopThree',id:'three',title:''},
-                    {name:'vcontentment',id:'four',title:'游客满意度'},
-                ],
-                bottomComponents:[
-                    {name:'vtimeOn',id:'one',title:'客流实时监测'},
-                    {name:'vchartMap',id:'two',title:'国内游客来源地'},
-                    {name:'vrinking',id:'three',title:'游客来源排行榜'},
-                    {name:'vpercenPie',id:'four',title:'营销推广'},
-                    {name:'vvideo',id:'five',title:'视频监控'},
-                ],
                 text:'headerBody',
             }
         },

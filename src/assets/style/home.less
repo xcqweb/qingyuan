@@ -4,13 +4,12 @@
 @textColor:#8687c0;
 @headerBackColor:#133596;
 @topBottomColor:#163387;
-@borderColor:#49d9fe;
+@borderColor:#355BFA;
 @borderLen: 18px;
 .item{
-    height: auto;
     text-align: center;
     background-color: #163387;
-    position: relative;
+    position: absolute;
     
     .close {
         position: absolute;
@@ -24,59 +23,17 @@
         z-index: 133;
         cursor: pointer;
     }
-    &:before {
-        position:absolute;
-        bottom: 0 ;
-        left: 0 ;
-        width: @borderLen;
-        height: @borderLen;
-        border-bottom:2px solid @borderColor;
-        border-left:2px solid @borderColor;
-        
-        content: " ";
-    }
-    &:after {
-        position:absolute;
-        top: 0;
-        right: 0;
-        width: @borderLen;
-        height: @borderLen;
-        border-top:2px solid @borderColor ;
-        border-right:2px solid @borderColor ;
-        content: " ";
-    }
+    
 }
-.border{
-    position:absolute;
-    width:100%;
-    height: 100%;
-   
-    &:before {
-        position:absolute;
-        top: 0 ;
-        left: 0 ;
-        width: @borderLen;
-        height: @borderLen;
-        border-top:2px solid @borderColor ;
-        border-left:2px solid @borderColor ;
-        content: " ";
-    }
-    &:after {
-        position:absolute;
-        bottom: 0;
-        right: 0;
-        width: @borderLen;
-        height: @borderLen;
-        border-bottom:2px solid @borderColor;
-        border-right:2px solid @borderColor;
-        content: " ";
-    }
-}
+
 #apphome{
-    width:100%;
-    height: 92%;
-    background-color: #0d1f6d;
-    position: relative;
+    position: absolute;
+     width:  1830/1920*100%;
+     height: 990/1080*100%;
+     left: 105/1920*100%;
+     top: 110/1080*100%;
+    background-color: #0D1A47;
+    
     .header{
         position:fixed;
         width: 100%;
@@ -91,10 +48,10 @@
     }
     .leftScope{
         position: absolute;
-        width: (978+464+16)/1920*100%;
-        height: (588+444+16)/1080*100%;
-        top: 0;
-        left: 16/1920*100%;
+        width: 1320/1920*100%;
+        height: 1045/1080*100%;
+        border: 0.1rem solid @borderColor;
+        border-radius: 0.3rem;
         h1{
             position:absolute;
             top: 1.3rem;
@@ -105,128 +62,62 @@
             font-weight: 590;
             
         }
-        span{
-            position:absolute;
-            top: 8px;
-            display: inline-block;
-            z-index: 2;
-            cursor: pointer;
-            width: 18/1920*100vw;
-            height: auto;
-            text-align: center;
-            img{                  
-                max-width: 100%;
-                max-height: 100%;
-                width: auto;
-                height: auto;
-            }
-            @media screen and(min-width: 801px){
-                right:8px;
-            }
-            @media screen and(max-width: 800px){
-                right:5%;
-            }
-        }
-        &>div{
-            background-color: @topBottomColor;
-            position:absolute;
 
-        }
         .one{
-            width: 464/1458*100%;
-            height: 588/1048*100%;
-            top:0;
-            left:0;
+           height: 588/1045*100%; 
+           width: 320/1320*100%;
+           left: 0;
+           //background-color: #132668;
         }
         .two{
-            width: 370/1458*100%;
-            height: 272/1048*100%;
-            top:0;
-            left:(464+16)/1458*100%;
+           height: 588/1045*100%; 
+           width: 500/1320*100%;
+           left: 320/1320*100%;;
+           //background-color: #132668;
         }
         .three{
-            width: 370/1458*100%;
-            height: 300/1048*100%;
-            top:(272+16)/1048*100%;;
-            left:(464+16)/1458*100%;
-        }
-        .four{
-            width: 592/1458*100%;
-            height: 588/1048*100%;
-            top:0/444*100%;
-            right:0;
-        }
-        .five{
-            width: 464/1458*100%;
-            height: 444/1048*100%;
-            bottom:0;
-            left:0;
-        }
-        .six{
-            width: 978/1458*100%;
-            height: 444/1048*100%;
-            bottom:0;
-            right:0;
+           height: 588/1045*100%; 
+           width: 500/1320*100%;
+           left: 820/1320*100%;
+           //background-color: #132668;
         }
     }
-    .rightScope{
+    .rightScopetop{
         position: absolute;
-        width: 414/1920*100%;
-        height: (588+444+16)/1080*100%;
-        top: 0;
-        right: 14/1920*100%;
-        
+        width: 560/1920*100%;
+        height: 520/1080*100%;
+        right: 20/1920*100%;
+        border: 0.1rem solid @borderColor;
+        border-radius: 0.3rem;
         h1{
             position:absolute;
-            top: 1.2rem;
+            top: 1.3rem;
             left: 2rem;
             z-index: 2;
             color:@hColor;
             font-size: 1.1rem;
+            font-weight: 590;
+            
         }
-        span{
+    }
+    
+    .rightScopebtm{
+        position: absolute;
+        width: 560/1920*100%;
+        height: 500/1080*100%;
+        right: 20/1920*100%;
+        top: 540/1080*100%;;
+        border: 0.1rem solid @borderColor;
+        border-radius: 0.3rem;
+        h1{
             position:absolute;
-            top: 8px;
-            display: inline-block;
+            top: 1.3rem;
+            left: 2rem;
             z-index: 2;
-            cursor: pointer;
-            width: 18/1920*100vw;
-            height: auto;
-            text-align: center;
-            img{                  
-                max-width: 100%;
-                max-height: 100%;
-                width: auto;
-                height: auto;
-            }
-            @media screen and(min-width: 801px){
-                right:8px;
-            }
-            @media screen and(max-width: 800px){
-                right:5%;
-            }
+            color:@hColor;
+            font-size: 1.1rem;
+            font-weight: 590;
+            
         }
-        &>div{
-            background-color: @topBottomColor;
-            margin-right: 16/1920*100%;
-            position:absolute;
-
-        }
-        .one{
-            height: 588/1048*100%;
-            width: 100%;
-            top: 0;
-            right: 0;
-            .video{
-                margin-top: 50px;
-            }
-        }
-        .two{
-            height: 444/1048*100%;
-            width: 100%;
-            bottom: 0;
-            right: 0;
-        }
-
     }
 }

@@ -2,8 +2,12 @@
 let headerBody = resolve => {require.ensure(['@/pages/home/header.vue'], () => {resolve(require('@/pages/home/header.vue'))})}
 let topBody = resolve => {require.ensure(['@/pages/home/topBody.vue'], () => {resolve(require('@/pages/home/topBody.vue'))})}
 let bottomBody = resolve => {require.ensure(['@/pages/home/bottomBody.vue'], () => {resolve(require('@/pages/home/bottomBody.vue'))})}
+
 let sleckte = resolve => {require.ensure(['@/components/commonui/dropdown/dropdown-menu.vue'], () => {resolve(require('@/components/commonui/dropdown/dropdown-menu.vue'))})}
+
 let doubleSelection = resolve => {require.ensure(['@/components/commonui/dropdown/doubleSelection.vue'], () => {resolve(require('@/components/commonui/dropdown/doubleSelection.vue'))})}
+
+let groupMenu = resolve => {require.ensure(['@/components/commonui/dropdown/groupMenu.vue'], () => {resolve(require('@/components/commonui/dropdown/groupMenu.vue'))})}
 
 //客流分析__bar
 let A1 = resolve => {require.ensure(['@/pages/home/vcomponent/vtopOne.vue'], () => {resolve(require('@/pages/home/vcomponent/vtopOne.vue'))})}
@@ -73,6 +77,7 @@ let D13 = resolve => {require.ensure(['@/pages/home/d/d13.vue'], () => {resolve(
 let status =[
     'sleckte',
     'doubleSelection',
+    'groupMenu',
     'A1',
     'A2',
     'A3',

@@ -19,7 +19,6 @@ selectlist:{
 !-->
 <template>
     <div class="v-dropdown-menu" 
-
         @click = 'showselect' 
         v-bind:style="{ width:selectList.width ,left:selectList.left}" 
         >
@@ -61,7 +60,6 @@ import Vue from 'vue'
         },
         methods:{
             sendMsgParent:function(){
-
                 this.$emit('listenAtparent',selectList.title)
             },
             outcrement:function(message){
@@ -114,7 +112,7 @@ import Vue from 'vue'
         computed:{
             maxHeight:function(){
                 if(this.list.length>5){
-                    return 10.8
+                    return 7.7
                 }else{
                     return (this.list.length+1)*1.8
                 }
@@ -150,7 +148,7 @@ import Vue from 'vue'
         },
         mounted(){
             
-            if(this.list.length>6){
+            if(this.list.length>4){
                 this.isMore =  true
             }else{
                 this.isMore = false
@@ -175,33 +173,13 @@ import Vue from 'vue'
     height:1.8rem;
     line-height: 1.8rem;
     position: absolute;
-    border: 1px solid #1b44ba;
+    border: 0.1rem solid #355BFA;
     top: 50%;
     transform: translate(0,-50%);
     color: white;
     box-shadow: 1px 0 30px  rgba(1,1,13,0.4);
     z-index: 30;
     white-space: nowrap;
-    .up{
-        display:inline-block;
-        position: absolute;
-        height:9px;
-        width:14px;
-        right:5%;
-        top:30%;
-        background-image: url('../../../assets/images/home/up.png');
-        background-size: 100% 100%;
-    }
-    .down{
-        display:inline-block;
-        position: absolute;
-        height:9px;
-        width:14px;
-        right:5%;
-        top:35%;
-        background-image: url('../../../assets/images/home/down.png');
-        background-size: 100% 100%;
-    }
 }
 .listdiv{
     position: absolute;
@@ -219,8 +197,9 @@ import Vue from 'vue'
                 width:0;
                 height: 0;
                 position: absolute;
-                bottom: 10px;
-                left: 50%;
+                bottom: 5px;
+                left: 47%;
+                z-index: 450;
                 transform: translate(-50%,0);
                 border-left: solid 10px transparent;
                 border-top:solid 5px white;
@@ -239,15 +218,14 @@ import Vue from 'vue'
         width: 150%;
         margin-left: -1px;
         z-index:444;
-        max-height: 10.8rem;
+        max-height: 8rem;
         overflow-y: auto;
         li {
-            // transform: translate(-20%,0);
             list-style: none;
             color: white;
             background-color: #193583;
             height: 1.8rem;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             line-height: 1.8rem;
             white-space: nowrap;
             overflow: hidden;
@@ -265,7 +243,6 @@ import Vue from 'vue'
     text-align: center;
     color: white;
 
-
 }
 
 .dropdown-menu-p{
@@ -278,7 +255,7 @@ import Vue from 'vue'
     cursor: pointer;
     text-align: center;
     z-index: 9;
-    font-size: .9rem;
+    font-size: .8rem;
     line-height: 1.8rem;
     white-space: nowrap;
     overflow: hidden;
