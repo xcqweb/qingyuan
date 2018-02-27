@@ -84,16 +84,16 @@ export default {
             case '#/login' :
             this.items[0].status = 'unchose'
             break; 
-            case '#/prodcut' :
+            case '#/command' :
             this.items[1].status = 'unchose'
             break;
-            case '#/precision' :
+            case '#/portrait' :
             this.items[2].status = 'unchose'
             break;
-            case '#/souceShow' :
+            case '#/option' :
             this.items[3].status = 'unchose'
             break;
-            case '#/iframeMap' :
+            case '#/video' :
             this.items[4].status = 'unchose'
             break;
         }
@@ -112,6 +112,7 @@ export default {
   components:{
   },
   mounted(){
+  	console.log(location.hash)
     let _self= this
     window.addEventListener('hashchange', function(e) {
         _self.hash=location.hash;

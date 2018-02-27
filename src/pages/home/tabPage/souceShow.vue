@@ -5,7 +5,7 @@
         		@doubleChose='doubleChoseVal'
         		@choseDate='choseDateVal'
         		@choseDay='choseDayVal'
-        		:isDate=true
+        		:isDate=false
         	></groupMenu>
         </div>
         <!--<div class="leftScope" >
