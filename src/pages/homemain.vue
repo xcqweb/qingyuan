@@ -1,12 +1,9 @@
 <template>
   <div id="mainhome">
-    <transition name="slide-fade">
-        <div class="header" v-on:mouseenter="headerEnter" v-on:mouseleave="headerLeave">
-            <headerBody ></headerBody>
-        </div>
-    </transition>
-     <!--<vmask ></vmask>--> 
-    <div class="headmock" v-on:mouseenter="headerEnter"></div>
+  	<div class="header">清远市旅游大数据应用和应急管理智慧平台</div>
+  	<div class="nav">
+  		<headerBody />
+  	</div>
     <router-view class='mockrouter' 
     :placeName = 'placeName' 
     :placeAttractions = 'placeAttractions' 
@@ -56,12 +53,6 @@ export default {
             console(){
                 console.log(this.components)
             },
-            headerEnter(){
-                this.headerStatus=true;
-            },
-            headerLeave(){
-                this.headerStatus=false;
-            },
             getResponse(){
                 this.$axios.get(API_URL+'/qy/api/view/checkLogin').then(r => {
                     
@@ -84,20 +75,11 @@ export default {
 @hColor:#efeefd;
 /*文本内容颜色*/
 @textColor:#8687c0;
-@headerBackColor:#133596;
+@headerBackColor:#122461;
 @topBottomColor:#163387;
-@borderColor:#49d9fe;
+@borderColor:#355BFA;
 @borderLen: 18px;
-.slide-fade-enter-active {
-  transition: all .11s linear;
-}
-.slide-fade-leave-active {
-  transition: all .1s linear;
-}
-.slide-fade-enter, .slide-fade-leave-to {
-  transform: translateY(-10px);
 
-}
 #mainhome{
     width:100vw;
     height: 100vh;
@@ -109,15 +91,16 @@ export default {
         height: 90/1080*100%;
         background-color: @headerBackColor;
         z-index: 2500;
+        font-size: 1.6rem;
+        color: #fff;
+        line-height: 3rem;
+        border: 2px solid @borderColor;
     }
-    // .headmock{
-    //     width: 100%;
-    //     height: 20px;
-    //     visibility:unset;
-    //     z-index:777;
-    // }
-    .mockrouter{
-        margin-top:7/1080*100%;
+    .nav{
+    	 height: 990/1080*100%;
+    	 width:  90/1920*100%;
+    	 background-color: #122461;
+    	 border-right: 2px solid @borderColor;
     }
 }
 </style>

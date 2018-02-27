@@ -1,3 +1,132 @@
+<template>
+  <div class="headertext">
+    <p v-show="showTitle">{{title}}</p>
+    <ul>
+        <li v-for='(item, index) in items' :class='item.status' @click='toggle(item,index)'>
+            <router-link v-bind:to={path:item.link}>
+                <span :class='item.status'></span>
+                <font>{{item.name}}</font>
+            </router-link>          
+        </li>
+        <li @click='logout'>
+            <span></span>
+            <font>退出登录</font>
+        </li>
+    </ul>
+  </div>
+</template>
+
+<script>
+import Vue from 'vue'
+import { mapGetters } from 'vuex'
+import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
+import api from '@/api/index.js'
+export default {
+  name: '',
+  data () {
+    return {
+      items:[
+//      {name:'总览',link:'/',status:'unchose'},
+        {name:'总览',link:'/',status:'unchose'},
+        {name:'产业监测平台',link:'/prodcut',status:'chose'},
+        {name:'精准营销平台',link:'/precision',status:'chose'},
+        {name:'应急指挥平台',link:'/souceShow',status:'chose'},
+        {name:'旅游资源平台',link:'/iframeMap',status:'chose'},
+
+      ],
+      hash:'',
+      wid:window.innerWidth
+    }
+  },
+  watch:{
+      hash:function (val) {
+              this.changelink()
+          },
+  },
+  computed: { 
+    ...mapGetters({
+        title: 'version/title',
+      }),
+      
+      //手机屏幕时去掉标题
+      showTitle(){
+      	let wid = this.wid;
+      	if(wid<768){
+      		return false;
+      	}else{
+      		return true;
+      	}
+      }
+  },
+  methods: {
+    toggle(item,index){
+        for (var i = 0; i < this.items.length; i++) {
+            this.items[i].status='chose'
+        }
+        item.status='unchose'
+    },
+    logout(){
+    	api.loginOut(api.params).then( (re) => {
+    		//console.log(re.data)
+    		if(re.data.code===200){
+    			setCookie('token','',-1);
+        	this.$router.push({ path: '/login' });
+        	alert('退出成功!')
+    		}
+    	}).catch( (e) => {
+    		alert('退出失败!请重试!')
+    	})
+    		
+        
+    },
+    changelink(){
+        for (var i = 0; i < this.items.length; i++) {
+            this.items[i].status='chose'
+        }
+        switch(location.hash){
+            case '#/' :
+            this.items[0].status = 'unchose'
+            break; 
+            case '#/login' :
+            this.items[0].status = 'unchose'
+            break; 
+            case '#/prodcut' :
+            this.items[1].status = 'unchose'
+            break;
+            case '#/precision' :
+            this.items[2].status = 'unchose'
+            break;
+            case '#/souceShow' :
+            this.items[3].status = 'unchose'
+            break;
+            case '#/iframeMap' :
+            this.items[4].status = 'unchose'
+            break;
+        }
+
+    },
+    keepStatus(){
+        for (var i = 0; i < this.items.length; i++) {
+            if (this.hash = this.items[i].link) {
+                this.items[i].status='unchose'
+            }else{
+                this.items[index].status = 'chose'
+            }
+        }
+    },
+  },
+  components:{
+  },
+  mounted(){
+    let _self= this
+    window.addEventListener('hashchange', function(e) {
+        _self.hash=location.hash;
+    }, false);
+    this.keepStatus()
+  }
+}
+</script>
+
 <style lang="less" scoped>
 a:link { text-decoration: none;}
 a:active { text-decoration:none}
@@ -8,9 +137,11 @@ a:visited { text-decoration: none;}
     height:100%;
     position:relative;
     box-shadow: 0 2px 25px black;
+    padding-bottom: 1%;
+    background-color: #133596;
     p{  
         position: absolute;
-        top: 30%;
+        top: 32%;
         left: 2%;
         font-size: 1.8rem;
         color:#85e6ff;
@@ -18,12 +149,10 @@ a:visited { text-decoration: none;}
     }
     ul{
         position: absolute;
-        top: 0;
-        right: 40px;
+        top: 20%;
+        right: 1rem;
         li{
-            float: left;
-            margin-left: 30px;
-            min-width: 80px;
+            margin-left: 1rem;
             cursor: pointer;
             a{
                 display:inline-block;
@@ -32,107 +161,81 @@ a:visited { text-decoration: none;}
             }
             span{
                 display:inline-block;
-                width: 36px;
-                height: 34px;
-                margin-top:15%;
+                width: 30px;
+                height: 28px;
             }
             font{
                 display: block;
-                font-size: 11px;
+                font-size: 1rem;
                 margin-top:7px;
-                color: #368df7;
             }
             &.chose{
-                .afont{
+                a{
                     color: #368df7 !important;  
                 }
                 
             }   
             &.unchose{
-                .afont{
+                a{
                     color: #6dffeb !important;  
                 }
                 
             }
         }
+        
+      
+        
         li:nth-of-type(1){
-            &.unchose .aimg{
-                background-image:url('../../assets/images/home/dashuju2.png');
+            .unchose{
+                background-image:url('../../assets/images/home/总览.png');
                 background-size: 100% 100%;
             }
-            &.chose .aimg{
-                background-image:url('../../assets/images/home/dashuju1.png');
+            .chose{
+                background-image:url('../../assets/images/home/总览2.png');
                 background-size: 100% 100%;
             }
         }
-        // li:nth-of-type(2){
-        //     .unchose{
-        //         background-image:url('../../assets/images/home/产品监测平台.png');
-        //         background-size: 100% 100%;
-        //     }
-        //     .chose{
-        //         background-image:url('../../assets/images/home/产品监测平台2.png');
-        //         background-size: 100% 100%;
-        //     }
-        // }
         li:nth-of-type(2){
-            position: relative;
-            .down_item{
-                position: absolute;
-                width: 100%;
-                height: 225%;
-                z-index: 499;
-	            box-shadow: 0px 1px 10px 0px 
-	        	rgba(1, 1, 13, 0.2);
-	            border-radius: 0px 0px 6px 6px;
-                background-color: #002a5c;
-            }
-            &.unchose{
-                background-color: #002a5c;
-                
-                .item:nth-of-type(1){
-                    margin-top: 7px;
-                    border-top: 3px solid #133596;
-                    z-index: 100;
-                    &.unchose font{
-                        color:#6dffeb;
-                    }
-                    &.unchose .downimg{
-                        background-image:url('../../assets/images/home/总览.png');
-                        background-size: 100% 100%;
-                    }
-                    &.chose .downimg{
-                        background-image:url('../../assets/images/home/总览2.png');
-                        background-size: 100% 100%;
-                    }
-                }
-                .item:nth-of-type(2){
-                     &.unchose font{
-                        color:#6dffeb;
-                    }
-                    &.unchose .downimg{
-                        background-image:url('../../assets/images/home/精准营销平台.png');
-                        background-size: 100% 100%;
-                    }
-                    &.chose .downimg{
-                        background-image:url('../../assets/images/home/精准营销平台2.png');
-                        background-size: 100% 100%;
-                    }
-                }
-            }
-            &.unchose .aimg{
-                background-image:url('../../assets/images/home/shipin1.png');
-                background-size: 100% 100%;
-                
-                
-            }
-            &.chose .aimg{
-                background-image:url('../../assets/images/home/shipin1.png');
+            .unchose{
+                background-image:url('../../assets/images/home/产品监测平台.png');
                 background-size: 100% 100%;
             }
-            
+            .chose{
+                background-image:url('../../assets/images/home/产品监测平台2.png');
+                background-size: 100% 100%;
+            }
         }
         li:nth-of-type(3){
+            .unchose{
+                background-image:url('../../assets/images/home/精准营销平台.png');
+                background-size: 100% 100%;
+            }
+            .chose{
+                background-image:url('../../assets/images/home/精准营销平台2.png');
+                background-size: 100% 100%;
+            }
+        }
+        li:nth-of-type(4){
+            .unchose{
+                background-image:url('../../assets/images/home/资源展示平台.png');
+                background-size: 100% 100%;
+            }
+            .chose{
+                background-image:url('../../assets/images/home/资源展示平台2.png');
+                background-size: 100% 100%;
+            }
+        }
+        li:nth-of-type(5){
+            .unchose{
+                background-image:url('../../assets/images/home/2171516605538.jpg');
+                background-size: 100% 100%;
+            }
+            .chose{
+                background-image:url('../../assets/images/home/2161516605424.jpg');
+                background-size: 100% 100%;
+            }
+        }
+        li:last-child{
             span{
                 background-image:url('../../assets/images/home/退出登录.png');
                 background-size: 100% 100%;
@@ -141,153 +244,53 @@ a:visited { text-decoration: none;}
                 color:#ff719c !important;
             }
         }
-
-    }
-}
-</style>
-<template>
-  <div class="headertext">
-    <p>{{title}}</p>
-    <ul>
-        <router-link :to="{path: '/precision'}" tag="li"   @click="toggle('choseAbove')" :class='choseAbove'>
-                <span class="aimg"  @click="toggle('choseAbove')"></span>
-                <font class="afont"  @click="toggle('choseAbove')">视频监控</font>
-        </router-link>
-        <li :class='choseDown' v-on:mouseenter="headerEnter" v-on:mouseleave="headerLeave">
-                <span class="aimg"></span>
-                <font class="">大数据</font>
-                <div class="down_item" v-show="down_show">
-                    <router-link :to="{path: '/'}" tag="div" class="item " @click="toggledown('zonglan')" :class='zonglan'>
-                        <span class="downimg" @click="toggledown('zonglan')"></span>
-                        <font @click="toggledown('zonglan')">总览</font>
-                    </router-link>
-                    <router-link :to="{path: '/command'}" tag="div" class="item" @click="toggledown('yingji')" :class='yingji'>
-                        <span class="downimg" @click="toggledown('yingji')"></span>
-                        <font @click="toggledown('yingji')">应急指挥平台</font>
-                    </router-link>
-                </div>
-        </li>
-        <li>
-            <a v-bind:href="return_url">
-            <span></span>
-            <font>返回后台管理</font>
-            </a>
-        </li>
-    </ul>
-  </div>
-</template>
-
-<script>
-import Vue from 'vue'
-import { mapGetters } from 'vuex'
-export default {
-  name: '',
-  data () {
-    return {
-        items:[
-            {name:'总览',link:'/',status:'unchose'},
-            {name:'应急指挥平台',link:'',status:'chose'},
-        ],
-        down_show:false,
-        choseAbove:'unchose',
-        choseDown:'chose',
-        zonglan:'chose',
-        yingji:'chose',
-        return_url:API_LOGIN,
-        aboverItem:[
-            {name:'总览',link:'/',status:'unchose'},
-        // {name:'产业监测平台',link:'/prodcut',status:'chose'},
-        // {name:'精准营销平台',link:'/precision',status:'chose'},
-            {name:'应急指挥平台',link:'/souceShow',status:'chose'},
-        ],
-        hash:'',
-    }
-  },
-  watch:{
-      hash:function (val) {
-            console.log(val)
-            this.changelink()
-          },
-  },
-  computed: { 
-    ...mapGetters({
-        title: 'version/title',
-      }),
-  },
-  methods: {
-    toggle(index){
-        this.choseAbove='chose';
-        this.choseDown='chose';
-        if(index==='choseDown'){
-            this.down_show=true;
-            }else{
-                this.down_show=false;
-                this.zonglan='chose';
-                this.yingji='chose';
+        
+        
+        
+        li:nth-of-type(6){
+            .unchose{
+                background-image:url('../../assets/images/home/总览.png');
+                background-size: 100% 100%;
             }
-        this[index]='unchose';
-    },
-    toggledown(index){
-        this.zonglan='chose';
-        this.yingji='chose';
-        this.choseAbove='chose';
-        this[index]='unchose';
-    },
-    headerEnter(){
-        this.down_show=true;
-        this.choseDown='unchose';
-    },
-    headerLeave(){
-        this.down_show=false;
-        this.choseDown='chose';
-    },
-    logout(){
-        this.$router.push({ path: '/login' })
-    },
-    changelink(){
-        this.choseAbove='chose';
-        this.zonglan='chose';
-        this.yingji='chose';
-       switch(location.hash){
-            case '#/' :
-           this.zonglan='unchose';
-            break;
-            case '#/command' :
-            this.yingji='unchose';
-            break;
-            case '#/precision' :
-            this.choseAbove='unchose';
-            break;
+            .chose{
+                background-image:url('../../assets/images/home/总览2.png');
+                background-size: 100% 100%;
+            }
         }
 
-    },
-    keepStatus(){
-            this.choseAbove='chose';
-            this.zonglan='chose';
-            this.yingji='chose';
-            switch(this.hash){
-            case '#/' :
-            this.zonglan='unchose';
-            break;
-            case '#/command' :
-            this.yingji='unchose';
-            break;
-            case '#/precision' :
-            this.choseAbove='unchose';
-            break;
-        }
-    },
-  },
-  components:{
-  },
-  mounted(){
-    let _self= this
-    _self.hash=location.hash;
-    window.addEventListener('hashchange', function(e) {
-        _self.hash=location.hash;
-    }, false);
-    this.keepStatus()
-  }
+    }
 }
-</script>
 
+  @media screen and(max-width: 800px){
+  	.headertext{
+  		ul{
+  			top:12% !important;
+  			span{
+                display:inline-block;
+                width: 30px;
+                height: 28px;
+            }
+            font{
+                display: block;
+                font-size: 0.8rem !important;
+                margin-top:-0.5rem !important;
+                text-align: center;
+            }
+            
+            li .chose,li .unchose{
+            	
+                background-size: 80% 80% !important;
+                background-repeat: no-repeat;
+            }
+            li:last-child{
+            	span{
+            		background-size: 80% 80% !important;
+            	  background-repeat: no-repeat;
+            	}
+            	
+            }
+        }
+  		}
+  	}
+        	
+</style>
