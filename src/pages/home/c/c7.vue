@@ -66,7 +66,6 @@ export default {
     }
 }
 ul{
-    margin-top:15%;
     height:90%;
     width:100%;
     li{

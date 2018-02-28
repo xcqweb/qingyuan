@@ -1,0 +1,251 @@
+<template>
+	<div id="box">
+        <div class="jqlable">景 区</div>
+        <sleckte 
+        class='science'
+        :selectList="jqselectlist" 
+        v-on:listenAtparent="catchmsg2"
+        ></sleckte>
+        
+        <div class="title">筛选条件</div>
+        <div class="qylable">区 / 县</div>
+        <sleckte 
+        class="area"
+        :selectList="qyselectlist" 
+        v-on:listenAtparent="catchmsg1"
+        ></sleckte>
+        
+        <div v-if='isDate'>
+        	<!-- 时间下拉框组件 -->
+        	<div class="time">时间</div>
+        	<ul class="dateChose"  v-if="dateChoseList">
+                <li 
+                v-for="(item,index) in dateChoseList" 
+                :class="item.class" 
+                @click="dateClick(index)"
+                >{{item.context}}</li>
+            </ul>
+            <vDate 
+             class='vueDate'
+             v-if="vDateStatus"
+             @pageDate='getDate'
+             :isActive = 'isEndDate' 
+             ></vDate>
+        </div>
+	</div>
+</template>
+
+<script>
+	import sleckte from '@/components/commonui/dropdown/dropdown-menu.vue'
+	import vDate from '@/components/commonui/vueDate/app.vue'
+	export default{
+		data(){
+			return{
+				//时间控件
+				isEndDate:true,
+           		vDateStatus:true,
+           		dateChoseList:[
+	                {context:'日',class:''},
+	                {context:'月',class:''},
+	                {context:'年',class:''},
+	            ],
+				qyselectlist:{
+                    width:'88%',
+                    left:'6%',
+                    title:'全部',
+                    selectStatus:false,
+                    place:[
+                        '全部',"清城","清新","佛冈","英德","连州","连南","连山","阳山"
+                    ]
+                },
+                updateData:{
+                    place:'全部',
+                    turist:'全部',
+                },
+                startData:['全部','飞霞风景名胜区','牛鱼嘴原始生态风景区','天子山瀑布风景区','白庙渔村','飞来寺','美林湖及大家元摩天轮片区'],                
+                cityData:['全部','飞霞风景名胜区','牛鱼嘴原始生态风景区','天子山瀑布风景区','白庙渔村','飞来寺','美林湖及大家元摩天轮片区'],
+                tablist:this.tablistCom,
+			}
+		},
+		props:['isDate'],
+		methods:{
+			//获取时间
+	        getDate(value){
+	        	
+	            this.timeDate ={
+	                end:value.end,
+	                begin:value.begin,
+	            }
+	            this.$emit('choseDate',this.timeDate);
+	        },
+	         dateClick(indexClick){
+	            this.dateChoseList.forEach((item,index)=>{
+	                if(index === indexClick){
+	                    item.class = 'chose';
+	                    this.dateIndex = index;
+	                }else{
+	                    item.class = '';
+	                }
+	            })
+	            this.$emit('choseDay',indexClick);
+	        },
+			catchmsg1(data){
+            if(data === "全部"){
+                this.updateData ={
+                    place:data,
+                    turist:"全部"
+                }
+            }else{
+                this.updateData ={
+                    place:data,
+                    turist:this.updateData.turist
+                }
+                this.$emit('doubleChose',this.updateData)
+            }
+            this.cityData = this.switch(data)
+            
+	        },
+	        catchmsg2(data){
+	           this.updateData ={
+	                place:this.updateData.place,
+	                turist:data,
+	            }
+	           this.$emit('doubleChose',this.updateData)
+	        },
+	        switch(val){
+            const  cityData = {
+                "全部":["全部",'飞霞风景名胜区','牛鱼嘴原始生态风景区','天子山瀑布风景区','白庙渔村','飞来寺','美林湖及大家元摩天轮片区',
+                            '太和古洞旅游区','笔架山度假区','安庆村','清泉湾生态旅游度假区','金龙洞','九牛洞村',
+                            '观音山王山寺','田野绿世界','熹乐谷','金龟泉生态度假村','上岳古民居',
+                            '峰林胜境景区','英德老虎谷暗河漂流','九龙小镇','铁溪小镇','仙湖温泉旅游度假区','浈阳坊旅游小镇','大樟沙滩度假村','云水谣','彭家祠',
+                            '清远市连州福山景区','大东山温泉度假区','李屋村','潭岭天湖',
+                            '油岭瑶寨','瑶族舞曲实景演出','云海花谷',
+                            '大旭山瀑布群旅游景区','皇后山','鹰扬关景区','雾山梯田',
+                            '北山古寺','鱼水旅游风景区','龙凤温泉'
+                ],
+                "清城":['全部','飞霞风景名胜区','牛鱼嘴原始生态风景区','天子山瀑布风景区','白庙渔村','飞来寺','美林湖及大家元摩天轮片区'],
+                "清新":['全部','太和古洞旅游区','笔架山度假区','安庆村','清泉湾生态旅游度假区','金龙洞','九牛洞村',],
+                "佛冈":['全部','观音山王山寺','田野绿世界','熹乐谷','金龟泉生态度假村','上岳古民居'],
+                "英德":['全部','峰林胜境景区','英德老虎谷暗河漂流','九龙小镇','铁溪小镇','仙湖温泉旅游度假区','浈阳坊旅游小镇','大樟沙滩度假村','云水谣','彭家祠'],
+                "连州":['全部','清远市连州福山景区','大东山温泉度假区','李屋村','潭岭天湖'],
+                "连南":['全部','油岭瑶寨','瑶族舞曲实景演出','云海花谷'],
+                "连山":['全部','大旭山瀑布群旅游景区','皇后山','鹰扬关景区','雾山梯田'],
+                "阳山":['全部','北山古寺','鱼水旅游风景区','龙凤温泉'],
+
+            }
+           return cityData[val]
+        },
+		},
+		computed:{
+			 tablistCom:function(){
+            let arrb = [];
+            forEach(this.placeAttractions,function(value,key){
+                let items = {
+                    name:value.place,
+                    status: key === 0 ? 'chose' : 'unchose'
+                }
+                arrb.push(items)
+            })
+            return arrb
+           },
+	        jqselectlist:function(){
+	            if(!this.cityData){
+	                this.cityData = this.startData;
+	            }
+	            return {
+	                width:'88%',
+	                left:'6%',
+	                title:this.cityData[0],
+	                selectStatus:false,
+	                place:this.cityData,
+	            }
+	        }
+		},
+		components:{
+			sleckte,
+			vDate
+		}
+	}
+</script>
+
+<style lang="less" scoped>
+#box{
+	.title{
+	   position: absolute;
+	   top: 5%;
+	   left: 10%;
+	   font-size: 1rem;  
+	}
+	.qylable{
+	    height:1.5rem;
+	    font-size: 0.9rem;
+	    color: #F0EFFD;
+	    line-height: 1.8rem;
+	    position: absolute;
+	    top: 12%;
+	    left: 10%;
+	}
+	.jqlable{
+	    height:1.5rem;
+	    font-size: 0.9rem;
+	    color: #F0EFFD;
+	    line-height: 1.8rem;
+	    position: absolute;
+	    top: 23%;
+	    left: 10%;
+	}
+	.time{
+	     height:1.5rem;
+	    font-size: 0.9rem;
+	    color: #F0EFFD;
+	    line-height: 1.8rem;
+	    position: absolute;
+	    top: 35%;
+	    left: 10%
+	}
+	.area{
+	    position: absolute;
+	    top: 20%; 
+	    left: 0%;
+	}
+	.science{
+	     position: absolute;
+	     top: 30%;
+	     left: 0%;
+	}
+	.vueDate{
+		position: absolute;
+	    top: 50%;
+	    left: 6%;
+	}
+	.starList,.dateChose{
+		width: 92%;
+		position: absolute;
+	    top: 40%;
+	    left: 6%;
+	   background-color: rgba(0, 0, 0, 0);
+	   li{
+	        height: 1.8rem;
+	        width: 2rem;
+	        text-align: center;
+	        line-height:2rem;
+	        font-size: 0.9rem;
+	        border: 1px solid #355BFA;
+	        float: left;
+	       	width: 30%;
+	       color:white;
+	       cursor: pointer;
+	       background-image:url('../../../assets/images/home/981513311442_.pic.jpg');
+	      background-size: 100% 100%;
+	      &.chose{
+	        background-image:url('../../../assets/images/home/991513311442_.pic.jpg');
+	          background-size: 100% 100%;
+	          color:#8c97b8;
+	      }
+	   }
+	   li:nth-child(1),li:nth-child(2){
+	   	border-right: none;
+	   }
+	}
+}
+</style>

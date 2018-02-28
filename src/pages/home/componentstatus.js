@@ -51,6 +51,7 @@ let C7 = resolve => {require.ensure(['@/pages/home/c/c7.vue'], () => {resolve(re
 let C8 = resolve => {require.ensure(['@/pages/home/c/c8.vue'], () => {resolve(require('@/pages/home/c/c8.vue'))})}
 let C9 = resolve => {require.ensure(['@/pages/home/c/c9.vue'], () => {resolve(require('@/pages/home/c/c9.vue'))})}
 let C10 = resolve => {require.ensure(['@/pages/home/c/c10.vue'], () => {resolve(require('@/pages/home/c/c10.vue'))})}
+let C11 = resolve => {require.ensure(['@/pages/home/c/c11.vue'], () => {resolve(require('@/pages/home/c/c11.vue'))})}
 let C15 = resolve => {require.ensure(['@/pages/home/c/c15.vue'], () => {resolve(require('@/pages/home/c/c15.vue'))})}
 
 let D1 = resolve => {require.ensure(['@/pages/home/d/d1.vue'], () => {resolve(require('@/pages/home/d/d1.vue'))})}
@@ -72,6 +73,8 @@ let D11 = resolve => {require.ensure(['@/pages/home/d/d11.vue'], () => {resolve(
 let D12 = resolve => {require.ensure(['@/pages/home/d/d12.vue'], () => {resolve(require('@/pages/home/d/d12.vue'))})}
 //景区可提升度
 let D13 = resolve => {require.ensure(['@/pages/home/d/d13.vue'], () => {resolve(require('@/pages/home/d/d13.vue'))})}
+//景区客流
+let D14 = resolve => {require.ensure(['@/pages/home/d/d14.vue'], () => {resolve(require('@/pages/home/d/d14.vue'))})}
 
 //存放当前模块状态，数组字符串
 let status =[
@@ -108,6 +111,7 @@ let status =[
     'C8',
     'C9',
     'C10',
+    'C11',
     'C15',
     'D1',
     'D2',
@@ -122,6 +126,7 @@ let status =[
     'D11',
     'D12',
     'D13',
+    'D14',
     ]
 let conponets={}
 //字符串转对象变量

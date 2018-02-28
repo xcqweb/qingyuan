@@ -45,14 +45,6 @@
      :style="{}"
      v-show = 'changeModel' 
     >
-        <div>
-            <span>2018年累计接待游客(人)</span>
-            <font>{{yearSum}}</font>
-        </div>
-        <div>
-            <span>{{month}}月份持续接待游客(人)</span>
-            <font>{{montSum}}</font>
-        </div>
     </div>
     <vmap class='map' 
     :rankItems ='rankItems' 

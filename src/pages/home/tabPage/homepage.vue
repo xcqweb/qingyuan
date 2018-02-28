@@ -1,16 +1,14 @@
 <template>
   <div id="apphome" onselectstart="return false;" style="-moz-user-select:none;">
     <div class="leftScope">
+    	<h1>游客来源及景区排行</h1>
         <div v-for='topItem in leftComponents' 
         :class='topItem.id' 
-        @dblclick='showMore(topItem.name,topItem.title)'  
         class="item">
-            <h1>{{topItem.title}}</h1>
             <div v-if='topItem.show'>
                 <componet 
                 :is='topItem.name'  
                 :key="topItem.id" 
-                :chosemMoudle='cutoverMoudle' 
                 :lazyLoad='setLazy'
                 ></componet>    
             </div>
@@ -19,14 +17,12 @@
     <div class="rightScopetop">
         <div v-for='topItem in rightTop' 
         :class='topItem.id' 
-        @dblclick='showMore(topItem.name,topItem.title)'  
         class="item">
-            <h1>{{topItem.title}}</h1>
+            <!--<h1>{{topItem.title}}</h1>-->
             <div v-if='topItem.show'>
                 <componet
                 :is='topItem.name' 
                 :key="topItem.id" 
-                :chosemMoudle='cutoverMoudle' 
                 :lazyLoad='setLazy'
                 ></componet>
             </div>
@@ -36,14 +32,12 @@
      <div class="rightScopebtm">
         <div v-for='topItem in rightBottom' 
         :class='topItem.id' 
-        @dblclick='showMore(topItem.name,topItem.title)'  
         class="item">
-            <h1>{{topItem.title}}</h1>
+            <!--<h1>{{topItem.title}}</h1>-->
             <div v-if='topItem.show'>
                 <componet
                 :is='topItem.name' 
                 :key="topItem.id" 
-                :chosemMoudle='cutoverMoudle' 
                 :lazyLoad='setLazy'
                 ></componet>
             </div>
@@ -66,6 +60,7 @@ export default {
         mixins:[setTimeComponents,midScreen],
         data() {
             return {
+            	  toggleName:'C8',
                 placeName:'',
                 cutoverImg:require('../../../assets/切换.png'),
                 headerStatus:false,
@@ -98,18 +93,17 @@ export default {
                     {name:'C8',title:'游客来源排行'},
                 ],
                 leftComponents:[
-                     {name:'D6',id:'one',index:1,time:100,show:false,title:`省内游客来源地`,},
+                     {name:'D14',id:'one',index:1,time:100,show:false,title:``,},
                      {name:'B16',id:'two',index:2,time:100,show:false,title:``,},
-                     {name:'C8',id:'three',index:3,time:100,show:false,title:``,},
+                     {name:'C11',id:'three',index:3,time:100,show:false,title:``,},
                 ],
                 rightTop:[
                      {name:'D7',id:'one',index:1,time:1200,show:false,title:'消费水平分析'},
                      
                 ],
                 rightBottom:[
-                		{name:'C8',id:'one',index:1,time:1500,show:false,title:'游客来源排行'},
+                		{name:'D7',id:'one',index:1,time:1500,show:false,title:'游客来源排行'},
                 ],
-                
                 text:'headerBody',
                 
                 cutoverStatus:null,
@@ -122,6 +116,9 @@ export default {
                 ...componetstatus,
         },
         methods: {
+        	toggle(data){
+        		
+        	},
             console(){
                 console.log(this.components)
             },
@@ -132,15 +129,7 @@ export default {
             headerLeave(){
                 this.headerStatus=false;
             },
-            showMore:function(name,title){
-                let mainContent = name+'S';
-                $showMore.open(mainContent,title)
-            },
-            add: function() {
-                this.allComponents.push(this.componentName)
-                // 重置输入框
-                this.componentName = ''
-            },
+            
             add (name, text) {
                    this.items.push({
                      component: name,
@@ -154,41 +143,6 @@ export default {
                 return h('div',this.allComponents.map(function(componentName) {
                     return h(componentName)
                 }))
-            },
-            cutover(item,topOrBottom){
-                this.cutoverStatus=topOrBottom;
-                Bus.$on('cutoverMoudle', data => {
-                    let _self = this;
-                    let toast_chosed_index =data.numb.index-1;
-                    //去除相同模块
-                    for (var i=0 ,len = _self.leftComponents.length; i<len ;i++){
-                        //如果切换过来的Item 和当前模块有重复的，则互换模块
-
-                       (function(){
-                            if(_self.leftComponents[i].name === data.item.name){
-                                _self.leftComponents[i].name = item.name;
-                                _self.leftComponents[i].title = item.title;
-                        }
-                       })(i)
-                    }
-                    for (var i=0 ,len = _self.rightComponents.length; i<len ;i++){
-                        //如果切换过来的Item 和当前模块有重复的，则互换模块
-                       (function(){
-                            if(_self.rightComponents[i].name === data.item.name){
-                                _self.rightComponents[i].name = item.name;
-                                _self.rightComponents[i].title = item.title;
-                        }
-                       })(i)
-                    }
-                    this.cutoverStatus[toast_chosed_index].name=data.item.name
-                    this.cutoverStatus[toast_chosed_index].title=data.item.title
-                    Bus.$off("cutoverMoudle")
-                })
-                $toast.open(item,this.current,this.moudle);
-            },
-            cutoverMoudle(moudle){
-                
-
             },
             setLazy(){
                 // console.log(item)

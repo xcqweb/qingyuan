@@ -4,7 +4,7 @@
 @textColor:#8687c0;
 @headerBackColor:#133596;
 @topBottomColor:#163387;
-@borderColor:#355BFA;
+@borderColor:#345BFA;
 @borderLen: 18px;
 .item{
     text-align: center;
@@ -28,16 +28,17 @@
 
 #apphome{
     position: absolute;
-     width:  1830/1920*100%;
-     height: 990/1080*100%;
-     left: 105/1920*100%;
-     top: 110/1080*100%;
-    background-color: #0D1A47;
-    
+     width:  3696/3840*100%;
+     height: 948/1080*100%;
+     left: 136/3840*100%;
+     top: 116/1080*100%;
+    div{
+        height: 100%;
+    }
     .header{
         position:fixed;
         width: 100%;
-        height: 150/1080*100%;
+        height: 100/1080*100%;
         background-color: @headerBackColor;
         z-index: 1500;
     }
@@ -48,54 +49,61 @@
     }
     .leftScope{
         position: absolute;
-        width: 1320/1920*100%;
-        height: 1045/1080*100%;
-        border: 0.1rem solid @borderColor;
-        border-radius: 0.3rem;
+        box-sizing: border-box;
+        width: 2762/3696*100%;
+        height: 948/948*100%;
+        border: 3px solid @borderColor;
+        border-radius: 10px;
+        background-color: #163387;
         h1{
             position:absolute;
             top: 1.3rem;
             left: 2rem;
             z-index: 2;
             color:@hColor;
-            font-size: 1.1rem;
+            font-size: 36px;
             font-weight: 590;
             
         }
 
         .one{
-           height: 588/1045*100%; 
-           width: 320/1320*100%;
-           left: 0;
-           //background-color: #132668;
+           height: 297/948*100%; 
+           width: 297/2725*100%;
+           left: 85px;
+           bottom: 85px;
+           border: 3px solid @borderColor;
+           border-radius: 10px;
         }
         .two{
-           height: 588/1045*100%; 
-           width: 500/1320*100%;
-           left: 320/1320*100%;;
-           //background-color: #132668;
+           height: 1045/1045*100%; 
+           width: 1206/2725*100%;
+           left: 386/2725*100%;
         }
         .three{
-           height: 588/1045*100%; 
-           width: 500/1320*100%;
-           left: 820/1320*100%;
-           //background-color: #132668;
+           height: 1045/1045*100%; 
+           width: 1192/2725*100%;
+           left: 1530/2725*100%;
         }
     }
     .rightScopetop{
         position: absolute;
-        width: 560/1920*100%;
-        height: 520/1080*100%;
-        right: 20/1920*100%;
-        border: 0.1rem solid @borderColor;
-        border-radius: 0.3rem;
+        box-sizing: border-box;
+        width: 910/3696*100%;
+        height: 466/948*100%;
+        right: 12/3696*100%;
+        border: 3px solid @borderColor;
+        border-radius: 10px;
+        background-color: #163387;
+        div{
+            height: 100%;
+        }
         h1{
             position:absolute;
             top: 1.3rem;
             left: 2rem;
             z-index: 2;
             color:@hColor;
-            font-size: 1.1rem;
+            font-size: 36px;
             font-weight: 590;
             
         }
@@ -103,19 +111,24 @@
     
     .rightScopebtm{
         position: absolute;
-        width: 560/1920*100%;
-        height: 500/1080*100%;
-        right: 20/1920*100%;
-        top: 540/1080*100%;;
+        box-sizing: border-box;
+        width: 910/3696*100%;
+        height: 466/948*100%;
+        right: 12/3696*100%;
+        top: 482/948*100%;;
         border: 0.1rem solid @borderColor;
-        border-radius: 0.3rem;
+        border-radius: 10px;
+        background-color: #163387;
+        div{
+            height: 100%;
+        }
         h1{
             position:absolute;
             top: 1.3rem;
             left: 2rem;
             z-index: 2;
             color:@hColor;
-            font-size: 1.1rem;
+            font-size: 36px;
             font-weight: 590;
             
         }

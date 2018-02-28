@@ -1,6 +1,5 @@
 <template>
   <div class="headertext">
-    <!--<p v-show="showTitle">{{title}}</p>-->
     <ul>
         <li v-for='(item, index) in items' :class='item.status' @click='toggle(item,index)'>
             <router-link v-bind:to={path:item.link}>
@@ -142,8 +141,8 @@ a:visited { text-decoration: none;}
     }
     ul{
         position: absolute;
-        top: 50;
         width:100%;
+        height: 80px;
         li{
             margin-top: 1.8rem;
             cursor: pointer;
@@ -154,13 +153,13 @@ a:visited { text-decoration: none;}
             }
             span{
                 display:inline-block;
-                width: 30px;
-                height: 28px;
+                width: 41px;
+                height: 41px;
             }
             font{
                 display: block;
-                font-size: 0.6rem;
-                margin-top:0.6rem;
+                font-size: 12px;
+                margin-top: 12px;
             }
             &.chose{
                 a{

@@ -8,7 +8,6 @@
     }
 }
 ul{
-    margin-top:12%;
     height:80%;
     width:100%;
     box-shadow:3px 4px 20px #191970;

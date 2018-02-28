@@ -68,27 +68,27 @@ export default {
 @borderLen: 18px;
 
 #mainhome{
-    width: 3840px !important;
-  	height: 100vh;
+    width: 100%;
+  	height: 1080px;
     position: relative;
-    background-color: #0d1f6d;
-    overflow-x: scroll;
-  overflow-y: hidden;
+    background-color: #0d1b48;
+	  overflow: hidden;
     .header{
         width: 100%;
-        height: 90/1080*100%;
+        height: 100/1080*100%;
+        box-sizing: border-box;
         background-color: @headerBackColor;
         z-index: 2500;
-        font-size: 1.6rem;
+        font-size: 44px;
         color: #fff;
-        line-height: 3rem;
-        border: 2px solid @borderColor;
+        padding-top: 27px;
+        border: 3px solid @borderColor;
     }
     .nav{
-    	 height: 990/1080*100%;
-    	 width:  90/1920*100%;
+    	 height: 980/1080*100%;
+    	 width:  120/3840*100%;
     	 background-color: #122461;
-    	 border-right: 2px solid @borderColor;
+    	 border-right: 3px solid @borderColor;
     }
 }
 </style>

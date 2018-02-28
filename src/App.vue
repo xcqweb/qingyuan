@@ -82,9 +82,9 @@ body {
   line-height: 1;
   background: #F2F7FA;
   width: 3840px !important;
-  height: 100vh;
-  overflow-x: auto;
-  /*overflow-y: hidden;*/
+  /*height: 100vh;*/
+  height: 1080px;
+  overflow-x: hidden;
 }
 /*a:link { text-decoration: none;color: blue}
 a:active { text-decoration:blink}
@@ -110,8 +110,8 @@ p,h1,span,font,a,li{
 
 }   
 html{
-  height: 200px;
-  overflow-x: hidden;
+  overflow-x: scroll;
+  overflow-y: scroll;
   background: #F2F7FA;
   font-family: "Microsoft YaHei","SF Pro SC","HanHei SC","PingFang SC",Arial,Helvetica,sans-serif,"SimSun";
 }

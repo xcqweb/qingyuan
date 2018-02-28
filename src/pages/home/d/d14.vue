@@ -7,18 +7,13 @@
         margin-bottom:5%;
         display:block;
         color:#ffd800;
-        font-size:2rem;
-        font{
-            margin-left: .3rem;
-            display: inline-block;
-            color:#ffd800;
-            font-size: 1.2rem;
-        }   
+        font-size: 48px;
+        margin-top: 20px;
     }
     font{
         display:block;
         color:#43dbff;
-        font-size:1.5rem;
+        font-size: 20px;
         letter-spacing: .2rem;
     }
     .b6_top{
@@ -39,12 +34,13 @@
 <template>
     <div class="b6">
         <div class="b6_top">
-            <span>{{dataMsg.num}}<font>人次</font></span>
-            <font>当前客流人数</font>
+            <font>2018年累计接待游客(人)</font>
+            <span>{{dataMsg.num}}</span>
         </div>
         <div class="b6_bottom">
-            <span>{{dataMsg.yesterdayNum}}<font>人次</font></span>
-            <font>昨日客流总数</font>
+        	<font>1月份累计接待游客(人)</font>
+            <span>{{dataMsg.yesterdayNum}}</span>
+            
         </div>
     </div>
 </template>
