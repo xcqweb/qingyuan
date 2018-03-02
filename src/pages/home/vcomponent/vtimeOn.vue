@@ -18,6 +18,7 @@
             :idName='"a5echart"' 
             :scenics='""' 
             :barNum ='barNum'
+            :updatePlace ='updatePlace'
             ></a5ss>
         </div>
     </div>
@@ -26,20 +27,12 @@
 <script>
 import a5ss from '@/pages/home/showMore/smallComponent/a5ss.vue'
 import showMoreData from '@/common/js/mixin/showMoreData.js'
+import optionProps from '@/common/js/mixin/optionProps.js'
   export default {
     name:'a5',
-    props:{
-        mainPageSelect:{
-            type:Object,
-            default: function(){
-                return {
-                place:"全部"
-            }
-            }
-        },
-    },
+    mixins: [optionProps],
     watch:{
-        mainPageSelect:{
+        updatePlace:{
             handler: function (val, oldVal) {
                 if(val.place ===oldVal.place){
                     var paramsObj = {
@@ -68,10 +61,11 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
     methods:{
         getResponse(){
             var paramsObj = {
-                area:this.mainPageSelect.place,
+                area:this.updatePlace.place,
             }
             this.$axios.get(API_URL+'/qy/api/command/getCommandPassengerData',{params:paramsObj}).then(r => {
                 if(r.data.code ==="200"||r.data.code ===200){
+                	//console.log(r)
                     this.barNum = r.data.data.num+Math.random();
                 }
             })

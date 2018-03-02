@@ -1,6 +1,8 @@
 <template>
   <div id="mainhome">
-  	<div class="header">清远市旅游大数据应用和应急管理智慧平台</div>
+  	<div class="header">
+  		<img src="../assets/images/title.png" alt="" />
+  	</div>
   	<div class="nav">
   		<headerBody />
   	</div>
@@ -81,8 +83,13 @@ export default {
         z-index: 2500;
         font-size: 44px;
         color: #fff;
-        padding-top: 27px;
         border: 3px solid @borderColor;
+        img{
+        	margin-top: 15px;
+        }
+    }
+    .mockrouter{
+    	left: 136/3840*100%;
     }
     .nav{
     	 height: 980/1080*100%;

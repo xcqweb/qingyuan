@@ -49,6 +49,7 @@
     <vmap class='map' 
     :rankItems ='rankItems' 
     :idName= 'idName'
+    :updatePlace="updatePlace"
     ></vmap>
     </div>
 </template>
@@ -61,7 +62,7 @@ import adaptation from '@/common/js/mixin/adaptation.js'
 export default {
     name: 'b16',
     mixins: [adaptation],
-    props:['placeName',],
+    props:['placeName','updatePlace'],
     data () {
         return {
             month:'',

@@ -26,11 +26,16 @@
                 >{{item.context}}</li>
             </ul>
             <vDate 
+             :isBorder=true
              class='vueDate'
              v-if="vDateStatus"
              @pageDate='getDate'
              :isActive = 'isEndDate' 
              ></vDate>
+        </div>
+        <div class="scienceChose" v-show="isScience">
+            <span class="btn" @click="scienceType(0)" :class="{'active':scienceTypes}">4A以下景区</span>
+            <span class="btn" @click="scienceType(1)" :class="{'active':!scienceTypes}">4A级以上景区</span>
         </div>
 	</div>
 </template>
@@ -44,6 +49,7 @@
 				//时间控件
 				isEndDate:true,
            		vDateStatus:true,
+           		scienceTypes:false,
            		dateChoseList:[
 	                {context:'日',class:''},
 	                {context:'月',class:''},
@@ -67,8 +73,14 @@
                 tablist:this.tablistCom,
 			}
 		},
-		props:['isDate'],
+		props:['isDate','isScience'],
 		methods:{
+			//选择4a景区
+			scienceType(data){
+					this.scienceTypes = !this.scienceTypes
+					this.$emit('scienceType',data);
+			},
+			
 			//获取时间
 	        getDate(value){
 	        	
@@ -204,11 +216,13 @@
 	    left: 10%
 	}
 	.area{
+		height: 36px;
 	    position: absolute;
 	    top: 20%; 
 	    left: 0%;
 	}
 	.science{
+		 height: 36px;
 	     position: absolute;
 	     top: 30%;
 	     left: 0%;
@@ -218,6 +232,29 @@
 	    top: 50%;
 	    left: 6%;
 	}
+	
+	.scienceChose{
+		position: absolute;
+		top: 40%;
+	    left: 6%;
+	    .btn{
+	    	display: inline-block;
+            width: 124px;
+            height: 44px;
+            line-height: 44px;
+            color: #fff;
+            font-size: 18px;
+            border: 3px solid #345BFA;
+            background-color: #163387;
+            border-radius: 10px;
+            margin-right: 1rem;
+	    }
+	    .active{
+        	color: #a1a8c3;
+        	border-color: #233faf;
+        }
+	}
+	
 	.starList,.dateChose{
 		width: 92%;
 		position: absolute;

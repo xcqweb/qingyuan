@@ -80,7 +80,8 @@ import Vue from 'vue'
                  
             },
             triggle:function(){
-                this.menueshow = true;
+            	this.menueshow = !this.menueshow
+                
                 this.selectList.selectStatus = true;
                 if (this.upDown!='up') {
                     this.upDown='up';
@@ -107,12 +108,14 @@ import Vue from 'vue'
                  isMore:true,
             }
         },
-        template:`<div class='listdiv'  v-bind:style="{height: listDivHeight+'rem',maxHeight:maxHeight+'rem' }" v-bind:class="{ more: isMore }" v-if='status'><div class="overlay" v-if='status' @click.stop='hidelist'></div><ul @mousewheel='moreStatus'  v-if='status'><li class="v-dropdown-menu_list" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}
+        template:`<div class='listdiv'  v-bind:style="{height: listDivHeight+'rem',maxHeight:maxHeight+'rem' }" v-bind:class="{ more: isMore }" v-if='status'>
+        <div class="overlay" v-if='status' @click.stop='hidelist'></div>
+        <ul @mousewheel='moreStatus'  v-if='status'><li class="v-dropdown-menu_list" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}
     </li></ul></div>`,
         computed:{
             maxHeight:function(){
                 if(this.list.length>5){
-                    return 7.7
+                    return 10.8
                 }else{
                     return (this.list.length+1)*1.8
                 }
@@ -167,10 +170,11 @@ import Vue from 'vue'
     top: 0;
     left: 0;
     background-color: rgba(0,0,0,0);
-    z-index:119;
+    z-index:8;
+    display: none;
 }
 .v-dropdown-menu {
-    height:1.8rem;
+    height:100%;
     line-height: 1.8rem;
     position: absolute;
     border: 0.1rem solid #355BFA;
@@ -185,7 +189,7 @@ import Vue from 'vue'
     position: absolute;
     left:0;
     top:100%;
-    // max-height: 10.8rem;
+    max-height: 10.8rem;
     width: 100%;
     overflow: hidden;
     box-shadow: 1px 0 30px  rgba(1,1,13,0.4);
@@ -198,7 +202,7 @@ import Vue from 'vue'
                 height: 0;
                 position: absolute;
                 bottom: 5px;
-                left: 47%;
+                left: 50%;
                 z-index: 450;
                 transform: translate(-50%,0);
                 border-left: solid 10px transparent;
@@ -218,7 +222,7 @@ import Vue from 'vue'
         width: 150%;
         margin-left: -1px;
         z-index:444;
-        max-height: 8rem;
+        max-height: 10.8rem;
         overflow-y: auto;
         li {
             list-style: none;
@@ -250,13 +254,13 @@ import Vue from 'vue'
     left:0;
     top:0;
     height: 100%;
-    width: 80%;
+    width: 100%;
     color: white;
     cursor: pointer;
     text-align: center;
     z-index: 9;
     font-size: .8rem;
-    line-height: 1.8rem;
+    line-height: 236%;
     white-space: nowrap;
     overflow: hidden;
 }

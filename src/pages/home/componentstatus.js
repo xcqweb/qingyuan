@@ -9,6 +9,8 @@ let doubleSelection = resolve => {require.ensure(['@/components/commonui/dropdow
 
 let groupMenu = resolve => {require.ensure(['@/components/commonui/dropdown/groupMenu.vue'], () => {resolve(require('@/components/commonui/dropdown/groupMenu.vue'))})}
 
+let listMenu = resolve => {require.ensure(['@/components/commonui/dropdown/listMenu.vue'], () => {resolve(require('@/components/commonui/dropdown/listMenu.vue'))})}
+
 //客流分析__bar
 let A1 = resolve => {require.ensure(['@/pages/home/vcomponent/vtopOne.vue'], () => {resolve(require('@/pages/home/vcomponent/vtopOne.vue'))})}
 //概况
@@ -25,8 +27,17 @@ let A6 = resolve => {require.ensure(['@/pages/home/vcomponent/vchart_map.vue'], 
 let A7 = resolve => {require.ensure(['@/pages/home/vcomponent/vrinking.vue'], () => {resolve(require('@/pages/home/vcomponent/vrinking.vue'))})}
 //营销推广__pie
 let A8 = resolve => {require.ensure(['@/pages/home/vcomponent/vpercenPie.vue'], () => {resolve(require('@/pages/home/vcomponent/vpercenPie.vue'))})}
+
+//营销推广__pie
+let A5SS = resolve => {require.ensure(['@/pages/home/showMore/smallComponent/a5ss.vue'], () => {resolve(require('@/pages/home/showMore/smallComponent/a5ss.vue'))})}
+
+let A1SS = resolve => {require.ensure(['@/pages/home/showMore/smallComponent/a1ss.vue'], () => {resolve(require('@/pages/home/showMore/smallComponent/a1ss.vue'))})}
+
 //视频监控
 let A9 = resolve => {require.ensure(['@/pages/home/vcomponent/vvideo.vue'], () => {resolve(require('@/pages/home/vcomponent/vvideo.vue'))})}
+
+//4A级以上景区
+let A10 = resolve => {require.ensure(['@/pages/home/vcomponent/a10.vue'], () => {resolve(require('@/pages/home/vcomponent/a10.vue'))})}
 //消费属性分析
 let B1 = resolve => {require.ensure(['@/pages/home/b/b1.vue'], () => {resolve(require('@/pages/home/b/b1.vue'))})}
 let B2 = resolve => {require.ensure(['@/pages/home/b/b2.vue'], () => {resolve(require('@/pages/home/b/b2.vue'))})}
@@ -40,6 +51,7 @@ let B8 = resolve => {require.ensure(['@/pages/home/b/b8.vue'], () => {resolve(re
 let B9 = resolve => {require.ensure(['@/pages/home/b/b9.vue'], () => {resolve(require('@/pages/home/b/b9.vue'))})}
 let B10 = resolve => {require.ensure(['@/pages/home/b/b10.vue'], () => {resolve(require('@/pages/home/b/b10.vue'))})}
 let B16 = resolve => {require.ensure(['@/pages/home/b/b16.vue'], () => {resolve(require('@/pages/home/b/b16.vue'))})}
+let B6S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/b6s.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/b6s.vue'))})}
 
 let C1 = resolve => {require.ensure(['@/pages/home/c/c1.vue'], () => {resolve(require('@/pages/home/c/c1.vue'))})}
 let C2 = resolve => {require.ensure(['@/pages/home/c/c2.vue'], () => {resolve(require('@/pages/home/c/c2.vue'))})}
@@ -76,11 +88,23 @@ let D13 = resolve => {require.ensure(['@/pages/home/d/d13.vue'], () => {resolve(
 //景区客流
 let D14 = resolve => {require.ensure(['@/pages/home/d/d14.vue'], () => {resolve(require('@/pages/home/d/d14.vue'))})}
 
+//景区热力图
+let D1SS = resolve => {require.ensure(['@/pages/home/showMore/smallComponent/d1ss.vue'], () => {resolve(require('@/pages/home/showMore/smallComponent/d1ss.vue'))})}
+
+//客流预警
+let B2SS = resolve => {require.ensure(['@/pages/home/showMore/smallComponent/b2ss.vue'], () => {resolve(require('@/pages/home/showMore/smallComponent/b2ss.vue'))})}
+
+//路况监测
+let B4SS = resolve => {require.ensure(['@/pages/home/showMore/smallComponent/traffic.vue'], () => {resolve(require('@/pages/home/showMore/smallComponent/traffic.vue'))})}
+
+
+
 //存放当前模块状态，数组字符串
 let status =[
     'sleckte',
     'doubleSelection',
     'groupMenu',
+    'listMenu',
     'A1',
     'A2',
     'A3',
@@ -90,17 +114,23 @@ let status =[
     'A7',
     'A8',
     'A9',
+    'A10',
+    'A1SS',
+    'A5SS',
     'B1',
     'B2',
     'B4',
     'B4',
     'B5',
     'B6',
+    'B6S',
     'B7',
     'B8',
     'B9',
     'B10',
     'B16',
+    'B2SS',
+    'B4SS',
     'C1',
     'C2',
     'C3',
@@ -127,6 +157,7 @@ let status =[
     'D12',
     'D13',
     'D14',
+    'D1SS',
     ]
 let conponets={}
 //字符串转对象变量

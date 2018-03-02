@@ -11,7 +11,6 @@
             <li v-for="item in warningTeam">{{item.name}}</li>
         </ul>
         </div>
-        
     </div>
 </template>
 
@@ -20,22 +19,11 @@ import Vue from 'vue'
 import echarts_resize from '../../../common/js/echarts_resize.js'
 import echarts from 'echarts'
 import b2ss from '@/pages/home/showMore/smallComponent/b2ss.vue'
-// import b2sjson from '@/pages/home/showMore/bigComponent/json/b2s.json'
+import optionProps from '@/common/js/mixin/optionProps.js'
 export default {
     name: 'b2',
-    props:{
-        mainPageSelect:Object,
-    },
-    watch:{
-        mainPageSelect:{
-            handler: function (val, oldVal) {
-                this.warningTeam=[] ;
-                this.isActive= false ;
-                this.getResponse();
-            },
-            deep:true,
-        }
-    },
+    mixins: [optionProps],
+    
   data () {
     return {
         isActive:false,
@@ -52,6 +40,14 @@ export default {
   },
   computed: { 
   },
+  watch:{
+        updatePlace:function(val){
+            var paramsObj = {
+                area:val,
+            }
+       this.getResponse(paramsObj);
+        }
+    },
   methods:{
       checkWaringStatus(val,arrItems){
           //如果是全部则筛选，如果不是，则精确查询
@@ -98,13 +94,13 @@ export default {
       getResponse(){
             let _self = this;
             var paramsObj = {
-                area:this.mainPageSelect.place,
-                name:this.mainPageSelect.turist
+                area:this.updatePlace.place,
+                name:this.updatePlace.turist
             }
             this.$axios.get(API_URL+'/qy/api/command/selectCommandScenicWarning',{params:paramsObj}).then(r => {
                 
                 if(r.status ===200){
-                    this.checkWaringStatus(this.mainPageSelect,r.data.data)
+                    //this.checkWaringStatus(this.updatePlace,r.data.data)
                 }
             })
         }

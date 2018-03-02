@@ -6,12 +6,13 @@
     position:relative;
 }
 .XSDFXPage{
-    width: 95%;
-    height: 90%;
+    width: 96%;
+    height: 84%;
     overflow: hidden;
-    top:7%;
-    left: -3%;
+    top:14%;
+    left: 2%;
     font-family: "微软雅黑";
+    border-radius: 10px;
 }
 .scenics{
     position: absolute;
@@ -38,22 +39,22 @@ display:none !important;
 <script>
 require('@/common/js/baidumap/TrafficControl_min.js')
 import traffic_points from '@/pages/home/showMore/bigComponent/json/traffic_points.json'
+import optionProps from '@/common/js/mixin/optionProps.js'
     export default {
         name:'traffic',
+        mixins: [optionProps],
         props:{
-            idName:String,
             lenLat:null,
-            scenics:String,
-            updatePlace:String,
         },
         data () {
             return {
-
+				idName:'traffic',
+				scenics:'',
             }
         },
         watch:{
             updatePlace:function(val){
-                this.init(val)
+                this.init(val.place)
             }
         },
         methods:{
@@ -241,8 +242,6 @@ import traffic_points from '@/pages/home/showMore/bigComponent/json/traffic_poin
             init(val){
                 // 百度地图API功能
                 // 创建Map实例
-               
-                
                 const _self= this;
                 const lenObj ={
                     "全部":{lon:113.06689,lat:23.699107,zoom:11},

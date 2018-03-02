@@ -1,37 +1,30 @@
 <template>
 	<div id="box">
-        <div class="jqlable">景 区</div>
+        <div class="jqlable">景区</div>
         <sleckte 
         class='science'
         :selectList="jqselectlist" 
         v-on:listenAtparent="catchmsg2"
         ></sleckte>
         
-        <div class="title">筛选条件</div>
-        <div class="qylable">区 / 县</div>
+        <div class="qylable">区域</div>
         <sleckte 
         class="area"
         :selectList="qyselectlist" 
         v-on:listenAtparent="catchmsg1"
         ></sleckte>
         
-        <div v-if='isDate'>
+        <!--<div v-if='isDate'>-->
         	<!-- 时间下拉框组件 -->
         	<div class="time">时间</div>
-        	<ul class="dateChose"  v-if="dateChoseList">
-                <li 
-                v-for="(item,index) in dateChoseList" 
-                :class="item.class" 
-                @click="dateClick(index)"
-                >{{item.context}}</li>
-            </ul>
             <vDate 
+             :isBorder='isborder'
              class='vueDate'
              v-if="vDateStatus"
              @pageDate='getDate'
              :isActive = 'isEndDate' 
              ></vDate>
-        </div>
+        <!--</div>-->
 	</div>
 </template>
 
@@ -42,13 +35,9 @@
 		data(){
 			return{
 				//时间控件
+				isborder:false,
 				isEndDate:true,
            		vDateStatus:true,
-           		dateChoseList:[
-	                {context:'日',class:''},
-	                {context:'月',class:''},
-	                {context:'年',class:''},
-	            ],
 				qyselectlist:{
                     width:'88%',
                     left:'6%',
@@ -77,17 +66,6 @@
 	                begin:value.begin,
 	            }
 	            this.$emit('choseDate',this.timeDate);
-	        },
-	         dateClick(indexClick){
-	            this.dateChoseList.forEach((item,index)=>{
-	                if(index === indexClick){
-	                    item.class = 'chose';
-	                    this.dateIndex = index;
-	                }else{
-	                    item.class = '';
-	                }
-	            })
-	            this.$emit('choseDay',indexClick);
 	        },
 			catchmsg1(data){
             if(data === "全部"){
@@ -169,83 +147,75 @@
 </script>
 
 <style lang="less" scoped>
+@borderColor:#345BFA;
 #box{
-	.title{
-	   position: absolute;
-	   top: 5%;
-	   left: 10%;
-	   font-size: 1rem;  
-	}
 	.qylable{
-	    height:1.5rem;
+		width: 92px !important;
+	    height: 44px;
 	    font-size: 0.9rem;
 	    color: #F0EFFD;
-	    line-height: 1.8rem;
+	    line-height: 44px;
 	    position: absolute;
-	    top: 12%;
-	    left: 10%;
+	    top: -3px; 
+	    left: 0;
+	    border: 3px solid @borderColor;
+	    border-radius: 10px 0 0 10px;
+	    z-index: 8;
 	}
 	.jqlable{
-	    height:1.5rem;
+		width: 138/990*100% !important;
+	    height: 44px;
 	    font-size: 0.9rem;
 	    color: #F0EFFD;
-	    line-height: 1.8rem;
+	    line-height: 44px;
 	    position: absolute;
-	    top: 23%;
-	    left: 10%;
+	    top: -3px; 
+	    left: 256px !important;
+	    border-radius: 10px 0 0 10px;
+	    border: 3px solid @borderColor;
+	    z-index: 8;
 	}
 	.time{
-	     height:1.5rem;
+		width: 92px !important;
+	    height: 44px;
 	    font-size: 0.9rem;
 	    color: #F0EFFD;
-	    line-height: 1.8rem;
+	    line-height: 44px;
 	    position: absolute;
-	    top: 35%;
-	    left: 10%
+	    top: 2px; 
+	    right: 256px !important;
+	    border: 3px solid @borderColor;
+	    border-right: none;
+	    border-radius: 10px 0 0 10px;
+	    z-index: 100;
 	}
 	.area{
+		width: 136px !important;
+		height: 44px;
 	    position: absolute;
-	    top: 20%; 
-	    left: 0%;
+	    left: 98px !important;
+	    border: 3px solid @borderColor;
+	    border-left: none;
+	    border-radius: 0 10px 10px 0;
 	}
 	.science{
+		 width: 256px !important;
+		 height: 44px;
 	     position: absolute;
-	     top: 30%;
-	     left: 0%;
+	     left: (259+100)/990*100% !important;
+	     border: 3px solid @borderColor;
+	     border-left: none;
+	     border-radius: 0 10px 10px 0;
 	}
 	.vueDate{
+		height: 44px;
 		position: absolute;
-	    top: 50%;
-	    left: 6%;
-	}
-	.starList,.dateChose{
-		width: 92%;
-		position: absolute;
-	    top: 40%;
-	    left: 6%;
-	   background-color: rgba(0, 0, 0, 0);
-	   li{
-	        height: 1.8rem;
-	        width: 2rem;
-	        text-align: center;
-	        line-height:2rem;
-	        font-size: 0.9rem;
-	        border: 1px solid #355BFA;
-	        float: left;
-	       	width: 30%;
-	       color:white;
-	       cursor: pointer;
-	       background-image:url('../../../assets/images/home/981513311442_.pic.jpg');
-	      background-size: 100% 100%;
-	      &.chose{
-	        background-image:url('../../../assets/images/home/991513311442_.pic.jpg');
-	          background-size: 100% 100%;
-	          color:#8c97b8;
-	      }
-	   }
-	   li:nth-child(1),li:nth-child(2){
-	   	border-right: none;
-	   }
+		width: 256px !important;
+	    top: 36/948*100%; 
+	    right: 0px;
+	    z-index: 100;
+	    border: 3px solid @borderColor;
+	    border-radius: 0 10px 10px 0;
 	}
 }
 </style>

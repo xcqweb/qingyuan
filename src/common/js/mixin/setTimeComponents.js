@@ -16,19 +16,19 @@ let setTimeComponents =  {
 
     },
     mounted () {
-        let _self=this;
-        let arr = _self.leftComponents.concat(_self.rightComponents)
-        var lentop=arr.length
-        for (var j = 0 ; j < lentop; j++) {
-            (
-                function(){
-                    let n=j
-                    window.setTimeout(() => {        
-                        arr[n].show=true
-                    }, arr[n].time); 
-                }
-            )()  
-        }
+//      let _self=this;
+//      let arr = _self.leftComponents.concat(_self.rightTop)
+//      var lentop=arr.length
+//      for (var j = 0 ; j < lentop; j++) {
+//          (
+//              function(){
+//                  let n=j
+//                  window.setTimeout(() => {        
+//                      arr[n].show=true
+//                  }, arr[n].time); 
+//              }
+//          )()  
+//      }
         
     }
 }

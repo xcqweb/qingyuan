@@ -1,24 +1,25 @@
 <template>
 	<div class="c11">
-		<div class="chose">
+		<!--<div class="chose">
 			<listMenu
-				
+				@doubleChose='doubleChoseVal'
+        		@choseDate='choseDateVal'
+        		@choseDay='choseDayVal'
 			></listMenu>
-		</div>
+		</div>-->
 		<div class="con">
 			<componet :is='currentModule'></componet> 
 		</div>
 		<!--切换-->
         <div class="toggle">
-        	<p><input type="button" class="btn" :class="{'active':active}" value="游客来源" @click="toggle('C8')"/></p>
-        	<p><input type="button" class="btn" :class="{'active':!active}" value="景区排行" @click="toggle('C7')"/></p>
+        	<p><span class="btn" :class="{'active':active}" @click="toggle('C7')">游客来源</span></p>
+        	<p><span class="btn" :class="{'active':!active}" @click="toggle('C8')">景区排行</span></p>
         </div>
 	</div>
 </template>
 
 <script>
 import componetstatus from '@/pages/home/componentstatus.js'
-import listMenu from '@/components/commonui/dropdown/listMenu.vue'	
 	export default{
 		data(){
 			return{
@@ -30,7 +31,7 @@ import listMenu from '@/components/commonui/dropdown/listMenu.vue'
 			toggle(data){
 				this.currentModule = data;
 				this.active = !this.active;
-			}
+			},
 		},
 		components:{
 			...componetstatus
@@ -51,6 +52,7 @@ import listMenu from '@/components/commonui/dropdown/listMenu.vue'
 			height: 798/948*100%;
 			border: 3px solid @borderColor;
 			border-radius: 10px;
+			overflow: hidden;
 		}
 		.toggle{
             position: absolute;
@@ -61,8 +63,10 @@ import listMenu from '@/components/commonui/dropdown/listMenu.vue'
                 margin-top: 26px;
             }
             .btn{
+            	display: inline-block;
                 width: 124px;
                 height: 44px;
+                line-height: 44px;
                 color: #fff;
                 font-size: 18px;
                 border: 3px solid @borderColor;
@@ -70,7 +74,8 @@ import listMenu from '@/components/commonui/dropdown/listMenu.vue'
                 border-radius: 10px;
             }
             .active{
-            	color: #a1a8c3
+            	color: #a1a8c3;
+            	border-color: #233faf;
             }
             
         }

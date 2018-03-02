@@ -39,7 +39,7 @@
   }
 .itembox{
   width: 100%;
-  height: 80%;
+  height: 100%;
   div{
     width: 100%;
     height: 100%;
@@ -103,7 +103,7 @@
         <span class="oneweek " v-bind:class="{ chose: isActive }" @click='redom7'>7日</span>
         <span class="twoweek" v-bind:class="{ chose: !isActive }" @click='redom14'>14日</span>
     </div> -->
-     <div class="scenic">{{scenics}}</div>
+     <!--<div class="scenic">{{scenics}}</div>-->
   </div>
 </template>
 <script>
@@ -114,54 +114,97 @@ import store from '@/vuex/index'
 import { mapActions } from 'vuex'
 import timeMixin from '@/common/js/mixin/timeMixin.js'
 import Vue from 'vue'
+import optionProps from '@/common/js/mixin/optionProps.js'
 export default {
-    name:'a1',
+    name:'a1ss',
+    mixins: [optionProps],
     props:{
-        idName:{
-            type: String,
-            required: true
-        },
-        scenics:{
-            type: String,
-            required: false
-        },
-        isActive:{
-            type: Boolean,
-            required: false
-        },
-        barData:{
-            type: Array,
-            required: false
-        },
+//      idName:{
+//          type: String,
+//          required: true
+//      },
+//      scenics:{
+//          type: String,
+//          required: false
+//      },
+//      isActive:{
+//          type: Boolean,
+//          required: false
+//      },
+//      barData:{
+//          type: Array,
+//          required: false
+//      },
     },
+//  watch:{
+//      isActive:function(val){
+//          val === false ? this.redom14():this.redom7();
+//      },
+//      barData:{
+//          handler: function (val, oldVal) {
+//              if(this.chart){
+//                      this.chart.dispose();
+//                  }
+//              //   this.isActive=true;
+//              let dataY=[];
+//              let dataX=[];
+//              for (var i = 0; i < this.barData.length; i++) {
+//                  dataY.push(this.barData[i].num);
+//                  dataX.push(this.barData[i].dayId.replace(/-/g,"/"))
+//              }
+//              this.$nextTick(echarts_resize(this.idName,this,dataX,dataY))
+//          },
+//          deep: true
+//      }
+//  },
     watch:{
-        isActive:function(val){
-            val === false ? this.redom14():this.redom7();
+        updatePlace:function(val){
+            var paramsObj = {
+                area:this.updatePlace.place,
+                type:["day","month","year"][this.upday],
+            }
+            this.getResponse(paramsObj);
         },
-        barData:{
-            handler: function (val, oldVal) {
-                if(this.chart){
-                        this.chart.dispose();
-                    }
-                //   this.isActive=true;
-                let dataY=[];
-                let dataX=[];
-                for (var i = 0; i < this.barData.length; i++) {
-                    dataY.push(this.barData[i].num);
-                    dataX.push(this.barData[i].dayId.replace(/-/g,"/"))
+        upday:function(val){
+            var paramsObj = {
+                area:this.updatePlace.place,
+                type:["day","month","year"][this.upday],
+            }
+            this.getResponse(paramsObj);
+        },
+        update:{
+             handler:function(val, oldVal){
+                 let end = val.end.join("-")
+                 let begin = val.begin.join("-")
+                 var paramsObj = {
+                    area:this.updatePlace.place,
+                    beginTime:begin,
+                    endTime:end
                 }
-                this.$nextTick(echarts_resize(this.idName,this,dataX,dataY))
-            },
-            deep: true
+                 this.getResponse(paramsObj);
+             },
+             deep:true,
         }
     },
     data() {
       return {
+      	idName:'a1ss',
+      	barData:[
+            {"num":"1293","dayId":"6/14"},
+            {"num":"2331","dayId":"6/15"},
+            {"num":"1012","dayId":"6/16"},
+            {"num":"999","dayId":"6/17"},
+            {"num":"2458","dayId":"6/18"},
+            {"num":"2122","dayId":"6/19"},
+            {"num":"1789","dayId":"6/20"}
+        ],
+        scenics:'',
         chart: null,
         xnub:null,
         ynub:null,
         loading:true,
         reloading:false,
+        
         oneweekMock:[
             {"nub":"1293","date":"6/14"},
             {"nub":"2331","date":"6/15"},
@@ -220,7 +263,7 @@ export default {
                          axisLabel: {
                              textStyle: {
                                  color: '#ffffff',//x坐标轴标签字体颜色
-                                 fontSize: 12,
+                                 fontSize: 18,
                              },
                         },
                         axisTick:{
@@ -238,9 +281,11 @@ export default {
                         }
                     ],
                     yAxis:{
+                    	name:"单位 : (人)",
                         show:true,
                         nameTextStyle:{
-                          color:'#ffffff'
+                          color:'#ffffff',
+                          fontSize:16
                         },
                         splitLine:{
                           show:false,
@@ -277,7 +322,8 @@ export default {
                                     {offset: 0.5,color:'#6a95fe'},
                                     {offset: 1, color: '#5d88f7'}
                                     ]
-                                )
+                                ),
+                                barBorderRadius: 50,
                             }
                         },
                         label:{
@@ -286,6 +332,7 @@ export default {
                             position:'top',
                             textStyle:{
                                 color:'#2CC9E2',
+                                fontSize:20
                             }
                         }
                        },
@@ -332,7 +379,32 @@ export default {
         } 
       },
     },
+    created(){
+    	var paramsObj = {
+                area:"全部",
+                type:"day",
+                city:1
+            }
+       this.getResponse(paramsObj);
+    },
     methods: {
+    	
+    	getResponse(paramsObj){
+            this.$axios.get(API_URL+'/qy/api/view/getDayCountDetailData',{params:paramsObj}).then(r => {
+
+                if(r.data.code ==="200"||r.data.code ===200){
+                	
+                    this.rankItems = r.data.data; 
+                    this.barData = r.data.data[0].value; 
+                    this.twoWeekMock = r.data.data[0].value;
+                    
+                    console.log(r.data.data[0].value)
+                    this.redom7()
+                }
+            })
+       },
+    	
+    	
     redom7(){
         if(this.chart){
             this.chart.dispose();

@@ -31,10 +31,8 @@ import echarts from 'echarts'
 export default {
     name: 'a5ss',
     props:{
-        idName:String,
-        scenics:String,
-        barNum:Number,
-        updatePlace: String,
+          barNum:Number,
+          updatePlace:Object,
     },
     watch:{
         updatePlace:function(){
@@ -48,6 +46,8 @@ export default {
     data () {
         return {
             reTimer:null,
+            idName:"a5ss",
+            scenics:"",
             option : {
                 backgroundColor: 'rgba(0,0,0,0)',
                 color: ['#00ffff', '#00ffa2', '#f0e750'],
@@ -102,7 +102,7 @@ export default {
                         axisLabel: {
                             textStyle: {
                                 color: '#ffffff',//x坐标轴标签字体颜色
-                                fontSize: 12,
+                                fontSize: 17,
                             },
                             formatter: '{value}人'
                         },
@@ -160,7 +160,7 @@ export default {
                                     normal:{
                                         show:true,
                                         color:'#ffffff',
-                                        fontSize:14,
+                                        fontSize:16,
                                         color:'#6e8bf9',
                                         formatter:function(params){
                                             return params.value
@@ -169,7 +169,7 @@ export default {
                                     emphasis:{
                                         show:true,
                                         color:'#ffffff',
-                                        fontSize:14,
+                                        fontSize:16,
                                         color:'#6e8bf9',
                                         formatter:function(params){
                                             

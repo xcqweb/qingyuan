@@ -9,6 +9,7 @@
         color:#ffd800;
         font-size: 48px;
         margin-top: 20px;
+        font-family: numberFont;
     }
     font{
         display:block;
@@ -34,11 +35,11 @@
 <template>
     <div class="b6">
         <div class="b6_top">
-            <font>2018年累计接待游客(人)</font>
+            <font>{{nowYear}}年累计接待游客(人)</font>
             <span>{{dataMsg.num}}</span>
         </div>
         <div class="b6_bottom">
-        	<font>1月份累计接待游客(人)</font>
+        	<font>{{mowMonth}}月份累计接待游客(人)</font>
             <span>{{dataMsg.yesterdayNum}}</span>
             
         </div>
@@ -48,15 +49,16 @@
 <script>
 import Vue from 'vue'
 import adaptation from '@/common/js/mixin/adaptation.js'
-
+import optionProps from '@/common/js/mixin/optionProps.js'
+let date = new Date()
+let nowYear = date.getFullYear()
+let mowMonth = date.getMonth()
 export default {
     name:'d6',
-    mixins: [adaptation],
-     props:{
-        mainPageSelect:Object,
-    },
+    mixins: [adaptation,optionProps],
+     
     watch:{
-        mainPageSelect:{
+        updatePlace:{
             handler: function (val, oldVal) {
                 let _self = this;
                this.getResponse();
@@ -67,9 +69,11 @@ export default {
     data () {
         return {
         	level_xs:true,
+        	nowYear:nowYear,
+            mowMonth:mowMonth,
             dataMsg:{
                 yesterdayNum:'15642',
-                num:'653254'
+                num:'653254',
             }
         }
     },
@@ -95,8 +99,8 @@ export default {
         getResponse(){
             let _self = this;
             var paramsObj = {
-                area:this.mainPageSelect.place,
-                name:this.mainPageSelect.turist
+                area:this.updatePlace.place,
+                name:this.updatePlace.turist
             }
         
             this.$axios.get(API_URL+'/qy/api/command/getCommandCurrentPerson',{params:paramsObj}).then(r => {

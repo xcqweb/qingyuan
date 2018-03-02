@@ -111,7 +111,7 @@ export default {
   components:{
   },
   mounted(){
-  	console.log(location.hash)
+  	//console.log(location.hash)
     let _self= this
     window.addEventListener('hashchange', function(e) {
         _self.hash=location.hash;

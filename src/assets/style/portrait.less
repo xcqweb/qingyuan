@@ -13,7 +13,186 @@
 @borderLen: 18px;
 .titleRed{
     color: red;
+}@screen-xs:                  480px;
+@screen-sm:                  768px;
+@screen-md:                  992px;
+@screen-lg:                  1200px;
+@screen-xl:                  1400px;
+/*h1标题颜色，当前颜色白*/
+@hColor:#efeefd;
+/*文本内容颜色*/
+@textColor:#8687c0;
+@headerBackColor:#133596;
+@topBottomColor:#163387;
+@borderColor:#355BFA;
+@borderLen: 18px;
+.titleRed{
+    color: red;
 }
+/** item**/
+    
+
+.item{
+     text-align: center;
+     background-color: #163387;
+     position: absolute;
+    .close {
+        position: absolute;
+        top: 1rem;
+        right: 2rem;
+        width: 40px !important;
+        height: 40px !important;
+        background-image: url("../images/back.png");
+        background-size: 100% 100%;
+        background-position: center;
+        z-index: 133;
+        cursor: pointer;
+    }
+}
+h1{
+    position:absolute;
+    top: 36px;
+    left: 51px;
+    z-index: 2;
+    color:#efeefd;
+    font-size: 1.1rem;
+    font-weight: 590;
+    
+}
+span{
+    position:absolute;
+    top: 8px;
+    display: inline-block;
+    z-index: 2;
+    cursor: pointer;
+    width: 18/1920*100vw;
+    height: auto;
+    text-align: center;
+    img{                  
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+    }
+    @media screen and(min-width: 801px){
+        right:8px;
+    }
+    @media screen and(max-width: 800px){
+        right:5%;
+    }
+}
+.chose{
+    background-image: url('../images/home/d/unchose.png');
+    background-size: 100% 100%;
+}
+.unchose{
+    background-image: url('../images/home/d/chose.png');
+    background-size: 100% 100%;
+}
+.box{
+    background-color: #0a1e64;
+    position: absolute;
+    .rightScope,.leftScope{
+        position: absolute;
+    }
+}
+@media screen and(min-width: 801px){
+    .box{
+         position: absolute;
+         width:  3720/3840*100%;
+         height: 990/1080*100%;
+         left: 504/3840*100%;
+         top: 116/1080*100%;
+        .tabList{
+            position: absolute;
+            width:354/3720*100%;;
+            height: 948/990*100%;
+            font-size: 1.3rem;
+            color:#fff;
+            box-sizing: border-box;
+            border: 3px solid @borderColor;
+            border-radius: 10px;
+        }
+        
+        .Ascience{
+            position: absolute;
+            height: 948/990*100%;
+            width: 2480/3720*100%;
+            left: 370/3720*100%;
+            background-color: #163387;
+            box-sizing: border-box;
+            border: 3px solid @borderColor;
+            border-radius: 10px;
+            div{
+               position: absolute; 
+            }
+            .one{
+                width: 100%;
+                height: 100%;
+            }
+        }
+        
+        .leftScope{
+            height: 948/990*100%;
+            width: 2480/3720*100%;
+            left: 370/3720*100%;
+            div{
+               position: absolute; 
+            }
+            .one{
+                height: 948/948*100%;
+                width: 1642/2480*100%;
+                box-sizing: border-box;
+                border: 3px solid @borderColor;
+                border-radius: 10px;
+            }
+            .two{
+                left: 1658/2480*100%;
+                height: 466/948*100%;
+                width: 822/2480*100%; 
+                box-sizing: border-box;
+                border: 3px solid @borderColor;
+                border-radius: 10px;  
+            }
+            .three{
+                left: 1658/2480*100%;
+                height: 466/948*100%;
+                width: 822/2480*100%; 
+                top: 498/990*100%;
+                box-sizing: border-box;
+                border: 3px solid @borderColor;
+                border-radius: 10px;
+            }
+        }
+        .rightScope{
+            height: 948/990*100%;
+            width: 854/3720*100%;
+            left: 2868/3720*100%;
+            div{
+               position: absolute; 
+               height: 100%;
+            }
+            .one{
+                height: 466/948*100%;
+                width: 822/854*100%; 
+                box-sizing: border-box;
+                border: 3px solid @borderColor;
+                border-radius: 10px;
+
+            }
+            .two{
+                height: 466/948*100%;
+                width: 822/854*100%; 
+                box-sizing: border-box;
+                border: 3px solid @borderColor;
+                border-radius: 10px;
+                top: 498/990*100%;
+            }
+        }
+    }
+    
+}
+
 /** item**/
     
 

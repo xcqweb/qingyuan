@@ -52,11 +52,12 @@
 }
 .XSDFXPaged{
     position:absolute;
-    width: 90%;
-    height: 90%;
+    width: 98%;
+    border-radius: 10px;
+    height: 92%;
     overflow: hidden;
-    top:5%;
-    left:2.5%;
+    top: 7%;
+    left: 1%;
     font-family: "微软雅黑";
 }
 .anchorBL{ 
@@ -90,15 +91,15 @@ display:none !important;
 
 <script>
 import traffic_points from '@/pages/home/showMore/bigComponent/json/traffic_points.json'
+import optionProps from '@/common/js/mixin/optionProps.js'
     export default {
         name:'D1SS',
-        props:{
-            idName:String,
-            scenics:String,
-            updatePlace:String,
-        },
+        mixins: [optionProps],
+        
         data () {
             return {
+            	idName:'d1ss',
+            	scenics:'',
                 videoName:'摄像头1',
                 videoToast:false,
                 arrHotPoint:[],
@@ -106,7 +107,7 @@ import traffic_points from '@/pages/home/showMore/bigComponent/json/traffic_poin
         },
         watch:{
             updatePlace:function(val){
-                this.addScript(val)
+                this.addScript(val.place)
             }
         },
         methods:{
@@ -302,7 +303,7 @@ import traffic_points from '@/pages/home/showMore/bigComponent/json/traffic_poin
             },
             addHot(map){
                     var points = this.arrHotPoint;
-                    console.log(this.arrHotPoint)
+                    //console.log(this.arrHotPoint)
                     // var hotPointA = traffic_points;
                     // // 向地图添加标注
                     
@@ -407,16 +408,16 @@ import traffic_points from '@/pages/home/showMore/bigComponent/json/traffic_poin
             rodomMap(val){
                 const _self= this;
                  const lenObj ={
-                    "全部":{lon:113.06689,lat:23.699107,zoom:11},
-                    "清远市":{lon:113.0323,lat:23.699107,zoom:13},
-                    "清城":{lon:113.06689,lat:23.704022,zoom:13},
-                    "清新":{lon:112.991271,lat:23.75427,zoom:13},
-                    "佛冈":{lon:113.539303,lat:23.886532,zoom:13},
-                    "英德":{lon:113.418281,lat:24.192466,zoom:13},
-                    "连州":{lon:112.38616,lat:24.786467,zoom:13},
-                    "连南":{lon:112.290355,lat:24.732074,zoom:13},
-                    "连山":{lon:112.102727,lat:24.582118,zoom:13},
-                    "阳山":{lon:112.646658,lat:24.47147,zoom:13},
+                    "全部":{lng:113.06689,lat:23.699107,zoom:11},
+                    "清远市":{lng:113.0323,lat:23.699107,zoom:13},
+                    "清城":{lng:113.06689,lat:23.704022,zoom:13},
+                    "清新":{lng:112.991271,lat:23.75427,zoom:13},
+                    "佛冈":{lng:113.539303,lat:23.886532,zoom:13},
+                    "英德":{lng:113.418281,lat:24.192466,zoom:13},
+                    "连州":{lng:112.38616,lat:24.786467,zoom:13},
+                    "连南":{lng:112.290355,lat:24.732074,zoom:13},
+                    "连山":{lng:112.102727,lat:24.582118,zoom:13},
+                    "阳山":{lng:112.646658,lat:24.47147,zoom:13},
                 }; 
                 //绘制牵引线
                 _self.addLineVideo();
@@ -439,7 +440,7 @@ import traffic_points from '@/pages/home/showMore/bigComponent/json/traffic_poin
                 
                 添加折线
                 *************************************************/
-                _self.moveTo(map,lenObj[val  ===  undefined ?"全部": val].lon,lenObj[val  ===  undefined ?"全部": val].lat,lenObj[val  ===  undefined ?"全部": val].zoom);
+                _self.moveTo(map,lenObj[val  ===  undefined ?"全部": val].lng,lenObj[val  ===  undefined ?"全部": val].lat,lenObj[val  ===  undefined ?"全部": val].zoom);
                 var pointGZ = new BMap.Point(119.923671,29.514494);
                 var pointHK = new BMap.Point(110.35,20.02);
                 // setTimeout(function(){
@@ -477,8 +478,8 @@ import traffic_points from '@/pages/home/showMore/bigComponent/json/traffic_poin
                 area:"全部",
             }
             this.$axios.get(API_URL+'/qy/api/command/getCommandScenicHotDetail',{params:paramsObj}).then(r => {
-
                 if(r.status ===200){
+                	//console.log(r)
                     this.arrHotPoint = r.data.data
                     this.addScript("全部");
                 }

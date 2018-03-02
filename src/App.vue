@@ -168,5 +168,8 @@ html{
   z-index: 999;
   cursor: pointer;
 }
-
+@font-face{
+font-family: numberFont;
+src: url('./assets/style/fonts/lcddd.ttf'),
+}
 </style>
