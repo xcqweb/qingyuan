@@ -1,5 +1,13 @@
 <template>
   <div id="apphome" onselectstart="return false;" style="-moz-user-select:none;">
+  	<div class="chose">
+			<listMenu
+						@doubleChose='doubleChoseVal'
+        		@choseDate='choseDateVal'
+        		@choseDay='choseDayVal'
+			></listMenu>
+		</div>
+			
     <div class="leftScope">
     	<h1>游客来源及景区排行</h1>
         <div v-for='topItem in leftComponents' 
@@ -9,7 +17,8 @@
                 <componet 
                 :is='topItem.name'  
                 :key="topItem.id" 
-                :lazyLoad='setLazy'
+                :updatePlace='updatePlace'
+                :update='update'
                 ></componet>    
             </div>
         </div>
@@ -18,12 +27,13 @@
         <div v-for='topItem in rightTop' 
         :class='topItem.id' 
         class="item">
-            <!--<h1>{{topItem.title}}</h1>-->
+            <h1>{{topItem.title}}</h1>
             <div v-if='topItem.show'>
                 <componet
                 :is='topItem.name' 
                 :key="topItem.id" 
-                :lazyLoad='setLazy'
+                :updatePlace='updatePlace'
+                :update='update'
                 ></componet>
             </div>
         </div>
@@ -33,12 +43,13 @@
         <div v-for='topItem in rightBottom' 
         :class='topItem.id' 
         class="item">
-            <!--<h1>{{topItem.title}}</h1>-->
+            <h1>{{topItem.title}}</h1>
             <div v-if='topItem.show'>
                 <componet
                 :is='topItem.name' 
                 :key="topItem.id" 
-                :lazyLoad='setLazy'
+                :updatePlace='updatePlace'
+                :update='update'
                 ></componet>
             </div>
         </div>
@@ -53,13 +64,15 @@ import vmask from '@/components/commonui/mask.vue'
 import componetstatus from '@/pages/home/componentstatus.js'
 import headerBody from '@/pages/home/header.vue'
 import Bus from '@/common/js/bus.js'
-import setTimeComponents from '@/common/js/mixin/setTimeComponents.js'
-import midScreen from '@/common/js/mixin/midScreen.js'
+
 export default {
         props:['',],
-        mixins:[setTimeComponents,midScreen],
+        mixins:[],
         data() {
             return {
+            		updatePlace:{'name':'w21'},
+            		update:{begin:['2018','02','02'],end:['2018','02','03']},
+            		upday:0,
             	  toggleName:'C8',
                 placeName:'',
                 cutoverImg:require('../../../assets/切换.png'),
@@ -93,16 +106,16 @@ export default {
                     {name:'C8',title:'游客来源排行'},
                 ],
                 leftComponents:[
-                     {name:'D14',id:'one',index:1,time:100,show:false,title:``,},
-                     {name:'B16',id:'two',index:2,time:100,show:false,title:``,},
-                     {name:'C11',id:'three',index:3,time:100,show:false,title:``,},
+                     {name:'D14',id:'one',index:1,time:1200,show:true,title:``,},
+                     {name:'B16',id:'two',index:2,time:1200,show:true,title:``,},
+                     {name:'C11',id:'three',index:3,time:1200,show:true,title:``,},
                 ],
                 rightTop:[
-                     {name:'D7',id:'one',index:1,time:1200,show:false,title:'消费水平分析'},
+                     {name:'A5SS',id:'one',index:1,time:1200,show:true,title:'实时客流'},
                      
                 ],
                 rightBottom:[
-                		{name:'D7',id:'one',index:1,time:1500,show:false,title:'游客来源排行'},
+                		{name:'A1SS',id:'one',index:1,show:true,title:'历史客流'},
                 ],
                 text:'headerBody',
                 
@@ -116,9 +129,22 @@ export default {
                 ...componetstatus,
         },
         methods: {
-        	toggle(data){
-        		
-        	},
+	        	//获取选择的景区
+		        doubleChoseVal(val){
+		        	
+		        	this.updatePlace = val
+		        	console.log(this.updatePlace)
+		        },
+		        //获取选择时间
+		        choseDateVal(val){
+		        	console.log(val)
+		        	this.update = val
+		        },
+		        //获取选择年,月,日
+		        choseDayVal(val){
+		        	console.log(val)
+		        	t//his.upday = val
+		        },
             console(){
                 console.log(this.components)
             },
@@ -178,5 +204,4 @@ export default {
 
 <style lang="less" type="text/less" scoped >
     @import '../../../assets/style/home.less';
-
 </style>
