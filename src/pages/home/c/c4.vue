@@ -142,7 +142,7 @@ export default {
 		    symbolRepeat: 'fixed',
 		    symbolMargin: '5%',
 		    symbolClip: true,
-		    symbolSize: 30,
+		    symbolSize: 60,
 		    symbolBoundingData: maxData,
 		    data: [{
 		    	value:data1
@@ -177,7 +177,7 @@ export default {
 		    symbolRepeat: 'fixed',
 		    symbolMargin: '5%',
 		        symbol: spirit1,
-		        symbolSize: 30,
+		        symbolSize: 60,
 		        symbolBoundingData: maxData,
 		        data: [{
 		        	value:data1
@@ -243,7 +243,7 @@ export default {
 		    symbolRepeat: 'fixed',
 		    symbolMargin: '5%',
 		    symbolClip: true,
-		    symbolSize: 30,
+		    symbolSize: 60,
 		    symbolBoundingData: maxData,
 		    data: [{
 		    	value:data2
@@ -281,7 +281,7 @@ export default {
 		    symbolRepeat: 'fixed',
 		    symbolMargin: '5%',
 		        symbol: spirit2,
-		        symbolSize: 30,
+		        symbolSize: 60,
 		        symbolBoundingData: maxData,
 		        data: [{
 		        	value:data2
@@ -316,7 +316,6 @@ export default {
     	width:70%;
     	left: 14%;
     	top: 17%;
-    	transform: scale(1.3) scaleY(1.5);
     }
     #c5{
     	position: absolute;
@@ -324,43 +323,42 @@ export default {
     	width:70%;
     	bottom: 0%;
     	left: 14%;
-    	transform: scale(1.3) scaleY(1.5);
     }
     
     .men{
     		display: block;
-    		width: 40px;
+    		width: 60px;
     		height: 96px;
-    		top: 22%;
-    		left: -8%;
+    		top: 20%;
+    		left: 0%;
     		position: absolute;
     		background: url('../../../assets/images/home/menE.png') no-repeat;
-    		background-size: 100%;
+    		background-size: 100% 100%;
     	}
     .wemen{
     		display: block;
-    		width: 40px;
+    		width: 60px;
     		height: 96px;
-    		bottom: 10%;
-    		left: -8%;
+    		bottom: 15%;
+    		left: 0%;
     		position: absolute;
     		background: url('../../../assets/images/home/womenE.png') no-repeat;
-    		background-size: 100%;
+    		background-size: 100% 100%;
     }
     
     .menP{
     	color: #49D9FE;
-    	font-size: 18px;
+    	font-size: 20px;
     	position: absolute;
     	top: 35%;
-    	right: -6%;
+    	right: 0%;
     }
     .womenP{
     	color: #FF71BB;
-    	font-size: 18px;
+    	font-size: 20px;
     	position: absolute;
     	bottom: 23%;
-    	right: -6%;
+    	right: 0%;
     }
     
 }

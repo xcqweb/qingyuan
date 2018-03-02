@@ -68,7 +68,7 @@ export default {
                 show:true,
                 orient: 'vertical',
                 top:'30%' ,
-                right:'20%',
+                right:'15%',
                 width:'20%',
                 height:'45%',
                 itemGap:10,
@@ -76,7 +76,7 @@ export default {
                 itemHeight:10,
                 textStyle:{
                     color:'#fff',
-                    fontSize:16
+                    fontSize:18
                 },
                 data:[{
                     icon:'circle',
@@ -103,7 +103,7 @@ export default {
                 name:'访问来源',
                 type:'pie',
                 radius : '60%',
-                center: ['20%', '50%'],
+                center: ['26%', '50%'],
                 // selecteMode:'single',
                 // selectedOffset:30,
                 // roseType:"area",

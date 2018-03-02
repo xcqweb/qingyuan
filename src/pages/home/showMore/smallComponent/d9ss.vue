@@ -37,7 +37,7 @@ ul{
     text-align: center;
 }
 .cell2{
-    flex: 3;
+    flex: 6;
     text-align: center;
     .cell2_box{
         float: left;
@@ -54,7 +54,7 @@ ul{
     
     .cell2_box1{
         float: left;
-        width: 50%;
+        width: 30%;
         div:nth-of-type(1){
             float: left;
             width:80%;

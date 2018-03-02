@@ -7,8 +7,8 @@
 }
 #d7{
     width:100%;
-    height:80%;
-    transform: translate(0,5%)
+    height:100%;
+    transform: scale(1.3) translate(-6%,10%);
 }
   ul{
    position:absolute;
