@@ -1,6 +1,6 @@
 <template>
 	<div class="box">
-		<iframe class="ifrBox" src="http://qyyj.gdtadbs.com/Emergency/Chart/EnterpriseDanger" scrolling="no"></iframe>
+		<iframe class="ifrBox" src="http://qyyj.gdtadbs.com/Account/LoginNotPwd/d89d5b4a-6ca0-4020-8853-3a201323e177" scrolling="no"></iframe>
 	</div>
 </template>
 
@@ -12,15 +12,16 @@
 
 <style lang="less" scoped="scoped">
 .box{
-	width: 100%;
-	height: 88%;
+	width: 99%;
+	height: 100%;
 	position: absolute;
-	left: 0;
+	left: 10px !important;
+	top: 0px;
 	background-color: #163387;
 	.ifrBox{
 		width: 100%;
-		height: 106%;
-		top: -30px;
+		height: 100%;
+		top: 10px;
 		border-radius: 10px;
 		position: absolute;	
 		left: 0;

@@ -1,12 +1,6 @@
 <template>
 <div class="content">
-  <div id="c12"></div>
-  <!--<ul class="legend">
-  	<li v-for="(item,i) in series">
-  		<p :style="{color:color[i]}">{{percents[i]}}%</p>
-  		<p>{{item.name}}</p>
-  	</li>
-  </ul>-->
+  <div id="c14"></div>
 </div>  
 </template>
 
@@ -56,9 +50,6 @@ export default {
         redom(id){
             this.chart = echarts.init(document.getElementById(id));
             let option = {
-            	grid:{
-            		top:'30%'
-            	},
             	tooltip:{
             		show:true
             	},
@@ -71,7 +62,7 @@ export default {
 					        },
 					        axisLabel: {
 					            color: '#fff',
-					            fontSize: 14
+					            fontSize: 16
 					        }
 					    },
 					    yAxis: {
@@ -137,15 +128,16 @@ export default {
     	}
     },
     mounted() {
-      this.$nextTick(echarts_resize('c12',this))
+      this.$nextTick(echarts_resize('c14',this))
     },
 }
 </script>
 
 <style lang="less" scoped>
-#c12{
+#c14{
     width:100%;
     height:100%;
+    transform: scale(1.1) translate(5%,13%);
 }
 .legend{
 	width: 36%;

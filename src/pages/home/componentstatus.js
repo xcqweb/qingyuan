@@ -94,6 +94,12 @@ let D14 = resolve => {require.ensure(['@/pages/home/d/d14.vue'], () => {resolve(
 //景区热力图
 let D1SS = resolve => {require.ensure(['@/pages/home/showMore/smallComponent/d1ss.vue'], () => {resolve(require('@/pages/home/showMore/smallComponent/d1ss.vue'))})}
 
+//游客路线
+let D9SS = resolve => {require.ensure(['@/pages/home/showMore/smallComponent/d9ss.vue'], () => {resolve(require('@/pages/home/showMore/smallComponent/d9ss.vue'))})}
+
+//停留时长
+let D12SS = resolve => {require.ensure(['@/pages/home/showMore/smallComponent/d12ss.vue'], () => {resolve(require('@/pages/home/showMore/smallComponent/d12ss.vue'))})}
+
 //客流预警
 let B2SS = resolve => {require.ensure(['@/pages/home/showMore/smallComponent/b2ss.vue'], () => {resolve(require('@/pages/home/showMore/smallComponent/b2ss.vue'))})}
 
@@ -167,6 +173,8 @@ let status =[
     'D13',
     'D14',
     'D1SS',
+    'D9SS',
+    'D12SS',
     ]
 let conponets={}
 //字符串转对象变量

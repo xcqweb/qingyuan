@@ -139,7 +139,7 @@ export default {
             	 formatter:function(name){
             	 	
 	        	var oa = option.series[0].data;
-	        	console.log(oa)
+	        	//console.log(oa)
 	        	let num =0;
 	        	for(let i=0; i<oa.length; ++i){
 	        		num += oa[i].value

@@ -124,10 +124,10 @@ export default {
                 	{name:'A10',id:'one',index:1,time:900,show:true,title:'4A级以上景区'},
                 ],
                 rightComponents:[
-                	{name:'B4SS',id:'four',index:1,time:100,show:true,title:'游客路线',tip:true},
-                	{name:'A1SS',id:'three',index:2,time:100,show:true,title:'历史客流',tip:true},
-                	{name:'C12',id:'two',index:3,time:100,show:true,title:'游客来源地',tip:true},
-                	{name:'D12',id:'one',index:4,time:600,show:true,title:'停留时长'},
+                	{name:'D9SS',id:'four',index:1,time:100,show:false,title:'游客路线',tip:true},
+                	{name:'A1SS',id:'three',index:2,time:100,show:false,title:'历史客流',tip:true},
+                	{name:'C12',id:'two',index:3,time:100,show:false,title:'游客来源地',tip:true},
+                	{name:'D12SS',id:'one',index:4,time:600,show:false,title:'停留时长'},
                 ]
             }
         },

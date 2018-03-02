@@ -59,7 +59,7 @@ export default {
     data(){
     return{
     	idName:'nianlingpie',
-    	scenic:'String',
+    	scenic:'',
     	isActive:true,
         option:{
           backgroundColor: 'rgba(0, 0, 0, 0)',

@@ -118,7 +118,7 @@ export default {
                 ],
                 //4A级以上景区
                 AComponents:[
-                	{name:'A10',id:'one',index:1,time:900,show:true,title:'4A级以上景区'},
+                	{name:'A10',id:'one',index:1,time:900,show:true,title:''},
                 ],
                 rightComponents:[
                 	{name:'B4SS',id:'two',index:3,time:100,show:true,title:'实时路况',tip:true},

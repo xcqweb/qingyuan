@@ -151,4 +151,13 @@ export default {
             return type === '%' ? item.indexOf(val) !== -1 : item !== val
         })
     },
+    
+    //转换日期格式 2018-02-15  =>>  2/15
+    transformDate:function(val){
+    	let arr=[];
+    	val.forEach( (item,index) => {
+    		arr[index] = item.split('-')[1] +'/'+ item.split('-')[2]
+    	})
+    	return arr;
+    }
 }

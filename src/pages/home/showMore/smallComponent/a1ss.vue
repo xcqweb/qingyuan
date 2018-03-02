@@ -115,48 +115,12 @@ import { mapActions } from 'vuex'
 import timeMixin from '@/common/js/mixin/timeMixin.js'
 import Vue from 'vue'
 import optionProps from '@/common/js/mixin/optionProps.js'
+import RW from '@/common/js/until/index.js'
 export default {
     name:'a1ss',
     mixins: [optionProps],
     props:{
-//      idName:{
-//          type: String,
-//          required: true
-//      },
-//      scenics:{
-//          type: String,
-//          required: false
-//      },
-//      isActive:{
-//          type: Boolean,
-//          required: false
-//      },
-//      barData:{
-//          type: Array,
-//          required: false
-//      },
     },
-//  watch:{
-//      isActive:function(val){
-//          val === false ? this.redom14():this.redom7();
-//      },
-//      barData:{
-//          handler: function (val, oldVal) {
-//              if(this.chart){
-//                      this.chart.dispose();
-//                  }
-//              //   this.isActive=true;
-//              let dataY=[];
-//              let dataX=[];
-//              for (var i = 0; i < this.barData.length; i++) {
-//                  dataY.push(this.barData[i].num);
-//                  dataX.push(this.barData[i].dayId.replace(/-/g,"/"))
-//              }
-//              this.$nextTick(echarts_resize(this.idName,this,dataX,dataY))
-//          },
-//          deep: true
-//      }
-//  },
     watch:{
         updatePlace:function(val){
             var paramsObj = {
@@ -340,34 +304,6 @@ export default {
                 
                 ]
             }//option
-        // for (var n = 0; n < 7; n++) {   
-            // option.series[0].data[2*n+1]={
-            //     itemStyle: {
-            //         normal: {
-            //             color: new echarts.graphic.LinearGradient(
-            //                 0, 0, 0, 1,
-            //                 [
-            //                     {offset: 0, color: '#86b6ff'},
-            //                     {offset: 1, color: '#405596'}
-            //                 ]
-            //             )
-            //         }
-            //     }
-            // }
-            // option.series[0].data[2*n]={
-            //     itemStyle: {
-            //         normal: {
-            //             color: new echarts.graphic.LinearGradient(
-            //                 0, 0, 0, 1,
-            //                 [
-            //                     {offset: 0, color: '#c688ff'},
-            //                     {offset: 1, color: '#905aee'}
-            //                 ]
-            //             )
-            //         }
-            //     }
-            // }
-        // }
       }
     },
     store:store,
@@ -398,7 +334,7 @@ export default {
                     this.barData = r.data.data[0].value; 
                     this.twoWeekMock = r.data.data[0].value;
                     
-                    console.log(r.data.data[0].value)
+                    //console.log(r.data.data[0].value)
                     this.redom7()
                 }
             })
@@ -409,16 +345,14 @@ export default {
         if(this.chart){
             this.chart.dispose();
         }
-    //   this.isActive=true;
       let dataY=[];
       let dataX=[];
-    //   debugger
       for (var i = 0; i < this.barData.length; i++) {
           dataY.push(this.barData[i].num);
           dataX.push(this.barData[i].dayId);
           
       }
-      this.$nextTick(echarts_resize(this.idName,this,dataX,dataY))
+      this.$nextTick(echarts_resize(this.idName,this,RW.array_until.transformDate(dataX),dataY))
     },
     redom14(){
         if(this.chart){
@@ -431,7 +365,7 @@ export default {
             dataX.push(this.twoWeekMock[i].dayId)
         }
     // this.isActive=false;
-    this.$nextTick(echarts_resize(this.idName,this,dataX,dataY))
+    this.$nextTick(echarts_resize(this.idName,this, RW.array_until.transformDate(dataX),dataY))
     },
       redom (id,xyfonsiz,datax,datay) {
         var _self= this;
