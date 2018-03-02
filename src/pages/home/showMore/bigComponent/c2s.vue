@@ -55,7 +55,7 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
     name:'C2S',
     mixins: [showMoreData],
     props:{
-        scenics:Array,
+         scenics:Array,
          isActive:Boolean,
          dateIndex:Number,
          updatePlace:String,
@@ -95,7 +95,7 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
         //   idName:['c4s1','c4s2','c4s3','c4s4','c4s5','c4s6','c4s7','c4s8','c4s9'],
             c2sShow:true,
             nianItems:[
-        ],
+       		 ],
              dateChose:[
                 {context:'日',class:'chose'},
                 {context:'月',class:''},

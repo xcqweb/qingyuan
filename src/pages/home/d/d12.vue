@@ -98,10 +98,10 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
         }
     },
     created(){
-        this.getResponse()
+        //this.getResponse()
     },
     mounted(){
-        this.$emit('showDateFormatChose',this.dateChose)
+        //this.$emit('showDateFormatChose',this.dateChose)
     }
   }
 </script>

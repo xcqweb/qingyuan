@@ -13,21 +13,6 @@
 @borderLen: 18px;
 .titleRed{
     color: red;
-}@screen-xs:                  480px;
-@screen-sm:                  768px;
-@screen-md:                  992px;
-@screen-lg:                  1200px;
-@screen-xl:                  1400px;
-/*h1标题颜色，当前颜色白*/
-@hColor:#efeefd;
-/*文本内容颜色*/
-@textColor:#8687c0;
-@headerBackColor:#133596;
-@topBottomColor:#163387;
-@borderColor:#355BFA;
-@borderLen: 18px;
-.titleRed{
-    color: red;
 }
 /** item**/
     
@@ -133,284 +118,122 @@ span{
         }
         
         .leftScope{
-            height: 948/990*100%;
-            width: 2480/3720*100%;
+            height: 942/990*100%;
+            width: 1642/3720*100%;
             left: 370/3720*100%;
+            background-color: #163387;
+            border: 3px solid @borderColor;
+            border-radius: 10px;
             div{
                position: absolute; 
             }
+            h1{
+                position:absolute;
+                top: 1.3rem;
+                left: 2rem;
+                z-index: 2;
+                color:@hColor;
+                font-size: 36px;
+                font-weight: 590;
+            
+            }
+            
+            .one,.two,.three,.four,.five{
+                h1{
+                    position:absolute;
+                    top: 1.3rem;
+                    left: 2rem;
+                    z-index: 2;
+                    color: #ccc;
+                    font-size: 20px;
+                }
+            }
             .one{
-                height: 948/948*100%;
-                width: 1642/2480*100%;
+                height: 350/948*100%;
+                width: 470/1636*100%;
+                top: 130/948*100%;
+                left: 76/1642*100%;
                 box-sizing: border-box;
-                border: 3px solid @borderColor;
                 border-radius: 10px;
+                
             }
             .two{
-                left: 1658/2480*100%;
+                height: 350/948*100%;
+                width: 470/1636*100%;
+                top: 130/948*100%;
+                left: 560/1642*100%;
+                box-sizing: border-box;
+                border-radius: 10px;
+            }
+            .three{
+                height: 350/948*100%;
+                width: 470/1636*100%;
+                top: 130/948*100%;
+                left: 1096/1642*100%;
+                box-sizing: border-box;
+                border-radius: 10px;
+            }
+            .four{
+                height: 350/948*100%;
+                width: 470/1636*100%;
+                bottom: 60/948*100%;
+                left: 76/1642*100%;
+                box-sizing: border-box;
+                border-radius: 10px;
+            }
+            .five{
+                height: 350/948*100%;
+                width: 980/1636*100%;
+                bottom: 60/948*100%;
+                left: 600/1642*100%;
+                box-sizing: border-box;
+                    border-radius: 10px;
+            }
+        }
+        .rightScope{
+            height: 948/990*100%;
+            width: 1640/3720*100%;
+            left: (1658+368)/3720*100%;
+            div{
+               position: absolute; 
+               height: 100%;
+            }
+            
+            .one{
+                left: 838/1640*100%;
                 height: 466/948*100%;
-                width: 822/2480*100%; 
+                width: 822/1700*100%; 
                 box-sizing: border-box;
                 border: 3px solid @borderColor;
                 border-radius: 10px;  
             }
-            .three{
-                left: 1658/2480*100%;
+            .two{
+                left: 838/1640*100%;
                 height: 466/948*100%;
-                width: 822/2480*100%; 
+                width: 822/1700*100%; 
                 top: 498/990*100%;
                 box-sizing: border-box;
                 border: 3px solid @borderColor;
                 border-radius: 10px;
-            }
-        }
-        .rightScope{
-            height: 948/990*100%;
-            width: 854/3720*100%;
-            left: 2868/3720*100%;
-            div{
-               position: absolute; 
-               height: 100%;
-            }
-            .one{
-                height: 466/948*100%;
-                width: 822/854*100%; 
-                box-sizing: border-box;
-                border: 3px solid @borderColor;
-                border-radius: 10px;
-
-            }
-            .two{
-                height: 466/948*100%;
-                width: 822/854*100%; 
-                box-sizing: border-box;
-                border: 3px solid @borderColor;
-                border-radius: 10px;
-                top: 498/990*100%;
-            }
-        }
-    }
-    
-}
-
-/** item**/
-    
-
-.item{
-     text-align: center;
-     background-color: #163387;
-     position: absolute;
-    .close {
-        position: absolute;
-        top: 1rem;
-        right: 2rem;
-        width: 40px !important;
-        height: 40px !important;
-        background-image: url("../images/back.png");
-        background-size: 100% 100%;
-        background-position: center;
-        z-index: 133;
-        cursor: pointer;
-    }
-}
-h1{
-    position:absolute;
-    top: 1rem;
-    left: 2rem;
-    z-index: 2;
-    color:#efeefd;
-    font-size: 1.1rem;
-    font-weight: 590;
-    
-}
-span{
-    position:absolute;
-    top: 8px;
-    display: inline-block;
-    z-index: 2;
-    cursor: pointer;
-    width: 18/1920*100vw;
-    height: auto;
-    text-align: center;
-    img{                  
-        max-width: 100%;
-        max-height: 100%;
-        width: auto;
-        height: auto;
-    }
-    @media screen and(min-width: 801px){
-        right:8px;
-    }
-    @media screen and(max-width: 800px){
-        right:5%;
-    }
-}
-.chose{
-    background-image: url('../images/home/d/unchose.png');
-    background-size: 100% 100%;
-}
-.unchose{
-    background-image: url('../images/home/d/chose.png');
-    background-size: 100% 100%;
-}
-.box{
-    background-color: #0a1e64;
-    position: absolute;
-    .rightScope{
-        position: absolute;
-        .three{
-            h1{
-                top: .8rem !important;
-            }
-        }
-
-    }
-    .leftScope{
-        position: absolute;
-        .six{
-            h1{
-                top: .8rem !important;
-            }
-        }
-    }
-}
-@media screen and(min-width: 801px){
-    .box{
-         width:  1830/1920*100%;
-         height: 990/1080*100%;
-         left: 105/1920*100%;
-         top: 110/1080*100%;
-         background-color: #0D1A47;
-        .tabList{
-            position: absolute;
-            width:260/1920*100%;;
-            height: 1045/1080*100%;
-            top:2px;
-            font-size: 1.3rem;
-            color:#fff;
-            border: 0.1rem solid @borderColor;
-            border-radius: 0.3rem;
-        }
-        .leftScope{
-            height: 99%;
-            width: 1028/1920*100%;
-            top: 2px;
-            left: 16/1920*100%;
-            div{
-               position: absolute; 
-            }
-            .one{
-                height: 260/1048*100%;
-                width: 598/1028*100%;
-                top: (80+16)/1048*100%;
-                left: 0;
-            }
-            .two{
-                top:(80+14+16+264)/1048*100%;
-                left: 0;
-                height:  214/1048*100%;
-                width: 356/1028*100%;   
-            }
-            .three{
-                height: 214/1048*100%;
-                width: 226/1028*100%;
-                left: (356+16)/1028*100%;
-                top:(80+14+16+264)/1048*100%;
-            }
-            .four{
-                height: 358/1048*100%;
-                width: 414/1028*100%;
-                top: 0;
-                right: 0;
-            }
-            .five{
-                top: (16+358)/1048*100%;
-                right:0;
-                width: 414/1028*100%;
-                height: 214/1048*100%;
-            }
-            .six{
-                bottom: 0;
-                left: 0;
-                width: 600/1028*100%;
-                height: 445/1048*100%;
-            }
-            .seven{
-                bottom: 0;
-                right: 0;
-                width: 414/1028*100%;
-                height: 445/1048*100%;
-            }
-        }
-        .rightScope{
-            height: 99%;
-            width: 843/1920*100%;
-            top: 2px;
-            right:16/1920*100%;
-            div{
-               position: absolute; 
-               height: 100%;
-            }
-            .one{
-                width: 414/846*100%;
-                height: 588/1048*100%;
-                top: 0;
-                left: 0;
-
-            }
-            .two{
-                width: 414/846*100%;;
-                height: 444/1048*100%;
-                left: 0%;
-                bottom: 0;
-            }
-            .three{
-                top: 0;
-                right: 0;
-                width: 414/846*100%;
-                height: 588/1048*100%;
-            }
-            .four{
-                bottom: 0;
-                right: 0;
-                width: 414/846*100%;
-                height: 445/1048*100%
             }
             
+            .three{
+                height: 466/948*100%;
+                width: 822/1640*100%; 
+                box-sizing: border-box;
+                border: 3px solid @borderColor;
+                border-radius: 10px;
+
+            }
+            .four{
+                height: 466/948*100%;
+                width: 822/1640*100%; 
+                box-sizing: border-box;
+                border: 3px solid @borderColor;
+                border-radius: 10px;
+                top: 498/990*100%;
+            }
         }
     }
     
-}
-@media screen and(max-width: 800px){
-    .box{
-        height: auto;
-        width: 100vw;
-        flex-direction: column;
-        flex-wrap: wrap;
-        .tabList{
-            width:90%;
-            margin-left: 5%;
-            height: 90/1040*100%;
-            font-size: 1.3rem;
-            color:white;
-        }
-        .leftScope{
-            width: 100%;
-            margin-top: 2px;
-            .item{
-                height: 300px;
-                width: 100%;
-                margin-bottom: 10px;
-            }
-        }
-        .rightScope{
-            margin-top: 10px;
-            width: 100%;
-            .item{
-                height: 300px;
-                width: 100%;
-                margin-bottom: 10px;
-            }
-        }
-    }
 }

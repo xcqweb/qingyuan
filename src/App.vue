@@ -134,7 +134,7 @@ html{
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   margin-top: 0;
-  width: 100%;
+  width: 3840px;
   @media screen and (min-width: 600px){
       height: 100vh;
   }

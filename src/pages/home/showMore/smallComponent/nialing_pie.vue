@@ -23,55 +23,60 @@
 <script type="text/javascript">
 import echarts_resize from '@/common/js/echarts_resize.js'
 import echarts from 'echarts'
-import adaptation from '@/common/js/mixin/adaptation.js'
+import optionProps from '@/common/js/mixin/optionProps.js'
 export default {
     name:'nianlingpie',
-    // mixins: [adaptation],
-    props:{
-        idName:String,
-        pieData:Object,
-        scenic:String,
-        isActive:Boolean,
-        dateIndex:Number,
-    },
-    watch:{
-        isActive:function(val){
-            this.option.series[0].startAngle =60+Math.random()*221;
-            this.chart.setOption(this.option);
+    mixins: [optionProps],
+   	watch:{
+        updatePlace:function(val){
+            var paramsObj = {
+                area:this.updatePlace.place,
+                type:["day","month","year"][this.upday],
+            }
+            this.getResponse(paramsObj);
         },
-        dateIndex:function(){
-            this.$nextTick($sheet.echartRL(this.idName,this))
+        upday:function(val){
+            var paramsObj = {
+                area:this.updatePlace.place,
+                type:["day","month","year"][this.upday],
+            }
+            this.getResponse(paramsObj);
         },
-        pieData:{
-            handler: function (val, oldVal) {
-                
-                this.option.series[0].data.forEach((item,index)=>{
-                        item.value = val[item.name];
-                    })
-                this.$nextTick(()=>{
-                    this.chart.setOption(this.option);
-                })
-            },
-            deep: true
+        update:{
+             handler:function(val, oldVal){
+                 let end = val.end.join("-")
+                 let begin = val.begin.join("-")
+                 var paramsObj = {
+                    area:this.updatePlace.place,
+                    beginTime:begin,
+                    endTime:end
+				}
+                 this.getResponse(paramsObj);
+             },
+             deep:true,
         }
     },
     data(){
     return{
+    	idName:'nianlingpie',
+    	scenic:'String',
+    	isActive:true,
         option:{
           backgroundColor: 'rgba(0, 0, 0, 0)',
           color:['#FF8885','#57ABFE', '#368DF7', '#7E6AF6', '#E39A50','#FFCD38',  '#4EBBFC', '#75CF65','#B8E986', '#86E9E8', '#58E5E1','#4BCEDD'],
           legend:{
-                show:false,
+                show:true,
                 orient: 'vertical',
-                top:'40%' ,
-                left:'55%',
+                top:'30%' ,
+                right:'20%',
                 width:'20%',
                 height:'45%',
                 itemGap:10,
                 itemWidth:12,
                 itemHeight:10,
                 textStyle:{
-                    color:'white',
+                    color:'#fff',
+                    fontSize:16
                 },
                 data:[{
                     icon:'circle',
@@ -98,7 +103,7 @@ export default {
                 name:'访问来源',
                 type:'pie',
                 radius : '60%',
-                center: ['50%', '50%'],
+                center: ['20%', '50%'],
                 // selecteMode:'single',
                 // selectedOffset:30,
                 // roseType:"area",
@@ -123,25 +128,35 @@ export default {
                         }
                 },
                 data:[
-            {"value":0, "name":"0-19"},
-            {"value":0, "name":"19-25"},
-            {"value":0, "name":"26-35"},
-            {"value":0, "name":"36-45"},
-            {"value":0, "name":"46-55"},
-            {"value":0, "name":"55以上"}
-        ],
+	            {"value":0, "name":"0-19"},
+	            {"value":0, "name":"19-25"},
+	            {"value":0, "name":"26-35"},
+	            {"value":0, "name":"36-45"},
+	            {"value":0, "name":"46-55"},
+	            {"value":0, "name":"55以上"}
+      	  ],
       }],
     }
     }
     },
     methods:{
+    	//获取数据
+    	getResponse(paramsObj){
+            this.$axios.get(API_URL+'/qy/api/view/getDayAgeDetailData',{params:paramsObj}).then(r => {
+                    
+                if(r.data.code ==="200"||r.data.code ===200){
+                	//console.log(r.data.data[0])
+                    this.pieData = r.data.data[0]; 
+                    this.redom(this.idName)
+                }
+            })
+       },
+    	
         redom(id){
             this.chart = echarts.init(document.getElementById(id));
-            // console.log(this.pieData)
-            //  debugger
+//             console.log(this.pieData)
             this.option.series[0].data.forEach((item,index)=>{
                         item.value = this.pieData[item.name];
-                       
                     })
             this.$nextTick(()=>{
                 this.chart.setOption(this.option);
@@ -150,8 +165,16 @@ export default {
 
         }
     },
+     created () {
+        var paramsObj = {
+                area:"全部",
+                type:"day",
+                city:1
+            }
+       this.getResponse(paramsObj);
+    },
     mounted() {
-          this.$nextTick($sheet.echartRL(this.idName,this))
+          //this.$nextTick($sheet.echartRL(this.idName,this))
     }
 }
 </script>

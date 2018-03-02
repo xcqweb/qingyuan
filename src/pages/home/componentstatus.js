@@ -64,6 +64,9 @@ let C8 = resolve => {require.ensure(['@/pages/home/c/c8.vue'], () => {resolve(re
 let C9 = resolve => {require.ensure(['@/pages/home/c/c9.vue'], () => {resolve(require('@/pages/home/c/c9.vue'))})}
 let C10 = resolve => {require.ensure(['@/pages/home/c/c10.vue'], () => {resolve(require('@/pages/home/c/c10.vue'))})}
 let C11 = resolve => {require.ensure(['@/pages/home/c/c11.vue'], () => {resolve(require('@/pages/home/c/c11.vue'))})}
+let C12 = resolve => {require.ensure(['@/pages/home/c/c12.vue'], () => {resolve(require('@/pages/home/c/c12.vue'))})}
+let C13 = resolve => {require.ensure(['@/pages/home/c/c13.vue'], () => {resolve(require('@/pages/home/c/c13.vue'))})}
+let C14 = resolve => {require.ensure(['@/pages/home/c/c14.vue'], () => {resolve(require('@/pages/home/c/c14.vue'))})}
 let C15 = resolve => {require.ensure(['@/pages/home/c/c15.vue'], () => {resolve(require('@/pages/home/c/c15.vue'))})}
 
 let D1 = resolve => {require.ensure(['@/pages/home/d/d1.vue'], () => {resolve(require('@/pages/home/d/d1.vue'))})}
@@ -97,6 +100,8 @@ let B2SS = resolve => {require.ensure(['@/pages/home/showMore/smallComponent/b2s
 //路况监测
 let B4SS = resolve => {require.ensure(['@/pages/home/showMore/smallComponent/traffic.vue'], () => {resolve(require('@/pages/home/showMore/smallComponent/traffic.vue'))})}
 
+//年龄
+let C2SS = resolve => {require.ensure(['@/pages/home/showMore/smallComponent/nialing_pie.vue'], () => {resolve(require('@/pages/home/showMore/smallComponent/nialing_pie.vue'))})}
 
 
 //存放当前模块状态，数组字符串
@@ -142,7 +147,11 @@ let status =[
     'C9',
     'C10',
     'C11',
+    'C12',
+    'C13',
+    'C14',
     'C15',
+    'C2SS',
     'D1',
     'D2',
     'D3',

@@ -12,11 +12,12 @@
 }
   ul{
    position:absolute;
-    left:50%;
+   font-size: 20px;
+    right:-26%;
     transform: translate(-70%,0);
-    top:72%;
+    top:16%;
     li{
-        margin-top:10px;
+        margin-top:42px;
         text-align:left;
         .circle{
             display:inline-block;
@@ -63,6 +64,20 @@ export default {
         option:{
           backgroundColor: 'rgba(0,0,0,0)',
           color: ['#368DF7', '#6F5DDA', '#75CF65'],
+//          legend:{
+//              show:true,
+//              orient: 'vertical',
+//              top:'20%' ,
+//              left:'55%',
+//              width:'20%',
+//              height:'45%',
+//              itemGap:10,
+//              itemWidth:12,
+//              itemHeight:10,
+//              textStyle:{
+//                  color:'white',
+//              },
+//          },
           series : [
                 {
                     name: '访问来源',
@@ -105,7 +120,8 @@ export default {
                                 position:'outside',
                                 align:'right',
                                 textStyle:{
-                                    color:'#368df7'
+                                    color:'#368df7',
+                                    fontSize:20
                                 }
                             },
                             emphasis:{
@@ -118,7 +134,7 @@ export default {
                                 },
                                 textStyle:{
                                     color:'#368df7',
-                                    fontSize:14
+                                    fontSize:20
                                 }
                             }
                         },
@@ -145,7 +161,8 @@ export default {
                                 position:'outside',
                                 align:'right',
                                 textStyle:{
-                                    color:'#75cf65'
+                                    color:'#75cf65',
+                                    fontSize:20
                                 }
                             },
                             emphasis:{
@@ -158,7 +175,7 @@ export default {
                               },
                                 textStyle:{
                                     color:'#75cf65',
-                                    fontSize:14
+                                    fontSize:20
                                 }
                             }
                         },
@@ -177,7 +194,8 @@ export default {
                                 show:true,
                                 position:'outside',
                                 textStyle:{
-                                    color:'#fe6e40'
+                                    color:'#fe6e40',
+                                    fontSize:20
                                 }
                             },
                             emphasis:{
@@ -190,7 +208,7 @@ export default {
                               },
                                 textStyle:{
                                     color:'#fe6e40',
-                                    fontSize:14
+                                    fontSize:20
                                 }
                             }
                         },

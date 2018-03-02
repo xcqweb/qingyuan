@@ -70,7 +70,7 @@ export default {
         mixins:[],
         data() {
             return {
-            		updatePlace:{'name':'w21'},
+            		updatePlace:{place:"全部",turist:"全部"},
             		update:{begin:['2018','02','02'],end:['2018','02','03']},
             		upday:0,
             	  toggleName:'C8',

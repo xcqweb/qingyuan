@@ -6,14 +6,15 @@
         		@choseDate='choseDateVal'
         		@choseDay='choseDayVal'
         		@scienceType='getScienceType'
-        		:isDate=false
-        		:isScience=true
+        		:isDate=true
+        		:isScience=false
         	></groupMenu>
         </div>
         
          <!--4A级景区切换-->
         <div v-show="!scienceType">
         	<div class="leftScope">
+        		<h1>游客属性</h1>
 	            <div class="item"
 	                v-for='item in leftComponents' 
 	                :class="item.id">
@@ -72,9 +73,9 @@ export default {
     name: 'souceShow',
         data () {
             return {
-            	updatePlace:{place:"清新",turist:"安庆村"},
-        		update:{},
-        		upday:{},
+            	updatePlace:{place:"全部",turist:"全部"},
+        		update:{begin:['2018','02','02'],end:['2018','02','03']},
+            	upday:0,
             	scienceType:false,
                 place:'连州地下河',
                 cutoverImg:require('../../../assets/切换.png'),
@@ -112,18 +113,21 @@ export default {
                 ],
                 cutoverStatus:null,
                 leftComponents:[
-                	{name:'D1SS',id:'one',index:1,time:900,show:true,title:'景区客流热力图'},
-                    {name:'A5',id:'two',index:2,time:100,show:true,title:'实时客流监测',tip:true},
-                    {name:'B2SS',id:'three',index:1,time:300,show:true,title:'预警',color:'',},
+                	{name:'C2SS',id:'one',index:1,time:900,show:true,title:'年龄'},
+                	{name:'C4',id:'two',index:2,time:900,show:true,title:'性别'},
+                	{name:'D7',id:'three',index:3,time:900,show:true,title:'消费水平'},
+                	{name:'C13',id:'four',index:4,time:900,show:true,title:'学历'},
+                	{name:'C14',id:'five',index:5,time:900,show:true,title:'职业'},
                 ],
                 //4A级以上景区
                 AComponents:[
                 	{name:'A10',id:'one',index:1,time:900,show:true,title:'4A级以上景区'},
                 ],
                 rightComponents:[
-                	{name:'B4SS',id:'two',index:3,time:100,show:true,title:'实时路况',tip:true},
-                	
-                	{name:'B6S',id:'one',index:2,time:600,show:true,title:'实时天气'},
+                	{name:'B4SS',id:'four',index:1,time:100,show:true,title:'游客路线',tip:true},
+                	{name:'A1SS',id:'three',index:2,time:100,show:true,title:'历史客流',tip:true},
+                	{name:'C12',id:'two',index:3,time:100,show:true,title:'游客来源地',tip:true},
+                	{name:'D12',id:'one',index:4,time:600,show:true,title:'停留时长'},
                 ]
             }
         },
