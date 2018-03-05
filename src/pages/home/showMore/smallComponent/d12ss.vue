@@ -318,6 +318,19 @@ export default {
                             )
                         }
                     },
+	                areaStyle: {
+			           normal: {
+		                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+		                    offset: 0,
+		                    color: 'rgba(0, 136, 212, 0.6)'
+		                }, {
+		                    offset: 0.36,
+		                    color: 'rgba(0, 136, 212, 0.01)'
+		                }], false),
+		                shadowColor: '#5ee4ff',
+		                shadowBlur: 10
+		            }	
+       			 	},
                     label:{
                     normal:{
                         show:true,

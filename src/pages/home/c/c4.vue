@@ -75,9 +75,9 @@ export default {
             this.$axios.get(API_URL+'/qy/api/view/getDaySexDetailData',{params:paramsObj}).then(r => {
                     
                 if(r.data.code ==="200"||r.data.code ===200){
-                	//console.log(r.data.data)
-                    this.menPercent = r.data.data[0].maleNum; 
-					this.womenPercent = r.data.data[0].femaleNum;
+                  	console.log(r.data.data)
+                    this.menPercent = r.data.data[0].maleNum.toFixed(1); 
+					this.womenPercent = r.data.data[0].femaleNum.toFixed(1);
 					this.redom(this.menPercent,this.womenPercent);
                 }
             })

@@ -72,6 +72,10 @@ export default {
         	{place:'白庙渔村',numb:46335,percent1:'12.4%',percent2:'14.5%',percent3:'16.1%'},
         	{place:'飞来寺',numb:46335,percent1:'12.4%',percent2:'14.5%',percent3:'16.1%'},
         	{place:'飞霞风景名胜区',numb:46335,percent1:'12.4%',percent2:'14.5%',percent3:'16.1%'},
+        	{place:'飞霞风景名胜区',numb:46335,percent1:'12.4%',percent2:'14.5%',percent3:'16.1%'},
+        	{place:'飞霞风景名胜区',numb:46335,percent1:'12.4%',percent2:'14.5%',percent3:'16.1%'},
+        	{place:'飞霞风景名胜区',numb:46335,percent1:'12.4%',percent2:'14.5%',percent3:'16.1%'},
+        	{place:'飞霞风景名胜区',numb:46335,percent1:'12.4%',percent2:'14.5%',percent3:'16.1%'},
         ]
       }
     },
@@ -134,6 +138,8 @@ export default {
 ul{
     height:90%;
     width:100%;
+    overflow-y: scroll;
+    cursor: all-scroll;
     li{
         height:89/798*100%;
         display:flex;
@@ -148,6 +154,52 @@ ul{
           }
     }
 }
+
+ul::-webkit-scrollbar{
+			    width: 0.45rem;
+			    height: 3rem;
+			}
+			/*定义滚动条的轨道，内阴影及圆角*/
+			ul::-webkit-scrollbar-track{
+			    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.9);
+			    border-radius: 10px;
+			}
+			/*定义滑块，内阴影及圆角*/
+			ul::-webkit-scrollbar-thumb{
+			    width: 10px;
+			    height: 10rem;
+			    border-radius: 10px;
+			    -webkit-box-shadow: inset 0 0 6px #02275A;
+			    background-color: #0F2059;
+			}
+			
+			ul::scrollbar{
+			    width: 0.45rem;
+			    height: 3rem;
+			}
+			/*定义滚动条的轨道，内阴影及圆角*/
+			ul::scrollbar-track{
+			    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+			    border-radius: 10px;
+			}
+			/*ie*/
+			ul{
+				scrollbar-face-color: #0F2059;
+				scrollbar-highlight-color: ;
+				scrollbar-shadow-color: #02275A;
+				scrollbar-track-color: #263984;
+			}
+			 
+			/*定义滑块，内阴影及圆角*/
+			ul::scrollbar-thumb{
+			    width: 10px;
+			    height: 10rem;
+			    border-radius: 10px;
+			    -webkit-box-shadow: inset 0 0 6px #02275A;
+			    background-color: #0F2059;
+			}
+
+
 .cell1{
     float:left;
     width: 16.6%;
