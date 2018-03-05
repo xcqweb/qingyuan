@@ -22,48 +22,45 @@ export default {
     		series:[
     		 {
 		      "value": 200,
-		      name: '金融'
+		      name: '北京'
 		    },
 		    {
 		      "value": 180,
-		      name: '汽车服务'
+		      name: '上海'
 		    },
 		     {
 		      "value": 160,
-		      name: '化妆品'
+		      name: '深圳'
 		    },
     		{
 		      "value": 140,
-		      name: '服饰鞋帽'
+		      name: '广州'
 		    },
 		     {
 		      "value": 120,
-		      name: '休闲娱乐'
+		      name: '重庆'
 		    },
 		    {
 		      "value": 100,
-		      name: '生活服务'
+		      name: '杭州'
 		    },
 		    {
 		      "value": 230,
-		      name: '教育培训'
+		      name: '成都'
 		    },
 		     {
 		      "value": 200,
-		      name: '亲子'
+		      name: '武汉'
 		    },
 		    
 		    {
 		      "value": 120,
-		      name: '母婴用品'
+		      name: '苏州'
 		    },
 		    {
 		      "value": 80,
-		      name: '数码'
+		      name: '南昌'
 		    },
-		    
-		   
-		   
 		  ],
         color:['#4EBBFC','#57ABFE', '#368DF7', '#7E6AF6', '#FF8885','#FFCD38',  '#E39A50', '#75CF65','#B8E986', '#86E9E8', '#58E5E1','#4BCEDD'],
     		
@@ -122,18 +119,16 @@ export default {
                 },
             		//width:'50%',
             		data:[
-            			{name:'亲子',icon:'circle'},
-            			{name:'金融',icon:'circle'},
-            			{name:'汽车服务',icon:'circle'},
-            			{name:'休闲娱乐',icon:'circle'},
-            			{name:'化妆品',icon:'circle'},
-            			{name:'珠宝手表',icon:'circle'},
-            			{name:'数码',icon:'circle'},
-            			{name:'母婴用品',icon:'circle'},
-            			{name:'生活服务',icon:'circle'},
-            			{name:'奢侈品牌',icon:'circle'},
-            			{name:'大众品牌',icon:'circle'},
-            			{name:'服饰鞋帽',icon:'circle'},
+            			{name:'北京',icon:'circle'},
+            			{name:'上海',icon:'circle'},
+            			{name:'深圳',icon:'circle'},
+            			{name:'广州',icon:'circle'},
+            			{name:'重庆',icon:'circle'},
+            			{name:'杭州',icon:'circle'},
+            			{name:'成都',icon:'circle'},
+            			{name:'武汉',icon:'circle'},
+            			{name:'苏州',icon:'circle'},
+            			{name:'南昌',icon:'circle'},
             		],
             	//data:['亲子','金融','汽车服务','休闲娱乐','化妆品','珠宝手表','数码','母婴用品','生活服务','奢侈品牌','大众品牌','服饰鞋帽'],
             	 formatter:function(name){

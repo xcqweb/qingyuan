@@ -91,6 +91,10 @@ let D13 = resolve => {require.ensure(['@/pages/home/d/d13.vue'], () => {resolve(
 //景区客流
 let D14 = resolve => {require.ensure(['@/pages/home/d/d14.vue'], () => {resolve(require('@/pages/home/d/d14.vue'))})}
 
+//评论详情
+let D15 = resolve => {require.ensure(['@/pages/home/d/d15.vue'], () => {resolve(require('@/pages/home/d/d15.vue'))})}
+
+
 //景区热力图
 let D1SS = resolve => {require.ensure(['@/pages/home/showMore/smallComponent/d1ss.vue'], () => {resolve(require('@/pages/home/showMore/smallComponent/d1ss.vue'))})}
 
@@ -172,6 +176,7 @@ let status =[
     'D12',
     'D13',
     'D14',
+    'D15',
     'D1SS',
     'D9SS',
     'D12SS',

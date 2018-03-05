@@ -10,10 +10,10 @@
     position:absolute;
     /* left: 1.2rem; */
     right: 0;
-    top: 0px;
+    top: 6%;
     bottom: 0;
     margin: auto;
-    /* transform: scale(0.90); */
+     transform: scale(1.6); 
   }
 </style>
 <template>
@@ -26,8 +26,9 @@
 <script>
 	import echarts_resize from '@/common/js/echarts_resize.js'
 	import echarts from 'echarts'
-	
+	import optionProps from '@/common/js/mixin/optionProps.js'
 	export default {
+		mixins:[optionProps],
 		data(){
 			return {
 				option:{
@@ -57,11 +58,8 @@
 				}
 			}
 		},
-		props:{
-	        mainPageSelect:Object,
-	    },
 	    watch:{
-	        mainPageSelect:{
+	        updatePlace:{
 	        handler: function (val, oldVal) {
 	        	this.option.series[0].data=[];
 	            this.getResponse();
@@ -79,8 +77,8 @@
             getResponse(){
             let _self = this;
             var paramsObj = {
-                area:this.mainPageSelect.place,
-                name:this.mainPageSelect.turist
+                area:this.updatePlace.place,
+                name:this.updatePlace.turist
             }
 //            this.$axios.get(API_URL+'/qy/api/command/selectCommandScenicRaiseUp',{params:paramsObj}).then(r => {
 	

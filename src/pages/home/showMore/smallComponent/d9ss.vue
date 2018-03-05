@@ -12,7 +12,7 @@ ul{
     height:80%;
     width:100%;
     overflow-y: scroll;
-    
+    cursor: all-scroll;
     li{
     	font-size: 16px;
     	height: 60px;
@@ -216,7 +216,7 @@ export default {
                 var paramsObj = {
                     area:val.place,
                     name:val.turist,
-                    type: ["day","month","year"][this.dateIndex]
+                    //type: ["day","month","year"][this.dateIndex]
                     }
                 this.getResponse(paramsObj);
             },
@@ -246,10 +246,9 @@ export default {
     },
     methods:{
         getResponse(paramsObj){
-            
             this.$axios.get(API_URL+'/qy/api/command/getCommandScenicTrackDetail',{params:paramsObj}).then(r => {
                 if(r.data.code ==="200"||r.data.code ===200){
-                	console.log(r.data.data)
+                	//console.log(r.data.data)
                     this.rankItems = r.data.data;
                     this.rankItems.forEach((item,index)=>{
                         this.rankItems[index].track = item.track.split("==>").slice(0,3) ;

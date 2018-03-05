@@ -113,17 +113,17 @@ export default {
                 ],
                 cutoverStatus:null,
                 leftComponents:[
-                	{name:'C2SS',id:'one',index:1,time:900,show:true,title:'年龄'},
-                	{name:'C4',id:'two',index:2,time:900,show:true,title:'性别'},
-                	{name:'D7',id:'three',index:3,time:900,show:true,title:'消费水平'},
-                	{name:'C13',id:'four',index:4,time:900,show:true,title:'学历'},
+                	{name:'A3',id:'one',index:1,time:900,show:true,title:'游客评价'},
+                	{name:'D10',id:'two',index:2,time:900,show:true,title:'评价正负面'},
+                	{name:'D11',id:'three',index:3,time:900,show:true,title:'关键词'},
+                	{name:'D13',id:'four',index:4,time:900,show:true,title:'景区可提升度'},
                 ],
                 //4A级以上景区
                 AComponents:[
                 	{name:'A10',id:'one',index:1,time:900,show:true,title:'4A级以上景区'},
                 ],
                 rightComponents:[
-                	{name:'D9SS',id:'one',index:1,time:100,show:false,title:'游客路线',tip:true},
+                	{name:'D15',id:'one',index:1,time:100,show:false,title:'评论详情',tip:true},
                 ]
             }
         },

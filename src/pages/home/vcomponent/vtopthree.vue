@@ -14,15 +14,22 @@
 
 <script>
 import Vue from 'vue'
+import optionProps from '@/common/js/mixin/optionProps.js'
 export default {
     name: 'a3',
+    mixins:[optionProps],
     props:{
         mainPageSelect:Object,
     },
     watch:{
-        mainPageSelect:{
+        updatePlace:{
             handler: function (val, oldVal) {
-                this.getResponse();
+            		console.log(this.updatePlace)
+            		var paramsObj = {
+                area:this.updatePlace.place,
+                name:this.updatePlace.turist,
+           	 }
+                this.getResponse(paramsObj);
             },
             deep:true,
         },
