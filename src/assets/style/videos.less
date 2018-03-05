@@ -1,0 +1,89 @@
+/*h1标题颜色，当前颜色白*/
+@hColor:#efeefd;
+/*文本内容颜色*/
+@textColor:#8687c0;
+@headerBackColor:#133596;
+@topBottomColor:#163387;
+@borderColor:#345BFA;
+@borderLen: 18px;
+.item{
+    text-align: center;
+    background-color: #163387;
+    position: absolute;
+    
+    .close {
+        position: absolute;
+        top: 3rem;
+        right: 5.5rem;
+        width: 40px !important;
+        height: 40px !important;
+        background-image: url("../images/back.png");
+        background-size: 100% 100%;
+        background-position: center;
+        z-index: 133;
+        cursor: pointer;
+    }
+    
+}
+
+#apphome{
+     position: absolute;
+     width:  3696/3840*100%;
+     height: 948/1080*100%;
+     left: 136/3840*100%;
+     top: 116/1080*100%;
+    
+    div{
+        height: 100%;
+    }
+    .b16{
+        overflow: hidden;
+    }
+    
+    .chose{
+        position: absolute;
+        width: 1160px;
+        height: 44px;
+        top: 36px;
+        left: 1550px;
+    }
+    
+    .header{
+        position:fixed;
+        width: 100%;
+        height: 100/1080*100%;
+        background-color: @headerBackColor;
+        z-index: 1500;
+    }
+    .headmock{
+        width: 100%;
+        height: 20px;
+
+    }
+    .leftScope{
+        position: absolute;
+        box-sizing: border-box;
+        width: 3676/3696*100%;
+        height: 948/948*100%;
+        border-radius: 10px;
+        h1{
+            position:absolute;
+            top: 1.3rem;
+            left: 2rem;
+            z-index: 2;
+            color:@hColor;
+            font-size: 36px;
+            font-weight: 590;
+            
+        }
+
+        .one{
+           height: 100%; 
+           width: 100%;
+           left: 0;
+           top: 0;
+           background-color: #0d1b48;
+        }
+        
+    }
+}

@@ -25,15 +25,15 @@ export default {
     },
     //localStorage
     setLocalStorage:function(tokenName,value){
-        window.localStorage.setItem(tokenName, value);
+        window.localStorage.setItem(tokenName, JSON.stringify(value));
         
     },
     getLocalStorage:function(tokenName){
         var token =window.localStorage.getItem(tokenName)
-        return token
+        return JSON.parse(token);
     },
-    removeLocalStorage:function(){
-        
+    removeLocalStorage:function(data){
+        window.localStorage.clear(data)
     },
     
 }

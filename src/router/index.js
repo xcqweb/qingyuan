@@ -3,14 +3,6 @@ import Router from 'vue-router'
 import store from '../vuex/index.js'
 import Axios from 'axios'
 const NotFound =resolve => require(['@/pages/404.vue'], resolve);
-// const Login =resolve => require(['@/pages/login/login.vue'], resolve);
-// const LoginTwo =resolve => require(['@/pages/login/logintwo.vue'], resolve);
-// const loginthree =resolve => require(['@/pages/login/loginthree.vue'], resolve);
-// const loginfour =resolve => require(['@/pages/login/loginfour.vue'], resolve);
-// const loginfive =resolve => require(['@/pages/login/loginfive.vue'], resolve);
-// const loginsix =resolve => require(['@/pages/login/loginsix.vue'], resolve);
-// const loginseven =resolve => require(['@/pages/login/loginseven.vue'], resolve);
-// const homepage = resolve => {require.ensure(['@/pages/homepage.vue'], () => {resolve(require('@/pages/homepage.vue'))})}
 const homepage = resolve => {require.ensure(['@/pages/home/tabPage/homepage.vue'], () => {resolve(require('@/pages/home/tabPage/homepage.vue'))})}
 
  const Precision = resolve => {require.ensure(['@/pages/home/tabPage/precision.vue'], () => {resolve(require('@/pages/home/tabPage/precision.vue'))})}
@@ -31,6 +23,8 @@ const video = resolve => {require.ensure(['@/pages/home/tabPage/video.vue'], () 
 
 const test =resolve => require(['@/pages/test.vue'], resolve);
 
+const login =resolve => require(['@/pages/login/loginHome.vue'], resolve);
+
 Vue.use(Router)
 const router= new Router({
   routes: [
@@ -40,20 +34,11 @@ const router= new Router({
         name: '',
         hidden: true
     },
-    // {
-    //     path: '/login',
-    //     component: loginmain,
-    //     name: '',
-    //     children: [
-    //         { path: '', component: Login, name: 'Login' },
-    //         { path: 'pagetwo', component: LoginTwo, name: 'LoginTwo' },
-    //         { path: 'pagethree', component: loginthree, name: 'loginthree' },
-    //         { path: 'pagefour', component: loginfour, name: 'loginfour' },
-    //         { path: 'pagefive', component: loginfive, name: 'loginfive' },
-    //         { path: 'pagesix', component: loginsix, name: 'loginsix' },
-    //         { path: 'pageseven', component: loginseven, name: 'loginseven' },
-    //     ]
-    // },
+       {
+           path: '/login',
+//         component: login,
+           name: 'loginHome',
+       },
      {
         path: '/',
         component: homemain,
@@ -62,7 +47,6 @@ const router= new Router({
         children: [
             { path: '', component: homepage, name: 'homepage' },
             { path: 'Portrait', component: Portrait, name: 'Portrait' },
-            //{ path: 'precision', component: Precision, name: 'Precision' },
             { path: 'command', component: souceShow, name: 'command' },
             { path: 'option', component: publicOpinion, name: 'publicOpinion' },
             { path: 'video', component: video, name: 'video' },
