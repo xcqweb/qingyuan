@@ -14,8 +14,8 @@
 					<li>{{index+1}}</li>
 					<li>{{item.name}}</li>
 					<li>{{item.comment}}</li>
-					<li>{{item.content}}</li>
-					<li>{{item.user}}</li>
+					<li>{{item.con}}</li>
+					<li>{{item.uid}}</li>
 					<li>{{item.date}}</li>
 				</ul>
 			</div>
@@ -32,20 +32,53 @@
 		data(){
 			return{
 				items:[
-					{name:'飞霞风景名胜区',comment:'好评',content:'整体来说不错,在船上可以吃到海鲜.天然的,还有清远鸡!,也可以观赏两岸的风景,72峰名不虚传!,整体来说不错,在船上可以吃到海鲜.天然的,还有清远鸡!,也可以观赏两岸的风景,72峰名不虚传',user:'M1213***',date:'2018-03-05'},
-					{name:'飞霞风景名胜区',comment:'好评',content:'整体来说不错,在船上可以吃到海鲜.天然的,还有清远鸡!,也可以观赏两岸的风景,72峰名不虚传!',user:'M1213***',date:'2018-03-05'},
-					{name:'飞霞风景名胜区',comment:'好评',content:'整体来说不错,在船上可以吃到海鲜.天然的,还有清远鸡!,也可以观赏两岸的风景,72峰名不虚传!',user:'M1213***',date:'2018-03-05'},
-					{name:'飞霞风景名胜区',comment:'好评',content:'整体来说不错,在船上可以吃到海鲜.天然的,还有清远鸡!,也可以观赏两岸的风景,72峰名不虚传!',user:'M1213***',date:'2018-03-05'},
-					{name:'飞霞风景名胜区',comment:'好评',content:'整体来说不错,在船上可以吃到海鲜.天然的,还有清远鸡!,也可以观赏两岸的风景,72峰名不虚传!',user:'M1213***',date:'2018-03-05'},
-					{name:'飞霞风景名胜区',comment:'好评',content:'整体来说不错,在船上可以吃到海鲜.天然的,还有清远鸡!,也可以观赏两岸的风景,72峰名不虚传!',user:'M1213***',date:'2018-03-05'},
-					{name:'飞霞风景名胜区',comment:'好评',content:'整体来说不错,在船上可以吃到海鲜.天然的,还有清远鸡!,也可以观赏两岸的风景,72峰名不虚传!',user:'M1213***',date:'2018-03-05'},
-					{name:'飞霞风景名胜区',comment:'好评',content:'整体来说不错,在船上可以吃到海鲜.天然的,还有清远鸡!,也可以观赏两岸的风景,72峰名不虚传!',user:'M1213***',date:'2018-03-05'},
-					{name:'飞霞风景名胜区',comment:'好评',content:'整体来说不错,在船上可以吃到海鲜.天然的,还有清远鸡!,也可以观赏两岸的风景,72峰名不虚传!',user:'M1213***',date:'2018-03-05'},
-					{name:'飞霞风景名胜区',comment:'好评',content:'整体来说不错,在船上可以吃到海鲜.天然的,还有清远鸡!,也可以观赏两岸的风景,72峰名不虚传!',user:'M1213***',date:'2018-03-05'},
-					{name:'飞霞风景名胜区',comment:'好评',content:'整体来说不错,在船上可以吃到海鲜.天然的,还有清远鸡!,也可以观赏两岸的风景,72峰名不虚传!',user:'M1213***',date:'2018-03-05'},
+//					{name:'飞霞风景名胜区',comment:'好评',con:'整体来说不错,在船上可以吃到海鲜.天然的,还有清远鸡!,也可以观赏两岸的风景,72峰名不虚传!,整体来说不错,在船上可以吃到海鲜.天然的,还有清远鸡!,也可以观赏两岸的风景,72峰名不虚传',uid:'M1213***',date:'2018-03-05'},
 				],
 			}
-		}
+		},
+		watch:{
+			updatePlace:function(val){
+				var paramsObj = {
+	                area:val.place,
+	                //pageId:1,
+	                source:'全部',
+	            }
+				this.getResponse(paramsObj);
+			},
+			update:function(val){
+				var paramsObj = {
+	                area:val.place,
+	                //pageId:1,
+	                source:'全部',
+	                beginTime:val.begin.join('-'),
+	                endTime:val.end.join('-'),
+	            }
+				this.getResponse(paramsObj);
+			}
+		},
+		methods:{
+				getResponse(paramsObj){
+	            this.$axios.get(API_URL+'/qy/api/command/getCommandCommentsDetail',{params:paramsObj}).then(r => {
+					let reData = r.data.data
+					console.log(reData)
+					if(this.items.length!==0){this.items=[]}
+	                if(r.data.code ==="200"||r.data.code ===200){
+	                   reData.forEach( (item,index) => {
+	                   		this.items.push({'name':item.name,'comment':'好评','con':item.con,'uid':item.uid,'date':item.date})
+	                   })
+	                }
+	            })
+	        }
+	  },
+	  created () {
+	        var paramsObj = {
+	                area:"全部",
+	                name:"全部",
+	                //pageId:1,
+	                source:'全部',
+	            }
+	       this.getResponse(paramsObj);
+	    },
 	}
 </script>
 
@@ -59,6 +92,7 @@
 			margin: 98px auto 28px auto;
 			border: 2px solid #345bfa;
 			border-radius: 6px;
+			//box-sizing: border-box;
 			color: #fff;
 			font-size: 20px;
 			cursor: all-scroll;
@@ -71,30 +105,25 @@
 				line-height: 66px;
 				display: flex;
 				li:nth-child(1){
-					flex-basis: 60px;
+					flex-basis: 100px;
 				}
 				li:nth-child(2){
-					flex-basis: 170px;
+					flex-basis: 299px;
 				}
 				li:nth-child(3){
-					flex-basis: 60px;
+					flex-basis: 100px;
 				}
 				li:nth-child(4){
-					flex-basis: 1000px;
-					border-right: none;
+					flex-basis: 800px;
+					border-right-color: transparent;
 				}
 				li:nth-child(5){
-					flex-basis: 150px;
+					flex-basis: 300px;
 				}
 				li:nth-child(6){
-					flex-basis: 150px;
+					flex-basis: 300px;
+					border-right-color: transparent;
 				}
-			}
-			.width1{
-				//height: ;
-			}
-			.width2{
-				height: 150px;
 			}
 			.con{
 				ul:nth-child(2n+1){
@@ -112,26 +141,26 @@
 					line-height: 56px;
 					display: flex;
 					li:nth-child(1){
-						flex-basis: 60px;
+						flex-basis: 100px;
 					}
 					li:nth-child(2){
-						flex-basis: 170px;
+						flex-basis: 300px;
 					}
 					li:nth-child(3){
-						flex-basis: 60px;
+						flex-basis: 100px;
 					}
 					li:nth-child(4){
-						flex-basis: 1000px;
+						flex-basis: 800px;
 						text-align: left;
 						padding: 0 20px 0 20px;
 						line-height: 56px;
 						box-sizing: border-box;
 						overflow-y: scroll;
-						border-right: none;
+						border-right-color: transparent;
 					}
 					
 					li:nth-child(4)::-webkit-scrollbar{
-					    width: 1px;
+					    width: 0px;
 					    height: 3rem;
 					}
 					/*定义滚动条的轨道，内阴影及圆角*/
@@ -141,7 +170,7 @@
 					}
 					/*定义滑块，内阴影及圆角*/
 					li:nth-child(4)::-webkit-scrollbar-thumb{
-					    width: 1px;
+					    width: 0px;
 					    height: 10rem;
 					    border-radius: 10px;
 					    -webkit-box-shadow: inset 0 0 6px #02275A;
@@ -175,10 +204,12 @@
 					}
 					
 					li:nth-child(5){
-						flex-basis: 150px;
+						flex-basis: 300px;
+						overflow: hidden;
 					}
 					li:nth-child(6){
-						flex-basis: 150px;
+						flex-basis: 300px;
+						border-right-color: transparent;
 					}
 				}
 			}

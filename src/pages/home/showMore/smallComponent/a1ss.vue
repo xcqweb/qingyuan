@@ -282,9 +282,9 @@ export default {
                                 color: new echarts.graphic.LinearGradient(
                                     0, 0, 0, 1,
                                     [
-                                    {offset: 0, color: '#86b6ff'},
-                                    {offset: 0.5,color:'#6a95fe'},
-                                    {offset: 1, color: '#5d88f7'}
+                                    {offset: 0, color: '#16d5f8'},
+                                    {offset: 0.6,color:'#4099e4'},
+                                    {offset: 1, color: '#4279ff'}
                                     ]
                                 ),
                                 barBorderRadius: 50,
@@ -352,7 +352,8 @@ export default {
           dataX.push(this.barData[i].dayId);
           
       }
-      this.$nextTick(echarts_resize(this.idName,this,RW.array_until.transformDate(dataX),dataY))
+      	dataX =this.upday===0?RW.array_until.transformDate(dataX):dataX
+      this.$nextTick(echarts_resize(this.idName,this,dataX,dataY))
     },
     redom14(){
         if(this.chart){
@@ -365,7 +366,7 @@ export default {
             dataX.push(this.twoWeekMock[i].dayId)
         }
     // this.isActive=false;
-    this.$nextTick(echarts_resize(this.idName,this, RW.array_until.transformDate(dataX),dataY))
+    this.$nextTick(echarts_resize(this.idName,this, this.upday===1?RW.array_until.transformDate(dataX):dataX,dataY))
     },
       redom (id,xyfonsiz,datax,datay) {
         var _self= this;

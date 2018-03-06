@@ -73,29 +73,19 @@ export default {
     },
     methods:{
     	
-    	//请求数据
-	  	getData(){
-	  		api.params.code = this.code;
-	  		let data={code:0};
-	  		data.code = this.code;
-	  		api.touristAttr(data).then( (re) =>{
-	  				let reData = re.data.data;
-	  				//console.log(reData)
-	  				let arrData = [];
-	  				for(let i in reData){
-	  					arrData.push(reData[i])
-	  				}
-	  				for(let i=0; i<this.series.length; ++i){
-	  					this.series[i].value = arrData[i]
-	  				}
-	  				//console.log(this.series)
-					if(re.status===200){
-					}
-					this.redom("c12");
-		    }).catch( (e) => {
-		    	console.log(e);
-		    })
-	  	},
+	  	
+	  	getResponse(paramsObj){
+            this.$axios.get(API_URL+'/qy/api/view/getInProvinceDetailData',{params:paramsObj}).then(r => {
+                    //console.log(r)
+                if(r.data.code ==="200"||r.data.code ===200){
+                		let arrData = [];
+                    arrData = r.data.data.topCity;
+                    //console.log(arrData)
+                    this.redom("c12");
+                }
+            })
+       },
+	  	
         redom(id){
             this.chart = echarts.init(document.getElementById(id));
             let option = {
@@ -192,6 +182,12 @@ export default {
         }
     },
     created(){
+    	 var paramsObj = {
+                area:"全部",
+                type:"day",
+                city:1
+            }
+       this.getResponse(paramsObj);
     },
     computed:{
     	percents(){

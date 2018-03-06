@@ -28,23 +28,19 @@
 import Vue from 'vue'
 import echarts_resize from '@/common/js/echarts_resize.js'
 import echarts from 'echarts'
+import optionProps from '@/common/js/mixin/optionProps.js'
 export default {
     name: 'a5ss',
-    props:{
-          barNum:Number,
-          updatePlace:Object,
-    },
+    mixins:[optionProps],
     watch:{
         updatePlace:function(){
-            this.redomData(this.barNum)
-        },
-        barNum:function(){
-            this.redomData(this.barNum)
+            this.getResponse()
         }
     },
     
     data () {
         return {
+        	barNum:0,
             reTimer:null,
             idName:"a5ss",
             scenics:"",
@@ -124,16 +120,17 @@ export default {
                     },
                 series: [{
                             type: 'line',
-                            //    smooth: true, //是否平滑曲线显示
+                            //smooth: true, //是否平滑曲线显示
                             lineStyle:{
                                     normal:{
-                                        color:'#6e8bf9',
-                                        shadowColor: 'rgba(0, 0, 0, 0.5)',
+                                        color:'#fda925',
+                                        width:10,
+                                        shadowColor: '#c020af',
                                         shadowBlur: 4,
-                                        shadowOffsetY:14,
+                                        shadowOffsetY:8,
+                                        opacity:0.66
                                     }
                                 },
-                            
 
                             //    areaStyle: { //区域填充样式
                             //        normal: {
@@ -276,10 +273,27 @@ export default {
                    this.chart.setOption(this.option, true);
                 } 
         },
+        getResponse(){
+            var paramsObj = {
+                area:this.updatePlace.place,
+            }
+            this.$axios.get(API_URL+'/qy/api/command/getCommandPassengerData',{params:paramsObj}).then(r => {
+                if(r.data.code ==="200"||r.data.code ===200){
+                	//console.log(r)
+                    this.barNum = r.data.data.num+Math.random();
+                    this.redomData(this.barNum)
+                }
+            })
+        }
+    },
+    created(){
+            var paramsObj = {
+                area:"全部",
+            }
+        this.getResponse();
     },
     mounted() {
         echarts_resize(this.idName,this);
-        
         this.redomData(this.barNum);
     },
     components:{

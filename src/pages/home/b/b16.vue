@@ -65,7 +65,6 @@ export default {
     props:['placeName','updatePlace'],
     data () {
         return {
-            month:'',
             rankItems: [
                 {
                 "num": 4323,
@@ -108,15 +107,20 @@ export default {
             this.$axios.get(API_URL+'/qy/api/view/getInProvinceData').then(r => {
                 
                 if(r.data.code ==="200"||r.data.code ===200){
-                     this.month = new Date().getMonth()+1;
-                    this.montSum =this.$Rw.string_until.addPoint(r.data.data.monthSum);
-                    this.yearSum =this.$Rw.string_until.addPoint(r.data.data.yearSum);
+                     //this.month = new Date().getMonth()+1;
+                    //this.montSum =this.$Rw.string_until.addPoint(r.data.data.monthSum);
+                    //this.yearSum =this.$Rw.string_until.addPoint(r.data.data.yearSum);
                     this.rankItems = r.data.data.topSixCity;
                 }
             })
         }
     },
     created(){
+    	var paramsObj = {
+                area:"全部",
+                type:"day",
+                city:1
+            }
        this.getResponse();
    },
     mounted(){

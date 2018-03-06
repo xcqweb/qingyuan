@@ -18,18 +18,20 @@
 
 <script>
 import echarts_resize from '../../../common/js/echarts_resize.js'
-// import d11sJson from '@/pages/home/showMore/bigComponent/json/d11s.json'
+import optionProps from '@/common/js/mixin/optionProps.js'
 import echarts from 'echarts'
 require('echarts-wordcloud');
   export default {
     name:'d11',
-    props:{
-        mainPageSelect:Object,
-    },
+    mixins:[optionProps],
    watch:{
-        mainPageSelect:{
+        updatePlace:{
         handler: function (val, oldVal) {
-            this.getResponse();
+        	var paramsObj = {
+                area:this.updatePlace.place,
+                name:this.updatePlace.turist,
+            }
+     		this.getResponse(paramsObj);
         },
         deep:true,
         },

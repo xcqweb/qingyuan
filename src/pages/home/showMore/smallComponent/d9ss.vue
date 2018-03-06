@@ -216,7 +216,7 @@ export default {
                 var paramsObj = {
                     area:val.place,
                     name:val.turist,
-                    //type: ["day","month","year"][this.dateIndex]
+                    type: ["day","month","year"][this.upday]
                     }
                 this.getResponse(paramsObj);
             },
@@ -229,6 +229,7 @@ export default {
                  let begin = val.begin.join("-")
                  var paramsObj = {
                     area:this.updatePlace.place,
+                    name:this.updatePlace.turist,
                     beginTime:begin,
                     endTime:end
                 }
@@ -239,6 +240,7 @@ export default {
         upday:function(val){
             var paramsObj = {
                 area:this.updatePlace.place,
+                name:this.updatePlace.turist,
                 type: ["day","month","year"][val]
             }
              this.getResponse(paramsObj);

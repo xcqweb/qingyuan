@@ -84,8 +84,9 @@
 	
             //this.$axios.get('http://120.55.190.57:8081/qy/api/command/selectCommandScenicRaiseUp',{params:paramsObj}).then(r => {
             this.$axios.get('https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example/xcq',{params:paramsObj}).then(r => {
-            	console.log(r);
+            	//console.log(r);
             	let reData = r.data.data
+            	_self.option.series[0].data = []
                 if(r.status ===200){
                 	for(let i=0; i<reData.length; ++i){
                 		

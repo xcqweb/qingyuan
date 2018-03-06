@@ -107,7 +107,7 @@ export default {
                 ],
                 leftComponents:[
                      {name:'D14',id:'one',index:1,time:1200,show:true,title:``,},
-                     {name:'B16',id:'two',index:2,time:1200,show:true,title:``,},
+                     {name:'B15',id:'two',index:2,time:1200,show:true,title:``,},
                      {name:'C11',id:'three',index:3,time:1200,show:true,title:``,},
                 ],
                 rightTop:[

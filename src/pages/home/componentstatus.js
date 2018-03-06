@@ -50,6 +50,10 @@ let B7 = resolve => {require.ensure(['@/pages/home/b/b7.vue'], () => {resolve(re
 let B8 = resolve => {require.ensure(['@/pages/home/b/b8.vue'], () => {resolve(require('@/pages/home/b/b8.vue'))})}
 let B9 = resolve => {require.ensure(['@/pages/home/b/b9.vue'], () => {resolve(require('@/pages/home/b/b9.vue'))})}
 let B10 = resolve => {require.ensure(['@/pages/home/b/b10.vue'], () => {resolve(require('@/pages/home/b/b10.vue'))})}
+
+//游客来源
+let B15 = resolve => {require.ensure(['@/pages/home/showMore/smallComponent/guonei_map'], () => {resolve(require('@/pages/home/showMore/smallComponent/guonei_map.vue'))})}
+
 let B16 = resolve => {require.ensure(['@/pages/home/b/b16.vue'], () => {resolve(require('@/pages/home/b/b16.vue'))})}
 let B6S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/b6s.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/b6s.vue'))})}
 
@@ -145,6 +149,7 @@ let status =[
     'B8',
     'B9',
     'B10',
+    'B15',
     'B16',
     'B2SS',
     'B4SS',

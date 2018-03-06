@@ -377,8 +377,9 @@ export default {
 	          dataY.push(Number(this.barData[i].avgHour).toFixed(1));
 	          dataX.push(this.barData[i].dayId);
 	      }
+	      dataX =this.upday===0?RW.array_until.transformDate(dataX):dataX
 	      	this.chart = echarts.init(document.getElementById(id))
-	         _self.option.xAxis[0].data = RW.array_until.transformDate(dataX);
+	         _self.option.xAxis[0].data = dataX;
 	        _self.option.series[0].data = dataY;
 	        this.chart.setOption(_self.option);
 	       

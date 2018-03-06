@@ -44,20 +44,55 @@
 <script type="text/javascript">
 import echarts_resize from '../../../common/js/echarts_resize.js'
 import echarts from 'echarts'
+import optionProps from '@/common/js/mixin/optionProps.js'
 export default {
     name:'d7',
+    mixins: [optionProps],
+    watch:{
+  	   updatePlace:function(val){
+            var paramsObj = {
+                area:this.updatePlace.place,
+                type:["day","month","year"][this.upday],
+            }
+            this.getResponse(paramsObj);
+        },
+        upday:{
+        	handler:function(val){
+        		console.log(this.upday)
+	            var paramsObj = {
+	                area:this.updatePlace.place,
+	                type:["day","month","year"][this.upday],
+	            }
+	            this.getResponse(paramsObj);
+	        },
+	        deep:true
+        },
+        update:{
+             handler:function(val, oldVal){
+                 let end = val.end.join("-")
+                 let begin = val.begin.join("-")
+                 var paramsObj = {
+                    area:this.updatePlace.place,
+                    beginTime:begin,
+                    endTime:end
+				}
+                 this.getResponse(paramsObj);
+             },
+             deep:true,
+        }
+  },
     data(){
     return{
         items:[{
-                year:'1000元以下',
+                name:'1000元以下',
                 color:'#368df7'
             },
             {
-                year:'1001元-3000元',
+                name:'1001元-3000元',
                 color:'#75cf65',
             },
             {
-                year:'3001元以上',
+                name:'3001元以上',
                 color:'#fe6e40',
             }
             ],
@@ -229,22 +264,25 @@ export default {
             this.chart = echarts.init(document.getElementById(id));
             this.chart.setOption(this.option);
         },
-        getResponse(){
-            this.$axios.get(API_URL+'/qy/api/view/getSpendMoneyPowerData').then(r => {
+        getResponse(paramsObj){
+            this.$axios.get(API_URL+'/qy/api/view/getSpendMoneyPowerDetailData',{params:paramsObj}).then(r => {
                 if(r.data.code ==="200"||r.data.code ===200){
                     this.option.series[1].data.forEach((item,index)=>{
-                        item.value = r.data.data[item.ffname]
-                        item.name = r.data.data[item.ffname]+'%';
+                        item.value = r.data.data[0][item.ffname]
+                        item.name = r.data.data[0][item.ffname]+'%';
                     })
-                    this.$nextTick(()=>{
                        this.$nextTick(echarts_resize('d7',this))
-                    })
                 }
             })
         }
     },
     created(){
-       this.getResponse();
+    	var paramsObj = {
+                area:"全部",
+                type:"day",
+                city:1
+            }
+       this.getResponse(paramsObj);
    },
     mounted() {
           

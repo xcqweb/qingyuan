@@ -24,7 +24,7 @@ let mowMonth = date.getMonth()+1
 export default {
     name: 'a6',
     
-    //props:['placeName'],
+    mixins:[optionProps],
     
     data () {
     return {
@@ -243,14 +243,33 @@ export default {
     computed: {
     },
     watch:{
-    	updatePlace:function(){
-    		var paramsObj = {
-                 area:this.updatePlace.place,
-                type:"day",
-                city:1
+    	updatePlace:function(val){
+            var paramsObj = {
+                area:this.updatePlace.place,
+                type:["day","month","year"][this.upday],
             }
             this.getResponse(paramsObj);
-    	}
+        },
+        upday:function(val){
+            var paramsObj = {
+                area:this.updatePlace.place,
+                type:["day","month","year"][this.upday],
+            }
+            this.getResponse(paramsObj);
+        },
+        update:{
+             handler:function(val, oldVal){
+                 let end = val.end.join("-")
+                 let begin = val.begin.join("-")
+                 var paramsObj = {
+                    area:this.updatePlace.place,
+                    beginTime:begin,
+                    endTime:end
+				}
+                 this.getResponse(paramsObj);
+             },
+             deep:true,
+        }
     },
     created(){
     	//console.log(this.update)
@@ -491,7 +510,7 @@ export default {
 #fromEchart{
     width:100%;
     height:100%;
-    transform: scale(1.36);
+    transform: translate(-8%,-3%);
 }
 
 </style>

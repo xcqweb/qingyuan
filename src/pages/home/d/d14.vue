@@ -58,12 +58,32 @@ export default {
     mixins: [adaptation,optionProps],
      
     watch:{
-        updatePlace:{
-            handler: function (val, oldVal) {
-                let _self = this;
-               this.getResponse();
-            },
-            deep:true,
+        updatePlace:function(val){
+            var paramsObj = {
+                area:this.updatePlace.place,
+                type:["day","month","year"][this.upday],
+            }
+            this.getResponse(paramsObj);
+        },
+        upday:function(val){
+            var paramsObj = {
+                area:this.updatePlace.place,
+                type:["day","month","year"][this.upday],
+            }
+            this.getResponse(paramsObj);
+        },
+        update:{
+             handler:function(val, oldVal){
+                 let end = val.end.join("-")
+                 let begin = val.begin.join("-")
+                 var paramsObj = {
+                    area:this.updatePlace.place,
+                    beginTime:begin,
+                    endTime:end
+				}
+                 this.getResponse(paramsObj);
+             },
+             deep:true,
         }
     },
     data () {
@@ -96,23 +116,23 @@ export default {
             }
             return m
         },
-        getResponse(){
-            let _self = this;
-            var paramsObj = {
-                area:this.updatePlace.place,
-                name:this.updatePlace.turist
-            }
-        
-            this.$axios.get(API_URL+'/qy/api/command/getCommandCurrentPerson',{params:paramsObj}).then(r => {
+        getResponse(paramsObj){
+        	let _self = this
+            this.$axios.get(API_URL+'/qy/api/view/getInProvinceDetailData',{params:paramsObj}).then(r => {
                 if(r.status ===200){
-                    this.dataMsg.num =_self.$Rw.string_until.addPoint(r.data.data.num);
-                    this.dataMsg.yesterdayNum =_self.$Rw.string_until.addPoint(r.data.data.yesterdayNum)
+                    this.dataMsg.num =_self.$Rw.string_until.addPoint(r.data.data.yearSum);
+                    this.dataMsg.yesterdayNum =_self.$Rw.string_until.addPoint(r.data.data.monthSum)
                 }
             })
         }
     },
     mounted(){
-        this.getResponse();
+        var paramsObj = {
+                area:"全部",
+                type:"day",
+                city:1
+            }
+       this.getResponse(paramsObj);
     },  
 }
 </script>

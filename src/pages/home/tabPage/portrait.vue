@@ -24,6 +24,7 @@
 	                    :key="item.id"  
 	                    :updatePlace='updatePlace'
                 		:update='update'
+                		:upday='upday'
 	                    ></componet>
 	            </div>
 	        </div>
@@ -39,6 +40,7 @@
 	                    :key="item.id"  
 	                    :updatePlace='updatePlace'
                 		:update='update'
+                		:upday='upday'
 	                    ></componet>
 	            </div>
         	</div>
@@ -54,6 +56,7 @@
                     :key="item.id"  
                     :updatePlace='updatePlace'
                 	:update='update'
+                	:upday='upday'
                     ></componet>
             </div>
         </div>

@@ -123,7 +123,7 @@ export default {
                 	{name:'A10',id:'one',index:1,time:900,show:true,title:'4A级以上景区'},
                 ],
                 rightComponents:[
-//              	{name:'D15',id:'one',index:1,time:100,show:false,title:'评论详情',tip:true},
+                	{name:'D15',id:'one',index:1,time:100,show:false,title:'评论详情',tip:true},
                 ]
             }
         },
