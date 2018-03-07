@@ -185,7 +185,7 @@
     		.wImg{
     			position: absolute;
     			width: 100px;
-    			height: 80px;
+    			height: 86px;
     			left: 30px;
     			background-size: 100%;
     		}
@@ -278,7 +278,7 @@
     			.wImg{
     				position: absolute;
 	    			width: 100px;
-	    			height: 80px;
+	    			height: 86px;
 	    			left: 0;
 	    			top: 98px;
 	    			background-size: 100%;
@@ -322,7 +322,7 @@
     			.wImg{
     				position: absolute;
 	    			width: 100px;
-	    			height: 80px;
+	    			height: 86px;
 	    			left: 0;
 	    			top: 98px;
 	    			background-size: 100%;

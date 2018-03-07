@@ -20,7 +20,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
 let date = new Date()
 let nowYear = date.getFullYear()
 let mowMonth = date.getMonth()+1
-
+var  planePath = 'path://M1705.06,1318.313v-89.254l-319.9-221.799l0.073-208.063c0.521-84.662-26.629-121.796-63.961-121.491c-37.332-0.305-64.482,36.829-63.961,121.491l0.073,208.063l-319.9,221.799v89.254l330.343-157.288l12.238,241.308l-134.449,92.931l0.531,42.034l175.125-42.917l175.125,42.917l0.531-42.034l-134.449-92.931l12.238-241.308L1705.06,1318.313z';
 export default {
     name: 'a6',
     
@@ -71,6 +71,18 @@ export default {
             '衢州市':[118.906032, 28.945182]
         },
         allData:[],
+        gz:[
+        	[{name:'广州'},{name:'福州市',value:200}],
+		    [{name:'广州'},{name:'太原市',value:200}],
+		    [{name:'广州'},{name:'长春市',value:200}],
+		    [{name:'广州'},{name:'重庆市',value:200}],
+		    [{name:'广州'},{name:'西安市',value:200}],
+		    [{name:'广州'},{name:'成都市',value:200}],
+		    [{name:'广州'},{name:'常州市',value:200}],
+		    [{name:'广州'},{name:'北京市',value:200}],
+		    [{name:'广州'},{name:'武汉市',value:200}],
+		    [{name:'广州'},{name:'海口市',value:200}]
+        ],
         optionChina : {
             backgroundColor: {
             	color: '#f00',
@@ -95,14 +107,14 @@ export default {
                 itemStyle: {
                         normal: {
                            	 //color:'#db625f',
-                            areaColor: '#ff5548',
+                            areaColor: '#48abff',
                             borderColor:'white',
                             borderWidth:0.5,
                             shadowColor: 'rgba(0, 0, 0, 0.1)',
                             shadowBlur:10,
                         },
                         emphasis: {
-                            areaColor: '#2a333d'
+                            areaColor: '#6abccc'
                         }
                     }
             },
@@ -216,11 +228,11 @@ export default {
             '黔西南布依族苗族自治州':[104.947562, 25.145265],
         },
         BJData:[
-            [{name: this.placeName}, {name: '北京', value: 95}],
+            [{name: this.placeName}, {name: '北京', value: 100}],
 //          [{name: this.placeName}, {name: this.placeName, value: 95}],
         ],
         GUANG:[
-            [{name: this.placeName}, {name: '长春', value: 40}],
+            [{name: this.placeName}, {name: '长春', value: 100}],
 
         ],
         SHData:[
@@ -236,8 +248,7 @@ export default {
         FENGD:[
             [{name: this.placeName}, {name: '重庆', value: 20}]
         ],
-        planePath:'path://M1705.06,1318.313v-89.254l-319.9-221.799l0.073-208.063c0.521-84.662-26.629-121.796-63.961-121.491c-37.332-0.305-64.482,36.829-63.961,121.491l0.073,208.063l-319.9,221.799v89.254l330.343-157.288l12.238,241.308l-134.449,92.931l0.531,42.034l175.125-42.917l175.125,42.917l0.531-42.034l-134.449-92.931l12.238-241.308L1705.06,1318.313z',
-
+       
     }
     },
     computed: {
@@ -291,9 +302,11 @@ export default {
                     this.mapItems = r.data.data.topCity;
                     //console.log(this.rankItems)
                     let scal = 5;
-                    for(let i=0; i<this.rankItems.length; ++i){
-												this.allData[i]=["清远市", [[{name: "清远市"}, {name: this.rankItems[i].city, value: this.rankItems[i].num/scal}]]]
-										}
+                    for(let i=0; i<this.gz.length; ++i){
+						//this.allData[i]=["清远市", [[{name: "清远市"}, {name: this.rankItems[i].city, value: this.rankItems[i].num/scal}]]]
+						this.allData[i]=["清远市", [[{name: "清远市"}, {name: this.gz[i][1].name, value: this.gz[i][1].value}]]]
+					}
+                    console.log(this.allData)
                     this.redomData()
                 }
             })
@@ -349,7 +362,7 @@ export default {
         }
         var dom = document.getElementById("fromEchart");
         this.chart = echarts.init(dom);
-        var color =['#f18790', '#75c774', '#5aa7fd','#f1c54b','#c184ff','6792fb'];
+        var color =['#f18790', '#75c774', '#5aa7fd','#f1c54b','#c184ff','#6792fb'];
         var series = [];
          
         this.allData.forEach(function (item, i) {
@@ -392,13 +405,13 @@ export default {
                         period: 6,
                         trailLength: 0,
                         //小飞机
-                        //symbol: planePath,
+                          symbol: planePath,
                         //移动点大小
-                        symbolSize: 1
+                        symbolSize: 36
                     },
                     lineStyle: {
                         normal: {
-                            color: _self.color[i],
+                            color: '#ffe76d',
                             width: 2,
                             opacity: 0.6,
                             curveness: 0.2
@@ -422,27 +435,28 @@ export default {
                             position: 'right',
                             formatter: '{b}',
                             textStyle: {
-                                fontSize: 12
+                                fontSize: 20,
+                                //color:'#000'
                             }
                         }
                     },
                     symbolSize: function (val) {
-                        //return val[2] / 200;
-                        if(val>=0&&val[2]<=20){
-                    		return val[2]
-                    	}else if(val[2]>20&&val[2]<=1000){
-                    		return val[2]/20
-                    	}else if(val[2]>1000 && val[2]<5000){
-                    		return val[2]/120
-                    	}else if(val[2]>=5000 && val[2]<10000){
-                    		return val[2]/160
-                    	}else if(val[2]>=10000&&val[2]<70000){
-                    		return val[2]/210
-                    	}else if(val[2]>=70000&&val[2]<100000){
-                    		return val[2]/200
-                    	}else{
-                    		return val[2]/300
-                    	}
+                          return 10;
+//                      if(val>=0&&val[2]<=20){
+//                  		return val[2]
+//                  	}else if(val[2]>20&&val[2]<=1000){
+//                  		return val[2]/20
+//                  	}else if(val[2]>1000 && val[2]<5000){
+//                  		return val[2]/120
+//                  	}else if(val[2]>=5000 && val[2]<10000){
+//                  		return val[2]/160
+//                  	}else if(val[2]>=10000&&val[2]<70000){
+//                  		return val[2]/210
+//                  	}else if(val[2]>=70000&&val[2]<100000){
+//                  		return val[2]/200
+//                  	}else{
+//                  		return val[2]/300
+//                  	}
                     },
                     itemStyle: {
                         normal: {
@@ -510,7 +524,7 @@ export default {
 #fromEchart{
     width:100%;
     height:100%;
-    transform: translate(-8%,-3%);
+    //transform: translate(-8%,-3%);
 }
 
 </style>

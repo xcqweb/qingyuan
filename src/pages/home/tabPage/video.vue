@@ -66,7 +66,7 @@ export default {
                     {name:'C8',title:'游客来源排行'},
                 ],
                 leftComponents:[
-//                   {name:'D16',id:'one',index:1,time:1200,show:true,title:``,},
+                     {name:'D16',id:'one',index:1,time:1200,show:true,title:``,},
                 ],
                 
                 text:'headerBody',

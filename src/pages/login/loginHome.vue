@@ -56,30 +56,26 @@
 			},
 			//登录
 			login(){
-//				let params = new FormData();
-//				params.append('username',this.loginForm.username)
-//				params.append('password',this.loginForm.password)
-				console.log(params)
+				
 				this.chooseSave();
 				
-				let timestamp= Date.parse( new Date())+'';
-	            let params={
-	                username: this.loginForm.username,
-	                password: this.loginForm.password ,
-	                code:this.loginForm.code,
-	                timestamp:timestamp,
-	            }
-	            let config = getConfig(params)
-	            this.$store.dispatch('user/login', config).then(data => {
-	                console.log(data)
-	                let token =data.token ;
-	                this.$store.commit('user/SET_TOKEN',{token:token});
-	                this.$router.push({ path: '/' });
-	            })
-	            .catch(error => {
-	                console.log('error');
-	              console.log(error)
-	            })
+				
+	            let paramsObj = new FormData();
+				paramsObj.append('username',this.loginForm.username)
+				paramsObj.append('password',this.loginForm.password)
+				paramsObj.append('timestamp',timestamp)
+				
+				
+	            this.$axios.post(API_URL+'/login',{params:paramsObj}).then(r => {
+                console.log(r)
+                if(r.data.code =="200"||r.data.code ===200){
+                    this.$router.push({ path: API_URL });
+                }else{
+                    alert("登录失败")
+                    this.$router.push({ path: '/login' })
+                }
+            })
+	            
 			}
 		}
 		
@@ -89,7 +85,7 @@
 <style lang="less" scoped>
 	.loginBox{
 		width: 100%;
-		height: 100%;
+		height: 1080px;
 		background-color: #101e4f;
 		position: relative;
 		.leftImg{
@@ -113,7 +109,7 @@
 				height: 124/900*100%;
 				top: 108/900*100%;
 				right: 260/1050*100%;
-				background: url(../../assets/images/login/login/loginTitle.png);
+				background: url(../../assets/images/login/login/loginTitle.png) no-repeat;
 			}
 			.con{
 				position: absolute;
