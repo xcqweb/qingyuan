@@ -139,7 +139,7 @@ export default {
 }
 .flex{
     box-sizing: border-box;
-    width: 100%;
+    width: 268px;
     display: -webkit-box;
     -webkit-box-pack: start;
     -webkit-box-align: start;

@@ -14,11 +14,7 @@
     <div class="a5">
         <div  class="item">
             <a5ss 
-            class="c211" 
-            :idName='"a5echart"' 
-            :scenics='""' 
-            :barNum ='barNum'
-            :updatePlace ='updatePlace'
+            	class="c211" 
             ></a5ss>
         </div>
     </div>

@@ -113,7 +113,7 @@ export default {
                 cutoverStatus:null,
                 leftComponents:[
                 	{name:'D1SS',id:'one',index:1,time:900,show:true,title:'景区客流热力图'},
-                    {name:'A5',id:'two',index:2,time:100,show:true,title:'实时客流监测',tip:true},
+                    {name:'A5SS',id:'two',index:2,time:100,show:true,title:'实时客流监测',tip:true},
                     {name:'B2SS',id:'three',index:1,time:300,show:true,title:'预警',color:'',},
                 ],
                 //4A级以上景区

@@ -56,8 +56,8 @@
 	                {context:'年',class:''},
 	            ],
 				qyselectlist:{
-                    width:'88%',
-                    left:'6%',
+                    width:'76.9%',
+                    left:'10%',
                     title:'全部',
                     selectStatus:false,
                     place:[
@@ -165,8 +165,8 @@
 	                this.cityData = this.startData;
 	            }
 	            return {
-	                width:'88%',
-	                left:'6%',
+	                width:'76.9%',
+	                left:'10%',
 	                title:this.cityData[0],
 	                selectStatus:false,
 	                place:this.cityData,
@@ -213,7 +213,7 @@
 	    line-height: 1.8rem;
 	    position: absolute;
 	    top: 35%;
-	    left: 10%
+	    left: 10%;
 	}
 	.area{
 		height: 36px;
@@ -229,14 +229,14 @@
 	}
 	.vueDate{
 		position: absolute;
-	    top: 50%;
-	    left: 6%;
+	    top: 46%;
+	    left: 10%;
 	}
 	
 	.scienceChose{
 		position: absolute;
 		top: 40%;
-	    left: 6%;
+	    left: 10%;
 	    .btn{
 	    	display: inline-block;
             width: 124px;
@@ -256,20 +256,19 @@
 	}
 	
 	.starList,.dateChose{
-		width: 92%;
+		width: 268px;
 		position: absolute;
 	    top: 40%;
-	    left: 6%;
+	    left: 10%;
 	   background-color: rgba(0, 0, 0, 0);
 	   li{
 	        height: 1.8rem;
-	        width: 2rem;
+	        width: 88px;
 	        text-align: center;
 	        line-height:2rem;
 	        font-size: 0.9rem;
 	        border: 1px solid #355BFA;
 	        float: left;
-	       	width: 30%;
 	       color:white;
 	       cursor: pointer;
 	       background-image:url('../../../assets/images/home/981513311442_.pic.jpg');

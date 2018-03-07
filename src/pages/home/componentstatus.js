@@ -28,7 +28,7 @@ let A7 = resolve => {require.ensure(['@/pages/home/vcomponent/vrinking.vue'], ()
 //营销推广__pie
 let A8 = resolve => {require.ensure(['@/pages/home/vcomponent/vpercenPie.vue'], () => {resolve(require('@/pages/home/vcomponent/vpercenPie.vue'))})}
 
-//营销推广__pie
+//营销推广
 let A5SS = resolve => {require.ensure(['@/pages/home/showMore/smallComponent/a5ss.vue'], () => {resolve(require('@/pages/home/showMore/smallComponent/a5ss.vue'))})}
 
 let A1SS = resolve => {require.ensure(['@/pages/home/showMore/smallComponent/a1ss.vue'], () => {resolve(require('@/pages/home/showMore/smallComponent/a1ss.vue'))})}

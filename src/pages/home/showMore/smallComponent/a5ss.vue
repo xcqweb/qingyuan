@@ -34,7 +34,10 @@ export default {
     mixins:[optionProps],
     watch:{
         updatePlace:function(){
-            this.getResponse()
+        	var paramsObj = {
+                area:this.updatePlace.place,
+            }
+            this.getResponse(paramsObj)
         }
     },
     
@@ -273,10 +276,7 @@ export default {
                    this.chart.setOption(this.option, true);
                 } 
         },
-        getResponse(){
-            var paramsObj = {
-                area:this.updatePlace.place,
-            }
+        getResponse(paramsObj){
             this.$axios.get(API_URL+'/qy/api/command/getCommandPassengerData',{params:paramsObj}).then(r => {
                 if(r.data.code ==="200"||r.data.code ===200){
                 	//console.log(r)
@@ -290,7 +290,7 @@ export default {
             var paramsObj = {
                 area:"全部",
             }
-        this.getResponse();
+        this.getResponse(paramsObj);
     },
     mounted() {
         echarts_resize(this.idName,this);
