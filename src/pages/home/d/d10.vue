@@ -14,7 +14,7 @@
     top: 0px;
     bottom: 0;
     margin: auto;
-    transform: scale(0.90);
+    transform: scale(0.86);
   }
 </style>
 <template>
@@ -42,15 +42,14 @@
                 legend: {
                   label:{
                     show:true,
-                    position:'outside'
                   },
-                 // data:['纬度正面','纬度负面'],
                   data: [
 
                     {name:'纬度正面',
                       textStyle:{
                         color:'#fff',
-                        fontWeight: 'bold'
+                        fontWeight: 'bold',
+                        fontSize:14
                       },
                       icon:'circle',
 
@@ -58,15 +57,22 @@
                     {name:'纬度负面',
                       textStyle:{
                         color:'#fff',
-                        fontWeight: 'bold'
+                        fontWeight: 'bold',
+                        fontSize:14
                       },
                       icon:'circle'
                     }
                   ],
-                  bottom:-5,
-                  left:0
+                  top:-2
                 },
                 radar: {
+                	center:['50%','60%'],
+                	name: {
+					            textStyle: {
+					                color: '#fff',
+					                fontSize:16
+					           }
+					        },
                   indicator: [
                     { name: '景区管理', max: 6500},
                     { name: '清洁卫生', max: 16000},
@@ -77,12 +83,19 @@
                     { name: '旅游交通', max: 25000},
                     { name: '门票物价', max: 25000},
                     { name: '厕所', max: 25000}
-                  ]
+                  ],
                 },
                 series: [{
                   name: '维度正负面分析',
                   type: 'radar',
-                  // areaStyle: {normal: {}},
+                  areaStyle: {
+                  	normal: {
+                  		color:'#76DBF7',
+                  		opacity:0.5,
+                  		//shadowColor:'#76DBF7',
+                      //shadowBlur:1
+                  	}
+                  },
                   data : [
                     {
                       value : [4300, 10000, 28000, 35000, 50000, 19000,12000,20000,9000],
@@ -96,6 +109,14 @@
                     {
                       value : [5000, 14000, 28000, 31000, 42000, 21000,18000,16000,20000],
                       name : '纬度负面',
+                      areaStyle: {
+                      	normal: {
+                      		color:'#BAE710',
+                      		opacity:0.5,
+                      		//shadowColor:'#BAE710',
+                      		//shadowBlur:1
+                      	}
+                      },
                       lineStyle:{
                         normal:{
                           color:['#BAE710']
