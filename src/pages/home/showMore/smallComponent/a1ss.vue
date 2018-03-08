@@ -353,6 +353,7 @@ export default {
           
       }
       	dataX =this.upday===0?RW.array_until.transformDate(dataX):dataX
+      	//dataX =this.update?RW.array_until.transformDate(dataX):dataX
       this.$nextTick(echarts_resize(this.idName,this,dataX,dataY))
     },
     redom14(){

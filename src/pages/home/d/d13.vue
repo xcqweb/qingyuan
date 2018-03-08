@@ -60,16 +60,15 @@
 		},
 	    watch:{
 	        updatePlace:{
-	        handler: function (val, oldVal) {
-	        	this.option.series[0].data=[];
-	            this.getResponse();
-	        },
-	        deep:true,
+		        handler: function (val, oldVal) {
+		        	this.option.series[0].data=[];
+		            this.getResponse();
+		        },
+		        deep:true,
 	        },
 	    },
 		 methods:{
             redom(id){
-            	
                 this.chart = echarts.init(document.getElementById(id));
                 this.chart.setOption(this.option);
                 
