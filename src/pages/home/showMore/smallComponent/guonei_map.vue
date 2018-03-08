@@ -72,16 +72,16 @@ export default {
         },
         allData:[],
         gz:[
-        	[{name:'广州'},{name:'福州市',value:200}],
-		    [{name:'广州'},{name:'太原市',value:200}],
-		    [{name:'广州'},{name:'长春市',value:200}],
-		    [{name:'广州'},{name:'重庆市',value:200}],
-		    [{name:'广州'},{name:'西安市',value:200}],
-		    [{name:'广州'},{name:'成都市',value:200}],
-		    [{name:'广州'},{name:'常州市',value:200}],
-		    [{name:'广州'},{name:'北京市',value:200}],
-		    [{name:'广州'},{name:'武汉市',value:200}],
-		    [{name:'广州'},{name:'海口市',value:200}]
+        	[{name:'清远市'},{name:'福州市',value:200}],
+		    [{name:'清远市'},{name:'太原市',value:200}],
+		    [{name:'清远市'},{name:'长春市',value:200}],
+		    [{name:'清远市'},{name:'重庆市',value:200}],
+		    [{name:'清远市'},{name:'西安市',value:200}],
+		    [{name:'清远市'},{name:'成都市',value:200}],
+		    [{name:'清远市'},{name:'常州市',value:200}],
+		    [{name:'清远市'},{name:'北京市',value:200}],
+		    [{name:'清远市'},{name:'武汉市',value:200}],
+		    [{name:'清远市'},{name:'海口市',value:200}]
         ],
         optionChina : {
             backgroundColor: {
@@ -98,6 +98,7 @@ export default {
             },
             geo: {
                 map: 'china',
+                left: 50, top: 100, right: 220, bottom: 100,
                 label: {
                     emphasis: {
                         show: false
@@ -306,7 +307,7 @@ export default {
 						//this.allData[i]=["清远市", [[{name: "清远市"}, {name: this.rankItems[i].city, value: this.rankItems[i].num/scal}]]]
 						this.allData[i]=["清远市", [[{name: "清远市"}, {name: this.gz[i][1].name, value: this.gz[i][1].value}]]]
 					}
-                    console.log(this.allData)
+                    //console.log(this.allData)
                     this.redomData()
                 }
             })
@@ -322,12 +323,12 @@ export default {
          var res = [];
 	    for (var i = 0; i < data.length; i++) {
 	        var dataItem = data[i];
-	        var fromCoord = this.geoCoordMap[dataItem[0].name];
-	        var toCoord = this.geoCoordMap[dataItem[1].name];
+	        var fromCoord = this.geoCoordMap[dataItem[1].name];
+	        var toCoord = this.geoCoordMap[dataItem[0].name];
 	        if (fromCoord && toCoord) {
 	            res.push({
-	                fromName: dataItem[0].name,
-	                toName: dataItem[1].name,
+	                fromName: dataItem[1].name,
+	                toName: dataItem[0].name,
 	                coords: [fromCoord, toCoord]
 	            });
 	        }
@@ -524,7 +525,7 @@ export default {
 #fromEchart{
     width:100%;
     height:100%;
-    //transform: translate(-8%,-3%);
+    /*transform: translate(-8%,-2%);*/
 }
 
 </style>

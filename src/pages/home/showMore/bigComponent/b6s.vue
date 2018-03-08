@@ -115,7 +115,7 @@
         background-repeat:no-repeat;
     }
     .yejianduoyun{
-        background-image: url(../../../../assets/images/weather-blue/yejianduoyun.png);
+        background-image: url(../../../../assets/images/weather-blue/duoyun.png);
          background-size:60% 60%;
         background-repeat:no-repeat;
     }
@@ -280,7 +280,7 @@
 	    			width: 100px;
 	    			height: 86px;
 	    			left: 0;
-	    			top: 98px;
+	    			top: 90px;
 	    			background-size: 100%;
     			}
     			p:nth-child(4){
@@ -324,7 +324,7 @@
 	    			width: 100px;
 	    			height: 86px;
 	    			left: 0;
-	    			top: 98px;
+	    			top: 90px;
 	    			background-size: 100%;
     			}
     			p:nth-child(4){

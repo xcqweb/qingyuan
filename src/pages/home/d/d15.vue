@@ -58,17 +58,17 @@
 		},
 		methods:{
 				getResponse(paramsObj){
-	            this.$axios.get(API_URL+'/qy/api/command/getCommandCommentsDetail',{params:paramsObj}).then(r => {
-					let reData = r.data.data
-					console.log(reData)
-					if(this.items.length!==0){this.items=[]}
-	                if(r.data.code ==="200"||r.data.code ===200){
-	                   reData.forEach( (item,index) => {
-	                   		this.items.push({'name':item.name,'comment':'好评','con':item.con,'uid':item.uid,'date':item.date})
-	                   })
-	                }
-	            })
-	        }
+	        this.$axios.get(API_URL+'/qy/api/command/getCommandCommentsDetail',{params:paramsObj}).then(r => {
+						let reData = r.data.data
+						//console.log(reData)
+						if(this.items.length!==0){this.items=[]}
+		                if(r.data.code ==="200"||r.data.code ===200){
+		                   reData.forEach( (item,index) => {
+		                   		this.items.push({'name':item.name,'comment':'好评','con':item.con,'uid':item.uid,'date':item.date})
+		                   })
+		                }
+		            })
+		        }
 	  },
 	  created () {
 	        var paramsObj = {
@@ -105,29 +105,29 @@
 				line-height: 66px;
 				display: flex;
 				li:nth-child(1){
-					flex-basis: 100px;
+					flex-basis: 99px;
 				}
 				li:nth-child(2){
-					flex-basis: 299px;
+					flex-basis: 298px;
 				}
 				li:nth-child(3){
-					flex-basis: 100px;
+					flex-basis: 99.5px;
 				}
 				li:nth-child(4){
 					flex-basis: 800px;
-					border-right-color: transparent;
+					/*border-right-color: transparent;*/
 				}
 				li:nth-child(5){
-					flex-basis: 300px;
+					flex-basis: 297px;
 				}
 				li:nth-child(6){
-					flex-basis: 300px;
+					flex-basis: 298px;
 					border-right-color: transparent;
 				}
 			}
 			.con{
 				ul:nth-child(2n+1){
-					background-color: #132669;
+					background-color: #1C357E;
 					height: 150px;
 					line-height: 150px;
 				}
@@ -156,7 +156,7 @@
 						line-height: 56px;
 						box-sizing: border-box;
 						overflow-y: scroll;
-						border-right-color: transparent;
+						/*border-right-color: transparent;*/
 					}
 					
 					li:nth-child(4)::-webkit-scrollbar{

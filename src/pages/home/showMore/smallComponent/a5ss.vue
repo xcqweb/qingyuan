@@ -123,15 +123,15 @@ export default {
                     },
                 series: [{
                             type: 'line',
-                            //smooth: true, //是否平滑曲线显示
+                            smooth: true, //是否平滑曲线显示
                             lineStyle:{
                                     normal:{
-                                        color:'#fda925',
+                                        color:'#ff359e',
                                         width:10,
-                                        shadowColor: '#c020af',
+                                        shadowColor: '#060f2f',
                                         shadowBlur: 4,
-                                        shadowOffsetY:8,
-                                        opacity:0.66
+                                        shadowOffsetY:16,
+                                        //opacity:0.66
                                     }
                                 },
 

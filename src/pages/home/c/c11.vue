@@ -11,10 +11,12 @@
 			<componet :is='currentModule'></componet> 
 		</div>
 		<!--切换-->
-        <div class="toggle">
-        	<p><span class="btn" :class="{'active':active}" @click="toggle('C7')">游客来源</span></p>
-        	<p><span class="btn" :class="{'active':!active}" @click="toggle('C8')">景区排行</span></p>
+		<div class="toast">
+			 <div class="toggle">
+        	<p><span class="btn" :class="{'active':!active}" @click="toggle('C7',true)">游客来源</span></p>
+        	<p><span class="btn" :class="{'active':active}" @click="toggle('C8',false)">景区排行</span></p>
         </div>
+		</div>
 	</div>
 </template>
 
@@ -28,9 +30,9 @@ import componetstatus from '@/pages/home/componentstatus.js'
 			}
 		},
 		methods:{
-			toggle(data){
+			toggle(data, bol){
 				this.currentModule = data;
-				this.active = !this.active;
+				this.active = bol;
 			},
 		},
 		components:{
@@ -54,10 +56,17 @@ import componetstatus from '@/pages/home/componentstatus.js'
 			border-radius: 10px;
 			overflow: hidden;
 		}
-		.toggle{
+		.toast{
+			width: 160px;
+			height: 100%;
+			right: 1192/1192*100%;
+			position: absolute;
+			z-index: 100;
+			background-color: #163387;
+				.toggle{
             position: absolute;
+            z-index: 101;
             height: 114px;
-            right: 1226/1192*100%;;
             bottom: 61px;
             p:nth-child(2){
                 margin-top: 26px;
@@ -79,5 +88,6 @@ import componetstatus from '@/pages/home/componentstatus.js'
             }
             
         }
+		}
 	}
 </style>

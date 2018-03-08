@@ -140,7 +140,7 @@ export default {
 		    type: 'pictorialBar',
 		    symbol: spirit1,
 		    symbolRepeat: 'fixed',
-		    symbolMargin: '5%',
+		    symbolMargin: '12%',
 		    symbolClip: true,
 		    symbolSize: 60,
 		    symbolBoundingData: maxData,
@@ -175,7 +175,7 @@ export default {
 		    
 		    animationDuration: 0,
 		    symbolRepeat: 'fixed',
-		    symbolMargin: '5%',
+		    symbolMargin: '12%',
 		        symbol: spirit1,
 		        symbolSize: 60,
 		        symbolBoundingData: maxData,
@@ -241,7 +241,7 @@ export default {
 		    type: 'pictorialBar',
 		    symbol: spirit2,
 		    symbolRepeat: 'fixed',
-		    symbolMargin: '5%',
+		    symbolMargin: '12%',
 		    symbolClip: true,
 		    symbolSize: 60,
 		    symbolBoundingData: maxData,
@@ -279,7 +279,7 @@ export default {
 		    
 		    animationDuration: 0,
 		    symbolRepeat: 'fixed',
-		    symbolMargin: '5%',
+		    symbolMargin: '12%',
 		        symbol: spirit2,
 		        symbolSize: 60,
 		        symbolBoundingData: maxData,
@@ -327,20 +327,20 @@ export default {
     
     .men{
     		display: block;
-    		width: 60px;
+    		width: 72px;
     		height: 96px;
     		top: 20%;
-    		left: 0%;
+    		left: -1%;
     		position: absolute;
     		background: url('../../../assets/images/home/menE.png') no-repeat;
     		background-size: 100% 100%;
     	}
     .wemen{
     		display: block;
-    		width: 60px;
+    		width: 72px;
     		height: 96px;
     		bottom: 15%;
-    		left: 0%;
+    		left: -1%;
     		position: absolute;
     		background: url('../../../assets/images/home/womenE.png') no-repeat;
     		background-size: 100% 100%;

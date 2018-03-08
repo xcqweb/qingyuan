@@ -21,12 +21,12 @@ Vue.config.devtools = true
 // var API_URL = "http://125.91.215.236:81"
 //测试
 var API_URL = "http://120.55.190.57"
-var API_URL1 = "localhost"
+//var API_URL1 = "http://localhost"
 window.API_URL = API_URL
 if( API_URL === "http://120.55.190.57"){
-  window.API_LOGIN =  `${API_URL1}:8093`;
+//window.API_LOGIN =  `${API_URL}:8093`;
 } else{
-  window.API_LOGIN =  `${API_URL}/login`;
+//window.API_LOGIN =  `${API_URL1}/login`;
 }
 /* eslint-disable no-new */
 new Vue({

@@ -304,6 +304,7 @@ export default {
                     name:'计划',
                     type:'line',
                     barMaxWidth:'50%',
+                    smooth: true, //是否平滑曲线显示
                     // data:datay,
                     areaStyle: {normal: {}},
                     itemStyle:{
@@ -324,13 +325,19 @@ export default {
 		                    offset: 0,
 		                    color: 'rgba(0, 136, 212, 0.6)'
 		                }, {
-		                    offset: 0.36,
+		                    offset: 0.42,
 		                    color: 'rgba(0, 136, 212, 0.01)'
 		                }], false),
 		                shadowColor: '#5ee4ff',
 		                shadowBlur: 10
 		            }	
        			 	},
+       			 	lineStyle:{
+       			 		normal:{
+                            width:6,
+                            type:'solid'
+       			 		}
+                    },
                     label:{
                     normal:{
                         show:true,

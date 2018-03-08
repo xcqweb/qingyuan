@@ -1,23 +1,6 @@
 <template>
 	<div class="d16">
-		<div class="one">
-			<iframe src="" width="1210" height="462"></iframe>
-		</div>
-		<div class="two">
-			<iframe src="" width="1210" height="462"></iframe>
-		</div>
-		<div class="three">
-			<iframe src="" width="1210" height="462"></iframe>
-		</div>
-		<div class="four">
-			<iframe src="" width="1210" height="462"></iframe>
-		</div>
-		<div class="five">
-			<iframe src="" width="1210" height="462"></iframe>
-		</div>
-		<div class="six">
-			<iframe src="" width="1210" height="462"></iframe>
-		</div>
+		<iframe src="http://zb.zjht100.com/LiveVideo/MapVideo/Index?id=qylyj" width="3724" height="1080" scrolling="no"></iframe>
 	</div>
 </template>
 
@@ -32,7 +15,15 @@
 	.d16{
 		width: 100%;
 		height: 100%;
-		position: relative;
+		position: absolute;
+		top: 0;
+		left: 0;
+		overflow: hidden;
+		iframe{
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
 		div{
 			position: absolute;
 			background-color: #163387;

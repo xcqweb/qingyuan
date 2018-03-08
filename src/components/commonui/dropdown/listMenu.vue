@@ -3,6 +3,7 @@
         <div class="jqlable">景区</div>
         <sleckte 
         class='science'
+        :uniqueClasst=true
         :selectList="jqselectlist" 
         v-on:listenAtparent="catchmsg2"
         ></sleckte>
@@ -10,6 +11,7 @@
         <div class="qylable">区域</div>
         <sleckte 
         class="area"
+        :uniqueClasso=true
         :selectList="qyselectlist" 
         v-on:listenAtparent="catchmsg1"
         ></sleckte>
@@ -39,7 +41,7 @@
 				isEndDate:true,
            		vDateStatus:true,
 				qyselectlist:{
-                    width:'88%',
+                    width:'70%',
                     left:'6%',
                     title:'全部',
                     selectStatus:false,
@@ -182,8 +184,8 @@
 	    color: #F0EFFD;
 	    line-height: 44px;
 	    position: absolute;
-	    top: 2px; 
-	    right: 256px !important;
+	    top: 1.5px; 
+	    right: 262px !important;
 	    border: 3px solid @borderColor;
 	    border-right: none;
 	    border-radius: 10px 0 0 10px;
@@ -197,6 +199,9 @@
 	    border: 3px solid @borderColor;
 	    border-left: none;
 	    border-radius: 0 10px 10px 0;
+	    .dropdown-menu-p{
+	    	width: 50px;
+	    }
 	}
 	.science{
 		 width: 256px !important;
@@ -208,7 +213,7 @@
 	     border-radius: 0 10px 10px 0;
 	}
 	.vueDate{
-		height: 44px;
+		height: 43.5px;
 		position: absolute;
 		width: 256px !important;
 	    top: 36/948*100%; 

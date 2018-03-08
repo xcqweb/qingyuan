@@ -1,9 +1,7 @@
 <template>
   <div class="c7">
   	<div class="btn">
-  		<div :class="{'active':active===1}" @click="toggle(1)">省内(市)</div>
-  		<div :class="{'active':active===2}" @click="toggle(2)">全国(市)</div>
-  		<div :class="{'active':active===3}" @click="toggle(3)">全国(省)</div>
+  		景区排行
   	</div>
     <ul>
         <li for='item in items'>
@@ -80,9 +78,7 @@ export default {
       }
     },
     methods:{
-    	toggle(data){
-    		this.active=data
-    	}
+    	
     },
     computed: { 
 //      items:function(){
@@ -111,28 +107,11 @@ export default {
         font-size: 0.6rem;
     }
     .btn{
-    	width: 619/990*100%;
-    	margin:auto ;
-    	display: flex;
-    	justify-content: space-between;
-    	padding: 22px 0px;
-    	div{
-    		flex-basis: 120/620*100%;
-    		font-size: 24px;
-    		height: 40px;
-    		line-height: 40px;
-    		border-radius: 20px;
-    		background-color: #3782cb;
-    		border: none;
-    		color: #fff;
-    		&:active{
-    			border: none;
-    		}
-    	}
-    	.active{
-    		background-color: #fe3448;
-    		border: none;
-    	}
+    	width: 100%;
+    	font-size: 30px;
+    	font-weight: bold;
+    	padding: 28px 0px;
+    	text-align: center;
     }
 }
 ul{

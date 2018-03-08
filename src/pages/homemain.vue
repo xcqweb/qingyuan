@@ -64,7 +64,7 @@ export default {
 @hColor:#efeefd;
 /*文本内容颜色*/
 @textColor:#8687c0;
-@headerBackColor:#122461;
+@headerBackColor:#163387;
 @topBottomColor:#163387;
 @borderColor:#355BFA;
 @borderLen: 18px;

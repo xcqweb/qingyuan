@@ -39,7 +39,7 @@ export default {
         items:[
             {title:'',nub:'评论数',font:'',color:'#6dffeb'},
             {title:'',nub:'差评数',font:'',color:'#ffe86e'},
-            {title:'',nub:'隐患数',font:'',color:'#ff719c'},
+            {title:'',nub:'投诉数',font:'',color:'#ff719c'},
         ],
     }
   },
@@ -88,13 +88,13 @@ ul{
     margin-left:33/464*100%;
     li{
         float:left;
-        height:100%;
+        height:50%;
         width:132/464*100%;
         margin-left:4%;
-        margin-top: 5%;
+        margin-top: 15%;
 
         p:nth-of-type(1){
-            font-size: 1.1rem;
+            font-size: 36px;
             color: white;
         }
         div{
@@ -106,7 +106,7 @@ ul{
                 color: white;
                 height:90%;
                 width:100%;
-                font-size: 1.2rem !important;
+                font-size: 36px !important;
                 display: table-cell;
                 vertical-align:middle;
                 text-align:center;

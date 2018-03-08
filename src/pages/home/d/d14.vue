@@ -52,7 +52,7 @@ import adaptation from '@/common/js/mixin/adaptation.js'
 import optionProps from '@/common/js/mixin/optionProps.js'
 let date = new Date()
 let nowYear = date.getFullYear()
-let mowMonth = date.getMonth()
+let mowMonth = date.getMonth()+1
 export default {
     name:'d6',
     mixins: [adaptation,optionProps],

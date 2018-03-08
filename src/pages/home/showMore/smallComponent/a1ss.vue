@@ -275,7 +275,7 @@ export default {
                     {
                         name:'计划',
                         type:'bar',
-                        barMaxWidth:'50%',
+                        barMaxWidth:30,
                         // data:datay,
                         itemStyle:{
                             normal: {
@@ -334,7 +334,7 @@ export default {
                     this.barData = r.data.data[0].value; 
                     this.twoWeekMock = r.data.data[0].value;
                     
-                    //console.log(r.data.data[0].value)
+                    //console.log(this.barData)
                     this.redom7()
                 }
             })
@@ -348,7 +348,7 @@ export default {
       let dataY=[];
       let dataX=[];
       for (var i = 0; i < this.barData.length; i++) {
-          dataY.push(this.barData[i].num);
+          dataY.push(this.barData[i].num||this.barData[i].sum);
           dataX.push(this.barData[i].dayId);
           
       }

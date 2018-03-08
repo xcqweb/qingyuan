@@ -22,7 +22,7 @@ selectlist:{
         @click = 'showselect' 
         v-bind:style="{ width:selectList.width ,left:selectList.left}" 
         >
-        <p @click='triggle' v-on:itemtodo2="sendMsgParent" class="dropdown-menu-p">{{selectList.title}}</p>
+        <p @click='triggle' v-on:itemtodo2="sendMsgParent" class="dropdown-menu-p" :class="{unique1:uniqueClasso,unique2:uniqueClasst}">{{selectList.title}}</p>
         <span :class="upDown"></span>
         <transition name="dropdown-fade">
             <dropdownList 
@@ -46,6 +46,8 @@ import Vue from 'vue'
         },
         props: [
             'selectList',
+            'uniqueClasso',
+            'uniqueClasst'
         ],
         computed:{    
         },
@@ -264,6 +266,16 @@ import Vue from 'vue'
     white-space: nowrap;
     overflow: hidden;
 }
+
+.unique1{
+	width: 140px;
+	line-height: 44px;
+}
+.unique2{
+	width: 256px;
+	line-height: 44px;
+}
+
 .dropdown-fade-enter-active {
   transition: all .1s linear;
 }

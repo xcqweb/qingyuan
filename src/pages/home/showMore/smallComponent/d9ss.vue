@@ -33,7 +33,7 @@ ul{
     }
 }
 .cell1{
-    flex: 1;
+    flex: 2;
     text-align: center;
 }
 .cell2{
@@ -41,7 +41,7 @@ ul{
     text-align: center;
     .cell2_box{
         float: left;
-        width: 33%;
+        width: 33.3%;
         div:nth-of-type(1){
             float: left;
             width:80%;
@@ -66,7 +66,7 @@ ul{
     }
 }
 .cell3{
-    flex: 1;
+    flex: 2;
     text-align: center;
     .footerRise{
         display: inline-block;
@@ -181,10 +181,7 @@ li:nth-of-type(2n+3){
                 {{index+1}}
             </div>
             <div class="cell2">
-                <div class="cell2_box" :class="{'cell2_box1':i+1 < item.track.length}" v-for = "(ite,i) in item.track " >
-                    <div >{{ite}}</div>
-                    <div v-if=" i+1 < item.track.length">→</div>
-                </div>
+                {{item.track}}
             </div>
             <div class="cell3">
                 <span class='footerCotext'>{{item.num}}</span>
@@ -253,7 +250,7 @@ export default {
                 	//console.log(r.data.data)
                     this.rankItems = r.data.data;
                     this.rankItems.forEach((item,index)=>{
-                        this.rankItems[index].track = item.track.split("==>").slice(0,3) ;
+                        this.rankItems[index].track = item.track.replace(/\=\=\>/img,'→');
                     })
                 }
             })
