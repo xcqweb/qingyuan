@@ -215,16 +215,17 @@ export default {
                 let  average =1
 
                 if(val>1440){
-                     powAverage = val/3880 ;
+                     powAverage = val/2000 ;
                      average = val/1440 ;
                 }else{
                      powAverage = 2 ;
                      average = 1 ;
                 }
                 for(let xi = 9; xi >1;xi--){
-                    date.push(this.addZero(new Date(new Date().getTime() - xi*5 * 1000)))
+                    date.push(this.addZero(new Date(new Date().getTime() - xi*5 * 1000)));
                     data.push(Math.round(Math.pow(Math.random()*powAverage,2)))
                 }
+                console.log(data)
                 var j = 8;
                 var nowDate = new Date();
                 var now = +new Date(nowDate.getTime());

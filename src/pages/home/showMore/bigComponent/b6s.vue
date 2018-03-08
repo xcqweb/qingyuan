@@ -347,7 +347,7 @@
 }
 </style>
 <template>
-    <div class="b6s">
+    <div class="b6s" v-show="showStatus">
     	<!--天气背景-->
     	<div class="bg" :class="weatherImgBg">
     		
@@ -393,11 +393,12 @@ import Vue from 'vue'
 // import b6ss from '@/pages/home/showMore/smallComponent/b6ss.vue'
 import showMoreData from '@/common/js/mixin/showMoreData.js'
 import vAjax from '@/common/js/v-ajax.js'
+import optionProps from '@/common/js/mixin/optionProps.js'
 Vue.use(vAjax);
   export default {
     name:'B6S',
-    mixins: [showMoreData],
-    props:['updateTurist','updatePlace'],
+    mixins: [showMoreData,optionProps],
+    props:['updateTurist'],
     watch:{
         updatePlace:function(val){
             let _self = this
@@ -406,7 +407,6 @@ Vue.use(vAjax);
                 _self.showStatus =true;
                 _self.sendRequest()
             },500)
-            
         }
     },
     data() {

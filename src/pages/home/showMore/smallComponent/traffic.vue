@@ -50,11 +50,20 @@ import optionProps from '@/common/js/mixin/optionProps.js'
             return {
 				idName:'traffic',
 				scenics:'',
+				place:'',
+				turist:''
             }
         },
         watch:{
-            updatePlace:function(val){
-                this.init(val.place)
+           updatePlace:function(val){
+        		this.place = val.place;
+        		this.turist = val.turist;
+        	},
+            place:function(val){
+                  this.addScript(val,false)
+            },
+            turist:function(val){
+                  this.addScript(val,true)
             }
         },
         methods:{
@@ -220,45 +229,95 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 ctrl.show();
                 ctrl.setAnchor(BMAP_ANCHOR_BOTTOM_RIGHT);  
             },
-            moveTo(map,lon,lat,zoom){
-                    if(lon){
-                         map.panTo(new BMap.Point(lon,lat));
+            moveTo(map,lng,lat,zoom){
+                    if(lng){
+                         //map.panTo(new BMap.Point(lng,lat));
                          map.setZoom(zoom);
+                         map.centerAndZoom(new BMap.Point(lng,lat), zoom);
                     }
                    
             },
-            addScript(map){
+            addScript(val,isTurist){
                 let _self = this;
                 var oS=document.createElement('script');
                 oS.src='http://lbsyun.baidu.com/custom/stylelist.js?'+Math.random();
                 this.$el.appendChild(oS)
                 oS.onload=function(){
-                    map.setMapStyle({style:'light'})
-                
+                    //map.setMapStyle({style:'light'})
+                	_self.init(val,isTurist)
                 }
                 this.$el.removeChild(oS);
             },
             
-            init(val){
+            init(val,isTurist){
                 // 百度地图API功能
                 // 创建Map实例
                 const _self= this;
-                const lenObj ={
-                    "全部":{lon:113.06689,lat:23.699107,zoom:11},
-                    "清远市":{lon:113.0323,lat:23.699107,zoom:13},
-                    "清城":{lon:113.06689,lat:23.704022,zoom:13},
-                    "清新":{lon:112.991271,lat:23.75427,zoom:13},
-                    "佛冈":{lon:113.539303,lat:23.886532,zoom:13},
-                    "英德":{lon:113.418281,lat:24.192466,zoom:13},
-                    "连州":{lon:112.38616,lat:24.786467,zoom:13},
-                    "连南":{lon:112.290355,lat:24.732074,zoom:13},
-                    "连山":{lon:112.102727,lat:24.582118,zoom:13},
-                    "阳山":{lon:112.646658,lat:24.47147,zoom:13},
-                }; 
+                let lenObj ={}
+                
+                
+                if(!isTurist){
+                	lenObj = {
+	                    "全部":{lng:113.06689,lat:23.699107,zoom:11},
+	                    "清远市":{lng:113.0323,lat:23.699107,zoom:13},
+	                    "清城":{lng:113.06689,lat:23.704022,zoom:14},
+	                    "清新":{lng:112.991271,lat:23.75427,zoom:14},
+	                    "佛冈":{lng:113.539303,lat:23.886532,zoom:13},
+	                    "英德":{lng:113.418281,lat:24.192466,zoom:13},
+	                    "连州":{lng:112.38616,lat:24.786467,zoom:13},
+	                    "连南":{lng:112.290355,lat:24.732074,zoom:13},
+	                    "连山":{lng:112.102727,lat:24.582118,zoom:13},
+	                    "阳山":{lng:112.646658,lat:24.47147,zoom:13},
+                	}; 
+                }else{
+                	lenObj = {
+	                    "全部":{lng:113.06689,lat:23.699107,zoom:11},
+	                    "飞霞风景名胜区":{lng:113.188758,lat:23.724641,zoom:14},
+	                    "牛鱼嘴原始生态风景区":{lng:113.153471,lat:23.774872,zoom:14},
+	                    "天子山瀑布风景区":{lng:113.146295,lat:23.849325,zoom:14},
+	                    "白庙渔村":{lng:113.146036,lat:23.711442,zoom:13},
+	                    "飞来寺":{lng:113.172823,lat:23.708263,zoom:13},
+	                    "美林湖及大家元摩天轮片区":{lng:113.043339,lat:23.50327,zoom:13},
+	                    "太和古洞旅游区":{lng:112.999031,lat:23.747737,zoom:13},
+	                    "笔架山度假区":{lng:113.042358,lat:23.776528,zoom:13},
+	                    "安庆村":{lng:112.823456,lat:23.616738,zoom:13},
+	                    "清泉湾生态旅游度假区":{lng:112.928301,lat:23.764869,zoom:13},
+	                    "金龙洞":{lng:112.884256,lat:24.083820,zoom:13},
+	                    "九牛洞村":{lng:112.778425,lat:23.622568,zoom:13},
+	                    "观音山王山寺":{lng:113.492142,lat:23.94476,zoom:13},
+	                    "田野绿世界":{lng:113.420187,lat:23.891213,zoom:13},
+	                    "熹乐谷":{lng:113.497596,lat:23.780602,zoom:13},
+	                    "金龟泉生态度假村":{lng:113.526753,lat:23.781643,zoom:13},
+	                    "上岳古民居":{lng:113.355146,lat:23.811075,zoom:13},
+	                    "峰林胜境景区":{lng:112.94251,lat:24.227131,zoom:13},
+	                    "英德老虎谷暗河漂流":{lng:112.855041,lat:24.257544,zoom:13},
+	                    "九龙小镇":{lng:112.930222,lat:24.127433,zoom:14},
+	                    "铁溪小镇":{lng:113.314992,lat:23.925412,zoom:14},
+	                    "仙湖温泉旅游度假区":{lng:113.331145,lat:24.344247,zoom:13},
+	                    "浈阳坊旅游小镇":{lng:113.316922,lat:24.039576,zoom:13},
+	                    "大樟沙滩度假村":{lng:113.286205,lat:24.003529,zoom:13},
+	                    "云水谣":{lng:113.399516,lat:24.390361,zoom:13},
+	                    "彭家祠":{lng:112.907855,lat:24.19271,zoom:13},
+	                    "清远市连州福山景区":{lng:112.399579,lat:24.931353,zoom:13},
+	                    "大东山温泉度假区":{lng:112.632779,lat:24.857549,zoom:13},
+	                    "李屋村":{lng:112.558599,lat:24.833107,zoom:13},
+	                    "潭岭天湖":{lng:112.661577,lat:24.97412,zoom:13},
+	                    "油岭瑶寨":{lng:112.27381,lat:24.617349,zoom:13},
+	                    "瑶族舞曲实景演出":{lng:112.304038,lat:24.65698,zoom:13},///
+	                    "云海花谷":{lng:112.304638,lat:24.65198,zoom:13},
+	                    "大旭山瀑布群旅游景区":{lng:112.043239,lat:24.533676,zoom:13},
+	                    "皇后山":{lng:112.086609,lat:24.732186,zoom:13},
+	                    "鹰扬关景区":{lng:111.946833,lat:24.69164,zoom:13},
+	                    "雾山梯田":{lng:112.191833,lat:24.743344,zoom:13},
+	                    "北山古寺":{lng:112.655269,lat:24.490658,zoom:13},
+	                    "鱼水旅游风景区":{lng:112.690161,lat:24.369281,zoom:13},
+	                    "龙凤温泉":{lng:112.690761,lat:24.369881,zoom:13},//
+                	}
+                }
                 var map = new BMap.Map(this.idName,{enableMapClick:true});
                 // 初始化地图,设置中心点坐标和地图级别
                 map.centerAndZoom(new BMap.Point(113.046945,23.692731), 12);
-                 _self.addScript(map);
+                // _self.addScript(map);
                 // 添加地图类型控件
                 // map.addControl(new BMap.MapTypeControl());  
                 // 设置地图显示的城市 此项是必须设置的
@@ -266,7 +325,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 // 开启鼠标滚轮缩放      
                 map.enableScrollWheelZoom(true);
                 // debugger
-                _self.moveTo(map,lenObj[val  ===  undefined ?"全部": val].lon,lenObj[val  ===  undefined ?"全部": val].lat,lenObj[val  ===  undefined ?"全部": val].zoom);
+                _self.moveTo(map,lenObj[val  ===  undefined ?"全部": val].lng,lenObj[val  ===  undefined ?"全部": val].lat,lenObj[val  ===  undefined ?"全部": val].zoom);
                 // 设置定时器，对地图进行自动移动
                 // this.mapMoveSelf
                 /************************************************
@@ -302,10 +361,11 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 给地图添加右键菜单
                 *************************************************/
                 _self.addMenu(map);
+                
             }
         },
         mounted() {
-            this.init();
+              this.$nextTick(this.addScript("全部",true))
         } ,
     }
 </script>
