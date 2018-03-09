@@ -83,7 +83,7 @@ export default {
             legend:{
             	  show:true,
                 orient: 'vertical',
-                top:'30%',
+                top:'45%',
                 right:'2%',
                 width:'26',
                 height:'80%',
@@ -140,7 +140,7 @@ export default {
                     name:'消费偏好',
                     type:'pie',
                     radius : ['0%', '55%'],
-                    center : ['36%', '55%'],
+                    center : ['36%', '70%'],
                     roseType : 'radius',
                     label: {
 		                normal: {
@@ -190,6 +190,7 @@ export default {
 #c13{
     width:100%;
     height:100%;
+    transform: translateY(0px);
 }
 .legend{
 	width: 36%;

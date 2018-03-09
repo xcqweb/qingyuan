@@ -3,9 +3,11 @@
     width:100%;
     height:100%;
     position:relative;
+    margin-top: 40px;
     .c985{
         width:100%;
-        height:90%;
+        height:100%;
+        transform: scale(1.25);
     }
     .scenic{
         text-align: center;

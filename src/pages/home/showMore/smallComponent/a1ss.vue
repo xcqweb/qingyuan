@@ -45,65 +45,10 @@
     height: 100%;
   }
 }
-.week{
-    height: 1.5rem !important;
-    width: 7rem !important;
-    position: absolute;
-    top: 5%;
-    right: 10%;
-    font-size:0.8rem;
-    &:after {
-        content: ".";
-        display: block;
-        height: 0;
-        clear: both;
-        visibility: hidden;
-        line-height: 25px;
-     }
-    .oneweek{
-      cursor: pointer;
-      float: left;
-      height: 1.5rem;
-      line-height:1.5rem;
-      width: 47%;
-      color: #abb5d3;
-      background-image:url('../../../../assets/images/home/透明框—14日.png');
-      background-size: 100% 100%;
-      &.chose{
-        background-image:url('../../../../assets/images/home/透明框—7日.png');
-          background-size: 100% 100%;
-          color:#d3ddf9;
-      }
-    }
-    .twoweek{
-      cursor: pointer;
-      float: right;
-      height: 1.5rem;
-      line-height:1.5rem;
-      width: 47%;
-      color: #abb5d3;
-      background-image:url('../../../../assets/images/home/透明框—14日.png');
-      background-size: 100% 100%;
-      &.chose{
-        background-image:url('../../../../assets/images/home/透明框—7日.png');
-          background-size: 100% 100%;
-          color:#d3ddf9;
-      }
-    }
-  }
-      .chose{
-          background-image:url('../../../../assets/images/home/透明框—7日.png');
-          background-size: 100% 100%;
-      }
 </style>
 <template>
   <div class="main_content" id="A1loding">
     <div :id="idName" class="itembox"></div>
-    <!-- <div class="week">
-        <span class="oneweek " v-bind:class="{ chose: isActive }" @click='redom7'>7日</span>
-        <span class="twoweek" v-bind:class="{ chose: !isActive }" @click='redom14'>14日</span>
-    </div> -->
-     <!--<div class="scenic">{{scenics}}</div>-->
   </div>
 </template>
 <script>

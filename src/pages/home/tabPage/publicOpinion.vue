@@ -65,7 +65,6 @@ import Vue from 'vue'
 import echarts from 'echarts';
 import componetstatus from '@/pages/home/componentstatus.js'
 import headerBody from '@/pages/home/header.vue'
-import Bus from '@/common/js/bus.js'
 import forEach from 'lodash/forEach'
 import { mapGetters } from 'vuex';
 export default {
@@ -77,41 +76,6 @@ export default {
         		update:{begin:['2018','02','02'],end:['2018','02','03']},
             	upday:0,
             	scienceType:false,
-                place:'连州地下河',
-                cutoverImg:require('../../../assets/切换.png'),
-                
-                moudle:[
-                    {name:'A5',title:'实时客流监测'},
-                    {name:'B2',title:'客流预警'},
-                    {name:'B6',title:'实时天气'},
-                    {name:'D6',title:'景区当前客流'},
-                    {name:'D8',title:'交通拥堵指数'},
-                    {name:'D1',title:'景区客流热力图'},
-                    {name:'A9',title:'视频监控'},
-                    {name:'B4',title:'路况监控'},
-                    {name:'D3',title:'最新舆论'},
-                    {name:'B16',title:`国内游客来源地`},
-                    {name:'C2',title:'年龄分析'},
-                    {name:'C4',title:'游客男女比例'},
-                    {name:'B4',title:'路况监测'},
-                    {name:'A1',title:'客流人数分析'},
-                    {name:'A5',title:'客流实时监测'},
-                    {name:'A9',title:'视频监控'},
-                    {name:'C8',title:'游客来源排行'},
-                ],
-                tablist:this.tablistCom,
-                current:[
-                    {name:'A5',title:'实时客流监测'},
-                    {name:'B2',title:'客流预警'},
-                    {name:'B6',title:'实时天气'},
-                    {name:'D6',title:'景区当前客流'},
-                    {name:'D8',title:'交通拥堵指数'},
-                    {name:'D1',title:'景区客流热力图'},
-                    {name:'A9',title:'视频监控'},
-                    {name:'B4',title:'路况监控'},
-                    {name:'D3',title:'最新舆论'},
-                ],
-                cutoverStatus:null,
                 leftComponents:[
                 	{name:'A3',id:'one',index:1,time:900,show:true,title:'游客评价'},
                 	{name:'D10',id:'two',index:2,time:900,show:true,title:'评价正负面'},
@@ -178,37 +142,7 @@ export default {
             this.barChartOption = Object.assign({}, this.barChartOption, )
         },
         
-        console(){
-             //console.log(this.components)
-        },
-        chose(item){
-            this.tablistCom.forEach(function(list){
-                list.status='unchose'
-            })
-            item.status='chose'
-            this.place=item.name
-        },
         
-        render: function(h) { // h 为 createElement 函数，接受三个参数
-            // tag 
-            // data
-            // children 具体看文档吧
-            return h('div',this.allComponents.map(function(componentName) {
-                return h(componentName)
-            }))
-        },
-       
-        
-        setLazy(){
-            // console.log(item)
-            // window.setTimeout((item) => {
-                    
-            //         item.show = true;
-            //     }, item.time);
-        },
-        lazy(){
-
-        },
         getResponse(){
                 this.$axios.get(API_URL+'/qy/api/view/checkLogin').then(r => {
                     

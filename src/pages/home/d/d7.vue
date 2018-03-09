@@ -4,6 +4,7 @@
     height:100%;
     position:relative;
     left:26px;
+    margin-top: -26px;
 }
 #d7{
     width:100%;
@@ -15,7 +16,7 @@
    font-size: 20px;
     right:-26%;
     transform: translate(-70%,0);
-    top:16%;
+    top:36%;
     li{
         margin-top:42px;
         text-align:left;
@@ -36,7 +37,7 @@
   <div id="d7">
   </div>
   <ul>
-      <li v-for='item in items' :style="{color:item.color}"><span class="circle" :style="{backgroundColor: item.color}"></span>{{item.year}}</li>
+      <li v-for='item in items' :style="{color:item.color}"><span class="circle" :style="{backgroundColor: item.color}"></span>{{item.name}}</li>
   </ul>
 </div>
 </template>
@@ -99,20 +100,20 @@ export default {
         option:{
           backgroundColor: 'rgba(0,0,0,0)',
           color: ['#368DF7', '#6F5DDA', '#75CF65'],
-//          legend:{
-//              show:true,
-//              orient: 'vertical',
-//              top:'20%' ,
-//              left:'55%',
-//              width:'20%',
-//              height:'45%',
-//              itemGap:10,
-//              itemWidth:12,
-//              itemHeight:10,
-//              textStyle:{
-//                  color:'white',
-//              },
-//          },
+            legend:{
+                show:true,
+                orient: 'vertical',
+                top:'20%' ,
+                left:'55%',
+                width:'20%',
+                height:'45%',
+                itemGap:10,
+                itemWidth:12,
+                itemHeight:10,
+                textStyle:{
+                    color:'white',
+                },
+            },
           series : [
                 {
                     name: '访问来源',
@@ -147,7 +148,7 @@ export default {
                 data:[
                     {
                         value:20.5,
-                        name:'39%',
+                        name:'1000元-3000元',
                         ffname:'1000元-3000元',
                         label:{
                             normal:{
@@ -188,8 +189,8 @@ export default {
                     },
                     {
                         value:16.0,
-                         name:'26%',
-                          ffname:'1000元以下',
+                         name:'1000元以下',
+                         ffname:'1000元以下',
                          label:{
                             normal:{
                                 show:true,
@@ -222,7 +223,7 @@ export default {
                      },
                     {
                         value:19.8,
-                         name:'33%',
+                         name:'3001元以上',
                         ffname:'3001元以上',
                          label:{
                             normal:{

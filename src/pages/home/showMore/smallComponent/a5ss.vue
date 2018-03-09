@@ -221,9 +221,26 @@ export default {
                      powAverage = 2 ;
                      average = 1 ;
                 }
+				function updateRandom() {
+					  var p = Math.random(), n = Math.random() / 4;
+					
+					  if( p < 0.02 )
+					    return 0 + n;
+					
+					  if( p < 0.04 )
+					    return 0.25 + n;
+					
+					  if( p < 0.08 )
+					    return 0.5 + n;
+					
+					  if( p < 0.85 )
+					    return 0.85 + n;
+					  if( p < 1 )
+					    return 0.95 + n;
+					}
                 for(let xi = 9; xi >1;xi--){
                     date.push(this.addZero(new Date(new Date().getTime() - xi*5 * 1000)));
-                    data.push(Math.round(Math.pow(Math.random()*powAverage,2)))
+                    data.push(val*updateRandom())
                 }
                 var j = 8;
                 var nowDate = new Date();
@@ -240,7 +257,7 @@ export default {
                     }
                     return {
                             xData: _self.addZero(now),
-                            sData: Math.round(value)
+                            sData: val*updateRandom()
                     }
                 }
                 _self.option.xAxis.data=date;
@@ -294,7 +311,7 @@ export default {
     },
     mounted() {
         echarts_resize(this.idName,this);
-        this.redomData(this.barNum);
+//      this.redomData(this.barNum);
     },
     components:{
 

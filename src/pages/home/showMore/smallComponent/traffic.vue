@@ -7,9 +7,9 @@
 }
 .XSDFXPage{
     width: 96%;
-    height: 84%;
+    height: 80%;
     overflow: hidden;
-    top:14%;
+    top:18%;
     left: 2%;
     font-family: "微软雅黑";
     border-radius: 10px;

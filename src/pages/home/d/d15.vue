@@ -11,12 +11,12 @@
 			</ul>
 			<div class="con">
 				<ul v-for="(item,index) in items">
-					<li>{{index+1}}</li>
-					<li>{{item.name}}</li>
-					<li>{{item.comment}}</li>
-					<li>{{item.con}}</li>
-					<li>{{item.uid}}</li>
-					<li>{{item.date}}</li>
+					<li><span>{{index+1}}</span></li>
+					<li><span>{{item.name}}</span></li>
+					<li><span>{{item.comment}}</span></li>
+					<li><span>{{item.con}}</span></li>
+					<li><span>{{item.uid}}</span></li>
+					<li><span>{{item.date}}</span></li>
 				</ul>
 			</div>
 			
@@ -133,18 +133,18 @@
 			.con{
 				ul:nth-child(2n+1){
 					background-color: #1C357E;
-					height: 150px;
-					line-height: 150px;
 				}
 				ul:nth-child(2n){
 					background-color: #1f3f9d;
-					height: 56px;
-					line-height: 56px;
 				}
 				ul{
-					height: 56px;
 					line-height: 56px;
 					display: flex;
+					li{
+						display: flex;
+						justify-content:center;
+						align-items:center;
+					}
 					li:nth-child(1){
 						flex-basis: 100px;
 					}
@@ -158,10 +158,9 @@
 						flex-basis: 800px;
 						text-align: left;
 						padding: 0 20px 0 20px;
-						line-height: 56px;
 						box-sizing: border-box;
-						overflow-y: scroll;
-						/*border-right-color: transparent;*/
+						word-wrap: break-word; 
+						word-break: normal; 
 					}
 					
 					li:nth-child(4)::-webkit-scrollbar{

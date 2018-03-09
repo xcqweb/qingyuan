@@ -41,7 +41,6 @@ import Vue from 'vue'
  import echarts from 'echarts';
 import componetstatus from '@/pages/home/componentstatus.js'
 import headerBody from '@/pages/home/header.vue'
-import Bus from '@/common/js/bus.js'
 export default {
     name: 'barChartOption',
     props:['placeName',],
@@ -125,69 +124,12 @@ export default {
         headerLeave(){
             this.headerStatus=false;
         },
-        add: function() {
-            this.allComponents.push(this.componentName)
-            // 重置输入框
-            this.componentName = ''
-        },
-        add (name, text) {
-               this.items.push({
-                 component: name,
-                 text: text
-               })
-            },
-        render: function(h) { // h 为 createElement 函数，接受三个参数
-            // tag 
-            // data
-            // children 具体看文档吧
-            return h('div',this.allComponents.map(function(componentName) {
-                return h(componentName)
-            }))
-        },
-        cutover(item,topOrBottom){
-            this.cutoverStatus=topOrBottom;
-            Bus.$on('cutoverMoudle', data => {
-                let i =data.numb.index-1
-                this.cutoverStatus[i].name=data.item.name
-                this.cutoverStatus[i].title=data.item.title
-            })
-            $toast.open(item,this.current,this.moudle);
-        },
-        cutoverMoudle(moudle){
-            
-
-        },
-        setLazy(){
-            // console.log(item)
-            // window.setTimeout((item) => {
-                    
-            //         item.show = true;
-            //     }, item.time);
-        },
-        lazy(){
-
-        }
                     
     },
     components:{
         ...componetstatus,
     },
     mounted(){
-
-        let _self=this
-        let arr = _self.leftComponents.concat(_self.rightComponents)
-        var lentop=arr.length
-        for (var j = 0 ; j < lentop; j++) {
-            (
-                function(){
-                    let n=j;
-                    window.setTimeout(() => {        
-                        arr[n].show=true
-
-                    }, arr[n].time); 
-                }
-            )(j)  
-        }
     }
 }
 </script>

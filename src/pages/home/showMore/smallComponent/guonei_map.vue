@@ -1,7 +1,6 @@
  <template>
     <div class="map_content">
         <div id="fromEchart"></div>
-        <!--<Loading v-show='isloading'></Loading>-->
     </div>
 </template>
 
@@ -14,7 +13,6 @@ import axios from 'axios'
 //import echarts_resize from '../../../common/js/echarts_resize.js'
 import 'echarts/lib/chart/map';
 import 'echarts/map/js/china.js';
-//import zhejiangJson from 'echarts/map/json/province/zhejiang.json'
 import optionProps from '@/common/js/mixin/optionProps.js'
 
 let date = new Date()
@@ -41,7 +39,6 @@ export default {
         chart:null,
         isActive:false,
         color:['#f18790', '#75c774', '#5aa7fd','#f1c54b','#c184ff','6792fb', '#4BCEDD', '#FF8885','#FFCD38',  '#E39A50', '#58E5E1',],
-       //color:['#4EBBFC','#57ABFE', '#368DF7''#B8E986', '#86E9E8', '#58E5E1','#4BCEDD'],
         option : {
             backgroundColor: 'rgba(0,0,0,0)',
             tooltip: {

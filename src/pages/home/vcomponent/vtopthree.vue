@@ -37,7 +37,7 @@ export default {
   data () {
     return {
         items:[
-            {title:'',nub:'评论数',font:'',color:'#6dffeb'},
+            {title:'',nub:'好评数',font:'',color:'#6dffeb'},
             {title:'',nub:'差评数',font:'',color:'#ffe86e'},
             {title:'',nub:'投诉数',font:'',color:'#ff719c'},
         ],
@@ -110,15 +110,18 @@ ul{
                 display: table-cell;
                 vertical-align:middle;
                 text-align:center;
+                letter-spacing: 8px;
             }
         }
         p:nth-of-type(2){
-            font-size: 1.4rem;
+            font-size: 36px;
             margin-bottom:6px;
+            letter-spacing: 6px;
         }
         p:nth-of-type(3){
             height:5px;
-            width:100%;
+            width:70%;
+            margin-left: 15%;
         }
     }
 }

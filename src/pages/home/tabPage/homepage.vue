@@ -60,10 +60,8 @@
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
  import echarts from 'echarts';
-import vmask from '@/components/commonui/mask.vue'
 import componetstatus from '@/pages/home/componentstatus.js'
 import headerBody from '@/pages/home/header.vue'
-import Bus from '@/common/js/bus.js'
 
 export default {
         props:['',],
@@ -75,7 +73,6 @@ export default {
             		upday:0,
             	  toggleName:'C8',
                 placeName:'',
-                cutoverImg:require('../../../assets/切换.png'),
                 headerStatus:false,
                 allComponents: [],
                 componentName: '',
@@ -124,7 +121,6 @@ export default {
         },
         
         components: {
-                vmask,
                 headerBody,
                 ...componetstatus,
         },
@@ -143,11 +139,8 @@ export default {
 		        //获取选择年,月,日
 		        choseDayVal(val){
 		        	console.log(val)
-		        	t//his.upday = val
+		        	//this.upday = val
 		        },
-            console(){
-                console.log(this.components)
-            },
             
             headerEnter(){
                 this.headerStatus=true;
@@ -156,30 +149,6 @@ export default {
                 this.headerStatus=false;
             },
             
-            add (name, text) {
-                   this.items.push({
-                     component: name,
-                     text: text
-                   })
-                },
-            render: function(h) { // h 为 createElement 函数，接受三个参数
-                // tag 
-                // data
-                // children 具体看文档吧
-                return h('div',this.allComponents.map(function(componentName) {
-                    return h(componentName)
-                }))
-            },
-            setLazy(){
-                // console.log(item)
-                // window.setTimeout((item) => {
-                        
-                //         item.show = true;
-                //     }, item.time);
-            },
-            lazy(){
-
-            },
             getResponse(){
                 this.$axios.get(API_URL+'/qy/api/view/checkLogin').then(r => {
                     

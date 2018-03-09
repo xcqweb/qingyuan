@@ -122,6 +122,8 @@
 					height: 40px;
 					border-bottom: 2px solid #d6d6d6;
 					position: relative;
+					padding-bottom: 10px;
+					box-shadow: 0px 1px #d6d6d6;
 					input{
 						position: absolute;
 						width: 80%;
@@ -140,10 +142,12 @@
 					}
 				}
 				.password{
-					margin-top: 212/900*100%;
+					margin-top: 192/900*100%;
 					height: 40px;
 					border-bottom: 2px solid #d6d6d6;
 					position: relative;
+					padding-bottom: 10px;
+					box-shadow: 0px 1px #d6d6d6;
 					input{
 						width: 80%;
 						height: 38px;	
@@ -162,7 +166,7 @@
 					}
 				}
 				.btn{
-					margin-top: 76/900*100%;
+					margin-top: 189/900*100%;
 					height: 50px;
 					position: relative;
 					input{

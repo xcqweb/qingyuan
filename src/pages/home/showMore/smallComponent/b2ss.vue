@@ -3,7 +3,7 @@
     	<div class="passagerBtn">客流预警</div>
         <div :id="idName" class="pieB2"></div>
         <span v-bind:class="{fontRed:fontRedData}">{{dataItem.percent}}%</span>
-        <div class="text"><font>{{dataItem.warnNum}}</font></div>
+        <div class="text"><font>{{dataItem.warnNum}}人</font></div>
         <div class="scenic">{{updatePlace.turist}}</div>
     </div>
 </template>

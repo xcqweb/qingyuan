@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import store from '../vuex/index.js'
 import Axios from 'axios'
 const NotFound =resolve => require(['@/pages/404.vue'], resolve);
 const homepage = resolve => {require.ensure(['@/pages/home/tabPage/homepage.vue'], () => {resolve(require('@/pages/home/tabPage/homepage.vue'))})}
@@ -21,7 +20,6 @@ const Portrait = resolve => {require.ensure(['@/pages/home/tabPage/Portrait.vue'
 
 const video = resolve => {require.ensure(['@/pages/home/tabPage/video.vue'], () => {resolve(require('@/pages/home/tabPage/video.vue'))})}
 
-const test =resolve => require(['@/pages/test.vue'], resolve);
 
 const login =resolve => require(['@/pages/login/loginHome.vue'], resolve);
 

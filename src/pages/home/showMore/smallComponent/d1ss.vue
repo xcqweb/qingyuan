@@ -3,7 +3,8 @@
 .d1{
     position:relative;
     width: 100%;
-    height: 100%;
+    height: 97%;
+    margin-top: 32px;
     h1{
         position:absolute;
         top:1.3rem;
