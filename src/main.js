@@ -24,7 +24,7 @@ var API_URL = "http://120.55.190.57"
 //var API_URL1 = "http://localhost"
 window.API_URL = API_URL
 if( API_URL === "http://120.55.190.57"){
-//window.API_LOGIN =  `${API_URL}:8093`;
+//window.API_LOGIN =  `${API_URL}/login`;
 } else{
 //window.API_LOGIN =  `${API_URL1}/login`;
 }

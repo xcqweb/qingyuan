@@ -225,7 +225,6 @@ export default {
                     date.push(this.addZero(new Date(new Date().getTime() - xi*5 * 1000)));
                     data.push(Math.round(Math.pow(Math.random()*powAverage,2)))
                 }
-                console.log(data)
                 var j = 8;
                 var nowDate = new Date();
                 var now = +new Date(nowDate.getTime());

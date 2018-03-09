@@ -5,6 +5,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import global from './modules/global'
+import hotMap from './modules/hotMap'
 import version from './modules/version'
 // import post from './modules/post'
 // import tag from './modules/tag'
@@ -15,14 +16,11 @@ Vue.use(Vuex)
 
 const debug = process.env.NODE_ENV !== 'production'
 
-const state={
-}
+
 
 export default new Vuex.Store({
     strict: debug,
-    state,
     modules: {
-
     global: {
         namespaced: true,
         ...global
@@ -30,6 +28,10 @@ export default new Vuex.Store({
     version: {
         namespaced: true,
         ...version
+    },
+    hotMap:{
+    	namespaced: true,
+        ...hotMap
     },
     user: {
         namespaced: true,

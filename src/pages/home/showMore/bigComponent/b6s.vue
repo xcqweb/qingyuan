@@ -185,7 +185,7 @@
     		.wImg{
     			position: absolute;
     			width: 100px;
-    			height: 86px;
+    			height: 100px;
     			left: 30px;
     			background-size: 100%;
     		}
@@ -256,7 +256,7 @@
     		width: 358px;
     		height: 100%;
     		.oneDay{
-    			width: 98px;
+    			width: 110px;
     			height: 262px;
     			position: absolute;
     			top: 10px;
@@ -278,7 +278,7 @@
     			.wImg{
     				position: absolute;
 	    			width: 100px;
-	    			height: 86px;
+	    			height: 100px;
 	    			left: 0;
 	    			top: 90px;
 	    			background-size: 100%;
@@ -300,7 +300,7 @@
     		}
     		
     			.twoDay{
-    			width: 98px;
+    			width: 110px;
     			height: 262px;
     			position: absolute;
     			top: 10px;
@@ -322,7 +322,7 @@
     			.wImg{
     				position: absolute;
 	    			width: 100px;
-	    			height: 86px;
+	    			height: 100px;
 	    			left: 0;
 	    			top: 90px;
 	    			background-size: 100%;
@@ -349,9 +349,7 @@
 <template>
     <div class="b6s" v-show="showStatus">
     	<!--天气背景-->
-    	<div class="bg" :class="weatherImgBg">
-    		
-    	</div>
+    	<div class="bg" :class="weatherImgBg"></div>
        <div class="weatherInfo">
        		<div class="leftItem">
        			<!--天气图片-->
@@ -363,24 +361,24 @@
        					<font>{{nowRes.text}}</font>
        				</p>
        				<p class="clearfix"></p>
-       				<p>9 ~ 17 ℃</p>
+       				<p>{{this.dailyRes[0].low}} ~ {{this.dailyRes[0].high }}℃</p>
        				<p>{{nowRes.text}}</p>
        			</div>
        		</div>
        		<div class="middleLine"></div>
        		<div class="rightItem">
        			<div class="oneDay">
-       				<p>周四</p>
+       				<p>{{weekText1}}</p>
        				<p>{{oneDayText}}</p>
        				<p class="wImg" :class="weatherImg"></p>
-       				<p>9 ~ 17 ℃</p>
+       				<p>{{this.dailyRes[1].low}} ~ {{this.dailyRes[1].high }}℃</p>
        				<p>{{nowRes.text}}</p>
        			</div>
        			<div class="twoDay">
-       				<p>周四</p>
+       				<p>{{weekText2}}</p>
        				<p>{{twoDayText}}</p>
        				<p class="wImg" :class="weatherImg"></p>
-       				<p>9 ~ 17 ℃</p>
+       				<p>{{this.dailyRes[2].low}} ~ {{this.dailyRes[2].high }}℃</p>
        				<p>{{nowRes.text}}</p>
        			</div>
        		</div>
@@ -395,6 +393,11 @@ import showMoreData from '@/common/js/mixin/showMoreData.js'
 import vAjax from '@/common/js/v-ajax.js'
 import optionProps from '@/common/js/mixin/optionProps.js'
 Vue.use(vAjax);
+
+
+let weekCode = new Date().getDay()
+
+
   export default {
     name:'B6S',
     mixins: [showMoreData,optionProps],
@@ -469,6 +472,13 @@ Vue.use(vAjax);
             },
             threeImg:function(){
                 return  this.switchWea(this.dailyRes[2].code_day);
+            },
+            weekText1(){
+            	return this.weekday[weekCode+1]
+            },
+            weekText2(){
+            	(weekCode===6)||(weekCode=0)
+            	return this.weekday[weekCode]
             }
         },
     components: {
@@ -479,7 +489,7 @@ Vue.use(vAjax);
             if(s==='-1'){
                     return 'redom'
                 }else if(s==='0'||s==='2'){
-                    return 'yejianqing'
+                    return 'qing'
                 }else if(s==='1'||s==='3'){
                     return 'yejianqing'
                 }else if(s==='4'){

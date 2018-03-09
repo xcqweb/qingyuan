@@ -132,7 +132,7 @@ export default {
         upday:function(val){
             var paramsObj = {
                 area:this.updatePlace.place,
-                type:["day","month","year"][this.upday],
+                type:["day","month","year"][val],
             }
             this.getResponse(paramsObj);
         },
@@ -153,6 +153,7 @@ export default {
     data() {
       return {
       	idName:'a1ss',
+      	isDate:false,
       	barData:[
             {"num":"1293","dayId":"6/14"},
             {"num":"2331","dayId":"6/15"},
@@ -352,8 +353,11 @@ export default {
           dataX.push(this.barData[i].dayId);
           
       }
-      	dataX =this.upday===0?RW.array_until.transformDate(dataX):dataX
-      	//dataX =this.update?RW.array_until.transformDate(dataX):dataX
+      		let pattern = /([0-9]{3}[1-9]|[0-9]{2}[1-9][0-9]{1}|[0-9]{1}[1-9][0-9]{2}|[1-9][0-9]{3})-(((0[13578]|1[02])-(0[1-9]|[12][0-9]|3[01]))|((0[469]|11)-(0[1-9]|[12][0-9]|30))|(02-(0[1-9]|[1][0-9]|2[0-8])))/
+      		if(pattern.test(dataX[0])){
+      			dataX = RW.array_until.transformDate(dataX)
+      		}
+      	
       this.$nextTick(echarts_resize(this.idName,this,dataX,dataY))
     },
     redom14(){

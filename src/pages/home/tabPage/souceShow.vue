@@ -75,7 +75,6 @@ export default {
             	updatePlace:{place:"清新",turist:"安庆村"},
         		update:{},
         		upday:{},
-            	scienceType:false,
                 place:'连州地下河',
                 cutoverImg:require('../../../assets/切换.png'),
                 
@@ -132,6 +131,11 @@ export default {
             comment:'version/comment',
             inItems: 'version/inItems',
           }),
+          scienceType(){
+          	let val = this.$store.getters['hotMap/getState']
+          	return val
+          }
+         
     },
     watch:{
         Attractions:function(val){
@@ -158,7 +162,8 @@ export default {
         },
         //获取4A级景区
         getScienceType(val){
-        	this.scienceType = val
+        	console.log(val)
+        	this.$store.commit('hotMap/TRANSFORMA',val)
         },
         update1(){
              this.barChartOption.series[0].data[3]={

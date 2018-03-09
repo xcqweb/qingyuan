@@ -161,11 +161,12 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 },4000);
             },
             addIcon(map){
+            	let _self = this;
                 var points = traffic_points;
                 // 向地图添加标注
                 for( var i = 0;i < points.length; i++){
                     //定义新图标
-                    var myIcon = new BMap.Icon(require("../../../../assets/images/lable.jpg"), new BMap.Size(44, 44), {
+                    var myIcon = new BMap.Icon(require("../../../../assets/images/lable.png"), new BMap.Size(44, 44), {
                     // 指定定位位置
                     offset: new BMap.Size(10, 25),
                     // 当需要从一幅较大的图片中截取某部分作为标注图标时，需要指定大图的偏移位置 
@@ -175,8 +176,28 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                     var point = new BMap.Point(points[i].point[0],points[i].point[1]);
                     // 创建标注对象并添加到地图 
                     //自定义图标
-                    // var marker = new BMap.Marker(point,{icon: myIcon});
-                    var marker = new BMap.Marker(point);
+                    if(points[i].isHigher && points[i].isHigher===true){//4A级以上景区
+                    	var marker = new BMap.Marker(point,{icon: myIcon}); 
+                    	map.addOverlay(marker);
+	                    marker.setAnimation(BMAP_ANIMATION_BOUNCE);
+	                     //添加新图标的监听事件
+		                marker.addEventListener('click',function(){
+		                    var p = marker;//获取位置
+		                    //点击5A级景区跳转
+		                    _self.$store.commit('hotMap/TRANSFORMA',1)
+		                })
+                    }else{//4A级以下景区
+                    	 var marker = new BMap.Marker(point);
+                    	 map.addOverlay(marker);
+	                     marker.setAnimation(BMAP_ANIMATION_BOUNCE);
+	                     //添加新图标的监听事件
+//		                marker.addEventListener('click',function(){
+//		                    var p = marker;//获取位置
+//		                    console.log('p1');
+//		                })
+                    }
+                    
+                   
                     var label = new BMap.Label(points[i].label,{offset:new BMap.Size(20,-20)});
                     label.setStyle({
                         color : "#153081",
@@ -188,14 +209,9 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                         borderRadius:"4px",
                     });
 	                marker.setLabel(label);
-                    map.addOverlay(marker);
-                    marker.setAnimation(BMAP_ANIMATION_BOUNCE);
+                    
                 };
-                //添加新图标的监听事件
-                marker.addEventListener('click',function(){
-                    var p = marker1.getPosition();//获取位置
-                    // alert("点击的位置是：" + p.lng + ',' + p.lat);
-                })
+               
             },
             addMenu(map){
                 var menu = new BMap.ContextMenu();
@@ -309,7 +325,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 map.addControl(ctrl);
                 ctrl.setAnchor(BMAP_ANCHOR_BOTTOM_RIGHT);  
             },
-            addHot(map){
+            addHot(map){//热力图
                     var points = this.arrHotPoint;
                     //console.log(this.arrHotPoint)
                     // var hotPointA = traffic_points;
@@ -411,7 +427,6 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 this.$el.appendChild(oS)
                 oS.onload=function(){
                     map.setMapStyle({style:'light'})
-                
                 }
                 this.$el.removeChild(oS);
             },
@@ -508,7 +523,6 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 添加折线
                 *************************************************/
                 _self.moveTo(map,lenObj[val  ===  undefined ?"全部": val].lng,lenObj[val  ===  undefined ?"全部": val].lat,lenObj[val  ===  undefined ?"全部": val].zoom);
-                console.log(lenObj[ val].lng,lenObj[val].lat)
                 var pointGZ = new BMap.Point(119.923671,29.514494);
                 var pointHK = new BMap.Point(110.35,20.02);
                 // setTimeout(function(){

@@ -365,7 +365,11 @@ import optionProps from '@/common/js/mixin/optionProps.js'
             }
         },
         mounted() {
-              this.$nextTick(this.addScript("全部",true))
+        	if(timer){clearTimeout(timer)}
+        	let timer = setTimeout( () => {
+        		this.$nextTick(this.addScript("全部",true))
+        	},300)
+              
         } ,
     }
 </script>

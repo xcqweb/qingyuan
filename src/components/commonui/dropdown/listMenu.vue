@@ -152,7 +152,7 @@
 @borderColor:#345BFA;
 #box{
 	.qylable{
-		width: 92px !important;
+		width: 100px !important;
 	    height: 44px;
 	    font-size: 0.9rem;
 	    color: #F0EFFD;
@@ -172,20 +172,20 @@
 	    line-height: 44px;
 	    position: absolute;
 	    top: -3px; 
-	    left: 256px !important;
+	    left: 279px !important;
 	    border-radius: 10px 0 0 10px;
 	    border: 3px solid @borderColor;
 	    z-index: 8;
 	}
 	.time{
-		width: 92px !important;
+		width: 110px !important;
 	    height: 44px;
 	    font-size: 0.9rem;
 	    color: #F0EFFD;
 	    line-height: 44px;
 	    position: absolute;
-	    top: 1.5px; 
-	    right: 262px !important;
+	    top: -2px; 
+	    right: 280px !important;
 	    border: 3px solid @borderColor;
 	    border-right: none;
 	    border-radius: 10px 0 0 10px;
@@ -195,7 +195,7 @@
 		width: 136px !important;
 		height: 44px;
 	    position: absolute;
-	    left: 98px !important;
+	    left: 106px !important;
 	    border: 3px solid @borderColor;
 	    border-left: none;
 	    border-radius: 0 10px 10px 0;
@@ -204,20 +204,20 @@
 	    }
 	}
 	.science{
-		 width: 256px !important;
+		 width: 276px !important;
 		 height: 44px;
 	     position: absolute;
-	     left: (259+100)/990*100% !important;
+	     left: (259+122)/990*100% !important;
 	     border: 3px solid @borderColor;
 	     border-left: none;
 	     border-radius: 0 10px 10px 0;
 	}
 	.vueDate{
-		height: 43.5px;
+		height: 44px;
 		position: absolute;
-		width: 256px !important;
-	    top: 36/948*100%; 
-	    right: 0px;
+		width: 280px !important;
+	    top: -2px; 
+	    right: -6px;
 	    z-index: 100;
 	    border: 3px solid @borderColor;
 	    border-radius: 0 10px 10px 0;

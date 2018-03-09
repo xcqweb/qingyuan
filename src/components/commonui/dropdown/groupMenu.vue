@@ -1,20 +1,21 @@
 <template>
 	<div id="box">
-        <div class="jqlable">景 区</div>
-        <sleckte 
-        class='science'
-        :selectList="jqselectlist" 
-        v-on:listenAtparent="catchmsg2"
-        ></sleckte>
-        
-        <div class="title">筛选条件</div>
-        <div class="qylable">区 / 县</div>
-        <sleckte 
-        class="area"
-        :selectList="qyselectlist" 
-        v-on:listenAtparent="catchmsg1"
-        ></sleckte>
-        
+		<!--<div v-show="!scienceTypes">-->
+	        <div class="jqlable">景 区</div>
+	        <sleckte 
+	        class='science'
+	        :selectList="jqselectlist" 
+	        v-on:listenAtparent="catchmsg2"
+	        ></sleckte>
+	        
+	        <div class="title">筛选条件</div>
+	        <div class="qylable">区 / 县</div>
+	        <sleckte 
+	        class="area"
+	        :selectList="qyselectlist" 
+	        v-on:listenAtparent="catchmsg1"
+	        ></sleckte>
+        <!--</div>-->
         <div v-if='isDate'>
         	<!-- 时间下拉框组件 -->
         	<div class="time">时间</div>
@@ -49,7 +50,6 @@
 				//时间控件
 				isEndDate:true,
            		vDateStatus:true,
-           		scienceTypes:false,
            		dateChoseList:[
 	                {context:'日',class:''},
 	                {context:'月',class:''},
@@ -77,8 +77,7 @@
 		methods:{
 			//选择4a景区
 			scienceType(data){
-					this.scienceTypes = !this.scienceTypes
-					this.$emit('scienceType',data);
+				this.$emit('scienceType',data);
 			},
 			
 			//获取时间
@@ -171,7 +170,12 @@
 	                selectStatus:false,
 	                place:this.cityData,
 	            }
+	        },
+	        scienceTypes(){
+	        	let val = this.$store.getters['hotMap/getState']
+	        	return val
 	        }
+	        
 		},
 		components:{
 			sleckte,

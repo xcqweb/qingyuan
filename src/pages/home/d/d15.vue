@@ -92,7 +92,6 @@
 			margin: 98px auto 28px auto;
 			border: 2px solid #345bfa;
 			border-radius: 6px;
-			//box-sizing: border-box;
 			color: #fff;
 			font-size: 20px;
 			cursor: all-scroll;
@@ -106,22 +105,28 @@
 				display: flex;
 				li:nth-child(1){
 					flex-basis: 99px;
+					border-bottom: 2px solid #345bfa;
 				}
 				li:nth-child(2){
 					flex-basis: 298px;
+					border-bottom: 2px solid #345bfa;
 				}
 				li:nth-child(3){
 					flex-basis: 99.5px;
+					border-bottom: 2px solid #345bfa;
 				}
 				li:nth-child(4){
 					flex-basis: 800px;
+					border-bottom: 2px solid #345bfa;
 					/*border-right-color: transparent;*/
 				}
 				li:nth-child(5){
 					flex-basis: 297px;
+					border-bottom: 2px solid #345bfa;
 				}
 				li:nth-child(6){
 					flex-basis: 298px;
+					border-bottom: 2px solid #345bfa;
 					border-right-color: transparent;
 				}
 			}
