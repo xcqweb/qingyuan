@@ -74,7 +74,7 @@
 	        var paramsObj = {
 	                area:"全部",
 	                name:"全部",
-	                //pageId:1,
+	                pageId:1,
 	                source:'全部',
 	            }
 	       this.getResponse(paramsObj);

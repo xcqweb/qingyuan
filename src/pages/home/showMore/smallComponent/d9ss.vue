@@ -8,14 +8,14 @@
     }
 }
 ul{
-    margin-top:8%;
+    margin-top:98px;
     height:80%;
     width:100%;
     overflow-y: scroll;
     cursor: all-scroll;
     li{
     	font-size: 16px;
-    	height: 60px;
+    	min-height: 60px;
         display:flex;
         align-items:center;
         justify-content:center;
@@ -39,6 +39,8 @@ ul{
 .cell2{
     flex: 6;
     text-align: center;
+    padding: 10px 0;
+    box-sizing: border-box;
     .cell2_box{
         float: left;
         width: 33.3%;
@@ -245,7 +247,7 @@ export default {
     },
     methods:{
         getResponse(paramsObj){
-            this.$axios.get(API_URL+'/qy/api/command/getCommandScenicTrackDetail',{params:paramsObj}).then(r => {
+            this.$axios.get(API_URL+'/qy/api/v2/view/getScenicTrack',{params:paramsObj}).then(r => {
                 if(r.data.code ==="200"||r.data.code ===200){
                 	//console.log(r.data.data)
                     this.rankItems = r.data.data;

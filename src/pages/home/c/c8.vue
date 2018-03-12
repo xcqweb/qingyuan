@@ -29,22 +29,22 @@
                 {{index+1}}
             </div>
             <div class="cell1">
-                {{item.place}}
+                {{item.name}}
             </div>
             <div class="cell1">
-                {{item.numb}}
+                {{item.num}}
             </div>
             
             <div class="cell1">
-                <span class='footerCotext'>{{item.percent1}}</span>
+                <span class='footerCotext'>{{item.zhanRate}}</span>
                 <span class='footerRise' :class='item.rise'></span>
             </div>
             <div class="cell1">
-                <span class='footerCotext'>{{item.percent2}}</span>
+                <span class='footerCotext'>{{item.tongRate}}</span>
                 <span class='footerRise' :class='item.rise'></span>
             </div>
             <div class="cell1">
-                <span class='footerCotext'>{{item.percent3}}</span>
+                <span class='footerCotext'>{{item.huanRate}}</span>
                 <span class='footerRise' :class='item.rise'></span>
             </div>
         </li>
@@ -53,44 +53,70 @@
 </template>
 
 <script type="text/javascript">
-import forEach from 'lodash/forEach';
+import Vue from 'vue'
+import axios from 'axios'
 export default {
     name:'c7',
-    props:['placeAttractionsProps'],
+    props:['updatePlace','update','upday'],
     data(){
         return{
         active:1,
         msg:'Hello Vue 来自App.vue',
-        items:[
-        	{place:'飞霞风景名胜区',numb:1212,percent1:'12.4%',percent2:'14.5%',percent3:'16.1%'},
-        	{place:'白庙渔村',numb:2334,percent1:'12.4%',percent2:'14.5%',percent3:'16.1%'},
-        	{place:'飞来寺',numb:32354,percent1:'12.4%',percent2:'14.5%',percent3:'16.1%'},
-        	{place:'白庙渔村',numb:55646,percent1:'12.4%',percent2:'14.5%',percent3:'16.1%'},
-        	{place:'飞来寺',numb:46335,percent1:'12.4%',percent2:'14.5%',percent3:'16.1%'},
-        	{place:'白庙渔村',numb:46335,percent1:'12.4%',percent2:'14.5%',percent3:'16.1%'},
-        	{place:'飞来寺',numb:46335,percent1:'12.4%',percent2:'14.5%',percent3:'16.1%'},
-        	{place:'飞霞风景名胜区',numb:46335,percent1:'12.4%',percent2:'14.5%',percent3:'16.1%'},
-        	{place:'飞霞风景名胜区',numb:46335,percent1:'12.4%',percent2:'14.5%',percent3:'16.1%'},
-        	{place:'飞霞风景名胜区',numb:46335,percent1:'12.4%',percent2:'14.5%',percent3:'16.1%'},
-        	{place:'飞霞风景名胜区',numb:46335,percent1:'12.4%',percent2:'14.5%',percent3:'16.1%'},
-        	{place:'飞霞风景名胜区',numb:46335,percent1:'12.4%',percent2:'14.5%',percent3:'16.1%'},
-        ]
+        items:[]
       }
     },
-    methods:{
-    	
+    watch:{
+    	updatePlace:function(val){
+            var paramsObj = {
+                area:val.place,
+                name:val.turist,
+                type:["day","month","year"][this.upday],
+            }
+            this.getResponse(paramsObj);
+        },
+        upday:function(val){
+            var paramsObj = {
+                area:this.updatePlace.place,
+                name:this.updatePlace.turist,
+                type:["day","month","year"][this.upday],
+            }
+            this.getResponse(paramsObj);
+        },
+        update:{
+             handler:function(val, oldVal){
+                 let end = val.end.join("-")
+                 let begin = val.begin.join("-")
+                 var paramsObj = {
+                    area:this.updatePlace.place,
+                    name:this.updatePlace.turist,
+                    beginTime:begin,
+                    endTime:end
+								}
+                 this.getResponse(paramsObj);
+             },
+             deep:true,
+        }
     },
-    computed: { 
-//      items:function(){
-//          let arrb = [];
-//          forEach(this.placeAttractionsProps,function(value,key){
-//              if (key<4) {
-//                  arrb.push(value)
-//              }
-//              
-//          })
-//          return arrb
-//      }
+    created(){
+    	var paramsObj = {
+                area:"全部",
+                name:"全部",
+                type:"day",
+                city:1
+            }
+       this.getResponse(paramsObj);
+    },
+    methods:{
+    	//获取数据
+    	getResponse(paramsObj){
+				 axios.get(API_URL+'/qy/api/v2/view/getScenicPersonSumSort',{params:paramsObj}).then(r => {
+	                if(r.status ===200||r.data.code ===200){
+	                	let reData = r.data.data;
+	                	this.items = reData
+	                }
+	            })
+				
+	  	},
     },
     components:{},
     mounted(){

@@ -261,7 +261,7 @@ import Vue from 'vue'
     cursor: pointer;
     text-align: center;
     z-index: 9;
-    font-size: .8rem;
+    font-size: 18px;
     line-height: 236%;
     white-space: nowrap;
     overflow: hidden;

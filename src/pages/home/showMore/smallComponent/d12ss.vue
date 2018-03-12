@@ -10,6 +10,7 @@
 .main_content {
   width: 100%;
   height: 100%;
+  transform: scale(0.85) translateX(-30px);
   position: relative;
 }
 .load{
@@ -39,7 +40,7 @@
   }
 .itembox{
 	position: absolute;
-	top: 5%;
+	top: 60px;
   	width: 100%;
   	height: 90%;
   div{
@@ -125,6 +126,7 @@ export default {
         updatePlace:function(val){
             var paramsObj = {
                 area:val.place,
+                name:val.turist,
                 type:["day","month","year"][this.upday],
             }
             this.getResponse(paramsObj);
@@ -135,6 +137,7 @@ export default {
                  let begin = val.begin.join("-")
                  var paramsObj = {
                     area:this.updatePlace.place,
+                    name:this.updatePlace.turist,
                     beginTime:begin,
                     endTime:end
                 }
@@ -145,6 +148,7 @@ export default {
         upday:function(val){
             var paramsObj = {
                 area:this.updatePlace.place,
+                name:this.updatePlace.turist,
                 type:["day","month","year"][val]
             }
              this.getResponse(paramsObj);
@@ -252,7 +256,7 @@ export default {
                      axisLabel: {
                          textStyle: {
                              color: '#ffffff',//x坐标轴标签字体颜色
-                             fontSize: 12,
+                             fontSize: 16,
                          },
                     },
                     axisTick:{
@@ -271,8 +275,11 @@ export default {
                 ],
                 yAxis:{
                     show:true,
+                    name:"单位  ( 小时 )",
                     nameTextStyle:{
-                      color:'#ffffff'
+                      color:'#ffffff',
+                      padding:[0,0,20,0],
+                      fontSize:16
                     },
                     splitLine:{
                         show:true,
@@ -286,7 +293,7 @@ export default {
                         showMinLabel:true,
                         textStyle:{
                         color:'#ffffff',
-                        fontSize: 12,
+                        fontSize: 16,
                       }
                     },
                     axisLine: { //坐标轴轴线相关设置。就是数学上的y轴
@@ -344,6 +351,7 @@ export default {
                         position:'top',
                         textStyle:{
                             color:'#2CC9E2',
+                            fontSize:20
                         }
                     }
                 },
@@ -364,10 +372,10 @@ export default {
     },
     methods: {
     	 getResponse(paramsObj){
-            this.$axios.get(API_URL+'/qy/api/command/selectCommandScenicStayHoursDetail',{params:paramsObj}).then(r => {
+            this.$axios.get(API_URL+'/qy/api/v2/view/selectCommandScenicStayHours',{params:paramsObj}).then(r => {
                 
                 if(r.data.code ==="200"||r.data.code ===200){
-                    //console.log(r.data.data)
+                    console.log(r.data.data)
                     this.barData = r.data.data[0].value;
                     this.redom7(this.idName);
                 }
@@ -418,6 +426,7 @@ export default {
     created(){
     	var paramsObj = {
                 area:"全部",
+                name:"全部",
                 type:"day",
             }
         this.getResponse(paramsObj);

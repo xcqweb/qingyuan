@@ -145,6 +145,7 @@ export default {
                     label: {
 		                normal: {
 		                    show: true,
+		                    fontSize:16
 		                },
 		                emphasis: {
 		                    show: false

@@ -104,7 +104,6 @@ export default {
                 roam: true,
                 itemStyle: {
                         normal: {
-                           	 //color:'#db625f',
                             areaColor: '#48abff',
                             borderColor:'white',
                             borderWidth:0.5,
@@ -224,6 +223,13 @@ export default {
             '襄阳市':[112.130262, 32.012348],
             '福州市':[119.302895, 26.077314],
             '黔西南布依族苗族自治州':[104.947562, 25.145265],
+            '永州市':[111.621755, 26.422758],
+            '邵阳市':[111.475583, 27.241159],
+            '贺州市':[111.594223, 24.415769],
+            '梧州市':[111.282067, 23.477442],
+            '梧州市':[111.282067, 23.477442],
+            '梧州市':[111.282067, 23.477442],
+            '梧州市':[111.282067, 23.477442],
         },
         BJData:[
             [{name: this.placeName}, {name: '北京', value: 100}],
@@ -293,16 +299,15 @@ export default {
   	
   	getResponse(paramsObj){
 			
-			axios.get(API_URL+'/qy/api/view/getInProvinceDetailData',{params:paramsObj}).then(r => {
-                      //console.log(r)
+			axios.get(API_URL+'/qy/api/v2/view/getPersonSourceData',{params:paramsObj}).then(r => {
                 if(r.status ===200||r.data.code ===200){
-                    this.rankItems = r.data.data.topCity;
+                    this.rankItems = r.data.data.inCountryCity.splice(1,11);
                     this.mapItems = r.data.data.topCity;
-                    //console.log(this.rankItems)
+                    console.log(this.rankItems)
                     let scal = 5;
-                    for(let i=0; i<this.gz.length; ++i){
+                    for(let i=0; i<this.rankItems.length; ++i){
 						//this.allData[i]=["清远市", [[{name: "清远市"}, {name: this.rankItems[i].city, value: this.rankItems[i].num/scal}]]]
-						this.allData[i]=["清远市", [[{name: "清远市"}, {name: this.gz[i][1].name, value: this.gz[i][1].value}]]]
+						this.allData[i]=["清远市", [[{name: "清远市"}, {name: this.rankItems[i].city, value: this.rankItems[i].num}]]]
 					}
                     //console.log(this.allData)
                     this.redomData()
@@ -410,8 +415,8 @@ export default {
                     lineStyle: {
                         normal: {
                             color: '#ffe76d',
-                            width: 2,
-                            opacity: 0.6,
+                            width: 3,
+                            opacity: 1,
                             curveness: 0.2
                         }
                     },

@@ -10,7 +10,7 @@
 			
     <div class="leftScope">
     	<h1>游客来源及景区排行</h1>
-        <div v-for='topItem in leftComponents' 
+        <div v-for='topItem in leftComponent' 
         :class='topItem.id' 
         class="item">
             <div v-if='topItem.show'>
@@ -19,6 +19,8 @@
                 :key="topItem.id" 
                 :updatePlace='updatePlace'
                 :update='update'
+                :upday='upday'
+                @toggleProvince='toggleProvince'
                 ></componet>    
             </div>
         </div>
@@ -34,6 +36,7 @@
                 :key="topItem.id" 
                 :updatePlace='updatePlace'
                 :update='update'
+                :upday='upday'
                 ></componet>
             </div>
         </div>
@@ -50,6 +53,7 @@
                 :key="topItem.id" 
                 :updatePlace='updatePlace'
                 :update='update'
+                :upday='upday'
                 ></componet>
             </div>
         </div>
@@ -71,6 +75,7 @@ export default {
             		updatePlace:{place:"全部",turist:"全部"},
             		update:{begin:['2018','02','02'],end:['2018','02','03']},
             		upday:0,
+            		isprovince:false,
             	  toggleName:'C8',
                 placeName:'',
                 headerStatus:false,
@@ -107,6 +112,12 @@ export default {
                      {name:'B15',id:'two',index:2,time:1200,show:true,title:``,},
                      {name:'C11',id:'three',index:3,time:1200,show:true,title:``,},
                 ],
+                
+                leftComponentspro:[
+                     {name:'D14',id:'one',index:1,time:1200,show:true,title:``,},
+                     {name:'B17',id:'two',index:2,time:1200,show:true,title:``,},
+                     {name:'C11',id:'three',index:3,time:1200,show:true,title:``,},
+                ],
                 rightTop:[
                      {name:'A5SS',id:'one',index:1,time:1200,show:true,title:'实时客流'},
                      
@@ -124,23 +135,35 @@ export default {
                 headerBody,
                 ...componetstatus,
         },
+        computed:{
+        	leftComponent(){
+        		if(!this.isprovince){
+        			return this.leftComponents
+        		}else{
+        			return this.leftComponentspro
+        		}
+        	}
+        },
         methods: {
 	        	//获取选择的景区
 		        doubleChoseVal(val){
-		        	
 		        	this.updatePlace = val
-		        	console.log(this.updatePlace)
+		        	//console.log(this.updatePlace)
 		        },
 		        //获取选择时间
 		        choseDateVal(val){
-		        	console.log(val)
+		        	//console.log(val)
 		        	this.update = val
 		        },
 		        //获取选择年,月,日
 		        choseDayVal(val){
-		        	console.log(val)
-		        	//this.upday = val
+		        	//console.log(val)
+		        	this.upday = val
 		        },
+            
+            toggleProvince(data){
+            	this.isprovince = data
+            },
             
             headerEnter(){
                 this.headerStatus=true;

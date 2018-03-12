@@ -70,6 +70,7 @@ export default {
         updatePlace:function(val){
             var paramsObj = {
                 area:this.updatePlace.place,
+                name:this.updatePlace.turist,
                 type:["day","month","year"][this.upday],
             }
             this.getResponse(paramsObj);
@@ -77,6 +78,7 @@ export default {
         upday:function(val){
             var paramsObj = {
                 area:this.updatePlace.place,
+                name:this.updatePlace.turist,
                 type:["day","month","year"][val],
             }
             this.getResponse(paramsObj);
@@ -87,6 +89,7 @@ export default {
                  let begin = val.begin.join("-")
                  var paramsObj = {
                     area:this.updatePlace.place,
+                    name:this.updatePlace.turist,
                     beginTime:begin,
                     endTime:end
                 }
@@ -264,6 +267,7 @@ export default {
     created(){
     	var paramsObj = {
                 area:"全部",
+                name:"全部",
                 type:"day",
                 city:1
             }
@@ -272,10 +276,10 @@ export default {
     methods: {
     	
     	getResponse(paramsObj){
-            this.$axios.get(API_URL+'/qy/api/view/getDayCountDetailData',{params:paramsObj}).then(r => {
-
+//          this.$axios.get(API_URL+'/qy/api/v2/view/getDayCounData',{params:paramsObj}).then(r => {
+			this.$axios.get(API_URL+'/qy/api/view/getDayCountDetailData',{params:paramsObj}).then(r => {
                 if(r.data.code ==="200"||r.data.code ===200){
-                	
+                	console.log(r)
                     this.rankItems = r.data.data; 
                     this.barData = r.data.data[0].value; 
                     this.twoWeekMock = r.data.data[0].value;

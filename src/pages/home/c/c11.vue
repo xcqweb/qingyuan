@@ -1,14 +1,13 @@
 <template>
 	<div class="c11">
-		<!--<div class="chose">
-			<listMenu
-				@doubleChose='doubleChoseVal'
-        		@choseDate='choseDateVal'
-        		@choseDay='choseDayVal'
-			></listMenu>
-		</div>-->
 		<div class="con">
-			<componet :is='currentModule'></componet> 
+			<componet
+			  :is='currentModule'
+			  :updatePlace='updatePlace'
+			  :update='update'
+			  :upday='upday'
+			  @toggleProvince='toggleProvince'
+			></componet> 
 		</div>
 		<!--切换-->
 		<div class="toast">
@@ -22,7 +21,9 @@
 
 <script>
 import componetstatus from '@/pages/home/componentstatus.js'
+import optionProps from '@/common/js/mixin/optionProps.js'
 	export default{
+		mixins:[optionProps],
 		data(){
 			return{
 				currentModule:'C7',
@@ -34,6 +35,9 @@ import componetstatus from '@/pages/home/componentstatus.js'
 				this.currentModule = data;
 				this.active = bol;
 			},
+			toggleProvince(data){
+				this.$emit('toggleProvince',data)
+			}
 		},
 		components:{
 			...componetstatus

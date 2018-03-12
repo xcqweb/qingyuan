@@ -1,12 +1,13 @@
 <template>
 <div class="content">
   <div id="c12"></div>
-  <!--<ul class="legend">
+  <ul class="legend">
   	<li v-for="(item,i) in series">
-  		<p :style="{color:color[i]}">{{percents[i]}}%</p>
+  		<p>{{item.percent}}%</p>
   		<p>{{item.name}}</p>
+  		<p class="circle" :style="{background:color[i]}"></p>
   	</li>
-  </ul>-->
+  </ul>
 </div>  
 </template>
 
@@ -22,77 +23,116 @@ export default {
     		series:[
     		 {
 		      "value": 200,
-		      name: '北京'
+		      	name: '北京',
+		      	percent:''
 		    },
 		    {
 		      "value": 180,
-		      name: '上海'
+		      name: '上海',
+		      percent:''
 		    },
 		     {
 		      "value": 160,
-		      name: '深圳'
+		      name: '深圳',
+		      	percent:''
 		    },
     		{
 		      "value": 140,
-		      name: '广州'
+		      name: '广州',
+		      	percent:''
 		    },
 		     {
 		      "value": 120,
-		      name: '重庆'
+		      name: '重庆',
+		      	percent:''
 		    },
 		    {
 		      "value": 100,
-		      name: '杭州'
+		      name: '杭州',
+		      	percent:''
 		    },
 		    {
 		      "value": 230,
-		      name: '成都'
+		      name: '成都',
+		      	percent:''
 		    },
 		     {
 		      "value": 200,
-		      name: '武汉'
+		      name: '武汉',
+		      	percent:''
 		    },
 		    
 		    {
 		      "value": 120,
-		      name: '苏州'
+		      name: '苏州',
+		      	percent:''
 		    },
 		    {
 		      "value": 80,
-		      name: '南昌'
+		      name: '南昌',
+		      	percent:''
 		    },
 		  ],
+		  
         color:['#4EBBFC','#57ABFE', '#368DF7', '#7E6AF6', '#FF8885','#FFCD38',  '#E39A50', '#75CF65','#B8E986', '#86E9E8', '#58E5E1','#4BCEDD'],
     		
     }
     },
     watch:{
-    	code:function(){
-    		this.getData();
-    	}
+    	updatePlace:function(val){
+	            var paramsObj = {
+	                area:this.updatePlace.place,
+	                name:this.updatePlace.turist,
+	                type:["day","month","year"][this.upday],
+	            }
+	            this.getResponse(paramsObj);
+	        },
+	        upday:function(val){
+	            var paramsObj = {
+	                area:this.updatePlace.place,
+	                name:this.updatePlace.turist,
+	                type:["day","month","year"][this.upday],
+	            }
+	            this.getResponse(paramsObj);
+	        },
+	        update:{
+	             handler:function(val, oldVal){
+	                 let end = val.end.join("-")
+	                 let begin = val.begin.join("-")
+	                 var paramsObj = {
+	                    area:this.updatePlace.place,
+	                    name:this.updatePlace.turist,
+	                    beginTime:begin,
+	                    endTime:end
+					}
+	                 this.getResponse(paramsObj);
+	             },
+	             deep:true,
+	        }
     },
     methods:{
-    	
-	  	
 	  	getResponse(paramsObj){
-            this.$axios.get(API_URL+'/qy/api/view/getInProvinceDetailData',{params:paramsObj}).then(r => {
-                    //console.log(r)
+            this.$axios.get(API_URL+'/qy/api/v2/view/getPersonSourceCity',{params:paramsObj}).then(r => {
                 if(r.data.code ==="200"||r.data.code ===200){
-                		let arrData = [];
-                    arrData = r.data.data.topCity;
-                    //console.log(arrData)
+                	let reData = r.data.data.inCountryCity;
+                	reData.forEach( (item,index) => {
+                		this.series[index].name = item.city;
+                		this.series[index].value = Math.sqrt(item.num);
+                		this.series[index].percent = item.zhanRate;
+                	})
                     this.redom("c12");
                 }
             })
        },
 	  	
         redom(id){
+        	let _self = this
             this.chart = echarts.init(document.getElementById(id));
             let option = {
             color:['#4EBBFC','#57ABFE', '#368DF7', '#7E6AF6', '#FF8885','#FFCD38',  '#E39A50', '#75CF65','#B8E986', '#86E9E8', '#58E5E1','#4BCEDD'],
             calculable : true,
             legend:{
-            	  show:true,
+            	show:false,
                 orient: 'vertical',
                 top:'20%',
                 right:'15%',
@@ -107,36 +147,15 @@ export default {
                     lineHeight:36
                     
                 },
-            		//width:'50%',
-            		data:[
-            			{name:'北京',icon:'circle'},
-            			{name:'上海',icon:'circle'},
-            			{name:'深圳',icon:'circle'},
-            			{name:'广州',icon:'circle'},
-            			{name:'重庆',icon:'circle'},
-            			{name:'杭州',icon:'circle'},
-            			{name:'成都',icon:'circle'},
-            			{name:'武汉',icon:'circle'},
-            			{name:'苏州',icon:'circle'},
-            			{name:'南昌',icon:'circle'},
-            		],
-            	//data:['亲子','金融','汽车服务','休闲娱乐','化妆品','珠宝手表','数码','母婴用品','生活服务','奢侈品牌','大众品牌','服饰鞋帽'],
-            	 formatter:function(name){
-            	 	
-	        	var oa = option.series[0].data;
-	        	//console.log(oa)
-	        	let num =0;
-	        	for(let i=0; i<oa.length; ++i){
-	        		num += oa[i].value
-	        	}
-	        	
-	        	for(var i = 0; i < option.series[0].data.length; i++){
-                    if(name==oa[i].name){
-                    	let text = (oa[i].value/num * 100).toFixed(2) + '%'+ '\n\n' +  name ;
-                    	return text
-                    }
-	        	}
-	        }
+//          	 formatter:function(name){
+//		        	let text = ''
+//		        	console.log(name)
+//		        	_self.series.forEach( (item,index) => {
+//		        		 text = item.percent+ '%'+ '\n\n' + name ;
+//		        	})
+//		        	return text 
+//	        	
+//	       		 }
             },
             tooltip : {
 		        formatter: function(params){
@@ -156,7 +175,7 @@ export default {
                     name:'消费偏好',
                     type:'pie',
                     radius : ['0%', '65%'],
-                    center : ['28%', '55%'],
+                    center : ['26%', '65%'],
                     roseType : 'area',
                     label: {
 		                normal: {
@@ -184,6 +203,7 @@ export default {
     created(){
     	 var paramsObj = {
                 area:"全部",
+                name:"全部",
                 type:"day",
                 city:1
             }
@@ -192,10 +212,7 @@ export default {
     computed:{
     	percents(){
     		let arr=[];
-    		//let sum=0;
-    		//for(let i=0; i<this.series.length; ++i){
-    			//sum += this.series[i].value;
-    		//}
+    		
     		for(let i=0; i<this.series.length; ++i){
     			arr[i] = this.series[i].value;
     		}
@@ -203,7 +220,7 @@ export default {
     	}
     },
     mounted() {
-      this.$nextTick(echarts_resize('c12',this))
+        this.$nextTick(echarts_resize('c12',this))
     },
 }
 </script>
@@ -212,25 +229,44 @@ export default {
 #c12{
     width:100%;
     height:100%;
+    transform: scale(1.2);
 }
 .legend{
 	width: 36%;
-	height: 80%;
+	height: 66%;
 	color: #fff;
 	font-size: 0.8rem;
 	position: absolute;
-	top: 25%;
+	top: 100px;
+	right: 130px;
 	li{
 		width: 33%;
+		height: 38px;
 		line-height: 0.8rem;
 		float: left;
+		position: relative;
+		margin-top: 20px;
+		margin-left: 44px;
 		p:first-child{
-			font-size: 0.9rem;
+			font-size: 19px;
+			color: #f6f9ff;
 			font-weight: bold;
 		}
-		p:last-child{
-			margin-top: 0.8rem;
+		p:nth-child(2){
+			margin-top: 10px;
+			font-size: 16px;
+			color: #b2bbeb;
 		}
+		.circle{
+            display:inline-block;
+            height:14px;
+            width:14px;
+            margin-right:8px;
+            border-radius:50%;
+            position: absolute;
+            left: -10px;
+            top: 13px;
+        }
 	}
 }
 
@@ -239,66 +275,5 @@ export default {
     height:100%;
     position:relative;
 }
-@media screen and (min-width: 1400px){
-  ul{
-    position:absolute;
-    right:10%;
-    top:30%;
-    li{
-        margin-top:10px;
-        .circle{
-            display:inline-block;
-            height:8px;
-            width:8px;
-            margin-right:8px;
-            border-radius:4px;
-            background-color:red;
-        }
-    }
 
-}
-}
-@media screen and (max-width: 1400px){
-  ul{
-    position:absolute;
-    right:10%;
-    top:15%;
-    li{
-        float:left;
-        display:inline-block;
-        font-size:.8rem;
-        .circle{
-            display:inline-block;
-            height:8px;
-            width:8px;
-            margin-right:8px;
-            border-radius:4px;
-            background-color:red;
-        }
-    }
-
-}
-	.legend{
-	width: 36%;
-	height: 80%;
-	color: #fff;
-	font-size: 0.8rem;
-	position: absolute;
-	top: 10%;
-	li{
-		width: 33%;
-		line-height: 0.8rem;
-		margin-top: 0.8rem;
-		float: left;
-		p:first-child{
-			font-size: 0.9rem;
-			font-weight: bold;
-		}
-		p:last-child{
-			margin-top: 0.4rem;
-		}
-	}
-}
-
-}
 </style>

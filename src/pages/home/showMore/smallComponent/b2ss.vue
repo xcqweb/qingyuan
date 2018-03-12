@@ -4,7 +4,7 @@
         <div :id="idName" class="pieB2"></div>
         <span v-bind:class="{fontRed:fontRedData}">{{dataItem.percent}}%</span>
         <div class="text"><font>{{dataItem.warnNum}}人</font></div>
-        <div class="scenic">{{updatePlace.turist}}</div>
+        <div class="scenic">{{turistName}}</div>
     </div>
 </template>
 
@@ -20,8 +20,9 @@ export default {
         updatePlace:function(val){
             var paramsObj = {
                 area:val.place,
+                name:val.turist,
             }
-       this.getResponse(paramsObj);
+       		this.getResponse(paramsObj);
         }
     },
   data () {
@@ -39,6 +40,10 @@ export default {
     }
   },
   created(){
+  	var paramsObj = {
+            area:'全部',
+            name:'全部'
+        }
   	this.getResponse();
   },
   computed: { 
@@ -47,23 +52,24 @@ export default {
       },
       fontRedData:function(){
          return this.dataItem.percent<90 ? false : true;
+      },
+      turistName(){
+      	if(this.updatePlace.place==='全部' && this.updatePlace.turist==='全部'){
+      		return '全部'
+      	}else{
+      		return this.updatePlace.turist
+      	}
       }
   },
   methods:{
-  	getResponse(){
+  	getResponse(paramsObj){
         let _self = this;
-        var paramsObj = {
-            area:this.updatePlace.place,
-            name:this.updatePlace.turist
-        }
-        this.$axios.get(API_URL+'/qy/api/command/selectCommandScenicWarning',{params:paramsObj}).then(r => {
+        this.$axios.get(API_URL+'/qy/api/v2/command/selectCommandScenicWarning',{params:paramsObj}).then(r => {
             
             if(r.status ===200){
-              	//console.log(r)
+                console.log(r.data.data)
             	this.dataItem = r.data.data[0];
-            	//console.log(this.dataItem)
             	this.redom(this.idName)
-                //this.checkWaringStatus(this.updatePlace,r.data.data)
             }
         })
       },

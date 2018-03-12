@@ -53,6 +53,7 @@ export default {
   	   updatePlace:function(val){
             var paramsObj = {
                 area:this.updatePlace.place,
+                name:this.updatePlace.turist,
                 type:["day","month","year"][this.upday],
             }
             this.getResponse(paramsObj);
@@ -62,6 +63,7 @@ export default {
         		console.log(this.upday)
 	            var paramsObj = {
 	                area:this.updatePlace.place,
+	                name:this.updatePlace.turist,
 	                type:["day","month","year"][this.upday],
 	            }
 	            this.getResponse(paramsObj);
@@ -74,6 +76,7 @@ export default {
                  let begin = val.begin.join("-")
                  var paramsObj = {
                     area:this.updatePlace.place,
+                    name:this.updatePlace.turist,
                     beginTime:begin,
                     endTime:end
 				}
@@ -266,7 +269,8 @@ export default {
             this.chart.setOption(this.option);
         },
         getResponse(paramsObj){
-            this.$axios.get(API_URL+'/qy/api/view/getSpendMoneyPowerDetailData',{params:paramsObj}).then(r => {
+            this.$axios.get(API_URL+'/qy/api/v2/view/getSpendMoneyPowerData',{params:paramsObj}).then(r => {
+            	//console.log(r)
                 if(r.data.code ==="200"||r.data.code ===200){
                     this.option.series[1].data.forEach((item,index)=>{
                         item.value = r.data.data[0][item.ffname]
@@ -280,6 +284,7 @@ export default {
     created(){
     	var paramsObj = {
                 area:"全部",
+                name:"全部",
                 type:"day",
                 city:1
             }

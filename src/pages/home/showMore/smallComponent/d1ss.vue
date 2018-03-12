@@ -560,9 +560,8 @@ import optionProps from '@/common/js/mixin/optionProps.js'
             var paramsObj = {
                 area:"全部",
             }
-            this.$axios.get(API_URL+'/qy/api/command/getCommandScenicHotDetail',{params:paramsObj}).then(r => {
+            this.$axios.get(API_URL+'/qy/api/v2/command/getCommandScenicHot',{params:paramsObj}).then(r => {
                 if(r.status ===200){
-                	//console.log(r)
                     this.arrHotPoint = r.data.data
                     this.addScript("全部",true);
                 }

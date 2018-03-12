@@ -58,31 +58,11 @@ export default {
     watch:{
         updatePlace:function(val){
             var paramsObj = {
-                area:this.updatePlace.place,
-                type:["day","month","year"][this.upday],
+                area:val.place,
+                name:val.turist,
             }
-            this.getResponse(paramsObj);
+              this.getResponse(paramsObj);
         },
-        upday:function(val){
-            var paramsObj = {
-                area:this.updatePlace.place,
-                type:["day","month","year"][this.upday],
-            }
-            this.getResponse(paramsObj);
-        },
-        update:{
-             handler:function(val, oldVal){
-                 let end = val.end.join("-")
-                 let begin = val.begin.join("-")
-                 var paramsObj = {
-                    area:this.updatePlace.place,
-                    beginTime:begin,
-                    endTime:end
-				}
-                 this.getResponse(paramsObj);
-             },
-             deep:true,
-        }
     },
     data () {
         return {
@@ -116,19 +96,19 @@ export default {
         },
         getResponse(paramsObj){
         	let _self = this
-            this.$axios.get(API_URL+'/qy/api/view/getInProvinceDetailData',{params:paramsObj}).then(r => {
+            this.$axios.get(API_URL+'/qy/api/v2/view/getAccumulativeData',{params:paramsObj}).then(r => {
                 if(r.status ===200){
+                	//console.log(r)
                     this.dataMsg.num =_self.$Rw.string_until.addPoint(r.data.data.yearSum);
                     this.dataMsg.yesterdayNum =_self.$Rw.string_until.addPoint(r.data.data.monthSum)
                 }
             })
         }
     },
-    mounted(){
+    created(){
         var paramsObj = {
                 area:"全部",
-                type:"day",
-                city:1
+                name:"全部",
             }
        this.getResponse(paramsObj);
     },  

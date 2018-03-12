@@ -232,26 +232,7 @@ a:visited { text-decoration: none;}
                 background-size: 100% 100%;
             }
         }
-        li:last-child{
-            span{
-                background-image:url('../../assets/images/home/退出登录.png');
-                background-size: 100% 100%;
-            }
-        }
         
-        
-        
-        li:nth-of-type(6){
-            .unchose{
-                background-image:url('../../assets/images/home/总览.png');
-                background-size: 100% 100%;
-            }
-            .chose{
-                background-image:url('../../assets/images/home/总览2.png');
-                background-size: 100% 100%;
-            }
-        }
-
     }
 }
 

@@ -101,18 +101,18 @@
 	            this.$emit('choseDay',indexClick);
 	        },
 			catchmsg1(data){
-            if(data === "全部"){
+//          if(data === "全部"){
                 this.updateData ={
                     place:data,
                     turist:"全部"
                 }
-            }else{
-                this.updateData ={
-                    place:data,
-                    turist:this.updateData.turist
-                }
+//          }else{
+//              this.updateData ={
+//                  place:data,
+//                  turist:this.updateData.turist
+//              }
                 this.$emit('doubleChose',this.updateData)
-            }
+//          }
             this.cityData = this.switch(data)
             
 	        },
@@ -190,11 +190,11 @@
 	   position: absolute;
 	   top: 5%;
 	   left: 10%;
-	   font-size: 1rem;  
+	   font-size: 18px;  
 	}
 	.qylable{
 	    height:1.5rem;
-	    font-size: 0.9rem;
+	    font-size: 18px;
 	    color: #F0EFFD;
 	    line-height: 1.8rem;
 	    position: absolute;
@@ -203,7 +203,7 @@
 	}
 	.jqlable{
 	    height:1.5rem;
-	    font-size: 0.9rem;
+	    font-size: 18px;
 	    color: #F0EFFD;
 	    line-height: 1.8rem;
 	    position: absolute;
@@ -212,7 +212,7 @@
 	}
 	.time{
 	     height:1.5rem;
-	    font-size: 0.9rem;
+	    font-size: 18px;
 	    color: #F0EFFD;
 	    line-height: 1.8rem;
 	    position: absolute;

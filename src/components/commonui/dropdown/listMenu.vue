@@ -70,18 +70,18 @@
 	            this.$emit('choseDate',this.timeDate);
 	        },
 			catchmsg1(data){
-            if(data === "全部"){
+//          if(data === "全部"){
                 this.updateData ={
                     place:data,
                     turist:"全部"
                 }
-            }else{
-                this.updateData ={
-                    place:data,
-                    turist:this.updateData.turist
-                }
+//          }else{
+//              this.updateData ={
+//                  place:data,
+//                  turist:this.updateData.turist
+//              }
                 this.$emit('doubleChose',this.updateData)
-            }
+//          }
             this.cityData = this.switch(data)
             
 	        },

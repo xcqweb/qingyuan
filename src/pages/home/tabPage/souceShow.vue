@@ -71,7 +71,7 @@ export default {
     name: 'souceShow',
         data () {
             return {
-            	updatePlace:{place:"清新",turist:"安庆村"},
+            	updatePlace:{place:"全部",turist:"全部"},
         		update:{},
         		upday:{},
                 leftComponents:[
@@ -110,23 +110,23 @@ export default {
         
         //获取选择的景区
         doubleChoseVal(val){
-        	console.log(val)
+        	//console.log(val)
         	this.updatePlace = val
         },
         //获取选择时间
         choseDateVal(val){
-        	console.log(val)
+        	//console.log(val)
         	this.update = val
         },
         //获取选择年,月,日
         choseDayVal(val){
-        	console.log(val)
+        	//console.log(val)
         	this.upday = val
         	
         },
         //获取4A级景区
         getScienceType(val){
-        	console.log(val)
+        	//console.log(val)
         	this.$store.commit('hotMap/TRANSFORMA',val)
         },
         update1(){

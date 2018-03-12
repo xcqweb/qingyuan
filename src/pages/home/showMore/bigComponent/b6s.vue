@@ -369,17 +369,17 @@
        		<div class="rightItem">
        			<div class="oneDay">
        				<p>{{weekText1}}</p>
-       				<p>{{oneDayText}}</p>
-       				<p class="wImg" :class="weatherImg"></p>
+       				<p>{{twoDayText}}</p>
+       				<p class="wImg" :class="twoImg"></p>
        				<p>{{this.dailyRes[1].low}} ~ {{this.dailyRes[1].high }}℃</p>
-       				<p>{{nowRes.text}}</p>
+       				<p>{{this.dailyRes[1].text_day}}</p>
        			</div>
        			<div class="twoDay">
        				<p>{{weekText2}}</p>
-       				<p>{{twoDayText}}</p>
-       				<p class="wImg" :class="weatherImg"></p>
+       				<p>{{threeDayText}}</p>
+       				<p class="wImg" :class="threeImg"></p>
        				<p>{{this.dailyRes[2].low}} ~ {{this.dailyRes[2].high }}℃</p>
-       				<p>{{nowRes.text}}</p>
+       				<p>{{this.dailyRes[2].text_day}}</p>
        			</div>
        		</div>
        </div>
@@ -468,7 +468,7 @@ let weekCode = new Date().getDay()
                 return (new Date(this.dailyRes[1].date).getMonth()+1)+'月 '+(new Date(this.dailyRes[1].date).getDate())+'日'
             },
             threeDayText:function(){
-                return this.weekday[new Date(this.dailyRes[2].date).getDay()]+'  '+(new Date(this.dailyRes[2].date).getMonth()+1)+'月  '+(new Date(this.dailyRes[2].date).getDate())+'日'
+                return (new Date(this.dailyRes[2].date).getMonth()+1)+'月  '+(new Date(this.dailyRes[2].date).getDate())+'日'
             },
             threeImg:function(){
                 return  this.switchWea(this.dailyRes[2].code_day);
@@ -477,8 +477,7 @@ let weekCode = new Date().getDay()
             	return this.weekday[weekCode+1]
             },
             weekText2(){
-            	(weekCode===6)||(weekCode=0)
-            	return this.weekday[weekCode]
+            	return this.weekday[weekCode+2]
             }
         },
     components: {

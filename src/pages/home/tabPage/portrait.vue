@@ -113,17 +113,17 @@ export default {
         
         //获取选择的景区
         doubleChoseVal(val){
-        	console.log(val)
+        	//console.log(val)
         	this.updatePlace = val
         },
         //获取选择时间
         choseDateVal(val){
-        	console.log(val)
+        	//console.log(val)
         	this.update = val
         },
         //获取选择年,月,日
         choseDayVal(val){
-        	console.log(val)
+        	//console.log(val)
         	this.upday = val
         	
         },

@@ -36,6 +36,7 @@ export default {
         updatePlace:function(){
         	var paramsObj = {
                 area:this.updatePlace.place,
+                name:this.updatePlace.turist,
             }
             this.getResponse(paramsObj)
         }
@@ -240,7 +241,7 @@ export default {
 					}
                 for(let xi = 9; xi >1;xi--){
                     date.push(this.addZero(new Date(new Date().getTime() - xi*5 * 1000)));
-                    data.push(val*updateRandom())
+                    data.push((val*updateRandom()).toFixed(0))
                 }
                 var j = 8;
                 var nowDate = new Date();
@@ -257,7 +258,7 @@ export default {
                     }
                     return {
                             xData: _self.addZero(now),
-                            sData: val*updateRandom()
+                            sData: (val*updateRandom()).toFixed(0)
                     }
                 }
                 _self.option.xAxis.data=date;
@@ -294,9 +295,8 @@ export default {
                 } 
         },
         getResponse(paramsObj){
-            this.$axios.get(API_URL+'/qy/api/command/getCommandPassengerData',{params:paramsObj}).then(r => {
+            this.$axios.get(API_URL+'/qy/api/v2/command/getCommandPassengerData',{params:paramsObj}).then(r => {
                 if(r.data.code ==="200"||r.data.code ===200){
-                	//console.log(r)
                     this.barNum = r.data.data.num+Math.random();
                     this.redomData(this.barNum)
                 }
@@ -306,6 +306,7 @@ export default {
     created(){
             var paramsObj = {
                 area:"全部",
+                name:"全部",
             }
         this.getResponse(paramsObj);
     },

@@ -1,9 +1,9 @@
 <template>
   <div class="c7">
   	<div class="btn">
-  		<div :class="{'active':active===1}" @click="toggle(1)">省内(市)</div>
-  		<div :class="{'active':active===2}" @click="toggle(2)">全国(市)</div>
-  		<div :class="{'active':active===3}" @click="toggle(3)">全国(省)</div>
+  		<div :class="{'active':active===1}" @click="toggle(1,'inCountryCity')">全国(市)</div>
+  		<div :class="{'active':active===2}" @click="toggle(2,'inProvinceCity')">省内(市)</div>
+  		<div :class="{'active':active===3}" @click="toggle(3,'inCountryProvince')">全国(省)</div>
   	</div>
     <ul>
         <li for='item in items'>
@@ -31,22 +31,22 @@
                 {{index+1}}
             </div>
             <div class="cell1">
-                {{item.place}}
+                {{item.city || item.province}}
             </div>
             <div class="cell1">
-                {{item.numb}}
+                {{item.num}}
             </div>
             
             <div class="cell1">
-                <span class='footerCotext'>{{item.percent1}}</span>
+                <span class='footerCotext'>{{item.zhanRate}}</span>
                 <span class='footerRise' :class='item.rise'></span>
             </div>
             <div class="cell1">
-                <span class='footerCotext'>{{item.percent2}}</span>
+                <span class='footerCotext'>{{item.tongRate}}</span>
                 <span class='footerRise' :class='item.rise'></span>
             </div>
             <div class="cell1">
-                <span class='footerCotext'>{{item.percent3}}</span>
+                <span class='footerCotext'>{{item.huanRate}}</span>
                 <span class='footerRise' :class='item.rise'></span>
             </div>
         </li>
@@ -55,47 +55,84 @@
 </template>
 
 <script type="text/javascript">
-import forEach from 'lodash/forEach';
+import Vue from 'vue'
+import axios from 'axios'
 export default {
     name:'c7',
-    props:['placeAttractionsProps'],
+    props:['updatePlace','update','upday'],
     data(){
         return{
         active:1,
         msg:'Hello Vue 来自App.vue',
-        items:[
-        	{place:'广东',numb:1212,percent1:'12.4%',percent2:'14.5%',percent3:'16.1%'},
-        	{place:'福建',numb:2334,percent1:'12.4%',percent2:'14.5%',percent3:'16.1%'},
-        	{place:'湖南',numb:32354,percent1:'12.4%',percent2:'14.5%',percent3:'16.1%'},
-        	{place:'湖北',numb:55646,percent1:'12.4%',percent2:'14.5%',percent3:'16.1%'},
-        	{place:'陕西',numb:46335,percent1:'12.4%',percent2:'14.5%',percent3:'16.1%'},
-        	{place:'江西',numb:46335,percent1:'12.4%',percent2:'14.5%',percent3:'16.1%'},
-        	{place:'河南',numb:46335,percent1:'12.4%',percent2:'14.5%',percent3:'16.1%'},
-        	{place:'甘肃',numb:46335,percent1:'12.4%',percent2:'14.5%',percent3:'16.1%'},
-        	{place:'甘肃',numb:46335,percent1:'12.4%',percent2:'14.5%',percent3:'16.1%'},
-        	{place:'甘肃',numb:46335,percent1:'12.4%',percent2:'14.5%',percent3:'16.1%'},
-        	{place:'甘肃',numb:46335,percent1:'12.4%',percent2:'14.5%',percent3:'16.1%'},
-        	{place:'甘肃',numb:46335,percent1:'12.4%',percent2:'14.5%',percent3:'16.1%'},
-        	{place:'甘肃',numb:46335,percent1:'12.4%',percent2:'14.5%',percent3:'16.1%'},
-        ]
+        allData:[],
+        items:[],
       }
     },
+     watch:{
+    	updatePlace:function(val){
+            var paramsObj = {
+                area:val.place,
+                name:val.turist,
+                type:["day","month","year"][this.upday],
+            }
+            this.getResponse(paramsObj);
+        },
+        upday:function(val){
+            var paramsObj = {
+                area:this.updatePlace.place,
+                name:this.updatePlace.turist,
+                type:["day","month","year"][this.upday],
+            }
+            this.getResponse(paramsObj);
+        },
+        update:{
+             handler:function(val, oldVal){
+                 let end = val.end.join("-")
+                 let begin = val.begin.join("-")
+                 var paramsObj = {
+                    area:this.updatePlace.place,
+                    name:this.updatePlace.turist,
+                    beginTime:begin,
+                    endTime:end
+								}
+                 this.getResponse(paramsObj);
+             },
+             deep:true,
+        }
+    },
+    created(){
+    	var paramsObj = {
+                area:"全部",
+                name:"全部",
+                type:"day",
+                city:1
+            }
+       this.getResponse(paramsObj);
+    },
     methods:{
-    	toggle(data){
-    		this.active=data
-    	}
+    	toggle(data,cityType){
+    		this.active=data;
+    		this.items = this.allData[cityType]
+    		if(data===2){
+    			this.$emit('toggleProvince',true)
+    		}else{
+    			this.$emit('toggleProvince',false)
+    		}
+    	},
+    	
+    	//获取数据
+    	getResponse(paramsObj){
+				 axios.get(API_URL+'/qy/api/v2/view/getPersonSourceData',{params:paramsObj}).then(r => {
+	                if(r.status ===200||r.data.code ===200){
+	                	let reData = r.data.data;
+	                	this.allData = reData;
+	                	this.items = reData.inCountryCity;
+	                }
+	            })
+				
+	  	},
     },
     computed: { 
-//      items:function(){
-//          let arrb = [];
-//          forEach(this.placeAttractionsProps,function(value,key){
-//              if (key<4) {
-//                  arrb.push(value)
-//              }
-//              
-//          })
-//          return arrb
-//      }
     },
     components:{},
     mounted(){
