@@ -228,7 +228,7 @@ export default {
 	                                position: 'right',
 	                                formatter: '{b}',
 	                                textStyle: {
-	                                    fontSize: 12
+	                                    fontSize: 20
 	                                }
 	                            }
 	                        },
@@ -242,7 +242,8 @@ export default {
 	                        },
 	                        itemStyle: {
 	                            normal: {
-	                                color: _self.color[i]
+	                                color: _self.color[i],
+	                                fontSize:30
 	                            }
 	                        },
 	                        progressiveThreshold: 500,
@@ -251,7 +252,8 @@ export default {
 	                            
 	                            return {
 	                                name: dataItem[1].name,
-	                                value: _self.geoCoordMap[dataItem[1].name].concat([dataItem[1].value])
+	                                value: _self.geoCoordMap[dataItem[1].name].concat([dataItem[1].value]),
+	                                fontSize:30
 	                            };
 	                        })
 	                    });

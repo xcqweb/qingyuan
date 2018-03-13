@@ -1,6 +1,6 @@
 <template>
 	<div class="d15">
-		<div class="comment">
+		<div class="comment" v-loadMore>
 			<ul class="title">
 				<li>序号</li>
 				<li>景区名称</li>
@@ -25,7 +25,10 @@
 </template>
 
 <script>
+	import Vue from 'vue'
 	import optionProps from '@/common/js/mixin/optionProps.js'
+	import loadMore from '@/common/js/directives/loadMore'
+	Vue.directive('loadMore',loadMore)//注册自定义指令
 	export default{
 		name:'d15',
 		mixins:[optionProps],
@@ -40,15 +43,16 @@
 			updatePlace:function(val){
 				var paramsObj = {
 	                area:val.place,
-	                //pageId:1,
+	                pageId:1,
 	                source:'全部',
 	            }
+				this.items = []
 				this.getResponse(paramsObj);
 			},
 			update:function(val){
 				var paramsObj = {
 	                area:val.place,
-	                //pageId:1,
+	                pageId:1,
 	                source:'全部',
 	                beginTime:val.begin.join('-'),
 	                endTime:val.end.join('-'),
@@ -58,17 +62,31 @@
 		},
 		methods:{
 				getResponse(paramsObj){
-	        this.$axios.get(API_URL+'/qy/api/command/getCommandCommentsDetail',{params:paramsObj}).then(r => {
-						let reData = r.data.data
-						//console.log(reData)
-						if(this.items.length!==0){this.items=[]}
-		                if(r.data.code ==="200"||r.data.code ===200){
-		                   reData.forEach( (item,index) => {
-		                   		this.items.push({'name':item.name,'comment':'好评','con':item.con,'uid':item.uid,'date':item.date})
-		                   })
-		                }
-		            })
-		        }
+					let _self = this;
+			        this.$axios.get(API_URL+'/qy/api/command/getCommandCommentsDetail',{params:paramsObj}).then(r => {
+								let reData = r.data.data
+								//console.log(reData)
+				                if(r.data.code ==="200"||r.data.code ===200){
+				                   reData.forEach( (item,index) => {
+				                   		_self.items.push({'name':item.name,'comment':'好评','con':item.con,'uid':item.uid,'date':item.date})
+				                   })
+				                }
+				            })
+		       },
+		       //加载更多(已用自定义指令loadMore代替)
+//		       loadMore:_.debounce( function(e){ //去抖函数
+//		       		let _self = this;
+//		       		if(e.target.scrollTop>360){
+//		       			let num=1;
+//		       			let paramsObj = {
+//		                area:"全部",
+//		                name:"全部",
+//		                pageId:num++,
+//		                source:'全部',
+//		            }
+//		       			this.getResponse(paramsObj)
+//		       		}
+//		       },300)
 	  },
 	  created () {
 	        var paramsObj = {

@@ -167,7 +167,14 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 // 向地图添加标注
                 for( var i = 0;i < points.length; i++){
                     //定义新图标
-                    var myIcon = new BMap.Icon(require("../../../../assets/images/lable.png"), new BMap.Size(44, 44), {
+                    var myIcon1 = new BMap.Icon(require("../../../../assets/images/lable.png"), new BMap.Size(44, 44), {
+                    // 指定定位位置
+                    offset: new BMap.Size(10, 25),
+                    // 当需要从一幅较大的图片中截取某部分作为标注图标时，需要指定大图的偏移位置 
+                    //imageOffset: new BMap.Size(0, 0 - i * 25)  设置图片偏移 
+                    });
+                    
+                    var myIcon2 = new BMap.Icon(require("../../../../assets/images/labler.png"), new BMap.Size(44, 44), {
                     // 指定定位位置
                     offset: new BMap.Size(10, 25),
                     // 当需要从一幅较大的图片中截取某部分作为标注图标时，需要指定大图的偏移位置 
@@ -178,7 +185,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                     // 创建标注对象并添加到地图 
                     //自定义图标
                     if(points[i].isHigher && points[i].isHigher===true){//4A级以上景区
-                    	var marker = new BMap.Marker(point,{icon: myIcon}); 
+                    	var marker = new BMap.Marker(point,{icon: myIcon1}); 
                     	map.addOverlay(marker);
 	                    marker.setAnimation(BMAP_ANIMATION_BOUNCE);
 	                     //添加新图标的监听事件
@@ -188,7 +195,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
 		                    _self.$store.commit('hotMap/TRANSFORMA',1)
 		                })
                     }else{//4A级以下景区
-                    	 var marker = new BMap.Marker(point);
+                    	 var marker = new BMap.Marker(point,{icon: myIcon2});
                     	 map.addOverlay(marker);
 	                     marker.setAnimation(BMAP_ANIMATION_BOUNCE);
 	                     //添加新图标的监听事件
