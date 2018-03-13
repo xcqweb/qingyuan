@@ -177,7 +177,7 @@ export default {
        this.getResponse(paramsObj);
     },
     mounted() {
-          this.$nextTick(echarts_resize(this.idName,this))
+          //this.$nextTick(echarts_resize(this.idName,this))
     }
 }
 </script>
