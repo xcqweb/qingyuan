@@ -32,8 +32,8 @@ export default {
   created(){
   	var paramsObj = {
                 area:"全部",
+                name:"全部",
                 type:"day",
-                city:1
             }
        this.getResponse(paramsObj);
   },
@@ -43,6 +43,7 @@ export default {
   	   updatePlace:function(val){
             var paramsObj = {
                 area:this.updatePlace.place,
+                name:this.updatePlace.turist,
                 type:["day","month","year"][this.upday],
             }
             this.getResponse(paramsObj);
@@ -50,6 +51,7 @@ export default {
         upday:function(val){
             var paramsObj = {
                 area:this.updatePlace.place,
+                name:this.updatePlace.turist,
                 type:["day","month","year"][this.upday],
             }
             this.getResponse(paramsObj);
@@ -60,6 +62,7 @@ export default {
                  let begin = val.begin.join("-")
                  var paramsObj = {
                     area:this.updatePlace.place,
+                    name:this.updatePlace.turist,
                     beginTime:begin,
                     endTime:end
 				}
@@ -69,7 +72,6 @@ export default {
         }
   },
   methods: {
-  	
   	//请求数据
   	getResponse(paramsObj){
             this.$axios.get(API_URL+'/qy/api/v2/view/getDaySexData',{params:paramsObj}).then(r => {
@@ -142,7 +144,7 @@ export default {
 		    symbolRepeat: 'fixed',
 		    symbolMargin: '12%',
 		    symbolClip: true,
-		    symbolSize: 60,
+		    symbolSize: [50,80],
 		    symbolBoundingData: maxData,
 		    data: [{
 		    	value:data1
@@ -177,7 +179,7 @@ export default {
 		    symbolRepeat: 'fixed',
 		    symbolMargin: '12%',
 		        symbol: spirit1,
-		        symbolSize: 60,
+		        symbolSize: [50,80],
 		        symbolBoundingData: maxData,
 		        data: [{
 		        	value:data1
@@ -243,7 +245,7 @@ export default {
 		    symbolRepeat: 'fixed',
 		    symbolMargin: '12%',
 		    symbolClip: true,
-		    symbolSize: 60,
+		    symbolSize: [50,80],
 		    symbolBoundingData: maxData,
 		    data: [{
 		    	value:data2
@@ -281,7 +283,7 @@ export default {
 		    symbolRepeat: 'fixed',
 		    symbolMargin: '12%',
 		        symbol: spirit2,
-		        symbolSize: 60,
+		        symbolSize: [50,80],
 		        symbolBoundingData: maxData,
 		        data: [{
 		        	value:data2
@@ -329,7 +331,7 @@ export default {
     		display: block;
     		width: 72px;
     		height: 96px;
-    		top: 20%;
+    		top: 20.8%;
     		left: -1%;
     		position: absolute;
     		background: url('../../../assets/images/home/menE.png') no-repeat;
@@ -339,7 +341,7 @@ export default {
     		display: block;
     		width: 72px;
     		height: 96px;
-    		bottom: 15%;
+    		bottom: 13.5%;
     		left: -1%;
     		position: absolute;
     		background: url('../../../assets/images/home/womenE.png') no-repeat;

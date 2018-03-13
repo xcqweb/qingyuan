@@ -326,17 +326,14 @@ export default {
     methods: {
   	
   	getResponse(paramsObj){
-			
 			axios.get(API_URL+'/qy/api/v2/view/getPersonSourceData',{params:paramsObj}).then(r => {
-				//console.log(r)
                 if(r.status ===200||r.data.code ===200){
-                    this.rankItems = r.data.data.inCountryCity.splice(0,10);
+                    this.rankItems = r.data.data.inCountryProvince.splice(0,9);
                     this.mapItems = r.data.data.topCity;
                     let scal = 5;
                     //console.log(this.rankItems)
                     for(let i=0; i<this.rankItems.length; ++i){
-						//this.allData[i]=["清远市", [[{name: "清远市"}, {name: this.rankItems[i].city, value: this.rankItems[i].num/scal}]]]
-						this.allData[i]=["清远市", [[{name: "清远市"}, {name: this.rankItems[i].city, value: this.rankItems[i].num}]]]
+						this.allData[i]=["清远市", [[{name: "清远市"}, {name: this.rankItems[i].province, value: this.rankItems[i].num}]]]
 					}
                     this.redomData()
                 }

@@ -118,7 +118,7 @@ export default {
 	                    }
 	            },
 	        },
-	        color:['#f18790', '#75c774', '#5aa7fd','#f1c54b','#c184ff','#6792fb'],
+	        color:['#f18790', '#75c774', '#5aa7fd','#f1c54b','#c184ff','#0055fb','#f18790', '#25c774', '#50a7fd','#a5c00b','#c184ff'],
 	        geoCoordMap:{
 	            "广州市": [113.269994,23.137],
 	            "深圳市": [114.064624,22.549058],
@@ -151,8 +151,8 @@ export default {
     	//console.log(this.update)
     	var paramsObj = {
                 area:"全部",
+                name:"全部",
                 type:"day",
-                city:1
             }
        this.getResponse(paramsObj);
     },
@@ -185,7 +185,23 @@ export default {
 	            var FENGD = [
 	                [{name: '清远市'}, {name:rankItemsMap[5].city , value: rankItemsMap[5].num/scal}],
 	            ];
-	            [['清远市', BJData], ['清远市', GUANG],['清远市', SHData],['清远市', SHENZHEN],['清远市', XIAN],['清远市', FENGD]].forEach(function (item, i) {
+	            
+	            var FENGD2 = [
+	                [{name: '清远市'}, {name:rankItemsMap[6].city , value: rankItemsMap[6].num/scal}],
+	            ];
+	            
+	            var FENGD3 = [
+	                [{name: '清远市'}, {name:rankItemsMap[7].city , value: rankItemsMap[7].num/scal}],
+	            ];
+	            
+	            var FENGD4 = [
+	                [{name: '清远市'}, {name:rankItemsMap[8].city , value: rankItemsMap[8].num/scal}],
+	            ];
+	            
+	            var FENGD5 = [
+	                [{name: '清远市'}, {name:rankItemsMap[9].city , value: rankItemsMap[9].num/scal}],
+	            ];
+	            [['清远市', BJData], ['清远市', GUANG],['清远市', SHData],['清远市', SHENZHEN],['清远市', XIAN],['清远市', FENGD],['清远市', FENGD2],['清远市', FENGD3],['清远市', FENGD4],['清远市', FENGD5]].forEach(function (item, i) {
 	                series.push(
 	                   
 	                    {
@@ -202,11 +218,11 @@ export default {
 	                            //小飞机
 	                            symbol: _self.planePath,
 	                            //移动点大小
-	                            symbolSize: 36
+	                            symbolSize: 26
 	                        },
 	                        lineStyle: {
 	                            normal: {
-	                                color: _self.color[i],
+	                                color: _self.color[3],
 	                                width: 3,
 	                                opacity: 1,
 	                                curveness: 0.2
@@ -228,12 +244,17 @@ export default {
 	                                position: 'right',
 	                                formatter: '{b}',
 	                                textStyle: {
-	                                    fontSize: 20
+	                                    fontSize: 20,
+	                                    fontWeight:'bold',
+	                                    color:'#eee',
+	                                    textShadowColor:"#333",
+	                                    textShadowBlur: 2
 	                                }
 	                            }
 	                        },
+	                        z:100,
 	                        symbolSize: function (val) {
-	                            return val[2]/6;
+	                            return 20;
 	                        },
 	                        tooltip:{
 	                            formatter:function(params){
@@ -242,7 +263,7 @@ export default {
 	                        },
 	                        itemStyle: {
 	                            normal: {
-	                                color: _self.color[i],
+	                                color: _self.color[3],
 	                                fontSize:30
 	                            }
 	                        },

@@ -142,7 +142,7 @@ export default {
                     color: ['#1F6ABB','#3897C5','#A4C5E6'],
                     grid: {
                          show: true,
-                         left: '15%',
+                         left: '8%',
                          top: '30%',
                          right: '10%',
                          bottom: '10%',
@@ -198,7 +198,8 @@ export default {
                         show:true,
                         nameTextStyle:{
                           color:'#ffffff',
-                          fontSize:16
+                          fontSize:16,
+                          padding:[0,0,15,50],
                         },
                         splitLine:{
                           show:false,
@@ -269,22 +270,19 @@ export default {
                 area:"全部",
                 name:"全部",
                 type:"day",
-                city:1
             }
        this.getResponse(paramsObj);
     },
     methods: {
     	
     	getResponse(paramsObj){
-//          this.$axios.get(API_URL+'/qy/api/v2/view/getDayCounData',{params:paramsObj}).then(r => {
-			this.$axios.get(API_URL+'/qy/api/view/getDayCountDetailData',{params:paramsObj}).then(r => {
+			this.$axios.get(API_URL+'/qy/api/v2/view/getDayCountData',{params:paramsObj}).then(r => {
                 if(r.data.code ==="200"||r.data.code ===200){
-                	console.log(r)
+                	//console.log(r)
                     this.rankItems = r.data.data; 
                     this.barData = r.data.data[0].value; 
                     this.twoWeekMock = r.data.data[0].value;
                     
-                    //console.log(this.barData)
                     this.redom7()
                 }
             })

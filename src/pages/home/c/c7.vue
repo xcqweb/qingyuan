@@ -105,7 +105,6 @@ export default {
                 area:"全部",
                 name:"全部",
                 type:"day",
-                city:1
             }
        this.getResponse(paramsObj);
     },
@@ -114,9 +113,11 @@ export default {
     		this.active=data;
     		this.items = this.allData[cityType]
     		if(data===2){
-    			this.$emit('toggleProvince',true)
+    			this.$emit('toggleProvince',1)
+    		}else if(data===1){
+    			this.$emit('toggleProvince',0)
     		}else{
-    			this.$emit('toggleProvince',false)
+    			this.$emit('toggleProvince',2)
     		}
     	},
     	

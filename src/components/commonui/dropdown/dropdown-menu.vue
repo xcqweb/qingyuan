@@ -262,7 +262,7 @@ import Vue from 'vue'
     text-align: center;
     z-index: 9;
     font-size: 18px;
-    line-height: 236%;
+    line-height: 36px;
     white-space: nowrap;
     overflow: hidden;
 }

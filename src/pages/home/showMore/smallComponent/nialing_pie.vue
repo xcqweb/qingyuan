@@ -33,6 +33,7 @@ export default {
         updatePlace:function(val){
             var paramsObj = {
                 area:this.updatePlace.place,
+                name:this.updatePlace.turist,
                 type:["day","month","year"][this.upday],
             }
             this.getResponse(paramsObj);
@@ -40,6 +41,7 @@ export default {
         upday:function(val){
             var paramsObj = {
                 area:this.updatePlace.place,
+                name:this.updatePlace.turist,
                 type:["day","month","year"][this.upday],
             }
             this.getResponse(paramsObj);
@@ -50,6 +52,7 @@ export default {
                  let begin = val.begin.join("-")
                  var paramsObj = {
                     area:this.updatePlace.place,
+                    name:this.updatePlace.turist,
                     beginTime:begin,
                     endTime:end
 				}
@@ -146,7 +149,7 @@ export default {
     	getResponse(paramsObj){
             this.$axios.get(API_URL+'/qy/api/v2/view/getDayAgeData',{params:paramsObj}).then(r => {
                 if(r.data.code ==="200"||r.data.code ===200){
-                  	console.log(r.data)
+                  	//console.log(r.data)
                     this.pieData = r.data.data[0]; 
                     this.redom(this.idName)
                 }
@@ -168,13 +171,13 @@ export default {
      created () {
         var paramsObj = {
                 area:"全部",
+                name:"全部",
                 type:"day",
-                city:1
             }
        this.getResponse(paramsObj);
     },
     mounted() {
-          //this.$nextTick($sheet.echartRL(this.idName,this))
+          this.$nextTick(echarts_resize(this.idName,this))
     }
 }
 </script>

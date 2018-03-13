@@ -67,7 +67,7 @@ export default {
         this.$axios.get(API_URL+'/qy/api/v2/command/selectCommandScenicWarning',{params:paramsObj}).then(r => {
             
             if(r.status ===200){
-                console.log(r.data.data)
+                //console.log(r.data.data)
             	this.dataItem = r.data.data[0];
             	this.redom(this.idName)
             }
@@ -173,13 +173,13 @@ export default {
     position:relative;
     .passagerBtn{
     	position: absolute;
-    	border: 1px solid #ffe400;
+    	border: 2px solid #ffe400;
     	color: #ffe400;
     	border-radius: 6px;
     	width: 102px;
     	height: 30px;
     	line-height: 30px;
-    	top: 34px;
+    	top: 40px;
     	left: 152px;
     }
     span{

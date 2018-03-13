@@ -60,7 +60,6 @@ export default {
         },
         upday:{
         	handler:function(val){
-        		console.log(this.upday)
 	            var paramsObj = {
 	                area:this.updatePlace.place,
 	                name:this.updatePlace.turist,
@@ -286,7 +285,6 @@ export default {
                 area:"全部",
                 name:"全部",
                 type:"day",
-                city:1
             }
        this.getResponse(paramsObj);
    },

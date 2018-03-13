@@ -22,6 +22,8 @@ export default {
 		                pageId:num++,
 		                source:'全部',
 		            }
+		       			
+		       			console.log(vnode)
 		       		vnode.context.getResponse(paramsObj)
         	}
        },300)

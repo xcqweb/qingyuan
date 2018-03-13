@@ -57,6 +57,9 @@ let B15 = resolve => {require.ensure(['@/pages/home/showMore/smallComponent/guon
 //游客来源省内
 let B17 = resolve => {require.ensure(['@/pages/home/showMore/smallComponent/shengnei_map'], () => {resolve(require('@/pages/home/showMore/smallComponent/shengnei_map.vue'))})}
 
+//游客来源全国省
+let B18 = resolve => {require.ensure(['@/pages/home/showMore/smallComponent/quanguosheng_map'], () => {resolve(require('@/pages/home/showMore/smallComponent/quanguosheng_map.vue'))})}
+
 let B16 = resolve => {require.ensure(['@/pages/home/b/b16.vue'], () => {resolve(require('@/pages/home/b/b16.vue'))})}
 let B6S = resolve => {require.ensure(['@/pages/home/showMore/bigComponent/b6s.vue'], () => {resolve(require('@/pages/home/showMore/bigComponent/b6s.vue'))})}
 
@@ -155,6 +158,7 @@ let status =[
     'B15',
     'B16',
     'B17',
+    'B18',
     'B2SS',
     'B4SS',
     'C1',

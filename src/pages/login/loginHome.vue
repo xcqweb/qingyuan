@@ -202,8 +202,8 @@
 				position: absolute;
 				right: 20px;
 				bottom: 20px;
-				width: 108px;
-				height: 86px;
+				width: 128px;
+				height: 103px;
 				background: url(../../assets/images/login/login/titlebom.png);
 			}
 		}

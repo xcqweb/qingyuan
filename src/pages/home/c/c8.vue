@@ -102,7 +102,6 @@ export default {
                 area:"全部",
                 name:"全部",
                 type:"day",
-                city:1
             }
        this.getResponse(paramsObj);
     },

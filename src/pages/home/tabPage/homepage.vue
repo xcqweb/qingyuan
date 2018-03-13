@@ -2,7 +2,7 @@
   <div id="apphome" onselectstart="return false;" style="-moz-user-select:none;">
   	<div class="chose">
 			<listMenu
-						@doubleChose='doubleChoseVal'
+				@doubleChose='doubleChoseVal'
         		@choseDate='choseDateVal'
         		@choseDay='choseDayVal'
 			></listMenu>
@@ -72,11 +72,11 @@ export default {
         mixins:[],
         data() {
             return {
-            		updatePlace:{place:"全部",turist:"全部"},
-            		update:{begin:['2018','02','02'],end:['2018','02','03']},
-            		upday:0,
-            		isprovince:false,
-            	  toggleName:'C8',
+        		updatePlace:{place:"全部",turist:"全部"},
+        		update:{begin:['2018','02','02'],end:['2018','02','03']},
+        		upday:0,
+        		isprovince:0,
+            	toggleName:'C8',
                 placeName:'',
                 headerStatus:false,
                 allComponents: [],
@@ -107,15 +107,22 @@ export default {
                     {name:'A5',title:'客流实时监测'},
                     {name:'C8',title:'游客来源排行'},
                 ],
+                //全国市
                 leftComponents:[
                      {name:'D14',id:'one',index:1,time:1200,show:true,title:``,},
                      {name:'B15',id:'two',index:2,time:1200,show:true,title:``,},
                      {name:'C11',id:'three',index:3,time:1200,show:true,title:``,},
                 ],
-                
+                //省内市
                 leftComponentspro:[
                      {name:'D14',id:'one',index:1,time:1200,show:true,title:``,},
                      {name:'B17',id:'two',index:2,time:1200,show:true,title:``,},
+                     {name:'C11',id:'three',index:3,time:1200,show:true,title:``,},
+                ],
+                //全国省
+                leftComponentscty:[
+                     {name:'D14',id:'one',index:1,time:1200,show:true,title:``,},
+                     {name:'B18',id:'two',index:2,time:1200,show:true,title:``,},
                      {name:'C11',id:'three',index:3,time:1200,show:true,title:``,},
                 ],
                 rightTop:[
@@ -137,10 +144,12 @@ export default {
         },
         computed:{
         	leftComponent(){
-        		if(!this.isprovince){
+        		if(this.isprovince===0){
         			return this.leftComponents
-        		}else{
+        		}else if(this.isprovince===1){
         			return this.leftComponentspro
+        		}else{
+        			return this.leftComponentscty
         		}
         	}
         },
@@ -160,7 +169,7 @@ export default {
 		        	//console.log(val)
 		        	this.upday = val
 		        },
-            
+            //游客来源联动地图
             toggleProvince(data){
             	this.isprovince = data
             },
