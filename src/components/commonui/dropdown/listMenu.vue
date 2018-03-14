@@ -19,19 +19,25 @@
         <!--<div v-if='isDate'>-->
         	<!-- 时间下拉框组件 -->
         	<div class="time">时 间</div>
-            <vDate 
+            <!--<vDate 
              :isBorder='isborder'
-             class='vueDate'
+             
              v-if="vDateStatus"
              @pageDate='getDate'
              :isActive = 'isEndDate' 
-             ></vDate>
+             ></vDate>-->
+             <dateGroup
+             	 class='vueDate'
+             	 :selectList="dateList" 
+             ></dateGroup>
+             
         <!--</div>-->
 	</div>
 </template>
 
 <script>
 	import sleckte from '@/components/commonui/dropdown/dropdown-menu.vue'
+	import dateGroup from '@/components/commonui/dropdown/dateGroup.vue'
 	import vDate from '@/components/commonui/vueDate/app.vue'
 	export default{
 		data(){
@@ -49,6 +55,17 @@
                         '全部',"清城","清新","佛冈","英德","连州","连南","连山","阳山"
                     ]
                 },
+                
+                dateList:{
+                    width:'70%',
+                    left:'6%',
+                    title:'全部',
+                    selectStatus:false,
+                    place:[
+                        '全部',"清城","清新","佛冈","英德","连州","连南","连山","阳山"
+                    ]
+                },
+                
                 updateData:{
                     place:'全部',
                     turist:'全部',
@@ -143,7 +160,8 @@
 		},
 		components:{
 			sleckte,
-			vDate
+			vDate,
+			dateGroup
 		}
 	}
 </script>
