@@ -19,16 +19,17 @@
         <!--<div v-if='isDate'>-->
         	<!-- 时间下拉框组件 -->
         	<div class="time">时 间</div>
-            <!--<vDate 
+            <vDate 
              :isBorder='isborder'
-             
              v-if="vDateStatus"
              @pageDate='getDate'
              :isActive = 'isEndDate' 
-             ></vDate>-->
+             ></vDate>
              <dateGroup
              	 class='vueDate'
-             	 :selectList="dateList" 
+             	 :selectList='dateList'
+             	 :uniqueClassth=true
+             	 @listenAtparent='listenAtparent'
              ></dateGroup>
              
         <!--</div>-->
@@ -58,11 +59,12 @@
                 
                 dateList:{
                     width:'70%',
-                    left:'6%',
+                    right:'6%',
+                    top:'52%',
                     title:'全部',
                     selectStatus:false,
                     place:[
-                        '全部',"清城","清新","佛冈","英德","连州","连南","连山","阳山"
+                        '日',"月","年","自定义"
                     ]
                 },
                 
@@ -92,13 +94,7 @@
                     place:data,
                     turist:"全部"
                 }
-//          }else{
-//              this.updateData ={
-//                  place:data,
-//                  turist:this.updateData.turist
-//              }
                 this.$emit('doubleChose',this.updateData)
-//          }
             this.cityData = this.switch(data)
             
 	        },
@@ -108,6 +104,10 @@
 	                turist:data,
 	            }
 	           this.$emit('doubleChose',this.updateData)
+	        },
+	        
+	        listenAtparent(val){
+	        	alert(val)
 	        },
 	        switch(val){
             const  cityData = {

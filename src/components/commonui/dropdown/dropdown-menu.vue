@@ -20,14 +20,16 @@ selectlist:{
 <template>
     <div class="v-dropdown-menu" 
         @click = 'showselect' 
-        v-bind:style="{ width:selectList.width ,left:selectList.left}" 
+        v-bind:style="{ width:selectList.width ,left:selectList.left,right:selectList.right,top:selectList.top}" 
         >
-        <p @click='triggle' v-on:itemtodo2="sendMsgParent" class="dropdown-menu-p" :class="{unique1:uniqueClasso,unique2:uniqueClasst}">{{selectList.title}}</p>
+        <p @click='triggle' v-on:itemtodo2="sendMsgParent" class="dropdown-menu-p" :class="{unique1:uniqueClasso,unique2:uniqueClasst,unique3:uniqueClassth}">{{selectList.title}}</p>
         <span :class="upDown"></span>
         <transition name="dropdown-fade">
             <dropdownList 
             :list='selectList.place'  
             :status='menueshow' 
+            :uniqueClasso='uniqueClasso'
+            :uniqueClasst='uniqueClasst'
             v-on:itemtodo='outcrement'
             v-if='selectList.selectStatus'>        
             </dropdownList>
@@ -47,7 +49,8 @@ import Vue from 'vue'
         props: [
             'selectList',
             'uniqueClasso',
-            'uniqueClasst'
+            'uniqueClasst',
+            'uniqueClassth'
         ],
         computed:{    
         },
@@ -102,7 +105,7 @@ import Vue from 'vue'
         }
     }
     Vue.component('dropdownList',{
-        props:['list','status'],
+        props:['list','status','uniqueClasso','uniqueClasst'],
         data(){
             return{
                  msg:'jfdksjfk',
@@ -112,7 +115,7 @@ import Vue from 'vue'
         },
         template:`<div class='listdiv'  v-bind:style="{height: listDivHeight+'rem',maxHeight:maxHeight+'rem' }" v-bind:class="{ more: isMore }" v-if='status'>
         <div class="overlay" v-if='status' @click.stop='hidelist'></div>
-        <ul @mousewheel='moreStatus'  v-if='status'><li class="v-dropdown-menu_list" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}
+        <ul @mousewheel='moreStatus'  v-if='status' :class="{'centero':uniqueClasso,'centert':uniqueClasst,}"><li class="v-dropdown-menu_list" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}
     </li></ul></div>`,
         computed:{
             maxHeight:function(){
@@ -197,6 +200,12 @@ import Vue from 'vue'
     box-shadow: 1px 0 30px  rgba(1,1,13,0.4);
     border: 1px solid #1b44ba;
     background-color: #193583;
+     .centero{
+    	width: 161% !important;
+    }
+    .centert{
+    	width: 142% !important;
+    }
     &.more{
             &:after{
                 content: "";
@@ -275,6 +284,7 @@ import Vue from 'vue'
 	width: 256px;
 	line-height: 44px;
 }
+
 
 .dropdown-fade-enter-active {
   transition: all .1s linear;

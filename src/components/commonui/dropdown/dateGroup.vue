@@ -22,12 +22,13 @@ selectlist:{
         @click = 'showselect' 
         v-bind:style="{ width:selectList.width ,left:selectList.left,top:selectList.top}" 
         >
-        <p @click='triggle' v-on:itemtodo2="sendMsgParent" class="dropdown-menu-p">{{selectList.title}}</p>
+        <p @click='triggle' :class="{unique2:uniqueClasso}" v-on:itemtodo2="sendMsgParent" class="dropdown-menu-p">{{selectList.title}}</p>
         <span :class="upDown"></span>
         <transition name="dropdown-fade">
             <dropdownList 
             :list='selectList.place'  
             :status='menueshow' 
+            :uniqueClassth='uniqueClassth'
             v-on:itemtodo='outcrement'
             v-if='selectList.selectStatus'>        
             </dropdownList>
@@ -46,6 +47,9 @@ import Vue from 'vue'
         },
         props: [
             'selectList',
+            'uniqueClasso',
+            'uniqueClasst',
+            'uniqueClassth'
         ],
         computed:{    
         },
@@ -100,7 +104,7 @@ import Vue from 'vue'
         }
     }
     Vue.component('dropdownList',{
-        props:['list','status'],
+        props:['list','status','uniqueClasso','uniqueClasst','uniqueClassth'],
         data(){
             return{
                  msg:'jfdksjfk',
@@ -110,7 +114,7 @@ import Vue from 'vue'
         },
         template:`<div class='listdiv'  v-bind:style="{height: listDivHeight+'rem',maxHeight:maxHeight+'rem' }" v-bind:class="{ more: isMore }" v-if='status'>
         <div class="overlay" v-if='status' @click.stop='hidelist'></div>
-        <ul @mousewheel='moreStatus'  v-if='status'><li class="v-dropdown-menu_list" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}
+        <ul @mousewheel='moreStatus'  v-if='status' :class="{'centerth':uniqueClassth}"><li class="v-dropdown-menu_list" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}
     </li></ul></div>`,
         computed:{
             maxHeight:function(){
@@ -151,10 +155,10 @@ import Vue from 'vue'
         },
         mounted(){
             
-            if(this.list.length>4){
+            if(this.list.length>6){
                 this.isMore =  true
             }else{
-                this.isMore = false
+                this.isMore = true
             }
             
         }
@@ -195,8 +199,11 @@ import Vue from 'vue'
     box-shadow: 1px 0 30px  rgba(1,1,13,0.4);
     border: 1px solid #1b44ba;
     background-color: #193583;
+    .centerth{
+    	width: 137% !important;
+    }
     &.more{
-            &:after{
+            /*&:after{
                 content: "";
                 width:0;
                 height: 0;
@@ -208,7 +215,7 @@ import Vue from 'vue'
                 border-left: solid 10px transparent;
                 border-top:solid 5px white;
                 border-right: solid 10px transparent;
-            }
+            }*/
             li:nth-of-type(6){
                 margin-top: 1.8rem;
             }
@@ -238,6 +245,7 @@ import Vue from 'vue'
             }
         }
     }
+    
 }
 
 .v-dropdown-menu_list {
@@ -260,7 +268,7 @@ import Vue from 'vue'
     text-align: center;
     z-index: 9;
     font-size: 18px;
-    line-height: 36px;
+    line-height: 44px;
     white-space: nowrap;
     overflow: hidden;
 }
