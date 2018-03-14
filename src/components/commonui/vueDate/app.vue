@@ -233,7 +233,7 @@ export default {
 /*弹出框*/
 .calendar-dialog{
     z-index:999;
-    width: 100vw;
+    width:100vw;
     height: 100vh;
     transform: translate(-50%,-50%);
     position: absolute;
@@ -252,7 +252,7 @@ export default {
 .calendar-dialog-body{
     background: #fff;
     position: absolute;
-    right : 40%;
+    right : 29.8%;
     top:55%;
     transform: translate(0,0);
     padding:20px;

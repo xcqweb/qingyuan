@@ -18,7 +18,7 @@
         <!--</div>-->
         <div v-if='isDate'>
         	<!-- 时间下拉框组件 -->
-        	<div class="time">时间</div>
+        	<div class="time">时 间</div>
         	<ul class="dateChose"  v-if="dateChoseList">
                 <li 
                 v-for="(item,index) in dateChoseList" 

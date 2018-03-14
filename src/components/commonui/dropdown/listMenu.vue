@@ -1,6 +1,6 @@
 <template>
 	<div id="box">
-        <div class="jqlable">景区</div>
+        <div class="jqlable">景 区</div>
         <sleckte 
         class='science'
         :uniqueClasst=true
@@ -8,7 +8,7 @@
         v-on:listenAtparent="catchmsg2"
         ></sleckte>
         
-        <div class="qylable">区域</div>
+        <div class="qylable">区/县</div>
         <sleckte 
         class="area"
         :uniqueClasso=true
@@ -18,7 +18,7 @@
         
         <!--<div v-if='isDate'>-->
         	<!-- 时间下拉框组件 -->
-        	<div class="time">时间</div>
+        	<div class="time">时 间</div>
             <vDate 
              :isBorder='isborder'
              class='vueDate'

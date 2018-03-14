@@ -76,7 +76,7 @@ export default {
         for (var i = 0; i < this.items.length; i++) {
             this.items[i].status='chose'
         }
-        switch(location.hash){
+        switch(window.location.hash){
             case '#/' :
             this.items[0].status = 'unchose'
             break; 
@@ -86,7 +86,7 @@ export default {
             case '#/command' :
             this.items[1].status = 'unchose'
             break;
-            case '#/portrait' :
+            case '#/Portrait' :
             this.items[2].status = 'unchose'
             break;
             case '#/option' :
@@ -114,7 +114,7 @@ export default {
   	//console.log(location.hash)
     let _self= this
     window.addEventListener('hashchange', function(e) {
-        _self.hash=location.hash;
+        _self.hash=window.location.hash;
     }, false);
     this.keepStatus()
   }

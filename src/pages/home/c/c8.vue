@@ -32,7 +32,7 @@
                 {{item.name}}
             </div>
             <div class="cell1">
-                {{item.num}}
+                {{item.sum}}
             </div>
             
             <div class="cell1">

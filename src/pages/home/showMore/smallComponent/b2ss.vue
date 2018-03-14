@@ -161,10 +161,10 @@ export default {
         text-align: center;
         color: #fff;
         font-size: 24px;
-        width:216px;
+        width:250px;
         height: 1.2rem;
         top:200px;
-        left: 454px;
+        left: 434px;
         position: absolute;
     }
 .b2{

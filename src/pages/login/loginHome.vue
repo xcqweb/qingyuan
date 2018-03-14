@@ -32,8 +32,8 @@
 				isSave:true,
 				logintext:'登录',
 				loginForm:{
-					username:'admin',
-					password:'123456'
+					username:'',
+					password:''
 				}
 				
 			}
@@ -57,6 +57,8 @@
 			//登录
 			login(){
 				
+				location.href = API_URL+'/qylv3.0/'
+				
 				this.chooseSave();
 				
 				
@@ -66,15 +68,15 @@
 				paramsObj.append('timestamp',timestamp)
 				
 				
-	            this.$axios.post(API_URL+'/login',{params:paramsObj}).then(r => {
-                console.log(r)
-                if(r.data.code =="200"||r.data.code ===200){
-                    this.$router.push({ path: API_URL });
-                }else{
-                    alert("登录失败")
-                    this.$router.push({ path: '/login' })
-                }
-            })
+//	            this.$axios.post(API_URL+'/login',{params:paramsObj}).then(r => {
+//              console.log(r)
+//              if(r.data.code =="200"||r.data.code ===200){
+//                  this.$router.push({ path: API_URL });
+//              }else{
+//                  alert("登录失败")
+//                  this.$router.push({ path: '/login' })
+//              }
+//          })
 	            
 			}
 		}

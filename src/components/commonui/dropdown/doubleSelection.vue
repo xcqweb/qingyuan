@@ -36,13 +36,13 @@
 </style>
 <template>
         <div class="tabList">
-                <div class="qylable">区域：</div>
+                <div class="qylable">区 域：</div>
                 <sleckte 
                 :selectList="qyselectlist" 
                 v-on:listenAtparent="catchmsg1" 
                 class="oneSelection"
                 ></sleckte>
-                <div class="jqlable">景区：</div>
+                <div class="jqlable">景 区：</div>
                 <sleckte 
                 :selectList="jqselectlist" 
                 v-on:listenAtparent="catchmsg2" 

@@ -288,8 +288,8 @@ export default {
 	            var res = [];
 	            for (var i = 0; i < data.length; i++) {
 	                var dataItem = data[i];
-	                var fromCoord = this.geoCoordMap[dataItem[0].name];
-	                var toCoord = this.geoCoordMap[dataItem[1].name];
+	                var fromCoord = this.geoCoordMap[dataItem[1].name];
+	                var toCoord = this.geoCoordMap[dataItem[0].name];
 	                if (fromCoord && toCoord) {
 	                    res.push({
 	                        fromName: dataItem[0].name,

@@ -34,9 +34,14 @@ import optionProps from '@/common/js/mixin/optionProps.js'
 			toggle(data, bol){
 				this.currentModule = data;
 				this.active = bol;
+				if(data==='C7'){
+					this.$emit('toggleProvince',0)
+				}
 			},
 			toggleProvince(data){
 				this.$emit('toggleProvince',data)
+				
+				
 			}
 		},
 		components:{

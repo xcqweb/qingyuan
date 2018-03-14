@@ -43,6 +43,7 @@
 			updatePlace:function(val){
 				var paramsObj = {
 	                area:val.place,
+	                name:val.turist,
 	                pageId:1,
 	                source:'全部',
 	            }
@@ -52,6 +53,7 @@
 			update:function(val){
 				var paramsObj = {
 	                area:val.place,
+	                name:val.turist,
 	                pageId:1,
 	                source:'全部',
 	                beginTime:val.begin.join('-'),
@@ -93,6 +95,7 @@
 	                area:"全部",
 	                name:"全部",
 	                pageId:1,
+	                type:'day',
 	                source:'全部',
 	            }
 	       this.getResponse(paramsObj);

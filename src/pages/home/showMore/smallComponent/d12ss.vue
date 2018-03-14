@@ -256,7 +256,7 @@ export default {
                      axisLabel: {
                          textStyle: {
                              color: '#ffffff',//x坐标轴标签字体颜色
-                             fontSize: 16,
+                             fontSize: 21,
                          },
                     },
                     axisTick:{
@@ -293,7 +293,7 @@ export default {
                         showMinLabel:true,
                         textStyle:{
                         color:'#ffffff',
-                        fontSize: 16,
+                        fontSize: 21,
                       }
                     },
                     axisLine: { //坐标轴轴线相关设置。就是数学上的y轴
@@ -351,7 +351,7 @@ export default {
                         position:'top',
                         textStyle:{
                             color:'#2CC9E2',
-                            fontSize:20
+                            fontSize:22
                         }
                     }
                 },
