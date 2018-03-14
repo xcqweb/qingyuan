@@ -18,19 +18,27 @@
         
         <!--<div v-if='isDate'>-->
         	<!-- 时间下拉框组件 -->
-        	<div class="time">时 间</div>
-            <vDate 
-             :isBorder='isborder'
-             v-if="vDateStatus"
-             @pageDate='getDate'
-             :isActive = 'isEndDate' 
-             ></vDate>
-             <dateGroup
-             	 class='vueDate'
-             	 :selectList='dateList'
-             	 :uniqueClassth=true
-             	 @listenAtparent='listenAtparent'
-             ></dateGroup>
+        	<div v-show="!vDateStatus">
+        		<div class="time">时 间</div>
+	            <vDate 
+	             class='vueDate'
+	             :isBorder='isborder'
+	             @pageDate='getDate'
+	             :isActive = 'isEndDate'
+	             ></vDate>
+        	</div>
+        	
+             <div v-show="vDateStatus">
+             	<div class="time">时 间</div>
+             	 <dateGroup
+	             	 class='vueDate'
+	             	 :selectList='dateList'
+	             	 :uniqueClassth=true
+	             	 :vDateStatus='!vDateStatus'
+	             	 @listenAtparent='listenAtparent'
+	             ></dateGroup>
+             </div>
+            
              
         <!--</div>-->
 	</div>
@@ -61,7 +69,7 @@
                     width:'70%',
                     right:'6%',
                     top:'52%',
-                    title:'全部',
+                    title:'日',
                     selectStatus:false,
                     place:[
                         '日',"月","年","自定义"
@@ -87,15 +95,25 @@
 	                begin:value.begin,
 	            }
 	            this.$emit('choseDate',this.timeDate);
+	            this.vDateStatus = true
+	            this.dateList = {
+                    width:'70%',
+                    right:'6%',
+                    top:'52%',
+                    title:'日',
+                    selectStatus:false,
+                    place:[
+                        '日',"月","年","自定义"
+                    ]
+                }
 	        },
 			catchmsg1(data){
-//          if(data === "全部"){
                 this.updateData ={
                     place:data,
                     turist:"全部"
                 }
                 this.$emit('doubleChose',this.updateData)
-            this.cityData = this.switch(data)
+            	this.cityData = this.switch(data)
             
 	        },
 	        catchmsg2(data){
@@ -107,7 +125,24 @@
 	        },
 	        
 	        listenAtparent(val){
-	        	alert(val)
+	        	if(val==='自定义'){
+	        		this.vDateStatus = false
+	        	}else{
+	        		this.vDateStatus = true
+	        		let re=0 
+	        		switch(val){
+	        			case '日':
+	        			re = 0;
+	        			break;
+	        			case '月':
+	        			re = 1;
+	        			break;
+	        			case '年':
+	        			re = 2;
+	        			break;
+	        		}
+	        		this.$emit('choseDay',re);
+	        	}
 	        },
 	        switch(val){
             const  cityData = {

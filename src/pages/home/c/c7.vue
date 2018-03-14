@@ -63,6 +63,7 @@ export default {
     data(){
         return{
         active:1,
+        cityTypes:'inCountryCity',
         msg:'Hello Vue 来自App.vue',
         allData:[],
         items:[],
@@ -111,6 +112,7 @@ export default {
     methods:{
     	toggle(data,cityType){
     		this.active=data;
+    		this.cityTypes = cityType;
     		this.items = this.allData[cityType]
     		if(data===2){
     			this.$emit('toggleProvince',1)
@@ -127,7 +129,7 @@ export default {
 	                if(r.status ===200||r.data.code ===200){
 	                	let reData = r.data.data;
 	                	this.allData = reData;
-	                	this.items = reData.inCountryCity;
+	                	this.items = reData[this.cityTypes];
 	                }
 	            })
 				

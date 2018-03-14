@@ -104,7 +104,7 @@ import Vue from 'vue'
         }
     }
     Vue.component('dropdownList',{
-        props:['list','status','uniqueClasso','uniqueClasst','uniqueClassth'],
+        props:['list','status','uniqueClassth'],
         data(){
             return{
                  msg:'jfdksjfk',

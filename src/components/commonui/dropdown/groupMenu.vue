@@ -30,6 +30,7 @@
              :isBorder=true
              class='vueDate'
              v-if="vDateStatus"
+             :vDateStatus='vDateStatus'
              @pageDate='getDate'
              :isActive = 'isEndDate' 
              ></vDate>
@@ -88,6 +89,11 @@
 	                begin:value.begin,
 	            }
 	            this.$emit('choseDate',this.timeDate);
+	            this.dateChoseList=[
+	                {context:'日',class:''},
+	                {context:'月',class:''},
+	                {context:'年',class:''},
+	            ]
 	        },
 	         dateClick(indexClick){
 	            this.dateChoseList.forEach((item,index)=>{

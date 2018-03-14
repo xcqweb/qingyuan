@@ -25,7 +25,7 @@
     </transition>
 
     <transition name="fade">
-    <div class="calendar-dialog" v-bind:class="{ choses: !isActive }" v-if="calendar4.show">
+    <div class="calendar-dialog" v-bind:class="{ choses: !isActive }" v-if="isShow">
         <div class="calendar-dialog-mask" @click="closeByDialog"></div>
         
         <div class="calendar-dialog-body">
@@ -48,7 +48,8 @@ export default {
     },
     props:{
         isActive:Boolean,
-        isBorder:Boolean
+        isBorder:Boolean,
+        vDateStatus:Boolean
     },
     data(){
         return {
@@ -102,10 +103,17 @@ export default {
             },
         }
     },
+    created(){
+    },
     computed: {
         calendar1:function(){
             calendar.value= [new Date().getFullYear(),new Date().getMonth()+1,new Date().getDate()]
             return calendar
+        },
+        isShow(){
+        	let val = !this.vDateStatus||this.calendar4.show
+        	return  val
+            
         }
     },
     methods:{
@@ -124,9 +132,14 @@ export default {
         },
         openByDialog(){
             this.calendar4.show=true;
+//          if(this.vDateStatus){
+//          	this.vDateStatus = true
+//          }
+            
         },
         closeByDialog(){
             this.calendar4.show=false;
+             //this.vDateStatus = false
         }
     }
 }
