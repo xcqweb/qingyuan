@@ -203,22 +203,7 @@ import Vue from 'vue'
     	width: 137% !important;
     }
     &.more{
-            /*&:after{
-                content: "";
-                width:0;
-                height: 0;
-                position: absolute;
-                bottom: 5px;
-                left: 50%;
-                z-index: 450;
-                transform: translate(-50%,0);
-                border-left: solid 10px transparent;
-                border-top:solid 5px white;
-                border-right: solid 10px transparent;
-            }*/
-            /*li:nth-of-type(6){
-                margin-top: 1.8rem;
-            }*/
+           
         }
     ul{
         position: absolute;
