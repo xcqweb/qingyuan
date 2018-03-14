@@ -112,7 +112,7 @@ import Vue from 'vue'
                  isMore:true,
             }
         },
-        template:`<div class='listdiv'  v-bind:style="{height: listDivHeight+'rem',maxHeight:maxHeight+'rem' }" v-bind:class="{ more: isMore }" v-if='status'>
+        template:`<div class='listdiv'  v-bind:style="{height: listDivHeight+'rem',maxHeight:maxHeight+'rem' }" v-bind:class="{ more: false }" v-if='status'>
         <div class="overlay" v-if='status' @click.stop='hidelist'></div>
         <ul @mousewheel='moreStatus'  v-if='status' :class="{'centerth':uniqueClassth}"><li class="v-dropdown-menu_list" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}
     </li></ul></div>`,
