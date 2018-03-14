@@ -164,6 +164,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
             addIcon(map){
             	let _self = this;
                 var points = traffic_points;
+                console.log(points)
                 // 向地图添加标注
                 for( var i = 0;i < points.length; i++){
                     //定义新图标

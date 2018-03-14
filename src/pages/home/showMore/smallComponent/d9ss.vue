@@ -2,13 +2,13 @@
 .c8{
     height:100%;
     width:100%;
-    color: white;
+    color: #fff;
+    overflow: hidden;
     font{
         font-size: 12px;
     }
 }
 ul{
-    margin-top:98px;
     height:80%;
     width:100%;
     overflow-y: scroll;
@@ -27,11 +27,28 @@ ul{
             visibility: hidden;
           }
     }
-    .header{
-        height: 15%;
-        background-color:#1f3f9d;
+}
+
+.header{
+	margin-top:98px;
+	height: 12%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+    background-color:#1f3f9d;
+    text-align: center !important;
+    .cell1{
+        flex: 1.8;
+    }
+    .cell2{
+         flex: 5;
+    }
+    .cell3{
+        flex: 2;
     }
 }
+
 .cell1{
     flex: 2;
     text-align: center;
@@ -87,32 +104,14 @@ background-size: 100% 100%;
 width: 8px;
   height: 12.8px;
 }
-li:nth-of-type(1){
-    text-align: center !important;
-    .cell1{
-        width:15%;
-    }
-    .cell2{
-        width:100%;
-    }
-    .cell3{
-        width:15%;
-    }
-}
-li:nth-of-type(2){
-    box-shadow:3px 4px 20px #191970;
-    &:hover{
-                background-color:#3c69bd;
-            }
-}
+
 li:nth-of-type(2n){
-    box-shadow:3px 4px 20px #191970;
+    background-color: #1F3F9D;
     &:hover{
                 background-color:#3c69bd;
             }
 }
-li:nth-of-type(2n+3){
-    box-shadow:3px 4px 20px #191970;
+li:nth-of-type(2n+1){
     &:hover{
                 background-color:#3c69bd;
             }
@@ -166,8 +165,8 @@ li:nth-of-type(2n+3){
 </style>
 <template>
   <div class="c8">
-    <ul>
-        <li class="header">
+    
+        <div class="header">
             <div class="cell1">
                 排名
             </div>
@@ -177,7 +176,8 @@ li:nth-of-type(2n+3){
             <div class="cell3">
                 人气<font>(人)</font>
             </div>
-        </li>
+        </div>
+    <ul>
         <li v-for='(item,index) in rankItems'>
             <div class="cell1">
                 {{index+1}}

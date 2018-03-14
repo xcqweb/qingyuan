@@ -219,6 +219,7 @@ export default {
                 grid: {
                      show: true,
                      bottom:'10%',
+                     right: 0,
                      borderWidth: 0,
                      backgroundColor: 'rgba(0,0,0,0)',
                  },
@@ -332,7 +333,7 @@ export default {
 		                    offset: 0,
 		                    color: 'rgba(0, 136, 212, 0.6)'
 		                }, {
-		                    offset: 0.42,
+		                    offset: 0.52,
 		                    color: 'rgba(0, 136, 212, 0.01)'
 		                }], false),
 		                shadowColor: '#5ee4ff',

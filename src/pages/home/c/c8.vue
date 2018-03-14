@@ -3,8 +3,8 @@
   	<div class="btn">
   		景区排行
   	</div>
-    <ul>
-        <li for='item in items'>
+    
+        <div class="title">
             <div class="cell1">
                 	排序	
             </div>
@@ -23,7 +23,8 @@
             <div class="cell1">
              	  环比
             </div>
-        </li>
+        </div>
+      <ul>
         <li v-for='(item,index) in items'>
             <div class="cell1">
                 {{index+1}}
@@ -138,6 +139,14 @@ export default {
     	padding: 28px 0px;
     	text-align: center;
     }
+    
+    .title{
+    	height:80px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background-color: #1f3f9d;
+    }
 }
 ul{
     height:90%;
@@ -245,9 +254,9 @@ li:nth-of-type(1){
     }
 }
 li:nth-of-type(2n){
-    background-color:#163387;
+    background-color:#1f3f9d;
 }
 li:nth-of-type(2n+1){
-    background-color:#1f3f9d;
+    background-color:#163387;
 }
 </style>

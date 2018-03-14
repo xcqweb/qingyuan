@@ -1,6 +1,6 @@
 <template>
 	<div class="d15">
-		<div class="comment" v-loadMore>
+		<div class="comment">
 			<ul class="title">
 				<li>序号</li>
 				<li>景区名称</li>
@@ -9,7 +9,7 @@
 				<li>用户昵称</li>
 				<li>评论时间</li>
 			</ul>
-			<div class="con">
+			<div class="con" v-loadMore>
 				<ul v-for="(item,index) in items">
 					<li><span>{{index+1}}</span></li>
 					<li><span>{{item.name}}</span></li>
@@ -115,8 +115,6 @@
 			border-radius: 6px;
 			color: #fff;
 			font-size: 20px;
-			cursor: all-scroll;
-			overflow-y: scroll;
 			li{
 				border-right: 2px solid #345bfa;
 			}
@@ -152,6 +150,9 @@
 				}
 			}
 			.con{
+				height: (823-66)/823*100%;
+				cursor: all-scroll;
+				overflow-y: scroll;
 				ul:nth-child(2n+1){
 					background-color: #1C357E;
 				}
@@ -240,17 +241,20 @@
 			}
 		}
 		
-		.comment::-webkit-scrollbar{
+		
+	}
+	
+			.con::-webkit-scrollbar{
 			    width: 0px;
 			    height: 2rem;
 			}
 			/*定义滚动条的轨道，内阴影及圆角*/
-			.comment::-webkit-scrollbar-track{
+			.con::-webkit-scrollbar-track{
 			    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.9);
 			    border-radius: 10px;
 			}
 			/*定义滑块，内阴影及圆角*/
-			.comment::-webkit-scrollbar-thumb{
+			.con::-webkit-scrollbar-thumb{
 			    width: 10px;
 			    height: 5rem;
 			    border-radius: 10px;
@@ -258,17 +262,17 @@
 			    background-color: #0F2059;
 			}
 			
-			.comment::scrollbar{
+			.con::scrollbar{
 			    width: 10px;
 			    height: 3rem;
 			}
 			/*定义滚动条的轨道，内阴影及圆角*/
-			.comment::scrollbar-track{
+			.con::scrollbar-track{
 			    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
 			    border-radius: 10px;
 			}
 			/*ie*/
-			.comment{
+			.con{
 				scrollbar-face-color: #0F2059;
 				scrollbar-highlight-color: ;
 				scrollbar-shadow-color: #02275A;
@@ -276,13 +280,11 @@
 			}
 			 
 			/*定义滑块，内阴影及圆角*/
-			.comment::scrollbar-thumb{
+			.con::scrollbar-thumb{
 			    width: 10px;
 			    height: 10rem;
 			    border-radius: 10px;
 			    -webkit-box-shadow: inset 0 0 6px #02275A;
 			    background-color: #0F2059;
 			}
-		
-	}
 </style>

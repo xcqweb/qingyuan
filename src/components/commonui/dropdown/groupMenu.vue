@@ -107,18 +107,11 @@
 	            this.$emit('choseDay',indexClick);
 	        },
 			catchmsg1(data){
-//          if(data === "全部"){
                 this.updateData ={
                     place:data,
                     turist:"全部"
                 }
-//          }else{
-//              this.updateData ={
-//                  place:data,
-//                  turist:this.updateData.turist
-//              }
                 this.$emit('doubleChose',this.updateData)
-//          }
             this.cityData = this.switch(data)
             
 	        },
@@ -181,7 +174,6 @@
 	        	let val = this.$store.getters['hotMap/getState']
 	        	return val
 	        }
-	        
 		},
 		components:{
 			sleckte,

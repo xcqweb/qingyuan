@@ -94,8 +94,10 @@
 	                end:value.end,
 	                begin:value.begin,
 	            }
+	            //将选择的时间传递给父组件
 	            this.$emit('choseDate',this.timeDate);
 	            this.vDateStatus = true
+	            //选择完成自定义日期时 初始化
 	            this.dateList = {
                     width:'70%',
                     right:'6%',
@@ -107,6 +109,7 @@
                     ]
                 }
 	        },
+	        //获取区域数据并传递给父组件
 			catchmsg1(data){
                 this.updateData ={
                     place:data,
@@ -274,6 +277,10 @@
 	    z-index: 100;
 	    border: 3px solid @borderColor;
 	    border-radius: 0 10px 10px 0;
+	    
+	    .dropdown-menu-p{
+	    	background-color: #FF0000;
+	    }
 	}
 }
 </style>

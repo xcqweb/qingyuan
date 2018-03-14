@@ -5,8 +5,8 @@
   		<div :class="{'active':active===2}" @click="toggle(2,'inProvinceCity')">省内(市)</div>
   		<div :class="{'active':active===3}" @click="toggle(3,'inCountryProvince')">全国(省)</div>
   	</div>
-    <ul>
-        <li for='item in items'>
+    
+        <div class="title">
             <div class="cell1">
                 	排序	
             </div>
@@ -25,7 +25,8 @@
             <div class="cell1">
              	  环比
             </div>
-        </li>
+        </div>
+      <ul>
         <li v-for='(item,index) in items'>
             <div class="cell1">
                 {{index+1}}
@@ -132,7 +133,6 @@ export default {
 	                	this.items = reData[this.cityTypes];
 	                }
 	            })
-				
 	  	},
     },
     computed: { 
@@ -175,12 +175,25 @@ export default {
     		border: none;
     	}
     }
+    
+    .title{
+    	background-color:#1f3f9d;
+    	height:80px;
+    	display:flex;
+    	font-weight: bold;
+    	font-size: 20px;
+      align-items:center;
+      justify-content:center;
+    }
 }
+
+
 ul{
     height:90%;
     width:100%;
     overflow-y: scroll;
     cursor: all-scroll;
+    
     li{
         height:89/798*100%;
         display:flex;
@@ -261,12 +274,12 @@ width: 8px;
 }
 li:nth-of-type(1){
     text-align: center !important;
-    font-size: 20px;
+    font-size: 18px;
 }
 li:nth-of-type(2n){
-    background-color:#163387;
+    background-color:#1f3f9d;
 }
 li:nth-of-type(2n+1){
-    background-color:#1f3f9d;
+    background-color:#163387;
 }
 </style>

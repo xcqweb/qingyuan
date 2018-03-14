@@ -5,12 +5,14 @@
         :class='topItem.id' 
         class="item">
             <div v-if='topItem.show'>
+            	<keep-alive>
                 <componet 
                 :is='topItem.name'  
                 :key="topItem.id" 
                 :updatePlace='updatePlace'
                 :update='update'
                 ></componet>    
+              </keep-alive>
             </div>
         </div>
     </div>

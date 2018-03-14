@@ -166,7 +166,7 @@ import Vue from 'vue'
     }
 )
 </script>
-<style lang="less" >
+<style lang="less" scoped="scoped">
 .overlay {
     position: fixed;
     width: 400vw;

@@ -213,7 +213,7 @@ export default {
 	                        zlevel: 1,
 	                        symbol: ['arrow', 'none'],
 	                        //箭头大小
-	                        symbolSize: 20,
+	                        symbolSize: 0,
 	                        effect: {
 	                            show: true,
 	                            period: 6,
@@ -295,8 +295,8 @@ export default {
 	                var toCoord = this.geoCoordMap[dataItem[0].name];
 	                if (fromCoord && toCoord) {
 	                    res.push({
-	                        fromName: dataItem[0].name,
-	                        toName: dataItem[1].name,
+	                        fromName: dataItem[1].name,
+	                        toName: dataItem[0].name,
 	                        coords: [fromCoord, toCoord]
 	                    });
 	                }

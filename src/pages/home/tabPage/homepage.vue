@@ -166,7 +166,7 @@ export default {
 		        },
 		        //获取选择年,月,日
 		        choseDayVal(val){
-		        	console.log(val)
+		        	//console.log(val)
 		        	this.upday = val
 		        },
             //游客来源联动地图

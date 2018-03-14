@@ -1,6 +1,7 @@
 <template>
 	<div class="c11">
 		<div class="con">
+			<keep-alive>
 			<componet
 			  :is='currentModule'
 			  :updatePlace='updatePlace'
@@ -8,6 +9,7 @@
 			  :upday='upday'
 			  @toggleProvince='toggleProvince'
 			></componet> 
+			</keep-alive>
 		</div>
 		<!--切换-->
 		<div class="toast">
@@ -34,14 +36,12 @@ import optionProps from '@/common/js/mixin/optionProps.js'
 			toggle(data, bol){
 				this.currentModule = data;
 				this.active = bol;
-				if(data==='C7'){
-					this.$emit('toggleProvince',0)
-				}
+//				if(data==='C7'){
+//					this.$emit('toggleProvince',0)
+//				}
 			},
 			toggleProvince(data){
 				this.$emit('toggleProvince',data)
-				
-				
 			}
 		},
 		components:{
