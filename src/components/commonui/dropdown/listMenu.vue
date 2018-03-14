@@ -21,17 +21,24 @@
         	<div class="time">时 间</div>
             <vDate 
              :isBorder='isborder'
-             class='vueDate'
              v-if="vDateStatus"
              @pageDate='getDate'
              :isActive = 'isEndDate' 
              ></vDate>
+             <dateGroup
+             	 class='vueDate'
+             	 :selectList='dateList'
+             	 :uniqueClassth=true
+             	 @listenAtparent='listenAtparent'
+             ></dateGroup>
+             
         <!--</div>-->
 	</div>
 </template>
 
 <script>
 	import sleckte from '@/components/commonui/dropdown/dropdown-menu.vue'
+	import dateGroup from '@/components/commonui/dropdown/dateGroup.vue'
 	import vDate from '@/components/commonui/vueDate/app.vue'
 	export default{
 		data(){
@@ -49,6 +56,18 @@
                         '全部',"清城","清新","佛冈","英德","连州","连南","连山","阳山"
                     ]
                 },
+                
+                dateList:{
+                    width:'70%',
+                    right:'6%',
+                    top:'52%',
+                    title:'全部',
+                    selectStatus:false,
+                    place:[
+                        '日',"月","年","自定义"
+                    ]
+                },
+                
                 updateData:{
                     place:'全部',
                     turist:'全部',
@@ -75,13 +94,7 @@
                     place:data,
                     turist:"全部"
                 }
-//          }else{
-//              this.updateData ={
-//                  place:data,
-//                  turist:this.updateData.turist
-//              }
                 this.$emit('doubleChose',this.updateData)
-//          }
             this.cityData = this.switch(data)
             
 	        },
@@ -91,6 +104,10 @@
 	                turist:data,
 	            }
 	           this.$emit('doubleChose',this.updateData)
+	        },
+	        
+	        listenAtparent(val){
+	        	alert(val)
 	        },
 	        switch(val){
             const  cityData = {
@@ -143,7 +160,8 @@
 		},
 		components:{
 			sleckte,
-			vDate
+			vDate,
+			dateGroup
 		}
 	}
 </script>
