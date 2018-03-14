@@ -216,9 +216,9 @@ import Vue from 'vue'
                 border-top:solid 5px white;
                 border-right: solid 10px transparent;
             }*/
-            li:nth-of-type(6){
+            /*li:nth-of-type(6){
                 margin-top: 1.8rem;
-            }
+            }*/
         }
     ul{
         position: absolute;
