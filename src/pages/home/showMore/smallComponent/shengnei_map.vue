@@ -92,7 +92,10 @@ export default {
 	        option : {
 	            backgroundColor: 'rgba(0,0,0,0)',
 	            tooltip: {
-	                trigger: 'item'
+	                trigger: 'item',
+	                formatter:function(params){
+	                	//console.log(params)
+	                }
 	            },
 	            geo: {
 	                map: 'guangdong',
@@ -258,7 +261,7 @@ export default {
 	                        },
 	                        tooltip:{
 	                            formatter:function(params){
-	                                return _self.$Rw.string_until.addPoint((params.value[2]*scal).toFixed(2))+'人'
+	                                return _self.$Rw.string_until.addPoint((params.value[2]*scal).toFixed(0))+'人'
 	                            }
 	                        },
 	                        itemStyle: {
