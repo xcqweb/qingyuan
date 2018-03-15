@@ -1,9 +1,9 @@
 <template>
   <div class="vtopThree">
     <ul>
-        <li v-for="item in items">
+        <li v-for="(item,index) in items">
             <p>{{item.title}}</p>
-            <div><p :style="{ 'color': item.color }">{{item.nub}}</p></div>
+            <div><p :style="{ 'color': item.color }" @click="commentType(index)" v-cloak>{{item.nub}}</p></div>
             <p :style="{ 'color': item.color }">{{item.font}}</p>
             <p :style="{ 'background-color': item.color }"></p>
         </li>
@@ -15,6 +15,7 @@
 <script>
 import Vue from 'vue'
 import optionProps from '@/common/js/mixin/optionProps.js'
+import Bus from '@/common/js/bus'
 export default {
     name: 'a3',
     mixins:[optionProps],
@@ -62,6 +63,10 @@ export default {
                    
                 }
             })
+        },
+        //点击好评差评
+        commentType(data){
+        	Bus.$emit('comType',data+1)
         }
   },
   created () {
@@ -101,7 +106,10 @@ ul{
             display:table;
             height:65%;
             width:100%;
-            
+            p:hover{
+            	font-weight: bold;
+            	font-size: 38px !important;
+            }
             p{
                 color: white;
                 height:90%;
@@ -111,6 +119,7 @@ ul{
                 vertical-align:middle;
                 text-align:center;
                 letter-spacing: 8px;
+                cursor: pointer;
             }
         }
         p:nth-of-type(2){

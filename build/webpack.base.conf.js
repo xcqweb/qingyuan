@@ -46,6 +46,14 @@ module.exports = {
           name: utils.assetsPath('img/[name].[hash:7].[ext]')
         }
       },
+	  {
+        test: /(hot1|hot2|hot|3)\.(png)(\?.*)?$/,
+        loader: 'url-loader',
+        query: {
+          limit: 1,
+          name: utils.assetsPath('img/[name].[ext]')
+        }
+      },
       {
         test: /\.(mp3|wav|mp4|ogv)(\?.*)?$/,
         loader: 'file-loader',

@@ -17,16 +17,15 @@ export default {
         	if(e.target.scrollTop>360){
         		let num=1;
 		       			let paramsObj = {
-		                area:"全部",
-		                name:"全部",
+		                area:vnode.context.updatePlace.place,
+		                name:vnode.context.updatePlace.turist,
 		                pageId:num++,
 		                source:'全部',
+		                commentType:vnode.context.comType,
 		            }
-		       			
-		       			console.log(vnode)
 		       		vnode.context.getResponse(paramsObj)
         	}
-       },300)
+       },500)
     }
     
 }

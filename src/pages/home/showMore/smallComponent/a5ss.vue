@@ -128,7 +128,7 @@ export default {
                             lineStyle:{
                                     normal:{
                                         color:'#ff359e',
-                                        width:10,
+                                        width:6,
                                         shadowColor: '#060f2f',
                                         shadowBlur: 4,
                                         shadowOffsetY:16,
@@ -153,7 +153,7 @@ export default {
                                 normal: {
                                     color: 'rgba(113,191,255,1)',
                                     borderColor:'rgba(113,191,255,1)',
-                                    borderWidth:10,
+                                    borderWidth:6,
                                     opacity:0,
                                 }
                             },

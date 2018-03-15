@@ -274,7 +274,6 @@ width: 8px;
 }
 li:nth-of-type(1){
     text-align: center !important;
-    font-size: 18px;
 }
 li:nth-of-type(2n){
     background-color:#1f3f9d;

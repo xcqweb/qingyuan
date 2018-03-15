@@ -5,6 +5,7 @@
 				<li>序号</li>
 				<li>景区名称</li>
 				<li>评价</li>
+				<li>评论来源</li>
 				<li>评论内容</li>
 				<li>用户昵称</li>
 				<li>评论时间</li>
@@ -13,7 +14,8 @@
 				<ul v-for="(item,index) in items">
 					<li><span>{{index+1}}</span></li>
 					<li><span>{{item.name}}</span></li>
-					<li><span>{{item.comment}}</span></li>
+					<li><span>{{item.grade}}</span></li>
+					<li><span>{{item.source}}</span></li>
 					<li><span>{{item.con}}</span></li>
 					<li><span>{{item.uid}}</span></li>
 					<li><span>{{item.date}}</span></li>
@@ -28,24 +30,28 @@
 	import Vue from 'vue'
 	import optionProps from '@/common/js/mixin/optionProps.js'
 	import loadMore from '@/common/js/directives/loadMore'
+	import Bus from '@/common/js/bus'
 	Vue.directive('loadMore',loadMore)//注册自定义指令
 	export default{
 		name:'d15',
 		mixins:[optionProps],
 		data(){
 			return{
+				comType:1,
 				items:[
 //					{name:'飞霞风景名胜区',comment:'好评',con:'整体来说不错,在船上可以吃到海鲜.天然的,还有清远鸡!,也可以观赏两岸的风景,72峰名不虚传!,整体来说不错,在船上可以吃到海鲜.天然的,还有清远鸡!,也可以观赏两岸的风景,72峰名不虚传',uid:'M1213***',date:'2018-03-05'},
 				],
 			}
 		},
 		watch:{
+			
 			updatePlace:function(val){
 				var paramsObj = {
 	                area:val.place,
 	                name:val.turist,
 	                pageId:1,
 	                source:'全部',
+	                commentType:this.comType 
 	            }
 				this.items = []
 				this.getResponse(paramsObj);
@@ -56,6 +62,7 @@
 	                name:val.turist,
 	                pageId:1,
 	                source:'全部',
+	                commentType:this.comType ,
 	                beginTime:val.begin.join('-'),
 	                endTime:val.end.join('-'),
 	            }
@@ -67,14 +74,26 @@
 					let _self = this;
 			        this.$axios.get(API_URL+'/qy/api/command/getCommandCommentsDetail',{params:paramsObj}).then(r => {
 								let reData = r.data.data
-								//console.log(reData)
+								console.log(reData)
 				                if(r.data.code ==="200"||r.data.code ===200){
 				                   reData.forEach( (item,index) => {
-				                   		_self.items.push({'name':item.name,'comment':'好评','con':item.con,'uid':item.uid,'date':item.date})
+				                   		
+				                   		if(item.grade>4){
+				                   			item.grade = '好评'
+				                   		}else if(item.grade>=2 && item.grade<=3){
+				                   			item.grade = '差评'
+				                   		}else{
+				                   			item.grade = '投诉'
+				                   		}
+				                   		_self.items.push(item)
 				                   })
+				                   //_self.items = reData
+				                   
 				                }
 				            })
 		       },
+		       
+		       
 		       //加载更多(已用自定义指令loadMore代替)
 //		       loadMore:_.debounce( function(e){ //去抖函数
 //		       		let _self = this;
@@ -97,9 +116,25 @@
 	                pageId:1,
 	                type:'day',
 	                source:'全部',
+	                commentType:1,
 	            }
 	       this.getResponse(paramsObj);
 	    },
+	    mounted(){
+    		Bus.$on('comType',(data) => {
+    			this.comType = data
+	       		var paramsObj = {
+	                area:"全部",
+	                name:"全部",
+	                pageId:1,
+	                type:'day',
+	                source:'全部',
+	                commentType:data,
+	            }
+	       		this.items = []
+	       this.getResponse(paramsObj);
+	       	})
+	    }
 	}
 </script>
 
@@ -135,15 +170,19 @@
 					border-bottom: 2px solid #345bfa;
 				}
 				li:nth-child(4){
-					flex-basis: 800px;
+					flex-basis: 120px;
+					border-bottom: 2px solid #345bfa;
+				}
+				li:nth-child(5){
+					flex-basis: 680px;
 					border-bottom: 2px solid #345bfa;
 					/*border-right-color: transparent;*/
 				}
-				li:nth-child(5){
+				li:nth-child(6){
 					flex-basis: 297px;
 					border-bottom: 2px solid #345bfa;
 				}
-				li:nth-child(6){
+				li:nth-child(7){
 					flex-basis: 298px;
 					border-bottom: 2px solid #345bfa;
 					border-right-color: transparent;
@@ -177,7 +216,10 @@
 						flex-basis: 100px;
 					}
 					li:nth-child(4){
-						flex-basis: 800px;
+						flex-basis: 122px;
+					}
+					li:nth-child(5){
+						flex-basis: 680px;
 						text-align: left;
 						padding: 0 20px 0 20px;
 						box-sizing: border-box;
@@ -185,17 +227,17 @@
 						word-break: normal; 
 					}
 					
-					li:nth-child(4)::-webkit-scrollbar{
+					li:nth-child(5)::-webkit-scrollbar{
 					    width: 0px;
 					    height: 3rem;
 					}
 					/*定义滚动条的轨道，内阴影及圆角*/
-					li:nth-child(4)::-webkit-scrollbar-track{
+					li:nth-child(5)::-webkit-scrollbar-track{
 					    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.9);
 					    border-radius: 10px;
 					}
 					/*定义滑块，内阴影及圆角*/
-					li:nth-child(4)::-webkit-scrollbar-thumb{
+					li:nth-child(5)::-webkit-scrollbar-thumb{
 					    width: 0px;
 					    height: 10rem;
 					    border-radius: 10px;
@@ -203,17 +245,17 @@
 					    background-color: #0F2059;
 					}
 					
-					li:nth-child(4)::scrollbar{
+					li:nth-child(5)::scrollbar{
 					    width: 1px;
 					    height: 3rem;
 					}
 					/*定义滚动条的轨道，内阴影及圆角*/
-					li:nth-child(4)::scrollbar-track{
+					li:nth-child(5)::scrollbar-track{
 					    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
 					    border-radius: 10px;
 					}
 					/*ie*/
-					li:nth-child(4){
+					li:nth-child(5){
 						scrollbar-face-color: #0F2059;
 						scrollbar-highlight-color: ;
 						scrollbar-shadow-color: #02275A;
@@ -221,7 +263,7 @@
 					}
 					 
 					/*定义滑块，内阴影及圆角*/
-					li:nth-child(4)::scrollbar-thumb{
+					li:nth-child(5)::scrollbar-thumb{
 					    width: 1px;
 					    height: 10rem;
 					    border-radius: 10px;
@@ -229,11 +271,11 @@
 					    background-color: #0F2059;
 					}
 					
-					li:nth-child(5){
+					li:nth-child(6){
 						flex-basis: 300px;
 						overflow: hidden;
 					}
-					li:nth-child(6){
+					li:nth-child(7){
 						flex-basis: 300px;
 						border-right-color: transparent;
 					}

@@ -1,25 +1,7 @@
-<!--
-selectlist:{
-    width:'23%',
-    left:'20%',
-    title:'宝晶宫 ',
-    selectStatus:false,
-    place:[
-        {
-            name:'宝晶宫 ',value:'宝晶宫 '
-        },
-        {
-            name:'洞天仙境 ',value:'洞天仙境 '
-        },
-        {
-            name:'千年瑶寨',value:'千年瑶寨'
-        }
-    ]
-}
-!-->
+
 <template>
     <div class="v-dropdown-menu" 
-        @click = 'showselect' 
+        @click = 'showselect($event)' 
         v-bind:style="{ width:selectList.width ,left:selectList.left,right:selectList.right,top:selectList.top}" 
         >
         <p @click='triggle' v-on:itemtodo2="sendMsgParent" class="dropdown-menu-p" :class="{unique1:uniqueClasso,unique2:uniqueClasst,unique3:uniqueClassth}">{{selectList.title}}</p>
@@ -80,7 +62,7 @@ import Vue from 'vue'
                     this.upDown='down'
                     this.menueshow=false;
                     this.selectList.selectStatus = true;
-                    this.$emit('listenAtparent',this.selectList.title)
+                    //this.$emit('listenAtparent',this.selectList.title)
                 }
                  
             },
@@ -98,7 +80,8 @@ import Vue from 'vue'
                     this.upDown='down';
                 }
             },
-            showselect(){
+            showselect(e){
+            	console.dir(e)
                 this.selectList.selectStatus=true;
                 
             },
@@ -115,7 +98,7 @@ import Vue from 'vue'
         },
         template:`<div class='listdiv'  v-bind:style="{height: listDivHeight+'rem',maxHeight:maxHeight+'rem' }" v-bind:class="{ more: isMore }" v-if='status'>
         <div class="overlay" v-if='status' @click.stop='hidelist'></div>
-        <ul @mousewheel='moreStatus'  v-if='status' :class="{'centero':uniqueClasso,'centert':uniqueClasst,}"><li class="v-dropdown-menu_list" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}
+        <ul @mousewheel='moreStatus' style='font-size:18px;'  v-if='status' :class="{'centero':uniqueClasso,'centert':uniqueClasst,}"><li class="v-dropdown-menu_list" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}
     </li></ul></div>`,
         computed:{
             maxHeight:function(){
@@ -155,7 +138,6 @@ import Vue from 'vue'
                 
         },
         mounted(){
-            
             if(this.list.length>4){
                 this.isMore =  true
             }else{
@@ -166,7 +148,7 @@ import Vue from 'vue'
     }
 )
 </script>
-<style lang="less" scoped="scoped">
+<style lang="less">
 .overlay {
     position: fixed;
     width: 400vw;
@@ -175,8 +157,8 @@ import Vue from 'vue'
     top: 0;
     left: 0;
     background-color: rgba(0,0,0,0);
-    z-index:8;
-    display: none;
+    z-index:2000;
+    /*display: none;*/
 }
 .v-dropdown-menu {
     height:100%;
@@ -257,7 +239,7 @@ import Vue from 'vue'
     width:100%;
     text-align: center;
     color: white;
-
+    font-size: 18px;
 }
 
 .dropdown-menu-p{

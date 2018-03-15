@@ -28,6 +28,91 @@ export default {
   data () {
   	
     return {
+    	option:{
+     		color:['#ff0600','#fff'],
+		    tooltip : {
+		        show: false,
+		        formatter: "{a} <br/>{b} : {c} ({d}%)"
+		    },
+		    series : [
+		        {
+		            name:'Line 1',
+		            type:'pie',
+		            startAngle:450,
+		            clockWise:true,
+		            radius : [180,220],
+		            itemStyle : {
+		            	normal: {
+						        label: {show:false},
+						        labelLine: {show:false},
+						        shadowBlur: 40,
+						        shadowColor: 'rgba(40, 40, 40, 0.5)',
+						    }
+		            },
+		            hoverAnimation: false,
+		       
+		            data:[
+		                {
+		                    //value:this.dataItem.currentNum,
+		                    value:100,
+		                    name:'01',
+		                },
+		                {
+		                    //value:this.dataItem.warnNum,
+		                    value:30,
+		                    name:'invisible',
+		                    itemStyle : {
+							    normal : {
+							        color: 'rgba(0,0,0,0.20)',
+							        label: {show:false},
+							        labelLine: {show:false}
+							    },
+							    emphasis : {
+							        color: 'rgba(0,0,0,0)'
+							    }
+							}
+		                }
+		         
+		            ]
+		        }, 
+		         {
+		            name:'Line 2',
+		            type:'pie',
+		            startAngle:0,
+		            clockwise:false,
+		            radius : [160, 180],
+		            itemStyle : {
+		            	normal: {
+						        label: {show:false},
+						        labelLine: {show:false},
+						        shadowBlur: 40,
+						        shadowColor: 'rgba(40, 40, 40, 0.5)',
+						    }
+		            },
+		            hoverAnimation: false,
+		            data:[
+		                {
+		                    value:150, 
+		                    name:'02'
+		                },
+		                {
+		                    value:0,
+		                    name:'invisible',
+		                    itemStyle : {
+							    normal : {
+							        color: 'rgba(0,0,0,0.26)',
+							        label: {show:false},
+							        labelLine: {show:false}
+							    },
+							    emphasis : {
+							        color: 'rgba(0,0,0,0)'
+							    }
+							}
+		                }
+		            ]
+		        },
+		    ]
+		},
     	idName:'String',
     	dataItem:{
 			"percent":1,
@@ -67,9 +152,19 @@ export default {
         this.$axios.get(API_URL+'/qy/api/v2/command/selectCommandScenicWarning',{params:paramsObj}).then(r => {
             
             if(r.status ===200){
-                //console.log(r.data.data)
+                console.log(this.option.color)
             	this.dataItem = r.data.data[0];
+            	let p = this.dataItem.percent
+            	console.log(this.option.series[0].data[0].value)
+            	this.option.series[0].data[0].value = this.dataItem.currentNum
+            	this.option.series[0].data[1].value = this.dataItem.warnNum
+            	if(p<=30){
+            		this.option.color[0]='#80E36F'
+            	}else if(p>30 && p<70){
+            		this.option.color[0]='#6F5DDA'
+            	}
             	this.redom(this.idName)
+            	console.log(this.option.color)
             }
         })
       },
@@ -88,7 +183,7 @@ export default {
 			};
 			var placeHolderStyle = {
 			    normal : {
-			        color: 'rgba(0,0,0,0)',
+			        color: 'rgba(0,0,0,0.26)',
 			        label: {show:false},
 			        labelLine: {show:false}
 			    },
@@ -96,56 +191,7 @@ export default {
 			        color: 'rgba(0,0,0,0)'
 			    }
 			};
-          let option={
-			    color: ['#ff0600','#fff'],
-			    tooltip : {
-			        show: false,
-			        formatter: "{a} <br/>{b} : {c} ({d}%)"
-			    },
-			    series : [
-			        {
-			            name:'Line 1',
-			            type:'pie',
-			            clockWise:false,
-			            radius : [180,220],
-			            itemStyle : dataStyle,
-			            hoverAnimation: false,
-			       
-			            data:[
-			                {
-			                    value:this.dataItem.currentNum,
-			                    name:'01'
-			                },
-			                {
-			                    value:this.dataItem.warnNum,
-			                    name:'invisible',
-			                    itemStyle : placeHolderStyle
-			                }
-			         
-			            ]
-			        }, 
-			         {
-			            name:'Line 2',
-			            type:'pie',
-			            clockWise:false,
-			            radius : [160, 180],
-			            itemStyle : dataStyle,
-			            hoverAnimation: false,
-			            data:[
-			                {
-			                    value:150, 
-			                    name:'02'
-			                },
-			                {
-			                    value:0,
-			                    name:'invisible',
-			                    itemStyle : placeHolderStyle
-			                }
-			            ]
-			        },
-			    ]
-			};
-          this.chart.setOption(option);
+          this.chart.setOption(this.option);
       }
   },
   mounted() {

@@ -12,7 +12,7 @@
         </div>
         
          <!--4A级景区切换-->
-        <div v-show="!scienceType">
+        <div v-if="!scienceType">
         	<div class="leftScope">
 	            <div class="item"
 	                v-for='item in leftComponents' 
@@ -28,7 +28,7 @@
 	        </div>
         </div>
         <!--<div>-->
-        	<div class="Ascience" v-show='scienceType'>
+        	<div class="Ascience" v-if='scienceType'>
         		 <div class="item"
 	                v-for='item in AComponents' 
 	                :class="item.id">

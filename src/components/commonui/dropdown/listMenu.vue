@@ -25,6 +25,8 @@
 	             :isBorder='isborder'
 	             @pageDate='getDate'
 	             :isActive = 'isEndDate'
+	             @hideDate = 'hideDate'
+	             :vDateStatus='vDateStatus'
 	             ></vDate>
         	</div>
         	
@@ -33,8 +35,8 @@
              	 <dateGroup
 	             	 class='vueDate'
 	             	 :selectList='dateList'
+	             	 v-if="vDateStatus"
 	             	 :uniqueClassth=true
-	             	 :vDateStatus='!vDateStatus'
 	             	 @listenAtparent='listenAtparent'
 	             ></dateGroup>
              </div>
@@ -80,13 +82,43 @@
                     place:'全部',
                     turist:'全部',
                 },
-                startData:['全部','飞霞风景名胜区','牛鱼嘴原始生态风景区','天子山瀑布风景区','白庙渔村','飞来寺','美林湖及大家元摩天轮片区'],                
-                cityData:['全部','飞霞风景名胜区','牛鱼嘴原始生态风景区','天子山瀑布风景区','白庙渔村','飞来寺','美林湖及大家元摩天轮片区'],
+                startData:["全部",'飞霞风景名胜区','牛鱼嘴原始生态风景区','天子山瀑布风景区','白庙渔村','飞来寺','美林湖及大家元摩天轮片区',
+                            '太和古洞旅游区','笔架山度假区','安庆村','清泉湾生态旅游度假区','金龙洞','九牛洞村',
+                            '观音山王山寺','田野绿世界','熹乐谷','金龟泉生态度假村','上岳古民居',
+                            '峰林胜境景区','英德老虎谷暗河漂流','九龙小镇','铁溪小镇','仙湖温泉旅游度假区','浈阳坊旅游小镇','大樟沙滩度假村','云水谣','彭家祠',
+                            '清远市连州福山景区','大东山温泉度假区','李屋村','潭岭天湖',
+                            '油岭瑶寨','瑶族舞曲实景演出','云海花谷',
+                            '大旭山瀑布群旅游景区','皇后山','鹰扬关景区','雾山梯田',
+                            '北山古寺','鱼水旅游风景区','龙凤温泉'
+                ],                
+                cityData:["全部",'飞霞风景名胜区','牛鱼嘴原始生态风景区','天子山瀑布风景区','白庙渔村','飞来寺','美林湖及大家元摩天轮片区',
+                            '太和古洞旅游区','笔架山度假区','安庆村','清泉湾生态旅游度假区','金龙洞','九牛洞村',
+                            '观音山王山寺','田野绿世界','熹乐谷','金龟泉生态度假村','上岳古民居',
+                            '峰林胜境景区','英德老虎谷暗河漂流','九龙小镇','铁溪小镇','仙湖温泉旅游度假区','浈阳坊旅游小镇','大樟沙滩度假村','云水谣','彭家祠',
+                            '清远市连州福山景区','大东山温泉度假区','李屋村','潭岭天湖',
+                            '油岭瑶寨','瑶族舞曲实景演出','云海花谷',
+                            '大旭山瀑布群旅游景区','皇后山','鹰扬关景区','雾山梯田',
+                            '北山古寺','鱼水旅游风景区','龙凤温泉'
+                ],
                 tablist:this.tablistCom,
 			}
 		},
 		props:['isDate'],
 		methods:{
+			
+			hideDate(data){
+				this.vDateStatus = data
+				this.dateList = {
+                    width:'70%',
+                    right:'6%',
+                    top:'52%',
+                    title:'日',
+                    selectStatus:false,
+                    place:[
+                        '日',"月","年","自定义"
+                    ]
+                }	
+			},
 			//获取时间
 	        getDate(value){
 	        	
@@ -98,11 +130,12 @@
 	            this.$emit('choseDate',this.timeDate);
 	            this.vDateStatus = true
 	            //选择完成自定义日期时 初始化
+	            console.log(value)
 	            this.dateList = {
                     width:'70%',
                     right:'6%',
                     top:'52%',
-                    title:'日',
+                    title: value.begin[0]+"/"+value.begin[1]+"/"+value.begin[2]+" ~ "+value.end[0]+"/"+value.end[1]+"/"+value.end[2],
                     selectStatus:false,
                     place:[
                         '日',"月","年","自定义"

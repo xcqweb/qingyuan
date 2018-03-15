@@ -37,7 +37,7 @@
         </div>
         <div class="scienceChose" v-show="isScience">
             <span class="btn" @click="scienceType(0)" :class="{'active':scienceTypes}">4A以下景区</span>
-            <span class="btn" @click="scienceType(1)" :class="{'active':!scienceTypes}">4A级以上景区</span>
+            <span class="btn" @click="scienceType(1)" :class="{'active':!scienceTypes,'active1':scienceTypes}">4A级以上景区</span>
         </div>
 	</div>
 </template>
@@ -69,8 +69,24 @@
                     place:'全部',
                     turist:'全部',
                 },
-                startData:['全部','飞霞风景名胜区','牛鱼嘴原始生态风景区','天子山瀑布风景区','白庙渔村','飞来寺','美林湖及大家元摩天轮片区'],                
-                cityData:['全部','飞霞风景名胜区','牛鱼嘴原始生态风景区','天子山瀑布风景区','白庙渔村','飞来寺','美林湖及大家元摩天轮片区'],
+                startData:["全部",'飞霞风景名胜区','牛鱼嘴原始生态风景区','天子山瀑布风景区','白庙渔村','飞来寺','美林湖及大家元摩天轮片区',
+                            '太和古洞旅游区','笔架山度假区','安庆村','清泉湾生态旅游度假区','金龙洞','九牛洞村',
+                            '观音山王山寺','田野绿世界','熹乐谷','金龟泉生态度假村','上岳古民居',
+                            '峰林胜境景区','英德老虎谷暗河漂流','九龙小镇','铁溪小镇','仙湖温泉旅游度假区','浈阳坊旅游小镇','大樟沙滩度假村','云水谣','彭家祠',
+                            '清远市连州福山景区','大东山温泉度假区','李屋村','潭岭天湖',
+                            '油岭瑶寨','瑶族舞曲实景演出','云海花谷',
+                            '大旭山瀑布群旅游景区','皇后山','鹰扬关景区','雾山梯田',
+                            '北山古寺','鱼水旅游风景区','龙凤温泉'
+                ],                
+                cityData:["全部",'飞霞风景名胜区','牛鱼嘴原始生态风景区','天子山瀑布风景区','白庙渔村','飞来寺','美林湖及大家元摩天轮片区',
+                            '太和古洞旅游区','笔架山度假区','安庆村','清泉湾生态旅游度假区','金龙洞','九牛洞村',
+                            '观音山王山寺','田野绿世界','熹乐谷','金龟泉生态度假村','上岳古民居',
+                            '峰林胜境景区','英德老虎谷暗河漂流','九龙小镇','铁溪小镇','仙湖温泉旅游度假区','浈阳坊旅游小镇','大樟沙滩度假村','云水谣','彭家祠',
+                            '清远市连州福山景区','大东山温泉度假区','李屋村','潭岭天湖',
+                            '油岭瑶寨','瑶族舞曲实景演出','云海花谷',
+                            '大旭山瀑布群旅游景区','皇后山','鹰扬关景区','雾山梯田',
+                            '北山古寺','鱼水旅游风景区','龙凤温泉'
+                ],
                 tablist:this.tablistCom,
 			}
 		},
@@ -78,7 +94,7 @@
 		methods:{
 			//选择4a景区
 			scienceType(data){
-				this.$emit('scienceType',data);
+				this.$emit('scienceType',{type:data});
 			},
 			
 			//获取时间
@@ -172,7 +188,12 @@
 	        },
 	        scienceTypes(){
 	        	let val = this.$store.getters['hotMap/getState']
-	        	return val
+	        	if(val===1){
+	        		return val 	
+	        	}else{
+	        		return '';
+	        	}
+	        	
 	        }
 		},
 		components:{
@@ -254,6 +275,10 @@
 	    .active{
         	color: #a1a8c3;
         	border-color: #233faf;
+        }
+        .active{
+        	color: #a1a8c3;
+        	border-color: none;
         }
 	}
 	

@@ -41,6 +41,17 @@
  
 import calendar from './calendar.vue'
 
+let date = new Date()
+let year = c(date.getFullYear())
+let month = c(date.getMonth()+1)
+let day = c(date.getDate())
+function c(v){
+	if(v<10){
+		return "0"+v
+	}else{
+		return v
+	}
+}
 export default {
     name: 'app',
     components: {
@@ -88,7 +99,8 @@ export default {
                 }
             },
             calendar4:{
-                display:"2018/01/01 ~ 2018/01/31",
+                //display:"2018/01/01 ~ 2018/01/31",
+                display:year+"/"+month+"/"+day+" ~ "+year+"/"+month+"/"+day,
                 show:false,
                 range:true,
                 zero:true,
@@ -139,7 +151,8 @@ export default {
         },
         closeByDialog(){
             this.calendar4.show=false;
-             //this.vDateStatus = false
+            this.vDateStatus = true
+            this.$emit('hideDate',true)
         }
     }
 }

@@ -60,6 +60,13 @@
     top: 7%;
     left: 1%;
     font-family: "微软雅黑";
+    
+}
+
+.control{
+	position: absolute;
+	right: 22px;
+	top: 92px;
 }
 .anchorBL{ 
 display:none !important; 
@@ -73,6 +80,18 @@ display:none !important;
         position: absolute;
         
     }
+ .hidden{
+ 	display: none;
+ 	li:nth-child(1){
+ 		background: url(../../../../assets/images/hot/hot1.png);
+ 	}
+ 	li:nth-child(2){
+ 		background: url(../../../../assets/images/hot/hot2.png);
+ 	}
+ 	li:nth-child(3){
+ 		background: url(../../../../assets/images/hot/hot3.png);
+ 	}
+ }
 </style>
 <template>
     <div class="d1">
@@ -85,6 +104,40 @@ display:none !important;
             </video>
         </div>
         <div class="scenic">{{scenics}}</div>
+        <ul class="hidden">
+	        <li></li>
+	        <li></li>
+	        <li></li>
+        </ul>
+        
+        <div class="control" style='width:660px;height:150px;background:rgba(21,51,135,0.56); border-radius:0 10px 0 20px; margin:-28px -6px 0 0'>
+					<ul style='display:-webkit-flex; justify-content:center; align-items:center; color:#fff; font-size:20px; width:566px; margin:0px 0 0 38px; padding-top:30px; font-weight: bold;'>
+						
+						<li style='flex:1; height:80px; position:relative; cursor: pointer;' @click="jumpPage('http://qyyj.gdtadbs.com/Account/LoginNotPwd/d89d5b4a-6ca0-4020-8853-3a201323e177?t=2')">
+							<p style='text-align:center;'>
+							<span  style='width:56px;height:45px; display:inline-block; background: url("./static/img/hot1.png") no-repeat'></span>
+							</p>
+							<p style='margin-top:14px; text-align:center;'>
+								<span  style='color:#fff; text-decoration:none; font-size:20px;'>高风险旅游项目</span></p>
+						</li>
+						<!---->
+						<li style='flex:1; height:80px; position:relative; cursor: pointer;' @click="jumpPage('http://qyyj.gdtadbs.com/Account/LoginNotPwd/d89d5b4a-6ca0-4020-8853-3a201323e177?t=1')">
+							<p style='text-align:center;'>
+							<span  style='width:56px;height:45px; display:inline-block; background: url("./static/img/hot3.png") no-repeat;'></span>
+							</p>
+							<p style='margin-top:14px; text-align:center;'>
+								<span  style='color:#fff; text-decoration:none; font-size:20px;'>景区安全隐患</span></p>
+						</li>
+						<!---->
+						<li style='flex:1; height:80px; position:relative; cursor: pointer;' @click="jumpPage('http://qyyj.gdtadbs.com/Account/LoginNotPwd/d89d5b4a-6ca0-4020-8853-3a201323e177?t=3')">
+							<p style='text-align:center;'>
+							<span style='width:56px;height:45px; display:inline-block; background: url("./static/img/hot2.png") no-repeat;'></span>
+							</p>
+							<p style='margin-top:14px; text-align:center;'>
+								<span style='color:#fff; text-decoration:none; font-size:20px;'>应急交通反馈</span></p>
+						</li>
+					</ul>
+					</div>
     </div>
     
 </template>
@@ -121,6 +174,10 @@ import optionProps from '@/common/js/mixin/optionProps.js'
             }
         },
         methods:{
+        	//点击右上角图标跳转
+        	jumpPage(data){
+        		this.$store.commit('hotMap/TRANSFORMA',{type:2,chain:data})
+        	},
             addLineVideo(){
                 var canvas = document.getElementsByClassName('lineVideo')[0];
                 //简单地检测当前浏览器是否支持Canvas对象，以免在一些不支持html5的浏览器中提示语法错误
@@ -164,7 +221,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
             addIcon(map){
             	let _self = this;
                 var points = traffic_points;
-                console.log(points)
+                //console.log(points)
                 // 向地图添加标注
                 for( var i = 0;i < points.length; i++){
                     //定义新图标
@@ -191,19 +248,18 @@ import optionProps from '@/common/js/mixin/optionProps.js'
 	                    marker.setAnimation(BMAP_ANIMATION_BOUNCE);
 	                     //添加新图标的监听事件
 		                marker.addEventListener('click',function(){
-		                    var p = marker;//获取位置
 		                    //点击5A级景区跳转
-		                    _self.$store.commit('hotMap/TRANSFORMA',1)
+		                    _self.$store.commit('hotMap/TRANSFORMA',{type:1})
 		                })
                     }else{//4A级以下景区
                     	 var marker = new BMap.Marker(point,{icon: myIcon2});
                     	 map.addOverlay(marker);
 	                     marker.setAnimation(BMAP_ANIMATION_BOUNCE);
 	                     //添加新图标的监听事件
-//		                marker.addEventListener('click',function(){
-//		                    var p = marker;//获取位置
-//		                    console.log('p1');
-//		                })
+		                marker.addEventListener('click',function(e){
+		                    var p = e.target.getPosition();//获取位置
+		                    _self.moveTo(map,p.lng,p.lat,16)
+		                })
                     }
                     
                    
@@ -265,6 +321,37 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 map.addControl(new BMap.NavigationControl());
                 map.addControl(new BMap.NavigationControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,type:BMAP_NAVIGATION_CONTROL_SMALL}));
                 map.addControl(new BMap.NavigationControl({anchor: BMAP_ANCHOR_TOP_LEFT,type: BMAP_NAVIGATION_CONTROL_LARGE,enableGeolocation: true}));
+                //添加第三控件
+//              var cr = new BMap.CopyrightControl({anchor: BMAP_ANCHOR_TOP_RIGHT});   //设置版权控件位置
+//				map.addControl(cr); //添加版权控件
+//			
+//				var bs = map.getBounds();   //返回地图可视区域
+//				cr.addCopyright({
+//					id: 1,
+//					content: `<div style='width:660px;height:150px;background:rgba(21,51,135,0.56); border-radius:0 10px 0 20px; margin:-28px -6px 0 0'>
+//					<ul style='display:-webkit-flex; justify-content:center; align-items:center; color:#fff; font-size:20px; width:566px; margin:0px 0 0 38px; padding-top:50px'>
+//						
+//						<li style='flex:1; height:80px; position:relative;'>
+//							<p style='text-align:center;'>
+//							<a  href="#"style='width:56px;height:45px; display:inline-block; background: url("./static/img/hot1.png") no-repeat'></a>
+//							</p>
+//							<p style='margin-top:14px; text-align:center;'><a href="#" style='color:#fff; text-decoration:none; font-size:20px;'>高风险旅游项目</a></p>
+//						</li><li style='flex:1; height:80px; position:relative;'>
+//							<p style='text-align:center;'>
+//							<a href="#" style='width:56px;height:45px; display:inline-block; background: url("./static/img/hot3.png") no-repeat'></a>
+//							</p>
+//							<p style='margin-top:14px; text-align:center;'><a href="#" style='color:#fff; text-decoration:none; font-size:20px;'>景区安全隐患</a></p>
+//						</li>
+//						<li style='flex:1; height:80px; position:relative;'>
+//							<p style='text-align:center;'>
+//							<a href="#" style='width:56px;height:45px; display:inline-block; background: url("./static/img/hot2.png") no-repeat'></a>
+//							</p>
+//							<p style='margin-top:14px; text-align:center;'><a href="http://qyyj.gdtadbs.com/Account/LoginNotPwd/d89d5b4a-6ca0-4020-8853-3a201323e177?t=3" style='color:#fff; text-decoration:none; font-size:20px;'>应急交通反馈</a></p>
+//						</li>
+//					</ul>
+//					</div>`,
+//					bounds: bs
+//				});
             },
             addControlCityList(map){
                 //创建城市下拉列表控件；
@@ -281,6 +368,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                     }
                 }));
             },
+            
             addLine(map){
                 //添加曲线
                 var beijingPosition=new BMap.Point(119.932045,29.4510683),
@@ -513,11 +601,6 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 map.centerAndZoom(new BMap.Point(113.062468,23.690613), 12);
                 
                 
-//              function showInfo(e){
-//					alert(e.point.lng + ", " + e.point.lat);
-//				}
-//				map.addEventListener("click", showInfo);
-                
                 // 添加地图类型控件
                 // map.addControl(new BMap.MapTypeControl());  
                 // 设置地图显示的城市 此项是必须设置的
@@ -540,7 +623,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 // },6000);
                 
                 _self.addHot(map);
-                // _self.addControl(map);
+                _self.addControl(map);
                  _self.addIcon(map);
                 _self.addLocaPosition(map);
                 /************************************************

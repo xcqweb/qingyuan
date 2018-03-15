@@ -117,7 +117,6 @@ li:nth-of-type(2n+1){
             }
 }
 
-
 			ul::-webkit-scrollbar{
 			    width: 0.45rem;
 			    height: 3rem;

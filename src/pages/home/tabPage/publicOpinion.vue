@@ -19,14 +19,12 @@
 	                v-for='item in leftComponents' 
 	                :class="item.id">
 	                <h1>{{item.title}}</h1>
-	                <keep-alive>
 	                    <componet
 	                    :is='item.name' 
 	                    :key="item.id"  
 	                    :updatePlace='updatePlace'
                 		:update='update'
 	                    ></componet>
-	                </keep-alive>
 	            </div>
 	        </div>
         </div>
@@ -36,14 +34,12 @@
 	                v-for='item in AComponents' 
 	                :class="item.id">
 	                <h1>{{item.title}}</h1>
-	                <keep-alive>
 	                    <componet
 	                    :is='item.name' 
 	                    :key="item.id"  
 	                    :updatePlace='updatePlace'
                 		:update='update'
 	                    ></componet>
-	                </keep-alive>
 	            </div>
         	</div>
         <!--</div>-->
@@ -53,14 +49,12 @@
                 v-for='item in rightComponents' 
                 :class="item.id">
                 <h1 v-bind:style="{ color: item.color }" >{{item.title}}</h1>
-                </keep-alive>
                     <componet
                     :is='item.name' 
                     :key="item.id"  
                     :updatePlace='updatePlace'
                 	:update='update'
                     ></componet>
-                </keep-alive>
             </div>
         </div>
     </div>

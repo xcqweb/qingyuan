@@ -208,6 +208,7 @@ export default {
        
                 // 范围
                 if (this.range) {
+                	
                     // console.log("日期范围",this.getLunarInfo(this.year,this.month+1,i))
                     let options = Object.assign(
                         {day: i},
@@ -231,6 +232,7 @@ export default {
                         if (endTime <  Number(new Date(this.year, this.month, i))) options.disabled = true
                     }
                     temp[line].push(options)
+                    
                 } else {
                      // console.log(this.lunar(this.year,this.month,i));
                     // 单选模式
@@ -275,6 +277,7 @@ export default {
                         }
                         temp[line].push(options)
                     }
+                    
                 }
                 // 最后一行
                 if (dow == 6) {
@@ -290,6 +293,7 @@ export default {
                         ))
                         k++
                     }
+//                  debugger;
                 }
             } //end for
             this.days = temp
@@ -348,7 +352,22 @@ export default {
         },
         // 选中日期
         select(k1, k2, e) {
-            if (e != undefined) e.stopPropagation()
+            if (e != undefined){
+            	e.stopPropagation()
+            }
+            
+            if (this.days[k1][k2].day < this.days[k1][k2-1].day && k1 === 4){
+            	this.month=this.month+1
+            }
+            
+            var lllll =this.days[k1][k2].day -this.days[k1][k2+1].day
+            if ( lllll > 14&& k1 === 0){
+            	this.month=this.month-1
+            }
+            debugger;
+//          else if(this.days[k1][k2].day<this.days[k1][k2-1].day && k1 = 0){
+//          	
+//          }
                 // 日期范围
             if (this.range) {
                 if (this.rangeBegin.length == 0 || this.rangeEndTemp != 0) {
@@ -384,19 +403,20 @@ export default {
                     // console.log("选中日期",begin,end)
                     // console.log(new Date(begin).getTime()/1000)
                     let lev = new Date(end).getTime()/1000-new Date(begin).getTime()/1000
+              
                     if(new Date(end)>new Date()||new Date(begin)>new Date() ){
                            alert('所选时间不能大于当前时间')
                     }else{
-                          if(lev>12*24*60*60){
+                          if(lev>11*24*60*60){
                             alert('时间跨度不能大于十二天')
                         }else{
                             this.$emit('select',begin,end)
                         }
                     }
-                    
-                    
+                    	
                 }
-                this.render(this.year, this.month)
+                this.render(this.year, this.month);
+                
             } else {
                 // 取消上次选中
                 if (this.today.length > 0) {

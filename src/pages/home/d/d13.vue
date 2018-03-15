@@ -82,8 +82,8 @@
 //            this.$axios.get(API_URL+'/qy/api/command/selectCommandScenicRaiseUp',{params:paramsObj}).then(r => {
 	
             //this.$axios.get('http://120.55.190.57:8081/qy/api/command/selectCommandScenicRaiseUp',{params:paramsObj}).then(r => {
-            this.$axios.get('https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example/xcq',{params:paramsObj}).then(r => {
-            	//console.log(r);
+            this.$axios.get('https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example/xcq').then(r => {
+            	console.log(r);
             	let reData = r.data.data
             	_self.option.series[0].data = []
                 if(r.status ===200){
@@ -95,23 +95,6 @@
                 		})
                 	}
                     _self.option.series[0].data[0].selected=true;
-//                  _self.option.series[0].data[0].label={
-//                  normal:{
-//                          show: true,
-//                          position: 'inner',
-//                          textStyle:{
-//                          	fontSize:"100%",
-//                          	fontWeight:'bold',
-//                          	color:'#eee',
-//                          	fontFamily:'Courier New'
-//                          },
-//                          formatter: function(params){
-//                              return Math.round(params.percent) === 0 ? '' : Math.round(params.percent)+"%"  ;
-//                          },
-//                      }
-//                      
-//                  };
-                    
                     _self.redom('d13')
                     
                 }
@@ -123,7 +106,7 @@
    		 },
         mounted(){
         	this.$nextTick( ()=> {
-        		this.redom("d13")
+        		this.getResponse();
         	})
         }
 	}
