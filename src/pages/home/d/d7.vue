@@ -272,8 +272,8 @@ export default {
             	//console.log(r)
                 if(r.data.code ==="200"||r.data.code ===200){
                     this.option.series[1].data.forEach((item,index)=>{
-                        item.value = r.data.data[0][item.ffname]
-                        item.name = r.data.data[0][item.ffname]+'%';
+                        item.value = (r.data.data[0][item.ffname])
+                        item.name = (r.data.data[0][item.ffname]).toFixed(1)+'%';
                     })
                        this.$nextTick(echarts_resize('d7',this))
                 }

@@ -10,7 +10,7 @@
 				<li>用户昵称</li>
 				<li>评论时间</li>
 			</ul>
-			<div class="con" v-loadMore>
+			<div class="con" @scroll="loadMore($event)">
 				<ul v-for="(item,index) in items">
 					<li><span>{{index+1}}</span></li>
 					<li><span>{{item.name}}</span></li>
@@ -31,13 +31,15 @@
 	import optionProps from '@/common/js/mixin/optionProps.js'
 	import loadMore from '@/common/js/directives/loadMore'
 	import Bus from '@/common/js/bus'
-	Vue.directive('loadMore',loadMore)//注册自定义指令
+	import _ from 'lodash'
+//	Vue.directive('loadMore',loadMore)//注册自定义指令
 	export default{
 		name:'d15',
 		mixins:[optionProps],
 		data(){
 			return{
 				comType:1,
+				keyW:"",
 				items:[
 //					{name:'飞霞风景名胜区',comment:'好评',con:'整体来说不错,在船上可以吃到海鲜.天然的,还有清远鸡!,也可以观赏两岸的风景,72峰名不虚传!,整体来说不错,在船上可以吃到海鲜.天然的,还有清远鸡!,也可以观赏两岸的风景,72峰名不虚传',uid:'M1213***',date:'2018-03-05'},
 				],
@@ -51,7 +53,8 @@
 	                name:val.turist,
 	                pageId:1,
 	                source:'全部',
-	                commentType:this.comType 
+	                commentType:this.comType,
+	                key:this.keyW,
 	            }
 				this.items = []
 				this.getResponse(paramsObj);
@@ -63,9 +66,11 @@
 	                pageId:1,
 	                source:'全部',
 	                commentType:this.comType ,
+	                key:this.keyW,
 	                beginTime:val.begin.join('-'),
 	                endTime:val.end.join('-'),
 	            }
+				this.items = []
 				this.getResponse(paramsObj);
 			}
 		},
@@ -74,7 +79,7 @@
 					let _self = this;
 			        this.$axios.get(API_URL+'/qy/api/command/getCommandCommentsDetail',{params:paramsObj}).then(r => {
 								let reData = r.data.data
-								console.log(reData)
+								//console.log(reData)
 				                if(r.data.code ==="200"||r.data.code ===200){
 				                   reData.forEach( (item,index) => {
 				                   		
@@ -95,19 +100,22 @@
 		       
 		       
 		       //加载更多(已用自定义指令loadMore代替)
-//		       loadMore:_.debounce( function(e){ //去抖函数
-//		       		let _self = this;
-//		       		if(e.target.scrollTop>360){
-//		       			let num=1;
-//		       			let paramsObj = {
-//		                area:"全部",
-//		                name:"全部",
-//		                pageId:num++,
-//		                source:'全部',
-//		            }
-//		       			this.getResponse(paramsObj)
-//		       		}
-//		       },300)
+		       loadMore:_.debounce( function(e){ //去抖函数
+		       		let _self = this;
+		       		if(e.target.scrollTop>360){
+	        		//console.log(12)
+		        		let num=1;
+		       			let paramsObj = {
+		                area:_self.updatePlace.place,
+		                name:_self.updatePlace.turist,
+		                pageId:num++,
+		                source:'全部',
+		                commentType:_self.comType,
+		                key:_self.keyW
+		            }
+			       		_self.getResponse(paramsObj)
+	        	}
+		       },300)
 	  },
 	  created () {
 	        var paramsObj = {
@@ -117,6 +125,7 @@
 	                type:'day',
 	                source:'全部',
 	                commentType:1,
+	                key:""
 	            }
 	       this.getResponse(paramsObj);
 	    },
@@ -130,6 +139,22 @@
 	                type:'day',
 	                source:'全部',
 	                commentType:data,
+	                key:this.keyW
+	            }
+	       		this.items = []
+	       this.getResponse(paramsObj);
+	       	})
+    		
+    		Bus.$on('keyWords',(data) => {
+    			this.keyW = data
+	       		var paramsObj = {
+	                area:"全部",
+	                name:"全部",
+	                pageId:1,
+	                type:'day',
+	                source:'全部',
+	                commentType:this.comType,
+	                key:data
 	            }
 	       		this.items = []
 	       this.getResponse(paramsObj);

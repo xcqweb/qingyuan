@@ -117,8 +117,9 @@ export default {
                 	let reData = r.data.data.inCountryCity;
                 	reData.forEach( (item,index) => {
                 		this.series[index].name = item.city;
-                		this.series[index].value = Math.sqrt(item.num);
-                		this.series[index].percent = item.zhanRate;
+                		//this.series[index].value = Math.sqrt(item.num);
+                		this.series[index].value = item.num;
+                		this.series[index].percent = item.zhanRate.toFixed(1);
                 	})
                     this.redom("c12");
                 }
@@ -159,7 +160,7 @@ export default {
             },
             tooltip : {
 		        formatter: function(params){
-		        	let text = params.data.name+"<br>"+params.percent+"%";
+		        	let text = params.data.name+"<br>"+params.percent.toFixed(1)+"%";
 		        	return text
 		        }
 		        },

@@ -4,7 +4,7 @@
         @click = 'showselect($event)' 
         v-bind:style="{ width:selectList.width ,left:selectList.left,right:selectList.right,top:selectList.top}" 
         >
-        <p @click='triggle' v-on:itemtodo2="sendMsgParent" class="dropdown-menu-p" :class="{unique1:uniqueClasso,unique2:uniqueClasst,unique3:uniqueClassth}">{{selectList.title}}</p>
+        <p @click.prevent='triggle' v-on:itemtodo2="sendMsgParent" class="dropdown-menu-p" :class="{unique1:uniqueClasso,unique2:uniqueClasst,unique3:uniqueClassth}">{{selectList.title}}</p>
         <span :class="upDown"></span>
         <transition name="dropdown-fade">
             <dropdownList 
@@ -68,7 +68,6 @@ import Vue from 'vue'
             },
             triggle:function(){
             	this.menueshow = !this.menueshow
-                
                 this.selectList.selectStatus = true;
                 if (this.upDown!='up') {
                     this.upDown='up';
@@ -81,7 +80,6 @@ import Vue from 'vue'
                 }
             },
             showselect(e){
-            	console.dir(e)
                 this.selectList.selectStatus=true;
                 
             },
@@ -157,8 +155,7 @@ import Vue from 'vue'
     top: 0;
     left: 0;
     background-color: rgba(0,0,0,0);
-    z-index:2000;
-    /*display: none;*/
+    z-index:200;
 }
 .v-dropdown-menu {
     height:100%;

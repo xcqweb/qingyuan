@@ -364,7 +364,6 @@ export default {
             if ( lllll > 14&& k1 === 0){
             	this.month=this.month-1
             }
-            debugger;
 //          else if(this.days[k1][k2].day<this.days[k1][k2-1].day && k1 = 0){
 //          	
 //          }

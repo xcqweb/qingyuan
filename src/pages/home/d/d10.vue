@@ -38,7 +38,9 @@
                   color: '#fff',
                   fontSize:12
                 },
-                tooltip: {},
+                tooltip: {
+                	position:[390,90]
+                },
                 legend: {
                   label:{
                     show:true,
@@ -49,7 +51,7 @@
                       textStyle:{
                         color:'#fff',
                         fontWeight: 'bold',
-                        fontSize:14
+                        fontSize:18
                       },
                       icon:'circle',
 
@@ -58,7 +60,7 @@
                       textStyle:{
                         color:'#fff',
                         fontWeight: 'bold',
-                        fontSize:14
+                        fontSize:16
                       },
                       icon:'circle'
                     }
@@ -70,7 +72,7 @@
                 	name: {
 					            textStyle: {
 					                color: '#fff',
-					                fontSize:16
+					                fontSize:20
 					           }
 					        },
                   indicator: [
@@ -79,10 +81,10 @@
                     { name: '客流状况', max: 30000},
                     { name: '服务设施', max: 38000},
                     { name: '服务水平', max: 52000},
-                    { name: '景色景点', max: 25000},
+                    //{ name: '景色景点', max: 25000},
                     { name: '旅游交通', max: 25000},
-                    { name: '门票物价', max: 25000},
-                    { name: '厕所', max: 25000}
+                    //{ name: '门票物价', max: 25000},
+                    //{ name: '厕所', max: 25000}
                   ],
                 },
                 series: [{
@@ -98,7 +100,7 @@
                   },
                   data : [
                     {
-                      value : [4300, 10000, 28000, 35000, 50000, 19000,12000,20000,9000],
+                      value : [4300, 10000, 28000, 35000, 50000, 19000],
                       name : '纬度正面',
                       lineStyle:{
                         normal:{
@@ -107,7 +109,7 @@
                       }
                     },
                     {
-                      value : [5000, 14000, 28000, 31000, 42000, 21000,18000,16000,20000],
+                      value : [5000, 14000, 28000, 31000, 42000, 21000],
                       name : '纬度负面',
                       areaStyle: {
                       	normal: {

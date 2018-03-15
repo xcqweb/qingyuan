@@ -249,6 +249,7 @@ export default {
             this.$axios.get(API_URL+'/qy/api/v2/view/getScenicTrack',{params:paramsObj}).then(r => {
                 if(r.data.code ==="200"||r.data.code ===200){
                 	//console.log(r.data.data)
+                	this.rankItems = [];
                     this.rankItems = r.data.data;
                     this.rankItems.forEach((item,index)=>{
                         this.rankItems[index].track = item.track.replace(/\=\=\>/img,'→');

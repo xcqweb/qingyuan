@@ -165,7 +165,7 @@ import Vue from 'vue'
     }
 )
 </script>
-<style lang="less" >
+<style lang="less" scoped="scoped">
 .overlay {
     position: fixed;
     width: 400vw;
@@ -174,8 +174,7 @@ import Vue from 'vue'
     top: 0;
     left: 0;
     background-color: rgba(0,0,0,0);
-    z-index:8;
-    display: none;
+    z-index:120;
 }
 .v-dropdown-menu {
     height:100%;

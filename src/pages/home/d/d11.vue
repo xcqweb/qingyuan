@@ -20,6 +20,7 @@
 import echarts_resize from '../../../common/js/echarts_resize.js'
 import optionProps from '@/common/js/mixin/optionProps.js'
 import echarts from 'echarts'
+import Bus from '@/common/js/bus'
 require('echarts-wordcloud');
   export default {
     name:'d11',
@@ -285,6 +286,10 @@ require('echarts-wordcloud');
             
             this.option.series[0].data = JosnList;
             this.chart.setOption(this.option);
+             this.chart.on('click', function (params) {
+               // window.open('https://www.baidu.com/s?wd=' + encodeURIComponent(params.name));
+				Bus.$emit('keyWords',params.name)
+            });
         },
         getResponse(paramsObj){
             this.$axios.get(API_URL+'/qy/api/command/getKeWords',{params:paramsObj}).then(r => {

@@ -88,7 +88,7 @@ export default {
                     name:'0-19'
                 }, {
                     icon:'circle',
-                    name:'19-25'
+                    name:'20-25'
                 }, {
                     icon:'circle',
                     name:'26-35'
@@ -125,7 +125,7 @@ export default {
                             show: true,
                             position: 'inner',
                             formatter: function(params){
-                                return Math.round(params.percent) === 0 ? '' : Math.round(params.percent)+"%"  ;
+                                return Math.round(params.percent) === 0 ? '' : Math.round(params.percent).toFixed(1)+"%"  ;
                             },
                         },
                         emphasis:{
@@ -134,7 +134,7 @@ export default {
                 },
                 data:[
 	            {"value":0, "name":"0-19"},
-	            {"value":0, "name":"19-25"},
+	            {"value":0, "name":"20-25"},
 	            {"value":0, "name":"26-35"},
 	            {"value":0, "name":"36-45"},
 	            {"value":0, "name":"46-55"},
@@ -159,7 +159,7 @@ export default {
         redom(id){
             this.chart = echarts.init(document.getElementById(id));
             this.option.series[0].data.forEach((item,index)=>{
-                        item.value = this.pieData[item.name];
+                        item.value = this.pieData[item.name].toFixed(1);
                     })
             this.$nextTick(()=>{
                 this.chart.setOption(this.option);

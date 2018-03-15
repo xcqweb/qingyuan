@@ -3,8 +3,8 @@
     	<div class="passagerBtn">客流预警</div>
         <div :id="idName" class="pieB2"></div>
         <span v-bind:class="{fontRed:fontRedData}">{{dataItem.percent}}%</span>
-        <div class="text"><font>{{dataItem.warnNum}}人</font></div>
-        <div class="scenic">{{turistName}}</div>
+        <div class="text"><font>{{dataItem.currentNum}}人</font></div>
+        <div class="scenic">{{dataItem.name}}</div>
     </div>
 </template>
 
@@ -139,11 +139,11 @@ export default {
          return this.dataItem.percent<90 ? false : true;
       },
       turistName(){
-      	if(this.updatePlace.place==='全部' && this.updatePlace.turist==='全部'){
-      		return '全部'
-      	}else{
+//    	if(this.updatePlace.place==='全部' && this.updatePlace.turist==='全部'){
+//    		return '全部'
+//    	}else{
       		return this.updatePlace.turist
-      	}
+//    	}
       }
   },
   methods:{

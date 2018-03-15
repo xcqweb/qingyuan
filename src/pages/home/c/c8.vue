@@ -9,7 +9,7 @@
                 	排序	
             </div>
             <div class="cell1">
-              	 地区
+              	 景区名称
             </div>
             <div class="cell1">
                 	人数    ( 人 )
