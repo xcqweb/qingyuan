@@ -10,6 +10,7 @@
     :placeName = 'placeName' 
     :placeAttractions = 'placeAttractions' 
     ></router-view>
+    <div class="slecToast" @click="tHide" v-if="toast"></div>
   </div>
 </template>
 <script type="text/javascript">
@@ -18,6 +19,7 @@ import { mapGetters } from 'vuex'
  import echarts from 'echarts';
 import vmask from '../components/commonui/mask.vue'
 import headerBody from '@/pages/home/header.vue'
+import Bus from '@/common/js/bus'
 export default {
         data() {
             return {
@@ -25,6 +27,7 @@ export default {
                 allComponents: [],
                 componentName: '',
                 text:'headerBody',
+                toast:false
             }
         },
         components: {
@@ -37,6 +40,9 @@ export default {
               placeAttractions:'version/placeAttractions',
               comment:'version/comment',
             }),
+            isToast(){
+            	return this.toast;
+            }
         },
         methods: {
             console(){
@@ -50,11 +56,18 @@ export default {
                         }
                 })
             },
+            tHide(){
+            	this.toast = false
+            	Bus.$emit('hideOverlay',false)
+            }
         },
         created () {
             // this.getResponse();
         },
         mounted() {
+        	Bus.$on('showOverlay',(data) => {
+        		this.toast = data
+        	})
         }
     }
 </script>
@@ -75,6 +88,14 @@ export default {
     position: relative;
     background-color: #0d1b48;
 	  overflow: hidden;
+	  .slecToast{
+	  	width: 100%;
+	  	height: 100%;
+	  	position: fixed;
+	  	top: 0;
+	  	left: 0;
+	  	z-index: 1000;
+	  }
     .header{
         width: 100%;
         height: 100/1080*100%;

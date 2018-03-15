@@ -38,6 +38,7 @@ selectlist:{
 </template>
 <script >
 import Vue from 'vue'
+import Bus from '@/common/js/bus'
     export default{
         data(){
             return{
@@ -90,6 +91,7 @@ import Vue from 'vue'
                 if (this.upDown!='up') {
                     this.upDown='up';
                 }
+                Bus.$emit('showOverlay',true)
             },
             hidelist(){
                 this.selectList.selectStatus=false;
@@ -101,6 +103,12 @@ import Vue from 'vue'
                 this.selectList.selectStatus=true;
                 
             },
+        },
+        mounted(){
+        	Bus.$on('hideOverlay', (data) => {
+        		this.menueshow = data
+        		//this.selectList.selectStatus=data;
+        	} )
         }
     }
     Vue.component('dropdownList',{

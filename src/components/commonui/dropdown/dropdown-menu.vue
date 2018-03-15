@@ -4,7 +4,7 @@
         @click = 'showselect($event)' 
         v-bind:style="{ width:selectList.width ,left:selectList.left,right:selectList.right,top:selectList.top}" 
         >
-        <p @click.prevent='triggle' v-on:itemtodo2="sendMsgParent" class="dropdown-menu-p" :class="{unique1:uniqueClasso,unique2:uniqueClasst,unique3:uniqueClassth}">{{selectList.title}}</p>
+        <p @click='triggle' v-on:itemtodo2="sendMsgParent" class="dropdown-menu-p" :class="{unique1:uniqueClasso,unique2:uniqueClasst,unique3:uniqueClassth}">{{selectList.title}}</p>
         <span :class="upDown"></span>
         <transition name="dropdown-fade">
             <dropdownList 
@@ -21,6 +21,7 @@
 </template>
 <script >
 import Vue from 'vue'
+import Bus from '@/common/js/bus'
     export default{
         data(){
             return{
@@ -72,6 +73,7 @@ import Vue from 'vue'
                 if (this.upDown!='up') {
                     this.upDown='up';
                 }
+                Bus.$emit('showOverlay',true)
             },
             hidelist(){
                 this.selectList.selectStatus=false;
@@ -83,6 +85,12 @@ import Vue from 'vue'
                 this.selectList.selectStatus=true;
                 
             },
+        },
+        mounted(){
+        	Bus.$on('hideOverlay', (data) => {
+        		this.menueshow = data
+        		//this.selectList.selectStatus=data;
+        	} )
         }
     }
     Vue.component('dropdownList',{
@@ -95,8 +103,8 @@ import Vue from 'vue'
             }
         },
         template:`<div class='listdiv'  v-bind:style="{height: listDivHeight+'rem',maxHeight:maxHeight+'rem' }" v-bind:class="{ more: isMore }" v-if='status'>
-        <div class="overlay" v-if='status' @click.stop='hidelist'></div>
-        <ul @mousewheel='moreStatus' style='font-size:18px;'  v-if='status' :class="{'centero':uniqueClasso,'centert':uniqueClasst,}"><li class="v-dropdown-menu_list" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}
+        <div class="overlay" v-if='status' @click.self='hidelist'></div>
+        <ul @mousewheel.passive='moreStatus' style='font-size:18px;'  v-if='status' :class="{'centero':uniqueClasso,'centert':uniqueClasst,}"><li class="v-dropdown-menu_list" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}
     </li></ul></div>`,
         computed:{
             maxHeight:function(){
@@ -148,7 +156,7 @@ import Vue from 'vue'
 </script>
 <style lang="less">
 .overlay {
-    position: fixed;
+    position:  fixed;
     width: 400vw;
     height: 400vh;
     transform: translate(-50%,-50%);
