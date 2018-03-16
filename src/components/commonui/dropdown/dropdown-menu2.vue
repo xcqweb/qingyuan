@@ -54,10 +54,8 @@ import Bus from '@/common/js/bus'
         	},
         	out(e){
         		//console.log(e.screenY)//150-400  350-386
-        		if(e.path[1].className==='v-dropdown-menu science' && this.menueshow && !this.hideSelect && e.screenY<510 && e.screenX>140 && e.screenX<465){
-        				this.menueshow = false
-        		}else if(e.path[1].className==='v-dropdown-menu area' && this.menueshow && !this.hideSelect && e.screenY<410 && e.screenX>140 && e.screenX<465){
-        			   this.menueshow = false
+        		if(this.menueshow && !this.hideSelect && e.screenY<280 &&e.screenX>440&&e.screenX<1160){
+        			this.menueshow = false
         		}
         		
         	},
@@ -127,7 +125,7 @@ import Bus from '@/common/js/bus'
             }
         },
         template:`<div class='listdiv'  v-bind:style="{height: listDivHeight+'rem',maxHeight:maxHeight+'rem' }" v-bind:class="{ more: isMore }" v-if='isShow'>
-        <div class="overlay" v-if='status' @click.self='hidelist'></div>
+        <div class="overlay" v-if='isShow' @click.self='hidelist'></div>
         <ul @mousewheel.passive='moreStatus' style='font-size:18px;'  v-if='isShow' @mouseleave="out" :class="{'centero':uniqueClasso,'centert':uniqueClasst,}"><li class="v-dropdown-menu_list" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}
     </li></ul></div>`,
         computed:{
@@ -169,6 +167,7 @@ import Bus from '@/common/js/bus'
             },
             //点击浮框背景未选中元素时 隐藏下拉框并传默认值；
             hidelist(){
+            	this.statu = !this.statu
                 this.isMore = true;
                 this.$emit('itemtodo');
             },
@@ -179,9 +178,6 @@ import Bus from '@/common/js/bus'
         		this.statu = !this.statu
         		this.$emit('hideSelects',false)
         	}
-        },
-        created(){
-        	
         },
         mounted(){
             if(this.list.length>4){

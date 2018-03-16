@@ -10,7 +10,6 @@
     :placeName = 'placeName' 
     :placeAttractions = 'placeAttractions' 
     ></router-view>
-    <div class="slecToast" @click="tHide" v-if="toast"></div>
   </div>
 </template>
 <script type="text/javascript">
@@ -27,7 +26,6 @@ export default {
                 allComponents: [],
                 componentName: '',
                 text:'headerBody',
-                toast:false
             }
         },
         components: {
@@ -40,9 +38,6 @@ export default {
               placeAttractions:'version/placeAttractions',
               comment:'version/comment',
             }),
-            isToast(){
-            	return this.toast;
-            }
         },
         methods: {
             console(){
@@ -56,19 +51,10 @@ export default {
                         }
                 })
             },
-            tHide(){
-            	this.toast = false
-            	Bus.$emit('hideOverlay',false)
-            }
         },
         created () {
             // this.getResponse();
         },
-        mounted() {
-        	Bus.$on('showOverlay',(data) => {
-        		this.toast = data
-        	})
-        }
     }
 </script>
 

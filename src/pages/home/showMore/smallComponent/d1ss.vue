@@ -80,18 +80,7 @@ display:none !important;
         position: absolute;
         
     }
- .hidden{
- 	display: none;
- 	li:nth-child(1){
- 		background: url(../../../../assets/images/hot/hot1.png);
- 	}
- 	li:nth-child(2){
- 		background: url(../../../../assets/images/hot/hot2.png);
- 	}
- 	li:nth-child(3){
- 		background: url(../../../../assets/images/hot/hot3.png);
- 	}
- }
+
 </style>
 <template>
     <div class="d1">
@@ -104,12 +93,6 @@ display:none !important;
             </video>
         </div>
         <div class="scenic">{{scenics}}</div>
-        <ul class="hidden">
-	        <li></li>
-	        <li></li>
-	        <li></li>
-        </ul>
-        
         <div class="control" style='width:660px;height:150px;background:rgba(21,51,135,0.56); border-radius:0 10px 0 20px; margin:-28px -6px 0 0'>
 					<ul style='display:-webkit-flex; justify-content:center; align-items:center; color:#fff; font-size:20px; width:566px; margin:0px 0 0 38px; padding-top:30px; font-weight: bold;'>
 						

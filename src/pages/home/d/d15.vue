@@ -70,8 +70,8 @@
 	                beginTime:val.begin.join('-'),
 	                endTime:val.end.join('-'),
 	            }
-				this.items = []
-				this.getResponse(paramsObj);
+					this.items = []
+					this.getResponse(paramsObj);
 			}
 		},
 		methods:{
@@ -82,7 +82,6 @@
 								//console.log(reData)
 				                if(r.data.code ==="200"||r.data.code ===200){
 				                   reData.forEach( (item,index) => {
-				                   		
 				                   		if(item.grade>4){
 				                   			item.grade = '好评'
 				                   		}else if(item.grade>=2 && item.grade<=3){
@@ -92,8 +91,6 @@
 				                   		}
 				                   		_self.items.push(item)
 				                   })
-				                   //_self.items = reData
-				                   
 				                }
 				            })
 		       },
@@ -103,7 +100,7 @@
 		       loadMore:_.debounce( function(e){ //去抖函数
 		       		let _self = this;
 		       		if(e.target.scrollTop>360){
-	        		//console.log(12)
+	        			//console.log(12)
 		        		let num=1;
 		       			let paramsObj = {
 		                area:_self.updatePlace.place,

@@ -47,7 +47,7 @@
 </template>
 
 <script>
-	import sleckte from '@/components/commonui/dropdown/dropdown-menu.vue'
+	import sleckte from '@/components/commonui/dropdown/dropdown-menu2.vue'
 	import dateGroup from '@/components/commonui/dropdown/dateGroup.vue'
 	import vDate from '@/components/commonui/vueDate/app.vue'
 	export default{

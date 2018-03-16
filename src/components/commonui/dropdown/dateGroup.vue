@@ -18,16 +18,17 @@ selectlist:{
 }
 !-->
 <template>
-    <div class="v-dropdown-menu" 
+    <div class="v-dropdown-menu"
         @click = 'showselect' 
         v-bind:style="{ width:selectList.width ,left:selectList.left,top:selectList.top}" 
         >
-        <p @click='triggle' :class="{unique2:uniqueClasso}" v-on:itemtodo2="sendMsgParent" class="dropdown-menu-p">{{selectList.title}}</p>
+        <p @click='triggle' :class="{unique2:uniqueClasso}"  @mouseleave="out($event)" v-on:itemtodo2="sendMsgParent" class="dropdown-menu-p">{{selectList.title}}</p>
         <span :class="upDown"></span>
         <transition name="dropdown-fade">
             <dropdownList 
             :list='selectList.place'  
             :status='menueshow' 
+            @hideSelects='hideSelects'
             :uniqueClassth='uniqueClassth'
             v-on:itemtodo='outcrement'
             v-if='selectList.selectStatus'>        
@@ -44,6 +45,7 @@ import Bus from '@/common/js/bus'
             return{
                 menueshow:false,
                 upDown:'down',
+                hideSelect:false,
             }
         },
         props: [
@@ -64,6 +66,17 @@ import Bus from '@/common/js/bus'
             },
         },
         methods:{
+    		hideSelects(data){
+    			//console.log(data)
+    			this.hideSelect = data
+        	},
+        	out(e){
+        		//150-400  350-386
+        		if(this.menueshow && !this.hideSelect && e.screenY<286&& e.screenX>1000 && e.screenX<1500){
+        			this.menueshow = false
+        		}
+        		
+        	},
             sendMsgParent:function(){
                 this.$emit('listenAtparent',selectList.title)
             },
@@ -86,12 +99,10 @@ import Bus from '@/common/js/bus'
             },
             triggle:function(){
             	this.menueshow = !this.menueshow
-                
                 this.selectList.selectStatus = true;
                 if (this.upDown!='up') {
                     this.upDown='up';
                 }
-                Bus.$emit('showOverlay',true)
             },
             hidelist(){
                 this.selectList.selectStatus=false;
@@ -104,12 +115,6 @@ import Bus from '@/common/js/bus'
                 
             },
         },
-        mounted(){
-        	Bus.$on('hideOverlay', (data) => {
-        		this.menueshow = data
-        		//this.selectList.selectStatus=data;
-        	} )
-        }
     }
     Vue.component('dropdownList',{
         props:['list','status','uniqueClassth'],
@@ -118,11 +123,12 @@ import Bus from '@/common/js/bus'
                  msg:'jfdksjfk',
                  showstatus:true,
                  isMore:true,
+                 statu:false
             }
         },
-        template:`<div class='listdiv'  v-bind:style="{height: listDivHeight+'rem',maxHeight:maxHeight+'rem' }" v-bind:class="{ more: false }" v-if='status'>
+        template:`<div class='listdiv'  v-bind:style="{height: listDivHeight+'rem',maxHeight:maxHeight+'rem' }" v-bind:class="{ more: false }" v-if='isShow'>
         <div class="overlay" v-if='status' @click.stop='hidelist'></div>
-        <ul @mousewheel='moreStatus'  v-if='status' :class="{'centerth':uniqueClassth}"><li class="v-dropdown-menu_list" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}
+        <ul @mousewheel='moreStatus' @mouseleave="out"  v-if='isShow' :class="{'centerth':uniqueClassth}"><li class="v-dropdown-menu_list" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}
     </li></ul></div>`,
         computed:{
             maxHeight:function(){
@@ -134,13 +140,16 @@ import Bus from '@/common/js/bus'
             },
             listDivHeight:function(){
                 return (this.list.length)*1.8
+            },
+            isShow(){
+            	return this.statu
             }
         },
         methods:{
             chosen:function(){
             },
             showselect(){
-            this.selectList.selectStatus=true;
+            	this.selectList.selectStatus=true;
             },
 
             increment:function(item){
@@ -150,6 +159,10 @@ import Bus from '@/common/js/bus'
             },
             test:function(){
 
+            },
+            out(){
+              	this.statu = !this.statu
+            	this.$emit('hideSelect',false)
             },
             moreStatus(event){
                 this.isMore = false;
@@ -161,8 +174,13 @@ import Bus from '@/common/js/bus'
             },
                 
         },
+          watch:{
+        	status:function(){
+        		this.statu = !this.statu
+        		this.$emit('hideSelects',false)
+        	}
+        },
         mounted(){
-            
             if(this.list.length>6){
                 this.isMore =  true
             }else{
