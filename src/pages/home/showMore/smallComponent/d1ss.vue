@@ -80,6 +80,18 @@ display:none !important;
         position: absolute;
         
     }
+    .hidden{
+    	display: none;
+    	li:nth-child(1){
+    		background: url(../../../../assets/images/hot/hot1.png);
+    	}
+    	li:nth-child(2){
+    		background: url(../../../../assets/images/hot/hot2.png);
+    	}
+    	li:nth-child(3){
+    		background: url(../../../../assets/images/hot/hot3.png);
+    	}
+    }
 
 </style>
 <template>
@@ -94,33 +106,38 @@ display:none !important;
         </div>
         <div class="scenic">{{scenics}}</div>
         <div class="control" style='width:660px;height:150px;background:rgba(21,51,135,0.56); border-radius:0 10px 0 20px; margin:-28px -6px 0 0'>
-					<ul style='display:-webkit-flex; justify-content:center; align-items:center; color:#fff; font-size:20px; width:566px; margin:0px 0 0 38px; padding-top:30px; font-weight: bold;'>
-						
-						<li style='flex:1; height:80px; position:relative; cursor: pointer;' @click="jumpPage('http://qyyj.gdtadbs.com/Account/LoginNotPwd/d89d5b4a-6ca0-4020-8853-3a201323e177?t=2')">
-							<p style='text-align:center;'>
-							<span  style='width:56px;height:45px; display:inline-block; background: url("./static/img/hot1.png") no-repeat'></span>
-							</p>
-							<p style='margin-top:14px; text-align:center;'>
-								<span  style='color:#fff; text-decoration:none; font-size:20px;'>高风险旅游项目</span></p>
-						</li>
-						<!---->
-						<li style='flex:1; height:80px; position:relative; cursor: pointer;' @click="jumpPage('http://qyyj.gdtadbs.com/Account/LoginNotPwd/d89d5b4a-6ca0-4020-8853-3a201323e177?t=1')">
-							<p style='text-align:center;'>
-							<span  style='width:56px;height:45px; display:inline-block; background: url("./static/img/hot3.png") no-repeat;'></span>
-							</p>
-							<p style='margin-top:14px; text-align:center;'>
-								<span  style='color:#fff; text-decoration:none; font-size:20px;'>景区安全隐患</span></p>
-						</li>
-						<!---->
-						<li style='flex:1; height:80px; position:relative; cursor: pointer;' @click="jumpPage('http://qyyj.gdtadbs.com/Account/LoginNotPwd/d89d5b4a-6ca0-4020-8853-3a201323e177?t=3')">
-							<p style='text-align:center;'>
-							<span style='width:56px;height:45px; display:inline-block; background: url("./static/img/hot2.png") no-repeat;'></span>
-							</p>
-							<p style='margin-top:14px; text-align:center;'>
-								<span style='color:#fff; text-decoration:none; font-size:20px;'>应急交通反馈</span></p>
-						</li>
-					</ul>
-					</div>
+		<ul style='display:-webkit-flex; justify-content:center; align-items:center; color:#fff; font-size:20px; width:566px; margin:0px 0 0 38px; padding-top:30px; font-weight: bold;'>
+			
+			<li style='flex:1; height:80px; position:relative; cursor: pointer;' @click="jumpPage('http://qyyj.gdtadbs.com/Account/LoginNotPwd/d89d5b4a-6ca0-4020-8853-3a201323e177?t=2')">
+				<p style='text-align:center;'>
+				<span  style='width:56px;height:48px; display:inline-block; background: url("./static/img/hot3.png") no-repeat'></span>
+				</p>
+				<p style='margin-top:14px; text-align:center;'>
+					<span  style='color:#fff; text-decoration:none; font-size:20px;'>高风险旅游项目</span></p>
+			</li>
+			<!---->
+			<li style='flex:1; height:80px; position:relative; cursor: pointer;' @click="jumpPage('http://qyyj.gdtadbs.com/Account/LoginNotPwd/d89d5b4a-6ca0-4020-8853-3a201323e177?t=1')">
+				<p style='text-align:center;'>
+				<span  style='width:56px;height:48px; display:inline-block; background: url("./static/img/hot1.png") no-repeat;'></span>
+				</p>
+				<p style='margin-top:14px; text-align:center;'>
+					<span  style='color:#fff; text-decoration:none; font-size:20px;'>景区安全隐患</span></p>
+			</li>
+			<!---->
+			<li style='flex:1; height:80px; position:relative; cursor: pointer;' @click="jumpPage('http://qyyj.gdtadbs.com/Account/LoginNotPwd/d89d5b4a-6ca0-4020-8853-3a201323e177?t=3')">
+				<p style='text-align:center;'>
+				<span style='width:56px;height:48px; display:inline-block; background: url("./static/img/hot2.png") no-repeat;'></span>
+				</p>
+				<p style='margin-top:14px; text-align:center;'>
+					<span style='color:#fff; text-decoration:none; font-size:20px;'>应急交通反馈</span></p>
+			</li>
+		</ul>
+		</div>
+		<ul class="hidden">
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
     </div>
     
 </template>

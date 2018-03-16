@@ -29,7 +29,6 @@ selectlist:{
             :list='selectList.place'  
             :status='menueshow' 
             @hideSelects='hideSelects'
-            :uniqueClassth='uniqueClassth'
             v-on:itemtodo='outcrement'
             v-if='selectList.selectStatus'>        
             </dropdownList>
@@ -52,7 +51,6 @@ import Bus from '@/common/js/bus'
             'selectList',
             'uniqueClasso',
             'uniqueClasst',
-            'uniqueClassth'
         ],
         computed:{    
         },
@@ -72,9 +70,9 @@ import Bus from '@/common/js/bus'
         	},
         	out(e){
         		//150-400  350-386
-        		if(this.menueshow && !this.hideSelect && e.screenY<286&& e.screenX>1000 && e.screenX<1500){
-        			this.menueshow = false
-        		}
+//      		if(this.menueshow && !this.hideSelect && e.screenY<286&& e.screenX>1000 && e.screenX<1500){
+//      			this.menueshow = false
+//      		}
         		
         	},
             sendMsgParent:function(){
@@ -117,7 +115,7 @@ import Bus from '@/common/js/bus'
         },
     }
     Vue.component('dropdownList',{
-        props:['list','status','uniqueClassth'],
+        props:['list','status'],
         data(){
             return{
                  msg:'jfdksjfk',
@@ -128,7 +126,7 @@ import Bus from '@/common/js/bus'
         },
         template:`<div class='listdiv'  v-bind:style="{height: listDivHeight+'rem',maxHeight:maxHeight+'rem' }" v-bind:class="{ more: false }" v-if='isShow'>
         <div class="overlay" v-if='status' @click.stop='hidelist'></div>
-        <ul @mousewheel='moreStatus' @mouseleave="out"  v-if='isShow' :class="{'centerth':uniqueClassth}"><li class="v-dropdown-menu_list" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}
+        <ul @mousewheel='moreStatus' @mouseleave="out"  v-if='isShow' class="centerth"><li class="v-dropdown-menu_list" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}
     </li></ul></div>`,
         computed:{
             maxHeight:function(){
@@ -142,7 +140,7 @@ import Bus from '@/common/js/bus'
                 return (this.list.length)*1.8
             },
             isShow(){
-            	return this.statu
+            	return this.status
             }
         },
         methods:{
@@ -191,7 +189,7 @@ import Bus from '@/common/js/bus'
     }
 )
 </script>
-<style lang="less" scoped="scoped">
+<style lang="less">
 .overlay {
     position: fixed;
     width: 400vw;
@@ -236,7 +234,7 @@ import Bus from '@/common/js/bus'
         top:0;
         transform: translate(-15%,0);
         height: auto;
-        width: 150%;
+        width: 138%;
         margin-left: -1px;
         z-index:444;
         max-height: 10.8rem;

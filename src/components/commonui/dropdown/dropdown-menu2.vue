@@ -54,9 +54,9 @@ import Bus from '@/common/js/bus'
         	},
         	out(e){
         		//console.log(e.screenY)//150-400  350-386
-        		if(this.menueshow && !this.hideSelect && e.screenY<280 &&e.screenX>440&&e.screenX<1160){
-        			this.menueshow = false
-        		}
+//      		if(this.menueshow && !this.hideSelect && e.screenY<280 &&e.screenX>440&&e.screenX<1160){
+//      			this.menueshow = false
+//      		}
         		
         	},
             sendMsgParent:function(){
@@ -98,24 +98,7 @@ import Bus from '@/common/js/bus'
         },
     }
     Vue.component('dropdownList',{
-        //props:['list','status','uniqueClasso','uniqueClasst'],
-        props:{
-        	list:{
-        		type:Array,
-        	},
-        	uniqueClasso:{
-        		type:Boolean,
-        		default:false
-        	},
-        	uniqueClasst:{
-        		type:Boolean,
-        		default:false
-        	},
-        	status:{
-        		type:Boolean,
-        		default:false
-        	},
-        },
+          props:['list','status','uniqueClasso','uniqueClasst'],
         data(){
             return{
                  msg:'jfdksjfk',
@@ -140,7 +123,7 @@ import Bus from '@/common/js/bus'
                 return (this.list.length)*1.8
             },
             isShow(){
-            	return this.statu
+            	return this.status
             }
         },
         methods:{

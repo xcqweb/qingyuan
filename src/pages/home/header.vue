@@ -137,7 +137,6 @@ a:visited { text-decoration: none;}
         left: 2%;
         font-size: 1.8rem;
         color:#85e6ff;
-
     }
     ul{
         position: absolute;
@@ -158,22 +157,29 @@ a:visited { text-decoration: none;}
             }
             font{
                 display: block;
-                font-size: 12px;
-                margin-top: 12px;
+                font-size: 13px;
+                margin-top: 10px;
+                font-weight: bold;
+                letter-spacing: 1px;
             }
             &.chose{
+            		background-repeat: no-repeat;
+                background-position: 2px 4px;
+                background-size: 90% 90%;
                 a{
-                    color: #368df7 !important;
-                    
+                    color: #3e7bdc  !important;
                 }
                 
             }   
             &.unchose{
+            		background-repeat: no-repeat;
+                background-position: 2px 4px;
+                background-size: 90% 90%;
                 a{
-                    color: #6dffeb !important; 
-                    border-left: 2px solid rgb(21, 213, 249);
+                    color: #16d5f8 !important; 
+                    border-left: 5px solid #16d5f8;
                     box-sizing: border-box;
-                    background-color: rgba(4, 16, 54,0.6);
+                    background-color: #051036;
                     padding: 10px 0px 10px 0px;   
                 }
                 
@@ -184,52 +190,72 @@ a:visited { text-decoration: none;}
         
         li:nth-of-type(1){
             .unchose{
-                background-image:url('../../assets/images/home/总览.png');
-                background-size: 100% 100%;
+                background-image:url('../../assets/images/home/大数据2.png');
+                background-repeat: no-repeat;
+                background-position: 2px 4px;
+                background-size: 90% 90%;
             }
             .chose{
-                background-image:url('../../assets/images/home/总览2.png');
-                background-size: 100% 100%;
+                background-image:url('../../assets/images/home/大数据1.png');
+               	background-repeat: no-repeat;
+                background-position: 2px 4px;
+                background-size: 90% 90%;
             }
         }
         li:nth-of-type(2){
             .unchose{
-                background-image:url('../../assets/images/home/产品监测平台.png');
-                background-size: 100% 100%;
+                background-image:url('../../assets/images/home/应急指挥2.png');
+               	background-repeat: no-repeat;
+                background-position: 2px 4px;
+                background-size: 90% 90%;
             }
             .chose{
-                background-image:url('../../assets/images/home/产品监测平台2.png');
-                background-size: 100% 100%;
+                background-image:url('../../assets/images/home/应急指挥1.png');
+                background-repeat: no-repeat;
+                background-position: 2px 4px;
+                background-size: 90% 90%;
             }
         }
         li:nth-of-type(3){
             .unchose{
-                background-image:url('../../assets/images/home/精准营销平台.png');
-                background-size: 100% 100%;
+                background-image:url('../../assets/images/home/游客画像2.png');
+                background-repeat: no-repeat;
+                background-position: 2px 4px;
+                background-size: 90% 90%;
             }
             .chose{
-                background-image:url('../../assets/images/home/精准营销平台2.png');
-                background-size: 100% 100%;
+                background-image:url('../../assets/images/home/游客画像1.png');
+               background-repeat: no-repeat;
+                background-position: 2px 4px;
+                background-size: 90% 90%;
             }
         }
         li:nth-of-type(4){
             .unchose{
-                background-image:url('../../assets/images/home/资源展示平台.png');
-                background-size: 100% 100%;
+                background-image:url('../../assets/images/home/舆情分析2.png');
+                background-repeat: no-repeat;
+                background-position: 2px 4px;
+                background-size: 90% 90%;
             }
             .chose{
-                background-image:url('../../assets/images/home/资源展示平台2.png');
-                background-size: 100% 100%;
+                background-image:url('../../assets/images/home/舆情分析1.png');
+                background-repeat: no-repeat;
+                background-position: 2px 4px;
+                background-size: 90% 90%;
             }
         }
         li:nth-of-type(5){
             .unchose{
-                background-image:url('../../assets/images/home/2171516605538.jpg');
-                background-size: 100% 100%;
+                background-image:url('../../assets/images/home/视频监控2.png');
+                background-repeat: no-repeat;
+                background-position: 2px 4px;
+                background-size: 90% 90%;
             }
             .chose{
-                background-image:url('../../assets/images/home/2161516605424.jpg');
-                background-size: 100% 100%;
+                background-image:url('../../assets/images/home/视频监控1.png');
+                background-repeat: no-repeat;
+                background-position: 2px 4px;
+                background-size: 90% 90%;
             }
         }
         

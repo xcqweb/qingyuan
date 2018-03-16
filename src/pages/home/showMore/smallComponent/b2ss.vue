@@ -2,7 +2,7 @@
     <div class="b2">
     	<div class="passagerBtn">客流预警</div>
         <div :id="idName" class="pieB2"></div>
-        <span v-bind:class="{fontRed:fontRedData}">{{dataItem.percent}}%</span>
+        <span v-bind:class="fontColor">{{dataItem.percent}}%</span>
         <div class="text"><font>{{dataItem.currentNum}}人</font></div>
         <div class="scenic">{{dataItem.name}}</div>
     </div>
@@ -28,6 +28,7 @@ export default {
   data () {
   	
     return {
+    	active:1,
     	option:{
      		color:['#ff0600','#fff'],
 		    tooltip : {
@@ -138,12 +139,17 @@ export default {
       fontRedData:function(){
          return this.dataItem.percent<90 ? false : true;
       },
+      fontColor(){
+      	if(this.active===1){
+      		return "color1"
+      	}else if(this.active===2){
+      		return "color2"
+      	}else{
+      		return "color3"
+      	}
+      },
       turistName(){
-//    	if(this.updatePlace.place==='全部' && this.updatePlace.turist==='全部'){
-//    		return '全部'
-//    	}else{
       		return this.updatePlace.turist
-//    	}
       }
   },
   methods:{
@@ -155,16 +161,23 @@ export default {
                 console.log(this.option.color)
             	this.dataItem = r.data.data[0];
             	let p = this.dataItem.percent
-            	console.log(this.option.series[0].data[0].value)
+            	//console.log(this.option.series[0].data[0].value)
+            	if(this.dataItem.currentNum/this.dataItem.warnNum>=100){
+            		this.dataItem.currentNum = this.dataItem.warnNum
+            	}
             	this.option.series[0].data[0].value = this.dataItem.currentNum
             	this.option.series[0].data[1].value = this.dataItem.warnNum
-            	if(p<=30){
+            	if(p<=50){
             		this.option.color[0]='#80E36F'
-            	}else if(p>30 && p<70){
-            		this.option.color[0]='#6F5DDA'
+            		this.active = 1
+            	}else if(p>50 && p<70){
+            		this.option.color[0]='#fda925'
+            		this.active = 2
+            	}else{
+            		this.option.color[0]='#ff0600'
+            		this.active = 3
             	}
             	this.redom(this.idName)
-            	console.log(this.option.color)
             }
         })
       },
@@ -263,9 +276,17 @@ export default {
             left: 486px;
             color:#ffe400;
             font-size:38px;
-            
         }
     }
+     .color1{
+        	color: #80E36F !important;
+        }
+         .color2{
+        	color: #fda925 !important;
+        }
+         .color3{
+        	color: #ff0600 !important;
+        }
     img{                  
         max-width: 100%;
         max-height: 100%;

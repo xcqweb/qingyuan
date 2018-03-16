@@ -49,9 +49,13 @@
                                 
                             },
                             label:{
+                            	
                                 normal:{
+                                	color:'#fff',
                                     formatter:'{b}\n{d}%'
                                 }
+                            },
+                            itemStyle:{
                             }
 				        }
 				    ]
@@ -80,11 +84,10 @@
                 name:this.updatePlace.turist
             }
 //            this.$axios.get(API_URL+'/qy/api/command/selectCommandScenicRaiseUp',{params:paramsObj}).then(r => {
-	
-            //this.$axios.get('http://120.55.190.57:8081/qy/api/command/selectCommandScenicRaiseUp',{params:paramsObj}).then(r => {
-            this.$axios.get('https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example/xcq').then(r => {
-            	//console.log(r);
+	//this.$axios.get('https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example/xcq').then(r => {
+              this.$axios.get('http://120.55.190.57/qy/api/command/selectCommandScenicRaiseUp',{params:paramsObj}).then(r => {
             	let reData = r.data.data
+            	//console.log(reData);
             	_self.option.series[0].data = []
                 if(r.status ===200){
                 	for(let i=0; i<reData.length; ++i){
@@ -102,12 +105,13 @@
         }
         },
         created(){
-        	this.getResponse();
+        	var paramsObj = {
+                area:"全部",
+                name:"全部"
+            }
+        	this.getResponse(paramsObj);
    		 },
         mounted(){
-        	this.$nextTick( ()=> {
-        		this.getResponse();
-        	})
         }
 	}
 </script>

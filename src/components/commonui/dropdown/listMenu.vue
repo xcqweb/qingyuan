@@ -36,7 +36,6 @@
 	             	 class='vueDate'
 	             	 :selectList='dateList'
 	             	 v-if="vDateStatus"
-	             	 :uniqueClassth=true
 	             	 @listenAtparent='listenAtparent'
 	             ></dateGroup>
              </div>

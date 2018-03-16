@@ -54,11 +54,11 @@ import Bus from '@/common/js/bus'
         	},
         	out(e){
         		//console.log(e.screenY)//150-400  350-386
-        		if(e.path[1].className==='v-dropdown-menu science' && this.menueshow && !this.hideSelect && e.screenY<510 && e.screenX>140 && e.screenX<465){
-        				this.menueshow = false
-        		}else if(e.path[1].className==='v-dropdown-menu area' && this.menueshow && !this.hideSelect && e.screenY<410 && e.screenX>140 && e.screenX<465){
-        			   this.menueshow = false
-        		}
+//      		if(e.path[1].className==='v-dropdown-menu science' && this.menueshow && !this.hideSelect && e.screenY<510 && e.screenX>140 && e.screenX<465){
+//      				this.menueshow = false
+//      		}else if(e.path[1].className==='v-dropdown-menu area' && this.menueshow && !this.hideSelect && e.screenY<410 && e.screenX>140 && e.screenX<465){
+//      			   this.menueshow = false
+//      		}
         		
         	},
             sendMsgParent:function(){
@@ -100,24 +100,7 @@ import Bus from '@/common/js/bus'
         },
     }
     Vue.component('dropdownList',{
-        //props:['list','status','uniqueClasso','uniqueClasst'],
-        props:{
-        	list:{
-        		type:Array,
-        	},
-        	uniqueClasso:{
-        		type:Boolean,
-        		default:false
-        	},
-        	uniqueClasst:{
-        		type:Boolean,
-        		default:false
-        	},
-        	status:{
-        		type:Boolean,
-        		default:false
-        	},
-        },
+          props:['list','status','uniqueClasso','uniqueClasst'],
         data(){
             return{
                  msg:'jfdksjfk',
@@ -142,7 +125,7 @@ import Bus from '@/common/js/bus'
                 return (this.list.length)*1.8
             },
             isShow(){
-            	return this.statu
+            	return this.status
             }
         },
         methods:{

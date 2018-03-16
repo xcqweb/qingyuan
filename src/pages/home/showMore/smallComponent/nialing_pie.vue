@@ -129,7 +129,7 @@ export default {
                             },
                         },
                         emphasis:{
-                            show: false
+                            show: true
                         }
                 },
                 data:[
