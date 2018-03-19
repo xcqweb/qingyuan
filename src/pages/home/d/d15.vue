@@ -102,9 +102,10 @@
 		       //加载更多(已用自定义指令loadMore代替)
 		       loadMore:_.debounce( function(e){ //去抖函数
 		       		let _self = this;
-		       		let scrollT = Math.ceil(e.target.scrollTop+e.target.offsetHeight),
-		       			offsetT = e.target.getElementsByClassName('boxCon')[0].offsetHeight
-		       		if(scrollT===offsetT){
+		       		var scrollT = Math.ceil(e.target.scrollTop+e.target.offsetHeight),
+		       			offsetT = e.target.getElementsByClassName('boxCon')[0].offsetHeight;
+		       			console.log(scrollT,offsetT)
+		       		if(scrollT>=offsetT){
 		       			
 		       			let paramsObj = {
 		                area:_self.updatePlace.place,
@@ -156,6 +157,21 @@
 	                source:'全部',
 	                commentType:this.comType,
 	                key:data
+	            }
+	       		this.items = []
+	       this.getResponse(paramsObj);
+	       	})
+    		
+    		Bus.$on('isRise',(data) => {
+    			this.comType = 2
+	       		var paramsObj = {
+	                area:"全部",
+	                name:"全部",
+	                pageId:1,
+	                type:'day',
+	                source:'全部',
+	                commentType:this.comType,
+	                key:""
 	            }
 	       		this.items = []
 	       this.getResponse(paramsObj);

@@ -27,6 +27,7 @@
 	import echarts_resize from '@/common/js/echarts_resize.js'
 	import echarts from 'echarts'
 	import optionProps from '@/common/js/mixin/optionProps.js'
+	import Bus from '@/common/js/bus'
 	export default {
 		mixins:[optionProps],
 		data(){
@@ -75,6 +76,9 @@
             redom(id){
                 this.chart = echarts.init(document.getElementById(id));
                 this.chart.setOption(this.option);
+                this.chart.on('click', function (params) {
+				Bus.$emit('isRise',params.name)
+            });
                 
             },
             getResponse(){

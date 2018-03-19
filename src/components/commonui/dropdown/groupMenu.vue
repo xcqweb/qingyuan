@@ -36,7 +36,7 @@
              ></vDate>
         </div>
         <div class="scienceChose" v-show="isScience">
-            <span class="btn" @click="scienceType(0)" :class="{'active':scienceTypes}">4A以下景区</span>
+            <span class="btn" @click="scienceType(0)" :class="{'active':scienceTypes}">全部景区</span>
             <span class="btn" @click="scienceType(1)" :class="{'active':!scienceTypes,'active1':scienceTypes}">4A以上景区</span>
         </div>
 	</div>
