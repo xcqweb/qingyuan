@@ -57,6 +57,7 @@ ul{
     flex: 6;
     text-align: center;
     padding: 10px 0;
+    line-height: 200%;
     box-sizing: border-box;
     .cell2_box{
         float: left;

@@ -56,6 +56,7 @@
 				isborder:false,
 				isEndDate:true,
            		vDateStatus:true,
+           		dataType:'日',
 				qyselectlist:{
                     width:'70%',
                     left:'6%',
@@ -111,7 +112,7 @@
                     width:'70%',
                     right:'6%',
                     top:'52%',
-                    title:'日',
+                    title:this.dataType,
                     selectStatus:false,
                     place:[
                         '日',"月","年","自定义"
@@ -129,7 +130,7 @@
 	            this.$emit('choseDate',this.timeDate);
 	            this.vDateStatus = true
 	            //选择完成自定义日期时 初始化
-	            console.log(value)
+	            //console.log(value)
 	            this.dateList = {
                     width:'70%',
                     right:'6%',
@@ -160,9 +161,11 @@
 	        },
 	        
 	        listenAtparent(val){
+	        	
 	        	if(val==='自定义'){
 	        		this.vDateStatus = false
 	        	}else{
+	        		this.dataType = val
 	        		this.vDateStatus = true
 	        		let re=0 
 	        		switch(val){
@@ -281,7 +284,7 @@
 	}
 	.area{
 		width: 136px !important;
-		height: 44px;
+		height: 45px;
 	    position: absolute;
 	    left: 106px !important;
 	    border: 3px solid @borderColor;
@@ -293,7 +296,7 @@
 	}
 	.science{
 		 width: 276px !important;
-		 height: 44px;
+		 height: 45px;
 	     position: absolute;
 	     left: (259+122)/990*100% !important;
 	     border: 3px solid @borderColor;

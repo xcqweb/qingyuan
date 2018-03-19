@@ -11,15 +11,17 @@
 				<li>评论时间</li>
 			</ul>
 			<div class="con" @scroll="loadMore($event)">
-				<ul v-for="(item,index) in items">
-					<li><span>{{index+1}}</span></li>
-					<li><span>{{item.name}}</span></li>
-					<li><span>{{item.grade}}</span></li>
-					<li><span>{{item.source}}</span></li>
-					<li><span>{{item.con}}</span></li>
-					<li><span>{{item.uid}}</span></li>
-					<li><span>{{item.date}}</span></li>
-				</ul>
+				<div class="boxCon">
+					<ul v-for="(item,index) in items">
+						<li><span>{{index+1}}</span></li>
+						<li><span>{{item.name}}</span></li>
+						<li><span>{{item.grade}}</span></li>
+						<li><span>{{item.source}}</span></li>
+						<li><span>{{item.con}}</span></li>
+						<li><span>{{item.uid}}</span></li>
+						<li><span>{{item.date}}</span></li>
+					</ul>
+				</div>
 			</div>
 			
 		</div>
@@ -39,6 +41,7 @@
 		data(){
 			return{
 				comType:1,
+				num:2,
 				keyW:"",
 				items:[
 //					{name:'飞霞风景名胜区',comment:'好评',con:'整体来说不错,在船上可以吃到海鲜.天然的,还有清远鸡!,也可以观赏两岸的风景,72峰名不虚传!,整体来说不错,在船上可以吃到海鲜.天然的,还有清远鸡!,也可以观赏两岸的风景,72峰名不虚传',uid:'M1213***',date:'2018-03-05'},
@@ -99,13 +102,14 @@
 		       //加载更多(已用自定义指令loadMore代替)
 		       loadMore:_.debounce( function(e){ //去抖函数
 		       		let _self = this;
-		       		if(e.target.scrollTop>360){
-	        			//console.log(12)
-		        		let num=1;
+		       		let scrollT = Math.ceil(e.target.scrollTop+e.target.offsetHeight),
+		       			offsetT = e.target.getElementsByClassName('boxCon')[0].offsetHeight
+		       		if(scrollT===offsetT){
+		       			
 		       			let paramsObj = {
 		                area:_self.updatePlace.place,
 		                name:_self.updatePlace.turist,
-		                pageId:num++,
+		                pageId:_self.num++,
 		                source:'全部',
 		                commentType:_self.comType,
 		                key:_self.keyW
@@ -165,7 +169,7 @@
 		width: 100%;
 		height: 100%;
 		.comment{
-			width: 1577/1642*100%;
+			width: 1578/1642*100%;
 			height: 823/948*100%;
 			margin: 98px auto 28px auto;
 			border: 2px solid #345bfa;
@@ -232,21 +236,25 @@
 						flex-basis: 100px;
 					}
 					li:nth-child(2){
-						flex-basis: 300px;
+						flex-basis: 301px;
 					}
 					li:nth-child(3){
 						flex-basis: 100px;
 					}
 					li:nth-child(4){
-						flex-basis: 122px;
+						flex-basis: 121px;
 					}
 					li:nth-child(5){
-						flex-basis: 680px;
-						text-align: left;
-						padding: 0 20px 0 20px;
+						flex-basis: 684px;
+						text-align: left !important;
+						padding: 0 10px 0 10px;
 						box-sizing: border-box;
-						word-wrap: break-word; 
-						word-break: normal; 
+					}
+					
+					li:nth-child(5) span{
+						display: inline-block;
+						width: 150%;
+						text-indent: 1em;
 					}
 					
 					li:nth-child(5)::-webkit-scrollbar{

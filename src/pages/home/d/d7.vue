@@ -159,7 +159,7 @@ export default {
                                 align:'right',
                                 textStyle:{
                                     color:'#368df7',
-                                    fontSize:20
+                                    fontSize:14
                                 }
                             },
                             emphasis:{
@@ -172,7 +172,7 @@ export default {
                                 },
                                 textStyle:{
                                     color:'#368df7',
-                                    fontSize:20
+                                    fontSize:14
                                 }
                             }
                         },
@@ -200,7 +200,7 @@ export default {
                                 align:'right',
                                 textStyle:{
                                     color:'#75cf65',
-                                    fontSize:20
+                                    fontSize:14
                                 }
                             },
                             emphasis:{
@@ -213,7 +213,7 @@ export default {
                               },
                                 textStyle:{
                                     color:'#75cf65',
-                                    fontSize:20
+                                    fontSize:14
                                 }
                             }
                         },
@@ -233,7 +233,7 @@ export default {
                                 position:'outside',
                                 textStyle:{
                                     color:'#fe6e40',
-                                    fontSize:20
+                                    fontSize:14
                                 }
                             },
                             emphasis:{
@@ -246,7 +246,7 @@ export default {
                               },
                                 textStyle:{
                                     color:'#fe6e40',
-                                    fontSize:20
+                                    fontSize:14
                                 }
                             }
                         },

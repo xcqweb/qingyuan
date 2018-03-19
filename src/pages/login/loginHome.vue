@@ -149,6 +149,7 @@
 					border-bottom: 2px solid #d6d6d6;
 					position: relative;
 					padding-bottom: 10px;
+					vertical-align: bottom;
 					box-shadow: 0px 1px #d6d6d6;
 					input{
 						width: 80%;

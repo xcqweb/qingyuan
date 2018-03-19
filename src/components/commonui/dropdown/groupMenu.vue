@@ -60,6 +60,7 @@
                     width:'76.9%',
                     left:'10%',
                     title:'全部',
+                    key:'area',
                     selectStatus:false,
                     place:[
                         '全部',"清城","清新","佛冈","英德","连州","连南","连山","阳山"
@@ -128,7 +129,7 @@
                     turist:"全部"
                 }
                 this.$emit('doubleChose',this.updateData)
-            this.cityData = this.switch(data)
+            	this.cityData = this.switch(data)
             
 	        },
 	        catchmsg2(data){
@@ -183,6 +184,7 @@
 	                left:'10%',
 	                title:this.cityData[0],
 	                selectStatus:false,
+	                key:'science',
 	                place:this.cityData,
 	            }
 	        },

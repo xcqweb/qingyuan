@@ -153,9 +153,9 @@ export default {
 	   created(){
     	//console.log(this.update)
     	var paramsObj = {
-                area:"全部",
-                name:"全部",
-                type:"day",
+                area:this.updatePlace.place,
+	              name:this.updatePlace.turist,
+	              type:["day","month","year"][this.upday],
             }
        this.getResponse(paramsObj);
     },
@@ -221,12 +221,12 @@ export default {
 	                            //小飞机
 	                            symbol: _self.planePath,
 	                            //移动点大小
-	                            symbolSize: 26
+	                            symbolSize: 20
 	                        },
 	                        lineStyle: {
 	                            normal: {
 	                                color: _self.color[3],
-	                                width: 3,
+	                                width: 2,
 	                                opacity: 1,
 	                                curveness: 0.2
 	                            }
@@ -247,7 +247,7 @@ export default {
 	                                position: 'right',
 	                                formatter: '{b}',
 	                                textStyle: {
-	                                    fontSize: 20,
+	                                    fontSize: 12,
 	                                    fontWeight:'bold',
 	                                    color:'#eee',
 	                                    textShadowColor:"#333",
@@ -257,7 +257,7 @@ export default {
 	                        },
 	                        z:100,
 	                        symbolSize: function (val) {
-	                            return 20;
+	                            return 12;
 	                        },
 	                        tooltip:{
 	                            formatter:function(params){
@@ -267,7 +267,7 @@ export default {
 	                        itemStyle: {
 	                            normal: {
 	                                color: _self.color[3],
-	                                fontSize:30
+	                                fontSize:20
 	                            }
 	                        },
 	                        progressiveThreshold: 500,
@@ -277,7 +277,7 @@ export default {
 	                            return {
 	                                name: dataItem[1].name,
 	                                value: _self.geoCoordMap[dataItem[1].name].concat([dataItem[1].value]),
-	                                fontSize:30
+	                                fontSize:20
 	                            };
 	                        })
 	                    });

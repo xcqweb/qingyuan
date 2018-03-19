@@ -4,7 +4,7 @@
         @click = 'showselect($event)' 
         v-bind:style="{ width:selectList.width ,left:selectList.left,right:selectList.right,top:selectList.top}" 
         >
-        <p @click='triggle' v-on:itemtodo2="sendMsgParent" @mouseleave="out($event)" class="dropdown-menu-p" :class="{unique1:uniqueClasso,unique2:uniqueClasst,unique3:uniqueClassth}">{{selectList.title}}</p>
+        <p @click='triggle($event)' v-on:itemtodo2="sendMsgParent" @mouseleave="out($event)" class="dropdown-menu-p" :class="{unique1:uniqueClasso,unique2:uniqueClasst,unique3:uniqueClassth}">{{selectList.title}}</p>
         <span :class="upDown"></span>
         <transition name="dropdown-fade">
             <dropdownList 
@@ -81,7 +81,13 @@ import Bus from '@/common/js/bus'
                 }
                  
             },
-            triggle:function(){
+            triggle:function(e){
+            	let re = e.target.offsetParent.className==='v-dropdown-menu area'
+            	if(re){
+            		this.$emit('listenAtparent','全部')
+            	}else{
+            		this.$emit('listenAtparent','全部')
+            	}
             	this.menueshow = !this.menueshow
                 this.selectList.selectStatus = true;
                 if (this.upDown!='up') {
@@ -100,7 +106,7 @@ import Bus from '@/common/js/bus'
         },
     }
     Vue.component('dropdownList',{
-          props:['list','status','uniqueClasso','uniqueClasst'],
+          props:['list','status','uniqueClasso','uniqueClasst'], 
         data(){
             return{
                  msg:'jfdksjfk',
