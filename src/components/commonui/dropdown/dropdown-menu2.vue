@@ -83,10 +83,10 @@ import Bus from '@/common/js/bus'
             	
             	let re = e.target.offsetParent.className==='v-dropdown-menu science'
             	if(re){
-            		this.$emit('listenAtparent','全部')
+            		//this.$emit('listenAtparent','全部')
             	}else{
-            		console.log(e.target.offsetParent.className)
-            		this.$emit('listenAtparent','全部')
+            		//console.log(e.target.offsetParent.className)
+            		//this.$emit('listenAtparent','全部')
             	}
             	this.menueshow = !this.menueshow
                 this.selectList.selectStatus = true;
@@ -285,7 +285,7 @@ import Bus from '@/common/js/bus'
     cursor: pointer;
     text-align: center;
     z-index: 9;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 36px;
     white-space: nowrap;
     overflow: hidden;

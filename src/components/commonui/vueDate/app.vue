@@ -4,7 +4,7 @@
         <div :class="{'border':isBorder}">
             <!-- <span>弹出框</span> -->
             <input type="text"  v-bind:class="{ choses: isActive }" class="sigleDate"   @click="openByDrop($event)" v-model="calendar3.display" readonly>
-            <input type="text" v-bind:class="{ choses: !isActive}" @click="openByDialog" :value="calendar4.display" readonly>
+            <input type="text" v-bind:class="{ choses: !isActive}" @click="openByDialog" :value="calendar4.display" readonly style="cursor: pointer;">
         </div>
 
 <!--         <div>

@@ -5,9 +5,12 @@ let bottomBody = resolve => {require.ensure(['@/pages/home/bottomBody.vue'], () 
 
 let sleckte = resolve => {require.ensure(['@/components/commonui/dropdown/dropdown-menu.vue'], () => {resolve(require('@/components/commonui/dropdown/dropdown-menu.vue'))})}
 
+
 let doubleSelection = resolve => {require.ensure(['@/components/commonui/dropdown/doubleSelection.vue'], () => {resolve(require('@/components/commonui/dropdown/doubleSelection.vue'))})}
 
 let groupMenu = resolve => {require.ensure(['@/components/commonui/dropdown/groupMenu.vue'], () => {resolve(require('@/components/commonui/dropdown/groupMenu.vue'))})}
+
+let groupMenut = resolve => {require.ensure(['@/components/commonui/dropdown/groupMenuo.vue'], () => {resolve(require('@/components/commonui/dropdown/groupMenuo.vue'))})}
 
 let listMenu = resolve => {require.ensure(['@/components/commonui/dropdown/listMenu.vue'], () => {resolve(require('@/components/commonui/dropdown/listMenu.vue'))})}
 
@@ -107,6 +110,9 @@ let D16 = resolve => {require.ensure(['@/pages/home/d/d16.vue'], () => {resolve(
 //评论详情
 let D15 = resolve => {require.ensure(['@/pages/home/d/d15.vue'], () => {resolve(require('@/pages/home/d/d15.vue'))})}
 
+//酒店可提升度
+let D17 = resolve => {require.ensure(['@/pages/home/d/d17.vue'], () => {resolve(require('@/pages/home/d/d17.vue'))})}
+
 //景区热力图
 let D1SS = resolve => {require.ensure(['@/pages/home/showMore/smallComponent/d1ss.vue'], () => {resolve(require('@/pages/home/showMore/smallComponent/d1ss.vue'))})}
 
@@ -131,6 +137,7 @@ let status =[
     'sleckte',
     'doubleSelection',
     'groupMenu',
+    'groupMenut',
     'listMenu',
     'A1',
     'A2',
@@ -193,6 +200,7 @@ let status =[
     'D14',
     'D15',
     'D16',
+    'D17',
     'D1SS',
     'D9SS',
     'D12SS',

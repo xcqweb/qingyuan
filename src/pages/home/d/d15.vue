@@ -43,6 +43,7 @@
 				comType:1,
 				num:2,
 				keyW:"",
+				name:"",
 				items:[
 //					{name:'飞霞风景名胜区',comment:'好评',con:'整体来说不错,在船上可以吃到海鲜.天然的,还有清远鸡!,也可以观赏两岸的风景,72峰名不虚传!,整体来说不错,在船上可以吃到海鲜.天然的,还有清远鸡!,也可以观赏两岸的风景,72峰名不虚传',uid:'M1213***',date:'2018-03-05'},
 				],
@@ -60,12 +61,13 @@
 	                key:this.keyW,
 	            }
 				this.items = []
+				this.name= '';
 				this.getResponse(paramsObj);
 			},
 			update:function(val){
 				var paramsObj = {
-	                area:val.place,
-	                name:val.turist,
+	                area:this.updatePlace.place,
+	                name:this.updatePlace.turist,
 	                pageId:1,
 	                source:'全部',
 	                commentType:this.comType ,
@@ -75,7 +77,36 @@
 	            }
 					this.items = []
 					this.getResponse(paramsObj);
+			},
+			
+			slectType:function(val){
+				var paramsObj = {
+					area:this.updatePlace.place,
+	                name:this.updatePlace.turist,
+	                pageId:1,
+	                source:'全部',
+	                commentType:this.comType ,
+	                key:this.keyW,
+	                category:val+1
+	               }
+				this.items = []
+				this.getResponse(paramsObj);
+			},
+			hotelChose:function(val){
+					this.name = val;
+					var paramsObj = {
+					area:this.updatePlace.place,
+	                name:val,
+	                pageId:1,
+	                source:'全部',
+	                commentType:this.comType ,
+	                key:this.keyW,
+	                category:this.slectType+1
+	               }
+				this.items = []
+				this.getResponse(paramsObj);
 			}
+			
 		},
 		methods:{
 				getResponse(paramsObj){
@@ -98,10 +129,33 @@
 				            })
 		       },
 		       
+		       getResponseRise(paramsObj){
+					let _self = this;
+			        this.$axios.get(API_URL+'/qy/api/v2/command/selectCommentsUp',{params:paramsObj}).then(r => {
+								let reData = r.data.data
+								console.log(reData)
+				                if(r.data.code ==="200"||r.data.code ===200){
+				                   reData.forEach( (item,index) => {
+				                   		if(item.grade>4){
+				                   			item.grade = '好评'
+				                   		}else if(item.grade>=2 && item.grade<=3){
+				                   			item.grade = '差评'
+				                   		}else{
+				                   			item.grade = '投诉'
+				                   		}
+				                   		_self.items.push(item)
+				                   })
+				                }
+				            })
+		       },
+		       
 		       
 		       //加载更多(已用自定义指令loadMore代替)
 		       loadMore:_.debounce( function(e){ //去抖函数
 		       		let _self = this;
+		       		let num=2;
+		       		scrollT = 0;
+		       		offsetT = 0;
 		       		var scrollT = Math.ceil(e.target.scrollTop+e.target.offsetHeight),
 		       			offsetT = e.target.getElementsByClassName('boxCon')[0].offsetHeight;
 		       			console.log(scrollT,offsetT)
@@ -109,11 +163,12 @@
 		       			
 		       			let paramsObj = {
 		                area:_self.updatePlace.place,
-		                name:_self.updatePlace.turist,
+		                name:_self.name||_self.updatePlace.turist,
 		                pageId:_self.num++,
 		                source:'全部',
 		                commentType:_self.comType,
-		                key:_self.keyW
+		                key:_self.keyW,
+		                category:_self.slectType+1,
 		            }
 			       		_self.getResponse(paramsObj)
 	        	}
@@ -127,13 +182,16 @@
 	                type:'day',
 	                source:'全部',
 	                commentType:1,
-	                key:""
+	                key:"",
+	                category:this.slectType+1,
 	            }
 	       this.getResponse(paramsObj);
 	    },
 	    mounted(){
+	    	//关联游客评价
     		Bus.$on('comType',(data) => {
-    			this.comType = data
+    			this.comType = data;
+    			this.num = 2;
 	       		var paramsObj = {
 	                area:"全部",
 	                name:"全部",
@@ -147,8 +205,10 @@
 	       this.getResponse(paramsObj);
 	       	})
     		
+    		//关联关键词
     		Bus.$on('keyWords',(data) => {
-    			this.keyW = data
+    			this.keyW = data;
+    			this.num = 2;
 	       		var paramsObj = {
 	                area:"全部",
 	                name:"全部",
@@ -162,19 +222,22 @@
 	       this.getResponse(paramsObj);
 	       	})
     		
+    		//关联景区客提升度
     		Bus.$on('isRise',(data) => {
     			this.comType = 2
+    			this.num = 2;
+    			this.name = data
 	       		var paramsObj = {
-	                area:"全部",
-	                name:"全部",
+	                area:this.updatePlace.place,
+	                name:data,
 	                pageId:1,
-	                type:'day',
-	                source:'全部',
-	                commentType:this.comType,
-	                key:""
+//	                type:'day',
+//	                source:'全部',
+//	                commentType:this.comType,
+//	                key:""
 	            }
 	       		this.items = []
-	       this.getResponse(paramsObj);
+	       this.getResponseRise(paramsObj);
 	       	})
 	    }
 	}

@@ -84,9 +84,9 @@ import Bus from '@/common/js/bus'
             triggle:function(e){
             	let re = e.target.offsetParent.className==='v-dropdown-menu area'
             	if(re){
-            		this.$emit('listenAtparent','全部')
+            		//this.$emit('listenAtparent','全部')
             	}else{
-            		this.$emit('listenAtparent','全部')
+            		//this.$emit('listenAtparent','全部')
             	}
             	this.menueshow = !this.menueshow
                 this.selectList.selectStatus = true;
@@ -117,7 +117,7 @@ import Bus from '@/common/js/bus'
         },
         template:`<div class='listdiv'  v-bind:style="{height: listDivHeight+'rem',maxHeight:maxHeight+'rem' }" v-bind:class="{ more: isMore }" v-if='isShow'>
         <div class="overlay" v-if='status' @click.self='hidelist'></div>
-        <ul @mousewheel.passive='moreStatus' style='font-size:18px;'  v-if='isShow' @mouseleave="out" :class="{'centero':uniqueClasso,'centert':uniqueClasst,}"><li class="v-dropdown-menu_list" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}
+        <ul @mousewheel.passive='moreStatus' style='font-size:18px; width:150%;'  v-if='isShow' @mouseleave="out" :class="{'centero':uniqueClasso,'centert':uniqueClasst,}"><li class="v-dropdown-menu_list" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}
     </li></ul></div>`,
         computed:{
             maxHeight:function(){
@@ -173,7 +173,7 @@ import Bus from '@/common/js/bus'
         	
         },
         mounted(){
-            if(this.list.length>4){
+            if(this.list.length>6){
                 this.isMore =  true
             }else{
                 this.isMore = false
@@ -287,7 +287,7 @@ import Bus from '@/common/js/bus'
     cursor: pointer;
     text-align: center;
     z-index: 9;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 36px;
     white-space: nowrap;
     overflow: hidden;

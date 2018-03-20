@@ -293,7 +293,7 @@ require('echarts-wordcloud');
         },
         getResponse(paramsObj){
             this.$axios.get(API_URL+'/qy/api/command/getKeWords',{params:paramsObj}).then(r => {
-
+				//console.log(r)
                 if(r.data.code ==="200"||r.data.code ===200){
                     this.yunData = r.data.data;
                      this.$nextTick(echarts_resize('chartId',this))

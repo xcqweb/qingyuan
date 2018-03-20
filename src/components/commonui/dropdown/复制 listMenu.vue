@@ -1,6 +1,5 @@
 <template>
 	<div id="box">
-		
         <div class="jqlable">景 区</div>
         <sleckte 
         class='science'
@@ -246,7 +245,7 @@
 	.qylable{
 		width: 100px !important;
 	    height: 44px;
-	    font-size: 18px;
+	    font-size: 0.9rem;
 	    color: #F0EFFD;
 	    line-height: 44px;
 	    position: absolute;
@@ -259,7 +258,7 @@
 	.jqlable{
 		width: 138/990*100% !important;
 	    height: 44px;
-	    font-size: 18px;
+	    font-size: 0.9rem;
 	    color: #F0EFFD;
 	    line-height: 44px;
 	    position: absolute;
@@ -269,11 +268,10 @@
 	    border: 3px solid @borderColor;
 	    z-index: 8;
 	}
-	
 	.time{
 		width: 110px !important;
 	    height: 44px;
-	    font-size: 18px;
+	    font-size: 0.9rem;
 	    color: #F0EFFD;
 	    line-height: 44px;
 	    position: absolute;

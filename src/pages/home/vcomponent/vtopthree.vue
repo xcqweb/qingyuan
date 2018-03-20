@@ -70,9 +70,11 @@ export default {
         }
   },
   created () {
+  	console.log(this.slectType)
         var paramsObj = {
                 area:"全部",
                 name:"全部",
+                category:this.slectType+1,
             }
        this.getResponse(paramsObj);
     },
