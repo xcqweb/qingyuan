@@ -69,6 +69,11 @@ export default {
         option:{
           backgroundColor: 'rgba(0, 0, 0, 0)',
           color:['#FF8885','#57ABFE', '#368DF7', '#7E6AF6', '#E39A50','#FFCD38',  '#4EBBFC', '#75CF65','#B8E986', '#86E9E8', '#58E5E1','#4BCEDD'],
+          tooltip:{
+          	show:true,
+          	trigger:'item',
+          	formatter:'{b}  {c}%'
+          },
           legend:{
                 show:true,
                 orient: 'vertical',

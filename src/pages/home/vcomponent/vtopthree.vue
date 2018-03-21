@@ -25,15 +25,25 @@ export default {
     watch:{
         updatePlace:{
             handler: function (val, oldVal) {
-            		console.log(this.updatePlace)
+            		//console.log(this.updatePlace)
             		var paramsObj = {
                 area:this.updatePlace.place,
                 name:this.updatePlace.turist,
+                category:this.slectType+1,
            	 }
                 this.getResponse(paramsObj);
             },
             deep:true,
         },
+        slectType:function(val){
+        	
+        		var paramsObj = {
+                area:this.updatePlace.place,
+                name:this.updatePlace.turist,
+                category:val+1,
+           	 }
+                this.getResponse(paramsObj);
+        }
     },
   data () {
     return {
@@ -53,7 +63,7 @@ export default {
                 if(r.data.code ==="200"||r.data.code ===200){
                     this.items.forEach((item,index)=>{
                         if(index ===0){
-                            item.font =r.data.data.totalNum+'';
+                            item.font =r.data.data.goodNum+'';
                         }else if(index ===1){
                             item.font =r.data.data.badNum+'';
                         }else if(index ===2){
@@ -70,7 +80,6 @@ export default {
         }
   },
   created () {
-  	console.log(this.slectType)
         var paramsObj = {
                 area:"全部",
                 name:"全部",

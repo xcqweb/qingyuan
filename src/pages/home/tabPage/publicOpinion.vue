@@ -18,7 +18,7 @@
         	<div class="leftScope">
         		<!--<h1>游客属性</h1>-->
 	            <div class="item"
-	                v-for='item in toggleComponents' 
+	                v-for='item in leftComponents' 
 	                :class="item.id">
 	                <h1>{{item.title}}</h1>
 	                    <componet
@@ -27,6 +27,7 @@
 	                    :updatePlace='updatePlace'
                 		:update='update'
                 		:hotelChose="hotelChose"
+                		:slectType='slectType'
 	                    ></componet>
 	            </div>
 	        </div>
@@ -83,19 +84,12 @@ export default {
             	hotelChose:'',
             	
             	scienceType:false,
-            	slectType:false,
+            	slectType:0,
                 leftComponents:[
                 	{name:'A3',id:'one',index:1,time:900,show:true,title:'游客评价'},
                 	{name:'D10',id:'two',index:2,time:900,show:true,title:'评价正负面'},
                 	{name:'D11',id:'three',index:3,time:900,show:true,title:'关键词'},
-                	{name:'D13',id:'four',index:4,time:900,show:true,title:'景区可提升度'},
-                ],
-                
-                leftComponentsType:[
-                	{name:'A3',id:'one',index:1,time:900,show:true,title:'游客评价'},
-                	{name:'D10',id:'two',index:2,time:900,show:true,title:'评价正负面'},
-                	{name:'D11',id:'three',index:3,time:900,show:true,title:'关键词'},
-                	{name:'D17',id:'four',index:4,time:900,show:true,title:'酒店可提升度'},
+                	{name:'D13',id:'four',index:4,time:900,show:true,title:'可提升度'},
                 ],
                 
                 //4A级以上景区
@@ -113,13 +107,6 @@ export default {
             inItems: 'version/inItems',
           }),
           
-          toggleComponents(){
-          	if(!this.slectType){
-          		return this.leftComponents
-          	}else{
-          		return this.leftComponentsType
-          	}
-          }
     },
     watch:{
         Attractions:function(val){

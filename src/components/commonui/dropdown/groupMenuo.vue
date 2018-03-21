@@ -2,7 +2,7 @@
 	<div id="box">
 			<!--关键词-->
 			
-			<input 
+			<!--<input 
 				class="keyW" 
 				list="keys" 
 	        	v-on:blur="catchmsg4"
@@ -11,7 +11,16 @@
 			/>
 			<datalist id="keys">
 				<option v-for="item in cityData" :value="item"></option>
-			</datalist>
+			</datalist>-->
+			
+			<DataList
+				class=datalist
+				:listData='cityData'
+				v-on:blur='catchmsg4'
+	        	v-model='searchVal'
+	        	@getName='catchmsg4'
+			></DataList>
+			
 			
 			<div class="nameLabel">名 称</div>
 	        <sleckte 
@@ -65,6 +74,7 @@
 <script>
 	import sleckte from '@/components/commonui/dropdown/dropdown-menu.vue'
 	import sleckteo from '@/components/commonui/dropdown/dropdown-menu-type.vue'
+	import DataList from '@/components/commonui/datalist/dataList.vue'
 	import vDate from '@/components/commonui/vueDate/app.vue'
 	export default{
 		data(){
@@ -105,7 +115,7 @@
                     title:'景区',
                     selectStatus:false,
                     place:[
-                        '景区','酒店/名宿'
+                        '景区','酒店/民宿'
                     ]
                 },
                 
@@ -179,9 +189,9 @@
 	        catchmsg2(data){
 	        	if(this.type==='景区'){
 	        		this.updateData ={
-	                place:this.updateData.place,
-	                turist:data,
-	            }
+		                place:this.updateData.place,
+		                turist:data,
+		            }
 	           		this.$emit('doubleChose',this.updateData)
 	        	}else{
 	        		//酒店选择
@@ -203,18 +213,22 @@
 					this.$emit('selectType',0)
 				}else{
 					this.$emit('selectType',1)
+					this.updateData ={
+		                place:this.updateData.place,
+		                turist:"全部",
+		            }
+	        		this.$emit('doubleChose',this.updateData)
 				}
 				
 				
-				console.log(type,this.switch("全部",type))
+				//console.log(type,this.switch("全部",type))
 	        },
 	        
 	        //关键词
-	        catchmsg4(){
-	        	let val = this.searchVal;
+	        catchmsg4(val){
+	        	//let val = this.searchVal;
 	        	if(val){
 	        		this.seType = val
-	        		
 	        		if(this.type==='景区'){
 		        		this.updateData ={
 		                place:this.updateData.place,
@@ -529,7 +543,8 @@
 		components:{
 			sleckte,
 			sleckteo,
-			vDate
+			vDate,
+			DataList
 		}
 	}
 </script>
@@ -587,7 +602,17 @@
 	    box-sizing: border-box;
 	}
 	
-	datalist{
+	.datalist{
+		height: 36px;
+		width: 76.9%;
+	    position: absolute;
+	    text-align: left;
+	    top: 47%; 
+	    left: 10%;
+	    color: #fff;
+	    font-size: 16px;
+	    padding-left: 10px;
+	    box-sizing: border-box;
 	}
 	
 	 .keyW::-webkit-input-placeholder{

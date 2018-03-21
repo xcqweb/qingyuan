@@ -13,7 +13,7 @@
     top: 6%;
     bottom: 0;
     margin: auto;
-     transform: scale(1.6); 
+     transform: scale(1); 
   }
 </style>
 <template>
@@ -34,12 +34,19 @@
 			return {
 				option:{
 					color:['#427EFF','#7F6AF7','#BB68F4','#FF8882','#F7C935','#FFFD37','#B1F223','#76CD66','#B7E986','#86EACD'],
+					tooltip:{
+						show:true,
+						trigger:'item',
+						formatter:function(params){
+							return params.name+' : '+params.percent+'%'
+						}
+					},
 					series : [
 				        {
 				            name: '签到比例分析',
 				            type: 'pie',
-				            radius : '35%',
-				            center: ['50%', '55%'],
+				            radius : '60%',
+				            center: ['58%', '55%'],
 				            data:[],
                             labelLine :{
                                 normal:{
@@ -50,10 +57,10 @@
                                 
                             },
                             label:{
-                            	
+                            	show:true,
                                 normal:{
                                 	color:'#fff',
-                                    formatter:'{b}\n{d}%'
+                                    formatter:'{b}\n{c}%'
                                 }
                             },
                             itemStyle:{
@@ -64,13 +71,25 @@
 			}
 		},
 	    watch:{
-	        updatePlace:{
-		        handler: function (val, oldVal) {
-		        	this.option.series[0].data=[];
-		            this.getResponse();
-		        },
-		        deep:true,
-	        },
+	    	updatePlace:function(val){
+	    		this.option.series[0].data=[];
+		        	var paramsObj = {
+		                area:val.place,
+		                name:val.turist
+		            }
+		            this.getResponse(paramsObj);
+	    	}
+//	        updatePlace:{
+//		        handler: function (val, oldVal) {
+//		        	this.option.series[0].data=[];
+//		        	var paramsObj = {
+//		                area:val.place,
+//		                name:val.turist
+//		            }
+//		            this.getResponse();
+//		        },
+//		        deep:true,
+//	        },
 	    },
 		 methods:{
             redom(id){
@@ -81,21 +100,14 @@
             });
                 
             },
-            getResponse(){
+            getResponse(paramsObj){
             let _self = this;
-            var paramsObj = {
-                area:this.updatePlace.place,
-                name:this.updatePlace.turist
-            }
-//            this.$axios.get(API_URL+'/qy/api/command/selectCommandScenicRaiseUp',{params:paramsObj}).then(r => {
-	//this.$axios.get('https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example/xcq').then(r => {
               this.$axios.get('http://120.55.190.57/qy/api/command/selectCommandScenicRaiseUp',{params:paramsObj}).then(r => {
             	let reData = r.data.data
             	//console.log(reData);
             	_self.option.series[0].data = []
                 if(r.status ===200){
                 	for(let i=0; i<reData.length; ++i){
-                		
                 		_self.option.series[0].data.push({
                 			value: reData[i].percent,
                 			name: reData[i].name

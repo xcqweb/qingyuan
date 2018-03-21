@@ -71,14 +71,14 @@
 	                pageId:1,
 	                source:'全部',
 	                commentType:this.comType ,
-	                key:this.keyW,
+	                //key:this.keyW,
 	                beginTime:val.begin.join('-'),
 	                endTime:val.end.join('-'),
 	            }
 					this.items = []
 					this.getResponse(paramsObj);
 			},
-			
+			//酒店景区选择
 			slectType:function(val){
 				var paramsObj = {
 					area:this.updatePlace.place,
@@ -92,6 +92,7 @@
 				this.items = []
 				this.getResponse(paramsObj);
 			},
+			//酒店名称
 			hotelChose:function(val){
 					this.name = val;
 					var paramsObj = {
@@ -133,8 +134,12 @@
 					let _self = this;
 			        this.$axios.get(API_URL+'/qy/api/v2/command/selectCommentsUp',{params:paramsObj}).then(r => {
 								let reData = r.data.data
-								console.log(reData)
+								//console.log(reData)
 				                if(r.data.code ==="200"||r.data.code ===200){
+				                	if(!reData){
+				                		this.items=[]; 
+				                		return;
+				                	}
 				                   reData.forEach( (item,index) => {
 				                   		if(item.grade>4){
 				                   			item.grade = '好评'
@@ -158,7 +163,7 @@
 		       		offsetT = 0;
 		       		var scrollT = Math.ceil(e.target.scrollTop+e.target.offsetHeight),
 		       			offsetT = e.target.getElementsByClassName('boxCon')[0].offsetHeight;
-		       			console.log(scrollT,offsetT)
+		       			//console.log(scrollT,offsetT)
 		       		if(scrollT>=offsetT){
 		       			
 		       			let paramsObj = {
@@ -199,7 +204,8 @@
 	                type:'day',
 	                source:'全部',
 	                commentType:data,
-	                key:this.keyW
+	                key:this.keyW,
+	                category:this.slectType+1,
 	            }
 	       		this.items = []
 	       this.getResponse(paramsObj);
@@ -231,10 +237,10 @@
 	                area:this.updatePlace.place,
 	                name:data,
 	                pageId:1,
-//	                type:'day',
-//	                source:'全部',
-//	                commentType:this.comType,
-//	                key:""
+	                type:'day',
+	                source:'全部',
+	                commentType:this.comType,
+	                key:""
 	            }
 	       		this.items = []
 	       this.getResponseRise(paramsObj);
@@ -397,7 +403,7 @@
 	
 			.con::-webkit-scrollbar{
 			    width: 0px;
-			    height: 2rem;
+			    height: 0;
 			}
 			/*定义滚动条的轨道，内阴影及圆角*/
 			.con::-webkit-scrollbar-track{
