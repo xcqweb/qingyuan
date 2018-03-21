@@ -11,7 +11,7 @@
     :placeAttractions = 'placeAttractions' 
     ></router-view>
     
-    <config v-if = "toast"></config>
+    
   </div>
 </template>
 <script type="text/javascript">
@@ -43,11 +43,6 @@ export default {
               comment:'version/comment',
             }),
             
-            //设置客流预警蒙层显示
-	          toast(){
-	          	let toast = this.$store.getters['toast/getState']
-	          	return toast
-	          },
         },
         methods: {
             console(){

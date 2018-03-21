@@ -4,10 +4,8 @@
 			<div class="content">
 				<span class="science">景区:</span>
 				<sleckte
-				:selectList="qyselectlist" 
-		        v-on:listenAtparent="catchmsg1"
-				>
-				</sleckte>
+		        	v-on:listenAtparent="catchmsg1"
+				></sleckte>
 			<div class="title">
 				<span class="history" @click="history" :class="{'active':tab}">预警历史</span>
 				<span class="config" @click="waringConfig" :class="{'active':!tab}">预警设置</span>
@@ -21,12 +19,11 @@
 </template>
 
 <script>
-	import componetstatus from '@/pages/home/componentstatus.js'
+//	import componetstatus from '@/pages/home/componentstatus.js'
 	import optionProps from '@/common/js/mixin/optionProps.js'
 	import history from '@/components/commonui/config/children/history.vue'
-	import config from '@/components/commonui/config/children/config.vue'
+//	import config from '@/components/commonui/config/children/config.vue'
 	
-	import { mapMutations,mapActions} from 'vuex'
 	
 	export default{
 		mixins: [optionProps],
@@ -108,8 +105,7 @@
         	},
         	//关闭蒙层
         	close(){
-        		this.$store.state.showToast = false;
-        		this.code=0;
+        		this.$store.commit('toast/SHOWTOAST',false)
         	},
         	getData(){}
 		},
@@ -124,8 +120,7 @@
 			
 		},
 		components:{
-			...componetstatus,
-			config,
+//			config,
 			history,
 		}
 	}

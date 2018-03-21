@@ -1,6 +1,6 @@
 <template>
     <div class="b2">
-    	<div class="passagerBtn" @click="setWaring">客流预警</div>
+    	<div class="passagerBtn">客流预警</div>
         <div :id="idName" class="pieB2"></div>
         <span v-bind:class="fontColor">{{dataItem.percent}}%</span>
         <div class="text"><font>{{dataItem.currentNum}}人</font></div>
@@ -207,10 +207,6 @@ export default {
           this.chart.setOption(this.option);
       },
       
-      setWaring(){
-      	alert(212)
-      	this.$store.commit('toast/SHOWTOAST',true)
-      }
   },
   mounted() {
         this.$nextTick(echarts_resize(this.idName,this))

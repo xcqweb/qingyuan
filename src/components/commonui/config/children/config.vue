@@ -27,8 +27,8 @@
 </template>
 
 <script>
-	import {editTime} from '@/common/js/gtime.js'
-	import Rw from '@/common/js/until/index.js'
+//	import {editTime} from '@/common/js/gtime.js'
+//	import Rw from '@/common/js/until/index.js'
 	import optionProps from '@/common/js/mixin/optionProps.js'
 	
 	import { mapMutations,mapActions} from 'vuex'
@@ -38,108 +38,18 @@
 		mixins: [optionProps],
 		data(){
 			return {
-				loadNum:'',
-				configNum:'',
-				showEdit:true,
-				editIndex:'',
-				tipShow:false,
-				editData:{},
+				
 			}
 		},
-		props:['scienceProp'],
+		props:[''],
 		watch:{
-			code:function(){
-				this.getData()
-				this.editIndex = '';
-			}
+			
 		},
 		created(){
-			this.getData();
 		},
 		computed:{
-			dataConfigList(){
-				return this.$store.state.dataList 
-			}
 		},
 		methods:{
-			//模拟数据
-			...mapMutations([
-				'SAVE_EDIT',
-				'SAVE_CONFIG',
-				'SAVE_EDIT'
-			]),
-			
-			//获取数据
-			getData(){
-				api.params.code= this.code;
-				api.getPassengerWarnSetList(api.params).then( (re) => {
-					//console.log(re)
-					let reData = re.data.data;
-					this.$store.state.dataList = reData;
-				}).catch( e =>{
-				      console.log(e);
-				    })
-			},
-			
-			setData(data){
-				api.params.code= data.code;
-				api.params.setNum = data.loadNum;
-				api.params.warnNum = data.configNum;
-				api.modifyPassengerWarnSet(api.params).then( (re) => {
-					//console.log(re)
-					if(re && re.data.code===200){
-						this.getData();
-						alert('修改成功!')
-						
-					}
-				}).catch( e =>{
-				      console.log(e);
-				    })
-			},
-			
-			//编辑按钮
-			edit(data,i){
-				this.loadNum = data.setNum;
-				this.configNum = data.warnNum;
-				this.editIndex = i;
-				this.showEdit = true;
-				this.editData = data;
-			},
-			//确认修改
-			confirm(i){
-				let editEle = document.getElementById('config').getElementsByClassName('content');
-				//console.log(editEle[i]);
-				if(editEle[i].getElementsByClassName('load')[0].value==='' || editEle[i].getElementsByClassName('config')[0].value===''){
-					this.tipShow = true;
-					setTimeout( () => {
-						this.tipShow = false;
-					},3000)
-					return;
-				}
-				if(confirm('确认要修改吗?')){
-					this.showEdit = false;
-					
-					//修改时间
-					this.editData.editTime = editTime;
-					this.editData.index = i;
-					this.editData.loadNum =  Rw.string_until.transformNum(editEle[i].getElementsByClassName('load')[0].value);
-					this.editData.configNum = Rw.string_until.transformNum(editEle[i].getElementsByClassName('config')[0].value) ;
-					
-					this.editIndex = '';
-					
-					//this.$store.commit('SAVE_EDIT',this.editData);
-					//this.$store.commit('SAVE_CONFIG',this.editData);
-					//this.$store.commit('ADD_HISTORY',this.editData);
-					
-					this.setData(this.editData);
-					
-				}else{
-					this.editIndex = '';
-				}
-			},
-			cancel(){
-				this.editIndex = '';
-			}
 		}
 	}
 </script>
