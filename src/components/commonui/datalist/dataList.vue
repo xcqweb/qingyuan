@@ -65,7 +65,7 @@
 
 <style lang="less" scoped="scoped">
 	.datalist{
-		max-height: 200px;
+		height: auto;
 		input{
 			position: absolute;
 			left: 0;

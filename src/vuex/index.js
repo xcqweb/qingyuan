@@ -6,6 +6,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import global from './modules/global'
 import hotMap from './modules/hotMap'
+import toast from './modules/toast'
 import version from './modules/version'
 // import post from './modules/post'
 // import tag from './modules/tag'
@@ -32,6 +33,10 @@ export default new Vuex.Store({
     hotMap:{
     	namespaced: true,
         ...hotMap
+    },
+    toast:{
+    	namespaced: true,
+        ...toast
     },
     user: {
         namespaced: true,

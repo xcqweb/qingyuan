@@ -10,6 +10,8 @@
     :placeName = 'placeName' 
     :placeAttractions = 'placeAttractions' 
     ></router-view>
+    
+    <config v-if = "toast"></config>
   </div>
 </template>
 <script type="text/javascript">
@@ -19,6 +21,7 @@ import { mapGetters } from 'vuex'
 import vmask from '../components/commonui/mask.vue'
 import headerBody from '@/pages/home/header.vue'
 import Bus from '@/common/js/bus'
+import config from '@/components/commonui/config/scienceConfig.vue'
 export default {
         data() {
             return {
@@ -31,6 +34,7 @@ export default {
         components: {
                 vmask,
                 headerBody,
+                config
         },
         computed: { 
           ...mapGetters({
@@ -38,6 +42,12 @@ export default {
               placeAttractions:'version/placeAttractions',
               comment:'version/comment',
             }),
+            
+            //设置客流预警蒙层显示
+	          toast(){
+	          	let toast = this.$store.getters['toast/getState']
+	          	return toast
+	          },
         },
         methods: {
             console(){

@@ -197,14 +197,14 @@
     		Bus.$on('comType',(data) => {
     			this.comType = data;
     			this.num = 2;
+    			this.keyW='';
+    			this.name='';
 	       		var paramsObj = {
-	                area:"全部",
-	                name:"全部",
+	                area:this.updatePlace.place,
+	                name:this.updatePlace.turist,
 	                pageId:1,
-	                type:'day',
 	                source:'全部',
 	                commentType:data,
-	                key:this.keyW,
 	                category:this.slectType+1,
 	            }
 	       		this.items = []
@@ -216,10 +216,10 @@
     			this.keyW = data;
     			this.num = 2;
 	       		var paramsObj = {
-	                area:"全部",
-	                name:"全部",
-	                pageId:1,
+	                area:this.updatePlace.place,
+	                name:this.updatePlace.turist,
 	                type:'day',
+	                pageId:1,
 	                source:'全部',
 	                commentType:this.comType,
 	                key:data
@@ -237,7 +237,6 @@
 	                area:this.updatePlace.place,
 	                name:data,
 	                pageId:1,
-	                type:'day',
 	                source:'全部',
 	                commentType:this.comType,
 	                key:""

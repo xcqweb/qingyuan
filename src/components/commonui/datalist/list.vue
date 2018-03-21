@@ -24,7 +24,7 @@
 <style lang="less" scoped="scoped">
 	.lists{
 		width: 101%;
-		height: 300px;
+		max-height: 300px;
 		position: absolute;
 		top: 93%;
 		left: 0;

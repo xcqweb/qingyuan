@@ -23,7 +23,7 @@ const mutations = {
 			state.chain = val.chain
 		}
 		state.isTypes = val.type
-		console.log(val.chain)
+		//console.log(val.chain)
 	}
 }
 

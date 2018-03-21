@@ -31,11 +31,21 @@ require('echarts-wordcloud');
         	var paramsObj = {
                 area:this.updatePlace.place,
                 name:this.updatePlace.turist,
+                category:this.slectType+1,
             }
      		this.getResponse(paramsObj);
         },
         deep:true,
         },
+        
+        slectType:function(val){
+        		var paramsObj = {
+                area:this.updatePlace.place,
+                name:this.updatePlace.turist,
+                category:val+1,
+           	 }
+                this.getResponse(paramsObj);
+        }
     },
     data() {
         return {
@@ -305,6 +315,7 @@ require('echarts-wordcloud');
         var paramsObj = {
                 area:"全部",
                 name:"全部",
+                category:this.slectType+1,
             }
        this.getResponse(paramsObj);
     },
