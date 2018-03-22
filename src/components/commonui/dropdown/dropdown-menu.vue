@@ -30,6 +30,7 @@ import Bus from '@/common/js/bus'
                 upDown:'down',
                 hideSelect:false,
             }
+            
         },
         props: [
             'selectList',
@@ -53,12 +54,6 @@ import Bus from '@/common/js/bus'
         		this.hideSelect = data
         	},
         	out(e){
-        		//console.log(e.screenY)//150-400  350-386
-//      		if(e.path[1].className==='v-dropdown-menu science' && this.menueshow && !this.hideSelect && e.screenY<510 && e.screenX>140 && e.screenX<465){
-//      				this.menueshow = false
-//      		}else if(e.path[1].className==='v-dropdown-menu area' && this.menueshow && !this.hideSelect && e.screenY<410 && e.screenX>140 && e.screenX<465){
-//      			   this.menueshow = false
-//      		}
         		
         	},
             sendMsgParent:function(){
@@ -95,6 +90,7 @@ import Bus from '@/common/js/bus'
                 }
             },
             hidelist(){
+            	alert(1212)
                 this.selectList.selectStatus=false;
                 if (this.upDown!='down') {
                     this.upDown='down';
@@ -116,8 +112,8 @@ import Bus from '@/common/js/bus'
             }
         },
         template:`<div class='listdiv'  v-bind:style="{height: listDivHeight+'rem',maxHeight:maxHeight+'rem' }" v-bind:class="{ more: isMore }" v-if='isShow'>
-        <div class="overlay" v-if='status' @click.self='hidelist'></div>
-        <ul @mousewheel.passive='moreStatus' style='font-size:18px; width:150%;'  v-if='isShow' @mouseleave="out" :class="{'centero':uniqueClasso,'centert':uniqueClasst,}"><li class="v-dropdown-menu_list" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}
+        <div class="overlays" v-if='status' @click.self='hidelist'></div>
+        <ul @mousewheel.passive='moreStatus' style='font-size:14px; width:"150%"'  v-if='isShow' @mouseleave="out" :class="{'centero':uniqueClasso,'centert':uniqueClasst,}"><li class="v-dropdown-menu_list" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}
     </li></ul></div>`,
         computed:{
             maxHeight:function(){
@@ -183,8 +179,8 @@ import Bus from '@/common/js/bus'
     }
 )
 </script>
-<style lang="less">
-.overlay {
+<style lang="less" scoped="scoped">
+.overlays {
     position:  fixed;
     width: 400vw;
     height: 400vh;
@@ -192,8 +188,7 @@ import Bus from '@/common/js/bus'
     top: 0;
     left: 0;
     background-color: rgba(0,0,0,0);
-    z-index:200;
-    display: none;
+    z-index:10000;
 }
 .v-dropdown-menu {
     height:100%;
@@ -247,9 +242,9 @@ import Bus from '@/common/js/bus'
         top:0;
         transform: translate(-15%,0);
         height: auto;
-        width: 150%;
+        width: 138%;
         margin-left: -1px;
-        z-index:444;
+        z-index:12000;
         max-height: 10.8rem;
         overflow-y: auto;
         li {
@@ -257,7 +252,7 @@ import Bus from '@/common/js/bus'
             color: white;
             background-color: #193583;
             height: 1.8rem;
-            font-size: 0.8rem;
+            font-size: 16px;
             line-height: 1.8rem;
             white-space: nowrap;
             overflow: hidden;

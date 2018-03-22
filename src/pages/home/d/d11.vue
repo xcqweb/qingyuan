@@ -32,17 +32,28 @@ require('echarts-wordcloud');
                 area:this.updatePlace.place,
                 name:this.updatePlace.turist,
                 category:this.slectType+1,
+                type:["day","month","year"][this.upday],
             }
      		this.getResponse(paramsObj);
         },
         deep:true,
         },
-        
+        upday:function(val){
+	            var paramsObj = {
+	                area:this.updatePlace.place,
+	                name:this.updatePlace.turist,
+	                category:this.slectType+1,
+	                type:["day","month","year"][val],
+	            }
+	            this.items = []
+	            this.getResponse(paramsObj);
+	        },
         slectType:function(val){
         		var paramsObj = {
                 area:this.updatePlace.place,
                 name:this.updatePlace.turist,
                 category:val+1,
+                type:["day","month","year"][this.upday],
            	 }
                 this.getResponse(paramsObj);
         }

@@ -88,6 +88,9 @@ ul{
 .cell3{
     flex: 2;
     text-align: center;
+    font{
+    	margin-left: 6px;
+    }
     .footerRise{
         display: inline-block;
          transform: translateY(10%);

@@ -241,7 +241,6 @@ export default {
     	line-height: 30px;
     	top: 40px;
     	left: 152px;
-    	cursor: pointer;
     	z-index: 100;
     }
     span{

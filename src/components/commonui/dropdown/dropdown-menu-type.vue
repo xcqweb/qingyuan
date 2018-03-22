@@ -179,7 +179,7 @@ import Bus from '@/common/js/bus'
     }
 )
 </script>
-<style lang="less">
+<style lang="less" scoped="scoped">
 .overlay {
     position:  fixed;
     width: 400vw;
@@ -188,8 +188,7 @@ import Bus from '@/common/js/bus'
     top: 0;
     left: 0;
     background-color: rgba(0,0,0,0);
-    z-index:200;
-    display: none;
+    z-index:10000;
 }
 .v-dropdown-menu {
     height:100%;
@@ -245,7 +244,7 @@ import Bus from '@/common/js/bus'
         height: auto;
         width: 150%;
         margin-left: -1px;
-        z-index:444;
+        z-index:12000;
         max-height: 10.8rem;
         overflow-y: auto;
         li {

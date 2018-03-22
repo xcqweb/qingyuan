@@ -607,7 +607,7 @@
 		width: 76.9%;
 	    position: absolute;
 	    text-align: left;
-	    top: 47%; 
+	    top: 48%; 
 	    left: 10%;
 	    color: #fff;
 	    font-size: 16px;
@@ -658,7 +658,7 @@
 	}
 	.vueDate{
 		position: absolute;
-	    top: 66%;
+	    top: 63%;
 	    left: 10%;
 	}
 	

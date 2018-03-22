@@ -46,13 +46,13 @@
 				            name: '签到比例分析',
 				            type: 'pie',
 				            radius : '60%',
-				            center: ['58%', '55%'],
+				            center: ['54%', '55%'],
 				            data:[],
                             labelLine :{
                                 normal:{
                                     show:true,
-                                    length:0,
-                                    length2:10,
+                                    length:20,
+                                    length2:15,
                                 }
                                 
                             },
@@ -60,7 +60,11 @@
                             	show:true,
                                 normal:{
                                 	color:'#fff',
-                                    formatter:'{b}\n{c}%'
+                                	fontSize:16,
+                                    formatter:function(params){
+                                    	console.log(params.name)
+                                    	return (params.name).substr(0,12)+"\n"+(params.name).substr(10)+"\n"+params.percent+"%"
+                                    }
                                 }
                             },
                             itemStyle:{
@@ -73,23 +77,33 @@
 	    watch:{
 	    	updatePlace:function(val){
 	    		this.option.series[0].data=[];
+	    		
 		        	var paramsObj = {
 		                area:val.place,
-		                name:val.turist
+		                name:val.turist,
+		                category:this.slectType+1
 		            }
 		            this.getResponse(paramsObj);
-	    	}
-//	        updatePlace:{
-//		        handler: function (val, oldVal) {
-//		        	this.option.series[0].data=[];
-//		        	var paramsObj = {
-//		                area:val.place,
-//		                name:val.turist
-//		            }
-//		            this.getResponse();
-//		        },
-//		        deep:true,
-//	        },
+	    	},
+	    	
+	    	hotelChose:function(val){
+	    		var paramsObj = {
+					area:this.updatePlace.place,
+	                name:val,
+	                category:this.slectType+1
+	               }
+				this.getResponse(paramsObj);
+	    	},
+	    		
+	    	//酒店景区选择
+			slectType:function(val){
+				var paramsObj = {
+					area:this.updatePlace.place,
+	                name:this.updatePlace.turist,
+	                category:val+1
+	               }
+				this.getResponse(paramsObj);
+			},
 	    },
 		 methods:{
             redom(id){

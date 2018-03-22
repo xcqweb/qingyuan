@@ -154,6 +154,8 @@ export default {
 		            lableLine: {
 		                normal: {
 		                    show: true,
+		                    length:20,
+                        length2:0,
 		                },
 		                emphasis: {
 		                    show: true

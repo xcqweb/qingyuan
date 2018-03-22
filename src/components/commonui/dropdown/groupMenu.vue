@@ -10,11 +10,11 @@
 	        
 	        <div class="title">筛选条件</div>
 	        <div class="qylable">区 / 县</div>
-	        <sleckte 
+	        <slecktef 
 	        class="area"
 	        :selectList="qyselectlist" 
 	        v-on:listenAtparent="catchmsg1"
-	        ></sleckte>
+	        ></slecktef>
         <!--</div>-->
         <div v-if='isDate'>
         	<!-- 时间下拉框组件 -->
@@ -44,6 +44,7 @@
 
 <script>
 	import sleckte from '@/components/commonui/dropdown/dropdown-menu.vue'
+	import slecktef from '@/components/commonui/dropdown/dropdown-menu4.vue'
 	import vDate from '@/components/commonui/vueDate/app.vue'
 	export default{
 		data(){
@@ -88,6 +89,7 @@
                             '大旭山瀑布群旅游景区','皇后山','鹰扬关景区','雾山梯田',
                             '北山古寺','鱼水旅游风景区','龙凤温泉'
                 ],
+                
                 tablist:this.tablistCom,
 			}
 		},
@@ -200,7 +202,8 @@
 		},
 		components:{
 			sleckte,
-			vDate
+			vDate,
+			slecktef
 		}
 	}
 </script>
@@ -219,7 +222,7 @@
 	    color: #F0EFFD;
 	    line-height: 1.8rem;
 	    position: absolute;
-	    top: 12%;
+	    top: 13%;
 	    left: 10%;
 	}
 	.jqlable{
@@ -264,7 +267,7 @@
 	    left: 10%;
 	    .btn{
 	    	display: inline-block;
-            width: 124px;
+            width: 116px;
             height: 44px;
             line-height: 44px;
             color: #fff;

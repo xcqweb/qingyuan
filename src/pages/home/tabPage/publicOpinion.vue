@@ -26,6 +26,7 @@
 	                    :key="item.id"  
 	                    :updatePlace='updatePlace'
                 		:update='update'
+                		:upday='upday'
                 		:hotelChose="hotelChose"
                 		:slectType='slectType'
 	                    ></componet>
@@ -41,6 +42,7 @@
 	                    <componet
 	                    :is='item.name' 
 	                    :key="item.id"  
+	                    :upday='upday'
 	                    :updatePlace='updatePlace'
                 		:update='update'
 	                    ></componet>
@@ -58,6 +60,7 @@
                     :key="item.id"  
                     :updatePlace='updatePlace'
                 	:update='update'
+                	:upday='upday'
                 	:slectType='slectType'
                 	:hotelChose="hotelChose"
                     ></componet>

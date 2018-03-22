@@ -368,7 +368,30 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                     }
                 }));
             },
-            
+            //填充指定区域
+            addBoundary(map){
+	            	 var rs = {'boundaries':["113.132327, 23.791181;113.143323, 23.791843;113.154246, 23.795877;113.166535, 23.783378;113.159133,23.781393;113.153599,23.773324;113.142317,23.773391;113.134483,23.769091;113.117811,23.768099;113.115511,23.771472;113.123919,23.776168;113.125069,23.783708"]}
+	          
+	            console.log(rs)
+				map.clearOverlays();        //清除地图覆盖物       
+				var count = rs.boundaries.length; //行政区域的点有多少个
+				
+	          	var pointArray = [];
+				for (var i = 0; i < count; i++) {
+					var ply = new BMap.Polygon(//建立多边形覆盖物
+						rs.boundaries[i], 
+						{
+							strokeWeight: 2, //线条宽度
+							strokeColor: "green", //填线条颜色
+							strokeOpacity:0.3,//线条透明度
+							fillColor:'green', //填充颜色
+							fillOpacity:0.3,//填充颜色透明度
+						}); 
+					map.addOverlay(ply);  //添加覆盖物
+					pointArray = pointArray.concat(ply.getPath());
+				}    
+				map.setViewport(pointArray);    //调整视野  
+            },
             addLine(map){
                 //添加曲线
                 var beijingPosition=new BMap.Point(119.932045,29.4510683),
@@ -530,8 +553,6 @@ import optionProps from '@/common/js/mixin/optionProps.js'
             rodomMap(val,isTurist){
                 const _self= this;
                  let lenObj ={}
-                
-                
                 if(!isTurist){
                 	lenObj = {
 	                    "全部":{lng:113.06689,lat:23.699107,zoom:11},
@@ -605,12 +626,13 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 // map.addControl(new BMap.MapTypeControl());  
                 // 设置地图显示的城市 此项是必须设置的
                 map.setCurrentCity("清远");   
-                _self.addScriptForStyle(map); 
+               //_self.addScriptForStyle(map); 
                 // 开启鼠标滚轮缩放      
                 map.enableScrollWheelZoom(true);
                 // 设置定时器，对地图进行自动移动
                 // this.mapMoveSelf
                 /************************************************
+                
                 
                 添加折线
                 *************************************************/
@@ -626,6 +648,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 _self.addControl(map);
                  _self.addIcon(map);
                 _self.addLocaPosition(map);
+                _self.addBoundary(map);
                 /************************************************
                 添加自定义控件类，放大ZoomControl
                 *************************************************/

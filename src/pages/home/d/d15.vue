@@ -64,6 +64,19 @@
 				this.name= '';
 				this.getResponse(paramsObj);
 			},
+			upday:function(val){
+	            var paramsObj = {
+	                area:this.updatePlace.place,
+	                name:this.updatePlace.turist,
+	                type:["day","month","year"][this.upday],
+	                pageId:1,
+	                source:'全部',
+	                commentType:this.comType,
+	                category:this.slectType+1,
+	            }
+	            this.items = []
+	            this.getResponse(paramsObj);
+	        },
 			update:function(val){
 				var paramsObj = {
 	                area:this.updatePlace.place,
@@ -71,6 +84,7 @@
 	                pageId:1,
 	                source:'全部',
 	                commentType:this.comType ,
+	                category:this.slectType+1,
 	                //key:this.keyW,
 	                beginTime:val.begin.join('-'),
 	                endTime:val.end.join('-'),

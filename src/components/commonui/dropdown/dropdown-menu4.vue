@@ -1,35 +1,19 @@
-x<!--
-selectlist:{
-    width:'23%',
-    left:'20%',
-    title:'宝晶宫 ',
-    selectStatus:false,
-    place:[
-        {
-            name:'宝晶宫 ',value:'宝晶宫 '
-        },
-        {
-            name:'洞天仙境 ',value:'洞天仙境 '
-        },
-        {
-            name:'千年瑶寨',value:'千年瑶寨'
-        }
-    ]
-}
-!-->
+
 <template>
-    <div class="v-dropdown-menu"
-        @click = 'showselect' 
-        v-bind:style="{ width:selectList.width ,left:selectList.left,top:selectList.top}" 
+    <div class="v-dropdown-menu" 
+        @click = 'showselect($event)' 
+        v-bind:style="{ width:selectList.width ,left:selectList.left,right:selectList.right,top:selectList.top}" 
         >
-        <p @click='triggle' :class="{unique2:uniqueClasso}"  @mouseleave="out($event)" v-on:itemtodo2="sendMsgParent" class="dropdown-menu-p">{{selectList.title}}</p>
+        <p @click='triggle($event)' v-on:itemtodo2="sendMsgParent" @mouseleave="out($event)" class="dropdown-menu-p" :class="{unique1:uniqueClasso,unique2:uniqueClasst,unique3:uniqueClassth}">{{selectList.title}}</p>
         <span :class="upDown"></span>
         <transition name="dropdown-fade">
             <dropdownList 
             :list='selectList.place'  
             :status='menueshow' 
-            @hideSelects='hideSelects'
+            :uniqueClasso='uniqueClasso'
+            :uniqueClasst='uniqueClasst'
             v-on:itemtodo='outcrement'
+            @hideSelects='hideSelects'
             v-if='selectList.selectStatus'>        
             </dropdownList>
         </transition>
@@ -46,11 +30,13 @@ import Bus from '@/common/js/bus'
                 upDown:'down',
                 hideSelect:false,
             }
+            
         },
         props: [
             'selectList',
             'uniqueClasso',
             'uniqueClasst',
+            'uniqueClassth',
         ],
         computed:{    
         },
@@ -64,15 +50,10 @@ import Bus from '@/common/js/bus'
             },
         },
         methods:{
-    		hideSelects(data){
-    			//console.log(data)
-    			this.hideSelect = data
+        	hideSelects(data){
+        		this.hideSelect = data
         	},
         	out(e){
-        		//150-400  350-386
-//      		if(this.menueshow && !this.hideSelect && e.screenY<286&& e.screenX>1000 && e.screenX<1500){
-//      			this.menueshow = false
-//      		}
         		
         	},
             sendMsgParent:function(){
@@ -91,11 +72,17 @@ import Bus from '@/common/js/bus'
                     this.upDown='down'
                     this.menueshow=false;
                     this.selectList.selectStatus = true;
-                    this.$emit('listenAtparent',this.selectList.title)
+                    //this.$emit('listenAtparent',this.selectList.title)
                 }
                  
             },
-            triggle:function(){
+            triggle:function(e){
+            	let re = e.target.offsetParent.className==='v-dropdown-menu area'
+            	if(re){
+            		//this.$emit('listenAtparent','全部')
+            	}else{
+            		//this.$emit('listenAtparent','全部')
+            	}
             	this.menueshow = !this.menueshow
                 this.selectList.selectStatus = true;
                 if (this.upDown!='up') {
@@ -103,19 +90,19 @@ import Bus from '@/common/js/bus'
                 }
             },
             hidelist(){
+            	alert(1212)
                 this.selectList.selectStatus=false;
                 if (this.upDown!='down') {
                     this.upDown='down';
                 }
             },
-            showselect(){
+            showselect(e){
                 this.selectList.selectStatus=true;
-                
             },
         },
     }
     Vue.component('dropdownList',{
-        props:['list','status'],
+          props:['list','status','uniqueClasso','uniqueClasst'], 
         data(){
             return{
                  msg:'jfdksjfk',
@@ -124,9 +111,9 @@ import Bus from '@/common/js/bus'
                  statu:false
             }
         },
-        template:`<div class='listdiv'  v-bind:style="{height: listDivHeight+'rem',maxHeight:maxHeight+'rem' }" v-bind:class="{ more: false }" v-if='isShow'>
+        template:`<div class='listdiv'  v-bind:style="{height: listDivHeight+'rem',maxHeight:maxHeight+'rem' }" v-bind:class="{ more: isMore }" v-if='isShow'>
         <div class="overlay" v-if='status' @click='hidelist'></div>
-        <ul @mousewheel='moreStatus' @mouseleave="out" style='fontSize:12px;'  v-if='isShow'><li class="v-dropdown-menu_list" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}
+        <ul @mousewheel.passive='moreStatus' style='font-size:12px;'  v-if='isShow' @mouseleave="out" :class="{'centero':uniqueClasso,'centert':uniqueClasst,}"><li class="v-dropdown-menu_list" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}
     </li></ul></div>`,
         computed:{
             maxHeight:function(){
@@ -172,17 +159,20 @@ import Bus from '@/common/js/bus'
             },
                 
         },
-          watch:{
+        watch:{
         	status:function(){
         		this.statu = !this.statu
         		this.$emit('hideSelects',false)
         	}
         },
+        created(){
+        	
+        },
         mounted(){
             if(this.list.length>6){
                 this.isMore =  true
             }else{
-                this.isMore = true
+                this.isMore = false
             }
             
         }
@@ -191,7 +181,7 @@ import Bus from '@/common/js/bus'
 </script>
 <style lang="less" scoped="scoped">
 .overlay {
-    position: fixed;
+    position:  fixed;
     width: 400vw;
     height: 400vh;
     transform: translate(-50%,-50%);
@@ -222,9 +212,29 @@ import Bus from '@/common/js/bus'
     box-shadow: 1px 0 30px  rgba(1,1,13,0.4);
     border: 1px solid #1b44ba;
     background-color: #193583;
-   
+     .centero{
+    	width: 161% !important;
+    }
+    .centert{
+    	width: 142% !important;
+    }
     &.more{
-           
+            &:after{
+                content: "";
+                width:0;
+                height: 0;
+                position: absolute;
+                bottom: 5px;
+                left: 50%;
+                z-index: 450;
+                transform: translate(-50%,0);
+                border-left: solid 10px transparent;
+                border-top:solid 5px white;
+                border-right: solid 10px transparent;
+            }
+            li:nth-of-type(6){
+                margin-top: 1.8rem;
+            }
         }
     ul{
         position: absolute;
@@ -232,7 +242,7 @@ import Bus from '@/common/js/bus'
         top:0;
         transform: translate(-15%,0);
         height: auto;
-        width: 138%;
+        width: 150%;
         margin-left: -1px;
         z-index:12000;
         max-height: 10.8rem;
@@ -251,7 +261,6 @@ import Bus from '@/common/js/bus'
             }
         }
     }
-    
 }
 
 .v-dropdown-menu_list {
@@ -260,7 +269,7 @@ import Bus from '@/common/js/bus'
     width:100%;
     text-align: center;
     color: white;
-
+    font-size: 18px;
 }
 
 .dropdown-menu-p{
@@ -273,8 +282,8 @@ import Bus from '@/common/js/bus'
     cursor: pointer;
     text-align: center;
     z-index: 9;
-    font-size: 18px;
-    line-height: 44px;
+    font-size: 16px;
+    line-height: 36px;
     white-space: nowrap;
     overflow: hidden;
 }
@@ -287,6 +296,7 @@ import Bus from '@/common/js/bus'
 	width: 256px;
 	line-height: 44px;
 }
+
 
 .dropdown-fade-enter-active {
   transition: all .1s linear;

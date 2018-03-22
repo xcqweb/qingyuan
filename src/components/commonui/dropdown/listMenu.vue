@@ -2,20 +2,20 @@
 	<div id="box">
 		
         <div class="jqlable">景 区</div>
-        <sleckte 
+        <sleckted 
         class='science'
         :uniqueClasst=true
         :selectList="jqselectlist" 
         v-on:listenAtparent="catchmsg2"
-        ></sleckte>
+        ></sleckted>
         
         <div class="qylable">区/县</div>
-        <sleckte 
+        <slecktet 
         class="area"
         :uniqueClasso=true
         :selectList="qyselectlist" 
         v-on:listenAtparent="catchmsg1"
-        ></sleckte>
+        ></slecktet>
         
         <!--<div v-if='isDate'>-->
         	<!-- 时间下拉框组件 -->
@@ -47,7 +47,8 @@
 </template>
 
 <script>
-	import sleckte from '@/components/commonui/dropdown/dropdown-menu2.vue'
+	import sleckted from '@/components/commonui/dropdown/dropdown-menu2.vue'
+	import slecktet from '@/components/commonui/dropdown/dropdown-menu3.vue'
 	import dateGroup from '@/components/commonui/dropdown/dateGroup.vue'
 	import vDate from '@/components/commonui/vueDate/app.vue'
 	export default{
@@ -233,9 +234,10 @@
 	        }
 		},
 		components:{
-			sleckte,
+			sleckted,
 			vDate,
-			dateGroup
+			dateGroup,
+			slecktet
 		}
 	}
 </script>
