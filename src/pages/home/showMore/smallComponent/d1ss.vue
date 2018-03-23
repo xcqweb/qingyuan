@@ -145,6 +145,7 @@ display:none !important;
 
 <script>
 import traffic_points from '@/pages/home/showMore/bigComponent/json/traffic_points.json'
+import boundarys from '@/pages/home/showMore/smallComponent/boundary.json'
 import optionProps from '@/common/js/mixin/optionProps.js'
     export default {
         name:'D1SS',
@@ -369,11 +370,9 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 }));
             },
             //填充指定区域
-            addBoundary(map){
-	            	 var rs = {'boundaries':["113.132327, 23.791181;113.143323, 23.791843;113.154246, 23.795877;113.166535, 23.783378;113.159133,23.781393;113.153599,23.773324;113.142317,23.773391;113.134483,23.769091;113.117811,23.768099;113.115511,23.771472;113.123919,23.776168;113.125069,23.783708"]}
+            addBoundary(map,rs){
 	          
-	            console.log(rs)
-				map.clearOverlays();        //清除地图覆盖物       
+				//map.clearOverlays();        //清除地图覆盖物       
 				var count = rs.boundaries.length; //行政区域的点有多少个
 				
 	          	var pointArray = [];
@@ -521,11 +520,19 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                         return !!(elem.getContext && elem.getContext('2d'));
                     }
             },
-            moveTo(map,lon,lat,zoom){
+            moveTo(map,lon,lat,zoom,val,lenObj){
+            	//console.log(lenObj,val)
                     if(lon){
-                         //map.panTo(new BMap.Point(lon,lat));
                          map.setZoom(zoom);
                          map.centerAndZoom(new BMap.Point(lon,lat), zoom);
+                         
+                         
+                         
+                         if(boundarys[val]){
+                         //if(boundarys[val]&&lenObj[val].lng===lon&&lenObj[val].lat===lat){
+                         	this.addBoundary(map,boundarys[val]);	
+                         }
+                         
                     }
                    
             },
@@ -636,7 +643,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 
                 添加折线
                 *************************************************/
-                _self.moveTo(map,lenObj[val  ===  undefined ?"全部": val].lng,lenObj[val  ===  undefined ?"全部": val].lat,lenObj[val  ===  undefined ?"全部": val].zoom);
+                _self.moveTo(map,lenObj[val  ===  undefined ?"全部": val].lng,lenObj[val  ===  undefined ?"全部": val].lat,lenObj[val  ===  undefined ?"全部": val].zoom,val,lenObj);
                 var pointGZ = new BMap.Point(119.923671,29.514494);
                 var pointHK = new BMap.Point(110.35,20.02);
                 // setTimeout(function(){
@@ -648,7 +655,6 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 _self.addControl(map);
                  _self.addIcon(map);
                 _self.addLocaPosition(map);
-                _self.addBoundary(map);
                 /************************************************
                 添加自定义控件类，放大ZoomControl
                 *************************************************/

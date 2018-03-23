@@ -4,7 +4,7 @@
         @click = 'showselect($event)' 
         v-bind:style="{ width:selectList.width ,left:selectList.left,right:selectList.right,top:selectList.top}" 
         >
-        <p @click='triggle($event)' v-on:itemtodo2="sendMsgParent" @mouseleave="out($event)" class="dropdown-menu-p" :class="{unique1:uniqueClasso,unique2:uniqueClasst,unique3:uniqueClassth}">{{selectList.title}}</p>
+        <p @click='triggle($event)' v-on:itemtodo2="sendMsgParent" @mouseleave="out($event)" class="dropdown-menu-p" :class="{unique1:uniqueClasso,unique2:uniqueClasst,unique3:uniqueClassth}" :title="selectList.title">{{selectList.title}}</p>
         <span :class="upDown"></span>
         <transition name="dropdown-fade">
             <list 
@@ -12,6 +12,7 @@
             :status='menueshow' 
             :uniqueClasso='uniqueClasso'
             :uniqueClasst='uniqueClasst'
+            :uniqueClassth='uniqueClassth'
             v-on:itemtodo='outcrement'
             @hideSelects='hideSelects'
             v-if='selectList.selectStatus'>        
@@ -24,6 +25,7 @@
 import Vue from 'vue'
 import Bus from '@/common/js/bus'
 import list from '@/components/commonui/dropdown/list.vue'
+import list1 from '@/components/commonui/dropdown/list1.vue'
     export default{
         data(){
             return{
@@ -37,8 +39,9 @@ import list from '@/components/commonui/dropdown/list.vue'
             'uniqueClasso',
             'uniqueClasst',
             'uniqueClassth',
+            'uniqueClassf',
         ],
-        computed:{    
+        computed:{  
         },
         watch:{
             menueshow:function (val){
@@ -50,9 +53,13 @@ import list from '@/components/commonui/dropdown/list.vue'
             },
         },
         components:{
-        	list
+        	list,
+        	list1,
         },
         methods:{
+        	
+        	
+        	
         	hideSelects(data){
         		this.hideSelect = data
         	},
@@ -93,6 +100,7 @@ import list from '@/components/commonui/dropdown/list.vue'
             		//this.$emit('listenAtparent','全部')
             	}
             	this.menueshow = !this.menueshow
+            	
                 this.selectList.selectStatus = true;
                 if (this.upDown!='up') {
                     this.upDown='up';
@@ -112,30 +120,33 @@ import list from '@/components/commonui/dropdown/list.vue'
 
 </script>
 <style lang="less" scoped="scoped">
-.overlays {
-    position:  fixed;
-    width: 400vw;
-    height: 400vh;
-    transform: translate(-50%,-50%);
-    top: 0;
-    left: 0;
-    background-color: rgba(0,0,0,0);
-    z-index:10000;
-}
+
+.slecToast{
+	  	width: 400vw;
+	  	height: 400vh;
+	  	position: absolute;
+	  	top: -100vh;
+	  	left: -100vw;
+	  	z-index: 1000;
+	  }
+
 .dropdown-menu-p{
     position: absolute;
     left:0;
     top:0;
     height: 100%;
-    width: 270px;
+    width: 250px;
+    padding: 0 10px;
     color: white;
     cursor: pointer;
     text-align: center;
     z-index: 9;
     font-size: 16px;
-    line-height: 44px;
+    line-height: 36px;
     white-space: nowrap;
     overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .v-dropdown-menu {
     height:100%;
@@ -156,6 +167,15 @@ import list from '@/components/commonui/dropdown/list.vue'
 }
 .unique2{
 	width: 256px;
+	line-height: 44px;
+}
+
+.unique3{
+	width: 256px;
+	line-height: 44px;
+}
+
+.unique3{
 	line-height: 44px;
 }
 

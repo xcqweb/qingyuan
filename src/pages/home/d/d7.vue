@@ -95,7 +95,7 @@ export default {
                 color:'#75cf65',
             },
             {
-                name:'3001元以上',
+                name:'3000元以上',
                 color:'#fe6e40',
             }
             ],
@@ -226,7 +226,7 @@ export default {
                     {
                         value:19.8,
                          name:'3001元以上',
-                        ffname:'3001元以上',
+                        ffname:'3000元以上',
                          label:{
                             normal:{
                                 show:true,

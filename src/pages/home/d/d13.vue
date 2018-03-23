@@ -45,14 +45,14 @@
 				        {
 				            name: '签到比例分析',
 				            type: 'pie',
-				            radius : '60%',
+				            radius : '48%',
 				            center: ['54%', '55%'],
 				            data:[],
                             labelLine :{
                                 normal:{
                                     show:true,
-                                    length:20,
-                                    length2:15,
+                                    length:15,
+                                    length2:10,
                                 }
                                 
                             },
@@ -60,9 +60,8 @@
                             	show:true,
                                 normal:{
                                 	color:'#fff',
-                                	fontSize:16,
+                                	fontSize:15,
                                     formatter:function(params){
-                                    	console.log(params.name)
                                     	return (params.name).substr(0,12)+"\n"+(params.name).substr(10)+"\n"+params.percent+"%"
                                     }
                                 }

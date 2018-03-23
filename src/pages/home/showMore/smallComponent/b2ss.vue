@@ -158,7 +158,6 @@ export default {
         this.$axios.get(API_URL+'/qy/api/v2/command/selectCommandScenicWarning',{params:paramsObj}).then(r => {
             
             if(r.status ===200){
-                console.log(this.option.color)
             	this.dataItem = r.data.data[0];
             	let p = this.dataItem.percent
             	//console.log(this.option.series[0].data[0].value)

@@ -53,12 +53,12 @@
 <script>
 import Vue from 'vue';
 import { mapGetters } from 'vuex';
-import sleckte from '@/components/commonui/dropdown/dropdown-menu.vue';
+//import sleckte from '@/components/commonui/dropdown/dropdown-menu.vue';
 
 export default {
     props:[''],
     name: 'dabouleSelect',
-    components:{sleckte},
+//  components:{sleckte},
     mixins:[],
         data () {
             return {

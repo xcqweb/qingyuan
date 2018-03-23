@@ -38,7 +38,7 @@
 			overflow-y:scroll;
 			li{
 				text-align: center;
-				 list-style: none;
+				list-style: none;
 	            color: white;
 	            background-color: #193583;
 	            height: 1.8rem;
@@ -46,7 +46,10 @@
 	            line-height: 1.8rem;
 	            white-space: nowrap;
 	            overflow: hidden;
+	            text-overflow: ellipsis;
 	            cursor: pointer; 
+	            padding: 0 10px;
+	            width: 92.5%;
 	            &:hover{
 	                background-color:#3c69bd;
 	            }

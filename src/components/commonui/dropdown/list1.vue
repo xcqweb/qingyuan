@@ -1,15 +1,14 @@
 <template>
 	<div class='listdiv'  v-bind:style="{height: listDivHeight+'rem',maxHeight:maxHeight+'rem' }" v-bind:class="{ more: isMore }" v-if='isShow'>
         <div class="overlays" v-if='isShow' @click.self='hidelist'></div>
-        <ul @mousewheel.passive='moreStatus' class="con" style='font-size:12px;'  v-if='isShow' @mouseleave="out" :class="{'centero':uniqueClasso,'centert':uniqueClasst,'centerth':uniqueClassth}">
-        	<li class="v-dropdown-menu_list" :title="item" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}</li>
-        </ul>
+        <ul @mousewheel.passive='moreStatus' style='font-size:12px;'  v-if='isShow' @mouseleave="out" :class="{'centero':uniqueClasso,'centert':uniqueClasst,}"><li class="v-dropdown-menu_list" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}
+    </li></ul>
 	</div>
 </template>
 
 <script>
 	export default{
-		props:['list','status','uniqueClasso','uniqueClasst','uniqueClassth'],
+		props:['list','status','uniqueClasso','uniqueClasst'],
         data(){
             return{
                  msg:'jfdksjfk',
@@ -89,7 +88,7 @@
     top: 0;
     left: 0;
     background-color: rgba(0,0,0,0);
-    z-index:10000;
+    z-index:100001;
 }
 
 .listdiv{
@@ -107,9 +106,6 @@
     }
     .centert{
     	width: 140% !important;
-    }
-    .centerth{
-    	width: 132% !important;
     }
     &.more{
             &:after{
@@ -133,8 +129,9 @@
         position: absolute;
         left:0;
         top:0;
+        transform: translate(-15%,0);
         height: auto;
-        width: 100%;
+        width: 150%;
         margin-left: -1px;
         z-index:12000;
         max-height: 10.8rem;
@@ -147,11 +144,7 @@
             font-size: 0.8rem;
             line-height: 1.8rem;
             white-space: nowrap;
-            text-overflow: ellipsis;
-			overflow: hidden;  
-            white-space: nowrap; 
-            padding: 0 10px;
-            width: 92.5%;  
+            overflow: hidden;
             &:hover{
                 background-color:#3c69bd;
             }
@@ -171,49 +164,7 @@
 
 
 
-.con::-webkit-scrollbar{
-			    width: 2px;
-			    height: 0rem;
-			}
-			/*定义滚动条的轨道，内阴影及圆角*/
-			.con::-webkit-scrollbar-track{
-			    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.9);
-			    border-radius: 10px;
-			}
-			/*定义滑块，内阴影及圆角*/
-			.con::-webkit-scrollbar-thumb{
-			    width: 10px;
-			    height: 3rem;
-			    border-radius: 10px;
-			    -webkit-box-shadow: inset 0 0 6px #ccc;
-			    background-color: #0F2059;
-			}
-			
-			.con::scrollbar{
-			    width: 10px;
-			    height: 3rem;
-			}
-			/*定义滚动条的轨道，内阴影及圆角*/
-			.con::scrollbar-track{
-			    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-			    border-radius: 10px;
-			}
-			/*ie*/
-			.con{
-				scrollbar-face-color: #0F2059;
-				scrollbar-highlight-color: ;
-				scrollbar-shadow-color: #02275A;
-				scrollbar-track-color: #263984;
-			}
-			 
-			/*定义滑块，内阴影及圆角*/
-			.con::scrollbar-thumb{
-			    width: 10px;
-			    height: 10rem;
-			    border-radius: 10px;
-			    -webkit-box-shadow: inset 0 0 6px #02275A;
-			    background-color: #0F2059;
-			}
+
 
 
 </style>

@@ -23,27 +23,27 @@
 			
 			
 			<div class="nameLabel">名 称</div>
-	        <sleckte 
+	        <sleckt 
 	        class='name'
 	        :selectList="nameselectlist" 
 	        v-on:listenAtparent="catchmsg2"
-	        ></sleckte>
+	        ></sleckt>
 		
 		<!--<div v-show="!scienceTypes">-->
 	        <div class="jqlable">区 / 县</div>
-	        <sleckte 
+	        <sleckt 
 	        class='science'
 	        :selectList="qyselectlist" 
 	        v-on:listenAtparent="catchmsg1"
-	        ></sleckte>
+	        ></sleckt>
 	        
 	        <div class="title">筛选条件</div>
 	        <div class="qylable">类 型</div>
-	        <sleckteo 
+	        <sleckt 
 	        class="area"
 	        :selectList="typeselectlist" 
 	        v-on:listenAtparent="catchmsg3"
-	        ></sleckteo>
+	        ></sleckt>
         <!--</div>-->
         <div v-if='isDate'>
         	<!-- 时间下拉框组件 -->
@@ -72,8 +72,7 @@
 </template>
 
 <script>
-	import sleckte from '@/components/commonui/dropdown/dropdown-menu.vue'
-	import sleckteo from '@/components/commonui/dropdown/dropdown-menu-type.vue'
+	import sleckt from '@/components/commonui/dropdown/dropdown-menu2.vue'
 	import DataList from '@/components/commonui/datalist/dataList.vue'
 	import vDate from '@/components/commonui/vueDate/app.vue'
 	export default{
@@ -541,8 +540,7 @@
 //			this.getHotelList(paramsObj)
 		},
 		components:{
-			sleckte,
-			sleckteo,
+			sleckt,
 			vDate,
 			DataList
 		}

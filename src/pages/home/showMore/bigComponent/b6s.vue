@@ -397,7 +397,7 @@ Vue.use(vAjax);
 
 let weekCode = new Date().getDay()
 
-
+console.log(weekCode)
   export default {
     name:'B6S',
     mixins: [showMoreData,optionProps],
@@ -474,10 +474,22 @@ let weekCode = new Date().getDay()
                 return  this.switchWea(this.dailyRes[2].code_day);
             },
             weekText1(){
-            	return this.weekday[weekCode+1]
+            	if(weekCode===6){
+            		return this.weekday[0]
+            	}else{
+            		return this.weekday[weekCode+1]
+            	}
+            	
             },
             weekText2(){
-            	return this.weekday[weekCode+2]
+            	if(weekCode===5){
+            		return this.weekday[0]
+            	}else if(weekCode===6){
+            		return this.weekday[1]
+            	}else{
+            		return this.weekday[weekCode+2]
+            	}
+            	
             }
         },
     components: {

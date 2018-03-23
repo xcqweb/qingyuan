@@ -1,6 +1,6 @@
 <template>
 	<div id="box">
-		<!--<div v-show="!scienceTypes">-->
+	        
 	        <div class="jqlable">景 区</div>
 	        <sleckte 
 	        class='science'
@@ -8,14 +8,15 @@
 	        v-on:listenAtparent="catchmsg2"
 	        ></sleckte>
 	        
-	        <div class="title">筛选条件</div>
+	         <div class="title">筛选条件</div>
 	        <div class="qylable">区 / 县</div>
-	        <slecktef 
+	        <sleckte 
 	        class="area"
 	        :selectList="qyselectlist" 
 	        v-on:listenAtparent="catchmsg1"
-	        ></slecktef>
-        <!--</div>-->
+	        ></sleckte>
+	        
+	        
         <div v-if='isDate'>
         	<!-- 时间下拉框组件 -->
         	<div class="time">时 间</div>
@@ -43,8 +44,7 @@
 </template>
 
 <script>
-	import sleckte from '@/components/commonui/dropdown/dropdown-menu.vue'
-	import slecktef from '@/components/commonui/dropdown/dropdown-menu4.vue'
+	import sleckte from '@/components/commonui/dropdown/dropdown-menu2.vue'
 	import vDate from '@/components/commonui/vueDate/app.vue'
 	export default{
 		data(){
@@ -203,7 +203,6 @@
 		components:{
 			sleckte,
 			vDate,
-			slecktef
 		}
 	}
 </script>

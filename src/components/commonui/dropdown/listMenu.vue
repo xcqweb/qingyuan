@@ -1,13 +1,12 @@
 <template>
 	<div id="box">
-		
         <div class="jqlable">景 区</div>
-        <sleckted 
+        <slecktet 
         class='science'
         :uniqueClasst=true
         :selectList="jqselectlist" 
         v-on:listenAtparent="catchmsg2"
-        ></sleckted>
+        ></slecktet>
         
         <div class="qylable">区/县</div>
         <slecktet 
@@ -33,12 +32,13 @@
         	
              <div v-show="vDateStatus">
              	<div class="time">时 间</div>
-             	 <dateGroup
+             	 <slecktet
 	             	 class='vueDate'
 	             	 :selectList='dateList'
+	             	 :uniqueClassth=true
 	             	 v-if="vDateStatus"
 	             	 @listenAtparent='listenAtparent'
-	             ></dateGroup>
+	             ></slecktet>
              </div>
             
              
@@ -47,8 +47,7 @@
 </template>
 
 <script>
-	import sleckted from '@/components/commonui/dropdown/dropdown-menu2.vue'
-	import slecktet from '@/components/commonui/dropdown/dropdown-menu3.vue'
+	import slecktet from '@/components/commonui/dropdown/dropdown-menu2.vue'
 	import dateGroup from '@/components/commonui/dropdown/dateGroup.vue'
 	import vDate from '@/components/commonui/vueDate/app.vue'
 	export default{
@@ -234,7 +233,6 @@
 	        }
 		},
 		components:{
-			sleckted,
 			vDate,
 			dateGroup,
 			slecktet
@@ -312,7 +310,7 @@
 		position: absolute;
 		width: 280px !important;
 	    top: -2px; 
-	    right: -6px;
+	    right: -6px !important;
 	    z-index: 100;
 	    border: 3px solid @borderColor;
 	    border-radius: 0 10px 10px 0;

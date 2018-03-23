@@ -101,8 +101,13 @@
 			position: absolute;
 			top: 10px;
 			right: 10px;
+			color: #ccc;
 			cursor: pointer;
 			z-index: 12;
+		}
+		
+		.search:hover{
+			color: #fff;
 		}
 	}
 </style>

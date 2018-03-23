@@ -79,14 +79,7 @@ export default {
     position: relative;
     background-color: #0d1b48;
 	  overflow: hidden;
-	  .slecToast{
-	  	width: 100%;
-	  	height: 100%;
-	  	position: fixed;
-	  	top: 0;
-	  	left: 0;
-	  	z-index: 1000;
-	  }
+	  
     .header{
         width: 100%;
         height: 100/1080*100%;
