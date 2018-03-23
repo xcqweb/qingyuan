@@ -3,7 +3,7 @@
         <div class="jqlable">景 区</div>
         <slecktet 
         class='science'
-        :uniqueClasst=true
+        :uniqueClasso=true
         :selectList="jqselectlist" 
         v-on:listenAtparent="catchmsg2"
         ></slecktet>
@@ -35,7 +35,7 @@
              	 <slecktet
 	             	 class='vueDate'
 	             	 :selectList='dateList'
-	             	 :uniqueClassth=true
+	             	 :uniqueClasso=true
 	             	 v-if="vDateStatus"
 	             	 @listenAtparent='listenAtparent'
 	             ></slecktet>

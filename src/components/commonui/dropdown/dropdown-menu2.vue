@@ -4,15 +4,13 @@
         @click = 'showselect($event)' 
         v-bind:style="{ width:selectList.width ,left:selectList.left,right:selectList.right,top:selectList.top}" 
         >
-        <p @click='triggle($event)' v-on:itemtodo2="sendMsgParent" @mouseleave="out($event)" class="dropdown-menu-p" :class="{unique1:uniqueClasso,unique2:uniqueClasst,unique3:uniqueClassth}" :title="selectList.title">{{selectList.title}}</p>
+        <p @click='triggle($event)' v-on:itemtodo2="sendMsgParent" @mouseleave="out($event)" class="dropdown-menu-p" :class="{unique1:uniqueClasso}" :title="selectList.title">{{selectList.title}}</p>
         <span :class="upDown"></span>
         <transition name="dropdown-fade">
             <list 
             :list='selectList.place'  
             :status='menueshow' 
             :uniqueClasso='uniqueClasso'
-            :uniqueClasst='uniqueClasst'
-            :uniqueClassth='uniqueClassth'
             v-on:itemtodo='outcrement'
             @hideSelects='hideSelects'
             v-if='selectList.selectStatus'>        
@@ -37,9 +35,6 @@ import list1 from '@/components/commonui/dropdown/list1.vue'
         props: [
             'selectList',
             'uniqueClasso',
-            'uniqueClasst',
-            'uniqueClassth',
-            'uniqueClassf',
         ],
         computed:{  
         },
@@ -135,7 +130,7 @@ import list1 from '@/components/commonui/dropdown/list1.vue'
     left:0;
     top:0;
     height: 100%;
-    width: 250px;
+    width: 100%;
     padding: 0 10px;
     color: white;
     cursor: pointer;
@@ -147,6 +142,7 @@ import list1 from '@/components/commonui/dropdown/list1.vue'
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    box-sizing: border-box;
 }
 .v-dropdown-menu {
     height:100%;
@@ -162,16 +158,13 @@ import list1 from '@/components/commonui/dropdown/list1.vue'
 }
 
 .unique1{
-	width: 140px;
 	line-height: 44px;
 }
 .unique2{
-	width: 256px;
 	line-height: 44px;
 }
 
 .unique3{
-	width: 256px;
 	line-height: 44px;
 }
 

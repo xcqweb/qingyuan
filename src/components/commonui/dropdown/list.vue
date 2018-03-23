@@ -9,7 +9,7 @@
 
 <script>
 	export default{
-		props:['list','status','uniqueClasso','uniqueClasst','uniqueClassth'],
+		props:['list','status','uniqueClasso'],
         data(){
             return{
                  msg:'jfdksjfk',
@@ -102,15 +102,15 @@
     box-shadow: 1px 0 30px  rgba(1,1,13,0.4);
     border: 1px solid #1b44ba;
     background-color: #193583;
-     .centero{
-    	width: 160% !important;
+     /*.centero{
+    	width: 100% !important;
     }
     .centert{
-    	width: 140% !important;
+    	width: 100% !important;
     }
     .centerth{
-    	width: 132% !important;
-    }
+    	width: 100% !important;
+    }*/
     &.more{
             &:after{
                 content: "";
@@ -150,8 +150,8 @@
             text-overflow: ellipsis;
 			overflow: hidden;  
             white-space: nowrap; 
-            padding: 0 10px;
-            width: 92.5%;  
+            //padding: 0 10px;
+            width: 100%;  
             &:hover{
                 background-color:#3c69bd;
             }
