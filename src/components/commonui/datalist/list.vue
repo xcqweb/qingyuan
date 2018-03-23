@@ -1,7 +1,7 @@
 <template>
 	<div class="lists" v-show="status">
 		<ul class="con">
-			<li v-for="item in list" @click.self="choose(item)">{{item}}</li>
+			<li v-for="item in list" @click.self="choose(item)" :title='item'>{{item}}</li>
 		</ul>
 	</div>
 </template>

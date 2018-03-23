@@ -1,6 +1,6 @@
 <template>
 	<div class="datalist">
-		<input type="text" @focus="showList" @blur="hideList" v-model="txt" placeholder="名称关键词搜索"/>
+		<input type="text" @focus="showList" @blur="hideList" v-model="txt" placeholder="名称关键词搜索" :title="txt"/>
 		<span class="search" @click.self="clear">x</span>
 		<List
 			:list='chooseListData'
