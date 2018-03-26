@@ -148,15 +148,6 @@ export default {
                     lineHeight:36
                     
                 },
-//          	 formatter:function(name){
-//		        	let text = ''
-//		        	console.log(name)
-//		        	_self.series.forEach( (item,index) => {
-//		        		 text = item.percent+ '%'+ '\n\n' + name ;
-//		        	})
-//		        	return text 
-//	        	
-//	       		 }
             },
             tooltip : {
 		        formatter: function(params){
@@ -205,8 +196,6 @@ export default {
     	 var paramsObj = {
                 area:"全部",
                 name:"全部",
-                type:"day",
-                city:1
             }
        this.getResponse(paramsObj);
     },

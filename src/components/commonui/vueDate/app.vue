@@ -4,7 +4,7 @@
         <div :class="{'border':isBorder}">
             <!-- <span>弹出框</span> -->
             <input type="text"  v-bind:class="{ choses: isActive }" class="sigleDate"   @click="openByDrop($event)" v-model="calendar3.display" readonly>
-            <input type="text" v-bind:class="{ choses: !isActive}" @click="openByDialog" :value="calendar4.display" readonly>
+            <input type="text" v-bind:class="{ choses: !isActive}" @click="openByDialog" :value="calendar4.display" readonly style="cursor: pointer;">
         </div>
 
 <!--         <div>
@@ -28,7 +28,7 @@
     <div class="calendar-dialog" v-bind:class="{ choses: !isActive }" v-if="isShow">
         <div class="calendar-dialog-mask" @click="closeByDialog"></div>
         
-        <div class="calendar-dialog-body">
+        <div class="calendar-dialog-body" @mouseleave="out">
             <calendar :range="calendar4.range" :zero="calendar4.zero" :lunar="calendar4.lunar" :value="calendar4.value"  @select="calendar4.select"></calendar>
         </div>
         
@@ -129,6 +129,9 @@ export default {
         }
     },
     methods:{
+    	out(){
+    		this.calendar4.show=false;
+    	},
         openByDrop(e){
             this.calendar3.show=true;
             this.calendar3.left=e.target.offsetLeft+19;

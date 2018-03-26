@@ -13,7 +13,7 @@
     top: 6%;
     bottom: 0;
     margin: auto;
-     transform: scale(1); 
+     transform: scale(1.6); 
   }
 </style>
 <template>
@@ -34,36 +34,26 @@
 			return {
 				option:{
 					color:['#427EFF','#7F6AF7','#BB68F4','#FF8882','#F7C935','#FFFD37','#B1F223','#76CD66','#B7E986','#86EACD'],
-					tooltip:{
-						show:true,
-						trigger:'item',
-						formatter:function(params){
-							return params.name+' : '+params.percent+'%'
-						}
-					},
 					series : [
 				        {
 				            name: '签到比例分析',
 				            type: 'pie',
-				            radius : '48%',
-				            center: ['54%', '55%'],
+				            radius : '35%',
+				            center: ['50%', '55%'],
 				            data:[],
                             labelLine :{
                                 normal:{
                                     show:true,
-                                    length:15,
+                                    length:0,
                                     length2:10,
                                 }
                                 
                             },
                             label:{
-                            	show:true,
+                            	
                                 normal:{
                                 	color:'#fff',
-                                	fontSize:15,
-                                    formatter:function(params){
-                                    	return (params.name).substr(0,12)+"\n"+(params.name).substr(10)+"\n"+params.percent+"%"
-                                    }
+                                    formatter:'{b}\n{d}%'
                                 }
                             },
                             itemStyle:{
@@ -74,35 +64,13 @@
 			}
 		},
 	    watch:{
-	    	updatePlace:function(val){
-	    		this.option.series[0].data=[];
-	    		
-		        	var paramsObj = {
-		                area:val.place,
-		                name:val.turist,
-		                category:this.slectType+1
-		            }
-		            this.getResponse(paramsObj);
-	    	},
-	    	
-	    	hotelChose:function(val){
-	    		var paramsObj = {
-					area:this.updatePlace.place,
-	                name:val,
-	                category:this.slectType+1
-	               }
-				this.getResponse(paramsObj);
-	    	},
-	    		
-	    	//酒店景区选择
-			slectType:function(val){
-				var paramsObj = {
-					area:this.updatePlace.place,
-	                name:this.updatePlace.turist,
-	                category:val+1
-	               }
-				this.getResponse(paramsObj);
-			},
+	        updatePlace:{
+		        handler: function (val, oldVal) {
+		        	this.option.series[0].data=[];
+		            this.getResponse();
+		        },
+		        deep:true,
+	        },
 	    },
 		 methods:{
             redom(id){
@@ -110,17 +78,25 @@
                 this.chart.setOption(this.option);
                 this.chart.on('click', function (params) {
 					Bus.$emit('isRise',params.name)
+					//alert(222)
             });
                 
             },
-            getResponse(paramsObj){
+            getResponse(){
             let _self = this;
+            var paramsObj = {
+                area:this.updatePlace.place,
+                name:this.updatePlace.turist
+            }
+//            this.$axios.get(API_URL+'/qy/api/command/selectCommandScenicRaiseUp',{params:paramsObj}).then(r => {
+	//this.$axios.get('https://www.easy-mock.com/mock/5a55b07fde90b06840dd913f/example/xcq').then(r => {
               this.$axios.get('http://120.55.190.57/qy/api/command/selectCommandScenicRaiseUp',{params:paramsObj}).then(r => {
             	let reData = r.data.data
-            	//console.log(reData);
+            	console.log(reData);
             	_self.option.series[0].data = []
                 if(r.status ===200){
                 	for(let i=0; i<reData.length; ++i){
+                		
                 		_self.option.series[0].data.push({
                 			value: reData[i].percent,
                 			name: reData[i].name
@@ -136,7 +112,8 @@
         created(){
         	var paramsObj = {
                 area:"全部",
-                name:"全部"
+                name:"全部",
+                category:2
             }
         	this.getResponse(paramsObj);
    		 },

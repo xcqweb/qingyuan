@@ -39,15 +39,15 @@
             </div>
             
             <div class="cell1">
-                <span class='footerCotext'>{{item.zhanRate}}</span>
+                <span class='footerCotext'>{{item.zhanRate}}%</span>
                 <span class='footerRise' :class='item.rise'></span>
             </div>
             <div class="cell1">
-                <span class='footerCotext'>{{item.tongRate}}</span>
+                <span class='footerCotext'>{{item.tongRate}}%</span>
                 <span class='footerRise' :class='item.rise'></span>
             </div>
             <div class="cell1">
-                <span class='footerCotext'>{{item.huanRate}}</span>
+                <span class='footerCotext'>{{item.huanRate}}%</span>
                 <span class='footerRise' :class='item.rise'></span>
             </div>
         </li>

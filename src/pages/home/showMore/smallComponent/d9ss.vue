@@ -57,6 +57,7 @@ ul{
     flex: 6;
     text-align: center;
     padding: 10px 0;
+    line-height: 200%;
     box-sizing: border-box;
     .cell2_box{
         float: left;
@@ -87,6 +88,9 @@ ul{
 .cell3{
     flex: 2;
     text-align: center;
+    font{
+    	margin-left: 6px;
+    }
     .footerRise{
         display: inline-block;
          transform: translateY(10%);

@@ -1,72 +1,83 @@
 <template>
 	<div id="box">
-	        
-	        <div class="jqlable">景 区</div>
-	        <sleckte 
-	        class='science'
-	        :selectList="jqselectlist" 
-	        v-on:listenAtparent="catchmsg2"
-	        ></sleckte>
-	        
-	         <div class="title">筛选条件</div>
-	        <div class="qylable">区 / 县</div>
-	        <sleckte 
-	        class="area"
-	        :selectList="qyselectlist" 
-	        v-on:listenAtparent="catchmsg1"
-	        ></sleckte>
-	        
-	        
-        <div v-if='isDate'>
+        <div class="jqlable">景 区</div>
+        <sleckte 
+        class='science'
+        :uniqueClasst=true
+        :selectList="jqselectlist" 
+        v-on:listenAtparent="catchmsg2"
+        ></sleckte>
+        
+        <div class="qylable">区/县</div>
+        <sleckte 
+        class="area"
+        :uniqueClasso=true
+        :selectList="qyselectlist" 
+        v-on:listenAtparent="catchmsg1"
+        ></sleckte>
+        
+        <!--<div v-if='isDate'>-->
         	<!-- 时间下拉框组件 -->
-        	<div class="time">时 间</div>
-        	<ul class="dateChose"  v-if="dateChoseList">
-                <li 
-                v-for="(item,index) in dateChoseList" 
-                :class="item.class" 
-                @click="dateClick(index)"
-                >{{item.context}}</li>
-            </ul>
-            <vDate 
-             :isBorder=true
-             class='vueDate'
-             v-if="vDateStatus"
-             :vDateStatus='vDateStatus'
-             @pageDate='getDate'
-             :isActive = 'isEndDate' 
-             ></vDate>
-        </div>
-        <div class="scienceChose" v-show="isScience">
-            <span class="btn" @click="scienceType(0)" :class="{'active':scienceTypes}">全部景区</span>
-            <span class="btn" @click="scienceType(1)" :class="{'active':!scienceTypes,'active1':scienceTypes}">4A以上景区</span>
-        </div>
+        	<div v-show="!vDateStatus">
+        		<div class="time">时 间</div>
+	            <vDate 
+	             class='vueDate'
+	             :isBorder='isborder'
+	             @pageDate='getDate'
+	             :isActive = 'isEndDate'
+	             @hideDate = 'hideDate'
+	             :vDateStatus='vDateStatus'
+	             ></vDate>
+        	</div>
+        	
+             <div v-show="vDateStatus">
+             	<div class="time">时 间</div>
+             	 <dateGroup
+	             	 class='vueDate'
+	             	 :selectList='dateList'
+	             	 v-if="vDateStatus"
+	             	 @listenAtparent='listenAtparent'
+	             ></dateGroup>
+             </div>
+            
+             
+        <!--</div>-->
 	</div>
 </template>
 
 <script>
 	import sleckte from '@/components/commonui/dropdown/dropdown-menu2.vue'
+	import dateGroup from '@/components/commonui/dropdown/dateGroup.vue'
 	import vDate from '@/components/commonui/vueDate/app.vue'
 	export default{
 		data(){
 			return{
 				//时间控件
+				isborder:false,
 				isEndDate:true,
            		vDateStatus:true,
-           		dateChoseList:[
-	                {context:'日',class:''},
-	                {context:'月',class:''},
-	                {context:'年',class:''},
-	            ],
+           		dataType:'日',
 				qyselectlist:{
-                    width:'76.9%',
-                    left:'10%',
+                    width:'70%',
+                    left:'6%',
                     title:'全部',
-                    key:'area',
                     selectStatus:false,
                     place:[
                         '全部',"清城","清新","佛冈","英德","连州","连南","连山","阳山"
                     ]
                 },
+                
+                dateList:{
+                    width:'70%',
+                    right:'6%',
+                    top:'52%',
+                    title:'日',
+                    selectStatus:false,
+                    place:[
+                        '日',"月","年","自定义"
+                    ]
+                },
+                
                 updateData:{
                     place:'全部',
                     turist:'全部',
@@ -89,17 +100,25 @@
                             '大旭山瀑布群旅游景区','皇后山','鹰扬关景区','雾山梯田',
                             '北山古寺','鱼水旅游风景区','龙凤温泉'
                 ],
-                
                 tablist:this.tablistCom,
 			}
 		},
-		props:['isDate','isScience'],
+		props:['isDate'],
 		methods:{
-			//选择4a景区
-			scienceType(data){
-				this.$emit('scienceType',{type:data});
-			},
 			
+			hideDate(data){
+				this.vDateStatus = data
+				this.dateList = {
+                    width:'70%',
+                    right:'6%',
+                    top:'52%',
+                    title:this.dataType,
+                    selectStatus:false,
+                    place:[
+                        '日',"月","年","自定义"
+                    ]
+                }	
+			},
 			//获取时间
 	        getDate(value){
 	        	
@@ -107,24 +126,23 @@
 	                end:value.end,
 	                begin:value.begin,
 	            }
+	            //将选择的时间传递给父组件
 	            this.$emit('choseDate',this.timeDate);
-	            this.dateChoseList=[
-	                {context:'日',class:''},
-	                {context:'月',class:''},
-	                {context:'年',class:''},
-	            ]
+	            this.vDateStatus = true
+	            //选择完成自定义日期时 初始化
+	            //console.log(value)
+	            this.dateList = {
+                    width:'70%',
+                    right:'6%',
+                    top:'52%',
+                    title: value.begin[0]+"/"+value.begin[1]+"/"+value.begin[2]+" ~ "+value.end[0]+"/"+value.end[1]+"/"+value.end[2],
+                    selectStatus:false,
+                    place:[
+                        '日',"月","年","自定义"
+                    ]
+                }
 	        },
-	         dateClick(indexClick){
-	            this.dateChoseList.forEach((item,index)=>{
-	                if(index === indexClick){
-	                    item.class = 'chose';
-	                    this.dateIndex = index;
-	                }else{
-	                    item.class = '';
-	                }
-	            })
-	            this.$emit('choseDay',indexClick);
-	        },
+	        //获取区域数据并传递给父组件
 			catchmsg1(data){
                 this.updateData ={
                     place:data,
@@ -140,6 +158,29 @@
 	                turist:data,
 	            }
 	           this.$emit('doubleChose',this.updateData)
+	        },
+	        
+	        listenAtparent(val){
+	        	
+	        	if(val==='自定义'){
+	        		this.vDateStatus = false
+	        	}else{
+	        		this.dataType = val
+	        		this.vDateStatus = true
+	        		let re=0 
+	        		switch(val){
+	        			case '日':
+	        			re = 0;
+	        			break;
+	        			case '月':
+	        			re = 1;
+	        			break;
+	        			case '年':
+	        			re = 2;
+	        			break;
+	        		}
+	        		this.$emit('choseDay',re);
+	        	}
 	        },
 	        switch(val){
             const  cityData = {
@@ -182,137 +223,99 @@
 	                this.cityData = this.startData;
 	            }
 	            return {
-	                width:'76.9%',
-	                left:'10%',
+	                width:'88%',
+	                left:'6%',
 	                title:this.cityData[0],
 	                selectStatus:false,
-	                key:'science',
 	                place:this.cityData,
 	            }
-	        },
-	        scienceTypes(){
-	        	let val = this.$store.getters['hotMap/getState']
-	        	if(val===1){
-	        		return val 	
-	        	}else{
-	        		return '';
-	        	}
-	        	
 	        }
 		},
 		components:{
 			sleckte,
 			vDate,
+			dateGroup
 		}
 	}
 </script>
 
 <style lang="less" scoped>
+@borderColor:#345BFA;
 #box{
-	.title{
-	   position: absolute;
-	   top: 5%;
-	   left: 10%;
-	   font-size: 18px;  
-	}
 	.qylable{
-	    height:1.5rem;
-	    font-size: 18px;
+		width: 100px !important;
+	    height: 44px;
+	    font-size: 0.9rem;
 	    color: #F0EFFD;
-	    line-height: 1.8rem;
+	    line-height: 44px;
 	    position: absolute;
-	    top: 13%;
-	    left: 10%;
+	    top: -3px; 
+	    left: 0;
+	    border: 3px solid @borderColor;
+	    border-radius: 10px 0 0 10px;
+	    z-index: 8;
 	}
 	.jqlable{
-	    height:1.5rem;
-	    font-size: 18px;
+		width: 138/990*100% !important;
+	    height: 44px;
+	    font-size: 0.9rem;
 	    color: #F0EFFD;
-	    line-height: 1.8rem;
+	    line-height: 44px;
 	    position: absolute;
-	    top: 24%;
-	    left: 10%;
+	    top: -3px; 
+	    left: 279px !important;
+	    border-radius: 10px 0 0 10px;
+	    border: 3px solid @borderColor;
+	    z-index: 8;
 	}
 	.time{
-	     height:1.5rem;
-	    font-size: 18px;
+		width: 110px !important;
+	    height: 44px;
+	    font-size: 0.9rem;
 	    color: #F0EFFD;
-	    line-height: 1.8rem;
+	    line-height: 44px;
 	    position: absolute;
-	    top: 35%;
-	    left: 10%;
+	    top: -2px; 
+	    right: 280px !important;
+	    border: 3px solid @borderColor;
+	    border-right: none;
+	    border-radius: 10px 0 0 10px;
+	    z-index: 100;
 	}
 	.area{
-		height: 36px;
+		width: 136px !important;
+		height: 45px;
 	    position: absolute;
-	    top: 20%; 
-	    left: 0%;
+	    left: 106px !important;
+	    border: 3px solid @borderColor;
+	    border-left: none;
+	    border-radius: 0 10px 10px 0;
+	    .dropdown-menu-p{
+	    	width: 50px;
+	    }
 	}
 	.science{
-		 height: 36px;
+		 width: 276px !important;
+		 height: 45px;
 	     position: absolute;
-	     top: 31.5%;
-	     left: 0%;
+	     left: (259+122)/990*100% !important;
+	     border: 3px solid @borderColor;
+	     border-left: none;
+	     border-radius: 0 10px 10px 0;
 	}
 	.vueDate{
+		height: 44px;
 		position: absolute;
-	    top: 46%;
-	    left: 10%;
-	}
-	
-	.scienceChose{
-		position: absolute;
-		top: 40%;
-	    left: 10%;
-	    .btn{
-	    	display: inline-block;
-            width: 116px;
-            height: 44px;
-            line-height: 44px;
-            color: #fff;
-            font-size: 18px;
-            border: 3px solid #345BFA;
-            background-color: #163387;
-            border-radius: 10px;
-            margin-right: 1rem;
+		width: 280px !important;
+	    top: -2px; 
+	    right: -6px;
+	    z-index: 100;
+	    border: 3px solid @borderColor;
+	    border-radius: 0 10px 10px 0;
+	    
+	    .dropdown-menu-p{
+	    	background-color: #FF0000;
 	    }
-	    .active{
-        	color: #a1a8c3;
-        	border-color: #233faf;
-        }
-        .active{
-        	color: #a1a8c3;
-        	border-color: none;
-        }
-	}
-	
-	.starList,.dateChose{
-		width: 268px;
-		position: absolute;
-	    top: 40%;
-	    left: 10%;
-	   background-color: rgba(0, 0, 0, 0);
-	   li{
-	        height: 1.8rem;
-	        width: 88px;
-	        text-align: center;
-	        line-height:2rem;
-	        font-size: 0.9rem;
-	        border: 1px solid #355BFA;
-	        float: left;
-	       color:white;
-	       cursor: pointer;
-	       background-image:url('../../../assets/images/home/981513311442_.pic.jpg');
-	      background-size: 100% 100%;
-	      &.chose{
-	        background-image:url('../../../assets/images/home/991513311442_.pic.jpg');
-	          background-size: 100% 100%;
-	          color:#8c97b8;
-	      }
-	   }
-	   li:nth-child(1),li:nth-child(2){
-	   	border-right: none;
-	   }
 	}
 }
 </style>

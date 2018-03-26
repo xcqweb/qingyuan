@@ -25,7 +25,7 @@
 		},
 		mounted(){
 			//alert(this.$store.getters['hotMap/getChain'])
-			console.log(this.$store.getters['hotMap/getChain'])
+			//console.log(this.$store.getters['hotMap/getChain'])
 		}
 		
 	}
@@ -37,7 +37,7 @@
 	height: 99%;
 	position: absolute;
 	left: 10px !important;
-	top: 0px;
+	top: 0px !important;
 	background-color: #163387;
 	.ifrBox{
 		width: 100%;

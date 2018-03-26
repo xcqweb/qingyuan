@@ -8,7 +8,7 @@
             <div class="cell1">
                 	排序	
             </div>
-            <div class="cell1">
+            <div class="cell1 uniquew">
               	 景区名称
             </div>
             <div class="cell1">
@@ -29,7 +29,7 @@
             <div class="cell1">
                 {{index+1}}
             </div>
-            <div class="cell1">
+            <div class="cell1 uniquew">
                 {{item.name}}
             </div>
             <div class="cell1">
@@ -37,15 +37,15 @@
             </div>
             
             <div class="cell1">
-                <span class='footerCotext'>{{item.zhanRate}}</span>
+                <span class='footerCotext'>{{item.zhanRate}}%</span>
                 <span class='footerRise' :class='item.rise'></span>
             </div>
             <div class="cell1">
-                <span class='footerCotext'>{{item.tongRate}}</span>
+                <span class='footerCotext'>{{item.tongRate}}%</span>
                 <span class='footerRise' :class='item.rise'></span>
             </div>
             <div class="cell1">
-                <span class='footerCotext'>{{item.huanRate}}</span>
+                <span class='footerCotext'>{{item.huanRate}}%</span>
                 <span class='footerRise' :class='item.rise'></span>
             </div>
         </li>
@@ -129,6 +129,9 @@ export default {
     height:100%;
     width:100%;
     color: white;
+    .uniquew{
+    	flex: 2;
+    }
     font{
         font-size: 0.6rem;
     }
@@ -217,6 +220,7 @@ ul::-webkit-scrollbar{
     float:left;
     width: 16.6%;
     text-align: center;
+    flex: 1;
 }
 .cell2{
     float:left;

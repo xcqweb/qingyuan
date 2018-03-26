@@ -10,7 +10,8 @@
     :placeName = 'placeName' 
     :placeAttractions = 'placeAttractions' 
     ></router-view>
-    <div class="slecToast" @click="tHide" v-if="false"></div>
+    
+    
   </div>
 </template>
 <script type="text/javascript">
@@ -20,6 +21,7 @@ import { mapGetters } from 'vuex'
 import vmask from '../components/commonui/mask.vue'
 import headerBody from '@/pages/home/header.vue'
 import Bus from '@/common/js/bus'
+import config from '@/components/commonui/config/scienceConfig.vue'
 export default {
         data() {
             return {
@@ -27,12 +29,12 @@ export default {
                 allComponents: [],
                 componentName: '',
                 text:'headerBody',
-                toast:false
             }
         },
         components: {
                 vmask,
                 headerBody,
+                config
         },
         computed: { 
           ...mapGetters({
@@ -40,9 +42,7 @@ export default {
               placeAttractions:'version/placeAttractions',
               comment:'version/comment',
             }),
-            isToast(){
-            	return this.toast;
-            }
+            
         },
         methods: {
             console(){
@@ -56,19 +56,10 @@ export default {
                         }
                 })
             },
-            tHide(){
-            	this.toast = false
-            	Bus.$emit('hideOverlay',false)
-            }
         },
         created () {
             // this.getResponse();
         },
-        mounted() {
-        	Bus.$on('showOverlay',(data) => {
-        		this.toast = data
-        	})
-        }
     }
 </script>
 
@@ -88,14 +79,7 @@ export default {
     position: relative;
     background-color: #0d1b48;
 	  overflow: hidden;
-	  .slecToast{
-	  	width: 100%;
-	  	height: 100%;
-	  	position: absolute;
-	  	top: 0;
-	  	left: 0;
-	  	z-index: 900;
-	  }
+	  
     .header{
         width: 100%;
         height: 100/1080*100%;

@@ -4,7 +4,7 @@
         @click = 'showselect($event)' 
         v-bind:style="{ width:selectList.width ,left:selectList.left,right:selectList.right,top:selectList.top}" 
         >
-        <p @click='triggle' v-on:itemtodo2="sendMsgParent" class="dropdown-menu-p" :class="{unique1:uniqueClasso,unique2:uniqueClasst,unique3:uniqueClassth}">{{selectList.title}}</p>
+        <p @click='triggle($event)' v-on:itemtodo2="sendMsgParent" @mouseleave="out($event)" class="dropdown-menu-p" :class="{unique1:uniqueClasso,unique2:uniqueClasst,unique3:uniqueClassth}">{{selectList.title}}</p>
         <span :class="upDown"></span>
         <transition name="dropdown-fade">
             <dropdownList 
@@ -13,6 +13,7 @@
             :uniqueClasso='uniqueClasso'
             :uniqueClasst='uniqueClasst'
             v-on:itemtodo='outcrement'
+            @hideSelects='hideSelects'
             v-if='selectList.selectStatus'>        
             </dropdownList>
         </transition>
@@ -28,13 +29,15 @@ import Bus from '@/common/js/bus'
             return{
                 menueshow:false,
                 upDown:'down',
+                hideSelect:false,
             }
+            
         },
         props: [
             'selectList',
             'uniqueClasso',
             'uniqueClasst',
-            'uniqueClassth'
+            'uniqueClassth',
         ],
         computed:{    
         },
@@ -48,6 +51,12 @@ import Bus from '@/common/js/bus'
             },
         },
         methods:{
+        	hideSelects(data){
+        		this.hideSelect = data
+        	},
+        	out(e){
+        		
+        	},
             sendMsgParent:function(){
                 this.$emit('listenAtparent',selectList.title)
             },
@@ -68,15 +77,21 @@ import Bus from '@/common/js/bus'
                 }
                  
             },
-            triggle:function(){
+            triggle:function(e){
+            	let re = e.target.offsetParent.className==='v-dropdown-menu area'
+            	if(re){
+            		//this.$emit('listenAtparent','全部')
+            	}else{
+            		//this.$emit('listenAtparent','全部')
+            	}
             	this.menueshow = !this.menueshow
                 this.selectList.selectStatus = true;
                 if (this.upDown!='up') {
                     this.upDown='up';
                 }
-                Bus.$emit('showOverlay',true)
             },
             hidelist(){
+            	alert(1212)
                 this.selectList.selectStatus=false;
                 if (this.upDown!='down') {
                     this.upDown='down';
@@ -84,28 +99,22 @@ import Bus from '@/common/js/bus'
             },
             showselect(e){
                 this.selectList.selectStatus=true;
-                
             },
         },
-        mounted(){
-        	Bus.$on('hideOverlay', (data) => {
-        		this.menueshow = data
-        		//this.selectList.selectStatus=data;
-        	} )
-        }
     }
     Vue.component('dropdownList',{
-        props:['list','status','uniqueClasso','uniqueClasst'],
+          props:['list','status','uniqueClasso','uniqueClasst'], 
         data(){
             return{
                  msg:'jfdksjfk',
                  showstatus:true,
                  isMore:true,
+                 statu:false
             }
         },
-        template:`<div class='listdiv'  v-bind:style="{height: listDivHeight+'rem',maxHeight:maxHeight+'rem' }" v-bind:class="{ more: isMore }" v-if='show'>
-        <div class="overlay" v-if='status' @click.self='hidelist'></div>
-        <ul @mousewheel.passive='moreStatus' style='font-size:18px;'  v-show='status' :class="{'centero':uniqueClasso,'centert':uniqueClasst,}"><li class="v-dropdown-menu_list" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}
+        template:`<div class='listdiv'  v-bind:style="{height: listDivHeight+'rem',maxHeight:maxHeight+'rem' }" v-bind:class="{ more: isMore }" v-if='isShow'>
+        <div class="overlays" v-if='status' @click.self='hidelist'></div>
+        <ul @mousewheel.passive='moreStatus' style='font-size:14px; width:"150%"'  v-if='isShow' @mouseleave="out" :class="{'centero':uniqueClasso,'centert':uniqueClasst,}"><li class="v-dropdown-menu_list" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}
     </li></ul></div>`,
         computed:{
             maxHeight:function(){
@@ -117,13 +126,16 @@ import Bus from '@/common/js/bus'
             },
             listDivHeight:function(){
                 return (this.list.length)*1.8
+            },
+            isShow(){
+            	return this.status
             }
         },
         methods:{
             chosen:function(){
             },
             showselect(){
-            this.selectList.selectStatus=true;
+            	this.selectList.selectStatus=true;
             },
 
             increment:function(item){
@@ -133,6 +145,10 @@ import Bus from '@/common/js/bus'
             },
             test:function(){
 
+            },
+            out(){
+              	this.statu = !this.statu
+            	this.$emit('hideSelect',false)
             },
             moreStatus(event){
                 this.isMore = false;
@@ -144,8 +160,17 @@ import Bus from '@/common/js/bus'
             },
                 
         },
+        watch:{
+        	status:function(){
+        		this.statu = !this.statu
+        		this.$emit('hideSelects',false)
+        	}
+        },
+        created(){
+        	
+        },
         mounted(){
-            if(this.list.length>4){
+            if(this.list.length>6){
                 this.isMore =  true
             }else{
                 this.isMore = false
@@ -155,8 +180,8 @@ import Bus from '@/common/js/bus'
     }
 )
 </script>
-<style lang="less">
-.overlay {
+<style lang="less" scoped="scoped">
+.overlays {
     position:  fixed;
     width: 400vw;
     height: 400vh;
@@ -164,7 +189,7 @@ import Bus from '@/common/js/bus'
     top: 0;
     left: 0;
     background-color: rgba(0,0,0,0);
-    z-index:200;
+    z-index:10000;
     /*display: none;*/
 }
 .v-dropdown-menu {
@@ -226,9 +251,9 @@ import Bus from '@/common/js/bus'
         top:0;
         transform: translate(-15%,0);
         height: auto;
-        width: 150%;
+        width: 138%;
         margin-left: -1px;
-        z-index:444;
+        z-index:12000;
         max-height: 10.8rem;
         overflow-y: auto;
         li {
@@ -236,7 +261,7 @@ import Bus from '@/common/js/bus'
             color: white;
             background-color: #193583;
             height: 1.8rem;
-            font-size: 0.8rem;
+            font-size: 16px;
             line-height: 1.8rem;
             white-space: nowrap;
             overflow: hidden;
@@ -266,7 +291,7 @@ import Bus from '@/common/js/bus'
     cursor: pointer;
     text-align: center;
     z-index: 9;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 36px;
     white-space: nowrap;
     overflow: hidden;

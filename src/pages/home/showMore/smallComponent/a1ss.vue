@@ -159,7 +159,7 @@ export default {
                       //  boundaryGap: false,
                         
                         padding:0,
-                        barMaxWidth:6,
+                        barMaxWidth:4,
                         type: 'category',
                         // data: datax,
                         fontSize: 6,
@@ -225,7 +225,7 @@ export default {
                     {
                         name:'计划',
                         type:'bar',
-                        barMaxWidth:30,
+                        barMaxWidth:24,
                         // data:datay,
                         itemStyle:{
                             normal: {

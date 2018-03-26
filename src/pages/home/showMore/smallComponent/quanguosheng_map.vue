@@ -317,9 +317,9 @@ export default {
     },
     created(){
     	var paramsObj = {
-                area:"全部",
-                name:"全部",
-                type:"day",
+                area:this.updatePlace.place,
+	            name:this.updatePlace.turist,
+	            type:["day","month","year"][this.upday],
             }
        this.getResponse(paramsObj);
     },
@@ -441,12 +441,12 @@ export default {
                         //小飞机
                           symbol: planePath,
                         //移动点大小
-                        symbolSize: 26
+                        symbolSize: 20
                     },
                     lineStyle: {
                         normal: {
                             color: '#ffe76d',
-                            width: 3,
+                            width: 2,
                             opacity: 1,
                             curveness: 0.2
                         }
@@ -469,7 +469,7 @@ export default {
 	                                position: 'right',
 	                                formatter: '{b}',
 	                                textStyle: {
-	                                    fontSize: 20,
+	                                    fontSize: 12,
 	                                    fontWeight:'bold',
 	                                    color:'#eee',
 	                                    textShadowColor:"#333",

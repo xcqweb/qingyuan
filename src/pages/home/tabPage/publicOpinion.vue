@@ -1,14 +1,16 @@
 <template>
     <div class="box" onselectstart="return false;" style="-moz-user-select:none;">
         <div class="tabList item">
-        	<groupMenu
+        	<groupMenut
         		@doubleChose='doubleChoseVal'
         		@choseDate='choseDateVal'
         		@choseDay='choseDayVal'
         		@scienceType='getScienceType'
+        		@hotelChose='gethotel'
+        		@selectType='getslectType'
         		:isDate=true
         		:isScience=false
-        	></groupMenu>
+        	></groupMenut>
         </div>
         
          <!--4A级景区切换-->
@@ -24,6 +26,9 @@
 	                    :key="item.id"  
 	                    :updatePlace='updatePlace'
                 		:update='update'
+                		:upday='upday'
+                		:hotelChose="hotelChose"
+                		:slectType='slectType'
 	                    ></componet>
 	            </div>
 	        </div>
@@ -37,6 +42,7 @@
 	                    <componet
 	                    :is='item.name' 
 	                    :key="item.id"  
+	                    :upday='upday'
 	                    :updatePlace='updatePlace'
                 		:update='update'
 	                    ></componet>
@@ -54,6 +60,9 @@
                     :key="item.id"  
                     :updatePlace='updatePlace'
                 	:update='update'
+                	:upday='upday'
+                	:slectType='slectType'
+                	:hotelChose="hotelChose"
                     ></componet>
             </div>
         </div>
@@ -75,13 +84,17 @@ export default {
             	updatePlace:{place:"全部",turist:"全部"},
         		update:{begin:['2018','02','02'],end:['2018','02','03']},
             	upday:0,
+            	hotelChose:'',
+            	
             	scienceType:false,
+            	slectType:0,
                 leftComponents:[
                 	{name:'A3',id:'one',index:1,time:900,show:true,title:'游客评价'},
                 	{name:'D10',id:'two',index:2,time:900,show:true,title:'评价正负面'},
                 	{name:'D11',id:'three',index:3,time:900,show:true,title:'关键词'},
-                	{name:'D13',id:'four',index:4,time:900,show:true,title:'景区可提升度'},
+                	{name:'D13',id:'four',index:4,time:900,show:true,title:'可提升度'},
                 ],
+                
                 //4A级以上景区
                 AComponents:[
                 	{name:'A10',id:'one',index:1,time:900,show:true,title:'4A级以上景区'},
@@ -96,6 +109,7 @@ export default {
             comment:'version/comment',
             inItems: 'version/inItems',
           }),
+          
     },
     watch:{
         Attractions:function(val){
@@ -124,6 +138,16 @@ export default {
         getScienceType(val){
         	this.scienceType = val
         },
+        //获取酒店选择值
+        gethotel(val){
+        	this.hotelChose = val
+        },
+        
+        //获取选择类型酒店或景区
+        getslectType(val){
+        	this.slectType = val;
+        },
+        
         update1(){
              this.barChartOption.series[0].data[3]={
                 symbolSize:15,

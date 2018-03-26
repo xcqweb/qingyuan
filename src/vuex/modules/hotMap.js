@@ -1,10 +1,12 @@
 
 const TRANSFORMA = 'TRANSFORMA' 
+const SHOWTOAST = 'SHOWTOAST' 
 
 
 const state = {
 	isTypes : 0,
-	chain:''
+	chain:'',
+	toast:false
 }
 
 
@@ -14,6 +16,9 @@ const getters = {
 	},
 	getChain(state){
 		return state.chain
+	},
+	getToast(state){
+		return state.toast
 	}
 }
 
@@ -23,7 +28,11 @@ const mutations = {
 			state.chain = val.chain
 		}
 		state.isTypes = val.type
-		console.log(val.chain)
+		//console.log(val.chain)
+	},
+	
+	[SHOWTOAST] (state,val){
+		state.toast = val
 	}
 }
 

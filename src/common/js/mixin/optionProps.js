@@ -20,6 +20,13 @@ let optionProps =  {
     	upday:{
     		type:Number,
     		default:0
+    	},
+    	hotelChose:{
+    		type:String
+    	},
+    	slectType:{
+    		type:Number,
+    		default:1
     	}
     },
     data () {

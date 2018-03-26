@@ -29,13 +29,49 @@ require('echarts-wordcloud');
         updatePlace:{
         handler: function (val, oldVal) {
         	var paramsObj = {
-                area:this.updatePlace.place,
-                name:this.updatePlace.turist,
+                area:val.place,
+                name:val.turist,
+                category:this.slectType+1,
+                type:["day","month","year"][this.upday],
             }
      		this.getResponse(paramsObj);
         },
         deep:true,
         },
+        upday:function(val){
+	            var paramsObj = {
+	                area:this.updatePlace.place,
+	                name:this.updatePlace.turist,
+	                category:this.slectType+1,
+	                type:["day","month","year"][val],
+	            }
+	            this.items = []
+	            this.getResponse(paramsObj);
+	        },
+	         update:{
+	             handler:function(val, oldVal){
+	                 let end = val.end.join("-")
+	                 let begin = val.begin.join("-")
+	                 var paramsObj = {
+	                    area:this.updatePlace.place,
+	                    name:this.updatePlace.turist,
+	                    category:this.slectType+1,
+	                    beginTime:begin,
+	                    endTime:end
+					}
+	                 this.getResponse(paramsObj);
+	             },
+	             deep:true,
+	        },
+        slectType:function(val){
+        		var paramsObj = {
+                area:this.updatePlace.place,
+                name:this.updatePlace.turist,
+                category:val+1,
+                type:["day","month","year"][this.upday],
+           	 }
+                this.getResponse(paramsObj);
+        }
     },
     data() {
         return {
@@ -293,7 +329,7 @@ require('echarts-wordcloud');
         },
         getResponse(paramsObj){
             this.$axios.get(API_URL+'/qy/api/command/getKeWords',{params:paramsObj}).then(r => {
-
+				//console.log(r)
                 if(r.data.code ==="200"||r.data.code ===200){
                     this.yunData = r.data.data;
                      this.$nextTick(echarts_resize('chartId',this))
@@ -305,6 +341,8 @@ require('echarts-wordcloud');
         var paramsObj = {
                 area:"全部",
                 name:"全部",
+                category:this.slectType+1,
+                //limit:5 //关键字个数
             }
        this.getResponse(paramsObj);
     },

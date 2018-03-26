@@ -1,20 +1,20 @@
 <template>
 	<div id="box">
         <div class="jqlable">景 区</div>
-        <sleckte 
-        class='science'
-        :uniqueClasst=true
+        <slecktet 
+        class='sciencelist'
+        :uniqueClasso=true
         :selectList="jqselectlist" 
         v-on:listenAtparent="catchmsg2"
-        ></sleckte>
+        ></slecktet>
         
         <div class="qylable">区/县</div>
-        <sleckte 
-        class="area"
+        <slecktet 
+        class="arealist"
         :uniqueClasso=true
         :selectList="qyselectlist" 
         v-on:listenAtparent="catchmsg1"
-        ></sleckte>
+        ></slecktet>
         
         <!--<div v-if='isDate'>-->
         	<!-- 时间下拉框组件 -->
@@ -32,13 +32,13 @@
         	
              <div v-show="vDateStatus">
              	<div class="time">时 间</div>
-             	 <dateGroup
+             	 <slecktet
 	             	 class='vueDate'
 	             	 :selectList='dateList'
+	             	 :uniqueClasso=true
 	             	 v-if="vDateStatus"
-	             	 :uniqueClassth=true
 	             	 @listenAtparent='listenAtparent'
-	             ></dateGroup>
+	             ></slecktet>
              </div>
             
              
@@ -47,7 +47,7 @@
 </template>
 
 <script>
-	import sleckte from '@/components/commonui/dropdown/dropdown-menu.vue'
+	import slecktet from '@/components/commonui/dropdown/dropdown-menu2.vue'
 	import dateGroup from '@/components/commonui/dropdown/dateGroup.vue'
 	import vDate from '@/components/commonui/vueDate/app.vue'
 	export default{
@@ -57,6 +57,7 @@
 				isborder:false,
 				isEndDate:true,
            		vDateStatus:true,
+           		dataType:'日',
 				qyselectlist:{
                     width:'70%',
                     left:'6%',
@@ -112,7 +113,7 @@
                     width:'70%',
                     right:'6%',
                     top:'52%',
-                    title:'日',
+                    title:this.dataType,
                     selectStatus:false,
                     place:[
                         '日',"月","年","自定义"
@@ -130,7 +131,7 @@
 	            this.$emit('choseDate',this.timeDate);
 	            this.vDateStatus = true
 	            //选择完成自定义日期时 初始化
-	            console.log(value)
+	            //console.log(value)
 	            this.dateList = {
                     width:'70%',
                     right:'6%',
@@ -161,9 +162,11 @@
 	        },
 	        
 	        listenAtparent(val){
+	        	
 	        	if(val==='自定义'){
 	        		this.vDateStatus = false
 	        	}else{
+	        		this.dataType = val
 	        		this.vDateStatus = true
 	        		let re=0 
 	        		switch(val){
@@ -230,9 +233,9 @@
 	        }
 		},
 		components:{
-			sleckte,
 			vDate,
-			dateGroup
+			dateGroup,
+			slecktet
 		}
 	}
 </script>
@@ -243,7 +246,7 @@
 	.qylable{
 		width: 100px !important;
 	    height: 44px;
-	    font-size: 0.9rem;
+	    font-size: 18px;
 	    color: #F0EFFD;
 	    line-height: 44px;
 	    position: absolute;
@@ -256,7 +259,7 @@
 	.jqlable{
 		width: 138/990*100% !important;
 	    height: 44px;
-	    font-size: 0.9rem;
+	    font-size: 18px;
 	    color: #F0EFFD;
 	    line-height: 44px;
 	    position: absolute;
@@ -266,10 +269,11 @@
 	    border: 3px solid @borderColor;
 	    z-index: 8;
 	}
+	
 	.time{
 		width: 110px !important;
 	    height: 44px;
-	    font-size: 0.9rem;
+	    font-size: 18px;
 	    color: #F0EFFD;
 	    line-height: 44px;
 	    position: absolute;
@@ -280,9 +284,9 @@
 	    border-radius: 10px 0 0 10px;
 	    z-index: 100;
 	}
-	.area{
+	.arealist{
 		width: 136px !important;
-		height: 44px;
+		height: 45px;
 	    position: absolute;
 	    left: 106px !important;
 	    border: 3px solid @borderColor;
@@ -292,9 +296,9 @@
 	    	width: 50px;
 	    }
 	}
-	.science{
+	.sciencelist{
 		 width: 276px !important;
-		 height: 44px;
+		 height: 45px;
 	     position: absolute;
 	     left: (259+122)/990*100% !important;
 	     border: 3px solid @borderColor;
@@ -306,7 +310,7 @@
 		position: absolute;
 		width: 280px !important;
 	    top: -2px; 
-	    right: -6px;
+	    right: -6px !important;
 	    z-index: 100;
 	    border: 3px solid @borderColor;
 	    border-radius: 0 10px 10px 0;

@@ -18,17 +18,17 @@ selectlist:{
 }
 !-->
 <template>
-    <div class="v-dropdown-menu" 
+    <div class="v-dropdown-menu"
         @click = 'showselect' 
         v-bind:style="{ width:selectList.width ,left:selectList.left,top:selectList.top}" 
         >
-        <p @click='triggle' :class="{unique2:uniqueClasso}" v-on:itemtodo2="sendMsgParent" class="dropdown-menu-p">{{selectList.title}}</p>
+        <p @click='triggle' :class="{unique2:uniqueClasso}"  @mouseleave="out($event)" v-on:itemtodo2="sendMsgParent" class="dropdown-menu-p">{{selectList.title}}</p>
         <span :class="upDown"></span>
         <transition name="dropdown-fade">
             <dropdownList 
             :list='selectList.place'  
             :status='menueshow' 
-            :uniqueClassth='uniqueClassth'
+            @hideSelects='hideSelects'
             v-on:itemtodo='outcrement'
             v-if='selectList.selectStatus'>        
             </dropdownList>
@@ -44,13 +44,13 @@ import Bus from '@/common/js/bus'
             return{
                 menueshow:false,
                 upDown:'down',
+                hideSelect:false,
             }
         },
         props: [
             'selectList',
             'uniqueClasso',
             'uniqueClasst',
-            'uniqueClassth'
         ],
         computed:{    
         },
@@ -64,6 +64,17 @@ import Bus from '@/common/js/bus'
             },
         },
         methods:{
+    		hideSelects(data){
+    			//console.log(data)
+    			this.hideSelect = data
+        	},
+        	out(e){
+        		//150-400  350-386
+//      		if(this.menueshow && !this.hideSelect && e.screenY<286&& e.screenX>1000 && e.screenX<1500){
+//      			this.menueshow = false
+//      		}
+        		
+        	},
             sendMsgParent:function(){
                 this.$emit('listenAtparent',selectList.title)
             },
@@ -86,12 +97,10 @@ import Bus from '@/common/js/bus'
             },
             triggle:function(){
             	this.menueshow = !this.menueshow
-                
                 this.selectList.selectStatus = true;
                 if (this.upDown!='up') {
                     this.upDown='up';
                 }
-                Bus.$emit('showOverlay',true)
             },
             hidelist(){
                 this.selectList.selectStatus=false;
@@ -104,25 +113,20 @@ import Bus from '@/common/js/bus'
                 
             },
         },
-        mounted(){
-        	Bus.$on('hideOverlay', (data) => {
-        		this.menueshow = data
-        		//this.selectList.selectStatus=data;
-        	} )
-        }
     }
     Vue.component('dropdownList',{
-        props:['list','status','uniqueClassth'],
+        props:['list','status'],
         data(){
             return{
                  msg:'jfdksjfk',
                  showstatus:true,
                  isMore:true,
+                 statu:false
             }
         },
-        template:`<div class='listdiv'  v-bind:style="{height: listDivHeight+'rem',maxHeight:maxHeight+'rem' }" v-bind:class="{ more: false }" v-if='status'>
-        <div class="overlay" v-if='status' @click.stop='hidelist'></div>
-        <ul @mousewheel='moreStatus'  v-if='status' :class="{'centerth':uniqueClassth}"><li class="v-dropdown-menu_list" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}
+        template:`<div class='listdiv'  v-bind:style="{height: listDivHeight+'rem',maxHeight:maxHeight+'rem' }" v-bind:class="{ more: false }" v-if='isShow'>
+        <div class="overlay" v-if='status' @click='hidelist'></div>
+        <ul @mousewheel='moreStatus' @mouseleave="out" style='fontSize:12px;'  v-if='isShow'><li class="v-dropdown-menu_list" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}
     </li></ul></div>`,
         computed:{
             maxHeight:function(){
@@ -134,13 +138,16 @@ import Bus from '@/common/js/bus'
             },
             listDivHeight:function(){
                 return (this.list.length)*1.8
+            },
+            isShow(){
+            	return this.status
             }
         },
         methods:{
             chosen:function(){
             },
             showselect(){
-            this.selectList.selectStatus=true;
+            	this.selectList.selectStatus=true;
             },
 
             increment:function(item){
@@ -150,6 +157,10 @@ import Bus from '@/common/js/bus'
             },
             test:function(){
 
+            },
+            out(){
+              	this.statu = !this.statu
+            	this.$emit('hideSelect',false)
             },
             moreStatus(event){
                 this.isMore = false;
@@ -161,8 +172,13 @@ import Bus from '@/common/js/bus'
             },
                 
         },
+          watch:{
+        	status:function(){
+        		this.statu = !this.statu
+        		this.$emit('hideSelects',false)
+        	}
+        },
         mounted(){
-            
             if(this.list.length>6){
                 this.isMore =  true
             }else{
@@ -182,7 +198,7 @@ import Bus from '@/common/js/bus'
     top: 0;
     left: 0;
     background-color: rgba(0,0,0,0);
-    z-index:120;
+    z-index:10000;
     /*display: none;*/
 }
 .v-dropdown-menu {
@@ -207,22 +223,18 @@ import Bus from '@/common/js/bus'
     box-shadow: 1px 0 30px  rgba(1,1,13,0.4);
     border: 1px solid #1b44ba;
     background-color: #193583;
-    z-index: 1000;
-    .centerth{
-    	width: 137% !important;
+   
     }
-    &.more{
-           
-        }
+    
     ul{
         position: absolute;
         left:0;
         top:0;
         transform: translate(-15%,0);
         height: auto;
-        width: 150%;
+        width: 138%;
         margin-left: -1px;
-        z-index:444;
+        z-index:12000;
         max-height: 10.8rem;
         overflow-y: auto;
         li {
@@ -240,7 +252,6 @@ import Bus from '@/common/js/bus'
         }
     }
     
-}
 
 .v-dropdown-menu_list {
     cursor: pointer;

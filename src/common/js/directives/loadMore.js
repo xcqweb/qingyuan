@@ -15,7 +15,7 @@ export default {
         
        var  loadMore =  _.debounce( (e,el,vnode) => {//去抖函数
         	if(e.target.scrollTop>360){
-        		console.log(12)
+        		console.dir(el)
         		let num=1;
 		       			let paramsObj = {
 		                area:vnode.context.updatePlace.place,
@@ -26,7 +26,7 @@ export default {
 		            }
 		       		vnode.context.getResponse(paramsObj)
         	}
-       },2000)
+       },300)
     }
     
 }

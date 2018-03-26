@@ -80,18 +80,19 @@ display:none !important;
         position: absolute;
         
     }
- .hidden{
- 	display: none;
- 	li:nth-child(1){
- 		background: url(../../../../assets/images/hot/hot1.png);
- 	}
- 	li:nth-child(2){
- 		background: url(../../../../assets/images/hot/hot2.png);
- 	}
- 	li:nth-child(3){
- 		background: url(../../../../assets/images/hot/hot3.png);
- 	}
- }
+    .hidden{
+    	display: none;
+    	li:nth-child(1){
+    		background: url(../../../../assets/images/hot/hot1.png);
+    	}
+    	li:nth-child(2){
+    		background: url(../../../../assets/images/hot/hot2.png);
+    	}
+    	li:nth-child(3){
+    		background: url(../../../../assets/images/hot/hot3.png);
+    	}
+    }
+
 </style>
 <template>
     <div class="d1">
@@ -104,40 +105,39 @@ display:none !important;
             </video>
         </div>
         <div class="scenic">{{scenics}}</div>
-        <ul class="hidden">
-	        <li></li>
-	        <li></li>
-	        <li></li>
-        </ul>
-        
         <div class="control" style='width:660px;height:150px;background:rgba(21,51,135,0.56); border-radius:0 10px 0 20px; margin:-28px -6px 0 0'>
-					<ul style='display:-webkit-flex; justify-content:center; align-items:center; color:#fff; font-size:20px; width:566px; margin:0px 0 0 38px; padding-top:30px; font-weight: bold;'>
-						
-						<li style='flex:1; height:80px; position:relative; cursor: pointer;' @click="jumpPage('http://qyyj.gdtadbs.com/Account/LoginNotPwd/d89d5b4a-6ca0-4020-8853-3a201323e177?t=2')">
-							<p style='text-align:center;'>
-							<span  style='width:56px;height:45px; display:inline-block; background: url("./static/img/hot1.png") no-repeat'></span>
-							</p>
-							<p style='margin-top:14px; text-align:center;'>
-								<span  style='color:#fff; text-decoration:none; font-size:20px;'>高风险旅游项目</span></p>
-						</li>
-						<!---->
-						<li style='flex:1; height:80px; position:relative; cursor: pointer;' @click="jumpPage('http://qyyj.gdtadbs.com/Account/LoginNotPwd/d89d5b4a-6ca0-4020-8853-3a201323e177?t=1')">
-							<p style='text-align:center;'>
-							<span  style='width:56px;height:45px; display:inline-block; background: url("./static/img/hot3.png") no-repeat;'></span>
-							</p>
-							<p style='margin-top:14px; text-align:center;'>
-								<span  style='color:#fff; text-decoration:none; font-size:20px;'>景区安全隐患</span></p>
-						</li>
-						<!---->
-						<li style='flex:1; height:80px; position:relative; cursor: pointer;' @click="jumpPage('http://qyyj.gdtadbs.com/Account/LoginNotPwd/d89d5b4a-6ca0-4020-8853-3a201323e177?t=3')">
-							<p style='text-align:center;'>
-							<span style='width:56px;height:45px; display:inline-block; background: url("./static/img/hot2.png") no-repeat;'></span>
-							</p>
-							<p style='margin-top:14px; text-align:center;'>
-								<span style='color:#fff; text-decoration:none; font-size:20px;'>应急交通反馈</span></p>
-						</li>
-					</ul>
-					</div>
+		<ul style='display:-webkit-flex; justify-content:center; align-items:center; color:#fff; font-size:20px; width:566px; margin:0px 0 0 38px; padding-top:30px; font-weight: bold;'>
+			
+			<li style='flex:1; height:80px; position:relative; cursor: pointer;' @click="jumpPage('http://qyyj.gdtadbs.com/Account/LoginNotPwd/d89d5b4a-6ca0-4020-8853-3a201323e177?t=2')">
+				<p style='text-align:center;'>
+				<span  style='width:56px;height:48px; display:inline-block; background: url("./static/img/hot3.png") no-repeat'></span>
+				</p>
+				<p style='margin-top:14px; text-align:center;'>
+					<span  style='color:#fff; text-decoration:none; font-size:20px;'>高风险旅游项目</span></p>
+			</li>
+			<!---->
+			<li style='flex:1; height:80px; position:relative; cursor: pointer;' @click="jumpPage('http://qyyj.gdtadbs.com/Account/LoginNotPwd/d89d5b4a-6ca0-4020-8853-3a201323e177?t=1')">
+				<p style='text-align:center;'>
+				<span  style='width:56px;height:48px; display:inline-block; background: url("./static/img/hot1.png") no-repeat;'></span>
+				</p>
+				<p style='margin-top:14px; text-align:center;'>
+					<span  style='color:#fff; text-decoration:none; font-size:20px;'>景区安全隐患</span></p>
+			</li>
+			<!---->
+			<li style='flex:1; height:80px; position:relative; cursor: pointer;' @click="jumpPage('http://qyyj.gdtadbs.com/Account/LoginNotPwd/d89d5b4a-6ca0-4020-8853-3a201323e177?t=3')">
+				<p style='text-align:center;'>
+				<span style='width:56px;height:48px; display:inline-block; background: url("./static/img/hot2.png") no-repeat;'></span>
+				</p>
+				<p style='margin-top:14px; text-align:center;'>
+					<span style='color:#fff; text-decoration:none; font-size:20px;'>应急交通反馈</span></p>
+			</li>
+		</ul>
+		</div>
+		<ul class="hidden">
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
     </div>
     
 </template>
@@ -145,6 +145,7 @@ display:none !important;
 
 <script>
 import traffic_points from '@/pages/home/showMore/bigComponent/json/traffic_points.json'
+import boundarys from '@/pages/home/showMore/smallComponent/boundary.json'
 import optionProps from '@/common/js/mixin/optionProps.js'
     export default {
         name:'D1SS',
@@ -368,7 +369,28 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                     }
                 }));
             },
-            
+            //填充指定区域
+            addBoundary(map,rs){
+	          
+				//map.clearOverlays();        //清除地图覆盖物       
+				var count = rs.boundaries.length; //行政区域的点有多少个
+				
+	          	var pointArray = [];
+				for (var i = 0; i < count; i++) {
+					var ply = new BMap.Polygon(//建立多边形覆盖物
+						rs.boundaries[i], 
+						{
+							strokeWeight: 2, //线条宽度
+							strokeColor: "green", //填线条颜色
+							strokeOpacity:0.3,//线条透明度
+							fillColor:'green', //填充颜色
+							fillOpacity:0.3,//填充颜色透明度
+						}); 
+					map.addOverlay(ply);  //添加覆盖物
+					pointArray = pointArray.concat(ply.getPath());
+				}    
+				map.setViewport(pointArray);    //调整视野  
+            },
             addLine(map){
                 //添加曲线
                 var beijingPosition=new BMap.Point(119.932045,29.4510683),
@@ -498,11 +520,19 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                         return !!(elem.getContext && elem.getContext('2d'));
                     }
             },
-            moveTo(map,lon,lat,zoom){
+            moveTo(map,lon,lat,zoom,val,lenObj){
+            	//console.log(lenObj,val)
                     if(lon){
-                         //map.panTo(new BMap.Point(lon,lat));
                          map.setZoom(zoom);
                          map.centerAndZoom(new BMap.Point(lon,lat), zoom);
+                         
+                         
+                         
+                         if(boundarys[val]){
+                         //if(boundarys[val]&&lenObj[val].lng===lon&&lenObj[val].lat===lat){
+                         	this.addBoundary(map,boundarys[val]);	
+                         }
+                         
                     }
                    
             },
@@ -530,8 +560,6 @@ import optionProps from '@/common/js/mixin/optionProps.js'
             rodomMap(val,isTurist){
                 const _self= this;
                  let lenObj ={}
-                
-                
                 if(!isTurist){
                 	lenObj = {
 	                    "全部":{lng:113.06689,lat:23.699107,zoom:11},
@@ -605,16 +633,17 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 // map.addControl(new BMap.MapTypeControl());  
                 // 设置地图显示的城市 此项是必须设置的
                 map.setCurrentCity("清远");   
-                _self.addScriptForStyle(map); 
+               //_self.addScriptForStyle(map); 
                 // 开启鼠标滚轮缩放      
                 map.enableScrollWheelZoom(true);
                 // 设置定时器，对地图进行自动移动
                 // this.mapMoveSelf
                 /************************************************
                 
+                
                 添加折线
                 *************************************************/
-                _self.moveTo(map,lenObj[val  ===  undefined ?"全部": val].lng,lenObj[val  ===  undefined ?"全部": val].lat,lenObj[val  ===  undefined ?"全部": val].zoom);
+                _self.moveTo(map,lenObj[val  ===  undefined ?"全部": val].lng,lenObj[val  ===  undefined ?"全部": val].lat,lenObj[val  ===  undefined ?"全部": val].zoom,val,lenObj);
                 var pointGZ = new BMap.Point(119.923671,29.514494);
                 var pointHK = new BMap.Point(110.35,20.02);
                 // setTimeout(function(){
