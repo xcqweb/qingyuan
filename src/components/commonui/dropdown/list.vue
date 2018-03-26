@@ -1,7 +1,8 @@
+
 <template>
 	<transition name="dropdown-fade">
 		<div class='listdiv'  v-bind:style="{height: listDivHeight+'rem',maxHeight:maxHeight+'rem' }"  @mouseleave="leave" @mouseover="over" v-if="status">
-	        <ul @mousewheel.passive='moreStatus' class="con" style='font-size:12px;' :class="{'centero':uniqueClasso}">
+	        <ul class="con" style='font-size:12px;' :class="{'centero':uniqueClasso}">
 	        	<li class="v-dropdown-menu_list" :title="item" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}</li>
 	        </ul>
 		</div>
