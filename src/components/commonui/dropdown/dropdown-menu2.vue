@@ -40,7 +40,10 @@ import list from '@/components/commonui/dropdown/list.vue'
         },
         methods:{
         	hideSelects(data){
-        		clearTimeout(this.timer)
+        		if(data){
+        			clearTimeout(this.timer)
+        		}
+        		
         		this.menueshow = data
         		
         	},
