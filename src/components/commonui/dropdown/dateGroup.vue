@@ -183,6 +183,7 @@ import Bus from '@/common/js/bus'
     left: 0;
     background-color: rgba(0,0,0,0);
     z-index:120;
+    /*display: none;*/
 }
 .v-dropdown-menu {
     height:100%;
@@ -197,7 +198,7 @@ import Bus from '@/common/js/bus'
     white-space: nowrap;
 }
 .listdiv{
-    position: absolute;
+    position: fixed;
     left:0;
     top:100%;
     max-height: 10.8rem;
@@ -206,6 +207,7 @@ import Bus from '@/common/js/bus'
     box-shadow: 1px 0 30px  rgba(1,1,13,0.4);
     border: 1px solid #1b44ba;
     background-color: #193583;
+    z-index: 1000;
     .centerth{
     	width: 137% !important;
     }

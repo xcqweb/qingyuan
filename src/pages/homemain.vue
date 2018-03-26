@@ -10,7 +10,7 @@
     :placeName = 'placeName' 
     :placeAttractions = 'placeAttractions' 
     ></router-view>
-    <div class="slecToast" @click="tHide" v-if="toast"></div>
+    <div class="slecToast" @click="tHide" v-if="false"></div>
   </div>
 </template>
 <script type="text/javascript">
@@ -91,10 +91,10 @@ export default {
 	  .slecToast{
 	  	width: 100%;
 	  	height: 100%;
-	  	position: fixed;
+	  	position: absolute;
 	  	top: 0;
 	  	left: 0;
-	  	z-index: 1000;
+	  	z-index: 900;
 	  }
     .header{
         width: 100%;

@@ -16,6 +16,7 @@
             v-if='selectList.selectStatus'>        
             </dropdownList>
         </transition>
+        <div class="d"></div>
     </div>
 
 </template>
@@ -102,9 +103,9 @@ import Bus from '@/common/js/bus'
                  isMore:true,
             }
         },
-        template:`<div class='listdiv'  v-bind:style="{height: listDivHeight+'rem',maxHeight:maxHeight+'rem' }" v-bind:class="{ more: isMore }" v-if='status'>
+        template:`<div class='listdiv'  v-bind:style="{height: listDivHeight+'rem',maxHeight:maxHeight+'rem' }" v-bind:class="{ more: isMore }" v-if='show'>
         <div class="overlay" v-if='status' @click.self='hidelist'></div>
-        <ul @mousewheel.passive='moreStatus' style='font-size:18px;'  v-if='status' :class="{'centero':uniqueClasso,'centert':uniqueClasst,}"><li class="v-dropdown-menu_list" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}
+        <ul @mousewheel.passive='moreStatus' style='font-size:18px;'  v-show='status' :class="{'centero':uniqueClasso,'centert':uniqueClasst,}"><li class="v-dropdown-menu_list" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}
     </li></ul></div>`,
         computed:{
             maxHeight:function(){
@@ -164,6 +165,7 @@ import Bus from '@/common/js/bus'
     left: 0;
     background-color: rgba(0,0,0,0);
     z-index:200;
+    /*display: none;*/
 }
 .v-dropdown-menu {
     height:100%;
@@ -176,9 +178,15 @@ import Bus from '@/common/js/bus'
     box-shadow: 1px 0 30px  rgba(1,1,13,0.4);
     z-index: 30;
     white-space: nowrap;
+    .d{
+    	width: 400vw;
+    	height: 400vw;
+    	position: fixed;
+    	z-index: 200;
+    }
 }
 .listdiv{
-    position: absolute;
+    position: fixed;
     left:0;
     top:100%;
     max-height: 10.8rem;
@@ -187,6 +195,7 @@ import Bus from '@/common/js/bus'
     box-shadow: 1px 0 30px  rgba(1,1,13,0.4);
     border: 1px solid #1b44ba;
     background-color: #193583;
+    z-index: 1000;
      .centero{
     	width: 161% !important;
     }
