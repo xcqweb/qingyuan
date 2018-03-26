@@ -2,7 +2,7 @@
 	<div id="box">
         <div class="jqlable">景 区</div>
         <slecktet 
-        class='science'
+        class='sciencelist'
         :uniqueClasso=true
         :selectList="jqselectlist" 
         v-on:listenAtparent="catchmsg2"
@@ -10,7 +10,7 @@
         
         <div class="qylable">区/县</div>
         <slecktet 
-        class="area"
+        class="arealist"
         :uniqueClasso=true
         :selectList="qyselectlist" 
         v-on:listenAtparent="catchmsg1"
@@ -284,7 +284,7 @@
 	    border-radius: 10px 0 0 10px;
 	    z-index: 100;
 	}
-	.area{
+	.arealist{
 		width: 136px !important;
 		height: 45px;
 	    position: absolute;
@@ -296,7 +296,7 @@
 	    	width: 50px;
 	    }
 	}
-	.science{
+	.sciencelist{
 		 width: 276px !important;
 		 height: 45px;
 	     position: absolute;

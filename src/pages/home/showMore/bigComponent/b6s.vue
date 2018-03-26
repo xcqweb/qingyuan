@@ -397,7 +397,6 @@ Vue.use(vAjax);
 
 let weekCode = new Date().getDay()
 
-console.log(weekCode)
   export default {
     name:'B6S',
     mixins: [showMoreData,optionProps],

@@ -2,13 +2,13 @@
 	<div class="c11">
 		<div class="con">
 			<keep-alive>
-			<componet
-			  :is='currentModule'
-			  :updatePlace='updatePlace'
-			  :update='update'
-			  :upday='upday'
-			  @toggleProvince='toggleProvince'
-			></componet> 
+				<componet
+				  :is='currentModule'
+				  :updatePlace='updatePlace'
+				  :update='update'
+				  :upday='upday'
+				  @toggleProvince='toggleProvince'
+				></componet> 
 			</keep-alive>
 		</div>
 		<!--切换-->
@@ -29,16 +29,13 @@ import optionProps from '@/common/js/mixin/optionProps.js'
 		data(){
 			return{
 				currentModule:'C7',
-				active: true
+				active: true,
 			}
 		},
 		methods:{
 			toggle(data, bol){
 				this.currentModule = data;
 				this.active = bol;
-//				if(data==='C7'){
-//					this.$emit('toggleProvince',0)
-//				}
 			},
 			toggleProvince(data){
 				this.$emit('toggleProvince',data)
@@ -99,4 +96,5 @@ import optionProps from '@/common/js/mixin/optionProps.js'
         }
 		}
 	}
+	
 </style>

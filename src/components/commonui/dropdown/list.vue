@@ -1,10 +1,12 @@
 <template>
-	<div class='listdiv'  v-bind:style="{height: listDivHeight+'rem',maxHeight:maxHeight+'rem' }" v-bind:class="{ more: isMore }" v-if='isShow'>
-        <div class="overlays" v-if='isShow' @click.self='hidelist'></div>
-        <ul @mousewheel.passive='moreStatus' class="con" style='font-size:12px;'  v-if='isShow' @mouseleave="out" :class="{'centero':uniqueClasso,'centert':uniqueClasst,'centerth':uniqueClassth}">
-        	<li class="v-dropdown-menu_list" :title="item" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}</li>
-        </ul>
-	</div>
+	<transition name="dropdown-fade">
+		<div class='listdiv'  v-bind:style="{height: listDivHeight+'rem',maxHeight:maxHeight+'rem' }" v-show='status' @mouseleave="leave">
+	        <!--<div class="overlays" v-if='isShow' @click.self='hidelist'></div>-->
+	        <ul @mousewheel.passive='moreStatus' class="con" style='font-size:12px;' :class="{'centero':uniqueClasso}">
+	        	<li class="v-dropdown-menu_list" :title="item" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}</li>
+	        </ul>
+		</div>
+	</transition>
 </template>
 
 <script>
@@ -14,7 +16,6 @@
             return{
                  msg:'jfdksjfk',
                  showstatus:true,
-                 isMore:true,
                  statu:false
             }
         },
@@ -30,35 +31,22 @@
                 return (this.list.length)*1.8
             },
             isShow(){
-            	return this.status
+            	return this.statu
             }
         },
         methods:{
-            chosen:function(){
-            },
-            showselect(){
-            	this.selectList.selectStatus=true;
-            },
+        	leave(){
+        		//this.$emit('hideSelects',false)   
+        	},
 
             increment:function(item){
                 this.showstatus= !this.showstatus;
                 this.isMore = true;
                 this.$emit('itemtodo',item === undefined ? this.list[0] : item);
             },
-            test:function(){
-
-            },
-            out(){
-              	this.statu = !this.statu
-            	this.$emit('hideSelect',false)
-            },
-            moreStatus(event){
-                this.isMore = false;
-            },
             //点击浮框背景未选中元素时 隐藏下拉框并传默认值；
             hidelist(){
             	this.statu = !this.statu
-                this.isMore = true;
                 this.$emit('itemtodo');
             },
                 
@@ -70,12 +58,7 @@
         	}
         },
         mounted(){
-            if(this.list.length>4){
-                this.isMore =  true
-            }else{
-                this.isMore = false
-            }
-            
+        	console.log(this.list)
         }
 	}
 </script>
@@ -90,6 +73,7 @@
     left: 0;
     background-color: rgba(0,0,0,0);
     z-index:10000;
+    display: none;
 }
 
 .listdiv{
@@ -102,33 +86,6 @@
     box-shadow: 1px 0 30px  rgba(1,1,13,0.4);
     border: 1px solid #1b44ba;
     background-color: #193583;
-     /*.centero{
-    	width: 100% !important;
-    }
-    .centert{
-    	width: 100% !important;
-    }
-    .centerth{
-    	width: 100% !important;
-    }*/
-    &.more{
-            &:after{
-                content: "";
-                width:0;
-                height: 0;
-                position: absolute;
-                bottom: 5px;
-                left: 50%;
-                z-index: 450;
-                transform: translate(-50%,0);
-                border-left: solid 10px transparent;
-                border-top:solid 5px white;
-                border-right: solid 10px transparent;
-            }
-            li:nth-of-type(6){
-                margin-top: 1.8rem;
-            }
-        }
     ul{
         position: absolute;
         left:0;
@@ -150,7 +107,6 @@
             text-overflow: ellipsis;
 			overflow: hidden;  
             white-space: nowrap; 
-            //padding: 0 10px;
             width: 100%;  
             &:hover{
                 background-color:#3c69bd;
@@ -159,19 +115,19 @@
     }
 }
 
-.v-dropdown-menu_list {
-    cursor: pointer;
-    height: 20px;
-    width:100%;
-    text-align: center;
-    color: white;
-    font-size: 18px;
-}
-
-
-
-
-.con::-webkit-scrollbar{
+	.v-dropdown-menu_list {
+	    cursor: pointer;
+	    height: 20px;
+	    width:100%;
+	    text-align: center;
+	    color: white;
+	    font-size: 18px;
+	}
+	
+	
+	
+	
+	.con::-webkit-scrollbar{
 			    width: 2px;
 			    height: 0rem;
 			}
@@ -215,5 +171,40 @@
 			    background-color: #0F2059;
 			}
 
-
+		.dropdown-fade-enter-active {
+			  animation: slided 0.6s ease;
+			}
+			.dropdown-fade-leave-active {
+			  animation: slideu 0.45s ease;
+			}
+	
+	@keyframes slided{
+		0%{
+			transform: translateY(-100%);
+			opacity: 0;
+		}
+		5%{
+			opacity: 0;
+			transform: translateY(-26%);
+		}
+		100%{
+			transform: translateY(0);
+			opacity: 1;
+		}
+	}
+	
+	@keyframes slideu{
+		0%{
+			transform: translateY(0);
+			opacity: 1;
+		}
+		95%{
+			opacity: 0;
+			transform: translateY(-26%);
+		}
+		100%{
+			transform: translateY(-100%);
+			opacity: 0;
+		}
+	}
 </style>

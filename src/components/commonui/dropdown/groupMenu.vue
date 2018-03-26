@@ -230,7 +230,7 @@
 	    color: #F0EFFD;
 	    line-height: 1.8rem;
 	    position: absolute;
-	    top: 23%;
+	    top: 24%;
 	    left: 10%;
 	}
 	.time{
@@ -251,7 +251,7 @@
 	.science{
 		 height: 36px;
 	     position: absolute;
-	     top: 30%;
+	     top: 31.5%;
 	     left: 0%;
 	}
 	.vueDate{

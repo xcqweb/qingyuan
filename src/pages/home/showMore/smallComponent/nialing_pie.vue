@@ -7,11 +7,10 @@
     .c985{
         width:100%;
         height:100%;
-        transform: scale(1.25);
     }
     .scenic{
         text-align: center;
-        color: white;
+        color: #fff;
     }
 }
 </style>
@@ -77,8 +76,8 @@ export default {
           legend:{
                 show:true,
                 orient: 'vertical',
-                top:'30%' ,
-                right:'15%',
+                top:'20%' ,
+                right:'6%',
                 width:'20%',
                 height:'45%',
                 itemGap:10,
@@ -112,12 +111,12 @@ export default {
               {
                 name:'访问来源',
                 type:'pie',
-                radius : '60%',
-                center: ['26%', '50%'],
+                radius : '70%',
+                center: ['28%', '42%'],
                 // selecteMode:'single',
                 // selectedOffset:30,
                 // roseType:"area",
-                startAngle:90,
+                startAngle:180,
                 labelLine: {
                     normal: {
                         show: false,
@@ -129,6 +128,7 @@ export default {
                     normal:{
                             show: true,
                             position: 'inner',
+                            fontSize: 16,
                             formatter: function(params){
                                 return Math.round(params.percent) === 0 ? '' : Math.round(params.percent).toFixed(1)+"%"  ;
                             },

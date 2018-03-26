@@ -6,7 +6,6 @@
         >
         <p @click='triggle($event)' v-on:itemtodo2="sendMsgParent" @mouseleave="out($event)" class="dropdown-menu-p" :class="{unique1:uniqueClasso}" :title="selectList.title">{{selectList.title}}</p>
         <span :class="upDown"></span>
-        <transition name="dropdown-fade">
             <list 
             :list='selectList.place'  
             :status='menueshow' 
@@ -15,7 +14,6 @@
             @hideSelects='hideSelects'
             v-if='selectList.selectStatus'>        
             </list>
-        </transition>
     </div>
 
 </template>
@@ -23,7 +21,6 @@
 import Vue from 'vue'
 import Bus from '@/common/js/bus'
 import list from '@/components/commonui/dropdown/list.vue'
-import list1 from '@/components/commonui/dropdown/list1.vue'
     export default{
         data(){
             return{
@@ -49,20 +46,12 @@ import list1 from '@/components/commonui/dropdown/list1.vue'
         },
         components:{
         	list,
-        	list1,
         },
         methods:{
-        	
-        	
-        	
         	hideSelects(data){
         		this.hideSelect = data
         	},
         	out(e){
-        		//console.log(e.screenY)//150-400  350-386
-//      		if(this.menueshow && !this.hideSelect && e.screenY<280 &&e.screenX>440&&e.screenX<1160){
-//      			this.menueshow = false
-//      		}
         		
         	},
             sendMsgParent:function(){
@@ -87,13 +76,6 @@ import list1 from '@/components/commonui/dropdown/list1.vue'
             },
             triggle:function(e){
             	
-            	let re = e.target.offsetParent.className==='v-dropdown-menu science'
-            	if(re){
-            		//this.$emit('listenAtparent','全部')
-            	}else{
-            		//console.log(e.target.offsetParent.className)
-            		//this.$emit('listenAtparent','全部')
-            	}
             	this.menueshow = !this.menueshow
             	
                 this.selectList.selectStatus = true;

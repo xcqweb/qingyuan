@@ -1,9 +1,11 @@
 <template>
-	<div class="lists" v-show="status">
-		<ul class="con">
-			<li v-for="item in list" @click.self="choose(item)" :title='item'>{{item}}</li>
-		</ul>
-	</div>
+	<transition name='slide-fade'>
+		<div class="lists" v-show="status">
+			<ul class="con">
+				<li v-for="item in list" @click.self="choose(item)" :title='item'>{{item}}</li>
+			</ul>
+		</div>
+	</transition>
 </template>
 
 <script>
@@ -57,6 +59,45 @@
 		}
 	}
 	
+	
+	.slide-fade-enter-active {
+	  animation: slided 0.6s ease;
+	}
+	.slide-fade-leave-active {
+	  animation: slideu 0.6s ease;
+	}
+	
+	
+	
+	@keyframes slided{
+		0%{
+			transform: translateY(-100%);
+			opacity: 0;
+		}
+		5%{
+			opacity: 0;
+			transform: translateY(-26%);
+		}
+		100%{
+			transform: translateY(0);
+			opacity: 1;
+		}
+	}
+	
+	@keyframes slideu{
+		0%{
+			transform: translateY(0);
+			opacity: 1;
+		}
+		95%{
+			opacity: 0;
+			transform: translateY(-26%);
+		}
+		100%{
+			transform: translateY(-100%);
+			opacity: 0;
+		}
+	}
 	
 			.con::-webkit-scrollbar{
 			    width: 2px;
