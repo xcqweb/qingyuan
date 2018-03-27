@@ -105,6 +105,7 @@ export default {
     },
     data() {
         return {
+        	clicked:false,
             year: 0,
             month: 0,
             day: 0,
@@ -208,7 +209,6 @@ export default {
        
                 // 范围
                 if (this.range) {
-                	
                     // console.log("日期范围",this.getLunarInfo(this.year,this.month+1,i))
                     let options = Object.assign(
                         {day: i},
@@ -219,22 +219,21 @@ export default {
                         let beginTime = Number(new Date(this.rangeBegin[0], this.rangeBegin[1], this.rangeBegin[2]))
                         let endTime = Number(new Date(this.rangeEnd[0], this.rangeEnd[1], this.rangeEnd[2]))
                         let stepTime = Number(new Date(this.year, this.month, i))
-                        if (beginTime <= stepTime && endTime >= stepTime) {
+                        if (beginTime <= stepTime && endTime >= stepTime&&this.clicked) {
                             options.selected = true
                         }
                     }
                     if (this.begin.length>0) {
                         let beginTime = Number(new Date(parseInt(this.begin[0]),parseInt(this.begin[1]) - 1,parseInt(this.begin[2])))
-                        if (beginTime > Number(new Date(this.year, this.month, i))) options.disabled = true
+                        if (beginTime > Number(new Date(this.year, this.month, i))){options.disabled = false} 
                     }
                     if (this.end.length>0){
                         let endTime = Number(new Date(parseInt(this.end[0]),parseInt(this.end[1]) - 1,parseInt(this.end[2])))
-                        if (endTime <  Number(new Date(this.year, this.month, i))) options.disabled = true
+                        if (endTime <  Number(new Date(this.year, this.month, i))){options.disabled = false} 
                     }
                     temp[line].push(options)
                     
                 } else {
-                     // console.log(this.lunar(this.year,this.month,i));
                     // 单选模式
                     let chk = new Date()
                     let chkY = chk.getFullYear()
@@ -243,7 +242,7 @@ export default {
                     if (parseInt(seletSplit[0]) == this.year && parseInt(seletSplit[1]) - 1 == this.month && parseInt(seletSplit[2]) == i) {
                         // console.log("匹配上次选中的日期",lunarYear,lunarMonth,lunarValue,lunarInfo)
                         temp[line].push(Object.assign(
-                            {day: i,selected: true},
+                            {day: i,selected: false},
                             this.getLunarInfo(this.year,this.month+1,i),
                             this.getEvents(this.year,this.month+1,i),
                         ))
@@ -254,7 +253,7 @@ export default {
 
                         // console.log("今天",lunarYear,lunarMonth,lunarValue,lunarInfo)
                         temp[line].push(Object.assign(
-                            {day: i,selected: true},
+                            {day: i,selected: false},
                             this.getLunarInfo(this.year,this.month+1,i),
                             this.getEvents(this.year,this.month+1,i),
                         ))
@@ -287,7 +286,7 @@ export default {
                     for (dow; dow < 6; dow++) {
                         // console.log("最后一行",lunarYear,lunarMonth,lunarValue,lunarInfo)
                         temp[line].push(Object.assign(
-                            {day: k,disabled: true},
+                            {day: k,disabled: false},
                             this.getLunarInfo(this.month+2>11?this.year+1:this.year,this.month+2>11?1:this.month+2,k),
                             this.getEvents(this.month+2>11?this.year+1:this.year,this.month+2>11?1:this.month+2,k),
                         ))
@@ -352,6 +351,7 @@ export default {
         },
         // 选中日期
         select(k1, k2, e) {
+        	this.clicked = true
             if (e != undefined){
             	e.stopPropagation()
             }
@@ -426,7 +426,7 @@ export default {
                     })
                 }
                 // 设置当前选中天
-                this.days[k1][k2].selected = true
+                this.days[k1][k2].selected = false
                 this.day = this.days[k1][k2].day
                 this.today = [k1, k2]
                 this.$emit('select',[this.year,this.zero?this.zeroPad(this.month + 1):this.month + 1,this.zero?this.zeroPad(this.days[k1][k2].day):this.days[k1][k2].day])

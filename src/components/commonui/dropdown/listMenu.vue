@@ -16,17 +16,17 @@
         v-on:listenAtparent="catchmsg1"
         ></slecktet>
         
-        <!--<div v-if='isDate'>-->
         	<!-- 时间下拉框组件 -->
         	<div v-show="!vDateStatus">
         		<div class="time">时 间</div>
 	            <vDate 
-	             class='vueDate'
+	             class='vueDate1'
 	             :isBorder='isborder'
 	             @pageDate='getDate'
 	             :isActive = 'isEndDate'
 	             @hideDate = 'hideDate'
 	             :vDateStatus='vDateStatus'
+	             :showStatus=false
 	             ></vDate>
         	</div>
         	
@@ -42,7 +42,6 @@
              </div>
             
              
-        <!--</div>-->
 	</div>
 </template>
 
@@ -50,6 +49,7 @@
 	import slecktet from '@/components/commonui/dropdown/dropdown-menu2.vue'
 	import dateGroup from '@/components/commonui/dropdown/dateGroup.vue'
 	import vDate from '@/components/commonui/vueDate/app.vue'
+	import Bus from '@/common/js/bus'
 	export default{
 		data(){
 			return{
@@ -64,7 +64,7 @@
                     title:'全部',
                     selectStatus:false,
                     place:[
-                        '全部',"清城","清新","佛冈","英德","连州","连南","连山","阳山"
+                        '全部',"清城","清新","英德","连州","佛冈","连山","连南","阳山"
                     ]
                 },
                 
@@ -162,9 +162,19 @@
 	        },
 	        
 	        listenAtparent(val){
-	        	
+//	        	this.dateList = {
+//                  width:'70%',
+//                  right:'6%',
+//                  top:'52%',
+//                  title: val,
+//                  selectStatus:false,
+//                  place:[
+//                      '日',"月","年","自定义"
+//                  ]
+//              }	
 	        	if(val==='自定义'){
 	        		this.vDateStatus = false
+	        		Bus.$emit('definded',val)
 	        	}else{
 	        		this.dataType = val
 	        		this.vDateStatus = true
@@ -304,6 +314,16 @@
 	     border: 3px solid @borderColor;
 	     border-left: none;
 	     border-radius: 0 10px 10px 0;
+	}
+	.vueDate1{
+		height: 44px;
+		position: absolute;
+		width: 280px !important;
+	    top: -2px; 
+	    right: -6px !important;
+	    z-index: 100;
+	    border: 3px solid @borderColor;
+	    border-radius: 0 10px 10px 0;
 	}
 	.vueDate{
 		height: 44px;

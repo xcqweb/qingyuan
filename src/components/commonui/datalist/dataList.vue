@@ -69,7 +69,8 @@
 		input{
 			position: absolute;
 			left: 0;
-			width: 100%;
+			width: 101%;
+			box-sizing: border-box;
 			height: 100%;
 			padding: 0;
 			margin: 0;
@@ -77,6 +78,7 @@
 			background-color: #163387;
 		    border: #345BFA 1.5px solid;
 		    color: #fff;
+		    padding: 0 30px 0 15px;
 		    text-align: center;
 		    z-index: 11;
 		}

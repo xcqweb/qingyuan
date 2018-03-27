@@ -49,8 +49,8 @@ export default {
     return {
         items:[
             {title:'',nub:'好评数',font:'',color:'#6dffeb'},
-            {title:'',nub:'差评数',font:'',color:'#ffe86e'},
-            {title:'',nub:'投诉数',font:'',color:'#ff719c'},
+            {title:'',nub:'中评数',font:'',color:'#ffe86e'},
+            {title:'',nub:'差评数',font:'',color:'#ff719c'},
         ],
     }
   },

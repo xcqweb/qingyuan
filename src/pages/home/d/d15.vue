@@ -44,9 +44,7 @@
 				num:2,
 				keyW:"",
 				name:"",
-				items:[
-//					{name:'飞霞风景名胜区',comment:'好评',con:'整体来说不错,在船上可以吃到海鲜.天然的,还有清远鸡!,也可以观赏两岸的风景,72峰名不虚传!,整体来说不错,在船上可以吃到海鲜.天然的,还有清远鸡!,也可以观赏两岸的风景,72峰名不虚传',uid:'M1213***',date:'2018-03-05'},
-				],
+				items:[],
 			}
 		},
 		watch:{
@@ -58,7 +56,7 @@
 	                pageId:1,
 	                source:'全部',
 	                commentType:this.comType,
-	                key:this.keyW,
+	                key:"",
 	            }
 				this.items = []
 				this.name= '';
@@ -71,6 +69,7 @@
 	                type:["day","month","year"][this.upday],
 	                pageId:1,
 	                source:'全部',
+	                key:"",
 	                commentType:this.comType,
 	                category:this.slectType+1,
 	            }
@@ -85,7 +84,7 @@
 	                source:'全部',
 	                commentType:this.comType ,
 	                category:this.slectType+1,
-	                //key:this.keyW,
+	                key:"",
 	                beginTime:val.begin.join('-'),
 	                endTime:val.end.join('-'),
 	            }
@@ -99,9 +98,9 @@
 	                name:this.updatePlace.turist,
 	                pageId:1,
 	                source:'全部',
-	                commentType:this.comType ,
-	                key:this.keyW,
-	                category:val+1
+	                commentType:this.comType,
+	                key:"",
+	                category:val+1,
 	               }
 				this.items = []
 				this.getResponse(paramsObj);
@@ -115,7 +114,7 @@
 	                pageId:1,
 	                source:'全部',
 	                commentType:this.comType ,
-	                key:this.keyW,
+	                key:"",
 	                category:this.slectType+1
 	               }
 				this.items = []
@@ -131,12 +130,12 @@
 								//console.log(reData)
 				                if(r.data.code ==="200"||r.data.code ===200){
 				                   reData.forEach( (item,index) => {
-				                   		if(item.grade>4){
+				                   		if(item.grade>=4){
 				                   			item.grade = '好评'
-				                   		}else if(item.grade>=2 && item.grade<=3){
-				                   			item.grade = '差评'
+				                   		}else if(item.grade>=2 && item.grade<=3.9){
+				                   			item.grade = '中评'
 				                   		}else{
-				                   			item.grade = '投诉'
+				                   			item.grade = '差评'
 				                   		}
 				                   		_self.items.push(item)
 				                   })
@@ -201,8 +200,7 @@
 	                type:'day',
 	                source:'全部',
 	                commentType:1,
-	                key:"",
-	                category:this.slectType+1,
+	                category:1,
 	            }
 	       this.getResponse(paramsObj);
 	    },

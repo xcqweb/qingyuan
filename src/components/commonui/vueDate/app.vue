@@ -4,7 +4,7 @@
         <div :class="{'border':isBorder}">
             <!-- <span>弹出框</span> -->
             <input type="text"  v-bind:class="{ choses: isActive }" class="sigleDate"   @click="openByDrop($event)" v-model="calendar3.display" readonly>
-            <input type="text" v-bind:class="{ choses: !isActive}" @click="openByDialog" :value="calendar4.display" readonly style="cursor: pointer;">
+            <input type="text" v-bind:class="{ choses: !isActive,'font16':!showStatus}" @click="openByDialog" :value="calendar4display" readonly style="cursor: pointer;">
         </div>
 
 <!--         <div>
@@ -19,13 +19,13 @@
     </div>
 
     <transition name="fade">
-    <div class="calendar-dropdown"  v-bind:class="{ choses: isActive }"  :style="{'left':calendar3.left+'px','top':calendar3.top+'px'}" v-if="calendar3.show">
+    <div class="calendar-dropdown"  v-bind:class="{ choses: isActive}"  :style="{'left':calendar3.left+'px','top':calendar3.top+'px'}" v-show="calendar3.show">
         <calendar :zero="calendar3.zero" :lunar="calendar3.lunar" :value="calendar3.value" :begin="calendar3.begin" :end="calendar3.end" @select="calendar3.select"></calendar>
     </div>
     </transition>
 
     <transition name="fade">
-    <div class="calendar-dialog" v-bind:class="{ choses: !isActive }" v-if="isShow">
+    <div class="calendar-dialog" v-bind:class="{ choses: !isActive}" v-show="isShow">
         <div class="calendar-dialog-mask" @click="closeByDialog"></div>
         
         <div class="calendar-dialog-body" @mouseleave="out">
@@ -40,6 +40,7 @@
 <script>
  
 import calendar from './calendar.vue'
+import Bus from '@/common/js/bus'
 
 let date = new Date()
 let year = c(date.getFullYear())
@@ -60,7 +61,8 @@ export default {
     props:{
         isActive:Boolean,
         isBorder:Boolean,
-        vDateStatus:Boolean
+        vDateStatus:Boolean,
+        showStatus:Boolean,
     },
     data(){
         return {
@@ -98,8 +100,9 @@ export default {
                     this.calendar3.display=value.join("/");
                 }
             },
+            de:'自定义',
             calendar4:{
-                //display:"2018/01/01 ~ 2018/01/31",
+//              display:"2018/01/01 ~ 2018/01/31",
                 display:year+"/"+month+"/"+day+" ~ "+year+"/"+month+"/"+day,
                 show:false,
                 range:true,
@@ -115,7 +118,12 @@ export default {
             },
         }
     },
-    created(){
+    mounted(){
+    	Bus.$on('definded',function(val){
+    		if(!this.showStatus && val==='自定义'){
+    			this.de = val
+    		}
+    	})
     },
     computed: {
         calendar1:function(){
@@ -125,7 +133,14 @@ export default {
         isShow(){
         	let val = !this.vDateStatus||this.calendar4.show
         	return  val
-            
+        },
+        calendar4display(){
+        	if(!this.showStatus){
+        		return this.de
+        	}else{
+        		return this.calendar4.display
+        	}
+        	
         }
     },
     methods:{
@@ -140,21 +155,16 @@ export default {
             e.stopPropagation();
             window.setTimeout(()=>{
                 document.addEventListener("click",(e)=>{
-                    this.calendar3.show=false;
+                    this.calendar4.show=false;
                     document.removeEventListener("click",()=>{},false);
                 },false);
             },1000)
         },
         openByDialog(){
             this.calendar4.show=true;
-//          if(this.vDateStatus){
-//          	this.vDateStatus = true
-//          }
-            
         },
         closeByDialog(){
-            this.calendar4.show=false;
-            this.vDateStatus = true
+        	this.calendar4.show=false;
             this.$emit('hideDate',true)
         }
     }
@@ -282,11 +292,15 @@ export default {
     background: #fff;
     position: absolute;
     right : 29.8%;
-    top:55%;
+    top:57%;
     transform: translate(0,0);
     padding:20px;
     border: 1px solid #eee;
     border-radius: 2px;
     z-index:999;
+}
+
+.font16{
+	font-size: 16px !important;
 }
 </style>

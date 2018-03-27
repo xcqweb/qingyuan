@@ -284,9 +284,9 @@ require('echarts-wordcloud');
                         normal: {
                             color: function() {
                                 return 'rgb(' + [
-                                    Math.round(Math.random() * 255),
-                                    Math.round(Math.random() * 255),
-                                    Math.round(Math.random() * 20)
+                                    Math.round(Math.random() * 212+43),
+                                    Math.round(Math.random() * 191+64),
+                                    Math.round(Math.random() * 67+188)
                                 ].join(',') + ')';
                             }
                         },

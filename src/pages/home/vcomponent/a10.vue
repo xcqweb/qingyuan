@@ -1,6 +1,6 @@
 <template>
 	<div class="box">
-		<iframe class="ifrBox" :src="chainVal" scrolling="no"></iframe>
+		<iframe class="ifrBox" :src="chainVal" scrolling="no" seamless sandbox="allow-same-origin"></iframe>
 	</div>
 </template>
 

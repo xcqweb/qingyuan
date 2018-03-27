@@ -264,7 +264,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                     }
                     
                    
-                    var label = new BMap.Label(points[i].label,{offset:new BMap.Size(20,-20)});
+                    var label = new BMap.Label(points[i].label,{offset:new BMap.Size(20,-50)});
                     label.setStyle({
                         color : "#153081",
                         border:"1px solid #153081",
@@ -582,7 +582,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
 	                    "白庙渔村":{lng:113.146036,lat:23.711442,zoom:13},
 	                    "飞来寺":{lng:113.172823,lat:23.708263,zoom:13},
 	                    "美林湖及大家元摩天轮片区":{lng:113.043339,lat:23.50327,zoom:13},
-	                    "太和古洞旅游区":{lng:112.999031,lat:23.747737,zoom:13},
+	                    "太和古洞旅游区":{lng:112.999031,lat:23.747737,zoom:18},
 	                    "笔架山度假区":{lng:113.042358,lat:23.776528,zoom:13},
 	                    "安庆村":{lng:112.823456,lat:23.616738,zoom:13},
 	                    "清泉湾生态旅游度假区":{lng:112.928301,lat:23.764869,zoom:13},

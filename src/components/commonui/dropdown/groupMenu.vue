@@ -33,7 +33,8 @@
              v-if="vDateStatus"
              :vDateStatus='vDateStatus'
              @pageDate='getDate'
-             :isActive = 'isEndDate' 
+             :isActive = 'isEndDate'
+             :showStatus=true
              ></vDate>
         </div>
         <div class="scienceChose" v-show="isScience">
@@ -64,7 +65,7 @@
                     key:'area',
                     selectStatus:false,
                     place:[
-                        '全部',"清城","清新","佛冈","英德","连州","连南","连山","阳山"
+                        '全部',"清城","清新","英德","连州","佛冈","连山","连南","阳山"
                     ]
                 },
                 updateData:{

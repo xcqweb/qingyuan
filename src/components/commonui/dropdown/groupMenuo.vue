@@ -62,6 +62,7 @@
              :vDateStatus='vDateStatus'
              @pageDate='getDate'
              :isActive = 'isEndDate' 
+             :showStatus=true
              ></vDate>
         </div>
         <div class="scienceChose" v-show="isScience">
@@ -96,7 +97,7 @@
                     key:'area',
                     selectStatus:false,
                     place:[
-                        '全部',"清城","清新","佛冈","英德","连州","连南","连山","阳山"
+                        '全部',"清城","清新","英德","连州","佛冈","连山","连南","阳山"
                     ]
                 },
                 
@@ -216,11 +217,7 @@
 		                place:this.updateData.place,
 		                turist:"全部",
 		            }
-	        		this.$emit('doubleChose',this.updateData)
 				}
-				
-				
-				//console.log(type,this.switch("全部",type))
 	        },
 	        
 	        //关键词
