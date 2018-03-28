@@ -441,9 +441,13 @@ export default {
               
                     if(new Date(end)>new Date()||new Date(begin)>new Date() ){
                            alert('所选时间不能大于当前时间')
+                           this.month = new Date().getMonth()
+          				   this.rangeBegin=[]
                     }else{
                           if(lev>11*24*60*60){
                             alert('时间跨度不能大于十二天')
+                            this.month = new Date().getMonth()
+          					this.rangeBegin=[]
                         }else{
                             this.$emit('select',begin,end)
                         }
