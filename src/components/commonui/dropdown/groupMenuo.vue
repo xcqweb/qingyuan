@@ -631,12 +631,12 @@
 	}
 	
 	.time{
-	     height:1.5rem;
+	    height: 36px;
 	    font-size: 18px;
 	    color: #F0EFFD;
-	    line-height: 1.8rem;
+	    line-height: 36px;
 	    position: absolute;
-	    top: 54%;
+	    top: 53%;
 	    left: 10%;
 	}
 	.area{
@@ -653,7 +653,7 @@
 	}
 	.vueDate{
 		position: absolute;
-	    top: 63%;
+	    top: 64%;
 	    left: 10%;
 	}
 	
@@ -690,11 +690,11 @@
 	    left: 10%;
 	   background-color: rgba(0, 0, 0, 0);
 	   li{
-	        height: 1.8rem;
+	        height: 36px;
 	        width: 88px;
 	        text-align: center;
-	        line-height:2rem;
-	        font-size: 0.9rem;
+	        line-height: 36px;
+	        font-size: 16px;
 	        border: 1px solid #355BFA;
 	        float: left;
 	       color:white;

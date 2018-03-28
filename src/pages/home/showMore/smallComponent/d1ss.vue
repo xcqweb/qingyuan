@@ -146,6 +146,7 @@ display:none !important;
 <script>
 import traffic_points from '@/pages/home/showMore/bigComponent/json/traffic_points.json'
 import boundarys from '@/pages/home/showMore/smallComponent/boundary.json'
+import coords from '@/pages/home/showMore/smallComponent/coord.json'
 import optionProps from '@/common/js/mixin/optionProps.js'
     export default {
         name:'D1SS',
@@ -329,28 +330,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
 //				var bs = map.getBounds();   //返回地图可视区域
 //				cr.addCopyright({
 //					id: 1,
-//					content: `<div style='width:660px;height:150px;background:rgba(21,51,135,0.56); border-radius:0 10px 0 20px; margin:-28px -6px 0 0'>
-//					<ul style='display:-webkit-flex; justify-content:center; align-items:center; color:#fff; font-size:20px; width:566px; margin:0px 0 0 38px; padding-top:50px'>
-//						
-//						<li style='flex:1; height:80px; position:relative;'>
-//							<p style='text-align:center;'>
-//							<a  href="#"style='width:56px;height:45px; display:inline-block; background: url("./static/img/hot1.png") no-repeat'></a>
-//							</p>
-//							<p style='margin-top:14px; text-align:center;'><a href="#" style='color:#fff; text-decoration:none; font-size:20px;'>高风险旅游项目</a></p>
-//						</li><li style='flex:1; height:80px; position:relative;'>
-//							<p style='text-align:center;'>
-//							<a href="#" style='width:56px;height:45px; display:inline-block; background: url("./static/img/hot3.png") no-repeat'></a>
-//							</p>
-//							<p style='margin-top:14px; text-align:center;'><a href="#" style='color:#fff; text-decoration:none; font-size:20px;'>景区安全隐患</a></p>
-//						</li>
-//						<li style='flex:1; height:80px; position:relative;'>
-//							<p style='text-align:center;'>
-//							<a href="#" style='width:56px;height:45px; display:inline-block; background: url("./static/img/hot2.png") no-repeat'></a>
-//							</p>
-//							<p style='margin-top:14px; text-align:center;'><a href="http://qyyj.gdtadbs.com/Account/LoginNotPwd/d89d5b4a-6ca0-4020-8853-3a201323e177?t=3" style='color:#fff; text-decoration:none; font-size:20px;'>应急交通反馈</a></p>
-//						</li>
-//					</ul>
-//					</div>`,
+//					content: `<div>内容</div>`,
 //					bounds: bs
 //				});
             },
@@ -445,31 +425,34 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 ctrl.setAnchor(BMAP_ANCHOR_BOTTOM_RIGHT);  
             },
             addHot(map){//热力图
-                    var points = this.arrHotPoint;
-                    //console.log(this.arrHotPoint)
-                    // var hotPointA = traffic_points;
-                    // // 向地图添加标注
+                      var points = this.arrHotPoint;
+                    	//var points = [];
+                      console.log(this.arrHotPoint)
+                       var hotPointA = traffic_points;
+                       // 向地图添加标注
                     
-                    //  for( var j = 0;j < hotPointA.length; j++){
+                        for( var j = 0;j < hotPointA.length; j++){
                         
-                    //     let makeMap = function(){
+                           let makeMap = function(){
                             
-                    //         let minX = hotPointA[j].point[0];
+                               let minX = hotPointA[j].point[0];
                             
-                    //         let minY = hotPointA[j].point[1];
+                               let minY = hotPointA[j].point[1];
                            
-                    //         let lenX = 113.329229-113.069942  ;
-                    //         let lenY = 23.694848 - 23.576725;
-                    //         for (var i = 0; i < 100; i++) {
-                    //             let lng = Math.abs(Math.random()-0.7)*Math.abs(2*lenX)+minX
-                    //             let lat = Math.abs(Math.random()-0.7)*Math.abs(2*lenY)+minY
-                    //             let count = Math.random()*150
-                    //             let point = {"lng":lng,"lat":lat,"count":count}
-                    //             points.push(point)
-                    //         }
-                    //     }
-                    //     makeMap();
-                    // }
+                               //let lenX = 113.329229-113.069942;
+                               let lenX = 0.030;
+                               //let lenY = 23.694848 - 23.576725;
+                               let lenY = 0.012;
+                               for (var i = 0; i < 50; i++) {
+                                   let lng = -Math.abs(Math.random())*Math.abs(2*lenX)+minX
+                                   let lat = Math.abs(Math.random())*Math.abs(2*lenY)+minY
+                                   let count = (Math.random()*50).toFixed(0)
+                                   let point = {"lng":lng,"lat":lat,"count":count}
+                                   points.push(point)
+                               }
+                           }
+                           makeMap();
+                       }
                     map.enableScrollWheelZoom(); // 允许滚轮缩放
                    
                     if(!isSupportCanvas()){
@@ -526,11 +509,8 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                          map.setZoom(zoom);
                          map.centerAndZoom(new BMap.Point(lon,lat), zoom);
                          
-                         
-                         
                          if(boundarys[val]){
-                         //if(boundarys[val]&&lenObj[val].lng===lon&&lenObj[val].lat===lat){
-                         	this.addBoundary(map,boundarys[val]);	
+                         	this.addBoundary(map,boundarys[val]);	//绘制区域范围
                          }
                          
                     }
@@ -682,7 +662,11 @@ import optionProps from '@/common/js/mixin/optionProps.js'
             }
             this.$axios.get(API_URL+'/qy/api/v2/command/getCommandScenicHot',{params:paramsObj}).then(r => {
                 if(r.status ===200){
-                    this.arrHotPoint = r.data.data
+                    //this.arrHotPoint = r.data.data
+                    //this.arrHotPoint = []
+                      this.arrHotPoint = coords
+                    //this.arrHotPoint = this.arrHotPoint.concat(coords)
+//                  console.log(this.arrHotPoint)
                     this.addScript("全部",true);
                 }
             })

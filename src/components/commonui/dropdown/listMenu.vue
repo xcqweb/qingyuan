@@ -131,7 +131,7 @@
 	            this.$emit('choseDate',this.timeDate);
 	            this.vDateStatus = true
 	            //选择完成自定义日期时 初始化
-	            //console.log(value)
+	            console.log(value)
 	            this.dateList = {
                     width:'70%',
                     right:'6%',
@@ -256,7 +256,7 @@
 	.qylable{
 		width: 100px !important;
 	    height: 44px;
-	    font-size: 18px;
+	    font-size: 16px;
 	    color: #F0EFFD;
 	    line-height: 44px;
 	    position: absolute;
@@ -269,7 +269,7 @@
 	.jqlable{
 		width: 138/990*100% !important;
 	    height: 44px;
-	    font-size: 18px;
+	    font-size: 16px;
 	    color: #F0EFFD;
 	    line-height: 44px;
 	    position: absolute;
@@ -283,7 +283,7 @@
 	.time{
 		width: 110px !important;
 	    height: 44px;
-	    font-size: 18px;
+	    font-size: 16px;
 	    color: #F0EFFD;
 	    line-height: 44px;
 	    position: absolute;

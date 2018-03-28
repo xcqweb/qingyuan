@@ -196,7 +196,7 @@
 	        	if(val===1){
 	        		return val 	
 	        	}else{
-	        		return '';
+	        		return "";
 	        	}
 	        	
 	        }
@@ -214,31 +214,31 @@
 	   position: absolute;
 	   top: 5%;
 	   left: 10%;
-	   font-size: 18px;  
+	   font-size: 16px;  
 	}
 	.qylable{
-	    height:1.5rem;
-	    font-size: 18px;
+	    height: 36px;
+	    font-size: 16px;
 	    color: #F0EFFD;
-	    line-height: 1.8rem;
+	    line-height: 36px;
 	    position: absolute;
-	    top: 13%;
+	    top: 12.5%;
 	    left: 10%;
 	}
 	.jqlable{
-	    height:1.5rem;
-	    font-size: 18px;
+	    height: 36px;
+	    font-size: 16px;
 	    color: #F0EFFD;
-	    line-height: 1.8rem;
+	    line-height: 36px;
 	    position: absolute;
 	    top: 24%;
 	    left: 10%;
 	}
 	.time{
-	     height:1.5rem;
-	    font-size: 18px;
+	     height:36px;
+	    font-size: 16px;
 	    color: #F0EFFD;
-	    line-height: 1.8rem;
+	    line-height: 36px;
 	    position: absolute;
 	    top: 35%;
 	    left: 10%;
@@ -294,11 +294,11 @@
 	    left: 10%;
 	   background-color: rgba(0, 0, 0, 0);
 	   li{
-	        height: 1.8rem;
+	        height: 36px;
 	        width: 88px;
 	        text-align: center;
-	        line-height:2rem;
-	        font-size: 0.9rem;
+	        line-height:36px;
+	        font-size: 16px;
 	        border: 1px solid #355BFA;
 	        float: left;
 	       color:white;

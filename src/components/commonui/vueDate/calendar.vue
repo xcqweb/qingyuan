@@ -23,7 +23,7 @@
                 <div class="calendar-info">
                     <!-- {{monthString}} -->
                     <div class="month">
-                        <div class="month-inner" :style="{'top':-(this.month*20)+'px'}">
+                        <div class="month-inner" :style="{'top':-(monthCom*20)+'px'}">
                             <span v-for="m in months">{{m}}</span>
                         </div>
                     </div>
@@ -52,6 +52,8 @@
 
 <script>
 import calendar from './calendar.js'
+import Bus from '@/common/js/bus'
+var mp = new Date().getMonth()
 export default {
     props: {
         value: {
@@ -107,7 +109,7 @@ export default {
         return {
         	clicked:false,
             year: 0,
-            month: 0,
+            month: mp,
             day: 0,
             days: [],
             today: [],
@@ -147,16 +149,33 @@ export default {
             rangeEnd:[],
         }
     },
+    computed:{
+    	monthCom(){
+    		return this.month
+    	}
+    },
     mounted() {
+        Bus.$on('ms',(val) => {
+          	this.month = val
+          	this.rangeBegin=[]
+//        	this.days.forEach( (item,index) => {
+//        		item.forEach( (item,index) => {
+//        			if(item.selected){
+//        				item.selected = false
+//        			}
+//        		})
+//        	})
+        })
         this.init()
     },
+   
     methods: {
         // 初始化一些东西
         init(){
             let now = new Date();
              // 没有默认值
             this.year = now.getFullYear()
-            this.month = now.getMonth()+1
+            this.month = now.getMonth()
             this.day = now.getDate()
             if (this.value.length>0) {
                 if (this.range) {
@@ -170,7 +189,6 @@ export default {
 
                     this.rangeBegin = [this.year, this.month,this.day]
                     this.rangeEnd = [year2, month2 , day2]
-                    // console.log(this.month,this.rangeBegin,this.rangeEnd)
                 }else{
                     this.year = parseInt(this.value[0])
                     this.month = parseInt(this.value[1]) - 1
@@ -351,22 +369,40 @@ export default {
         },
         // 选中日期
         select(k1, k2, e) {
+        	
         	this.clicked = true
             if (e != undefined){
             	e.stopPropagation()
             }
             
-            if (this.days[k1][k2].day < this.days[k1][k2-1].day && k1 === 4){
-            	this.month=this.month+1
-            }
-            
-            var lllll =this.days[k1][k2].day -this.days[k1][k2+1].day
-            if ( lllll > 14&& k1 === 0){
-            	this.month=this.month-1
-            }
+//          if (this.days[k1][k2].day < this.days[k1][k2-1].day && k1 === 4){
+//          	this.month=this.month+1
+//          }
+//          
+//          var l =Math.abs(this.days[k1][k2].day -this.days[k1][k2+1].day)
+//          if ( l>27 &&  k1 === 0){
+//          	this.month=this.month-1
+//          }
 //          else if(this.days[k1][k2].day<this.days[k1][k2-1].day && k1 = 0){
 //          	
 //          }
+					let l =this.days[k1][k2].day
+					let s = l;
+		            if ( l>=22 && l<=31 &&  k1 === 0){
+		            	this.month=this.month-1
+		            }
+		            
+		            if ( l<=7 &&  k1 === 4 ){
+		            	this.month=this.month+1
+		            }
+		            
+		            if ( l>=22 &&  k1 === 4 && s<=7){
+		            	this.month=this.month+1
+		            }
+		            
+		            if ( l<=7 &&  k1 === 0 && s>=28){
+		            	this.month=this.month-1
+		            }
                 // 日期范围
             if (this.range) {
                 if (this.rangeBegin.length == 0 || this.rangeEndTemp != 0) {
@@ -412,7 +448,6 @@ export default {
                             this.$emit('select',begin,end)
                         }
                     }
-                    	
                 }
                 this.render(this.year, this.month);
                 

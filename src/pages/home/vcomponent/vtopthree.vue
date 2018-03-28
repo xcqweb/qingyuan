@@ -3,7 +3,7 @@
     <ul>
         <li v-for="(item,index) in items">
             <p>{{item.title}}</p>
-            <div><p :style="{ 'color': item.color }" @click="commentType(index)" v-cloak>{{item.nub}}</p></div>
+            <div><p :style="{ 'color': item.color }" @click="commentType(index)">{{item.nub}}</p></div>
             <p :style="{ 'color': item.color }">{{item.font}}</p>
             <p :style="{ 'background-color': item.color }"></p>
         </li>

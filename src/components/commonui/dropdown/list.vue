@@ -159,10 +159,10 @@
 			}
 
 		.dropdown-fade-enter-active {
-			  animation: slided 0.6s ease;
+			  animation: slided 0.3s ease;
 			}
 			.dropdown-fade-leave-active {
-			  
+				display: none;
 			}
 	
 	@keyframes slided{
@@ -180,6 +180,4 @@
 		}
 	}
 	
-	
-
 </style>

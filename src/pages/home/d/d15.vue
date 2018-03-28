@@ -23,7 +23,6 @@
 					</ul>
 				</div>
 			</div>
-			
 		</div>
 	</div>
 </template>
@@ -31,7 +30,7 @@
 <script>
 	import Vue from 'vue'
 	import optionProps from '@/common/js/mixin/optionProps.js'
-	import loadMore from '@/common/js/directives/loadMore'
+//	import loadMore from '@/common/js/directives/loadMore'
 	import Bus from '@/common/js/bus'
 	import _ from 'lodash'
 //	Vue.directive('loadMore',loadMore)//注册自定义指令
@@ -48,7 +47,6 @@
 			}
 		},
 		watch:{
-			
 			updatePlace:function(val){
 				var paramsObj = {
 	                area:val.place,
@@ -58,9 +56,9 @@
 	                commentType:this.comType,
 	                key:"",
 	            }
-				this.items = []
-				this.name= '';
-				this.getResponse(paramsObj);
+					this.items = []
+					this.name= '';
+					this.getResponse(paramsObj);
 			},
 			upday:function(val){
 	            var paramsObj = {
@@ -73,8 +71,8 @@
 	                commentType:this.comType,
 	                category:this.slectType+1,
 	            }
-	            this.items = []
-	            this.getResponse(paramsObj);
+	            	this.items = []
+	            	this.getResponse(paramsObj);
 	        },
 			update:function(val){
 				var paramsObj = {
@@ -94,31 +92,31 @@
 			//酒店景区选择
 			slectType:function(val){
 				var paramsObj = {
-					area:this.updatePlace.place,
-	                name:this.updatePlace.turist,
-	                pageId:1,
-	                source:'全部',
-	                commentType:this.comType,
-	                key:"",
-	                category:val+1,
+						area:this.updatePlace.place,
+		                name:this.updatePlace.turist,
+		                pageId:1,
+		                source:'全部',
+		                commentType:this.comType,
+		                key:"",
+		                category:val+1,
 	               }
-				this.items = []
-				this.getResponse(paramsObj);
+						this.items = []
+						this.getResponse(paramsObj);
 			},
 			//酒店名称
 			hotelChose:function(val){
 					this.name = val;
 					var paramsObj = {
-					area:this.updatePlace.place,
-	                name:val,
-	                pageId:1,
-	                source:'全部',
-	                commentType:this.comType ,
-	                key:"",
-	                category:this.slectType+1
+						area:this.updatePlace.place,
+		                name:val,
+		                pageId:1,
+		                source:'全部',
+		                commentType:this.comType ,
+		                key:"",
+		                category:this.slectType+1
 	               }
-				this.items = []
-				this.getResponse(paramsObj);
+						this.items = []
+						this.getResponse(paramsObj);
 			}
 			
 		},
@@ -132,7 +130,7 @@
 				                   reData.forEach( (item,index) => {
 				                   		if(item.grade>=4){
 				                   			item.grade = '好评'
-				                   		}else if(item.grade>=2 && item.grade<=3.9){
+				                   		}else if(item.grade>2 && item.grade<=3.9){
 				                   			item.grade = '中评'
 				                   		}else{
 				                   			item.grade = '差评'
@@ -154,12 +152,12 @@
 				                		return;
 				                	}
 				                   reData.forEach( (item,index) => {
-				                   		if(item.grade>4){
+				                   		if(item.grade>=4){
 				                   			item.grade = '好评'
-				                   		}else if(item.grade>=2 && item.grade<=3){
-				                   			item.grade = '差评'
+				                   		}else if(item.grade>2 && item.grade<=3.9){
+				                   			item.grade = '中评'
 				                   		}else{
-				                   			item.grade = '投诉'
+				                   			item.grade = '差评'
 				                   		}
 				                   		_self.items.push(item)
 				                   })
@@ -174,21 +172,20 @@
 		       		let num=2;
 		       		scrollT = 0;
 		       		offsetT = 0;
-		       		var scrollT = Math.ceil(e.target.scrollTop+e.target.offsetHeight),
+		       		var scrollT = Math.ceil(e.target.scrollTop+e.target.clientHeight),
 		       			offsetT = e.target.getElementsByClassName('boxCon')[0].offsetHeight;
-		       			//console.log(scrollT,offsetT)
-		       		if(scrollT>=offsetT){
-		       			
+		       			//console.log(scrollT,offsetT,e.target.clientHeight,e.target.offsetHeight)
+		       		if(offsetT-scrollT<=20){
 		       			let paramsObj = {
-		                area:_self.updatePlace.place,
-		                name:_self.name||_self.updatePlace.turist,
-		                pageId:_self.num++,
-		                source:'全部',
-		                commentType:_self.comType,
-		                key:_self.keyW,
-		                category:_self.slectType+1,
-		            }
-			       		_self.getResponse(paramsObj)
+			                area:_self.updatePlace.place,
+			                name:_self.name||_self.updatePlace.turist,
+			                pageId:_self.num++,
+			                source:'全部',
+			                commentType:_self.comType,
+			                key:_self.keyW,
+			                category:_self.slectType+1,
+			            }
+			       			_self.getResponse(paramsObj)
 	        	}
 		       },300)
 	  },
@@ -220,7 +217,7 @@
 	                category:this.slectType+1,
 	            }
 	       		this.items = []
-	       this.getResponse(paramsObj);
+	       		this.getResponse(paramsObj);
 	       	})
     		
     		//关联关键词
@@ -237,7 +234,7 @@
 	                key:data
 	            }
 	       		this.items = []
-	       this.getResponse(paramsObj);
+	       		this.getResponse(paramsObj);
 	       	})
     		
     		//关联景区客提升度
@@ -254,7 +251,7 @@
 	                key:""
 	            }
 	       		this.items = []
-	       this.getResponseRise(paramsObj);
+	       		this.getResponseRise(paramsObj);
 	       	})
 	    }
 	}
@@ -346,6 +343,7 @@
 						text-align: left !important;
 						padding: 0 10px 0 10px;
 						box-sizing: border-box;
+						word-break: break-word;
 					}
 					
 					li:nth-child(5) span{

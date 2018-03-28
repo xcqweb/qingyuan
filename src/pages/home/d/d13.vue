@@ -117,7 +117,7 @@
             let _self = this;
               this.$axios.get('http://120.55.190.57/qy/api/command/selectCommandScenicRaiseUp',{params:paramsObj}).then(r => {
             	let reData = r.data.data
-            	console.log(reData);
+            	//console.log(reData);
             	if(reData.length>5){
             		var arr=[]
             		var sum=0

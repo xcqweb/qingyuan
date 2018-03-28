@@ -12,7 +12,7 @@
         </div>
         
          <!--4A级景区切换-->
-        <div v-if="!scienceType">
+        <div v-show="!scienceType">
         	<div class="leftScope">
 	            <div class="item"
 	                v-for='item in leftComponents' 
@@ -28,17 +28,19 @@
 	        </div>
         </div>
         <!--<div>-->
-        	<div class="Ascience" v-if='scienceType'>
+        	<div class="Ascience" v-show='scienceType'>
         		 <div class="item"
 	                v-for='item in AComponents' 
 	                :class="item.id">
 	                <h1>{{item.title}}</h1>
+	                <keep-alive>
 	                    <componet
 	                    :is='item.name' 
 	                    :key="item.id"  
 	                    :updatePlace='updatePlace'
                 		:update='update'
 	                    ></componet>
+	                </keep-alive>
 	            </div>
         	</div>
         <!--</div>-->

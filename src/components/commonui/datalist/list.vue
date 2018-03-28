@@ -61,10 +61,10 @@
 	
 	
 	.slide-fade-enter-active {
-	  animation: slided 0.6s ease;
+	  animation: slided 0.45s ease;
 	}
 	.slide-fade-leave-active {
-	  animation: slideu 0.6s ease;
+	  animation: slideu 0.45s ease;
 	}
 	
 	

@@ -1,6 +1,6 @@
 <template>
 	<div class="box">
-		<iframe class="ifrBox" :src="chainVal" scrolling="no" seamless sandbox="allow-same-origin"></iframe>
+		<iframe class="ifrBox" :src="chainVal" scrolling="no"></iframe>
 	</div>
 </template>
 
@@ -20,14 +20,12 @@
 				}else{
 					return this.$store.getters['hotMap/getChain'];
 				}
-				
 			}
 		},
 		mounted(){
 			//alert(this.$store.getters['hotMap/getChain'])
 			//console.log(this.$store.getters['hotMap/getChain'])
 		}
-		
 	}
 </script>
 
