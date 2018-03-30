@@ -198,8 +198,9 @@
 	        	}else{
 	        		return "";
 	        	}
-	        	
 	        }
+		},
+		created(){
 		},
 		components:{
 			sleckte,

@@ -72,6 +72,11 @@ export default {
 		      name: '南昌',
 		      	percent:''
 		    },
+//		     {
+//		       "value": 80,
+//		      	name: '南昌',
+//		      	percent:''
+//		    },
 		  ],
 		  
         color:['#4EBBFC','#57ABFE', '#368DF7', '#7E6AF6', '#FF8885','#FFCD38',  '#E39A50', '#75CF65','#B8E986', '#86E9E8', '#58E5E1','#4BCEDD'],
@@ -115,11 +120,9 @@ export default {
             this.$axios.get(API_URL+'/qy/api/v2/view/getPersonSourceCity',{params:paramsObj}).then(r => {
                 if(r.data.code ==="200"||r.data.code ===200){
                 	let reData = r.data.data.inCountryCity;
+                	this.series=[];
                 	reData.forEach( (item,index) => {
-                		this.series[index].name = item.city;
-                		//this.series[index].value = Math.sqrt(item.num);
-                		this.series[index].value = item.num;
-                		this.series[index].percent = item.zhanRate.toFixed(1);
+                			this.series.push({name:item.city,value:item.num,percent:item.zhanRate.toFixed(1)})
                 	})
                     this.redom("c12");
                 }
@@ -166,8 +169,8 @@ export default {
                 {
                     name:'消费偏好',
                     type:'pie',
-                    radius : ['0%', '65%'],
-                    center : ['26%', '65%'],
+                    radius : ['0%', '55%'],
+                    center : ['28%', '55%'],
                     roseType : 'area',
                     label: {
 		                normal: {

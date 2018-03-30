@@ -10,7 +10,6 @@ import { mapGetters } from 'vuex'
 import echarts from 'echarts';
 import axios from 'axios'
 
-//import echarts_resize from '../../../common/js/echarts_resize.js'
 import 'echarts/lib/chart/map';
 import 'echarts/map/js/china.js';
 import optionProps from '@/common/js/mixin/optionProps.js'
@@ -480,21 +479,6 @@ export default {
 	                z:100,
                     symbolSize: function (val) {
                           return 10;
-//                      if(val>=0&&val[2]<=20){
-//                  		return val[2]
-//                  	}else if(val[2]>20&&val[2]<=1000){
-//                  		return val[2]/20
-//                  	}else if(val[2]>1000 && val[2]<5000){
-//                  		return val[2]/120
-//                  	}else if(val[2]>=5000 && val[2]<10000){
-//                  		return val[2]/160
-//                  	}else if(val[2]>=10000&&val[2]<70000){
-//                  		return val[2]/210
-//                  	}else if(val[2]>=70000&&val[2]<100000){
-//                  		return val[2]/200
-//                  	}else{
-//                  		return val[2]/300
-//                  	}
                     },
                     itemStyle: {
                         normal: {
@@ -562,7 +546,6 @@ export default {
 #fromEchart{
     width:100%;
     height:100%;
-    /*transform: translate(-8%,-2%);*/
 }
 
 </style>

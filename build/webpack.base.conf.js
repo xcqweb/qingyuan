@@ -47,7 +47,7 @@ module.exports = {
         }
       },
 	  {
-        test: /(hot1|hot2|hot|3|rad1|rad2)\.(png)(\?.*)?$/,
+        test: /(hot1|hot2|hot3|rad1|rad2)\.(png)(\?.*)?$/,
         loader: 'url-loader',
         query: {
           limit: 1,

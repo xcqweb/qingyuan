@@ -130,7 +130,7 @@
 				                   reData.forEach( (item,index) => {
 				                   		if(item.grade>=4){
 				                   			item.grade = '好评'
-				                   		}else if(item.grade>2 && item.grade<=3.9){
+				                   		}else if(item.grade>=2 && item.grade<=3.9){
 				                   			item.grade = '中评'
 				                   		}else{
 				                   			item.grade = '差评'

@@ -1,12 +1,6 @@
 <template>
 <div class="content">
   <div id="c13"></div>
-  <!--<ul class="legend">
-  	<li v-for="(item,i) in series">
-  		<p :style="{color:color[i]}">{{percents[i]}}%</p>
-  		<p>{{item.name}}</p>
-  	</li>
-  </ul>-->
 </div>  
 </template>
 
@@ -195,26 +189,6 @@ export default {
     height:100%;
     transform: translateY(0px);
 }
-.legend{
-	width: 36%;
-	height: 80%;
-	color: #fff;
-	font-size: 0.8rem;
-	position: absolute;
-	top: 25%;
-	li{
-		width: 33%;
-		line-height: 0.8rem;
-		float: left;
-		p:first-child{
-			font-size: 0.9rem;
-			font-weight: bold;
-		}
-		p:last-child{
-			margin-top: 0.8rem;
-		}
-	}
-}
 
 .content{
     width:100%;
@@ -240,47 +214,5 @@ export default {
 
 }
 }
-@media screen and (max-width: 1400px){
-  ul{
-    position:absolute;
-    right:10%;
-    top:15%;
-    li{
-        float:left;
-        display:inline-block;
-        font-size:.8rem;
-        .circle{
-            display:inline-block;
-            height:8px;
-            width:8px;
-            margin-right:8px;
-            border-radius:4px;
-            background-color:red;
-        }
-    }
 
-}
-	.legend{
-	width: 36%;
-	height: 80%;
-	color: #fff;
-	font-size: 0.8rem;
-	position: absolute;
-	top: 10%;
-	li{
-		width: 33%;
-		line-height: 0.8rem;
-		margin-top: 0.8rem;
-		float: left;
-		p:first-child{
-			font-size: 0.9rem;
-			font-weight: bold;
-		}
-		p:last-child{
-			margin-top: 0.4rem;
-		}
-	}
-}
-
-}
 </style>

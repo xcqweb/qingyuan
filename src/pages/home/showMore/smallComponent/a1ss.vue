@@ -54,11 +54,6 @@
 <script>
 import echarts_resize from '@/common/js/echarts_resize.js'
  import echarts from 'echarts';
-import { mapGetters } from 'vuex'
-import store from '@/vuex/index' 
-import { mapActions } from 'vuex'
-import timeMixin from '@/common/js/mixin/timeMixin.js'
-import Vue from 'vue'
 import optionProps from '@/common/js/mixin/optionProps.js'
 import RW from '@/common/js/until/index.js'
 export default {
@@ -127,16 +122,7 @@ export default {
             {"nub":"2122","date":"6/19"},
             {"nub":"1789","date":"6/20"}
         ],
-        opinion: ['学习氛围差', '学习氛围一般', '学习氛围很好'],
-        opinionData1: [
-
-        ],
-        opinionData2: this.$store.state.data,
-        opinionData: [
-            {value:26, name:'学习氛围差'},
-            {value:31, name:'学习氛围一般'},
-            {value:8, name:'学习氛围很好'}
-          ],
+       
         option:{
                     backgroundColor: 'rgba(0,0,0,0)',
                     color: ['#1F6ABB','#3897C5','#A4C5E6'],
@@ -256,7 +242,6 @@ export default {
             }//option
       }
     },
-    store:store,
     computed:{
 
       isCase:{
@@ -307,19 +292,7 @@ export default {
       	
       this.$nextTick(echarts_resize(this.idName,this,dataX,dataY))
     },
-    redom14(){
-        if(this.chart){
-            this.chart.dispose();
-        }
-        let dataY=[];
-        let dataX=[];
-        for (var i = 0; i < this.twoWeekMock.length; i++) {
-            dataY.push(this.twoWeekMock[i].num);
-            dataX.push(this.twoWeekMock[i].dayId)
-        }
-    // this.isActive=false;
-    this.$nextTick(echarts_resize(this.idName,this, this.upday===1?RW.array_until.transformDate(dataX):dataX,dataY))
-    },
+ 
       redom (id,xyfonsiz,datax,datay) {
         var _self= this;
         _self.loading=false;
@@ -330,7 +303,6 @@ export default {
         this.chart.setOption(_self.option)
       }
     },
-    components:{},
     mounted() {
                 //   this.isActive=true;
                 let dataY=[];

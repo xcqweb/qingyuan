@@ -97,13 +97,12 @@ display:none !important;
 <template>
     <div class="d1">
         <div :id="idName" class="XSDFXPaged"></div>
-        <canvas class="lineVideo" v-show='videoToast'></canvas>
-        <div class="toast-video" v-if='videoToast'>
+        <!--<canvas class="lineVideo" v-show='videoToast'></canvas>-->
+        <!--<div class="toast-video" v-if='videoToast'>
             <h2>{{videoName}}</h2>
-            <video  src="../../../../assets/video/kaiyuan.mp4"  autoplay="autoplay"  loop="loop" style="">
                 您的浏览器不支持 video 标签。
             </video>
-        </div>
+        </div>-->
         <div class="scenic">{{scenics}}</div>
         <div class="control" style='width:660px;height:150px;background:rgba(21,51,135,0.56); border-radius:0 10px 0 20px; margin:-28px -6px 0 0'>
 		<ul style='display:-webkit-flex; justify-content:center; align-items:center; color:#fff; font-size:20px; width:566px; margin:0px 0 0 38px; padding-top:30px; font-weight: bold;'>
@@ -427,12 +426,10 @@ import optionProps from '@/common/js/mixin/optionProps.js'
             addHot(map){//热力图
                       var points = this.arrHotPoint;
                     	//var points = [];
-                      console.log(this.arrHotPoint)
                        var hotPointA = traffic_points;
                        // 向地图添加标注
                     
                         for( var j = 0;j < hotPointA.length; j++){
-                        
                            let makeMap = function(){
                             
                                let minX = hotPointA[j].point[0];
@@ -446,7 +443,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                                for (var i = 0; i < 50; i++) {
                                    let lng = -Math.abs(Math.random())*Math.abs(2*lenX)+minX
                                    let lat = Math.abs(Math.random())*Math.abs(2*lenY)+minY
-                                   let count = (Math.random()*50).toFixed(0)
+                                   let count = (Math.random()*10).toFixed(0)
                                    let point = {"lng":lng,"lat":lat,"count":count}
                                    points.push(point)
                                }
@@ -587,7 +584,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
 	                    "李屋村":{lng:112.558599,lat:24.833107,zoom:13},
 	                    "潭岭天湖":{lng:112.661577,lat:24.97412,zoom:13},
 	                    "油岭瑶寨":{lng:112.27381,lat:24.617349,zoom:13},
-	                    "瑶族舞曲实景演出":{lng:112.304038,lat:24.65698,zoom:13},///
+	                    "瑶族舞曲实景演出":{lng:112.28646,lat:24.72866,zoom:13},
 	                    "云海花谷":{lng:112.304638,lat:24.65198,zoom:13},
 	                    "大旭山瀑布群旅游景区":{lng:112.043239,lat:24.533676,zoom:13},
 	                    "皇后山":{lng:112.086609,lat:24.732186,zoom:13},
@@ -595,12 +592,12 @@ import optionProps from '@/common/js/mixin/optionProps.js'
 	                    "雾山梯田":{lng:112.191833,lat:24.743344,zoom:13},
 	                    "北山古寺":{lng:112.655269,lat:24.490658,zoom:13},
 	                    "鱼水旅游风景区":{lng:112.690161,lat:24.369281,zoom:13},
-	                    "龙凤温泉":{lng:112.690761,lat:24.369881,zoom:13},//
+	                    "龙凤温泉":{lng:112.604885,lat:24.616137,zoom:13}
                 	}
                 }
                 
                 //绘制牵引线
-                _self.addLineVideo();
+                //_self.addLineVideo();
                 var map = new BMap.Map(_self.idName,{enableMapClick:true});
                 map.addEventListener("mousedown",function(e){
                     _self.videoToast=false;
@@ -626,33 +623,11 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 _self.moveTo(map,lenObj[val  ===  undefined ?"全部": val].lng,lenObj[val  ===  undefined ?"全部": val].lat,lenObj[val  ===  undefined ?"全部": val].zoom,val,lenObj);
                 var pointGZ = new BMap.Point(119.923671,29.514494);
                 var pointHK = new BMap.Point(110.35,20.02);
-                // setTimeout(function(){
-                //     var polyline = new BMap.Polyline([pointGZ,pointHK],{strokeColor:"blue",strokeWeight:5,strokeOpacity:0.5});
-                //     map.addOverlay(polyline);
-                // },6000);
                 
                 _self.addHot(map);
                 _self.addControl(map);
                  _self.addIcon(map);
                 _self.addLocaPosition(map);
-                /************************************************
-                添加自定义控件类，放大ZoomControl
-                *************************************************/
-
-                /************************************************
-                添加添加城市列表控件
-                *************************************************/
-                // _self.addControlCityList(map);
-                /************************************************
-                添加新图标
-                *************************************************/
-                /************************************************
-                添加曲线
-                *************************************************/
-            
-                /************************************************
-                给地图添加右键菜单
-                *************************************************/
                 _self.addMenu(map);
             },
             getResponse(val){
@@ -663,10 +638,6 @@ import optionProps from '@/common/js/mixin/optionProps.js'
             this.$axios.get(API_URL+'/qy/api/v2/command/getCommandScenicHot',{params:paramsObj}).then(r => {
                 if(r.status ===200){
                     //this.arrHotPoint = r.data.data
-                    //this.arrHotPoint = []
-                      this.arrHotPoint = coords
-                    //this.arrHotPoint = this.arrHotPoint.concat(coords)
-//                  console.log(this.arrHotPoint)
                     this.addScript("全部",true);
                 }
             })
@@ -678,13 +649,9 @@ import optionProps from '@/common/js/mixin/optionProps.js'
             this.getResponse("全部");
         },
         mounted() {
-            
-            // 百度地图API功能
-            // 创建Map实例
-        
-        } ,
+        },
         update(){
-            console.log(BMapLib)
+            //console.log(BMapLib)
         }
     }
 </script>

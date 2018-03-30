@@ -91,6 +91,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
             .active{
             	color: #a1a8c3;
             	border-color: #233faf;
+            	box-shadow: none;
             }
             
         }

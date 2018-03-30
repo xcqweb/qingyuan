@@ -83,9 +83,8 @@ export default {
             return {
             	updatePlace:{place:"全部",turist:"全部"},
         		update:{begin:['2018','02','02'],end:['2018','02','03']},
-            	upday:0,
-            	hotelChose:'',
-            	
+            	upday:3,
+            	hotelChose:'全部',
             	scienceType:false,
             	slectType:0,
                 leftComponents:[
@@ -104,20 +103,7 @@ export default {
                 ]
             }
         },
-    computed: { 
-        ...mapGetters({
-            comment:'version/comment',
-            inItems: 'version/inItems',
-          }),
-          
-    },
-    watch:{
-        Attractions:function(val){
-             
-        }
-    },
     methods: {
-        
         //获取选择的景区
         doubleChoseVal(val){
         	//console.log(val)
@@ -127,12 +113,12 @@ export default {
         choseDateVal(val){
         	//console.log(val)
         	this.update = val
+        	this.upday=3;
         },
         //获取选择年,月,日
         choseDayVal(val){
         	//console.log(val)
         	this.upday = val
-        	
         },
         //获取4A级景区
         getScienceType(val){
@@ -147,48 +133,21 @@ export default {
         getslectType(val){
         	this.slectType = val;
         },
-        
-        update1(){
-             this.barChartOption.series[0].data[3]={
-                symbolSize:15,
-                value:2114,
-                itemStyle: {
-                 normal: {
-                        color: 'white',
-                        opacity:1,
-                        borderWidth:5,
-                        borderColor:'#098DFF',
-                        shadowBlur:5,
-                        shadowColor:'#098DFF'
-                    }
-                }
-            }
-            this.barChartOption = Object.assign({}, this.barChartOption, )
-        },
-        
-        
         getResponse(){
                 this.$axios.get(API_URL+'/qy/api/view/checkLogin').then(r => {
                     
                         if(r.data.code ==="-1"||r.data.code ===-1){
-                        //测试
-						//   window.location.href=API_URL+":8081/login"
+                        	//测试
+							window.location.href=API_URL+":8081/qylv3.0/login"
 						//旅游局
-						window.location.href=API_LOGIN
+						//window.location.href=API_LOGIN
                         }
                 })
             },
-                    
     },
     components:{
         ...componetstatus,
     },
-    created () {
-           //this.getResponse();
-    },
-    mounted(){
-
-    }
 }
 </script>
 

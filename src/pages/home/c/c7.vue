@@ -1,7 +1,7 @@
 <template>
   <div class="c7">
   	<div class="btn">
-  		<div :class="{'active':active===1}" @click="toggle(1,'inCountryCity')">全国(市)</div>
+  		<div :class="{'active':active===1}" @click="toggle(1,'inCountryCity')" >全国(市)</div>
   		<div :class="{'active':active===2}" @click="toggle(2,'inProvinceCity')">省内(市)</div>
   		<div :class="{'active':active===3}" @click="toggle(3,'inCountryProvince')">全国(省)</div>
   	</div>
@@ -124,6 +124,7 @@ export default {
     		}
     	},
     	
+    	
     	//获取数据
     	getResponse(paramsObj){
 				 axios.get(API_URL+'/qy/api/v2/view/getPersonSourceData',{params:paramsObj}).then(r => {
@@ -163,16 +164,19 @@ export default {
     		height: 40px;
     		line-height: 40px;
     		border-radius: 20px;
-    		background-color: #3782cb;
+    		background: #3782cb;
     		border: none;
     		color: #fff;
+    		position: relative; 
+    		overflow: hidden; 
     		&:active{
     			border: none;
     		}
     	}
     	.active{
-    		background-color: #fe3448;
-    		border: none;
+    			border: none;
+					background: linear-gradient(45deg ,#fe3448 10%,#ff9900);
+    			
     	}
     }
     

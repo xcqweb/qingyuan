@@ -77,7 +77,7 @@ export default {
             return {
             	updatePlace:{place:"全部",turist:"全部"},
         		update:{begin:['2018','02','02'],end:['2018','02','03']},
-            	upday:0,
+            	upday:3,
             	scienceType:false,
                 leftComponents:[
                 	{name:'C2SS',id:'one',index:1,time:900,show:true,title:'年龄'},
@@ -98,19 +98,7 @@ export default {
                 ]
             }
         },
-    computed: { 
-        ...mapGetters({
-            comment:'version/comment',
-            inItems: 'version/inItems',
-          }),
-    },
-    watch:{
-        Attractions:function(val){
-             
-        }
-    },
     methods: {
-        
         //获取选择的景区
         doubleChoseVal(val){
         	//console.log(val)
@@ -120,88 +108,33 @@ export default {
         choseDateVal(val){
         	//console.log(val)
         	this.update = val
+        	this.upday=3;
         },
         //获取选择年,月,日
         choseDayVal(val){
         	//console.log(val)
         	this.upday = val
-        	
         },
         //获取4A级景区
         getScienceType(val){
         	this.scienceType = val
         },
-        update1(){
-             this.barChartOption.series[0].data[3]={
-                symbolSize:15,
-                value:2114,
-                itemStyle: {
-                 normal: {
-                        color: 'white',
-                        opacity:1,
-                        borderWidth:5,
-                        borderColor:'#098DFF',
-                        shadowBlur:5,
-                        shadowColor:'#098DFF'
-                    }
-                }
-            }
-            this.barChartOption = Object.assign({}, this.barChartOption, )
-        },
         
-        console(){
-             //console.log(this.components)
-        },
-        chose(item){
-            this.tablistCom.forEach(function(list){
-                list.status='unchose'
-            })
-            item.status='chose'
-            this.place=item.name
-        },
-        
-        render: function(h) { // h 为 createElement 函数，接受三个参数
-            // tag 
-            // data
-            // children 具体看文档吧
-            return h('div',this.allComponents.map(function(componentName) {
-                return h(componentName)
-            }))
-        },
-       
-        
-        setLazy(){
-            // console.log(item)
-            // window.setTimeout((item) => {
-                    
-            //         item.show = true;
-            //     }, item.time);
-        },
-        lazy(){
-
-        },
         getResponse(){
                 this.$axios.get(API_URL+'/qy/api/view/checkLogin').then(r => {
                     
                         if(r.data.code ==="-1"||r.data.code ===-1){
                         //测试
-						//   window.location.href=API_URL+":8081/login"
+						window.location.href=API_URL+":8081/qylv3.0/login"
 						//旅游局
-						window.location.href=API_LOGIN
+						//window.location.href=API_LOGIN
                         }
                 })
             },
-                    
     },
     components:{
         ...componetstatus,
     },
-    created () {
-           //this.getResponse();
-    },
-    mounted(){
-
-    }
 }
 </script>
 

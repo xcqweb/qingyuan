@@ -54,6 +54,7 @@
 import calendar from './calendar.js'
 import Bus from '@/common/js/bus'
 var mp = new Date().getMonth()
+var my = new Date().getFullYear()
 export default {
     props: {
         value: {
@@ -108,7 +109,7 @@ export default {
     data() {
         return {
         	clicked:false,
-            year: 0,
+            year: my,
             month: mp,
             day: 0,
             days: [],
@@ -157,6 +158,7 @@ export default {
     mounted() {
         Bus.$on('ms',(val) => {
           	this.month = val
+          	this.year  = my
           	this.rangeBegin=[]
 //        	this.days.forEach( (item,index) => {
 //        		item.forEach( (item,index) => {
@@ -375,34 +377,35 @@ export default {
             	e.stopPropagation()
             }
             
-//          if (this.days[k1][k2].day < this.days[k1][k2-1].day && k1 === 4){
-//          	this.month=this.month+1
-//          }
-//          
-//          var l =Math.abs(this.days[k1][k2].day -this.days[k1][k2+1].day)
-//          if ( l>27 &&  k1 === 0){
-//          	this.month=this.month-1
-//          }
-//          else if(this.days[k1][k2].day<this.days[k1][k2-1].day && k1 = 0){
-//          	
-//          }
-					let l =this.days[k1][k2].day
-					let s = l;
-		            if ( l>=22 && l<=31 &&  k1 === 0){
-		            	this.month=this.month-1
-		            }
-		            
-		            if ( l<=7 &&  k1 === 4 ){
-		            	this.month=this.month+1
-		            }
-		            
-		            if ( l>=22 &&  k1 === 4 && s<=7){
-		            	this.month=this.month+1
-		            }
-		            
-		            if ( l<=7 &&  k1 === 0 && s>=28){
-		            	this.month=this.month-1
-		            }
+			//判断跨月选取
+			let l =this.days[k1][k2].day //第一次选中
+			let s = l; //保存第一次选中
+            if ( l>=22 && l<=31 &&  k1 === 0){ //第一行
+            	this.month=this.month-1
+            }
+            
+            if ( l<=7 &&  k1 >= 4 ){ //第二行
+            	this.month=this.month+1
+            }
+            
+            if ( l>=22 &&  k1 >= 4 && s<=7){
+            	this.month=this.month+1
+            }
+            
+            if ( l<=7 &&  k1 === 0 && s>=28){
+            	this.month=this.month-1
+            }
+            
+            //跨年选取头部
+            if(this.month===-1 && k1===0 && l>=22){
+            	this.year = this.year-1
+            	this.month = 11
+            }
+            //跨年选取尾部
+             if(this.month===12 && k1>=4 && l<=7){
+            	this.year = this.year+1
+            	this.month = 0
+            }
                 // 日期范围
             if (this.range) {
                 if (this.rangeBegin.length == 0 || this.rangeEndTemp != 0) {
@@ -446,8 +449,9 @@ export default {
                     }else{
                           if(lev>11*24*60*60){
                             alert('时间跨度不能大于十二天')
-                            this.month = new Date().getMonth()
-          					this.rangeBegin=[]
+                            //this.month = new Date().getMonth()
+          					this.rangeEnd=this.rangeBegin
+          					//console.log(this.rangeBegin,this.rangeEnd)
                         }else{
                             this.$emit('select',begin,end)
                         }
@@ -480,7 +484,7 @@ export default {
 
 </script>
 
-<style scoped>
+<style scoped lang="less">
 .calendar {
     margin:auto;
     width: 100%;
@@ -578,10 +582,10 @@ export default {
 } */
 .calendar td span{
     display:block;
-    max-width:40px;
-    height:26px;
-    font-size: 16px;
-    line-height:26px;
+    max-width:24px;
+    height:24px;
+    font-size: 14px;
+    line-height:24px;
     margin:0px auto;
     border-radius:2px;
 }
@@ -626,7 +630,7 @@ export default {
 }
 .calendar thead td {
   text-transform: uppercase;
-  height:30px;
+  height:16px;
   vertical-align: middle;
 }
 .calendar-button{
@@ -642,8 +646,8 @@ export default {
     color:#fff;
     margin: 0 .25em 0 0;
     padding: .6em 2em;
-    font-size: 1em;
-    line-height: 1em;
+    font-size: 16px;
+    line-height: 26px;
     text-align: center;
     border-radius: .3em;
 }

@@ -22,7 +22,8 @@ let optionProps =  {
     		default:0
     	},
     	hotelChose:{
-    		type:String
+    		type:String,
+    		default:'全部'
     	},
     	slectType:{
     		type:Number,

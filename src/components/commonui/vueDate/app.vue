@@ -293,11 +293,11 @@ export default {
 .calendar-dialog-body{
     background: #fff;
     position: absolute;
-    height: 66%;
+    max-height: 72%;
     right : 41%;
     top: 60.5%;
     transform: translateX(50%);
-    padding: 12px;
+    padding: 6px 10px;
     border: 1px solid #eee;
     border-radius: 2px;
     z-index:999;

@@ -57,7 +57,7 @@
                       textStyle:{
                         color:'#caff36',
                         fontWeight: 'bold',
-                        fontSize:18
+                        fontSize:16
                       },
                       icon:img1,
 
@@ -79,7 +79,7 @@
                 	name: {
 					            textStyle: {
 					                color: '#fff',
-					                fontSize:20
+					                fontSize:16
 					           }
 					        },
                   indicator: [
@@ -141,7 +141,6 @@
             redom(id){
               this.chart = echarts.init(document.getElementById(id));
               this.chart.setOption(this.option);
-              //this.$nextTick(echarts_resize('latitudeAnalyse',this));
             }
         },
         mounted() {

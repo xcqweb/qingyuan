@@ -13,7 +13,6 @@
     top: 6%;
     bottom: 0;
     margin: auto;
-     transform: scale(1); 
   }
 </style>
 <template>

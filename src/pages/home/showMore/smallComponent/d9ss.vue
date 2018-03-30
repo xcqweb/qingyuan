@@ -9,7 +9,7 @@
     }
 }
 ul{
-    height:80%;
+    height:68%;
     width:100%;
     overflow-y: scroll;
     cursor: all-scroll;
@@ -181,7 +181,7 @@ li:nth-of-type(2n+1){
             </div>
         </div>
     <ul>
-        <li v-for='(item,index) in rankItems'>
+        <li v-for='(item,index) in rankItems'  v-if='item.num'>
             <div class="cell1">
                 {{index+1}}
             </div>
@@ -220,6 +220,7 @@ export default {
                     name:val.turist,
                     type: ["day","month","year"][this.upday]
                     }
+                this.rankItems = [];
                 this.getResponse(paramsObj);
             },
             deep:true,
@@ -235,6 +236,7 @@ export default {
                     beginTime:begin,
                     endTime:end
                 }
+                 this.rankItems = [];
                  this.getResponse(paramsObj);
              },
              deep:true,
@@ -245,6 +247,7 @@ export default {
                 name:this.updatePlace.turist,
                 type: ["day","month","year"][val]
             }
+            this.rankItems = [];
              this.getResponse(paramsObj);
         }
     },
@@ -253,7 +256,7 @@ export default {
             this.$axios.get(API_URL+'/qy/api/v2/view/getScenicTrack',{params:paramsObj}).then(r => {
                 if(r.data.code ==="200"||r.data.code ===200){
                 	//console.log(r.data.data)
-                	this.rankItems = [];
+                	
                     this.rankItems = r.data.data;
                     this.rankItems.forEach((item,index)=>{
                         this.rankItems[index].track = item.track.replace(/\=\=\>/img,'→');

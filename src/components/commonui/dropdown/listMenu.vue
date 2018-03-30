@@ -131,7 +131,6 @@
 	            this.$emit('choseDate',this.timeDate);
 	            this.vDateStatus = true
 	            //选择完成自定义日期时 初始化
-	            console.log(value)
 	            this.dateList = {
                     width:'70%',
                     right:'6%',
@@ -142,6 +141,7 @@
                         '日',"月","年","自定义"
                     ]
                 }
+	            this.dataType = '自定义'
 	        },
 	        //获取区域数据并传递给父组件
 			catchmsg1(data){

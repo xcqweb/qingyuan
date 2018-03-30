@@ -9,7 +9,6 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import echarts_resize from '@/common/js/echarts_resize.js'
 import echarts from 'echarts'
 import optionProps from '@/common/js/mixin/optionProps.js'
@@ -121,7 +120,6 @@ export default {
 			"currentNum":69,
 			"warnNum":8000
     	},
-        imgacircle:require('../../../../assets/images/home/b/circle.png'),
         
     }
   },
@@ -210,8 +208,6 @@ export default {
   mounted() {
         this.$nextTick(echarts_resize(this.idName,this))
   },
-  components:{
-  }
 }
 </script>
 
@@ -220,7 +216,7 @@ export default {
         text-align: center;
         color: #fff;
         font-size: 24px;
-        width:250px;
+        width:300px;
         height: 1.2rem;
         top:200px;
         left: 434px;
@@ -272,9 +268,10 @@ export default {
         text-align: center;
         font{
             position: absolute;
-            width: 152px;
+            width: 300px;
+            text-align: center;
             top: 269px;
-            left: 486px;
+            left: 434px;
             color:#ffe400;
             font-size:38px;
         }

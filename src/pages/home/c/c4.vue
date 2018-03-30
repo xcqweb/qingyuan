@@ -15,8 +15,6 @@ import echarts_resize from '../../../common/js/echarts_resize.js'
 import optionProps from '@/common/js/mixin/optionProps.js'
 import echarts from 'echarts'
 
-let menE= require('../../../assets/images/home/menE.png')
-let womenE= require('../../../assets/images/home/womenE.png')
 export default {
   name: 'c4',
   mixins: [optionProps],
@@ -301,8 +299,6 @@ export default {
   	}
   },
     mounted(){
-    	//this.$nextTick(echarts_resize('c4',this));
-    	//this.$nextTick(echarts_resize('c5',this));
     },
 }
 </script>
@@ -311,7 +307,6 @@ export default {
 .c4{
     height:100%;
     width:100%;
-    //padding-top: 10%;
     #c4{
     	position: absolute;
     	height:40%;
@@ -327,26 +322,6 @@ export default {
     	left: 14%;
     }
     
-    .men{
-    		display: block;
-    		width: 72px;
-    		height: 96px;
-    		top: 20.8%;
-    		left: -1%;
-    		position: absolute;
-    		background: url('../../../assets/images/home/menE.png') no-repeat;
-    		background-size: 100% 100%;
-    	}
-    .wemen{
-    		display: block;
-    		width: 72px;
-    		height: 96px;
-    		bottom: 13.5%;
-    		left: -1%;
-    		position: absolute;
-    		background: url('../../../assets/images/home/womenE.png') no-repeat;
-    		background-size: 100% 100%;
-    }
     
     .menP{
     	color: #49D9FE;

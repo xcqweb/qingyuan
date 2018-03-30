@@ -62,14 +62,9 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import echarts from 'echarts';
 import componetstatus from '@/pages/home/componentstatus.js'
 import headerBody from '@/pages/home/header.vue'
-import forEach from 'lodash/forEach'
-import { mapGetters } from 'vuex';
 export default {
-    props:['placeName','placeAttractions'],
     name: 'souceShow',
         data () {
             return {
@@ -93,20 +88,11 @@ export default {
             }
         },
     computed: { 
-        ...mapGetters({
-            comment:'version/comment',
-            inItems: 'version/inItems',
-          }),
           scienceType(){
           	let val = this.$store.getters['hotMap/getState']
           	return val
           }
          
-    },
-    watch:{
-        Attractions:function(val){
-             
-        }
     },
     methods: {
         
@@ -131,63 +117,14 @@ export default {
         	//console.log(val)
         	this.$store.commit('hotMap/TRANSFORMA',val)
         },
-        update1(){
-             this.barChartOption.series[0].data[3]={
-                symbolSize:15,
-                value:2114,
-                itemStyle: {
-                 normal: {
-                        color: 'white',
-                        opacity:1,
-                        borderWidth:5,
-                        borderColor:'#098DFF',
-                        shadowBlur:5,
-                        shadowColor:'#098DFF'
-                    }
-                }
-            }
-            this.barChartOption = Object.assign({}, this.barChartOption, )
-        },
-        
-        console(){
-             //console.log(this.components)
-        },
-        chose(item){
-            this.tablistCom.forEach(function(list){
-                list.status='unchose'
-            })
-            item.status='chose'
-            this.place=item.name
-        },
-        
-        render: function(h) { // h 为 createElement 函数，接受三个参数
-            // tag 
-            // data
-            // children 具体看文档吧
-            return h('div',this.allComponents.map(function(componentName) {
-                return h(componentName)
-            }))
-        },
-       
-        
-        setLazy(){
-            // console.log(item)
-            // window.setTimeout((item) => {
-                    
-            //         item.show = true;
-            //     }, item.time);
-        },
-        lazy(){
-
-        },
         getResponse(){
                 this.$axios.get(API_URL+'/qy/api/view/checkLogin').then(r => {
                     
                         if(r.data.code ==="-1"||r.data.code ===-1){
                         //测试
-						//   window.location.href=API_URL+":8081/login"
+						   window.location.href=API_URL+":8081/qylv/login"
 						//旅游局
-						window.location.href=API_LOGIN
+//						window.location.href=API_LOGIN
                         }
                 })
             },
@@ -196,12 +133,6 @@ export default {
     components:{
         ...componetstatus,
     },
-    created () {
-           //this.getResponse();
-    },
-    mounted(){
-
-    }
 }
 </script>
 
