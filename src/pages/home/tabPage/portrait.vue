@@ -77,7 +77,7 @@ export default {
             return {
             	updatePlace:{place:"全部",turist:"全部"},
         		update:{begin:['2018','02','02'],end:['2018','02','03']},
-            	upday:3,
+            	upday:0,
             	scienceType:false,
                 leftComponents:[
                 	{name:'C2SS',id:'one',index:1,time:900,show:true,title:'年龄'},
@@ -108,7 +108,6 @@ export default {
         choseDateVal(val){
         	//console.log(val)
         	this.update = val
-        	this.upday=3;
         },
         //获取选择年,月,日
         choseDayVal(val){

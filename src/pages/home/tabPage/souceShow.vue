@@ -70,7 +70,7 @@ export default {
             return {
             	updatePlace:{place:"全部",turist:"全部"},
         		update:{},
-        		upday:{},
+        		upday:0,
                 leftComponents:[
                 	{name:'D1SS',id:'one',index:1,time:900,show:true,title:'客流热力图'},
                     {name:'A5SS',id:'two',index:2,time:100,show:true,title:'实时客流',tip:true},
@@ -110,6 +110,7 @@ export default {
         choseDayVal(val){
         	//console.log(val)
         	this.upday = val
+        	
         	
         },
         //获取4A级景区

@@ -76,7 +76,7 @@ require('echarts-wordcloud');
                 this.getResponse(paramsObj);
 	        },
         slectType:function(val){
-        	if(val===0){this.hotelChose=''}else{}
+        	if(val===0){this.hotelChose=''}
         		var paramsObj = {
 	                area:this.updatePlace.place,
 	                name:this.hotelChose||this.updatePlace.turist,

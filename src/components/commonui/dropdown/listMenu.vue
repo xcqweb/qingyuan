@@ -50,6 +50,32 @@
 	import dateGroup from '@/components/commonui/dropdown/dateGroup.vue'
 	import vDate from '@/components/commonui/vueDate/app.vue'
 	import Bus from '@/common/js/bus'
+	function ck(val){
+		if(val<10){
+			return '0'+val
+		}else{
+			return val
+		}
+	}
+	var date = new Date()
+	var year = ck(date.getFullYear())
+	var month = ck(date.getMonth()+1)
+	var day = ck(date.getDate()-1)
+	var days
+	if(month == 2){
+        days= year % 4 == 0 ? 29 : 28;
+         
+    }
+    else if(month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12){
+        //月份为：1,3,5,7,8,10,12 时，为大月.则天数为31；
+        days= 31;
+    }
+    else{
+        //其他月份，天数为：30.
+        days= 30;
+         
+    }
+     
 	export default{
 		data(){
 			return{
@@ -181,13 +207,13 @@
 	        		let re=0 
 	        		switch(val){
 	        			case '日':
-	        			re = 0;
+	        			re = {begin:[`${year}`,`${month}`,`${day}`],end:[`${year}`,`${month}`,`${day}`]};
 	        			break;
 	        			case '月':
-	        			re = 1;
+	        			re = {begin:[`${year}`,`${month}`,'01'],end:[`${year}`,`${month}`,`${days}`]};
 	        			break;
 	        			case '年':
-	        			re = 2;
+	        			re = {begin:[`${year}`,'01','01'],end:[`${year}`,'12','31']};
 	        			break;
 	        		}
 	        		this.$emit('choseDay',re);

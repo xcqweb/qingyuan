@@ -44,6 +44,8 @@
 				keyW:"",
 				name:"",
 				items:[],
+				beginTime:'',
+				endTime:''
 			}
 		},
 		watch:{
@@ -58,6 +60,8 @@
 	            }
 					this.items = []
 					this.name= '';
+					this.beginTime='',
+	                this.endTime='',
 					this.getResponse(paramsObj);
 			},
 			upday:function(val){
@@ -71,7 +75,10 @@
 	                commentType:this.comType,
 	                category:this.slectType+1,
 	            }
+	            	this.type = ["day","month","year"][this.upday] 
 	            	this.items = []
+	            	this.beginTime='',
+	                this.endTime='',
 	            	this.getResponse(paramsObj);
 	        },
 			update:function(val){
@@ -87,6 +94,8 @@
 	                endTime:val.end.join('-'),
 	            }
 					this.items = []
+					this.beginTime=val.begin.join('-'),
+	                this.endTime=val.end.join('-'),
 					this.getResponse(paramsObj);
 			},
 			//酒店景区选择
@@ -184,6 +193,9 @@
 			                commentType:_self.comType,
 			                key:_self.keyW,
 			                category:_self.slectType+1,
+			                beginTime:_self.beginTime,
+	                		endTime:_self.endTime,
+	                		type:_self.type
 			            }
 			       			_self.getResponse(paramsObj)
 	        	}

@@ -68,6 +68,15 @@
 	right: 22px;
 	top: 92px;
 }
+
+.ledgen{
+	position: absolute;
+	width: 364px;
+	height: 76px;
+	background: url(../../../../assets/images/hot/d1.png) no-repeat;
+	left: 210px;
+	top: 64px;
+}
 .anchorBL{ 
 display:none !important; 
 }
@@ -131,6 +140,9 @@ display:none !important;
 					<span style='color:#fff; text-decoration:none; font-size:20px;'>应急交通反馈</span></p>
 			</li>
 		</ul>
+		</div>
+		<div class="ledgen">
+			
 		</div>
 		<ul class="hidden">
 			<li></li>
@@ -426,30 +438,30 @@ import optionProps from '@/common/js/mixin/optionProps.js'
             addHot(map){//热力图
                       var points = this.arrHotPoint;
                     	//var points = [];
-                       var hotPointA = traffic_points;
+                       //var hotPointA = traffic_points;
                        // 向地图添加标注
                     
-                        for( var j = 0;j < hotPointA.length; j++){
-                           let makeMap = function(){
-                            
-                               let minX = hotPointA[j].point[0];
-                            
-                               let minY = hotPointA[j].point[1];
-                           
-                               //let lenX = 113.329229-113.069942;
-                               let lenX = 0.030;
-                               //let lenY = 23.694848 - 23.576725;
-                               let lenY = 0.012;
-                               for (var i = 0; i < 50; i++) {
-                                   let lng = -Math.abs(Math.random())*Math.abs(2*lenX)+minX
-                                   let lat = Math.abs(Math.random())*Math.abs(2*lenY)+minY
-                                   let count = (Math.random()*10).toFixed(0)
-                                   let point = {"lng":lng,"lat":lat,"count":count}
-                                   points.push(point)
-                               }
-                           }
-                           makeMap();
-                       }
+//                      for( var j = 0;j < hotPointA.length; j++){
+//                         let makeMap = function(){
+//                          
+//                             let minX = hotPointA[j].point[0];
+//                          
+//                             let minY = hotPointA[j].point[1];
+//                         
+//                             //let lenX = 113.329229-113.069942;
+//                             let lenX = 0.030;
+//                             //let lenY = 23.694848 - 23.576725;
+//                             let lenY = 0.012;
+//                             for (var i = 0; i < 50; i++) {
+//                                 let lng = -Math.abs(Math.random())*Math.abs(2*lenX)+minX
+//                                 let lat = Math.abs(Math.random())*Math.abs(2*lenY)+minY
+//                                 let count = (Math.random()*10).toFixed(0)
+//                                 let point = {"lng":lng,"lat":lat,"count":count}
+//                                 points.push(point)
+//                             }
+//                         }
+                          // makeMap();
+//                     }
                     map.enableScrollWheelZoom(); // 允许滚轮缩放
                    
                     if(!isSupportCanvas()){
@@ -637,7 +649,8 @@ import optionProps from '@/common/js/mixin/optionProps.js'
             }
             this.$axios.get(API_URL+'/qy/api/v2/command/getCommandScenicHot',{params:paramsObj}).then(r => {
                 if(r.status ===200){
-                    //this.arrHotPoint = r.data.data
+                	//console.log(r)
+                    this.arrHotPoint = r.data.data
                     this.addScript("全部",true);
                 }
             })

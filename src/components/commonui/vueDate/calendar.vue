@@ -37,7 +37,7 @@
                 </tr>
             </thead>
             <tr v-for="(day,k1) in days">
-                <td v-for="(child,k2) in day" :class="{'selected':child.selected,'disabled':child.disabled}" @click="select(k1,k2,$event)">
+                <td v-for="(child,k2) in day" :class="{'selected':child.selected,'disabled':child.disabled}" @click="select(k1,k2)">
                     <span :class="{'red':k2==0||k2==6||((child.isLunarFestival||child.isGregorianFestival) && lunar)}">{{child.day}}</span>
                     <div class="text" v-if="child.eventName!=undefined">{{child.eventName}}</div>
                     <div class="text" :class="{'isLunarFestival':child.isLunarFestival,'isGregorianFestival':child.isGregorianFestival}" v-if="lunar">{{child.lunar}}</div>
@@ -54,6 +54,7 @@
 import calendar from './calendar.js'
 import Bus from '@/common/js/bus'
 var mp = new Date().getMonth()
+
 var my = new Date().getFullYear()
 export default {
     props: {
@@ -108,7 +109,7 @@ export default {
     },
     data() {
         return {
-        	clicked:false,
+        		clicked:false,
             year: my,
             month: mp,
             day: 0,
@@ -160,13 +161,12 @@ export default {
           	this.month = val
           	this.year  = my
           	this.rangeBegin=[]
-//        	this.days.forEach( (item,index) => {
-//        		item.forEach( (item,index) => {
-//        			if(item.selected){
-//        				item.selected = false
-//        			}
-//        		})
-//        	})
+          	this.rangeEnd=[]
+        })
+        
+        Bus.$on('init',() => {
+        		this.clicked = false
+//      		this.select(3,4,)
         })
         this.init()
     },
@@ -182,25 +182,25 @@ export default {
             if (this.value.length>0) {
                 if (this.range) {
                     this.year = parseInt(this.value[0][0])
-                    this.month = parseInt(this.value[0][1])
+                    this.month = parseInt(this.value[0][1])+1
                     this.day = parseInt(this.value[0][2]) 
 
                     let year2 = parseInt(this.value[1][0])
-                    let month2 = parseInt(this.value[1][1]) - 1
+                    let month2 = parseInt(this.value[1][1])
                     let day2 = parseInt(this.value[1][2]) 
 
                     this.rangeBegin = [this.year, this.month,this.day]
                     this.rangeEnd = [year2, month2 , day2]
                 }else{
                     this.year = parseInt(this.value[0])
-                    this.month = parseInt(this.value[1]) - 1
+                    this.month = parseInt(this.value[1])
                     this.day = parseInt(this.value[2]) 
                 }
             }
             this.render(this.year, this.month)
         },
         // 渲染日期
-        render(y, m) {
+        render(y, m,k1,k2) {
             let firstDayOfMonth = new Date(y, m, 1).getDay()         //当月第一天
             let lastDateOfMonth = new Date(y, m + 1, 0).getDate()    //当月最后一天
             let lastDayOfLastMonth = new Date(y, m, 0).getDate()     //最后一月的最后一天
@@ -235,12 +235,12 @@ export default {
                         this.getLunarInfo(this.year,this.month+1,i),
                         this.getEvents(this.year,this.month+1,i),
                      )
-                    if (this.rangeBegin.length > 0) {
+                    if (this.rangeBegin.length >0) {
                         let beginTime = Number(new Date(this.rangeBegin[0], this.rangeBegin[1], this.rangeBegin[2]))
                         let endTime = Number(new Date(this.rangeEnd[0], this.rangeEnd[1], this.rangeEnd[2]))
                         let stepTime = Number(new Date(this.year, this.month, i))
                         if (beginTime <= stepTime && endTime >= stepTime&&this.clicked) {
-                            options.selected = true
+                        		options.selected = true
                         }
                     }
                     if (this.begin.length>0) {
@@ -260,7 +260,7 @@ export default {
                     let chkM = chk.getMonth()
                     // 匹配上次选中的日期
                     if (parseInt(seletSplit[0]) == this.year && parseInt(seletSplit[1]) - 1 == this.month && parseInt(seletSplit[2]) == i) {
-                        // console.log("匹配上次选中的日期",lunarYear,lunarMonth,lunarValue,lunarInfo)
+                         //console.log("匹配上次选中的日期",lunarYear,lunarMonth,lunarValue,lunarInfo)
                         temp[line].push(Object.assign(
                             {day: i,selected: false},
                             this.getLunarInfo(this.year,this.month+1,i),
@@ -280,7 +280,7 @@ export default {
                         this.today = [line, temp[line].length - 1]
                     }else{
                         // 普通日期
-                        // console.log("设置可选范围",i,lunarYear,lunarMonth,lunarValue,lunarInfo)
+                        //console.log("设置可选范围",i,lunarYear,lunarMonth,lunarValue,lunarInfo)
                         let options = Object.assign(
                             {day: i,selected:false},
                             this.getLunarInfo(this.year,this.month+1,i),
@@ -370,8 +370,7 @@ export default {
             this.render(this.year, this.month)
         },
         // 选中日期
-        select(k1, k2, e) {
-        	
+        select(k1, k2,e) {
         	this.clicked = true
             if (e != undefined){
             	e.stopPropagation()
@@ -445,20 +444,20 @@ export default {
                     if(new Date(end)>new Date()||new Date(begin)>new Date() ){
                            alert('所选时间不能大于当前时间')
                            this.month = new Date().getMonth()
-          				   this.rangeBegin=[]
+          				   			 this.rangeBegin=[]
                     }else{
                           if(lev>11*24*60*60){
                             alert('时间跨度不能大于十二天')
                             //this.month = new Date().getMonth()
-          					this.rangeEnd=this.rangeBegin
-          					//console.log(this.rangeBegin,this.rangeEnd)
+          									this.rangeEnd=this.rangeBegin
+          									//console.log(this.rangeBegin,this.rangeEnd)
                         }else{
-                            this.$emit('select',begin,end)
+									          //this.$emit('select',begin,end,)
+									          	this.$emit('select',begin,end)
                         }
                     }
                 }
-                this.render(this.year, this.month);
-                
+		                  this.render(this.year, this.month);  
             } else {
                 // 取消上次选中
                 if (this.today.length > 0) {

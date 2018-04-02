@@ -102,10 +102,6 @@
 <template>
   <div class="main_content" id="A1loding">
     <div :id="idName" class="itembox"></div>
-    <!-- <div class="week">
-        <span class="oneweek " v-bind:class="{ chose: isActive }" @click='redom7'>7日</span>
-        <span class="twoweek" v-bind:class="{ chose: !isActive }" @click='redom14'>14日</span>
-    </div> -->
      <div class="scenic">{{scenics}}</div>
   </div>
 </template>
@@ -393,7 +389,10 @@ export default {
 	          dataY.push(Number(this.barData[i].avgHour).toFixed(1));
 	          dataX.push(this.barData[i].dayId);
 	      }
-	      dataX =this.upday===0?RW.array_until.transformDate(dataX):dataX
+	      let pattern = /([0-9]{3}[1-9]|[0-9]{2}[1-9][0-9]{1}|[0-9]{1}[1-9][0-9]{2}|[1-9][0-9]{3})-(((0[13578]|1[02])-(0[1-9]|[12][0-9]|3[01]))|((0[469]|11)-(0[1-9]|[12][0-9]|30))|(02-(0[1-9]|[1][0-9]|2[0-8])))/
+      		if(pattern.test(dataX[0])){
+      			dataX = RW.array_until.transformDate(dataX)
+      		}
 	      	this.chart = echarts.init(document.getElementById(id))
 	         _self.option.xAxis[0].data = dataX;
 	        _self.option.series[0].data = dataY;

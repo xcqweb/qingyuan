@@ -112,17 +112,6 @@ export default {
         ynub:null,
         loading:true,
         reloading:false,
-        
-        oneweekMock:[
-            {"nub":"1293","date":"6/14"},
-            {"nub":"2331","date":"6/15"},
-            {"nub":"1012","date":"6/16"},
-            {"nub":"999","date":"6/17"},
-            {"nub":"2458","date":"6/18"},
-            {"nub":"2122","date":"6/19"},
-            {"nub":"1789","date":"6/20"}
-        ],
-       
         option:{
                     backgroundColor: 'rgba(0,0,0,0)',
                     color: ['#1F6ABB','#3897C5','#A4C5E6'],
@@ -232,7 +221,7 @@ export default {
                             position:'top',
                             textStyle:{
                                 color:'#2CC9E2',
-                                fontSize:20
+                                fontSize:16
                             }
                         }
                        },
@@ -264,10 +253,7 @@ export default {
 			this.$axios.get(API_URL+'/qy/api/v2/view/getDayCountData',{params:paramsObj}).then(r => {
                 if(r.data.code ==="200"||r.data.code ===200){
                 	//console.log(r)
-                    this.rankItems = r.data.data; 
                     this.barData = r.data.data[0].value; 
-                    this.twoWeekMock = r.data.data[0].value;
-                    
                     this.redom7()
                 }
             })

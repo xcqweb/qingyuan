@@ -83,7 +83,7 @@ export default {
             return {
             	updatePlace:{place:"全部",turist:"全部"},
         		update:{begin:['2018','02','02'],end:['2018','02','03']},
-            	upday:3,
+            	upday:0,
             	hotelChose:'全部',
             	scienceType:false,
             	slectType:0,
@@ -113,8 +113,7 @@ export default {
         choseDateVal(val){
         	//console.log(val)
         	this.update = val
-        	this.upday=3;
-        },
+         },
         //获取选择年,月,日
         choseDayVal(val){
         	//console.log(val)

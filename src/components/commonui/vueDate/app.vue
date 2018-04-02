@@ -44,7 +44,7 @@ import Bus from '@/common/js/bus'
 
 let date = new Date()
 let year = c(date.getFullYear())
-let month = c(date.getMonth()+1)
+let month = c(date.getMonth())
 let day = c(date.getDate())
 function c(v){
 	if(v<10){
@@ -87,6 +87,8 @@ export default {
                 select(begin,end){
                     // console.log(begin.toString(),end.toString());
                 }
+                
+                
             },
             calendar3:{
                 display:"2018/02/16",
@@ -143,6 +145,13 @@ export default {
         	}
         	
         }
+    },
+    watch:{
+    	vDateStatus:function(val){
+    		if(val){
+    			Bus.$emit('init')
+    		}
+    	}
     },
     methods:{
     	out(){

@@ -1,6 +1,7 @@
 <template>
 <div class="content">
   <div id="c12"></div>
+  <p class="time">2018-04</p>
   <ul class="legend">
   	<li v-for="(item,i) in series">
   		<p>{{item.percent}}%</p>
@@ -224,6 +225,15 @@ export default {
     height:100%;
     transform: scale(1.2);
 }
+
+.time{
+	position: absolute;
+	color: #f00;
+	bottom: 30px;
+	width: 48%;
+	text-align: center;
+}
+
 .legend{
 	width: 36%;
 	height: 66%;

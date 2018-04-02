@@ -69,7 +69,7 @@ export default {
             return {
         		updatePlace:{place:"全部",turist:"全部"},
         		update:{begin:['2018','02','02'],end:['2018','02','03']},
-        		upday:3,
+        		upday:0,
         		isprovince:0,
                 //全国市
                 leftComponents:[
@@ -124,12 +124,12 @@ export default {
 		        choseDateVal(val){
 		        	//console.log(val)
 		        	this.update = val
-		        	this.upday = 3 //档选择自定义日期时,需要重置日期类型 否则再次选择日期类型时监听不到变化
+		        	
 		        },
 		        //获取选择年,月,日
 		        choseDayVal(val){
-		        	//console.log(val)
-		        	this.upday = val
+		        	console.log(val)
+		        	this.update = val
 		        },
             //游客来源联动地图
             toggleProvince(data){
@@ -141,9 +141,9 @@ export default {
                     
                         if(r.data.code ==="-1"||r.data.code ===-1){
                         //测试
-						//   window.location.href=API_URL+":8081/login"
-						//旅游局
-						window.location.href=API_LOGIN
+												window.location.href=API_URL+":8081/login"
+												//旅游局
+												//window.location.href=API_LOGIN
                         }
                 })
             },

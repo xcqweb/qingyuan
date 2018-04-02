@@ -61,7 +61,7 @@
                                 	color:'#fff',
                                 	fontSize:15,
                                     formatter:function(params){
-                                    	return (params.name).substr(0,12)+"\n"+(params.name).substr(12)+"\n"+params.percent+"%"
+                                    	return (params.name).substr(0,12)+"\n"+(params.name).substr(12)+""+params.percent+"%"
                                     }
                                 }
                             },
