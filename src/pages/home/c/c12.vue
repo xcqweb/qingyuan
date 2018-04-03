@@ -176,8 +176,8 @@ export default {
                 {
                     name:'消费偏好',
                     type:'pie',
-                    radius : ['0%', '55%'],
-                    center : ['28%', '55%'],
+                    radius : ['0%', '65%'],
+                    center : ['28%', '65%'],
                     roseType : 'area',
                     label: {
 		                normal: {
@@ -229,14 +229,14 @@ export default {
 #c12{
     width:100%;
     height:100%;
-    transform: scale(1.2);
 }
 
 .time{
 	position: absolute;
-	color: #f00;
-	bottom: 30px;
-	width: 48%;
+	color: #fff;
+	bottom: 80px;
+	width: 58%;
+	font-size: 14px;
 	text-align: center;
 }
 

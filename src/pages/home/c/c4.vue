@@ -76,7 +76,12 @@ export default {
   	//请求数据
   	getResponse(paramsObj){
             this.$axios.get(API_URL+'/qy/api/v2/view/getDaySexData',{params:paramsObj}).then(r => {
-                    
+                  if(!r){
+                  	this.menPercent = 0
+                  	this.womenPercent =0
+                  	this.redom(this.menPercent,this.womenPercent);
+                  	return
+                  }
                 if(r.data.code ==="200"||r.data.code ===200){
                     	//console.log(r.data.data)
                     this.menPercent = r.data.data[0].maleNum.toFixed(1); 

@@ -1,14 +1,15 @@
 <template>
     <div class="box" onselectstart="return false;" style="-moz-user-select:none;">
         <div class="tabList item">
-        	<groupMenu
+        	<groupMenus
         		@doubleChose='doubleChoseVal'
         		@choseDate='choseDateVal'
         		@choseDay='choseDayVal'
         		@scienceType='getScienceType'
         		:isDate=false
         		:isScience=true
-        	></groupMenu>
+        		:isshow4A=true
+        	></groupMenus>
         </div>
         
          <!--4A级景区切换-->

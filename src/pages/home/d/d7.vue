@@ -145,7 +145,7 @@ export default {
                 radius: ['33%', '40%'],
                 center: ['39%', '55%'],
                 startAngle:90,
-                // animation:false,
+                animation:true,
                 animationType:'expansion',
                 data:[
                     {
@@ -176,6 +176,11 @@ export default {
                                 }
                             }
                         },
+                         labelLine:{
+                        	normal:{
+                        		show:true
+                        	}
+                        },
                         itemStyle:{
                             normal:{
                                 color:'#368DF7'
@@ -201,7 +206,7 @@ export default {
                                 textStyle:{
                                     color:'#75cf65',
                                     fontSize:14
-                                }
+                                },
                             },
                             emphasis:{
                                 show:true,
@@ -216,6 +221,11 @@ export default {
                                     fontSize:14
                                 }
                             }
+                        },
+                        labelLine:{
+                        	normal:{
+                        		show:true
+                        	}
                         },
                          itemStyle:{
                             normal:{
@@ -240,15 +250,23 @@ export default {
                                 show:true,
                                 position:'outside',
                                 align:'right',
-                              formatter:function(params) {
-                                var index = params.data[2];
-                                return index
-                              },
+	                              formatter:function(params) {
+	                                var index = params.data[2];
+	                                return index
+	                              },
                                 textStyle:{
                                     color:'#fe6e40',
                                     fontSize:14
                                 }
                             }
+                        },
+                         labelLine:{
+                        	normal:{
+                        		show:true
+                        	},
+                        	emphasis:{
+                        		show:false
+                        	}
                         },
                          itemStyle:{
                             normal:{
@@ -272,8 +290,35 @@ export default {
         },
         getResponse(paramsObj){
             this.$axios.get(API_URL+'/qy/api/v2/view/getSpendMoneyPowerData',{params:paramsObj}).then(r => {
-            	//console.log(r)
+            	if(!r){
+            		let reData = {'1000元-3000元':0,'1000元以下':0,'3000元以上':100}
+            		this.option.series[1].data[0].label.normal.show = false
+            		this.option.series[1].data[1].label.normal.show = false
+            		this.option.series[1].data[2].label.normal.show = false
+            		this.option.series[1].data[2].label.emphasis.show = false
+            		this.option.series[1].data[0].labelLine.normal.show = false
+            		this.option.series[1].data[1].labelLine.normal.show = false
+            		this.option.series[1].data[2].labelLine.normal.show = false
+            		this.option.series[1].animation= false
+            		
+            		this.option.series[1].data.forEach((item,index)=>{
+                        item.value = (reData[item.ffname])
+                        item.name = (reData[item.ffname]).toFixed(1)+'%';
+                    })
+                       this.$nextTick(echarts_resize('d7',this))
+            		return
+            	}
+            	
                 if(r.data.code ==="200"||r.data.code ===200){
+                	this.option.series[1].data[0].label.normal.show = true
+            		this.option.series[1].data[1].label.normal.show = true
+            		this.option.series[1].data[2].label.normal.show = true
+            		this.option.series[1].data[2].label.emphasis.show = true
+            		this.option.series[1].data[0].labelLine.normal.show = true
+            		this.option.series[1].data[1].labelLine.normal.show = true
+            		this.option.series[1].data[2].labelLine.normal.show = true
+            		this.option.series[1].animation= true
+            		
                     this.option.series[1].data.forEach((item,index)=>{
                         item.value = (r.data.data[0][item.ffname])
                         item.name = (r.data.data[0][item.ffname]).toFixed(1)+'%';

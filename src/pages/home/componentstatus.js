@@ -4,6 +4,8 @@ let sleckte = resolve => {require.ensure(['@/components/commonui/dropdown/dropdo
 
 let groupMenu = resolve => {require.ensure(['@/components/commonui/dropdown/groupMenu.vue'], () => {resolve(require('@/components/commonui/dropdown/groupMenu.vue'))})}
 
+let groupMenus = resolve => {require.ensure(['@/components/commonui/dropdown/groupMenus.vue'], () => {resolve(require('@/components/commonui/dropdown/groupMenus.vue'))})}
+
 let groupMenut = resolve => {require.ensure(['@/components/commonui/dropdown/groupMenuo.vue'], () => {resolve(require('@/components/commonui/dropdown/groupMenuo.vue'))})}
 
 let listMenu = resolve => {require.ensure(['@/components/commonui/dropdown/listMenu.vue'], () => {resolve(require('@/components/commonui/dropdown/listMenu.vue'))})}
@@ -81,6 +83,7 @@ let status =[
     'groupMenu',
     'groupMenut',
     'listMenu',
+    'groupMenus',
     'A3',
     'A10',
     'A1SS',

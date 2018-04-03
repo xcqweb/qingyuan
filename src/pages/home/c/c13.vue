@@ -32,13 +32,11 @@ export default {
 		    },
 		  ],
 		  icondata:[
-        			{name:'博士',icon:'roundRect'},
-        			{name:'硕士',icon:'roundRect'},
-        			{name:'本科/专科',icon:'roundRect'},
-        			{name:'高中及以下',icon:'roundRect'},
-            		],
-        
-    		
+			{name:'博士',icon:'roundRect'},
+			{name:'硕士',icon:'roundRect'},
+			{name:'本科/专科',icon:'roundRect'},
+			{name:'高中及以下',icon:'roundRect'},
+    	],
     }
     },
     watch:{
@@ -156,7 +154,8 @@ export default {
                     type:'pie',
                     radius : ['0%', '55%'],
                     center : ['36%', '68%'],
-                    roseType : 'radius',
+                    //roseType : 'radius',
+                    roseType : 'area',
                     label: {
 		                normal: {
 		                    show: true,
