@@ -1,6 +1,6 @@
 <template>
 	<div class="d15">
-		<div class="comment">
+		<div class="comment" v-show="active">
 			<ul class="title">
 				<li>序号</li>
 				<li>景区名称</li>
@@ -39,13 +39,15 @@
 		mixins:[optionProps],
 		data(){
 			return{
+				type:0,
 				comType:1,
 				num:2,
 				keyW:"",
 				name:"",
 				items:[],
 				beginTime:'',
-				endTime:''
+				endTime:'',
+				active:true
 			}
 		},
 		watch:{
@@ -60,27 +62,8 @@
 	            }
 					this.items = []
 					this.name= '';
-					this.beginTime='',
-	                this.endTime='',
 					this.getResponse(paramsObj);
 			},
-			upday:function(val){
-	            var paramsObj = {
-	                area:this.updatePlace.place,
-	                name:this.updatePlace.turist,
-	                type:["day","month","year"][this.upday],
-	                pageId:1,
-	                source:'全部',
-	                key:"",
-	                commentType:this.comType,
-	                category:this.slectType+1,
-	            }
-	            	this.type = ["day","month","year"][this.upday] 
-	            	this.items = []
-	            	this.beginTime='',
-	                this.endTime='',
-	            	this.getResponse(paramsObj);
-	        },
 			update:function(val){
 				var paramsObj = {
 	                area:this.updatePlace.place,
@@ -98,6 +81,43 @@
 	                this.endTime=val.end.join('-'),
 					this.getResponse(paramsObj);
 			},
+			
+			update:{
+	         handler:function(val, oldVal){
+	         	var paramsObj={}
+	         	if(val.type===0 || val.type===1 || val.type===2){
+	         	    paramsObj = {
+		                area:this.updatePlace.place,
+		                name:this.updatePlace.turist,
+		                category:this.slectType+1,
+		                pageId:1,
+		                source:'全部',
+		                key:"",
+		                commentType:this.comType,
+		                type:["day","month","year"][val.type],
+		            }
+	         	}else{
+	         		let end = val.end.join("-")
+	                 let begin = val.begin.join("-")
+	                paramsObj = {
+	                    area:this.updatePlace.place,
+	                    name:this.updatePlace.turist,
+	                    category:this.slectType+1,
+	                    pageId:1,
+		                source:'全部',
+		                key:"",
+		                commentType:this.comType ,
+	                    beginTime:begin,
+	                    endTime:end
+					}
+	         	}
+	             
+	             this.getResponse(paramsObj);
+	         },
+	         deep:true,
+	        },
+			
+			
 			//酒店景区选择
 			slectType:function(val){
 				var paramsObj = {
@@ -131,6 +151,10 @@
 		},
 		methods:{
 				getResponse(paramsObj){
+					this.active =false
+		        	setTimeout( () => {
+		        		this.active =true
+		        	},100)
 					let _self = this;
 			        this.$axios.get(API_URL+'/qy/api/command/getCommandCommentsDetail',{params:paramsObj}).then(r => {
 								let reData = r.data.data

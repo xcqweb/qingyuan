@@ -19,7 +19,6 @@
                 :key="topItem.id" 
                 :updatePlace='updatePlace'
                 :update='update'
-                :upday='upday'
                 @toggleProvince='toggleProvince'
                 ></componet>    
             </div>
@@ -36,7 +35,6 @@
                 :key="topItem.id" 
                 :updatePlace='updatePlace'
                 :update='update'
-                :upday='upday'
                 ></componet>
             </div>
         </div>
@@ -53,7 +51,6 @@
                 :key="topItem.id" 
                 :updatePlace='updatePlace'
                 :update='update'
-                :upday='upday'
                 ></componet>
             </div>
         </div>
@@ -69,7 +66,6 @@ export default {
             return {
         		updatePlace:{place:"全部",turist:"全部"},
         		update:{begin:['2018','02','02'],end:['2018','02','03']},
-        		upday:0,
         		isprovince:0,
                 //全国市
                 leftComponents:[
@@ -128,8 +124,7 @@ export default {
 		        },
 		        //获取选择年,月,日
 		        choseDayVal(val){
-		        	console.log(val)
-		        	this.update = val
+		        	this.update = {type:val}
 		        },
             //游客来源联动地图
             toggleProvince(data){

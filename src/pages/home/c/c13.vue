@@ -30,86 +30,107 @@ export default {
 		      "value": 140,
 		      name: '博士'
 		    },
-		     {
-		      "value": 120,
-		      name: '其他'
-		    },
 		  ],
-        color:['#4EBBFC','#57ABFE', '#368DF7', '#7E6AF6', '#FF8885','#FFCD38',  '#E39A50', '#75CF65','#B8E986', '#86E9E8', '#58E5E1','#4BCEDD'],
+		  icondata:[
+        			{name:'博士',icon:'roundRect'},
+        			{name:'硕士',icon:'roundRect'},
+        			{name:'本科/专科',icon:'roundRect'},
+        			{name:'高中及以下',icon:'roundRect'},
+            		],
+        
     		
     }
     },
     watch:{
-    	code:function(){
-    		this.getData();
-    	}
+			updatePlace:function(val){
+				var paramsObj = {
+	                area:val.place,
+	                name:val.turist,
+	            }
+					this.getResponse(paramsObj);
+			},
+			update:{
+             handler:function(val, oldVal){
+             	var paramsObj={}
+             	if(val.type===0 || val.type===1 || val.type===2){
+             		this.type=val.type
+             	    paramsObj = {
+		                area:this.updatePlace.place,
+		                name:this.updatePlace.turist,
+		                type:["day","month","year"][val.type],
+		            }
+             	}else{
+             		let end = val.end.join("-")
+	                 let begin = val.begin.join("-")
+	                paramsObj = {
+	                    area:this.updatePlace.place,
+	                    name:this.updatePlace.turist,
+	                    beginTime:begin,
+	                    endTime:end
+					}
+             	}
+                 
+                 this.getResponse(paramsObj);
+             },
+             deep:true,
+        }
     },
     methods:{
     	
     	//请求数据
-	  	getData(){
-	  		api.params.code = this.code;
-	  		let data={code:0};
-	  		data.code = this.code;
-	  		api.touristAttr(data).then( (re) =>{
-	  				let reData = re.data.data;
-	  				//console.log(reData)
-	  				let arrData = [];
-	  				for(let i in reData){
-	  					arrData.push(reData[i])
-	  				}
-	  				for(let i=0; i<this.series.length; ++i){
-	  					this.series[i].value = arrData[i]
-	  				}
-	  				//console.log(this.series)
-					if(re.status===200){
-					}
-					this.redom("c13");
-		    }).catch( (e) => {
-		    	console.log(e);
-		    })
-	  	},
+	  	getResponse(paramsObj){
+			let _self = this;
+	        this.$axios.get(API_URL+'/qy/api/v2/view/getEducation',{params:paramsObj}).then(r => {
+						let reData = r.data.data
+						_self.series = []
+		                if(r.data.code ==="200"||r.data.code ===200){
+		                	var num=0
+		                   reData.forEach( (item,index) => {
+		                   	
+		                   	if(index<4){
+		                   		num+=item.percent
+		                   	}else if(index===4){
+		                   		_self.series.push({name:'本科/专科',value:item.percent*100})
+		                   	}else{
+		                   		_self.series.push({name:item.description,value:item.percent*100})
+		                   	}
+		                   		
+		                   })
+		                   _self.series.push({name:"高中及以下",value:num*100})
+		                   _self.redom('c13')
+		                }
+		            })
+       },
         redom(id){
+        	if(this.chart){
+        		this.chart.dispose()
+        	}
             this.chart = echarts.init(document.getElementById(id));
             let option = {
-            color:['#fd0073','#5afbee', '#48ff00', '#ffff50', '#ff50c3','#FFCD38',  '#E39A50', '#75CF65','#B8E986', '#86E9E8', '#58E5E1','#4BCEDD'],
+            color:['#B8E986','#E39A50', '#48ff00', '#FFCD38', '#ff50c3','#FFCD38',  '#E39A50', '#75CF65','#B8E986', '#86E9E8', '#58E5E1','#4BCEDD'],
             calculable : true,
             legend:{
             	  show:true,
                 orient: 'vertical',
-                top:'45%',
-                right:'2%',
+                top:'40%',
+                right:'5%',
                 width:'26',
                 height:'80%',
-                itemGap:20,
-                itemWidth:10,
+                itemGap:28,
+                itemWidth:12,
                 itemHeight:10,
                 textStyle:{
                     color:'#fff',
-                    fontSize: 20,
+                    fontSize: 16,
                     lineHeight:36
                     
                 },
             		//width:'50%',
-            		data:[
-            			{name:'高中及以下',icon:'roundRect'},
-            			{name:'本科/专科',icon:'roundRect'},
-            			{name:'硕士',icon:'roundRect'},
-            			{name:'博士',icon:'roundRect'},
-            			{name:'其他',icon:'roundRect'},
-            		],
+            		data:this.icondata,
             	//data:['亲子','金融','汽车服务','休闲娱乐','化妆品','珠宝手表','数码','母婴用品','生活服务','奢侈品牌','大众品牌','服饰鞋帽'],
-            	 formatter:function(name){
-            	 	
-			        	var oa = option.series[0].data;
-			        	//console.log(oa)
-			        	let num =0;
-			        	for(let i=0; i<oa.length; ++i){
-			        		num += oa[i].value
-			        	}
-			        	
-			        	for(var i = 0; i < option.series[0].data.length; i++){
-		                    if(name==oa[i].name){
+            	 formatter:(name) => {
+			        	for(var i = 0; i < this.icondata.length; i++){
+		                    if(name==this.icondata[i].name){
 		                    	let text = name ;
 		                    	return text
 		                    }
@@ -134,7 +155,7 @@ export default {
                     name:'消费偏好',
                     type:'pie',
                     radius : ['0%', '55%'],
-                    center : ['36%', '70%'],
+                    center : ['36%', '68%'],
                     roseType : 'radius',
                     label: {
 		                normal: {
@@ -142,7 +163,7 @@ export default {
 		                    fontSize:16
 		                },
 		                emphasis: {
-		                    show: false
+		                    show: true
 		                }
 		            },
 		            lableLine: {
@@ -163,14 +184,15 @@ export default {
         }
     },
     created(){
+    	let paramsObj = {
+    		area:'全部',
+    		name:'全部',
+    	}
+    	this.getResponse(paramsObj)
     },
     computed:{
     	percents(){
     		let arr=[];
-    		//let sum=0;
-    		//for(let i=0; i<this.series.length; ++i){
-    			//sum += this.series[i].value;
-    		//}
     		for(let i=0; i<this.series.length; ++i){
     			arr[i] = this.series[i].value;
     		}
@@ -185,7 +207,7 @@ export default {
 
 <style lang="less" scoped>
 #c13{
-    width:100%;
+    width:106%;
     height:100%;
     transform: translateY(0px);
 }

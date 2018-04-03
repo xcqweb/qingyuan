@@ -54,31 +54,31 @@ export default {
             var paramsObj = {
                 area:this.updatePlace.place,
                 name:this.updatePlace.turist,
-                type:["day","month","year"][this.upday],
+                //type:["day","month","year"][this.upday],
             }
             this.getResponse(paramsObj);
         },
-        upday:{
-        	handler:function(val){
-	            var paramsObj = {
-	                area:this.updatePlace.place,
-	                name:this.updatePlace.turist,
-	                type:["day","month","year"][this.upday],
-	            }
-	            this.getResponse(paramsObj);
-	        },
-	        deep:true
-        },
         update:{
              handler:function(val, oldVal){
-                 let end = val.end.join("-")
-                 let begin = val.begin.join("-")
-                 var paramsObj = {
-                    area:this.updatePlace.place,
-                    name:this.updatePlace.turist,
-                    beginTime:begin,
-                    endTime:end
-				}
+             	var paramsObj={}
+             	if(val.type===0 || val.type===1 || val.type===2){
+             		this.type=val.type
+             	    paramsObj = {
+		                area:this.updatePlace.place,
+		                name:this.updatePlace.turist,
+		                type:["day","month","year"][val.type],
+		            }
+             	}else{
+             		let end = val.end.join("-")
+	                 let begin = val.begin.join("-")
+	                paramsObj = {
+	                    area:this.updatePlace.place,
+	                    name:this.updatePlace.turist,
+	                    beginTime:begin,
+	                    endTime:end
+					}
+             	}
+                 
                  this.getResponse(paramsObj);
              },
              deep:true,
@@ -264,6 +264,9 @@ export default {
     },
     methods:{
         redom(id){
+        	if(this.chart){
+        		this.chart.dispose()
+        	}
             this.chart = echarts.init(document.getElementById(id));
             this.chart.setOption(this.option);
         },

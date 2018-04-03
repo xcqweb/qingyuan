@@ -12,7 +12,7 @@ let optionProps =  {
     		}
     	},
     	update:{
-    		type:Object,
+      		type:Object,
     		default:function(){
     			return {begin:['2018','02','02'],end:['2018','02','03']}
     		}

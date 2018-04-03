@@ -31,10 +31,12 @@
 <script>
   import echarts_resize from '@/common/js/echarts_resize.js'
   import echarts from 'echarts'
+  import optionProps from '@/common/js/mixin/optionProps.js'
 	let img1 = 'image://static/img/rad1.png'
 	let img2 = 'image://static/img/rad2.png'
     export default {
         name:'d10',
+        mixins:[optionProps],
         data () {
             return {
               option :{
@@ -131,17 +133,21 @@
               }
             }
         },
-        props: {
-          scenics: Array,
-          isActive: Boolean,
-          title: String,
-          dateIndex: Number
+        watch:{
+        	updatePlace:function(val){
+        	}
         },
         methods:{
             redom(id){
+            	if(this.chrat){
+            		this.chart.dispose()
+            	}
               this.chart = echarts.init(document.getElementById(id));
               this.chart.setOption(this.option);
             }
+        },
+        created(){
+        	
         },
         mounted() {
         	this.$nextTick( () => {

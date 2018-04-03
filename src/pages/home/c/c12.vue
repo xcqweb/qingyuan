@@ -89,32 +89,35 @@ export default {
 	            var paramsObj = {
 	                area:this.updatePlace.place,
 	                name:this.updatePlace.turist,
-	                type:["day","month","year"][this.upday],
-	            }
-	            this.getResponse(paramsObj);
-	        },
-	        upday:function(val){
-	            var paramsObj = {
-	                area:this.updatePlace.place,
-	                name:this.updatePlace.turist,
-	                type:["day","month","year"][this.upday],
+	                //type:["day","month","year"][this.upday],
 	            }
 	            this.getResponse(paramsObj);
 	        },
 	        update:{
-	             handler:function(val, oldVal){
-	                 let end = val.end.join("-")
+             handler:function(val, oldVal){
+             	var paramsObj={}
+             	if(val.type===0 || val.type===1 || val.type===2){
+             		this.type=val.type
+             	    paramsObj = {
+		                area:this.updatePlace.place,
+		                name:this.updatePlace.turist,
+		                type:["day","month","year"][val.type],
+		            }
+             	}else{
+             		let end = val.end.join("-")
 	                 let begin = val.begin.join("-")
-	                 var paramsObj = {
+	                paramsObj = {
 	                    area:this.updatePlace.place,
 	                    name:this.updatePlace.turist,
 	                    beginTime:begin,
 	                    endTime:end
 					}
-	                 this.getResponse(paramsObj);
-	             },
-	             deep:true,
-	        }
+             	}
+                 
+                 this.getResponse(paramsObj);
+             },
+             deep:true,
+        }
     },
     methods:{
 	  	getResponse(paramsObj){
@@ -131,7 +134,10 @@ export default {
        },
 	  	
         redom(id){
-        	let _self = this
+        		let _self = this
+        		if(this.chart){
+        			this.chart.dispose()
+        		}
             this.chart = echarts.init(document.getElementById(id));
             let option = {
             color:['#4EBBFC','#57ABFE', '#368DF7', '#7E6AF6', '#FF8885','#FFCD38',  '#E39A50', '#75CF65','#B8E986', '#86E9E8', '#58E5E1','#4BCEDD'],

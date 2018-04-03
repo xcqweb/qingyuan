@@ -44,7 +44,7 @@ import Bus from '@/common/js/bus'
 
 let date = new Date()
 let year = c(date.getFullYear())
-let month = c(date.getMonth())
+let month = c(date.getMonth()+1)
 let day = c(date.getDate())
 function c(v){
 	if(v<10){
@@ -104,8 +104,8 @@ export default {
             },
             de:'自定义',
             calendar4:{
-//              display:"2018/01/01 ~ 2018/01/31",
-                display:year+"/"+month+"/"+day+" ~ "+year+"/"+month+"/"+day,
+                display:"自定义时间",
+                //display:year+"/"+month+"/"+day+" ~ "+year+"/"+month+"/"+day,
                 show:false,
                 range:true,
                 zero:true,

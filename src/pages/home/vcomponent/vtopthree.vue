@@ -1,5 +1,5 @@
 <template>
-  <div class="vtopThree">
+  <div class="vtopThree" v-show="active">
     <ul>
         <li v-for="(item,index) in items">
             <p>{{item.title}}</p>
@@ -25,7 +25,10 @@ export default {
     watch:{
         updatePlace:{
             handler: function (val, oldVal) {
-            		//console.log(this.updatePlace)
+            		this.active =false
+			        	setTimeout( () => {
+			        		this.active =true
+			        	},100)
             		var paramsObj = {
                 area:this.updatePlace.place,
                 name:this.updatePlace.turist,
@@ -36,7 +39,10 @@ export default {
             deep:true,
         },
         slectType:function(val){
-        	
+        		this.active =false
+	        	setTimeout( () => {
+	        		this.active =true
+	        	},100)
         		var paramsObj = {
                 area:this.updatePlace.place,
                 name:this.updatePlace.turist,
@@ -52,6 +58,7 @@ export default {
             {title:'',nub:'中评数',font:'',color:'#ffe86e'},
             {title:'',nub:'差评数',font:'',color:'#ff719c'},
         ],
+        active:true
     }
   },
   computed: { 

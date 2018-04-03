@@ -9,7 +9,6 @@
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import echarts from 'echarts';
-import axios from 'axios'
 
 import 'echarts/lib/chart/map';
 import 'echarts/map/js/china.js';
@@ -26,6 +25,7 @@ export default {
     
     data () {
     return {
+    	type:0,
     	num1:0,
     	num2:0,
     	isloading:true,
@@ -288,28 +288,32 @@ export default {
             var paramsObj = {
                 area:this.updatePlace.place,
                 name:this.updatePlace.turist,
-                type:["day","month","year"][this.upday],
+                type:["day","month","year"][this.type],
             }
             this.getResponse(paramsObj);
         },
-        upday:function(val){
-            var paramsObj = {
-                area:this.updatePlace.place,
-                name:this.updatePlace.turist,
-                type:["day","month","year"][this.upday],
-            }
-            this.getResponse(paramsObj);
-        },
+       
         update:{
              handler:function(val, oldVal){
-                 let end = val.end.join("-")
-                 let begin = val.begin.join("-")
-                 var paramsObj = {
-                    area:this.updatePlace.place,
-                    name:this.updatePlace.turist,
-                    beginTime:begin,
-                    endTime:end
-				}
+             	var paramsObj={}
+             	if(val.type===0 || val.type===1 || val.type===2){
+             		this.type=val.type
+             	    paramsObj = {
+		                area:this.updatePlace.place,
+		                name:this.updatePlace.turist,
+		                type:["day","month","year"][val.type],
+		            }
+             	}else{
+             		let end = val.end.join("-")
+	                 let begin = val.begin.join("-")
+	                paramsObj = {
+	                    area:this.updatePlace.place,
+	                    name:this.updatePlace.turist,
+	                    beginTime:begin,
+	                    endTime:end
+					}
+             	}
+                 
                  this.getResponse(paramsObj);
              },
              deep:true,
@@ -319,7 +323,7 @@ export default {
     	var paramsObj = {
                 area:this.updatePlace.place,
 	            name:this.updatePlace.turist,
-	            type:["day","month","year"][this.upday],
+	            type:'day'
             }
        this.getResponse(paramsObj);
     },
@@ -327,7 +331,7 @@ export default {
   	
   	getResponse(paramsObj){
 			
-			axios.get(API_URL+'/qy/api/v2/view/getPersonSourceData',{params:paramsObj}).then(r => {
+			this.$axios.get(API_URL+'/qy/api/v2/view/getPersonSourceData',{params:paramsObj}).then(r => {
 				//console.log(r)
                 if(r.status ===200||r.data.code ===200){
                     this.rankItems = r.data.data.inCountryCity.splice(0,10);

@@ -26,7 +26,6 @@
 	                    :key="item.id"  
 	                    :updatePlace='updatePlace'
                 		:update='update'
-                		:upday='upday'
                 		:hotelChose="hotelChose"
                 		:slectType='slectType'
 	                    ></componet>
@@ -42,7 +41,6 @@
 	                    <componet
 	                    :is='item.name' 
 	                    :key="item.id"  
-	                    :upday='upday'
 	                    :updatePlace='updatePlace'
                 		:update='update'
 	                    ></componet>
@@ -60,7 +58,6 @@
                     :key="item.id"  
                     :updatePlace='updatePlace'
                 	:update='update'
-                	:upday='upday'
                 	:slectType='slectType'
                 	:hotelChose="hotelChose"
                     ></componet>
@@ -83,7 +80,6 @@ export default {
             return {
             	updatePlace:{place:"全部",turist:"全部"},
         		update:{begin:['2018','02','02'],end:['2018','02','03']},
-            	upday:0,
             	hotelChose:'全部',
             	scienceType:false,
             	slectType:0,
@@ -117,7 +113,7 @@ export default {
         //获取选择年,月,日
         choseDayVal(val){
         	//console.log(val)
-        	this.upday = val
+        	this.update = {type:val}
         },
         //获取4A级景区
         getScienceType(val){

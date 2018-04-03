@@ -24,7 +24,6 @@
 	                    :key="item.id"  
 	                    :updatePlace='updatePlace'
                 		:update='update'
-                		:upday='upday'
 	                    ></componet>
 	            </div>
 	        </div>
@@ -40,7 +39,6 @@
 	                    :key="item.id"  
 	                    :updatePlace='updatePlace'
                 		:update='update'
-                		:upday='upday'
 	                    ></componet>
 	            </div>
         	</div>
@@ -56,7 +54,6 @@
                     :key="item.id"  
                     :updatePlace='updatePlace'
                 	:update='update'
-                	:upday='upday'
                     ></componet>
             </div>
         </div>
@@ -77,7 +74,6 @@ export default {
             return {
             	updatePlace:{place:"全部",turist:"全部"},
         		update:{begin:['2018','02','02'],end:['2018','02','03']},
-            	upday:0,
             	scienceType:false,
                 leftComponents:[
                 	{name:'C2SS',id:'one',index:1,time:900,show:true,title:'年龄'},
@@ -112,7 +108,7 @@ export default {
         //获取选择年,月,日
         choseDayVal(val){
         	//console.log(val)
-        	this.upday = val
+        	this.update = {type:val}
         },
         //获取4A级景区
         getScienceType(val){

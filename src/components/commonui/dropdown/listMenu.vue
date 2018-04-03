@@ -207,13 +207,16 @@
 	        		let re=0 
 	        		switch(val){
 	        			case '日':
-	        			re = {begin:[`${year}`,`${month}`,`${day}`],end:[`${year}`,`${month}`,`${day}`]};
+	        			//re = {begin:[`${year}`,`${month}`,`${day}`],end:[`${year}`,`${month}`,`${day}`]};
+	        			re = 0;
 	        			break;
 	        			case '月':
-	        			re = {begin:[`${year}`,`${month}`,'01'],end:[`${year}`,`${month}`,`${days}`]};
+	        			//re = {begin:[`${year}`,`${month}`,'01'],end:[`${year}`,`${month}`,`${days}`]};
+	        			re = 1;
 	        			break;
 	        			case '年':
-	        			re = {begin:[`${year}`,'01','01'],end:[`${year}`,'12','31']};
+	        			//re = {begin:[`${year}`,'01','01'],end:[`${year}`,'12','31']};
+	        			re = 2;
 	        			break;
 	        		}
 	        		this.$emit('choseDay',re);

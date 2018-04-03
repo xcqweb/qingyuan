@@ -34,15 +34,15 @@ export default {
 
   methods:{
     getResponse(){
-                this.$axios.get(API_URL+'/qy/api/view/checkLogin').then(r => {
-                        if(r.data.code ==="-1"||r.data.code ===-1){
-						  							window.location.href=API_URL+":8081/qylv3.0/login"
-                        }
-                })
-            },
+        this.$axios.get(API_URL+'/qy/api/view/checkLogin').then(r => {
+                if(r.data.code ==="-1"||r.data.code ===-1){
+				  							window.location.href=API_URL+":8081/qylv3.0/login"
+                }
+        })
+    },
   },
   created(){
-	  this.getResponse();
+	  //this.getResponse();
 	  
   }
 }

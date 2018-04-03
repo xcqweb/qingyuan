@@ -32,45 +32,46 @@ require('echarts-wordcloud');
                 area:val.place,
                 name:val.turist,
                 category:this.slectType+1,
-                type:["day","month","year"][this.upday],
+                type:["day","month","year"][this.type],
             }
         	this.yunData=[]
      		this.getResponse(paramsObj);
         },
         deep:true,
         },
-        upday:function(val){
-	            var paramsObj = {
+        update:{
+         handler:function(val, oldVal){
+         	var paramsObj={}
+         	if(val.type===0 || val.type===1 || val.type===2){
+         	    paramsObj = {
 	                area:this.updatePlace.place,
 	                name:this.updatePlace.turist,
 	                category:this.slectType+1,
-	                type:["day","month","year"][val],
+	                type:["day","month","year"][val.type],
 	            }
-	            this.yunData=[]
-	            this.getResponse(paramsObj);
-	        },
-	         update:{
-	             handler:function(val, oldVal){
-	                 let end = val.end.join("-")
-	                 let begin = val.begin.join("-")
-	                 var paramsObj = {
-	                    area:this.updatePlace.place,
-	                    name:this.updatePlace.turist,
-	                    category:this.slectType+1,
-	                    beginTime:begin,
-	                    endTime:end
-					}
-	                 this.yunData=[]
-	                 this.getResponse(paramsObj);
-	             },
-	             deep:true,
-	        },
+         	}else{
+         		let end = val.end.join("-")
+                 let begin = val.begin.join("-")
+                paramsObj = {
+                    area:this.updatePlace.place,
+                    name:this.updatePlace.turist,
+                    category:this.slectType+1,
+                    beginTime:begin,
+                    endTime:end
+				}
+         	}
+             
+             this.getResponse(paramsObj);
+         },
+         deep:true,
+        },
+	        
 	        hotelChose:function(val){
 	        	var paramsObj = {
 	                area:this.updatePlace.place,
 	                name:val,
 	                category:this.slectType+1,
-	                type:["day","month","year"][this.upday],
+	                type:["day","month","year"][this.type],
 	           	 }
         		this.yunData=[]
                 this.getResponse(paramsObj);
@@ -81,7 +82,7 @@ require('echarts-wordcloud');
 	                area:this.updatePlace.place,
 	                name:this.hotelChose||this.updatePlace.turist,
 	                category:val+1,
-	                type:["day","month","year"][this.upday],
+	                type:["day","month","year"][this.type],
            	 }
         		this.yunData=[]
                 this.getResponse(paramsObj);
@@ -89,6 +90,7 @@ require('echarts-wordcloud');
     },
     data() {
         return {
+        	type:0,
             chart:null,
             yunData:[
 //              {
@@ -327,10 +329,10 @@ require('echarts-wordcloud');
     },
     methods:{
         redom(id){
+        	if(this.chart){
+        		this.chart.dispose()
+        	}
             this.chart = echarts.init(document.getElementById(id));
-            // let maskImage = new Image();
-            // maskImage =  require("../../../assets/images/wifi.png");
-            // this.option.series[0].maskImage = maskImage;
             var JosnList = [];
             JosnList.push(...this.yunData);
             

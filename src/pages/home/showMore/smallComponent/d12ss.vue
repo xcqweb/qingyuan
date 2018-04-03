@@ -123,35 +123,39 @@ export default {
             var paramsObj = {
                 area:val.place,
                 name:val.turist,
-                type:["day","month","year"][this.upday],
+                type:["day","month","year"][this.type],
             }
             this.getResponse(paramsObj);
         },
          update:{
              handler:function(val, oldVal){
-                 let end = val.end.join("-")
-                 let begin = val.begin.join("-")
-                 var paramsObj = {
-                    area:this.updatePlace.place,
-                    name:this.updatePlace.turist,
-                    beginTime:begin,
-                    endTime:end
-                }
+             	var paramsObj={}
+             	if(val.type===0 || val.type===1 || val.type===2){
+             		this.type=val.type
+             	    paramsObj = {
+		                area:this.updatePlace.place,
+		                name:this.updatePlace.turist,
+		                type:["day","month","year"][val.type],
+		            }
+             	}else{
+             		let end = val.end.join("-")
+	                 let begin = val.begin.join("-")
+	                paramsObj = {
+	                    area:this.updatePlace.place,
+	                    name:this.updatePlace.turist,
+	                    beginTime:begin,
+	                    endTime:end
+					}
+             	}
+                 
                  this.getResponse(paramsObj);
              },
              deep:true,
-        },
-        upday:function(val){
-            var paramsObj = {
-                area:this.updatePlace.place,
-                name:this.updatePlace.turist,
-                type:["day","month","year"][val]
-            }
-             this.getResponse(paramsObj);
         }
     },
     data() {
       return {
+      	type:0,
       	idName:'d12ss',
         scenics:'',
         isActive:true,

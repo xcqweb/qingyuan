@@ -33,28 +33,31 @@ export default {
             var paramsObj = {
                 area:this.updatePlace.place,
                 name:this.updatePlace.turist,
-                type:["day","month","year"][this.upday],
+                //type:["day","month","year"][this.upday],
             }
             this.getResponse(paramsObj);
         },
-        upday:function(val){
-            var paramsObj = {
-                area:this.updatePlace.place,
-                name:this.updatePlace.turist,
-                type:["day","month","year"][this.upday],
-            }
-            this.getResponse(paramsObj);
-        },
-        update:{
+       update:{
              handler:function(val, oldVal){
-                 let end = val.end.join("-")
-                 let begin = val.begin.join("-")
-                 var paramsObj = {
-                    area:this.updatePlace.place,
-                    name:this.updatePlace.turist,
-                    beginTime:begin,
-                    endTime:end
-				}
+             	var paramsObj={}
+             	if(val.type===0 || val.type===1 || val.type===2){
+             		this.type=val.type
+             	    paramsObj = {
+		                area:this.updatePlace.place,
+		                name:this.updatePlace.turist,
+		                type:["day","month","year"][val.type],
+		            }
+             	}else{
+             		let end = val.end.join("-")
+	                 let begin = val.begin.join("-")
+	                paramsObj = {
+	                    area:this.updatePlace.place,
+	                    name:this.updatePlace.turist,
+	                    beginTime:begin,
+	                    endTime:end
+					}
+             	}
+                 
                  this.getResponse(paramsObj);
              },
              deep:true,
@@ -162,6 +165,9 @@ export default {
        },
     	
         redom(id){
+        	if(this.chart){
+        		this.chart.dispose()
+        	}
             this.chart = echarts.init(document.getElementById(id));
             this.option.series[0].data.forEach((item,index)=>{
                         item.value = this.pieData[item.name].toFixed(1);

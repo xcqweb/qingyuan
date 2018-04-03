@@ -42,28 +42,31 @@ export default {
             var paramsObj = {
                 area:this.updatePlace.place,
                 name:this.updatePlace.turist,
-                type:["day","month","year"][this.upday],
-            }
-            this.getResponse(paramsObj);
-        },
-        upday:function(val){
-            var paramsObj = {
-                area:this.updatePlace.place,
-                name:this.updatePlace.turist,
-                type:["day","month","year"][this.upday],
+                //type:["day","month","year"][this.upday],
             }
             this.getResponse(paramsObj);
         },
         update:{
              handler:function(val, oldVal){
-                 let end = val.end.join("-")
-                 let begin = val.begin.join("-")
-                 var paramsObj = {
-                    area:this.updatePlace.place,
-                    name:this.updatePlace.turist,
-                    beginTime:begin,
-                    endTime:end
-				}
+             	var paramsObj={}
+             	if(val.type===0 || val.type===1 || val.type===2){
+             		this.type=val.type
+             	    paramsObj = {
+		                area:this.updatePlace.place,
+		                name:this.updatePlace.turist,
+		                type:["day","month","year"][val.type],
+		            }
+             	}else{
+             		let end = val.end.join("-")
+	                 let begin = val.begin.join("-")
+	                paramsObj = {
+	                    area:this.updatePlace.place,
+	                    name:this.updatePlace.turist,
+	                    beginTime:begin,
+	                    endTime:end
+					}
+             	}
+                 
                  this.getResponse(paramsObj);
              },
              deep:true,
@@ -84,6 +87,12 @@ export default {
        },
   	
   	redom(data1,data2){
+  		if(this.chart1){
+        		this.chart1.dispose()
+        }
+  		if(this.chart2){
+        		this.chart2.dispose()
+        	}
   		this.chart1 = echarts.init(document.getElementById("c4"));
   		this.chart2 = echarts.init(document.getElementById("c5"));
   		let spirit1 = 'path://m254.698872,41.396847c0,-17.21313 17.594091,-31.155783 39.315128,-31.155783c21.72107,0 39.315096,13.942653 39.315096,31.155783c0,17.21313 -17.594025,31.155783 -39.315096,31.155783c-21.72107,0 -39.315128,-13.942653 -39.315128,-31.155783zm132.184172,88.190761l0,-15.734566c0,-16.555072 -16.92578,-29.977718 -37.828542,-29.977718l-110.202797,0c-20.890656,0 -37.828526,13.422648 -37.828526,29.977718l0,15.734566c-0.03653,0.357145 -0.060921,0.723989 -0.060921,1.095621l0,90.628209c0,7.041942 7.199102,12.746912 16.085232,12.746912c8.873975,0 16.091276,-5.704995 16.091276,-12.746912l0,-89.286408l10.786391,0l0,102.042965l0.07917,0l0,144.183638c0,9.373138 9.604869,16.989431 21.444912,16.989431c11.846153,0 21.444912,-7.606634 21.444912,-16.989431l0,-144.183638l14.148408,0l0,144.183638c0,9.373138 9.610816,16.989431 21.444879,16.989431c11.846104,0 21.444863,-7.606634 21.444863,-16.989431l0,-144.183638l0.066999,0l0,-102.042965l10.786408,0l0,89.281554c0,7.041955 7.217285,12.751754 16.091293,12.751754c8.886244,0 16.085232,-5.709799 16.085232,-12.751754l0,-90.628183c-0.006045,-0.376463 -0.04264,-0.733646 -0.079186,-1.090805l0,0.000013l-0.000003,-0.000001z';

@@ -105,6 +105,9 @@
 	    },
 		 methods:{
             redom(id){
+            	if(this.chart){
+	        		this.chart.dispose()
+	        	}
                 this.chart = echarts.init(document.getElementById(id));
                 this.chart.setOption(this.option);
                 this.chart.on('click', function (params) {
