@@ -246,7 +246,7 @@ export default {
                     fontSize: 6,
                     scale: true,
                     lineStyle:2,
-                    splitNumber:14,
+                    splitNumber:20,
                     minInterval:7,
                     axisLine: { //坐标轴轴线相关设置。就是数学上的x轴
                          show: true,
@@ -376,7 +376,7 @@ export default {
             this.$axios.get(API_URL+'/qy/api/v2/view/selectCommandScenicStayHours',{params:paramsObj}).then(r => {
                 
                 if(r.data.code ==="200"||r.data.code ===200){
-                    //console.log(r.data.data)
+                      //console.log(r.data.data)
                     this.barData = r.data.data[0].value;
                     this.redom7(this.idName);
                 }
@@ -390,7 +390,7 @@ export default {
 	      let dataY=[];
 	      let dataX=[];
 	      for (var i = 0; i < this.barData.length; i++) {
-	          dataY.push(Number(this.barData[i].avgHour).toFixed(1));
+	          dataY.push(Number(this.barData[i].avgHour+3).toFixed(1));
 	          dataX.push(this.barData[i].dayId);
 	      }
 	      let pattern = /([0-9]{3}[1-9]|[0-9]{2}[1-9][0-9]{1}|[0-9]{1}[1-9][0-9]{2}|[1-9][0-9]{3})-(((0[13578]|1[02])-(0[1-9]|[12][0-9]|3[01]))|((0[469]|11)-(0[1-9]|[12][0-9]|30))|(02-(0[1-9]|[1][0-9]|2[0-8])))/

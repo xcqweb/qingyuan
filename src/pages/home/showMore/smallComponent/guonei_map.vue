@@ -332,8 +332,13 @@ export default {
   	getResponse(paramsObj){
 			
 			this.$axios.get(API_URL+'/qy/api/v2/view/getPersonSourceData',{params:paramsObj}).then(r => {
-				//console.log(r)
-                if(r.status ===200||r.data.code ===200){
+				console.log(r)
+				if(!r.data.data.inCountryCity.length){
+					this.allData=[]
+					this.redomData()
+					return
+				}
+                if(r.data.code ==='200'||r.data.code ===200){
                     this.rankItems = r.data.data.inCountryCity.splice(0,10);
                     this.mapItems = r.data.data.topCity;
                     let scal = 5;

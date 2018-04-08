@@ -18,6 +18,7 @@ Vue.config.devtools = true
 // var API_URL = "http://125.91.215.236:81"
 //测试
 var API_URL = "http://120.55.190.57"
+//var API_URL = "http://localhost:8081"
 //var API_URL1 = "http://localhost"
 window.API_URL = API_URL
 if( API_URL === "http://120.55.190.57"){
