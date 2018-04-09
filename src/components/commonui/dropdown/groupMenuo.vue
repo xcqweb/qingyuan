@@ -89,7 +89,7 @@
            		dateChoseList:[
 	                {context:'日',class:''},
 	                {context:'月',class:''},
-	                {context:'年',class:''},
+	                {context:'年',class:'chose'},
 	            ],
 				qyselectlist:{
                     width:'76.9%',

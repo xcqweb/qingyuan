@@ -332,7 +332,7 @@ export default {
   	getResponse(paramsObj){
 			
 			this.$axios.get(API_URL+'/qy/api/v2/view/getPersonSourceData',{params:paramsObj}).then(r => {
-				console.log(r)
+				//console.log(r)
 				if(!r.data.data.inCountryCity.length){
 					this.allData=[]
 					this.redomData()

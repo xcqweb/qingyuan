@@ -54,7 +54,7 @@
 				isEndDate:true,
            		vDateStatus:true,
            		dateChoseList:[
-	                {context:'日',class:''},
+	                {context:'日',class:'chose'},
 	                {context:'月',class:''},
 	                {context:'年',class:''},
 	            ],

@@ -2,8 +2,8 @@
     <div class="c4">
         <div id="c4"></div>
         <div id="c5"></div>
-        <span class="men"></span>
-        <span class="wemen"></span>
+        <!--<span class="men"></span>-->
+        <!--<span class="wemen"></span>-->
         <font class="menP">{{menPercent}}%</font>
         <font class="womenP">{{womenPercent}}%</font>
     </div>
@@ -19,19 +19,19 @@ export default {
   name: 'c4',
   mixins: [optionProps],
   data () {
-
     return {
         womenPercent:'40',
         menPercent:'60',
         option1:{},
-        option2:{}
+        option2:{},
+        type:0,
     }
   },
   created(){
   	var paramsObj = {
                 area:"全部",
                 name:"全部",
-                type:"day",
+                type:"year",
             }
        this.getResponse(paramsObj);
   },
@@ -42,7 +42,7 @@ export default {
             var paramsObj = {
                 area:this.updatePlace.place,
                 name:this.updatePlace.turist,
-                //type:["day","month","year"][this.upday],
+                type:["day","month","year"][this.type],
             }
             this.getResponse(paramsObj);
         },
@@ -156,7 +156,7 @@ export default {
 		    symbolRepeat: 'fixed',
 		    symbolMargin: '12%',
 		    symbolClip: true,
-		    symbolSize: [50,80],
+		    symbolSize: [60,80],
 		    symbolBoundingData: maxData,
 		    data: [{
 		    	value:data1
@@ -191,7 +191,7 @@ export default {
 		    symbolRepeat: 'fixed',
 		    symbolMargin: '12%',
 		        symbol: spirit1,
-		        symbolSize: [50,80],
+		        symbolSize: [60,80],
 		        symbolBoundingData: maxData,
 		        data: [{
 		        	value:data1
@@ -257,7 +257,7 @@ export default {
 		    symbolRepeat: 'fixed',
 		    symbolMargin: '12%',
 		    symbolClip: true,
-		    symbolSize: [50,80],
+		    symbolSize: [60,80],
 		    symbolBoundingData: maxData,
 		    data: [{
 		    	value:data2
@@ -295,7 +295,7 @@ export default {
 		    symbolRepeat: 'fixed',
 		    symbolMargin: '12%',
 		        symbol: spirit2,
-		        symbolSize: [50,80],
+		        symbolSize: [60,80],
 		        symbolBoundingData: maxData,
 		        data: [{
 		        	value:data2
@@ -325,7 +325,7 @@ export default {
     	position: absolute;
     	height:40%;
     	width:70%;
-    	left: 14%;
+    	left: 10%;
     	top: 17%;
     }
     #c5{
@@ -333,9 +333,23 @@ export default {
     	height:50%;
     	width:70%;
     	bottom: 0%;
-    	left: 14%;
+    	left: 10%;
     }
     
+    .men{
+    	display: block;
+    	position: absolute;
+    	top: 24%;
+    	left: -2%;
+    	width: 80px;
+    	height: 106px;
+    	background: url(../../../assets/images/home/menE.png) no-repeat;
+    	background-size: 100% 80%;
+    }
+    
+    .women{
+    	display: block;
+    }
     
     .menP{
     	color: #49D9FE;

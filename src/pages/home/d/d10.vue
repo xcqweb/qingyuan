@@ -39,6 +39,8 @@
         mixins:[optionProps],
         data () {
             return {
+            	hotel:'',
+            	type:2,
               option :{
                 color:['#ffe86e','#caff36'],
                 textStyle:{
@@ -46,8 +48,10 @@
                   fontSize:12
                 },
                 tooltip: {
-                	position:[390,90],
-                	trigger:'item'
+                	///position:[390,90],
+                	trigger:'item',
+                	backgroundColor:'rgba(100,100,100,0.8)',
+                	extraCssText: 'box-shadow: 0 0 3px rgba(0, 0, 0, 0.9)'
                 },
                 legend: {
                   label:{
@@ -104,12 +108,12 @@
                   },
                   data : [
                     {
-                      value : [3.1, 3.2, 3.0, 4.0, 3.6, 4.8],
+                      value : [],
                       name : '纬度负面',
                       zlevel:123,
                       areaStyle: {
                       	normal: {
-                      		opacity:0.9,
+                      		opacity:0.8,
                       	}
                       },
                       lineStyle:{
@@ -119,9 +123,14 @@
                       }
                     },
                     {
-                      value : [4.5, 3.9, 3.1, 3.5, 4.0, 4.3],
+                      value : [],
                       name : '纬度正面',
                       zlevel:1,
+                      areaStyle: {
+                      	normal: {
+                      		opacity:0.3,
+                      	}
+                      },
                       lineStyle:{
                         normal:{
                           color:['#caff36']
@@ -135,7 +144,59 @@
         },
         watch:{
         	updatePlace:function(val){
-        	}
+        		var paramsObj = {
+                area:val.place,
+                name:val.turist,
+                type:["day","month","year"][this.type],
+                category:this.slectType+1,
+            }
+            this.getResponse(paramsObj);
+        	},
+        	 update:{
+	             handler:function(val, oldVal){
+	             	var paramsObj={}
+	             	if(val.type===0 || val.type===1 || val.type===2){
+	             		this.type=val.type
+	             	    paramsObj = {
+			                area:this.updatePlace.place,
+			                name:this.updatePlace.turist,
+			                type:["day","month","year"][val.type],
+			            }
+	             	}else{
+	             			 let end = val.end.join("-");
+		                 let begin = val.begin.join("-");
+			                paramsObj = {
+		                    area:this.updatePlace.place,
+		                    name:this.updatePlace.turist,
+		                    beginTime:begin,
+		                    endTime:end
+										}
+	             	}
+	                 
+	                 this.getResponse(paramsObj);
+	             },
+	             deep:true,
+	        },
+	           hotelChose:function(val){
+	           	this.hotel = val;
+		        	var paramsObj = {
+		                area:this.updatePlace.place,
+		                name:val,
+		                category:this.slectType+1,
+		                type:["day","month","year"][this.type],
+		           	};
+	                this.getResponse(paramsObj);
+		        },
+		        slectType:function(val){
+		        	if(val===0){this.hotel=''}
+		        		var paramsObj = {
+			                area:this.updatePlace.place,
+			                name:this.hotel||this.updatePlace.turist,
+			                category:val+1,
+			                type:["day","month","year"][this.type],
+		           	 }
+		                this.getResponse(paramsObj);
+		        }
         },
         methods:{
             redom(id){
@@ -144,10 +205,47 @@
             	}
               this.chart = echarts.init(document.getElementById(id));
               this.chart.setOption(this.option);
-            }
+            },
+            //请求数据
+				  	getResponse(paramsObj){
+				            this.$axios.get(API_URL+'/qy/api/v2/command/getCommentEachDimension',{params:paramsObj}).then(r => {
+				            	console.log(r.data.data)
+				                  if(!r){
+				                  	this.option.series[0].data[0].value=[]
+				                  	this.option.series[0].data[1].value=[]
+				                  	return
+				                  }
+				                if(r.data.code ==="200"||r.data.code ===200){
+				                	let good = r.data.data.good;
+				                	let bad = r.data.data.bad;
+				                	good.forEach( (v,i) => {
+				                		if(i<6){
+				                			this.option.radar.indicator.name = v.name
+				                		  this.option.series[0].data[1].value[i] = v.value
+				                		}
+				                	})
+				                	
+				                	bad.forEach( (v,i) => {
+				                		if(i<6){
+				                			this.option.radar.indicator.name = v.name
+				                		  this.option.series[0].data[0].value[i] = v.value
+				                		}
+				                	})
+				                    	this.redom("latitudeAnalyse");
+				                }
+				            })
+				       },
+            
         },
         created(){
-        	
+        	var paramsObj = {
+                area:"全部",
+                name:"全部",
+                type:"year",
+                category:this.slectType+1,
+            }
+       		this.getResponse(paramsObj);
+       		console.log()
         },
         mounted() {
         	this.$nextTick( () => {

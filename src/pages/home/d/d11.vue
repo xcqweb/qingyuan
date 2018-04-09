@@ -67,6 +67,7 @@ require('echarts-wordcloud');
         },
 	        
 	        hotelChose:function(val){
+	        	this.hotel = val
 	        	var paramsObj = {
 	                area:this.updatePlace.place,
 	                name:val,
@@ -77,10 +78,10 @@ require('echarts-wordcloud');
                 this.getResponse(paramsObj);
 	        },
         slectType:function(val){
-        	if(val===0){this.hotelChose=''}
+        	if(val===0){this.hotel=''}
         		var paramsObj = {
 	                area:this.updatePlace.place,
-	                name:this.hotelChose||this.updatePlace.turist,
+	                name:this.hotel||this.updatePlace.turist,
 	                category:val+1,
 	                type:["day","month","year"][this.type],
            	 }
@@ -90,7 +91,8 @@ require('echarts-wordcloud');
     },
     data() {
         return {
-        	type:0,
+        	hotel:'',
+        	type:2,
             chart:null,
             yunData:[
 //              {

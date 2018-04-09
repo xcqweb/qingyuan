@@ -154,8 +154,8 @@ export default {
                     type:'pie',
                     radius : ['0%', '55%'],
                     center : ['36%', '68%'],
-                    //roseType : 'radius',
-                    roseType : 'area',
+                    roseType : 'radius',
+                    //roseType : 'area',
                     label: {
 		                normal: {
 		                    show: true,

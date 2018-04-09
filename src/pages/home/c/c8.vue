@@ -105,9 +105,9 @@ export default {
     },
     created(){
     	var paramsObj = {
-                area:"全部",
-                name:"全部",
-                type:'day'
+                area:this.updatePlace.place,
+                name:this.updatePlace.turist,
+                type:["day","month","year"][this.type]
             }
        this.getResponse(paramsObj);
     },
