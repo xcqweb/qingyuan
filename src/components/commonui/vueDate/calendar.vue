@@ -162,6 +162,7 @@ export default {
           	this.year  = my
           	this.rangeBegin=[]
           	this.rangeEnd=[]
+          	this.clicked = false
         })
         
         Bus.$on('init',() => {

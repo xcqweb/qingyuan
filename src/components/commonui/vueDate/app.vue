@@ -156,6 +156,8 @@ export default {
     methods:{
     	out(){
     		this.calendar4.show=false;
+    		this.$emit('hideDate',true)
+    		Bus.$emit('ms',new Date().getMonth())
      	},
         openByDrop(e){
             this.calendar3.show=true;
@@ -168,15 +170,15 @@ export default {
                     this.calendar4.show=false;
                     document.removeEventListener("click",()=>{},false);
                 },false);
-            },1000)
+            },3000)
         },
         openByDialog(){
             this.calendar4.show=true;
         },
         closeByDialog(){
-        	Bus.$emit('ms',new Date().getMonth())
         	this.calendar4.show=false;
             this.$emit('hideDate',true)
+            Bus.$emit('ms',new Date().getMonth())
         }
     }
 }

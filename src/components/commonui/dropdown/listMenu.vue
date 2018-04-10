@@ -83,6 +83,7 @@
 				isborder:false,
 				isEndDate:true,
            		vDateStatus:true,
+           		doubleclick:true,
            		dataType:'日',
 				qyselectlist:{
                     width:'70%',
@@ -135,24 +136,28 @@
 			}
 		},
 		props:['isDate'],
+		mounted(){
+		},
 		methods:{
 			
 			hideDate(data){
-				this.vDateStatus = data
-				this.dateList = {
-                    width:'70%',
-                    right:'6%',
-                    top:'52%',
-                    title:this.dataType,
-                    selectStatus:false,
-                    place:[
-                        '日',"月","年","自定义"
-                    ]
-                }	
+				if(this.doubleclick){
+					this.vDateStatus = data
+					this.dateList = {
+	                    width:'70%',
+	                    right:'6%',
+	                    top:'52%',
+	                    title:this.dataType,
+	                    selectStatus:false,
+	                    place:[
+	                        '日',"月","年","自定义"
+	                    ]
+	                }	
+				}
 			},
 			//获取时间
 	        getDate(value){
-	        	
+	        	this.doubleclick = false
 	            this.timeDate ={
 	                end:value.end,
 	                begin:value.begin,
@@ -172,6 +177,9 @@
                     ]
                 }
 	            this.dataType = '自定义'
+	            window.setTimeout( () => {
+	            	this.doubleclick = true
+	            },1000)
 	        },
 	        //获取区域数据并传递给父组件
 			catchmsg1(data){
@@ -205,6 +213,7 @@
 	        	if(val==='自定义'){
 	        		this.vDateStatus = false
 	        		Bus.$emit('definded',val)
+	        		this.dataType = val
 	        	}else{
 	        		this.dataType = val
 	        		this.vDateStatus = true
