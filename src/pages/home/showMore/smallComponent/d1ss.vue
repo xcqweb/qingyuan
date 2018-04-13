@@ -114,7 +114,7 @@ display:none !important;
         </div>-->
         <div class="scenic">{{scenics}}</div>
         <div class="control" style='width:660px;height:150px;background:rgba(21,51,135,0.56); border-radius:0 10px 0 20px; margin:-28px -6px 0 0'>
-		<ul style='display:-webkit-flex; justify-content:center; align-items:center; color:#fff; font-size:20px; width:566px; margin:0px 0 0 38px; padding-top:30px; font-weight: bold;'>
+		<ul style='display:flex; justify-content:center; align-items:center; color:#fff; font-size:20px; width:566px; margin:0px 0 0 38px; padding-top:30px; font-weight: bold;'>
 			
 			<li style='flex:1; height:80px; position:relative; cursor: pointer;' @click="jumpPage('http://qyyj.gdtadbs.com/Account/LoginNotPwd/d89d5b4a-6ca0-4020-8853-3a201323e177?t=2')">
 				<p style='text-align:center;'>
@@ -172,6 +172,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 arrHotPoint:[],
                 place:'',
                 turist:'',
+                isUpdate:true,
                 
                 radis:36,
                 maxv:10,
@@ -189,7 +190,8 @@ import optionProps from '@/common/js/mixin/optionProps.js'
             place:function(val){
                 this.addScript(val,false)
             },
-            turist:function(val){
+            turist:function(val,oldVal){
+            	if(val==='全部'&&oldVal==="全部"){return}
                   this.addScript(val,true)
             }
         },
@@ -235,7 +237,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                     map.panTo(new BMap.Point(119.906441,29.457793));
                 }, 1000);
                 setTimeout(function(){
-                    map.setZoom(14);
+                    map.setZoom(13);
                 },4000);
             },
             addIcon(map){
@@ -252,7 +254,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                     //imageOffset: new BMap.Size(0, 0 - i * 25)  设置图片偏移 
                     });
                     
-                    var myIcon2 = new BMap.Icon(require("../../../../assets/images/labler.png"), new BMap.Size(44, 44), {
+                    var myIcon2 = new BMap.Icon(require("../../../../assets/images/labler2.png"), new BMap.Size(44, 44), {
                     // 指定定位位置
                     offset: new BMap.Size(10, 25),
                     // 当需要从一幅较大的图片中截取某部分作为标注图标时，需要指定大图的偏移位置 
@@ -281,7 +283,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
 		                    _self.radis = 42
 		                    _self.maxv = 10
 		                    _self.coun = 150
-		                    _self.moveTo(map,p.lng,p.lat,14)
+		                    _self.moveTo(map,p.lng,p.lat,13)
 		                    
 		                })
                     }
@@ -448,43 +450,53 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 ctrl.setAnchor(BMAP_ANCHOR_BOTTOM_RIGHT);  
             },
             addHot(map){//热力图
-            		 var _self = this
-                     var points = this.arrHotPoint;
-                     var points = [];
-                     var hotPointA = traffic_points;
+            		 let _self = this
+                     //var points = this.arrHotPoint;
+                     let points = [];
+                     let hotPointA = traffic_points;
                        // 向地图添加标注
-                    var arr = ['飞霞风景名胜区','牛鱼嘴原始生态风景区','天子山瀑布风景区','白庙渔村','飞来寺','美林湖及大家元摩天轮片区',
-                            '太和古洞旅游区','笔架山度假区','安庆村','清泉湾生态旅游度假区','金龙洞','九牛洞村',
-                            '观音山王山寺','田野绿世界','熹乐谷','金龟泉生态度假村','上岳古民居',
-                            '峰林胜境景区','英德老虎谷暗河漂流','九龙小镇','铁溪小镇','仙湖温泉旅游度假区','浈阳坊旅游小镇','大樟沙滩度假村','云水谣','彭家祠',
-                            '清远市连州福山景区','大东山温泉度假区','李屋村','潭岭天湖',
-                            '油岭瑶寨','瑶族舞曲实景演出','云海花谷',
-                            '大旭山瀑布群旅游景区','皇后山','鹰扬关景区','雾山梯田',
-                            '北山古寺','鱼水旅游风景区','龙凤温泉'
-                ]
-                   
-                   
-                    for(let i=0, len = arr.length; i<len; i++){
-                    	var paramsObj = {
+                    	let paramsObj = {
                     		area:"全部",
-                    		name:arr[i]
+                    		name:"全部"
                     	}
+                    	debugger
+                    	//根据景区当前客流来模拟热力图效果
                     	function getResponse(paramsObj){
-				            _self.$axios.get(API_URL+'/qy/api/v2/command/getCommandPassengerData',{params:paramsObj}).then(r => {
+				            _self.$axios.get(API_URL+'/qy/api/v2/command/selectCommandScenicWarning',{params:paramsObj}).then(r => {
 				                if(r.data.code ==="200"||r.data.code ===200){
-				                   //console.log(r.data.data.num)
-				                   var reData = r.data.data
-				                   
-				                   if(hotPointA[i].label===arr[i]){
-				                   		hotPointA[i].total = reData.num
-				                   }
+				                   let reData = r.data.data
+				                   reData.forEach( (v,i) => {
+				                   		hotPointA.forEach( (item,index) => {
+				                   			if(item.label===v.name){
+					                   			hotPointA[i].total = v.currentNum
+					                   		}
+				                   		})
+				                   })
 				                }
 				            })
 				        }
+                    	
                     	getResponse(paramsObj)
                     	
-                    }
-                        for( var j = 0;j < hotPointA.length; j++){
+//                  	 _self.$axios.get(API_URL+'/qy/api/v2/command/getCommandPassengerData',{params:{area:'全部',name:'全部'}}).then(r => {
+//				                if(r.data.code ==="200"||r.data.code ===200){
+//				                   var reData = r.data.data
+//				                   console.log(reData)
+//				                   let date = new Date()
+//				                   let hours = date.getHours()-2
+//				                   let begin = Number(reData.beginTime.substring(11,13))
+//				                   let end = Number(reData.endTime.substring(11,13))
+//				                    if(hours>=begin && hours<=end){
+//				                    	this.isUpdate = false
+//				                    }else{
+//				                    	this.isUpdate = true
+//				                    }
+//				                   console.log(hours,begin,end)
+//				                }
+//				            })
+                    		
+                    	if(this.isUpdate){
+                    		for( var j = 0;j < hotPointA.length; j++){
                            let makeMap = function(){
                             
                                let minX = hotPointA[j].point[0];
@@ -502,7 +514,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                             		lenX = 0.010+Math.random()*0.01
                                     lenY = 0.010+Math.random()*0.01
                             	}
-                               let c = hotPointA[j].total||50
+                               let c = hotPointA[j].total||50  //景区当前人数
                                if(c>300){
                                		c=300
                                }
@@ -515,7 +527,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                                if(c===0){
                                	 c=0
                                }
-                               for (var i = 0; i < c; i++) {
+                               for (var i = 0; i < c; i++) { //模拟经纬度坐标 四个方向均为1/4
                                		r = Math.random()
                                		let lng,
                                			lat
@@ -533,14 +545,15 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                                    		lat = -Math.abs(Math.random())*Math.abs(2*lenY)+minY
                                		}
                                    
-                                   //let count = (Math.random()*hotPointA[j].total).toFixed(0)||(Math.random()*10).toFixed(0)
                                    let count = (Math.random()*5).toFixed(0)
                                    let point = {"lng":lng,"lat":lat,"count":count}
                                    points.push(point)
                                }
                            }
-                             makeMap();
+                           makeMap()
                        }
+                	}
+                        
                       map.enableScrollWheelZoom(); // 允许滚轮缩放
                    
                     if(!isSupportCanvas()){
@@ -638,7 +651,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                  let lenObj ={}
                 if(!isTurist){
                 	lenObj = {
-	                    "全部":{lng:113.06689,lat:23.699107,zoom:11},
+	                    "全部":{lng:113.06689,lat:23.699107,zoom:13},
 	                    "清远市":{lng:113.0323,lat:23.699107,zoom:13},
 	                    "清城":{lng:113.06689,lat:23.704022,zoom:13},
 	                    "清新":{lng:112.991271,lat:23.75427,zoom:13},
@@ -706,7 +719,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 
                 
                 // 添加地图类型控件
-                // map.addControl(new BMap.MapTypeControl());  
+                map.addControl(new BMap.MapTypeControl());  
                 // 设置地图显示的城市 此项是必须设置的
                 map.setCurrentCity("清远");   
                //_self.addScriptForStyle(map); 
@@ -719,6 +732,11 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 
                 添加折线
                 *************************************************/
+               
+               if(!lenObj[val]){
+               	//alert(21212)
+               	return
+               }
                 _self.moveTo(map,lenObj[val  ===  undefined ?"全部": val].lng,lenObj[val  ===  undefined ?"全部": val].lat,lenObj[val  ===  undefined ?"全部": val].zoom,val,lenObj);
                 var pointGZ = new BMap.Point(119.923671,29.514494);
                 var pointHK = new BMap.Point(110.35,20.02);
@@ -735,12 +753,8 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 area:"全部",
             }
             this.$axios.get(API_URL+'/qy/api/v2/command/getCommandScenicHot',{params:paramsObj}).then(r => {
-                if(r.status ===200){
+                if(r.data.code ===200 && r.data.code === "200"){
                 	//console.log(r.data.data)
-                	//r.data.data.forEach( (v,i) => {
-                  		//console.log(v.count)
-                		//v.count+=10
-                	//})
                     //this.arrHotPoint = r.data.data
                     this.addScript("全部",true);
                 }
@@ -755,7 +769,6 @@ import optionProps from '@/common/js/mixin/optionProps.js'
         mounted() {
         },
         update(){
-            //console.log(BMapLib)
         }
     }
 </script>

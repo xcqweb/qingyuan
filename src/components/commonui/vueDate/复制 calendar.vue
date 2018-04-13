@@ -376,9 +376,7 @@ export default {
             if (e != undefined){
             	e.stopPropagation()
             }
-//          this.$emit('select',this.rangeBegin)
-//          return
-//          console.log(this.rangeBegin)
+            
 			//判断跨月选取
 			let l =this.days[k1][k2].day //第一次选中
 			let s = l; //保存第一次选中
@@ -415,8 +413,7 @@ export default {
                     this.rangeBeginTemp = this.rangeBegin
                     this.rangeEnd = [this.year, this.month, this.days[k1][k2].day]
                     this.rangeEndTemp = 0
-                   //this.$emit('select',this.rangeBegin)
-            		//return
+                   
                 } else {
                     this.rangeEnd = [this.year, this.month,this.days[k1][k2].day]
                     this.rangeEndTemp = 1
@@ -449,8 +446,7 @@ export default {
                            this.month = new Date().getMonth()
           				   		this.rangeBegin=[]
                     }else{
-                          //if(lev>950400888888888888888){
-                          if(lev<0){
+                          if(lev>950400){
                             alert('时间跨度不能大于十二天')
                             //this.month = new Date().getMonth()
 							this.rangeEnd=this.rangeBegin

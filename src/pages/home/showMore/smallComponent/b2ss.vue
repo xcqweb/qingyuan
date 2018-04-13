@@ -54,12 +54,12 @@ export default {
 		            data:[
 		                {
 		                    //value:this.dataItem.currentNum,
-		                    value:100,
+		                    value:0,
 		                    name:'01',
 		                },
 		                {
 		                    //value:this.dataItem.warnNum,
-		                    value:30,
+		                    value:100,
 		                    name:'invisible',
 		                    itemStyle : {
 							    normal : {
@@ -115,9 +115,9 @@ export default {
 		},
     	idName:'String',
     	dataItem:{
-			"percent":1,
+			"percent":0,
 			"name":"笔架山度假区",
-			"currentNum":69,
+			"currentNum":0,
 			"warnNum":8000
     	},
         
@@ -154,7 +154,14 @@ export default {
   	getResponse(paramsObj){
         let _self = this;
         this.$axios.get(API_URL+'/qy/api/v2/command/selectCommandScenicWarning',{params:paramsObj}).then(r => {
-            
+            if(r.data.data.length===0){
+            	this.dataItem.name = this.updatePlace.turist
+            	this.dataItem.percent = 0
+            	this.dataItem.currentNum = 0
+            	this.option.series[0].data[0].value = 0
+            	this.redom(this.idName)
+            	return
+            }
             if(r.status ===200){
             	let reData = r.data.data
             	reData.sort(function(a,b){

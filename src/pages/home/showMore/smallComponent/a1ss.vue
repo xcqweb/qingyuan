@@ -101,15 +101,7 @@ export default {
       	idName:'a1ss',
       	type:0,
       	isDate:false,
-      	barData:[
-            {"num":"1293","dayId":"6/14"},
-            {"num":"2331","dayId":"6/15"},
-            {"num":"1012","dayId":"6/16"},
-            {"num":"999","dayId":"6/17"},
-            {"num":"2458","dayId":"6/18"},
-            {"num":"2122","dayId":"6/19"},
-            {"num":"1789","dayId":"6/20"}
-        ],
+      	barData:[],
         scenics:'',
         chart: null,
         xnub:null,
@@ -200,6 +192,27 @@ export default {
                             show:false,
                         }
                     },
+                     dataZoom: [
+			            {
+			                show: false,
+			                start: 0,
+			                end: 100
+			            },
+			            {
+			                type: 'inside',
+			                start: 0,
+			                end: 100
+			            },
+			            {
+			                show: false,
+			                yAxisIndex: 0,
+			                filterMode: 'empty',
+			                width: 30,
+			                height: '80%',
+			                showDataShadow: false,
+			                left: '93%'
+			            }
+			        ],
                     series : [
                     {
                         name:'计划',

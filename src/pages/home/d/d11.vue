@@ -290,7 +290,12 @@ require('echarts-wordcloud');
 
             ],
             option : {
-                tooltip: {},
+                tooltip: {
+                	show:true,
+                	formatter:function(params){
+                		
+                	}
+                },
                 series: [{
                     name: '旅游关键词',
                     type: 'wordCloud',

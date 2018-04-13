@@ -65,24 +65,7 @@
 					this.name= '';
 					this.getResponse(paramsObj,true);
 			},
-//			update:function(val){
-//				var paramsObj = {
-//	                area:this.updatePlace.place,
-//	                name:this.updatePlace.turist,
-//	                pageId:1,
-//	                source:'全部',
-//	                commentType:this.comType ,
-//	                category:this.slectType+1,
-//	                key:"",
-//	                beginTime:val.begin.join('-'),
-//	                endTime:val.end.join('-'),
-//	            }
-//					this.items = []
-//					this.beginTime=val.begin.join('-'),
-//	                this.endTime=val.end.join('-'),
-//					this.getResponse(paramsObj);
-//			},
-			
+						
 			update:{
 	         handler:function(val, oldVal){
 	         	var paramsObj={}
@@ -288,7 +271,7 @@
 	       		var paramsObj = {
 	                area:this.updatePlace.place,
 	                name:this.updatePlace.turist,
-	                type:'day',
+	                type:this.type,
 	                pageId:1,
 	                source:'全部',
 	                commentType:this.comType,

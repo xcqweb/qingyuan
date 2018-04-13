@@ -198,7 +198,7 @@ export default {
 
 
 ul{
-    height:90%;
+    height:79.2%;
     width:100%;
     overflow-y: scroll;
     cursor: all-scroll;

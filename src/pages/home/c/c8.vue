@@ -25,7 +25,7 @@
             </div>
         </div>
       <ul>
-        <li v-for='(item,index) in items'>
+        <li v-for='(item,index) in items' v-show='item.sum'>
             <div class="cell1">
                 {{index+1}}
             </div>
@@ -157,7 +157,7 @@ export default {
     }
 }
 ul{
-    height:90%;
+    height:79.2%;
     width:100%;
     overflow-y: scroll;
     cursor: all-scroll;
