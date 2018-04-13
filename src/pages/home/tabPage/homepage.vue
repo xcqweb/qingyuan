@@ -60,7 +60,7 @@
 <script type="text/javascript">
 import componetstatus from '@/pages/home/componentstatus.js'
 import headerBody from '@/pages/home/header.vue'
-
+import Bus from '@/common/js/bus'
 export default {
         data() {
             return {
@@ -118,12 +118,12 @@ export default {
 		        },
 		        //获取选择时间
 		        choseDateVal(val){
-		        	//console.log(val)
+		        	Bus.$emit('reset');
 		        	this.update = val
-		        	
 		        },
 		        //获取选择年,月,日
 		        choseDayVal(val){
+		        	Bus.$emit('reset');
 		        	this.update = {type:val}
 		        },
             //游客来源联动地图
