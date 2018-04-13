@@ -192,27 +192,27 @@ export default {
                             show:false,
                         }
                     },
-                     dataZoom: [
-			            {
-			                show: false,
-			                start: 0,
-			                end: 100
-			            },
-			            {
-			                type: 'inside',
-			                start: 0,
-			                end: 100
-			            },
-			            {
-			                show: false,
-			                yAxisIndex: 0,
-			                filterMode: 'empty',
-			                width: 30,
-			                height: '80%',
-			                showDataShadow: false,
-			                left: '93%'
-			            }
-			        ],
+//                   dataZoom: [
+//			            {
+//			                show: false,
+//			                start: 0,
+//			                end: 100
+//			            },
+//			            {
+//			                type: 'inside',
+//			                start: 0,
+//			                end: 100
+//			            },
+//			            {
+//			                show: false,
+//			                yAxisIndex: 0,
+//			                filterMode: 'empty',
+//			                width: 30,
+//			                height: '80%',
+//			                showDataShadow: false,
+//			                left: '93%'
+//			            }
+//			        ],
                     series : [
                     {
                         name:'计划',

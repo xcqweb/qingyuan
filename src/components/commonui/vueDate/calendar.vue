@@ -449,15 +449,13 @@ export default {
                            this.month = new Date().getMonth()
           				   		this.rangeBegin=[]
                     }else{
-                          //if(lev>950400888888888888888){
-                          if(lev<0){
+                          if(lev>950400){
+//                        if(lev<0){
                             alert('时间跨度不能大于十二天')
-                            //this.month = new Date().getMonth()
 							this.rangeEnd=this.rangeBegin
 							//console.log(this.rangeBegin,this.rangeEnd)
                         }else{
-					          //this.$emit('select',begin,end,)
-					          	this.$emit('select',begin,end)
+					        this.$emit('select',begin,end)
                         }
                     }
                 }
