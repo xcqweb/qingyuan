@@ -32,247 +32,270 @@ require('echarts-wordcloud');
                 area:val.place,
                 name:val.turist,
                 category:this.slectType+1,
-                type:["day","month","year"][this.upday],
+                type:["day","month","year"][this.type],
             }
+        	this.yunData=[]
      		this.getResponse(paramsObj);
         },
         deep:true,
         },
-        upday:function(val){
-	            var paramsObj = {
+        update:{
+         handler:function(val, oldVal){
+         	var paramsObj={}
+         	if(val.type===0 || val.type===1 || val.type===2){
+         	    paramsObj = {
 	                area:this.updatePlace.place,
 	                name:this.updatePlace.turist,
 	                category:this.slectType+1,
-	                type:["day","month","year"][val],
+	                type:["day","month","year"][val.type],
 	            }
-	            this.items = []
-	            this.getResponse(paramsObj);
-	        },
-	         update:{
-	             handler:function(val, oldVal){
-	                 let end = val.end.join("-")
-	                 let begin = val.begin.join("-")
-	                 var paramsObj = {
-	                    area:this.updatePlace.place,
-	                    name:this.updatePlace.turist,
-	                    category:this.slectType+1,
-	                    beginTime:begin,
-	                    endTime:end
-					}
-	                 this.getResponse(paramsObj);
-	             },
-	             deep:true,
+         	}else{
+         		let end = val.end.join("-")
+                 let begin = val.begin.join("-")
+                paramsObj = {
+                    area:this.updatePlace.place,
+                    name:this.updatePlace.turist,
+                    category:this.slectType+1,
+                    beginTime:begin,
+                    endTime:end
+				}
+         	}
+             
+             this.getResponse(paramsObj);
+         },
+         deep:true,
+        },
+	        
+	        hotelChose:function(val){
+	        	this.hotel = val
+	        	var paramsObj = {
+	                area:this.updatePlace.place,
+	                name:val,
+	                category:this.slectType+1,
+	                type:["day","month","year"][this.type],
+	           	 }
+        		this.yunData=[]
+                this.getResponse(paramsObj);
 	        },
         slectType:function(val){
+        	if(val===0){this.hotel=''}
         		var paramsObj = {
-                area:this.updatePlace.place,
-                name:this.updatePlace.turist,
-                category:val+1,
-                type:["day","month","year"][this.upday],
+	                area:this.updatePlace.place,
+	                name:this.hotel||this.updatePlace.turist,
+	                category:val+1,
+	                type:["day","month","year"][this.type],
            	 }
+        		this.yunData=[]
                 this.getResponse(paramsObj);
         }
     },
     data() {
         return {
+        	hotel:'',
+        	type:2,
             chart:null,
             yunData:[
-                {
-                    "name": "清远",
-                    "value": 8
-                },
-                {
-                    "name": "文化",
-                    "value": 6
-                },
-                {
-                    "name": "位于",
-                    "value": 6
-                },
-                {
-                    "name": "禅院",
-                    "value": 5
-                },
-                {
-                    "name": "连州",
-                    "value": 5
-                },
-                {
-                    "name": "市区",
-                    "value": 4
-                },
-                {
-                    "name": "多米",
-                    "value": 4
-                },
-                {
-                    "name": "地下河",
-                    "value": 4
-                },
-                {
-                    "name": "山中",
-                    "value": 3
-                },
-                {
-                    "name": "北江",
-                    "value": 3
-                },
-                {
-                    "name": "体验",
-                    "value": 3
-                },
-                {
-                    "name": "名族风情多米",
-                    "value": 3
-                },
-                {
-                    "name": "景区",
-                    "value": 3
-                },
-                {
-                    "name": "英德",
-                    "value": 3
-                },
-                {
-                    "name": "凤凰台",
-                    "value": 3
-                },
-                {
-                    "name": "飞来峡",
-                    "value": 3
-                },
-                {
-                    "name": "长湖",
-                    "value": 3
-                },
-                {
-                    "name": "岩壁",
-                    "value": 3
-                },
-                {
-                    "name": "禅宗",
-                    "value": 3
-                },
-                {
-                    "name": "溶洞",
-                    "value": 3
-                },
-                {
-                    "name": "风光",
-                    "value": 2
-                },
-                {
-                    "name": "漂流",
-                    "value": 2
-                },
-                {
-                    "name": "温泉",
-                    "value": 2
-                },
-                {
-                    "name": "清新",
-                    "value": 2
-                },
-                {
-                    "name": "山水",
-                    "value": 2
-                },
-                {
-                    "name": "之中",
-                    "value": 2
-                },
-                {
-                    "name": "中心",
-                    "value": 2
-                },
-                {
-                    "name": "三峡",
-                    "value": 2
-                },
-                {
-                    "name": "石刻",
-                    "value": 2
-                },
-                {
-                    "name": "特色",
-                    "value": 2
-                },
-                {
-                    "name": "新兴",
-                    "value": 2
-                },
-                {
-                    "name": "打造",
-                    "value": 2
-                },
-                {
-                    "name": "广东",
-                    "value": 2
-                },
-                {
-                    "name": "锋林",
-                    "value": 2
-                },
-                {
-                    "name": "便是",
-                    "value": 2
-                },
-                {
-                    "name": "趣园",
-                    "value": 2
-                },
-                {
-                    "name": "群山",
-                    "value": 2
-                },
-                {
-                    "name": "燕子",
-                    "value": 2
-                },
-                {
-                    "name": "凤城",
-                    "value": 2
-                },
-                {
-                    "name": "旅游",
-                    "value": 2
-                },
-                {
-                    "name": "成为",
-                    "value": 2
-                },
-                {
-                    "name": "通天",
-                    "value": 2
-                },
-                {
-                    "name": "清远市",
-                    "value": 2
-                },
-                {
-                    "name": "山洞",
-                    "value": 2
-                },
-                {
-                    "name": "三大",
-                    "value": 2
-                },
-                {
-                    "name": "风光",
-                    "value": 2
-                },
-                {
-                    "name": "一洞",
-                    "value": 2
-                },
-                {
-                    "name": "5A",
-                    "value": 2
-                }
+//              {
+//                  "name": "清远",
+//                  "value": 8
+//              },
+//              {
+//                  "name": "文化",
+//                  "value": 6
+//              },
+//              {
+//                  "name": "位于",
+//                  "value": 6
+//              },
+//              {
+//                  "name": "禅院",
+//                  "value": 5
+//              },
+//              {
+//                  "name": "连州",
+//                  "value": 5
+//              },
+//              {
+//                  "name": "市区",
+//                  "value": 4
+//              },
+//              {
+//                  "name": "多米",
+//                  "value": 4
+//              },
+//              {
+//                  "name": "地下河",
+//                  "value": 4
+//              },
+//              {
+//                  "name": "山中",
+//                  "value": 3
+//              },
+//              {
+//                  "name": "北江",
+//                  "value": 3
+//              },
+//              {
+//                  "name": "体验",
+//                  "value": 3
+//              },
+//              {
+//                  "name": "名族风情多米",
+//                  "value": 3
+//              },
+//              {
+//                  "name": "景区",
+//                  "value": 3
+//              },
+//              {
+//                  "name": "英德",
+//                  "value": 3
+//              },
+//              {
+//                  "name": "凤凰台",
+//                  "value": 3
+//              },
+//              {
+//                  "name": "飞来峡",
+//                  "value": 3
+//              },
+//              {
+//                  "name": "长湖",
+//                  "value": 3
+//              },
+//              {
+//                  "name": "岩壁",
+//                  "value": 3
+//              },
+//              {
+//                  "name": "禅宗",
+//                  "value": 3
+//              },
+//              {
+//                  "name": "溶洞",
+//                  "value": 3
+//              },
+//              {
+//                  "name": "风光",
+//                  "value": 2
+//              },
+//              {
+//                  "name": "漂流",
+//                  "value": 2
+//              },
+//              {
+//                  "name": "温泉",
+//                  "value": 2
+//              },
+//              {
+//                  "name": "清新",
+//                  "value": 2
+//              },
+//              {
+//                  "name": "山水",
+//                  "value": 2
+//              },
+//              {
+//                  "name": "之中",
+//                  "value": 2
+//              },
+//              {
+//                  "name": "中心",
+//                  "value": 2
+//              },
+//              {
+//                  "name": "三峡",
+//                  "value": 2
+//              },
+//              {
+//                  "name": "石刻",
+//                  "value": 2
+//              },
+//              {
+//                  "name": "特色",
+//                  "value": 2
+//              },
+//              {
+//                  "name": "新兴",
+//                  "value": 2
+//              },
+//              {
+//                  "name": "打造",
+//                  "value": 2
+//              },
+//              {
+//                  "name": "广东",
+//                  "value": 2
+//              },
+//              {
+//                  "name": "锋林",
+//                  "value": 2
+//              },
+//              {
+//                  "name": "便是",
+//                  "value": 2
+//              },
+//              {
+//                  "name": "趣园",
+//                  "value": 2
+//              },
+//              {
+//                  "name": "群山",
+//                  "value": 2
+//              },
+//              {
+//                  "name": "燕子",
+//                  "value": 2
+//              },
+//              {
+//                  "name": "凤城",
+//                  "value": 2
+//              },
+//              {
+//                  "name": "旅游",
+//                  "value": 2
+//              },
+//              {
+//                  "name": "成为",
+//                  "value": 2
+//              },
+//              {
+//                  "name": "通天",
+//                  "value": 2
+//              },
+//              {
+//                  "name": "清远市",
+//                  "value": 2
+//              },
+//              {
+//                  "name": "山洞",
+//                  "value": 2
+//              },
+//              {
+//                  "name": "三大",
+//                  "value": 2
+//              },
+//              {
+//                  "name": "风光",
+//                  "value": 2
+//              },
+//              {
+//                  "name": "一洞",
+//                  "value": 2
+//              },
+//              {
+//                  "name": "5A",
+//                  "value": 2
+//              }
 
             ],
             option : {
-                tooltip: {},
+                tooltip: {
+                	show:true,
+                	formatter:function(params){
+                		
+                	}
+                },
                 series: [{
                     name: '旅游关键词',
                     type: 'wordCloud',
@@ -284,9 +307,9 @@ require('echarts-wordcloud');
                         normal: {
                             color: function() {
                                 return 'rgb(' + [
-                                    Math.round(Math.random() * 255),
-                                    Math.round(Math.random() * 255),
-                                    Math.round(Math.random() * 20)
+                                    Math.round(Math.random() * 212+43),
+                                    Math.round(Math.random() * 191+64),
+                                    Math.round(Math.random() * 67+188)
                                 ].join(',') + ')';
                             }
                         },
@@ -313,10 +336,10 @@ require('echarts-wordcloud');
     },
     methods:{
         redom(id){
+        	if(this.chart){
+        		this.chart.dispose()
+        	}
             this.chart = echarts.init(document.getElementById(id));
-            // let maskImage = new Image();
-            // maskImage =  require("../../../assets/images/wifi.png");
-            // this.option.series[0].maskImage = maskImage;
             var JosnList = [];
             JosnList.push(...this.yunData);
             
@@ -328,12 +351,13 @@ require('echarts-wordcloud');
             });
         },
         getResponse(paramsObj){
-            this.$axios.get(API_URL+'/qy/api/command/getKeWords',{params:paramsObj}).then(r => {
+            this.$axios.get(API_URL+'/qy/api/v2/command/getKeWords',{params:paramsObj}).then(r => {
 				//console.log(r)
-                if(r.data.code ==="200"||r.data.code ===200){
+                if(r.data.code ==='200'||r.data.code ===200){
                     this.yunData = r.data.data;
-                     this.$nextTick(echarts_resize('chartId',this))
+                    this.$nextTick(echarts_resize('chartId',this))
                 }
+                
             })
         }
     },
@@ -342,6 +366,7 @@ require('echarts-wordcloud');
                 area:"全部",
                 name:"全部",
                 category:this.slectType+1,
+                type:'year'
                 //limit:5 //关键字个数
             }
        this.getResponse(paramsObj);

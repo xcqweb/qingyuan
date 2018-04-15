@@ -70,8 +70,8 @@ export default {
         	nowYear:nowYear,
             mowMonth:mowMonth,
             dataMsg:{
-                yesterdayNum:'15642',
-                num:'653254',
+                yesterdayNum:'0',
+                num:'0',
             }
         }
     },

@@ -54,11 +54,6 @@
 <script>
 import echarts_resize from '@/common/js/echarts_resize.js'
  import echarts from 'echarts';
-import { mapGetters } from 'vuex'
-import store from '@/vuex/index' 
-import { mapActions } from 'vuex'
-import timeMixin from '@/common/js/mixin/timeMixin.js'
-import Vue from 'vue'
 import optionProps from '@/common/js/mixin/optionProps.js'
 import RW from '@/common/js/until/index.js'
 export default {
@@ -71,28 +66,31 @@ export default {
             var paramsObj = {
                 area:this.updatePlace.place,
                 name:this.updatePlace.turist,
-                type:["day","month","year"][this.upday],
+                type:["day","month","year"][this.type],
             }
             this.getResponse(paramsObj);
         },
-        upday:function(val){
-            var paramsObj = {
-                area:this.updatePlace.place,
-                name:this.updatePlace.turist,
-                type:["day","month","year"][val],
-            }
-            this.getResponse(paramsObj);
-        },
-        update:{
+          update:{
              handler:function(val, oldVal){
-                 let end = val.end.join("-")
-                 let begin = val.begin.join("-")
-                 var paramsObj = {
-                    area:this.updatePlace.place,
-                    name:this.updatePlace.turist,
-                    beginTime:begin,
-                    endTime:end
-                }
+             	var paramsObj={}
+             	if(val.type===0 || val.type===1 || val.type===2){
+             		this.type=val.type
+             	    paramsObj = {
+		                area:this.updatePlace.place,
+		                name:this.updatePlace.turist,
+		                type:["day","month","year"][val.type],
+		            }
+             	}else{
+             		let end = val.end.join("-")
+	                 let begin = val.begin.join("-")
+	                paramsObj = {
+	                    area:this.updatePlace.place,
+	                    name:this.updatePlace.turist,
+	                    beginTime:begin,
+	                    endTime:end
+					}
+             	}
+                 
                  this.getResponse(paramsObj);
              },
              deep:true,
@@ -101,42 +99,15 @@ export default {
     data() {
       return {
       	idName:'a1ss',
+      	type:0,
       	isDate:false,
-      	barData:[
-            {"num":"1293","dayId":"6/14"},
-            {"num":"2331","dayId":"6/15"},
-            {"num":"1012","dayId":"6/16"},
-            {"num":"999","dayId":"6/17"},
-            {"num":"2458","dayId":"6/18"},
-            {"num":"2122","dayId":"6/19"},
-            {"num":"1789","dayId":"6/20"}
-        ],
+      	barData:[],
         scenics:'',
         chart: null,
         xnub:null,
         ynub:null,
         loading:true,
         reloading:false,
-        
-        oneweekMock:[
-            {"nub":"1293","date":"6/14"},
-            {"nub":"2331","date":"6/15"},
-            {"nub":"1012","date":"6/16"},
-            {"nub":"999","date":"6/17"},
-            {"nub":"2458","date":"6/18"},
-            {"nub":"2122","date":"6/19"},
-            {"nub":"1789","date":"6/20"}
-        ],
-        opinion: ['学习氛围差', '学习氛围一般', '学习氛围很好'],
-        opinionData1: [
-
-        ],
-        opinionData2: this.$store.state.data,
-        opinionData: [
-            {value:26, name:'学习氛围差'},
-            {value:31, name:'学习氛围一般'},
-            {value:8, name:'学习氛围很好'}
-          ],
         option:{
                     backgroundColor: 'rgba(0,0,0,0)',
                     color: ['#1F6ABB','#3897C5','#A4C5E6'],
@@ -221,6 +192,27 @@ export default {
                             show:false,
                         }
                     },
+//                   dataZoom: [
+//			            {
+//			                show: false,
+//			                start: 0,
+//			                end: 100
+//			            },
+//			            {
+//			                type: 'inside',
+//			                start: 0,
+//			                end: 100
+//			            },
+//			            {
+//			                show: false,
+//			                yAxisIndex: 0,
+//			                filterMode: 'empty',
+//			                width: 30,
+//			                height: '80%',
+//			                showDataShadow: false,
+//			                left: '93%'
+//			            }
+//			        ],
                     series : [
                     {
                         name:'计划',
@@ -246,7 +238,7 @@ export default {
                             position:'top',
                             textStyle:{
                                 color:'#2CC9E2',
-                                fontSize:20
+                                fontSize:16
                             }
                         }
                        },
@@ -256,7 +248,6 @@ export default {
             }//option
       }
     },
-    store:store,
     computed:{
 
       isCase:{
@@ -279,10 +270,7 @@ export default {
 			this.$axios.get(API_URL+'/qy/api/v2/view/getDayCountData',{params:paramsObj}).then(r => {
                 if(r.data.code ==="200"||r.data.code ===200){
                 	//console.log(r)
-                    this.rankItems = r.data.data; 
                     this.barData = r.data.data[0].value; 
-                    this.twoWeekMock = r.data.data[0].value;
-                    
                     this.redom7()
                 }
             })
@@ -307,19 +295,7 @@ export default {
       	
       this.$nextTick(echarts_resize(this.idName,this,dataX,dataY))
     },
-    redom14(){
-        if(this.chart){
-            this.chart.dispose();
-        }
-        let dataY=[];
-        let dataX=[];
-        for (var i = 0; i < this.twoWeekMock.length; i++) {
-            dataY.push(this.twoWeekMock[i].num);
-            dataX.push(this.twoWeekMock[i].dayId)
-        }
-    // this.isActive=false;
-    this.$nextTick(echarts_resize(this.idName,this, this.upday===1?RW.array_until.transformDate(dataX):dataX,dataY))
-    },
+ 
       redom (id,xyfonsiz,datax,datay) {
         var _self= this;
         _self.loading=false;
@@ -330,7 +306,6 @@ export default {
         this.chart.setOption(_self.option)
       }
     },
-    components:{},
     mounted() {
                 //   this.isActive=true;
                 let dataY=[];

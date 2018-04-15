@@ -325,6 +325,8 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 // 开启鼠标滚轮缩放      
                 map.enableScrollWheelZoom(true);
                 // debugger
+                
+                if(!lenObj[val]){return}
                 _self.moveTo(map,lenObj[val  ===  undefined ?"全部": val].lng,lenObj[val  ===  undefined ?"全部": val].lat,lenObj[val  ===  undefined ?"全部": val].zoom);
                 // 设置定时器，对地图进行自动移动
                 // this.mapMoveSelf

@@ -1,6 +1,7 @@
 <template>
 <div class="content">
   <div id="c12"></div>
+  <p class="time">2018-04</p>
   <ul class="legend">
   	<li v-for="(item,i) in series">
   		<p>{{item.percent}}%</p>
@@ -72,6 +73,11 @@ export default {
 		      name: '南昌',
 		      	percent:''
 		    },
+//		     {
+//		       "value": 80,
+//		      	name: '南昌',
+//		      	percent:''
+//		    },
 		  ],
 		  
         color:['#4EBBFC','#57ABFE', '#368DF7', '#7E6AF6', '#FF8885','#FFCD38',  '#E39A50', '#75CF65','#B8E986', '#86E9E8', '#58E5E1','#4BCEDD'],
@@ -83,43 +89,44 @@ export default {
 	            var paramsObj = {
 	                area:this.updatePlace.place,
 	                name:this.updatePlace.turist,
-	                type:["day","month","year"][this.upday],
-	            }
-	            this.getResponse(paramsObj);
-	        },
-	        upday:function(val){
-	            var paramsObj = {
-	                area:this.updatePlace.place,
-	                name:this.updatePlace.turist,
-	                type:["day","month","year"][this.upday],
+	                //type:["day","month","year"][this.upday],
 	            }
 	            this.getResponse(paramsObj);
 	        },
 	        update:{
-	             handler:function(val, oldVal){
-	                 let end = val.end.join("-")
+             handler:function(val, oldVal){
+             	var paramsObj={}
+             	if(val.type===0 || val.type===1 || val.type===2){
+             		this.type=val.type
+             	    paramsObj = {
+		                area:this.updatePlace.place,
+		                name:this.updatePlace.turist,
+		                type:["day","month","year"][val.type],
+		            }
+             	}else{
+             		let end = val.end.join("-")
 	                 let begin = val.begin.join("-")
-	                 var paramsObj = {
+	                paramsObj = {
 	                    area:this.updatePlace.place,
 	                    name:this.updatePlace.turist,
 	                    beginTime:begin,
 	                    endTime:end
 					}
-	                 this.getResponse(paramsObj);
-	             },
-	             deep:true,
-	        }
+             	}
+                 
+                 this.getResponse(paramsObj);
+             },
+             deep:true,
+        }
     },
     methods:{
 	  	getResponse(paramsObj){
             this.$axios.get(API_URL+'/qy/api/v2/view/getPersonSourceCity',{params:paramsObj}).then(r => {
                 if(r.data.code ==="200"||r.data.code ===200){
                 	let reData = r.data.data.inCountryCity;
+                	this.series=[];
                 	reData.forEach( (item,index) => {
-                		this.series[index].name = item.city;
-                		//this.series[index].value = Math.sqrt(item.num);
-                		this.series[index].value = item.num;
-                		this.series[index].percent = item.zhanRate.toFixed(1);
+                			this.series.push({name:item.city,value:item.num,percent:item.zhanRate.toFixed(1)})
                 	})
                     this.redom("c12");
                 }
@@ -127,7 +134,10 @@ export default {
        },
 	  	
         redom(id){
-        	let _self = this
+        		let _self = this
+        		if(this.chart){
+        			this.chart.dispose()
+        		}
             this.chart = echarts.init(document.getElementById(id));
             let option = {
             color:['#4EBBFC','#57ABFE', '#368DF7', '#7E6AF6', '#FF8885','#FFCD38',  '#E39A50', '#75CF65','#B8E986', '#86E9E8', '#58E5E1','#4BCEDD'],
@@ -167,7 +177,7 @@ export default {
                     name:'消费偏好',
                     type:'pie',
                     radius : ['0%', '65%'],
-                    center : ['26%', '65%'],
+                    center : ['28%', '65%'],
                     roseType : 'area',
                     label: {
 		                normal: {
@@ -219,8 +229,17 @@ export default {
 #c12{
     width:100%;
     height:100%;
-    transform: scale(1.2);
 }
+
+.time{
+	position: absolute;
+	color: #fff;
+	bottom: 80px;
+	width: 58%;
+	font-size: 14px;
+	text-align: center;
+}
+
 .legend{
 	width: 36%;
 	height: 66%;

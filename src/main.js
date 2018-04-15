@@ -7,8 +7,10 @@ import router from './router'
 import axios from 'axios'
 import store from './vuex/index.js'
 import Rw from '@/common/js/until/index'
+import instance from '@/http'
+
 Vue.directive('echarts', require('./common/js/directives/vDirechartsE.js'));
-Vue.prototype.$axios = axios; 
+Vue.prototype.$axios = instance; 
 Vue.prototype.$Rw = Rw;
 Vue.config.productionTip = false
 Vue.config.devtools = true
@@ -16,6 +18,7 @@ Vue.config.devtools = true
 // var API_URL = "http://125.91.215.236:81"
 //测试
 var API_URL = "http://120.55.190.57"
+//var API_URL = "http://localhost:8081"
 //var API_URL1 = "http://localhost"
 window.API_URL = API_URL
 if( API_URL === "http://120.55.190.57"){

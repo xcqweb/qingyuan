@@ -13,7 +13,6 @@
     top: 6%;
     bottom: 0;
     margin: auto;
-     transform: scale(1); 
   }
 </style>
 <template>
@@ -62,7 +61,7 @@
                                 	color:'#fff',
                                 	fontSize:15,
                                     formatter:function(params){
-                                    	return (params.name).substr(0,12)+"\n"+(params.name).substr(10)+"\n"+params.percent+"%"
+                                    	return (params.name).substr(0,12)+"\n"+(params.name).substr(12)+""+params.percent+"%"
                                     }
                                 }
                             },
@@ -106,6 +105,9 @@
 	    },
 		 methods:{
             redom(id){
+            	if(this.chart){
+	        		this.chart.dispose()
+	        	}
                 this.chart = echarts.init(document.getElementById(id));
                 this.chart.setOption(this.option);
                 this.chart.on('click', function (params) {
@@ -118,6 +120,21 @@
               this.$axios.get('http://120.55.190.57/qy/api/command/selectCommandScenicRaiseUp',{params:paramsObj}).then(r => {
             	let reData = r.data.data
             	//console.log(reData);
+            	if(reData.length>5){
+            		var arr=[]
+            		var sum=0
+            		reData.forEach( (item,index) => {
+            			if(index<=3){
+            				arr.push({percent:item.percent,name:item.name})
+            			}else{
+            				sum+=item.percent
+            			}
+            		})
+            		arr[4]={percent:sum,name:'其他'}
+            		reData = arr
+            	}
+            	
+            	
             	_self.option.series[0].data = []
                 if(r.status ===200){
                 	for(let i=0; i<reData.length; ++i){

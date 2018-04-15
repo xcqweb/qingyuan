@@ -1,7 +1,7 @@
 <template>
   <div class="c7">
   	<div class="btn">
-  		<div :class="{'active':active===1}" @click="toggle(1,'inCountryCity')">全国(市)</div>
+  		<div :class="{'active':active===1}" @click="toggle(1,'inCountryCity')" >全国(市)</div>
   		<div :class="{'active':active===2}" @click="toggle(2,'inProvinceCity')">省内(市)</div>
   		<div :class="{'active':active===3}" @click="toggle(3,'inCountryProvince')">全国(省)</div>
   	</div>
@@ -64,6 +64,7 @@ export default {
     data(){
         return{
         active:1,
+        type:0,
         cityTypes:'inCountryCity',
         msg:'Hello Vue 来自App.vue',
         allData:[],
@@ -75,28 +76,32 @@ export default {
             var paramsObj = {
                 area:val.place,
                 name:val.turist,
-                type:["day","month","year"][this.upday],
+                type:["day","month","year"][this.type],
             }
             this.getResponse(paramsObj);
         },
-        upday:function(val){
-            var paramsObj = {
-                area:this.updatePlace.place,
-                name:this.updatePlace.turist,
-                type:["day","month","year"][this.upday],
-            }
-            this.getResponse(paramsObj);
-        },
-        update:{
+       
+         update:{
              handler:function(val, oldVal){
-                 let end = val.end.join("-")
-                 let begin = val.begin.join("-")
-                 var paramsObj = {
-                    area:this.updatePlace.place,
-                    name:this.updatePlace.turist,
-                    beginTime:begin,
-                    endTime:end
-								}
+             	var paramsObj={}
+             	if(val.type===0 || val.type===1 || val.type===2){
+             		this.type = val.type
+             	    paramsObj = {
+		                area:this.updatePlace.place,
+		                name:this.updatePlace.turist,
+		                type:["day","month","year"][val.type],
+		            }
+             	}else{
+             		let end = val.end.join("-")
+	                 let begin = val.begin.join("-")
+	                paramsObj = {
+	                    area:this.updatePlace.place,
+	                    name:this.updatePlace.turist,
+	                    beginTime:begin,
+	                    endTime:end
+					}
+             	}
+                 
                  this.getResponse(paramsObj);
              },
              deep:true,
@@ -106,7 +111,7 @@ export default {
     	var paramsObj = {
                 area:"全部",
                 name:"全部",
-                type:"day",
+                type:'day'
             }
        this.getResponse(paramsObj);
     },
@@ -123,6 +128,7 @@ export default {
     			this.$emit('toggleProvince',2)
     		}
     	},
+    	
     	
     	//获取数据
     	getResponse(paramsObj){
@@ -163,16 +169,19 @@ export default {
     		height: 40px;
     		line-height: 40px;
     		border-radius: 20px;
-    		background-color: #3782cb;
+    		background: #3782cb;
     		border: none;
     		color: #fff;
+    		position: relative; 
+    		overflow: hidden; 
     		&:active{
     			border: none;
     		}
     	}
     	.active{
-    		background-color: #fe3448;
-    		border: none;
+    			border: none;
+					background: linear-gradient(45deg ,#fe3448 10%,#ff9900);
+    			
     	}
     }
     
@@ -189,7 +198,7 @@ export default {
 
 
 ul{
-    height:90%;
+    height:79.2%;
     width:100%;
     overflow-y: scroll;
     cursor: all-scroll;

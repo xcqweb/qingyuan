@@ -22,10 +22,7 @@ img{
 </style>
 <template>
     <div class="map_content2">
-        <div v-show="isActive" :id="idName" class="fromEcharts"></div>
-        <div class="oneStation" v-show="!isActive">
-             <img :src="imgStation"/>
-        </div>
+        <div :id="idName" class="fromEcharts"></div>
     </div>
 </template>
 
@@ -37,39 +34,43 @@ import 'echarts/lib/chart/map';
 import guangdong from 'echarts/map/json/province/guangdong.json'
 import optionProps from '@/common/js/mixin/optionProps.js'
 export default {
-	name: '',
+	name: 'shengnei',
 	mixins:[optionProps],
 	   watch:{
 	    	updatePlace:function(val){
 	            var paramsObj = {
 	                area:this.updatePlace.place,
 	                name:this.updatePlace.turist,
-	                type:["day","month","year"][this.upday],
+	                type:["day","month","year"][this.type],
 	            }
 	            this.getResponse(paramsObj);
 	        },
-	        upday:function(val){
-	            var paramsObj = {
-	                area:this.updatePlace.place,
-	                name:this.updatePlace.turist,
-	                type:["day","month","year"][this.upday],
-	            }
-	            this.getResponse(paramsObj);
-	        },
-	        update:{
-	             handler:function(val, oldVal){
-	                 let end = val.end.join("-")
+	        
+	          update:{
+             handler:function(val, oldVal){
+             	var paramsObj={}
+             	if(val.type===0 || val.type===1 || val.type===2){
+             		this.type = val.type
+             	    paramsObj = {
+		                area:this.updatePlace.place,
+		                name:this.updatePlace.turist,
+		                type:["day","month","year"][val.type],
+		            }
+             	}else{
+             		let end = val.end.join("-")
 	                 let begin = val.begin.join("-")
-	                 var paramsObj = {
+	                paramsObj = {
 	                    area:this.updatePlace.place,
 	                    name:this.updatePlace.turist,
 	                    beginTime:begin,
 	                    endTime:end
 					}
-	                 this.getResponse(paramsObj);
-	             },
-	             deep:true,
-	        }
+             	}
+                 
+                 this.getResponse(paramsObj);
+             },
+             deep:true,
+        }
 	    },
 	  data () {
 	    return {
@@ -82,19 +83,16 @@ export default {
 		    	{"num":50,"city":'云浮市'},
 		    	{"num":60,"city":'汕头市'},
 	    	],
-	    	idName:'province',
-	        imgStation:require('../../../../assets/loading.jpg'),
+	    		idName:'province',
+	    		type:0,
 	        chart:null,
 	        isActive:false,
-	        // isActive:false,
-	        // b16sJson:b16sJson,
 	        planePath:'path://M1705.06,1318.313v-89.254l-319.9-221.799l0.073-208.063c0.521-84.662-26.629-121.796-63.961-121.491c-37.332-0.305-64.482,36.829-63.961,121.491l0.073,208.063l-319.9,221.799v89.254l330.343-157.288l12.238,241.308l-134.449,92.931l0.531,42.034l175.125-42.917l175.125,42.917l0.531-42.034l-134.449-92.931l12.238-241.308L1705.06,1318.313z',
 	        option : {
 	            backgroundColor: 'rgba(0,0,0,0)',
 	            tooltip: {
 	                trigger: 'item',
 	                formatter:function(params){
-	                	//console.log(params)
 	                }
 	            },
 	            geo: {
@@ -155,7 +153,7 @@ export default {
     	var paramsObj = {
                 area:this.updatePlace.place,
 	              name:this.updatePlace.turist,
-	              type:["day","month","year"][this.upday],
+	              type:'day'
             }
        this.getResponse(paramsObj);
     },

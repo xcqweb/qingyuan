@@ -33,28 +33,31 @@ export default {
             var paramsObj = {
                 area:this.updatePlace.place,
                 name:this.updatePlace.turist,
-                type:["day","month","year"][this.upday],
+                type:["day","month","year"][this.type],
             }
             this.getResponse(paramsObj);
         },
-        upday:function(val){
-            var paramsObj = {
-                area:this.updatePlace.place,
-                name:this.updatePlace.turist,
-                type:["day","month","year"][this.upday],
-            }
-            this.getResponse(paramsObj);
-        },
-        update:{
+       update:{
              handler:function(val, oldVal){
-                 let end = val.end.join("-")
-                 let begin = val.begin.join("-")
-                 var paramsObj = {
-                    area:this.updatePlace.place,
-                    name:this.updatePlace.turist,
-                    beginTime:begin,
-                    endTime:end
-				}
+             	var paramsObj={}
+             	if(val.type===0 || val.type===1 || val.type===2){
+             		this.type=val.type
+             	    paramsObj = {
+		                area:this.updatePlace.place,
+		                name:this.updatePlace.turist,
+		                type:["day","month","year"][val.type],
+		            }
+             	}else{
+             		let end = val.end.join("-")
+	                 let begin = val.begin.join("-")
+	                paramsObj = {
+	                    area:this.updatePlace.place,
+	                    name:this.updatePlace.turist,
+	                    beginTime:begin,
+	                    endTime:end
+					}
+             	}
+                 
                  this.getResponse(paramsObj);
              },
              deep:true,
@@ -64,6 +67,7 @@ export default {
     return{
     	idName:'nianlingpie',
     	scenic:'',
+    	type:0,
     	isActive:true,
         option:{
           backgroundColor: 'rgba(0, 0, 0, 0)',
@@ -138,7 +142,7 @@ export default {
                         }
                 },
                 data:[
-	            {"value":0, "name":"0-19"},
+	            {"value":100, "name":"0-19"},
 	            {"value":0, "name":"20-25"},
 	            {"value":0, "name":"26-35"},
 	            {"value":0, "name":"36-45"},
@@ -153,8 +157,20 @@ export default {
     	//获取数据
     	getResponse(paramsObj){
             this.$axios.get(API_URL+'/qy/api/v2/view/getDayAgeData',{params:paramsObj}).then(r => {
+            	if(!r){
+            		this.pieData={"0-19":0,"20-25":100,"26-35":0, "36-45":0,"46-55":0,"55以上":0}
+            		this.option.series[0].label.normal.show = false
+            		this.option.series[0].label.emphasis.show = false
+            		this.option.tooltip.show = false
+            		this.option.legend.show = false
+            		this.redom(this.idName)
+            		return
+            	}
                 if(r.data.code ==="200"||r.data.code ===200){
-                  	//console.log(r.data)
+                	this.option.series[0].label.normal.show = true
+            		this.option.series[0].label.emphasis.show = true
+            		this.option.tooltip.show = true
+            		this.option.legend.show = true
                     this.pieData = r.data.data[0]; 
                     this.redom(this.idName)
                 }
@@ -162,6 +178,9 @@ export default {
        },
     	
         redom(id){
+        	if(this.chart){
+        		this.chart.dispose()
+        	}
             this.chart = echarts.init(document.getElementById(id));
             this.option.series[0].data.forEach((item,index)=>{
                         item.value = this.pieData[item.name].toFixed(1);

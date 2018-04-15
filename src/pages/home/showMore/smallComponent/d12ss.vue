@@ -102,10 +102,6 @@
 <template>
   <div class="main_content" id="A1loding">
     <div :id="idName" class="itembox"></div>
-    <!-- <div class="week">
-        <span class="oneweek " v-bind:class="{ chose: isActive }" @click='redom7'>7日</span>
-        <span class="twoweek" v-bind:class="{ chose: !isActive }" @click='redom14'>14日</span>
-    </div> -->
      <div class="scenic">{{scenics}}</div>
   </div>
 </template>
@@ -127,35 +123,39 @@ export default {
             var paramsObj = {
                 area:val.place,
                 name:val.turist,
-                type:["day","month","year"][this.upday],
+                type:["day","month","year"][this.type],
             }
             this.getResponse(paramsObj);
         },
          update:{
              handler:function(val, oldVal){
-                 let end = val.end.join("-")
-                 let begin = val.begin.join("-")
-                 var paramsObj = {
-                    area:this.updatePlace.place,
-                    name:this.updatePlace.turist,
-                    beginTime:begin,
-                    endTime:end
-                }
+             	var paramsObj={}
+             	if(val.type===0 || val.type===1 || val.type===2){
+             		this.type=val.type
+             	    paramsObj = {
+		                area:this.updatePlace.place,
+		                name:this.updatePlace.turist,
+		                type:["day","month","year"][val.type],
+		            }
+             	}else{
+             		let end = val.end.join("-")
+	                 let begin = val.begin.join("-")
+	                paramsObj = {
+	                    area:this.updatePlace.place,
+	                    name:this.updatePlace.turist,
+	                    beginTime:begin,
+	                    endTime:end
+					}
+             	}
+                 
                  this.getResponse(paramsObj);
              },
              deep:true,
-        },
-        upday:function(val){
-            var paramsObj = {
-                area:this.updatePlace.place,
-                name:this.updatePlace.turist,
-                type:["day","month","year"][val]
-            }
-             this.getResponse(paramsObj);
         }
     },
     data() {
       return {
+      	type:0,
       	idName:'d12ss',
         scenics:'',
         isActive:true,
@@ -246,7 +246,7 @@ export default {
                     fontSize: 6,
                     scale: true,
                     lineStyle:2,
-                    splitNumber:14,
+                    splitNumber:20,
                     minInterval:7,
                     axisLine: { //坐标轴轴线相关设置。就是数学上的x轴
                          show: true,
@@ -376,7 +376,7 @@ export default {
             this.$axios.get(API_URL+'/qy/api/v2/view/selectCommandScenicStayHours',{params:paramsObj}).then(r => {
                 
                 if(r.data.code ==="200"||r.data.code ===200){
-                    //console.log(r.data.data)
+                      //console.log(r.data.data)
                     this.barData = r.data.data[0].value;
                     this.redom7(this.idName);
                 }
@@ -390,10 +390,13 @@ export default {
 	      let dataY=[];
 	      let dataX=[];
 	      for (var i = 0; i < this.barData.length; i++) {
-	          dataY.push(Number(this.barData[i].avgHour).toFixed(1));
+	          dataY.push(Number(this.barData[i].avgHour===0?(this.barData[i].avgHour).toFixed(1):(this.barData[i].avgHour+3).toFixed(1)));
 	          dataX.push(this.barData[i].dayId);
 	      }
-	      dataX =this.upday===0?RW.array_until.transformDate(dataX):dataX
+	      let pattern = /([0-9]{3}[1-9]|[0-9]{2}[1-9][0-9]{1}|[0-9]{1}[1-9][0-9]{2}|[1-9][0-9]{3})-(((0[13578]|1[02])-(0[1-9]|[12][0-9]|3[01]))|((0[469]|11)-(0[1-9]|[12][0-9]|30))|(02-(0[1-9]|[1][0-9]|2[0-8])))/
+      		if(pattern.test(dataX[0])){
+      			dataX = RW.array_until.transformDate(dataX)
+      		}
 	      	this.chart = echarts.init(document.getElementById(id))
 	         _self.option.xAxis[0].data = dataX;
 	        _self.option.series[0].data = dataY;

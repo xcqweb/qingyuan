@@ -1,6 +1,6 @@
 <template>
 	<div class="d15">
-		<div class="comment">
+		<div class="comment" v-show="active">
 			<ul class="title">
 				<li>序号</li>
 				<li>景区名称</li>
@@ -23,7 +23,6 @@
 					</ul>
 				</div>
 			</div>
-			
 		</div>
 	</div>
 </template>
@@ -31,7 +30,7 @@
 <script>
 	import Vue from 'vue'
 	import optionProps from '@/common/js/mixin/optionProps.js'
-	import loadMore from '@/common/js/directives/loadMore'
+//	import loadMore from '@/common/js/directives/loadMore'
 	import Bus from '@/common/js/bus'
 	import _ from 'lodash'
 //	Vue.directive('loadMore',loadMore)//注册自定义指令
@@ -40,17 +39,18 @@
 		mixins:[optionProps],
 		data(){
 			return{
+				type:2,
 				comType:1,
 				num:2,
 				keyW:"",
 				name:"",
-				items:[
-//					{name:'飞霞风景名胜区',comment:'好评',con:'整体来说不错,在船上可以吃到海鲜.天然的,还有清远鸡!,也可以观赏两岸的风景,72峰名不虚传!,整体来说不错,在船上可以吃到海鲜.天然的,还有清远鸡!,也可以观赏两岸的风景,72峰名不虚传',uid:'M1213***',date:'2018-03-05'},
-				],
+				items:[],
+				beginTime:'',
+				endTime:'',
+				active:true
 			}
 		},
 		watch:{
-			
 			updatePlace:function(val){
 				var paramsObj = {
 	                area:val.place,
@@ -58,85 +58,103 @@
 	                pageId:1,
 	                source:'全部',
 	                commentType:this.comType,
-	                key:this.keyW,
-	            }
-				this.items = []
-				this.name= '';
-				this.getResponse(paramsObj);
-			},
-			upday:function(val){
-	            var paramsObj = {
-	                area:this.updatePlace.place,
-	                name:this.updatePlace.turist,
-	                type:["day","month","year"][this.upday],
-	                pageId:1,
-	                source:'全部',
-	                commentType:this.comType,
 	                category:this.slectType+1,
-	            }
-	            this.items = []
-	            this.getResponse(paramsObj);
-	        },
-			update:function(val){
-				var paramsObj = {
-	                area:this.updatePlace.place,
-	                name:this.updatePlace.turist,
-	                pageId:1,
-	                source:'全部',
-	                commentType:this.comType ,
-	                category:this.slectType+1,
-	                //key:this.keyW,
-	                beginTime:val.begin.join('-'),
-	                endTime:val.end.join('-'),
+	                type:["day","month","year"][this.type],
 	            }
 					this.items = []
-					this.getResponse(paramsObj);
+					this.name= '';
+					this.getResponse(paramsObj,true);
 			},
+						
+			update:{
+	         handler:function(val, oldVal){
+	         	var paramsObj={}
+	         	if(val.type===0 || val.type===1 || val.type===2){
+	         		this.beginTime='';
+		       		this.endTime='';
+	         		this.type = val.type
+	         	    paramsObj = {
+		                area:this.updatePlace.place,
+		                name:this.updatePlace.turist,
+		                category:this.slectType+1,
+		                pageId:1,
+		                source:'全部',
+		                commentType:this.comType,
+		                type:["day","month","year"][val.type],
+		            }
+	         	}else{
+	         		let end = val.end.join("-")
+	                let begin = val.begin.join("-")
+	                this.beginTime=val.begin.join('-'),
+	                this.endTime=val.end.join('-'),
+	                paramsObj = {
+	                    area:this.updatePlace.place,
+	                    name:this.updatePlace.turist,
+	                    category:this.slectType+1,
+	                    pageId:1,
+		                source:'全部',
+		                commentType:this.comType ,
+	                    beginTime:begin,
+	                    endTime:end
+					}
+	         	}
+	             this.items = []
+	             this.getResponse(paramsObj,true);
+	         },
+	         deep:true,
+	        },
+			
+			
 			//酒店景区选择
 			slectType:function(val){
 				var paramsObj = {
-					area:this.updatePlace.place,
-	                name:this.updatePlace.turist,
-	                pageId:1,
-	                source:'全部',
-	                commentType:this.comType ,
-	                key:this.keyW,
-	                category:val+1
+						area:this.updatePlace.place,
+		                name:this.updatePlace.turist,
+		                pageId:1,
+		                source:'全部',
+		                commentType:this.comType,
+		                category:val+1,
 	               }
-				this.items = []
-				this.getResponse(paramsObj);
+						this.items = []
+						this.getResponse(paramsObj,true);
 			},
 			//酒店名称
 			hotelChose:function(val){
 					this.name = val;
 					var paramsObj = {
-					area:this.updatePlace.place,
-	                name:val,
-	                pageId:1,
-	                source:'全部',
-	                commentType:this.comType ,
-	                key:this.keyW,
-	                category:this.slectType+1
+						area:this.updatePlace.place,
+		                name:val,
+		                pageId:1,
+		                source:'全部',
+		                commentType:this.comType ,
+		                key:"",
+		                category:this.slectType+1
 	               }
-				this.items = []
-				this.getResponse(paramsObj);
+						this.items = []
+						this.getResponse(paramsObj,true);
 			}
 			
 		},
 		methods:{
-				getResponse(paramsObj){
+				getResponse(paramsObj,flag){
+					if(flag){
+						this.active =false
+			        	setTimeout( () => {
+			        		this.active =true
+			        	},100)
+					}
 					let _self = this;
-			        this.$axios.get(API_URL+'/qy/api/command/getCommandCommentsDetail',{params:paramsObj}).then(r => {
+			        this.$axios.get(API_URL+'/qy/api/v2/command/getCommandCommentsDetail',{params:paramsObj}).then(r => {
 								let reData = r.data.data
 								//console.log(reData)
 				                if(r.data.code ==="200"||r.data.code ===200){
 				                   reData.forEach( (item,index) => {
-				                   		if(item.grade>4){
+				                   		if(item.grade>=4){
 				                   			item.grade = '好评'
-				                   		}else if(item.grade>=2 && item.grade<=3){
-				                   			item.grade = '差评'
+				                   		}else if(item.grade>=2 && item.grade<=3.9){
+				                   			item.grade = '中评'
 				                   		}else{
-				                   			item.grade = '投诉'
+				                   			item.grade = '差评'
 				                   		}
 				                   		_self.items.push(item)
 				                   })
@@ -145,6 +163,10 @@
 		       },
 		       
 		       getResponseRise(paramsObj){
+	       			this.active =false
+		        	setTimeout( () => {
+		        		this.active =true
+		        	},100)
 					let _self = this;
 			        this.$axios.get(API_URL+'/qy/api/v2/command/selectCommentsUp',{params:paramsObj}).then(r => {
 								let reData = r.data.data
@@ -155,12 +177,12 @@
 				                		return;
 				                	}
 				                   reData.forEach( (item,index) => {
-				                   		if(item.grade>4){
+				                   		if(item.grade>=4){
 				                   			item.grade = '好评'
-				                   		}else if(item.grade>=2 && item.grade<=3){
-				                   			item.grade = '差评'
+				                   		}else if(item.grade>2 && item.grade<=3.9){
+				                   			item.grade = '中评'
 				                   		}else{
-				                   			item.grade = '投诉'
+				                   			item.grade = '差评'
 				                   		}
 				                   		_self.items.push(item)
 				                   })
@@ -172,24 +194,41 @@
 		       //加载更多(已用自定义指令loadMore代替)
 		       loadMore:_.debounce( function(e){ //去抖函数
 		       		let _self = this;
-		       		let num=2;
+		       		var num=2;
 		       		scrollT = 0;
 		       		offsetT = 0;
-		       		var scrollT = Math.ceil(e.target.scrollTop+e.target.offsetHeight),
+		       		var scrollT = Math.ceil(e.target.scrollTop+e.target.clientHeight),
 		       			offsetT = e.target.getElementsByClassName('boxCon')[0].offsetHeight;
-		       			//console.log(scrollT,offsetT)
-		       		if(scrollT>=offsetT){
+		       			//console.log(scrollT,offsetT,e.target.clientHeight,e.target.offsetHeight)
+		       		if(offsetT-scrollT<=20){
+		       			let paramsObj = {};
 		       			
-		       			let paramsObj = {
-		                area:_self.updatePlace.place,
-		                name:_self.name||_self.updatePlace.turist,
-		                pageId:_self.num++,
-		                source:'全部',
-		                commentType:_self.comType,
-		                key:_self.keyW,
-		                category:_self.slectType+1,
-		            }
-			       		_self.getResponse(paramsObj)
+		       			if(_self.beginTime&&_self.endTime){
+		       				paramsObj = {
+				                area:_self.updatePlace.place,
+				                name:_self.name||_self.updatePlace.turist,
+				                pageId:_self.num++,
+				                source:'全部',
+				                commentType:_self.comType,
+				                key:_self.keyW,
+				                category:_self.slectType+1,
+				                beginTime:_self.beginTime,
+		                		endTime:_self.endTime,
+				            }
+		       			}else{
+		       				
+		       				paramsObj = {
+				                area:_self.updatePlace.place,
+				                name:_self.name||_self.updatePlace.turist,
+				                pageId:_self.num++,
+				                source:'全部',
+				                commentType:_self.comType,
+				                key:_self.keyW,
+				                category:_self.slectType+1,
+		                		type:["day","month","year"][_self.type]
+				            }
+		       			}
+			       			_self.getResponse(paramsObj,false)
 	        	}
 		       },300)
 	  },
@@ -198,13 +237,13 @@
 	                area:"全部",
 	                name:"全部",
 	                pageId:1,
-	                type:'day',
+	                type:'year',
 	                source:'全部',
 	                commentType:1,
-	                key:"",
-	                category:this.slectType+1,
+	                category:1,
 	            }
-	       this.getResponse(paramsObj);
+	        this.items = []
+	       this.getResponse(paramsObj,true);
 	    },
 	    mounted(){
 	    	//关联游客评价
@@ -222,7 +261,7 @@
 	                category:this.slectType+1,
 	            }
 	       		this.items = []
-	       this.getResponse(paramsObj);
+	       		this.getResponse(paramsObj,true);
 	       	})
     		
     		//关联关键词
@@ -232,14 +271,14 @@
 	       		var paramsObj = {
 	                area:this.updatePlace.place,
 	                name:this.updatePlace.turist,
-	                type:'day',
+	                type:this.type,
 	                pageId:1,
 	                source:'全部',
 	                commentType:this.comType,
 	                key:data
 	            }
 	       		this.items = []
-	       this.getResponse(paramsObj);
+	       		this.getResponse(paramsObj,true);
 	       	})
     		
     		//关联景区客提升度
@@ -256,7 +295,7 @@
 	                key:""
 	            }
 	       		this.items = []
-	       this.getResponseRise(paramsObj);
+	       		this.getResponseRise(paramsObj);
 	       	})
 	    }
 	}
@@ -348,6 +387,7 @@
 						text-align: left !important;
 						padding: 0 10px 0 10px;
 						box-sizing: border-box;
+						word-break: break-word;
 					}
 					
 					li:nth-child(5) span{

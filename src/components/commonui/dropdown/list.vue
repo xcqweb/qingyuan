@@ -114,7 +114,7 @@
 	
 	
 	
-	.con::-webkit-scrollbar{
+		.con::-webkit-scrollbar{
 			    width: 2px;
 			    height: 0rem;
 			}
@@ -134,7 +134,7 @@
 			
 			.con::scrollbar{
 			    width: 10px;
-			    height: 3rem;
+			    height: 2rem;
 			}
 			/*定义滚动条的轨道，内阴影及圆角*/
 			.con::scrollbar-track{
@@ -159,10 +159,10 @@
 			}
 
 		.dropdown-fade-enter-active {
-			  animation: slided 0.3s ease;
+			  //animation: slided 0.06s ease;
 			}
 			.dropdown-fade-leave-active {
-			  
+				display: none;
 			}
 	
 	@keyframes slided{
@@ -180,6 +180,4 @@
 		}
 	}
 	
-	
-
 </style>

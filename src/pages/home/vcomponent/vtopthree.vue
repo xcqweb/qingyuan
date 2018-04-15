@@ -1,9 +1,10 @@
+
 <template>
-  <div class="vtopThree">
+  <div class="vtopThree" v-show="active">
     <ul>
         <li v-for="(item,index) in items">
             <p>{{item.title}}</p>
-            <div><p :style="{ 'color': item.color }" @click="commentType(index)" v-cloak>{{item.nub}}</p></div>
+            <div><p :style="{ 'color': item.color }" @click="commentType(index)">{{item.nub}}</p></div>
             <p :style="{ 'color': item.color }">{{item.font}}</p>
             <p :style="{ 'background-color': item.color }"></p>
         </li>
@@ -25,7 +26,10 @@ export default {
     watch:{
         updatePlace:{
             handler: function (val, oldVal) {
-            		//console.log(this.updatePlace)
+            		this.active =false
+			        	setTimeout( () => {
+			        		this.active =true
+			        	},100)
             		var paramsObj = {
                 area:this.updatePlace.place,
                 name:this.updatePlace.turist,
@@ -36,7 +40,10 @@ export default {
             deep:true,
         },
         slectType:function(val){
-        	
+        		this.active =false
+	        	setTimeout( () => {
+	        		this.active =true
+	        	},100)
         		var paramsObj = {
                 area:this.updatePlace.place,
                 name:this.updatePlace.turist,
@@ -49,9 +56,10 @@ export default {
     return {
         items:[
             {title:'',nub:'好评数',font:'',color:'#6dffeb'},
-            {title:'',nub:'差评数',font:'',color:'#ffe86e'},
-            {title:'',nub:'投诉数',font:'',color:'#ff719c'},
+            {title:'',nub:'中评数',font:'',color:'#ffe86e'},
+            {title:'',nub:'差评数',font:'',color:'#ff719c'},
         ],
+        active:true
     }
   },
   computed: { 

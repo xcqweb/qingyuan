@@ -43,9 +43,7 @@ import list from '@/components/commonui/dropdown/list.vue'
         		if(data){
         			clearTimeout(this.timer)
         		}
-        		
-        		this.menueshow = data
-        		
+                this.menueshow = data
         	},
         	out(e){
         		this.timer = window.setTimeout( () => {

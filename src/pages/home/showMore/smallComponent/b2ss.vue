@@ -9,7 +9,6 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import echarts_resize from '@/common/js/echarts_resize.js'
 import echarts from 'echarts'
 import optionProps from '@/common/js/mixin/optionProps.js'
@@ -55,12 +54,12 @@ export default {
 		            data:[
 		                {
 		                    //value:this.dataItem.currentNum,
-		                    value:100,
+		                    value:0,
 		                    name:'01',
 		                },
 		                {
 		                    //value:this.dataItem.warnNum,
-		                    value:30,
+		                    value:100,
 		                    name:'invisible',
 		                    itemStyle : {
 							    normal : {
@@ -116,12 +115,11 @@ export default {
 		},
     	idName:'String',
     	dataItem:{
-			"percent":1,
+			"percent":0,
 			"name":"笔架山度假区",
-			"currentNum":69,
+			"currentNum":0,
 			"warnNum":8000
     	},
-        imgacircle:require('../../../../assets/images/home/b/circle.png'),
         
     }
   },
@@ -156,9 +154,21 @@ export default {
   	getResponse(paramsObj){
         let _self = this;
         this.$axios.get(API_URL+'/qy/api/v2/command/selectCommandScenicWarning',{params:paramsObj}).then(r => {
-            
+            if(r.data.data.length===0){
+            	this.dataItem.name = this.updatePlace.turist
+            	this.dataItem.percent = 0
+            	this.dataItem.currentNum = 0
+            	this.option.series[0].data[0].value = 0
+            	this.redom(this.idName)
+            	return
+            }
             if(r.status ===200){
-            	this.dataItem = r.data.data[0];
+            	let reData = r.data.data
+            	reData.sort(function(a,b){
+            		return b.percent-a.percent
+            	})
+            	
+            	this.dataItem = reData[0];
             	let p = this.dataItem.percent
             	//console.log(this.option.series[0].data[0].value)
             	if(this.dataItem.currentNum/this.dataItem.warnNum>=100){
@@ -210,8 +220,6 @@ export default {
   mounted() {
         this.$nextTick(echarts_resize(this.idName,this))
   },
-  components:{
-  }
 }
 </script>
 
@@ -220,7 +228,7 @@ export default {
         text-align: center;
         color: #fff;
         font-size: 24px;
-        width:250px;
+        width:300px;
         height: 1.2rem;
         top:200px;
         left: 434px;
@@ -272,9 +280,10 @@ export default {
         text-align: center;
         font{
             position: absolute;
-            width: 152px;
+            width: 300px;
+            text-align: center;
             top: 269px;
-            left: 486px;
+            left: 434px;
             color:#ffe400;
             font-size:38px;
         }

@@ -2,8 +2,8 @@
     <div class="c4">
         <div id="c4"></div>
         <div id="c5"></div>
-        <span class="men"></span>
-        <span class="wemen"></span>
+        <!--<span class="men"></span>-->
+        <!--<span class="wemen"></span>-->
         <font class="menP">{{menPercent}}%</font>
         <font class="womenP">{{womenPercent}}%</font>
     </div>
@@ -15,25 +15,23 @@ import echarts_resize from '../../../common/js/echarts_resize.js'
 import optionProps from '@/common/js/mixin/optionProps.js'
 import echarts from 'echarts'
 
-let menE= require('../../../assets/images/home/menE.png')
-let womenE= require('../../../assets/images/home/womenE.png')
 export default {
   name: 'c4',
   mixins: [optionProps],
   data () {
-
     return {
         womenPercent:'40',
         menPercent:'60',
         option1:{},
-        option2:{}
+        option2:{},
+        type:0,
     }
   },
   created(){
   	var paramsObj = {
                 area:"全部",
                 name:"全部",
-                type:"day",
+                type:"year",
             }
        this.getResponse(paramsObj);
   },
@@ -44,28 +42,31 @@ export default {
             var paramsObj = {
                 area:this.updatePlace.place,
                 name:this.updatePlace.turist,
-                type:["day","month","year"][this.upday],
-            }
-            this.getResponse(paramsObj);
-        },
-        upday:function(val){
-            var paramsObj = {
-                area:this.updatePlace.place,
-                name:this.updatePlace.turist,
-                type:["day","month","year"][this.upday],
+                type:["day","month","year"][this.type],
             }
             this.getResponse(paramsObj);
         },
         update:{
              handler:function(val, oldVal){
-                 let end = val.end.join("-")
-                 let begin = val.begin.join("-")
-                 var paramsObj = {
-                    area:this.updatePlace.place,
-                    name:this.updatePlace.turist,
-                    beginTime:begin,
-                    endTime:end
-				}
+             	var paramsObj={}
+             	if(val.type===0 || val.type===1 || val.type===2){
+             		this.type=val.type
+             	    paramsObj = {
+		                area:this.updatePlace.place,
+		                name:this.updatePlace.turist,
+		                type:["day","month","year"][val.type],
+		            }
+             	}else{
+             		let end = val.end.join("-")
+	                 let begin = val.begin.join("-")
+	                paramsObj = {
+	                    area:this.updatePlace.place,
+	                    name:this.updatePlace.turist,
+	                    beginTime:begin,
+	                    endTime:end
+					}
+             	}
+                 
                  this.getResponse(paramsObj);
              },
              deep:true,
@@ -75,7 +76,12 @@ export default {
   	//请求数据
   	getResponse(paramsObj){
             this.$axios.get(API_URL+'/qy/api/v2/view/getDaySexData',{params:paramsObj}).then(r => {
-                    
+                  if(!r){
+                  	this.menPercent = 0
+                  	this.womenPercent =0
+                  	this.redom(this.menPercent,this.womenPercent);
+                  	return
+                  }
                 if(r.data.code ==="200"||r.data.code ===200){
                     	//console.log(r.data.data)
                     this.menPercent = r.data.data[0].maleNum.toFixed(1); 
@@ -86,6 +92,12 @@ export default {
        },
   	
   	redom(data1,data2){
+  		if(this.chart1){
+        		this.chart1.dispose()
+        }
+  		if(this.chart2){
+        		this.chart2.dispose()
+        	}
   		this.chart1 = echarts.init(document.getElementById("c4"));
   		this.chart2 = echarts.init(document.getElementById("c5"));
   		let spirit1 = 'path://m254.698872,41.396847c0,-17.21313 17.594091,-31.155783 39.315128,-31.155783c21.72107,0 39.315096,13.942653 39.315096,31.155783c0,17.21313 -17.594025,31.155783 -39.315096,31.155783c-21.72107,0 -39.315128,-13.942653 -39.315128,-31.155783zm132.184172,88.190761l0,-15.734566c0,-16.555072 -16.92578,-29.977718 -37.828542,-29.977718l-110.202797,0c-20.890656,0 -37.828526,13.422648 -37.828526,29.977718l0,15.734566c-0.03653,0.357145 -0.060921,0.723989 -0.060921,1.095621l0,90.628209c0,7.041942 7.199102,12.746912 16.085232,12.746912c8.873975,0 16.091276,-5.704995 16.091276,-12.746912l0,-89.286408l10.786391,0l0,102.042965l0.07917,0l0,144.183638c0,9.373138 9.604869,16.989431 21.444912,16.989431c11.846153,0 21.444912,-7.606634 21.444912,-16.989431l0,-144.183638l14.148408,0l0,144.183638c0,9.373138 9.610816,16.989431 21.444879,16.989431c11.846104,0 21.444863,-7.606634 21.444863,-16.989431l0,-144.183638l0.066999,0l0,-102.042965l10.786408,0l0,89.281554c0,7.041955 7.217285,12.751754 16.091293,12.751754c8.886244,0 16.085232,-5.709799 16.085232,-12.751754l0,-90.628183c-0.006045,-0.376463 -0.04264,-0.733646 -0.079186,-1.090805l0,0.000013l-0.000003,-0.000001z';
@@ -144,7 +156,7 @@ export default {
 		    symbolRepeat: 'fixed',
 		    symbolMargin: '12%',
 		    symbolClip: true,
-		    symbolSize: [50,80],
+		    symbolSize: [60,80],
 		    symbolBoundingData: maxData,
 		    data: [{
 		    	value:data1
@@ -179,7 +191,7 @@ export default {
 		    symbolRepeat: 'fixed',
 		    symbolMargin: '12%',
 		        symbol: spirit1,
-		        symbolSize: [50,80],
+		        symbolSize: [60,80],
 		        symbolBoundingData: maxData,
 		        data: [{
 		        	value:data1
@@ -245,7 +257,7 @@ export default {
 		    symbolRepeat: 'fixed',
 		    symbolMargin: '12%',
 		    symbolClip: true,
-		    symbolSize: [50,80],
+		    symbolSize: [60,80],
 		    symbolBoundingData: maxData,
 		    data: [{
 		    	value:data2
@@ -283,7 +295,7 @@ export default {
 		    symbolRepeat: 'fixed',
 		    symbolMargin: '12%',
 		        symbol: spirit2,
-		        symbolSize: [50,80],
+		        symbolSize: [60,80],
 		        symbolBoundingData: maxData,
 		        data: [{
 		        	value:data2
@@ -301,8 +313,6 @@ export default {
   	}
   },
     mounted(){
-    	//this.$nextTick(echarts_resize('c4',this));
-    	//this.$nextTick(echarts_resize('c5',this));
     },
 }
 </script>
@@ -311,12 +321,11 @@ export default {
 .c4{
     height:100%;
     width:100%;
-    //padding-top: 10%;
     #c4{
     	position: absolute;
     	height:40%;
     	width:70%;
-    	left: 14%;
+    	left: 10%;
     	top: 17%;
     }
     #c5{
@@ -324,28 +333,22 @@ export default {
     	height:50%;
     	width:70%;
     	bottom: 0%;
-    	left: 14%;
+    	left: 10%;
     }
     
     .men{
-    		display: block;
-    		width: 72px;
-    		height: 96px;
-    		top: 20.8%;
-    		left: -1%;
-    		position: absolute;
-    		background: url('../../../assets/images/home/menE.png') no-repeat;
-    		background-size: 100% 100%;
-    	}
-    .wemen{
-    		display: block;
-    		width: 72px;
-    		height: 96px;
-    		bottom: 13.5%;
-    		left: -1%;
-    		position: absolute;
-    		background: url('../../../assets/images/home/womenE.png') no-repeat;
-    		background-size: 100% 100%;
+    	display: block;
+    	position: absolute;
+    	top: 24%;
+    	left: -2%;
+    	width: 80px;
+    	height: 106px;
+    	background: url(../../../assets/images/home/menE.png) no-repeat;
+    	background-size: 100% 80%;
+    }
+    
+    .women{
+    	display: block;
     }
     
     .menP{

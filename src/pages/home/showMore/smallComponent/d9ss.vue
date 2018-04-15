@@ -9,7 +9,7 @@
     }
 }
 ul{
-    height:80%;
+    height:68%;
     width:100%;
     overflow-y: scroll;
     cursor: all-scroll;
@@ -181,7 +181,7 @@ li:nth-of-type(2n+1){
             </div>
         </div>
     <ul>
-        <li v-for='(item,index) in rankItems'>
+        <li v-for='(item,index) in rankItems'  v-if='item.num'>
             <div class="cell1">
                 {{index+1}}
             </div>
@@ -218,8 +218,9 @@ export default {
                 var paramsObj = {
                     area:val.place,
                     name:val.turist,
-                    type: ["day","month","year"][this.upday]
+                    //type: ["day","month","year"][this.upday]
                     }
+                this.rankItems = [];
                 this.getResponse(paramsObj);
             },
             deep:true,
@@ -227,25 +228,28 @@ export default {
         
         update:{
              handler:function(val, oldVal){
-                 let end = val.end.join("-")
-                 let begin = val.begin.join("-")
-                 var paramsObj = {
-                    area:this.updatePlace.place,
-                    name:this.updatePlace.turist,
-                    beginTime:begin,
-                    endTime:end
-                }
+             	var paramsObj={}
+             	if(val.type===0 || val.type===1 || val.type===2){
+             		this.type=val.type
+             	    paramsObj = {
+		                area:this.updatePlace.place,
+		                name:this.updatePlace.turist,
+		                type:["day","month","year"][val.type],
+		            }
+             	}else{
+             		let end = val.end.join("-")
+	                 let begin = val.begin.join("-")
+	                paramsObj = {
+	                    area:this.updatePlace.place,
+	                    name:this.updatePlace.turist,
+	                    beginTime:begin,
+	                    endTime:end
+					}
+             	}
+                 
                  this.getResponse(paramsObj);
              },
              deep:true,
-        },
-        upday:function(val){
-            var paramsObj = {
-                area:this.updatePlace.place,
-                name:this.updatePlace.turist,
-                type: ["day","month","year"][val]
-            }
-             this.getResponse(paramsObj);
         }
     },
     methods:{
@@ -253,7 +257,7 @@ export default {
             this.$axios.get(API_URL+'/qy/api/v2/view/getScenicTrack',{params:paramsObj}).then(r => {
                 if(r.data.code ==="200"||r.data.code ===200){
                 	//console.log(r.data.data)
-                	this.rankItems = [];
+                	
                     this.rankItems = r.data.data;
                     this.rankItems.forEach((item,index)=>{
                         this.rankItems[index].track = item.track.replace(/\=\=\>/img,'→');

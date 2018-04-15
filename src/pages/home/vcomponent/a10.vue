@@ -20,14 +20,12 @@
 				}else{
 					return this.$store.getters['hotMap/getChain'];
 				}
-				
 			}
 		},
 		mounted(){
 			//alert(this.$store.getters['hotMap/getChain'])
 			//console.log(this.$store.getters['hotMap/getChain'])
 		}
-		
 	}
 </script>
 

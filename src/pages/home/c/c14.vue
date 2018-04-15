@@ -18,36 +18,67 @@ export default {
     }
     },
     watch:{
-    	code:function(){
-    		this.getData();
-    	}
+			updatePlace:function(val){
+				var paramsObj = {
+	                area:val.place,
+	                name:val.turist,
+	            }
+					this.getResponse(paramsObj);
+			},
+			update:{
+             handler:function(val, oldVal){
+             	var paramsObj={}
+             	if(val.type===0 || val.type===1 || val.type===2){
+             		this.type=val.type
+             	    paramsObj = {
+		                area:this.updatePlace.place,
+		                name:this.updatePlace.turist,
+		                type:["day","month","year"][val.type],
+		            }
+             	}else{
+             		let end = val.end.join("-")
+	                 let begin = val.begin.join("-")
+	                paramsObj = {
+	                    area:this.updatePlace.place,
+	                    name:this.updatePlace.turist,
+	                    beginTime:begin,
+	                    endTime:end
+					}
+             	}
+                 
+                 this.getResponse(paramsObj);
+             },
+             deep:true,
+             
+        }
     },
     methods:{
     	
     	//请求数据
-	  	getData(){
-	  		api.params.code = this.code;
-	  		let data={code:0};
-	  		data.code = this.code;
-	  		api.touristAttr(data).then( (re) =>{
-	  				let reData = re.data.data;
-	  				//console.log(reData)
-	  				let arrData = [];
-	  				for(let i in reData){
-	  					arrData.push(reData[i])
-	  				}
-	  				for(let i=0; i<this.series.length; ++i){
-	  					this.series[i].value = arrData[i]
-	  				}
-	  				//console.log(this.series)
-					if(re.status===200){
-					}
-					this.redom("c12");
-		    }).catch( (e) => {
-		    	console.log(e);
-		    })
-	  	},
+	  	getResponse(paramsObj){
+			let _self = this;
+	        this.$axios.get(API_URL+'/qy/api/v2/view/getVocation',{params:paramsObj}).then(r => {
+						let reData = r.data.data
+						//console.log(reData)
+						_self.dataY = []
+		                _self.dataX = []
+		                if(r.data.code ==="200"||r.data.code ===200){
+		                	reData.forEach( (v,i) => {
+		                		if(i<15){
+		                			_self.dataY.push(v.num)
+		                			_self.dataX.push(v.description.substr(0,2))
+		                		}
+		                		
+		                	})
+		                	
+		                   _self.redom('c14')
+		                }
+		            })
+       },
         redom(id){
+        	if(this.chart){
+        		this.chart.dispose()
+        	}
             this.chart = echarts.init(document.getElementById(id));
             let option = {
             	tooltip:{
@@ -76,7 +107,6 @@ export default {
 					                color: '#0177d4'
 					            }
 					        },
-					        interval: 1000,
 					        axisLabel: {
 					            color: '#fff',
 					            fontSize: 16
@@ -87,9 +117,6 @@ export default {
 					                color: '#0177d4'
 					            }
 					        },
-					        interval:500,
-					        max:5000
-					
 					    },
 						    series: [{
 						        type: 'bar',
@@ -113,6 +140,11 @@ export default {
         }
     },
     created(){
+    	let paramsObj = {
+    		area:'全部',
+    		name:'全部',
+    	}
+    	this.getResponse(paramsObj)
     },
     computed:{
     	percents(){

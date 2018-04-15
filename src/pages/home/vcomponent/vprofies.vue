@@ -277,7 +277,7 @@ export default {
 		left: 33%;
 		height:309/1920*100vw;
 		width:309/1920*100vw;
-		background-image:url('../../../assets/vwarning.png');
+		/*background-image:url('../../../assets/vwarning.png');*/
 		background-size: 100% 100%;
 		color:#fa678f;
 		span{

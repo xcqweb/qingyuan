@@ -1,111 +1,73 @@
 <template>
 	<div id="box">
-        <div class="jqlable">景 区</div>
-        <slecktet 
-        class='sciencelist'
-        :uniqueClasso=true
-        :selectList="jqselectlist" 
-        v-on:listenAtparent="catchmsg2"
-        ></slecktet>
-        
-        <div class="qylable">区/县</div>
-        <slecktet 
-        class="arealist"
-        :uniqueClasso=true
-        :selectList="qyselectlist" 
-        v-on:listenAtparent="catchmsg1"
-        ></slecktet>
-        
+	        
+	        <div class="jqlable">景 区</div>
+	        <sleckte 
+	        class='science'
+	        :selectList="jqselectlist" 
+	        v-on:listenAtparent="catchmsg2"
+	        ></sleckte>
+	        
+	         <div class="title">筛选条件</div>
+	        <div class="qylable">区 / 县</div>
+	        <sleckte 
+	        class="area"
+	        :selectList="qyselectlist" 
+	        v-on:listenAtparent="catchmsg1"
+	        ></sleckte>
+	        
+	        
+        <div v-if='isDate'>
         	<!-- 时间下拉框组件 -->
-        	<div v-show="!vDateStatus">
-        		<div class="time">时 间</div>
-	            <vDate 
-	             class='vueDate1'
-	             :isBorder='isborder'
-	             @pageDate='getDate'
-	             :isActive = 'isEndDate'
-	             @hideDate = 'hideDate'
-	             :vDateStatus='vDateStatus'
-	             :showStatus=false
-	             ></vDate>
-        	</div>
-        	
-             <div v-show="vDateStatus">
-             	<div class="time">时 间</div>
-             	 <slecktet
-	             	 class='vueDate'
-	             	 :selectList='dateList'
-	             	 :uniqueClasso=true
-	             	 v-if="vDateStatus"
-	             	 @listenAtparent='listenAtparent'
-	             ></slecktet>
-             </div>
-            
-             
+        	<div class="time">时 间</div>
+        	<ul class="dateChose"  v-if="dateChoseList">
+                <li 
+                v-for="(item,index) in dateChoseList" 
+                :class="item.class" 
+                @click="dateClick(index)"
+                >{{item.context}}</li>
+            </ul>
+            <vDate 
+             :isBorder=true
+             class='vueDate'
+             v-if="vDateStatus"
+             :vDateStatus='vDateStatus'
+             @pageDate='getDate'
+             :isActive = 'isEndDate'
+             :showStatus=true
+             ></vDate>
+        </div>
+        <div class="scienceChose" v-show="isScience">
+            <span class="btn" @click="scienceType(0)" :class="{'active':scienceTypes}">全部景区</span>
+            <span class="btn" @click="scienceType(1)" :class="{'active':!scienceTypes,'active1':scienceTypes}">4A以上景区</span>
+        </div>
 	</div>
 </template>
 
 <script>
-	import slecktet from '@/components/commonui/dropdown/dropdown-menu2.vue'
-	import dateGroup from '@/components/commonui/dropdown/dateGroup.vue'
+	import sleckte from '@/components/commonui/dropdown/dropdown-menu2.vue'
 	import vDate from '@/components/commonui/vueDate/app.vue'
-	import Bus from '@/common/js/bus'
-	function ck(val){
-		if(val<10){
-			return '0'+val
-		}else{
-			return val
-		}
-	}
-	var date = new Date()
-	var year = ck(date.getFullYear())
-	var month = ck(date.getMonth()+1)
-	var day = ck(date.getDate()-1)
-	var days
-	if(month == 2){
-        days= year % 4 == 0 ? 29 : 28;
-         
-    }
-    else if(month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12){
-        //月份为：1,3,5,7,8,10,12 时，为大月.则天数为31；
-        days= 31;
-    }
-    else{
-        //其他月份，天数为：30.
-        days= 30;
-         
-    }
-     
 	export default{
 		data(){
 			return{
 				//时间控件
-				isborder:false,
 				isEndDate:true,
            		vDateStatus:true,
-           		doubleclick:true,
-           		dataType:'日',
+           		dateChoseList:[
+	                {context:'日',class:''},
+	                {context:'月',class:''},
+	                {context:'年',class:''},
+	            ],
 				qyselectlist:{
-                    width:'70%',
-                    left:'6%',
+                    width:'76.9%',
+                    left:'10%',
                     title:'全部',
+                    key:'area',
                     selectStatus:false,
                     place:[
                         '全部',"清城","清新","英德","连州","佛冈","连山","连南","阳山"
                     ]
                 },
-                
-                dateList:{
-                    width:'70%',
-                    right:'6%',
-                    top:'52%',
-                    title:'日',
-                    selectStatus:false,
-                    place:[
-                        '日',"月","年","自定义"
-                    ]
-                },
-                
                 updateData:{
                     place:'全部',
                     turist:'全部',
@@ -135,53 +97,38 @@
                 tablist:this.tablistCom,
 			}
 		},
-		props:['isDate'],
-		mounted(){
-		},
+		props:['isDate','isScience','isshow4A'],
 		methods:{
-			
-			hideDate(data){
-				if(this.doubleclick){
-					this.vDateStatus = data
-					this.dateList = {
-	                    width:'70%',
-	                    right:'6%',
-	                    top:'52%',
-	                    title:this.dataType,
-	                    selectStatus:false,
-	                    place:[
-	                        '日',"月","年","自定义"
-	                    ]
-	                }	
-				}
+			//选择4a景区
+			scienceType(data){
+				this.$emit('scienceType',{type:data});
 			},
+			
 			//获取时间
 	        getDate(value){
-	        	this.doubleclick = false
+	        	
 	            this.timeDate ={
 	                end:value.end,
 	                begin:value.begin,
 	            }
-	            //将选择的时间传递给父组件
 	            this.$emit('choseDate',this.timeDate);
-	            this.vDateStatus = true
-	            //选择完成自定义日期时 初始化
-	            this.dateList = {
-                    width:'70%',
-                    right:'6%',
-                    top:'52%',
-                    title: value.begin[0]+"/"+value.begin[1]+"/"+value.begin[2]+" ~ "+value.end[0]+"/"+value.end[1]+"/"+value.end[2],
-                    selectStatus:false,
-                    place:[
-                        '日',"月","年","自定义"
-                    ]
-                }
-	            this.dataType = '自定义'
-	            window.setTimeout( () => {
-	            	this.doubleclick = true
-	            },1000)
+	            this.dateChoseList=[
+	                {context:'日',class:''},
+	                {context:'月',class:''},
+	                {context:'年',class:''},
+	            ]
 	        },
-	        //获取区域数据并传递给父组件
+	         dateClick(indexClick){
+	            this.dateChoseList.forEach((item,index)=>{
+	                if(index === indexClick){
+	                    item.class = 'chose';
+	                    this.dateIndex = index;
+	                }else{
+	                    item.class = '';
+	                }
+	            })
+	            this.$emit('choseDay',indexClick);
+	        },
 			catchmsg1(data){
                 this.updateData ={
                     place:data,
@@ -198,46 +145,9 @@
 	            }
 	           this.$emit('doubleChose',this.updateData)
 	        },
-	        
-	        listenAtparent(val){
-//	        	this.dateList = {
-//                  width:'70%',
-//                  right:'6%',
-//                  top:'52%',
-//                  title: val,
-//                  selectStatus:false,
-//                  place:[
-//                      '日',"月","年","自定义"
-//                  ]
-//              }	
-	        	if(val==='自定义'){
-	        		this.vDateStatus = false
-	        		Bus.$emit('definded',val)
-	        		this.dataType = val
-	        	}else{
-	        		this.dataType = val
-	        		this.vDateStatus = true
-	        		let re=0 
-	        		switch(val){
-	        			case '日':
-	        			//re = {begin:[`${year}`,`${month}`,`${day}`],end:[`${year}`,`${month}`,`${day}`]};
-	        			re = 0;
-	        			break;
-	        			case '月':
-	        			//re = {begin:[`${year}`,`${month}`,'01'],end:[`${year}`,`${month}`,`${days}`]};
-	        			re = 1;
-	        			break;
-	        			case '年':
-	        			//re = {begin:[`${year}`,'01','01'],end:[`${year}`,'12','31']};
-	        			re = 2;
-	        			break;
-	        		}
-	        		this.$emit('choseDay',re);
-	        	}
-	        },
 	        switch(val){
             const  cityData = {
-                "全部":["全部",'飞霞风景名胜区','牛鱼嘴原始生态风景区','天子山瀑布风景区','白庙渔村','飞来寺','美林湖及大家元摩天轮片区',
+               "全部":["全部",'飞霞风景名胜区','牛鱼嘴原始生态风景区','天子山瀑布风景区','白庙渔村','飞来寺','美林湖及大家元摩天轮片区',
                             '太和古洞旅游区','笔架山度假区','安庆村','清泉湾生态旅游度假区','金龙洞','九牛洞村',
                             '观音山王山寺','田野绿世界','熹乐谷','金龟泉生态度假村','上岳古民居',
                             '峰林胜境景区','英德老虎谷暗河漂流','九龙小镇','铁溪小镇','仙湖温泉旅游度假区','浈阳坊旅游小镇','大樟沙滩度假村','云水谣','彭家祠',
@@ -279,110 +189,138 @@
 	                this.cityData = this.startData;
 	            }
 	            return {
-	                width:'88%',
-	                left:'6%',
+	                width:'76.9%',
+	                left:'10%',
 	                title:this.cityData[0],
 	                selectStatus:false,
+	                key:'science',
 	                place:this.cityData,
 	            }
+	        },
+	        scienceTypes(){
+	        	let val = this.$store.getters['hotMap/getState']
+	        	if(val===1){
+	        		return val 	
+	        	}else{
+	        		return "";
+	        	}
 	        }
 		},
+		created(){
+		},
 		components:{
+			sleckte,
 			vDate,
-			dateGroup,
-			slecktet
 		}
 	}
 </script>
 
 <style lang="less" scoped>
-@borderColor:#345BFA;
 #box{
+	.title{
+	   position: absolute;
+	   top: 5%;
+	   left: 10%;
+	   font-size: 16px;  
+	}
 	.qylable{
-		width: 100px !important;
-	    height: 44px;
+	    height: 36px;
 	    font-size: 16px;
 	    color: #F0EFFD;
-	    line-height: 44px;
+	    line-height: 36px;
 	    position: absolute;
-	    top: -3px; 
-	    left: 0;
-	    border: 3px solid @borderColor;
-	    border-radius: 10px 0 0 10px;
-	    z-index: 8;
+	    top: 12.5%;
+	    left: 10%;
 	}
 	.jqlable{
-		width: 138/990*100% !important;
-	    height: 44px;
+	    height: 36px;
 	    font-size: 16px;
 	    color: #F0EFFD;
-	    line-height: 44px;
+	    line-height: 36px;
 	    position: absolute;
-	    top: -3px; 
-	    left: 279px !important;
-	    border-radius: 10px 0 0 10px;
-	    border: 3px solid @borderColor;
-	    z-index: 8;
+	    top: 24%;
+	    left: 10%;
 	}
-	
 	.time{
-		width: 110px !important;
-	    height: 44px;
+	     height:36px;
 	    font-size: 16px;
 	    color: #F0EFFD;
-	    line-height: 44px;
+	    line-height: 36px;
 	    position: absolute;
-	    top: -2px; 
-	    right: 280px !important;
-	    border: 3px solid @borderColor;
-	    border-right: none;
-	    border-radius: 10px 0 0 10px;
-	    z-index: 100;
+	    top: 35%;
+	    left: 10%;
 	}
-	.arealist{
-		width: 136px !important;
-		height: 45px;
+	.area{
+		height: 36px;
 	    position: absolute;
-	    left: 106px !important;
-	    border: 3px solid @borderColor;
-	    border-left: none;
-	    border-radius: 0 10px 10px 0;
-	    .dropdown-menu-p{
-	    	width: 50px;
-	    }
+	    top: 20%; 
+	    left: 0%;
 	}
-	.sciencelist{
-		 width: 276px !important;
-		 height: 45px;
+	.science{
+		 height: 36px;
 	     position: absolute;
-	     left: (259+122)/990*100% !important;
-	     border: 3px solid @borderColor;
-	     border-left: none;
-	     border-radius: 0 10px 10px 0;
-	}
-	.vueDate1{
-		height: 44px;
-		position: absolute;
-		width: 280px !important;
-	    top: -2px; 
-	    right: -6px !important;
-	    z-index: 100;
-	    border: 3px solid @borderColor;
-	    border-radius: 0 10px 10px 0;
+	     top: 31.5%;
+	     left: 0%;
 	}
 	.vueDate{
-		height: 44px;
 		position: absolute;
-		width: 280px !important;
-	    top: -2px; 
-	    right: -6px !important;
-	    z-index: 100;
-	    border: 3px solid @borderColor;
-	    border-radius: 0 10px 10px 0;
-	    
-	    .dropdown-menu-p{
-	    	background-color: #FF0000;
+	    top: 46%;
+	    left: 10%;
+	}
+	
+	.scienceChose{
+		position: absolute;
+		top: 40%;
+	    left: 10%;
+	    .btn{
+	    	display: inline-block;
+            width: 116px;
+            height: 44px;
+            line-height: 44px;
+            color: #fff;
+            font-size: 18px;
+            border: 3px solid #345BFA;
+            background-color: #163387;
+            border-radius: 10px;
+            margin-right: 1rem;
 	    }
+	    .active{
+        	color: #a1a8c3;
+        	border-color: #233faf;
+        }
+        .active{
+        	color: #a1a8c3;
+        	border-color: none;
+        }
+	}
+	
+	.starList,.dateChose{
+		width: 268px;
+		position: absolute;
+	    top: 40%;
+	    left: 10%;
+	   background-color: rgba(0, 0, 0, 0);
+	   li{
+	        height: 36px;
+	        width: 88px;
+	        text-align: center;
+	        line-height:36px;
+	        font-size: 16px;
+	        border: 1px solid #355BFA;
+	        float: left;
+	       color:white;
+	       cursor: pointer;
+	       background-image:url('../../../assets/images/home/981513311442_.pic.jpg');
+	      background-size: 100% 100%;
+	      &.chose{
+	        background-image:url('../../../assets/images/home/991513311442_.pic.jpg');
+	          background-size: 100% 100%;
+	          color:#8c97b8;
+	      }
+	   }
+	   li:nth-child(1),li:nth-child(2){
+	   	border-right: none;
+	   }
 	}
 }
 </style>

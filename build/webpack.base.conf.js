@@ -43,11 +43,12 @@ module.exports = {
         loader: 'url-loader',
         query: {
           limit: 38000,
+          limit: 38000,
           name: utils.assetsPath('img/[name].[hash:7].[ext]')
         }
       },
 	  {
-        test: /(hot1|hot2|hot|3)\.(png)(\?.*)?$/,
+        test: /(hot1|hot2|hot3|rad1|rad2)\.(png)(\?.*)?$/,
         loader: 'url-loader',
         query: {
           limit: 1,

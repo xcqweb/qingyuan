@@ -2,7 +2,7 @@
   <div id="apphome" onselectstart="return false;" style="-moz-user-select:none;">
   	<div class="chose">
 			<listMenu
-				@doubleChose='doubleChoseVal'
+						@doubleChose='doubleChoseVal'
         		@choseDate='choseDateVal'
         		@choseDay='choseDayVal'
 			></listMenu>
@@ -19,7 +19,6 @@
                 :key="topItem.id" 
                 :updatePlace='updatePlace'
                 :update='update'
-                :upday='upday'
                 @toggleProvince='toggleProvince'
                 ></componet>    
             </div>
@@ -36,7 +35,6 @@
                 :key="topItem.id" 
                 :updatePlace='updatePlace'
                 :update='update'
-                :upday='upday'
                 ></componet>
             </div>
         </div>
@@ -53,7 +51,6 @@
                 :key="topItem.id" 
                 :updatePlace='updatePlace'
                 :update='update'
-                :upday='upday'
                 ></componet>
             </div>
         </div>
@@ -61,52 +58,15 @@
   </div>
 </template>
 <script type="text/javascript">
-import Vue from 'vue'
-import { mapGetters } from 'vuex'
- import echarts from 'echarts';
 import componetstatus from '@/pages/home/componentstatus.js'
 import headerBody from '@/pages/home/header.vue'
 
 export default {
-        props:['',],
-        mixins:[],
         data() {
             return {
         		updatePlace:{place:"全部",turist:"全部"},
         		update:{begin:['2018','02','02'],end:['2018','02','03']},
-        		upday:0,
         		isprovince:0,
-            	toggleName:'C8',
-                placeName:'',
-                headerStatus:false,
-                allComponents: [],
-                componentName: '',
-                moudle:[
-                    {name:'B16',title:`国内游客来源地`},
-                    {name:'C2',title:'年龄分析'},
-                    {name:'C4',title:'游客男女比例'},
-                    {name:'B4',title:'路况监测'},
-                    {name:'A1',title:'客流人数分析'},
-                    {name:'A5',title:'客流实时监测'},
-                    {name:'C8',title:'游客来源排行'},
-                    {name:'A5',title:'实时客流监测'},
-                    {name:'B2',title:'客流预警'},
-                    {name:'B6',title:'实时天气'},
-                    {name:'D6',title:'景区当前客流'},
-                    {name:'D8',title:'交通拥堵指数'},
-                    {name:'D1',title:'景区客流热力图'},
-                    {name:'B4',title:'路况监控'},
-                    {name:'D3',title:'最新舆论'},
-                ],
-                current:[
-                    {name:'B16',title:`国内游客来源地`},
-                    {name:'C2',title:'年龄分析'},
-                    {name:'C4',title:'游客男女比例'},
-                    {name:'B4',title:'路况监测'},
-                    {name:'A1',title:'客流人数分析'},
-                    {name:'A5',title:'客流实时监测'},
-                    {name:'C8',title:'游客来源排行'},
-                ],
                 //全国市
                 leftComponents:[
                      {name:'D14',id:'one',index:1,time:1200,show:true,title:``,},
@@ -132,9 +92,6 @@ export default {
                 rightBottom:[
                 		{name:'A1SS',id:'one',index:1,show:true,title:'历史客流'},
                 ],
-                text:'headerBody',
-                
-                cutoverStatus:null,
             }
         },
         
@@ -163,22 +120,15 @@ export default {
 		        choseDateVal(val){
 		        	//console.log(val)
 		        	this.update = val
+		        	
 		        },
 		        //获取选择年,月,日
 		        choseDayVal(val){
-		        	//console.log(val)
-		        	this.upday = val
+		        	this.update = {type:val}
 		        },
             //游客来源联动地图
             toggleProvince(data){
             	this.isprovince = data
-            },
-            
-            headerEnter(){
-                this.headerStatus=true;
-            },
-            headerLeave(){
-                this.headerStatus=false;
             },
             
             getResponse(){
@@ -186,20 +136,13 @@ export default {
                     
                         if(r.data.code ==="-1"||r.data.code ===-1){
                         //测试
-						//   window.location.href=API_URL+":8081/login"
-						//旅游局
-						window.location.href=API_LOGIN
+												window.location.href=API_URL+":8081/login"
+												//旅游局
+												//window.location.href=API_LOGIN
                         }
                 })
             },
-            
         },
-        created () {
-            
-            // this.getResponse();
-        },
-        mounted() {
-        }
     }
 </script>
 
