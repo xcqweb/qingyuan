@@ -12,12 +12,15 @@
 
 <script>
 	import List from '@/components/commonui/datalist/list.vue'
+	
 	export default{
 		data(){
 			return{
 				showStatus:false,
 				txt:''
 			}
+		},
+		watch:{
 		},
 		props:['listData'],
 		methods:{
@@ -55,7 +58,7 @@
 				})
 			}
 		},
-		created(){
+		mounted(){
 		},
 		components:{
 			List

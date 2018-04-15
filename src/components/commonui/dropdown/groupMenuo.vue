@@ -2,22 +2,10 @@
 	<div id="box">
 			<!--关键词-->
 			
-			<!--<input 
-				class="keyW" 
-				list="keys" 
-	        	v-on:blur="catchmsg4"
-	        	v-model="searchVal"
-	        	placeholder="名称搜索"
-			/>
-			<datalist id="keys">
-				<option v-for="item in cityData" :value="item"></option>
-			</datalist>-->
-			
 			<DataList
 				class=datalist
 				:listData='cityData'
 				v-on:blur='catchmsg4'
-	        	v-model='searchVal'
 	        	@getName='catchmsg4'
 			></DataList>
 			
@@ -75,6 +63,7 @@
 	import sleckt from '@/components/commonui/dropdown/dropdown-menu2.vue'
 	import DataList from '@/components/commonui/datalist/dataList.vue'
 	import vDate from '@/components/commonui/vueDate/app.vue'
+	
 	export default{
 		data(){
 			return{
@@ -82,7 +71,6 @@
 				seType:'全部',
 				isEndDate:true,
            		vDateStatus:true,
-           		searchVal:"",
            		type:"景区",
            		dateChoseList:[
 	                {context:'日',class:''},
@@ -196,9 +184,6 @@
 	        		//酒店选择
 	        		this.$emit('hotelChose',data)
 	        	}
-	           
-				//alert(data)
-				this.searchVal = "";
 	        },
 	       //类型
 	        catchmsg3(type){
@@ -220,12 +205,10 @@
 				}
 				
 				
-				//console.log(type,this.switch("全部",type))
 	        },
 	        
 	        //关键词
 	        catchmsg4(val){
-	        	//let val = this.searchVal;
 	        	if(val){
 	        		this.seType = val
 	        		if(this.type==='景区'){
@@ -239,8 +222,6 @@
 		        		this.$emit('hotelChose',val)
 		        	}
 	        	}
-				           
-				
 	        },
 	        
 	        switch(val,type){
