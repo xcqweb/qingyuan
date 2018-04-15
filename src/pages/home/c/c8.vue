@@ -55,7 +55,6 @@
 
 <script type="text/javascript">
 import Vue from 'vue'
-import axios from 'axios'
 export default {
     name:'c7',
     props:['updatePlace','update','upday'],
@@ -114,7 +113,7 @@ export default {
     methods:{
     	//获取数据
     	getResponse(paramsObj){
-				 axios.get(API_URL+'/qy/api/v2/view/getScenicPersonSumSort',{params:paramsObj}).then(r => {
+				 this.$axios.get(API_URL+'/qy/api/v2/view/getScenicPersonSumSort',{params:paramsObj}).then(r => {
 	                if(r.status ===200||r.data.code ===200){
 	                	let reData = r.data.data;
 	                	this.items = reData

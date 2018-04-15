@@ -1,11 +1,17 @@
 <template>
-  <div class="c7">
+  <div class="c7" v-show="status">
   	<div class="btn">
-  		<div :class="{'active':active===1}" @click="toggle(1,'inCountryCity')" >全国(市)</div>
-  		<div :class="{'active':active===2}" @click="toggle(2,'inProvinceCity')">省内(市)</div>
-  		<div :class="{'active':active===3}" @click="toggle(3,'inCountryProvince')">全国(省)</div>
+  		<div class="tabs" :class="{'active':active===1}" @click="toggle(1,'inCountryCity')" >全国(市)</div>
+  		<div class="tabs" :class="{'active':active===2}" @click="toggle(2,'inProvinceCity')">省内(市)</div>
+  		<div class="tabs" :class="{'active':active===3}" @click="toggle(3,'inCountryProvince')">全国(省)</div>
+  		<div class="dateRange">
+    		<span class="rangeTitle">时间范围</span>
+    		<date-select class='start' :isStart=true></date-select>
+    		<span class="txt">至</span>
+    		<date-select class='end' :isStart=false></date-select>
+    		<span class="reset" title="重置" @click="reset"></span>
+   	 </div>
   	</div>
-    
         <div class="title">
             <div class="cell1">
                 	排序	
@@ -57,18 +63,22 @@
 
 <script type="text/javascript">
 import Vue from 'vue'
-import axios from 'axios'
+import dateSelect from '@/components/commonui/dateSelect/dateSelect'
+import Bus from '@/common/js/bus'
 export default {
     name:'c7',
     props:['updatePlace','update','upday'],
     data(){
         return{
+        status:true,
         active:1,
         type:0,
         cityTypes:'inCountryCity',
         msg:'Hello Vue 来自App.vue',
         allData:[],
         items:[],
+        begin:[],
+        end:[]
       }
     },
      watch:{
@@ -80,7 +90,7 @@ export default {
             }
             this.getResponse(paramsObj);
         },
-       
+      	
          update:{
              handler:function(val, oldVal){
              	var paramsObj={}
@@ -92,16 +102,15 @@ export default {
 		                type:["day","month","year"][val.type],
 		            }
              	}else{
-             		let end = val.end.join("-")
+             		   let end = val.end.join("-")
 	                 let begin = val.begin.join("-")
 	                paramsObj = {
 	                    area:this.updatePlace.place,
 	                    name:this.updatePlace.turist,
 	                    beginTime:begin,
 	                    endTime:end
-					}
+									}
              	}
-                 
                  this.getResponse(paramsObj);
              },
              deep:true,
@@ -129,12 +138,25 @@ export default {
     		}
     	},
     	
+    	reset(){
+    		this.begin=[];
+        this.end=[];
+    		Bus.$emit('reset');
+    	},
     	
     	//获取数据
     	getResponse(paramsObj){
-				 axios.get(API_URL+'/qy/api/v2/view/getPersonSourceData',{params:paramsObj}).then(r => {
-	                if(r.status ===200||r.data.code ===200){
+				 this.$axios.get(API_URL+'/qy/api/v2/view/getPersonSourceData',{params:paramsObj}).then(r => {
+				        	//console.log(r)
+	                if(r.data.code ===200||r.data.code ==="200"){
+	                	this.status =false
+	                	window.setTimeout( () => {
+	                		this.status = true
+	                	},100)
 	                	let reData = r.data.data;
+	                	if(!reData.inCountryCity){
+	                		//alert('很抱歉!您选择的时间区间无数据!')
+	                	}
 	                	this.allData = reData;
 	                	this.items = reData[this.cityTypes];
 	                }
@@ -143,8 +165,56 @@ export default {
     },
     computed: { 
     },
-    components:{},
+    components:{
+    	dateSelect
+    },
     mounted(){
+    	Bus.$on('turistDate',(val) => {
+    		if(val.begin){
+    			this.begin=val.begin
+    		}else{
+    			this.end=val.end
+    		}
+    		
+    		//如果开始时间大于结束时间则颠倒过来
+    		if(this.begin.length && this.end.length){
+    			
+    			if(this.begin[0]>this.end[0]){
+    				  let tem = this.begin;
+    				  this.begin = this.end;
+    				  this.end = tem
+    			}
+    			
+    			if(this.begin[0]===this.end[0]){
+    				if(this.begin[1]>this.end[1]){
+    					let tem = this.begin;
+    				  this.begin = this.end;
+    				  this.end = tem
+    				}
+    			}
+    			
+    			if(this.begin[0]===this.end[0] && this.begin[1]===this.end[1]){
+    				if(this.begin[2]>this.end[2]){
+    					let tem = this.begin;
+    				  this.begin = this.end;
+    				  this.end = tem
+    				}
+    			}
+    			let ends = this.end.join("-")
+	        let begins = this.begin.join("-")
+      	 	var paramsObj = {
+      	 		 area:this.updatePlace.place,
+             name:this.updatePlace.turist,
+             beginTime:begins,
+             endTime:ends
+      	 	}
+      	 	//console.log(paramsObj)
+      	 	//初始化数据
+      	  this.begin=[];
+    			this.end=[];
+    			this.getResponse(paramsObj);
+    		}
+    	})
     }
 }
 </script>
@@ -157,14 +227,53 @@ export default {
     font{
         font-size: 0.6rem;
     }
+    
     .btn{
-    	width: 619/990*100%;
-    	margin:auto ;
+    	width: 990/990*100%;
     	display: flex;
-    	justify-content: space-between;
+    	justify-content: space-around;
     	padding: 22px 0px;
-    	div{
-    		flex-basis: 120/620*100%;
+    	.dateRange{
+	    	flex-basis: 450/990*100%;
+	    	position: relative;
+	    	.rangeTitle,.start,.txt,.end,.reset{
+	    		position: absolute;
+	    	}
+	    	.rangeTitle{
+	    		left:40px;
+	    		font-size: 16px;
+	    		height: 36px;
+	    		line-height: 36px;
+	    	}
+	    	.txt{
+	    		left:282px;
+	    		font-size: 16px;
+	    		height: 36px;
+	    		line-height: 36px;
+	    	}
+	    	.start{
+	    		left: 140px;
+	    	}
+	    	.end{
+	    		left: 320px;
+	    	}
+	    	.reset{
+	    		display: block;
+	    		width: 37px;
+	    		height: 36px;
+	    		left: 460px;
+	    		transform: scale(0.8);
+	    		background-image: url(../../../assets/images/shuaxin.png);
+	    		background-repeat: no-repeat;
+	    		background-size: 80%;
+	    		background-position: 4px 5px;
+	    		cursor: pointer;
+	    		border-radius: 8px;
+			    border: solid 2px #345bfa;
+	    	}
+	    }
+    	.tabs{
+    		flex-basis: 120/990*100%;
     		font-size: 24px;
     		height: 40px;
     		line-height: 40px;
