@@ -21,6 +21,7 @@ export default {
     mixins: [optionProps],
     data(){
     return{
+    	 type:0,
     		series:[
     		 {
 		      "value": 200,
@@ -89,7 +90,7 @@ export default {
 	            var paramsObj = {
 	                area:this.updatePlace.place,
 	                name:this.updatePlace.turist,
-	                //type:["day","month","year"][this.upday],
+	                type:["day","month","year"][this.type],
 	            }
 	            this.getResponse(paramsObj);
 	        },
@@ -206,6 +207,7 @@ export default {
     	 var paramsObj = {
                 area:"全部",
                 name:"全部",
+                type:'day'
             }
        this.getResponse(paramsObj);
     },
@@ -234,7 +236,7 @@ export default {
 .time{
 	position: absolute;
 	color: #fff;
-	bottom: 80px;
+	bottom: 2rem;
 	width: 58%;
 	font-size: 14px;
 	text-align: center;

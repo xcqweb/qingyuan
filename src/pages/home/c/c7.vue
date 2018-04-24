@@ -9,7 +9,7 @@
     		<date-select class='start' :isStart=true></date-select>
     		<span class="txt">至</span>
     		<date-select class='end' :isStart=false></date-select>
-    		<span class="reset" title="重置" @click="reset"></span>
+    		<!--<span class="reset" title="重置" @click="reset"></span>-->
    	 </div>
   	</div>
         <div class="title">
@@ -138,11 +138,11 @@ export default {
     		}
     	},
     	
-    	reset(){
-    		this.begin=[];
-        this.end=[];
-    		Bus.$emit('reset');
-    	},
+//  	reset(){
+//  		this.begin=[];
+//      this.end=[];
+//  		Bus.$emit('reset');
+//  	},
     	
     	//获取数据
     	getResponse(paramsObj){
@@ -200,6 +200,8 @@ export default {
     				  this.end = tem
     				}
     			}
+    			
+    			Bus.$emit('swap',{begin:this.begin,end:this.end})
     			let ends = this.end.join("-")
 	        let begins = this.begin.join("-")
       	 	var paramsObj = {
@@ -223,7 +225,7 @@ export default {
 .c7{
     height:100%;
     width:100%;
-    color: white;
+    color: #fff;
     font{
         font-size: 0.6rem;
     }
@@ -246,8 +248,8 @@ export default {
 	    		line-height: 36px;
 	    	}
 	    	.txt{
-	    		left:282px;
-	    		font-size: 16px;
+	    		left:286px;
+	    		font-size: 1rem;
 	    		height: 36px;
 	    		line-height: 36px;
 	    	}
@@ -255,13 +257,13 @@ export default {
 	    		left: 140px;
 	    	}
 	    	.end{
-	    		left: 320px;
+	    		right: 80px;
 	    	}
 	    	.reset{
 	    		display: block;
 	    		width: 37px;
 	    		height: 36px;
-	    		left: 460px;
+	    		left: 40px;
 	    		transform: scale(0.8);
 	    		background-image: url(../../../assets/images/shuaxin.png);
 	    		background-repeat: no-repeat;
@@ -328,7 +330,7 @@ ul{
 }
 
 		ul::-webkit-scrollbar{
-			    width: 0.45rem;
+			    width: 0rem;
 			    height: 3rem;
 			}
 			/*定义滚动条的轨道，内阴影及圆角*/
@@ -374,7 +376,7 @@ ul{
 
 .cell1{
     float:left;
-    width: 16.6%;
+    width: 100/6%;
     text-align: center;
 }
 

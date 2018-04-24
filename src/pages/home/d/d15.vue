@@ -52,6 +52,7 @@
 		},
 		watch:{
 			updatePlace:function(val){
+				this.num = 2;
 				var paramsObj = {
 	                area:val.place,
 	                name:val.turist,
@@ -68,6 +69,7 @@
 						
 			update:{
 	         handler:function(val, oldVal){
+	         	this.num = 2;
 	         	var paramsObj={}
 	         	if(val.type===0 || val.type===1 || val.type===2){
 	         		this.beginTime='';
@@ -107,6 +109,7 @@
 			
 			//酒店景区选择
 			slectType:function(val){
+				this.num = 2;
 				var paramsObj = {
 						area:this.updatePlace.place,
 		                name:this.updatePlace.turist,
@@ -120,6 +123,7 @@
 			},
 			//酒店名称
 			hotelChose:function(val){
+					this.num = 2;
 					this.name = val;
 					var paramsObj = {
 						area:this.updatePlace.place,
@@ -194,7 +198,6 @@
 		       //加载更多(已用自定义指令loadMore代替)
 		       loadMore:_.debounce( function(e){ //去抖函数
 		       		let _self = this;
-		       		var num=2;
 		       		scrollT = 0;
 		       		offsetT = 0;
 		       		var scrollT = Math.ceil(e.target.scrollTop+e.target.clientHeight),

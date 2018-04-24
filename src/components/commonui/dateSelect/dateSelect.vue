@@ -37,6 +37,13 @@
 		mounted(){
 			Bus.$on('reset', () => {
 				this.ctime = '年  ~ 月';
+			}),
+			Bus.$on('swap',(data) => {
+				if(this.isStart){
+					this.ctime = data.begin[0]+" ~ "+ data.begin[1]
+				}else{
+					this.ctime = data.end[0]+" ~ "+ data.end[1]
+				}
 			})
 		},
 		computed:{
@@ -112,6 +119,11 @@
 					this.ctime = this.choseDate[0] +" ~ "+ this.choseDate[1]
 					Bus.$emit('turistDate',{end:this.choseDate})
 				}
+				
+				
+				if(this.choseDate&&this.choseDateStart){
+										
+				}
 			} 
 		}
 		
@@ -130,8 +142,9 @@
 			border-radius: 8px;
 			border: solid 2px #345bfa;
 			cursor: pointer;
+			font-size: 1rem;
 			span{
-				margin-left: -16px;
+				margin-left: -1rem;
 			}
 			.up{
 	    			display: block;
@@ -159,20 +172,19 @@
 		.list{
 			background: #193583;
 			border: 1px solid #1b44ba;
-			height: 200px;
+			height: 210px;
 			overflow-y: scroll;
 			li{
 				height: 30px;
 				line-height: 30px;
 					.subMenu{
 					position: absolute;
-					height: 200px;
+					height: 210px;
 					width: 120px;
 					left: 116px;
 					top: 40px;
 					background: #193583;
 					border: 1px solid #1b44ba;
-					height: 200px;
 					overflow-y: scroll;
 					display: none;
 					li{

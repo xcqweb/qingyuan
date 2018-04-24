@@ -175,17 +175,18 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 isUpdate:true,
                 
                 radis:36,
-                maxv:10,
-                coun:50
+                maxv:30,
+                coun:50,
+                c:0
             }
         },
         watch:{
         	updatePlace:function(val){
         		this.place = val.place;
         		this.turist = val.turist;
-        		this.radis = 36
-        		this.maxv = 15
-        		this.coun = 50
+          		this.radis = 36
+        		//this.maxv = 15
+        		//this.coun = 50
         	},
             place:function(val){
                 this.addScript(val,false)
@@ -266,7 +267,11 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                     //自定义图标
                     if(points[i].isHigher && points[i].isHigher===true){//4A级以上景区
                     	var marker = new BMap.Marker(point,{icon: myIcon1}); 
-                    	map.addOverlay(marker);
+                    	
+                    	if(!map.getOverlays()){
+                    		map.addOverlay(marker);
+                    	}
+                    	
 	                    marker.setAnimation(BMAP_ANIMATION_BOUNCE);
 	                     //添加新图标的监听事件
 		                marker.addEventListener('click',function(){
@@ -280,10 +285,10 @@ import optionProps from '@/common/js/mixin/optionProps.js'
 	                     //添加新图标的监听事件
 		                marker.addEventListener('click',function(e){
 		                    var p = e.target.getPosition();//获取位置
-		                    _self.radis = 42
-		                    _self.maxv = 10
+		                    _self.radis = 100
+		                    _self.maxv = 8
 		                    _self.coun = 150
-		                    _self.moveTo(map,p.lng,p.lat,13)
+		                    _self.moveTo(map,p.lng,p.lat,14)
 		                    
 		                })
                     }
@@ -306,7 +311,6 @@ import optionProps from '@/common/js/mixin/optionProps.js'
             },
             addMenu(map){
                 var menu = new BMap.ContextMenu();
-				
                 var txtMenuItem = [
                     {
                         text:'放大',
@@ -385,16 +389,16 @@ import optionProps from '@/common/js/mixin/optionProps.js'
 					var ply = new BMap.Polygon(//建立多边形覆盖物
 						rs.boundaries[i], 
 						{
-							strokeWeight: 2, //线条宽度
+							strokeWeight: 6, //线条宽度
 							strokeColor: "green", //填线条颜色
 							strokeOpacity:0.3,//线条透明度
-							fillColor:'green', //填充颜色
-							fillOpacity:0.3,//填充颜色透明度
+							fillColor:'none', //填充颜色
+							fillOpacity:1,//填充颜色透明度
 						}); 
 					map.addOverlay(ply);  //添加覆盖物
 					pointArray = pointArray.concat(ply.getPath());
 				}    
-				map.setViewport(pointArray);    //调整视野  
+				//map.setViewport(pointArray);    //调整视野  
             },
             addLine(map){
                 //添加曲线
@@ -427,7 +431,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                     div.style.color = '#40C5CC'; 
                     div.style.cursor = 'pointer';
                     div.style.border = '3px solid gray';
-                    div.style.backgroundColor = '#eee';
+                    div.style.backgroundColor = '#f00';
                     //绑定事件，点击触发
                     div.onclick = function(e) {
                         map.setZoom(map.getZoom() + 2);
@@ -452,14 +456,13 @@ import optionProps from '@/common/js/mixin/optionProps.js'
             addHot(map){//热力图
             		 let _self = this
                      //var points = this.arrHotPoint;
-                     let points = [];
+                     var points = [];
                      let hotPointA = traffic_points;
                        // 向地图添加标注
                     	let paramsObj = {
                     		area:"全部",
                     		name:"全部"
                     	}
-                    	debugger
                     	//根据景区当前客流来模拟热力图效果
                     	function getResponse(paramsObj){
 				            _self.$axios.get(API_URL+'/qy/api/v2/command/selectCommandScenicWarning',{params:paramsObj}).then(r => {
@@ -472,30 +475,13 @@ import optionProps from '@/common/js/mixin/optionProps.js'
 					                   		}
 				                   		})
 				                   })
+				                   
 				                }
 				            })
 				        }
                     	
                     	getResponse(paramsObj)
                     	
-//                  	 _self.$axios.get(API_URL+'/qy/api/v2/command/getCommandPassengerData',{params:{area:'全部',name:'全部'}}).then(r => {
-//				                if(r.data.code ==="200"||r.data.code ===200){
-//				                   var reData = r.data.data
-//				                   console.log(reData)
-//				                   let date = new Date()
-//				                   let hours = date.getHours()-2
-//				                   let begin = Number(reData.beginTime.substring(11,13))
-//				                   let end = Number(reData.endTime.substring(11,13))
-//				                    if(hours>=begin && hours<=end){
-//				                    	this.isUpdate = false
-//				                    }else{
-//				                    	this.isUpdate = true
-//				                    }
-//				                   console.log(hours,begin,end)
-//				                }
-//				            })
-                    		
-                    	if(this.isUpdate){
                     		for( var j = 0;j < hotPointA.length; j++){
                            let makeMap = function(){
                             
@@ -506,15 +492,90 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                               
                                let lenX
                                let lenY
-                               
-                            	if(r-0.5<0){
-                            		lenX = -0.010+Math.random()*0.03
-                                    lenY = -0.010+Math.random()*0.03
-                            	}else{
-                            		lenX = 0.010+Math.random()*0.01
-                                    lenY = 0.010+Math.random()*0.01
-                            	}
-                               let c = hotPointA[j].total||50  //景区当前人数
+                               console.log(hotPointA[j].label)
+                               if(hotPointA[j].label==='清泉湾生态旅游度假区'){
+                               		if(r-0.5<0){
+	                            			lenX = -0.005+Math.random()*0.001
+	                                    	lenY = -0.005+Math.random()*0.005
+		                            	}else{
+		                            		lenX = 0.005+Math.random()*0.005
+		                                    lenY = 0.005+Math.random()*0.006
+	                            		}
+                               }else if(hotPointA[j].label==='太和古洞旅游区'){
+                               		if(r-0.5<0){
+	                            			lenX = -0.008+Math.random()*0.002
+	                                    	lenY = -0.08+Math.random()*0.001
+		                            	}else{
+		                            		lenX = 0.005+Math.random()*0.0002
+		                                    lenY = 0.005+Math.random()*0.001
+	                            		}
+                               }else if(hotPointA[j].label==='笔架山度假区'){
+                               		if(r-0.5<0){
+	                            			lenX = -0.009+Math.random()*0.006
+	                                    	lenY = -0.005+Math.random()*0.01
+		                            	}else{
+		                            		lenX = 0.0005+Math.random()*0.009
+		                                    lenY = 0.001+Math.random()*0.009
+	                            		}
+                               }else if(hotPointA[j].label==='白庙渔村'){
+                               		if(r-0.5<0){
+	                            			lenX = -0.04+Math.random()*0.01
+	                                    	lenY = -0.005+Math.random()*0.005
+		                            	}else{
+		                            		lenX = 0.001+Math.random()*0.01
+		                                    lenY = 0.005+Math.random()*0.006
+	                            		}
+                               }else if(hotPointA[j].label==='飞霞风景名胜区'){
+                               		if(r-0.5<0){
+	                            			lenX = -0.005+Math.random()*0.002
+	                                    	lenY = -0.001+Math.random()*0.0001
+		                            	}else{
+		                            		lenX = 0.005+Math.random()*0.006
+		                                    lenY = 0.005+Math.random()*0.0001
+	                            		}
+                               }else if(hotPointA[j].label==='飞来寺'){
+                               		if(r-0.5<0){
+	                            			lenX = -0.0000002+Math.random()*0.0000002
+	                                    	lenY = -0.0000002+Math.random()*0.0000002
+		                            	}else{
+		                            		lenX = 0.0000002+Math.random()*0.0000002
+		                                    lenY = 0.0000002+Math.random()*0.0000002
+	                            		}
+                               }else if(hotPointA[j].label==='熹乐谷'){
+                               		if(r-0.5<0){
+	                            			lenX = -0.0000002+Math.random()*0.0000002
+	                                    	lenY = -0.0000002+Math.random()*0.0000002
+		                            	}else{
+		                            		lenX = 0.0000002+Math.random()*0.0000002
+		                                    lenY = 0.0000002+Math.random()*0.0000002
+	                            		}
+                               }else if(hotPointA[j].label==='金龟泉生态度假村'){
+                               		if(r-0.5<0){
+	                            			lenX = -0.000002+Math.random()*0.000002
+	                                    	lenY = -0.000002+Math.random()*0.000002
+		                            	}else{
+		                            		lenX = 0.000002+Math.random()*0.000002
+		                                    lenY = 0.000002+Math.random()*0.000002
+	                            		}
+                               }else if(hotPointA[j].label==='牛鱼嘴原始生态风景区'){
+                               		if(r-0.5<0){
+	                            			lenX = -0.02+Math.random()*0.02
+	                                    	lenY = -0.005+Math.random()*0.002
+		                            	}else{
+		                            		lenX = 0.002+Math.random()*0.01
+		                                    lenY = 0.002+Math.random()*0.002
+	                            		}
+                               }else{
+                               		if(r-0.5<0){
+		                            		lenX = -0.0050+Math.random()*0.0050
+		                                    lenY = -0.0050+Math.random()*0.0050
+		                            	}else{
+		                            		lenX = 0.0050+Math.random()*0.0050
+		                                    lenY = 0.0050+Math.random()*0.0050
+		                            	}
+                               }
+                            	
+                               let c = hotPointA[j].total||170  //景区当前人数
                                if(c>300){
                                		c=300
                                }
@@ -548,12 +609,11 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                                    let count = (Math.random()*5).toFixed(0)
                                    let point = {"lng":lng,"lat":lat,"count":count}
                                    points.push(point)
+                                   
                                }
                            }
                            makeMap()
                        }
-                	}
-                        
                       map.enableScrollWheelZoom(); // 允许滚轮缩放
                    
                     if(!isSupportCanvas()){
@@ -584,7 +644,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                     	});
                     
                     map.addOverlay(heatmapOverlay);
-                    heatmapOverlay.setDataSet({data:points,max:this.maxv});
+                      heatmapOverlay.setDataSet({data:points,max:this.maxv});
                     //是否显示热力图
                      heatmapOverlay.show();
                     function closeHeatmap(){
@@ -619,11 +679,17 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                          map.centerAndZoom(new BMap.Point(lon,lat), zoom);
                          
                          if(boundarys[val]){
-                         	//this.addBoundary(map,boundarys[val]);	//绘制区域范围
+                         	 //this.addBoundary(map,boundarys[val]);	//绘制区域范围
                          }
                          
                     }
                    
+            },
+            initBoundary(map){
+            	let arr = Object.keys(boundarys)
+	        	arr.forEach( (v,i) => {
+	        		//this.addBoundary(map,boundarys[v]);
+	        	})
             },
             addScript(val,isTurist){
             	
@@ -651,60 +717,60 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                  let lenObj ={}
                 if(!isTurist){
                 	lenObj = {
-	                    "全部":{lng:113.06689,lat:23.699107,zoom:13},
-	                    "清远市":{lng:113.0323,lat:23.699107,zoom:13},
-	                    "清城":{lng:113.06689,lat:23.704022,zoom:13},
-	                    "清新":{lng:112.991271,lat:23.75427,zoom:13},
-	                    "佛冈":{lng:113.539303,lat:23.886532,zoom:13},
-	                    "英德":{lng:113.418281,lat:24.192466,zoom:13},
-	                    "连州":{lng:112.38616,lat:24.786467,zoom:13},
-	                    "连南":{lng:112.290355,lat:24.732074,zoom:13},
-	                    "连山":{lng:112.102727,lat:24.582118,zoom:13},
-	                    "阳山":{lng:112.646658,lat:24.47147,zoom:13},
+	                    "全部":{lng:113.06689,lat:23.76917,zoom:14},
+	                    "清远市":{lng:113.0323,lat:23.699107,zoom:14},
+	                    "清城":{lng:113.06689,lat:23.704022,zoom:14},
+	                    "清新":{lng:112.991271,lat:23.75427,zoom:14},
+	                    "佛冈":{lng:113.539303,lat:23.886532,zoom:14},
+	                    "英德":{lng:113.418281,lat:24.192466,zoom:12},
+	                    "连州":{lng:112.38616,lat:24.786467,zoom:12},
+	                    "连南":{lng:112.290355,lat:24.732074,zoom:14},
+	                    "连山":{lng:112.102727,lat:24.582118,zoom:14},
+	                    "阳山":{lng:112.646658,lat:24.47147,zoom:12},
                 	}; 
                 }else{
                 	lenObj = {
-	                    "全部":{lng:113.06689,lat:23.699107,zoom:13},
-	                    "飞霞风景名胜区":{lng:113.188758,lat:23.724641,zoom:13},
-	                    "牛鱼嘴原始生态风景区":{lng:113.153471,lat:23.774872,zoom:13},
-	                    "天子山瀑布风景区":{lng:113.146295,lat:23.849325,zoom:13},
-	                    "白庙渔村":{lng:113.146036,lat:23.711442,zoom:13},
-	                    "飞来寺":{lng:113.172823,lat:23.708263,zoom:13},
-	                    "美林湖及大家元摩天轮片区":{lng:113.043339,lat:23.50327,zoom:13},
-	                    "太和古洞旅游区":{lng:112.999031,lat:23.747737,zoom:13},
-	                    "笔架山度假区":{lng:113.042358,lat:23.776528,zoom:13},
-	                    "安庆村":{lng:112.823456,lat:23.616738,zoom:13},
-	                    "清泉湾生态旅游度假区":{lng:112.928301,lat:23.764869,zoom:13},
-	                    "金龙洞":{lng:112.884256,lat:24.083820,zoom:13},
-	                    "九牛洞村":{lng:112.778425,lat:23.622568,zoom:13},
-	                    "观音山王山寺":{lng:113.492142,lat:23.94476,zoom:13},
-	                    "田野绿世界":{lng:113.420187,lat:23.891213,zoom:13},
-	                    "熹乐谷":{lng:113.497596,lat:23.780602,zoom:13},
-	                    "金龟泉生态度假村":{lng:113.526753,lat:23.781643,zoom:13},
-	                    "上岳古民居":{lng:113.355146,lat:23.811075,zoom:13},
-	                    "峰林胜境景区":{lng:112.94251,lat:24.227131,zoom:13},
-	                    "英德老虎谷暗河漂流":{lng:112.855041,lat:24.257544,zoom:13},
-	                    "九龙小镇":{lng:112.930222,lat:24.127433,zoom:13},
-	                    "铁溪小镇":{lng:113.314992,lat:23.925412,zoom:13},
-	                    "仙湖温泉旅游度假区":{lng:113.331145,lat:24.344247,zoom:13},
-	                    "浈阳坊旅游小镇":{lng:113.316922,lat:24.039576,zoom:13},
-	                    "大樟沙滩度假村":{lng:113.286205,lat:24.003529,zoom:13},
-	                    "云水谣":{lng:113.399516,lat:24.390361,zoom:13},
-	                    "彭家祠":{lng:112.907855,lat:24.19271,zoom:13},
-	                    "清远市连州福山景区":{lng:112.399579,lat:24.931353,zoom:13},
-	                    "大东山温泉度假区":{lng:112.632779,lat:24.857549,zoom:13},
-	                    "李屋村":{lng:112.558599,lat:24.833107,zoom:13},
-	                    "潭岭天湖":{lng:112.661577,lat:24.97412,zoom:13},
-	                    "油岭瑶寨":{lng:112.27381,lat:24.617349,zoom:13},
-	                    "瑶族舞曲实景演出":{lng:112.28646,lat:24.72866,zoom:13},
-	                    "云海花谷":{lng:112.304638,lat:24.65198,zoom:13},
-	                    "大旭山瀑布群旅游景区":{lng:112.043239,lat:24.533676,zoom:13},
-	                    "皇后山":{lng:112.086609,lat:24.732186,zoom:13},
-	                    "鹰扬关景区":{lng:111.946833,lat:24.69164,zoom:13},
-	                    "雾山梯田":{lng:112.191833,lat:24.743344,zoom:13},
-	                    "北山古寺":{lng:112.655269,lat:24.490658,zoom:13},
-	                    "鱼水旅游风景区":{lng:112.690161,lat:24.369281,zoom:13},
-	                    "龙凤温泉":{lng:112.604885,lat:24.616137,zoom:13}
+	                    "全部":{lng:113.06689,lat:23.699107,zoom:14},
+	                    "飞霞风景名胜区":{lng:113.188758,lat:23.724641,zoom:14},
+	                    "牛鱼嘴原始生态风景区":{lng:113.153471,lat:23.774872,zoom:14},
+	                    "天子山瀑布风景区":{lng:113.146295,lat:23.849325,zoom:14},
+	                    "白庙渔村":{lng:113.146036,lat:23.711442,zoom:14},
+	                    "飞来寺":{lng:113.172823,lat:23.708263,zoom:14},
+	                    "美林湖及大家元摩天轮片区":{lng:113.043339,lat:23.50327,zoom:14},
+	                    "太和古洞旅游区":{lng:112.999031,lat:23.747737,zoom:14},
+	                    "笔架山度假区":{lng:113.042358,lat:23.776528,zoom:14},
+	                    "安庆村":{lng:112.823456,lat:23.616738,zoom:14},
+	                    "清泉湾生态旅游度假区":{lng:112.928301,lat:23.764869,zoom:14},
+	                    "金龙洞":{lng:112.884256,lat:24.083820,zoom:14},
+	                    "九牛洞村":{lng:112.778425,lat:23.622568,zoom:14},
+	                    "观音山王山寺":{lng:113.492142,lat:23.94476,zoom:14},
+	                    "田野绿世界":{lng:113.420187,lat:23.891213,zoom:14},
+	                    "熹乐谷":{lng:113.497596,lat:23.780602,zoom:14},
+	                    "金龟泉生态度假村":{lng:113.526753,lat:23.781643,zoom:14},
+	                    "上岳古民居":{lng:113.355146,lat:23.811075,zoom:14},
+	                    "峰林胜境景区":{lng:112.94251,lat:24.227131,zoom:14},
+	                    "英德老虎谷暗河漂流":{lng:112.855041,lat:24.257544,zoom:14},
+	                    "九龙小镇":{lng:112.930222,lat:24.127433,zoom:14},
+	                    "铁溪小镇":{lng:113.314992,lat:23.925412,zoom:14},
+	                    "仙湖温泉旅游度假区":{lng:113.331145,lat:24.344247,zoom:14},
+	                    "浈阳坊旅游小镇":{lng:113.316922,lat:24.039576,zoom:14},
+	                    "大樟沙滩度假村":{lng:113.286205,lat:24.003529,zoom:14},
+	                    "云水谣":{lng:113.399516,lat:24.390361,zoom:14},
+	                    "彭家祠":{lng:112.907855,lat:24.19271,zoom:14},
+	                    "清远市连州福山景区":{lng:112.399579,lat:24.931353,zoom:14},
+	                    "大东山温泉度假区":{lng:112.632779,lat:24.857549,zoom:14},
+	                    "李屋村":{lng:112.558599,lat:24.833107,zoom:14},
+	                    "潭岭天湖":{lng:112.661577,lat:24.97412,zoom:14},
+	                    "油岭瑶寨":{lng:112.27381,lat:24.617349,zoom:14},
+	                    "瑶族舞曲实景演出":{lng:112.28646,lat:24.72866,zoom:14},
+	                    "云海花谷":{lng:112.304638,lat:24.65198,zoom:14},
+	                    "大旭山瀑布群旅游景区":{lng:112.043239,lat:24.533676,zoom:14},
+	                    "皇后山":{lng:112.086609,lat:24.732186,zoom:14},
+	                    "鹰扬关景区":{lng:111.946833,lat:24.69164,zoom:14},
+	                    "雾山梯田":{lng:112.191833,lat:24.743344,zoom:14},
+	                    "北山古寺":{lng:112.655269,lat:24.490658,zoom:14},
+	                    "鱼水旅游风景区":{lng:112.690161,lat:24.369281,zoom:14},
+	                    "龙凤温泉":{lng:112.604885,lat:24.616137,zoom:14}
                 	}
                 }
                 
@@ -714,9 +780,71 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 map.addEventListener("mousedown",function(e){
                     _self.videoToast=false;
                 },false)
+				map.addEventListener('zoomend',function(){
+					let zoom = map.getZoom()
+//					switch(zoom){
+//						case 15:
+//						//_self.c=200;
+//						_self.maxv = 10;
+//						_self.radis = 42;
+//						break;
+//						case 14:
+//						//_self.c=200;
+//						_self.maxv = 10;
+//						_self.radis = 26;
+//						break;
+//						case 13:
+//						//_self.c=150;
+//						_self.maxv = 30;
+//						_self.radis = 30;
+//						break;
+//						case 12:
+//						//_self.c=100;
+//						_self.maxv = 50;
+//						_self.radis = 36;
+//						break;
+//						case 11:
+////						_self.c=50;
+//						_self.maxv = 100;
+//						_self.radis = 36;
+//						break;
+//						case 10:
+////						_self.c=30;
+//						_self.maxv = 500;
+//						_self.radis = 20;
+//						break;
+//						case 9:
+//						//_self.c=100;
+//						_self.maxv = 100000;
+//						break;
+//						case 8:
+//						//_self.c=100;
+//						_self.maxv = 100000;
+//						break;
+//						case 7:
+//						//_self.c=100;
+//						_self.maxv = 100000;
+//						break;
+//						case 6:
+//						//_self.c=100;
+//						_self.maxv = 100000;
+//						break;
+//					}
+//					if(zoom<=10){
+//						map.setZoom(10);
+//					}
+//					if(zoom>=15){
+//						map.setZoom(15);
+//					}
+					//map.clearOverlays();
+					//_self.addIcon(map);
+					//_self.addHot(map);
+					//_self.initBoundary(map);
+				})
                 // 初始化地图,设置中心点坐标和地图级别
-                map.centerAndZoom(new BMap.Point(113.062468,23.690613), 13);
+                map.centerAndZoom(new BMap.Point(113.062468,23.690613),12);
                 
+                this.initBoundary(map)
                 
                 // 添加地图类型控件
                 map.addControl(new BMap.MapTypeControl());  
