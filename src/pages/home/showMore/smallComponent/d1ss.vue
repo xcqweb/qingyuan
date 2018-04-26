@@ -492,8 +492,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                               
                                let lenX
                                let lenY
-                               console.log(hotPointA[j].label)
-                               if(hotPointA[j].label==='清泉湾生态旅游度假区'){
+	                               if(hotPointA[j].label==='清泉湾生态旅游度假区'){
                                		if(r-0.5<0){
 	                            			lenX = -0.005+Math.random()*0.001
 	                                    	lenY = -0.005+Math.random()*0.005
@@ -717,7 +716,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                  let lenObj ={}
                 if(!isTurist){
                 	lenObj = {
-	                    "全部":{lng:113.06689,lat:23.76917,zoom:14},
+	                    "全部":{lng:113.042358,lat:23.776528,zoom:14},
 	                    "清远市":{lng:113.0323,lat:23.699107,zoom:14},
 	                    "清城":{lng:113.06689,lat:23.704022,zoom:14},
 	                    "清新":{lng:112.991271,lat:23.75427,zoom:14},
@@ -730,7 +729,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 	}; 
                 }else{
                 	lenObj = {
-	                    "全部":{lng:113.06689,lat:23.699107,zoom:14},
+	                    "全部":{lng:113.042358,lat:23.776528,zoom:14},
 	                    "飞霞风景名胜区":{lng:113.188758,lat:23.724641,zoom:14},
 	                    "牛鱼嘴原始生态风景区":{lng:113.153471,lat:23.774872,zoom:14},
 	                    "天子山瀑布风景区":{lng:113.146295,lat:23.849325,zoom:14},
@@ -842,7 +841,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
 					//_self.initBoundary(map);
 				})
                 // 初始化地图,设置中心点坐标和地图级别
-                map.centerAndZoom(new BMap.Point(113.062468,23.690613),12);
+                map.centerAndZoom(new BMap.Point(113.062468,23.695613),12);
                 
                 this.initBoundary(map)
                 

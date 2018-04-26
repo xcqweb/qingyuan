@@ -57,6 +57,30 @@
                 <span class='footerRise' :class='item.rise'></span>
             </div>
         </li>
+        <li>
+            <div class="cell1">
+                {{items.length+1}}
+            </div>
+            <div class="cell1">
+                               总计
+            </div>
+            <div class="cell1">
+                {{totalNum}}
+            </div>
+            
+            <div class="cell1">
+                <span class='footerCotext'></span>
+                <span class='footerRise'></span>
+            </div>
+            <div class="cell1">
+                <span class='footerCotext'></span>
+                <span class='footerRise'></span>
+            </div>
+            <div class="cell1">
+                <span class='footerCotext'></span>
+                <span class='footerRise'></span>
+            </div>
+        </li>
     </ul>
   </div>
 </template>
@@ -78,7 +102,8 @@ export default {
         allData:[],
         items:[],
         begin:[],
-        end:[]
+        end:[],
+        totalType:'inCountryCityTotalMan'
       }
     },
      watch:{
@@ -90,7 +115,15 @@ export default {
             }
             this.getResponse(paramsObj);
         },
-      	
+      	cityTypes:function(val){
+      		if(val==='inProvinceCity'){
+      			this.totalType = 'inProvinceCityTotalMan' 
+      		}else if(val==='inCountryProvince'){
+      			this.totalType = 'inCountryProvinceTotalMan' 
+      		}else{
+      			this.totalType = 'inCountryCityTotalMan'
+      		}
+      	},
          update:{
              handler:function(val, oldVal){
              	var paramsObj={}
@@ -158,12 +191,21 @@ export default {
 	                		//alert('很抱歉!您选择的时间区间无数据!')
 	                	}
 	                	this.allData = reData;
+	                	console.log(reData)
 	                	this.items = reData[this.cityTypes];
 	                }
 	            })
 	  	},
     },
     computed: { 
+    	totalNum(){
+    		if(this.allData){
+    			return this.allData[this.totalType]
+    		}else{
+    			return 0
+    		}
+    		
+    	}
     },
     components:{
     	dateSelect
