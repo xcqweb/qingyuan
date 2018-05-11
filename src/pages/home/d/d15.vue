@@ -130,7 +130,7 @@
 		                name:val,
 		                pageId:1,
 		                source:'全部',
-		                commentType:this.comType ,
+		                commentType:this.comType,
 		                key:"",
 		                category:this.slectType+1
 	               }
@@ -278,6 +278,7 @@
 	                pageId:1,
 	                source:'全部',
 	                commentType:this.comType,
+	                category:this.slectType+1,
 	                key:data
 	            }
 	       		this.items = []
@@ -288,17 +289,38 @@
     		Bus.$on('isRise',(data) => {
     			this.comType = 2
     			this.num = 2;
-    			this.name = data
-	       		var paramsObj = {
-	                area:this.updatePlace.place,
-	                name:data,
-	                pageId:1,
-	                source:'全部',
-	                commentType:this.comType,
-	                key:""
-	            }
-	       		this.items = []
-	       		this.getResponseRise(paramsObj);
+    			
+    			var paramsObj = {}
+	       		 if(data!=='其他'){
+	       		 	this.name = data
+	       		 	paramsObj = {
+		                area:this.updatePlace.place,
+		                name:data,
+		                pageId:1,
+		                source:'全部',
+		                category:this.slectType+1,
+		                commentType:this.comType,
+		                key:""
+		            }
+	       		 	
+	       		 	this.items = []
+	       			this.getResponseRise(paramsObj);
+	       		 }else{
+	       		 	this.comType = 1
+	       		 	paramsObj = {
+		                area:this.updatePlace.place,
+		                name:'全部',
+		                pageId:1,
+		                source:'全部',
+		                type:["day","month","year"][this.type],
+		                category:this.slectType+1,
+		                commentType:this.comType,
+		                key:""
+		            }
+	       		 	this.items = []
+	       		 	this.getResponse(paramsObj,true);
+	       		 }
+	       		
 	       	})
 	    }
 	}

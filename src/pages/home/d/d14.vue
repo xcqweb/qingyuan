@@ -59,7 +59,7 @@ export default {
         updatePlace:function(val){
             var paramsObj = {
                 area:val.place,
-                name:val.turist,
+//              name:val.turist,
             }
               this.getResponse(paramsObj);
         },
@@ -108,7 +108,7 @@ export default {
     created(){
         var paramsObj = {
                 area:"全部",
-                name:"全部",
+//              name:"全部",
             }
        this.getResponse(paramsObj);
     },  

@@ -76,7 +76,7 @@ export default {
   	height: 1080px;
     position: relative;
     background-color: #0d1b48;
-	  overflow: hidden;
+	overflow: hidden;
 	  
     .header{
         width: 100%;

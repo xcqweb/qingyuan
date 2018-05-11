@@ -494,7 +494,7 @@
         
         	//获取酒店列表
         	getHotelList(paramsObj){
-        		this.$axios.get('http://120.55.190.57/qy/api/v2/command/getHotels',{params:paramsObj}).then(r => {
+        		this.$axios.get('http://120.55.190.57:8081/qy/api/v2/command/getHotels',{params:paramsObj}).then(r => {
             	let reData = r.data.data
             	reData.unshift('全部')
                 if(r.status ===200){

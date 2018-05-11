@@ -2,7 +2,7 @@ import axios from 'axios'
 import router from '@/router'
 
 //axios 配置
-axios.defaults.timeout = 50000;
+axios.defaults.timeout = 500000;
 axios.defaults.baseURL = window.API_URL+'/qy/api/';
 
 

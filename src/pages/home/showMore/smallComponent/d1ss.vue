@@ -157,7 +157,7 @@ display:none !important;
 <script>
 import traffic_points from '@/pages/home/showMore/bigComponent/json/traffic_points.json'
 import boundarys from '@/pages/home/showMore/smallComponent/boundary.json'
-import coords from '@/pages/home/showMore/smallComponent/coord.json'
+import coords from '@/pages/home/showMore/smallComponent/reli.json'
 import optionProps from '@/common/js/mixin/optionProps.js'
     export default {
         name:'D1SS',
@@ -456,7 +456,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
             addHot(map){//热力图
             		 let _self = this
                      //var points = this.arrHotPoint;
-                     var points = [];
+                     var points = coords;
                      let hotPointA = traffic_points;
                        // 向地图添加标注
                     	let paramsObj = {
@@ -480,138 +480,138 @@ import optionProps from '@/common/js/mixin/optionProps.js'
 				            })
 				        }
                     	
+                    	//console.log(coords)
                     	getResponse(paramsObj)
                     	
                     		for( var j = 0;j < hotPointA.length; j++){
-                           let makeMap = function(){
+//                         let makeMap = function(){
                             
-                               let minX = hotPointA[j].point[0];
-                            
-                               let minY = hotPointA[j].point[1];
-                               let r 
-                              
-                               let lenX
-                               let lenY
-	                               if(hotPointA[j].label==='清泉湾生态旅游度假区'){
-                               		if(r-0.5<0){
-	                            			lenX = -0.005+Math.random()*0.001
-	                                    	lenY = -0.005+Math.random()*0.005
-		                            	}else{
-		                            		lenX = 0.005+Math.random()*0.005
-		                                    lenY = 0.005+Math.random()*0.006
-	                            		}
-                               }else if(hotPointA[j].label==='太和古洞旅游区'){
-                               		if(r-0.5<0){
-	                            			lenX = -0.008+Math.random()*0.002
-	                                    	lenY = -0.08+Math.random()*0.001
-		                            	}else{
-		                            		lenX = 0.005+Math.random()*0.0002
-		                                    lenY = 0.005+Math.random()*0.001
-	                            		}
-                               }else if(hotPointA[j].label==='笔架山度假区'){
-                               		if(r-0.5<0){
-	                            			lenX = -0.009+Math.random()*0.006
-	                                    	lenY = -0.005+Math.random()*0.01
-		                            	}else{
-		                            		lenX = 0.0005+Math.random()*0.009
-		                                    lenY = 0.001+Math.random()*0.009
-	                            		}
-                               }else if(hotPointA[j].label==='白庙渔村'){
-                               		if(r-0.5<0){
-	                            			lenX = -0.04+Math.random()*0.01
-	                                    	lenY = -0.005+Math.random()*0.005
-		                            	}else{
-		                            		lenX = 0.001+Math.random()*0.01
-		                                    lenY = 0.005+Math.random()*0.006
-	                            		}
-                               }else if(hotPointA[j].label==='飞霞风景名胜区'){
-                               		if(r-0.5<0){
-	                            			lenX = -0.005+Math.random()*0.002
-	                                    	lenY = -0.001+Math.random()*0.0001
-		                            	}else{
-		                            		lenX = 0.005+Math.random()*0.006
-		                                    lenY = 0.005+Math.random()*0.0001
-	                            		}
-                               }else if(hotPointA[j].label==='飞来寺'){
-                               		if(r-0.5<0){
-	                            			lenX = -0.0000002+Math.random()*0.0000002
-	                                    	lenY = -0.0000002+Math.random()*0.0000002
-		                            	}else{
-		                            		lenX = 0.0000002+Math.random()*0.0000002
-		                                    lenY = 0.0000002+Math.random()*0.0000002
-	                            		}
-                               }else if(hotPointA[j].label==='熹乐谷'){
-                               		if(r-0.5<0){
-	                            			lenX = -0.0000002+Math.random()*0.0000002
-	                                    	lenY = -0.0000002+Math.random()*0.0000002
-		                            	}else{
-		                            		lenX = 0.0000002+Math.random()*0.0000002
-		                                    lenY = 0.0000002+Math.random()*0.0000002
-	                            		}
-                               }else if(hotPointA[j].label==='金龟泉生态度假村'){
-                               		if(r-0.5<0){
-	                            			lenX = -0.000002+Math.random()*0.000002
-	                                    	lenY = -0.000002+Math.random()*0.000002
-		                            	}else{
-		                            		lenX = 0.000002+Math.random()*0.000002
-		                                    lenY = 0.000002+Math.random()*0.000002
-	                            		}
-                               }else if(hotPointA[j].label==='牛鱼嘴原始生态风景区'){
-                               		if(r-0.5<0){
-	                            			lenX = -0.02+Math.random()*0.02
-	                                    	lenY = -0.005+Math.random()*0.002
-		                            	}else{
-		                            		lenX = 0.002+Math.random()*0.01
-		                                    lenY = 0.002+Math.random()*0.002
-	                            		}
-                               }else{
-                               		if(r-0.5<0){
-		                            		lenX = -0.0050+Math.random()*0.0050
-		                                    lenY = -0.0050+Math.random()*0.0050
-		                            	}else{
-		                            		lenX = 0.0050+Math.random()*0.0050
-		                                    lenY = 0.0050+Math.random()*0.0050
-		                            	}
-                               }
-                            	
-                               let c = hotPointA[j].total||170  //景区当前人数
-                               if(c>300){
-                               		c=300
-                               }
-                               if(c<80&&c>50){
-                               	 c=80
-                               }
-                               if(c>0&&c<=50){
-                               		c=50
-                               }
-                               if(c===0){
-                               	 c=0
-                               }
-                               for (var i = 0; i < c; i++) { //模拟经纬度坐标 四个方向均为1/4
-                               		r = Math.random()
-                               		let lng,
-                               			lat
-                               		if(r<0.25){
-                               			 lng = -Math.abs(Math.random())*Math.abs(2*lenX)+minX
-                                   		 lat = -Math.abs(Math.random())*Math.abs(2*lenY)+minY
-                               		}else if(r>=0.25 && r<0.5){
-                               			 lng = Math.abs(Math.random())*Math.abs(2*lenX)+minX
-                                   		 lat = Math.abs(Math.random())*Math.abs(2*lenY)+minY
-                               		}else if(r>=0.5&&r<0.75){
-                               			lng = -Math.abs(Math.random())*Math.abs(2*lenX)+minX
-                                   		lat = Math.abs(Math.random())*Math.abs(2*lenY)+minY
-                               		}else{
-                               			lng = Math.abs(Math.random())*Math.abs(2*lenX)+minX
-                                   		lat = -Math.abs(Math.random())*Math.abs(2*lenY)+minY
-                               		}
-                                   
-                                   let count = (Math.random()*5).toFixed(0)
-                                   let point = {"lng":lng,"lat":lat,"count":count}
-                                   points.push(point)
-                                   
-                               }
-                           }
-                           makeMap()
+//                             let minX = hotPointA[j].point[0];
+//                          
+//                             let minY = hotPointA[j].point[1];
+//                             let r 
+//                            
+//                             let lenX
+//                             let lenY
+//	                               if(hotPointA[j].label==='清泉湾生态旅游度假区'){
+//                             		if(r-0.5<0){
+//	                            			lenX = -0.005+Math.random()*0.001
+//	                                    	lenY = -0.005+Math.random()*0.005
+//		                            	}else{
+//		                            		lenX = 0.005+Math.random()*0.005
+//		                                    lenY = 0.005+Math.random()*0.006
+//	                            		}
+//                             }else if(hotPointA[j].label==='太和古洞旅游区'){
+//                             		if(r-0.5<0){
+//	                            			lenX = -0.008+Math.random()*0.002
+//	                                    	lenY = -0.08+Math.random()*0.001
+//		                            	}else{
+//		                            		lenX = 0.005+Math.random()*0.0002
+//		                                    lenY = 0.005+Math.random()*0.001
+//	                            		}
+//                             }else if(hotPointA[j].label==='笔架山度假区'){
+//                             		if(r-0.5<0){
+//	                            			lenX = -0.009+Math.random()*0.006
+//	                                    	lenY = -0.005+Math.random()*0.01
+//		                            	}else{
+//		                            		lenX = 0.0005+Math.random()*0.009
+//		                                    lenY = 0.001+Math.random()*0.009
+//	                            		}
+//                             }else if(hotPointA[j].label==='白庙渔村'){
+//                             		if(r-0.5<0){
+//	                            			lenX = -0.04+Math.random()*0.01
+//	                                    	lenY = -0.005+Math.random()*0.005
+//		                            	}else{
+//		                            		lenX = 0.001+Math.random()*0.01
+//		                                    lenY = 0.005+Math.random()*0.006
+//	                            		}
+//                             }else if(hotPointA[j].label==='飞霞风景名胜区'){
+//                             		if(r-0.5<0){
+//	                            			lenX = -0.005+Math.random()*0.002
+//	                                    	lenY = -0.001+Math.random()*0.0001
+//		                            	}else{
+//		                            		lenX = 0.005+Math.random()*0.006
+//		                                    lenY = 0.005+Math.random()*0.0001
+//	                            		}
+//                             }else if(hotPointA[j].label==='飞来寺'){
+//                             		if(r-0.5<0){
+//	                            			lenX = -0.0000002+Math.random()*0.0000002
+//	                                    	lenY = -0.0000002+Math.random()*0.0000002
+//		                            	}else{
+//		                            		lenX = 0.0000002+Math.random()*0.0000002
+//		                                    lenY = 0.0000002+Math.random()*0.0000002
+//	                            		}
+//                             }else if(hotPointA[j].label==='熹乐谷'){
+//                             		if(r-0.5<0){
+//	                            			lenX = -0.0000002+Math.random()*0.0000002
+//	                                    	lenY = -0.0000002+Math.random()*0.0000002
+//		                            	}else{
+//		                            		lenX = 0.0000002+Math.random()*0.0000002
+//		                                    lenY = 0.0000002+Math.random()*0.0000002
+//	                            		}
+//                             }else if(hotPointA[j].label==='金龟泉生态度假村'){
+//                             		if(r-0.5<0){
+//	                            			lenX = -0.000002+Math.random()*0.000002
+//	                                    	lenY = -0.000002+Math.random()*0.000002
+//		                            	}else{
+//		                            		lenX = 0.000002+Math.random()*0.000002
+//		                                    lenY = 0.000002+Math.random()*0.000002
+//	                            		}
+//                             }else if(hotPointA[j].label==='牛鱼嘴原始生态风景区'){
+//                             		if(r-0.5<0){
+//	                            			lenX = -0.02+Math.random()*0.02
+//	                                    	lenY = -0.005+Math.random()*0.002
+//		                            	}else{
+//		                            		lenX = 0.002+Math.random()*0.01
+//		                                    lenY = 0.002+Math.random()*0.002
+//	                            		}
+//                             }else{
+//                             		if(r-0.5<0){
+//		                            		lenX = -0.0050+Math.random()*0.0050
+//		                                    lenY = -0.0050+Math.random()*0.0050
+//		                            	}else{
+//		                            		lenX = 0.0050+Math.random()*0.0050
+//		                                    lenY = 0.0050+Math.random()*0.0050
+//		                            	}
+//                             }
+//                          	
+//                             let c = hotPointA[j].total||170  //景区当前人数
+//                             if(c>300){
+//                             		c=300
+//                             }
+//                             if(c<80&&c>50){
+//                             	 c=80
+//                             }
+//                             if(c>0&&c<=50){
+//                             		c=50
+//                             }
+//                             if(c===0){
+//                             	 c=0
+//                             }
+//                             for (var i = 0; i < c; i++) { //模拟经纬度坐标 四个方向均为1/4
+//                             		r = Math.random()
+//                             		let lng,
+//                             			lat
+//                             		if(r<0.25){
+//                             			 lng = -Math.abs(Math.random())*Math.abs(2*lenX)+minX
+//                                 		 lat = -Math.abs(Math.random())*Math.abs(2*lenY)+minY
+//                             		}else if(r>=0.25 && r<0.5){
+//                             			 lng = Math.abs(Math.random())*Math.abs(2*lenX)+minX
+//                                 		 lat = Math.abs(Math.random())*Math.abs(2*lenY)+minY
+//                             		}else if(r>=0.5&&r<0.75){
+//                             			lng = -Math.abs(Math.random())*Math.abs(2*lenX)+minX
+//                                 		lat = Math.abs(Math.random())*Math.abs(2*lenY)+minY
+//                             		}else{
+//                             			lng = Math.abs(Math.random())*Math.abs(2*lenX)+minX
+//                                 		lat = -Math.abs(Math.random())*Math.abs(2*lenY)+minY
+//                             		}
+//                                 
+//                                 let count = (Math.random()*5).toFixed(0)
+//                                 let point = {"lng":lng,"lat":lat,"count":count}
+//                                 points.push(point)
+//                             }
+//                         }
+//                         makeMap()
                        }
                       map.enableScrollWheelZoom(); // 允许滚轮缩放
                    
@@ -716,7 +716,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                  let lenObj ={}
                 if(!isTurist){
                 	lenObj = {
-	                    "全部":{lng:113.042358,lat:23.776528,zoom:14},
+	                    "全部":{lng:113.042358,lat:23.776528,zoom:13},
 	                    "清远市":{lng:113.0323,lat:23.699107,zoom:14},
 	                    "清城":{lng:113.06689,lat:23.704022,zoom:14},
 	                    "清新":{lng:112.991271,lat:23.75427,zoom:14},
@@ -729,7 +729,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 	}; 
                 }else{
                 	lenObj = {
-	                    "全部":{lng:113.042358,lat:23.776528,zoom:14},
+	                    "全部":{lng:113.042358,lat:23.776528,zoom:13},
 	                    "飞霞风景名胜区":{lng:113.188758,lat:23.724641,zoom:14},
 	                    "牛鱼嘴原始生态风景区":{lng:113.153471,lat:23.774872,zoom:14},
 	                    "天子山瀑布风景区":{lng:113.146295,lat:23.849325,zoom:14},
@@ -780,65 +780,68 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                     _self.videoToast=false;
                 },false)
 				map.addEventListener('zoomend',function(){
+					function r(n1,n2){
+						return Math.floor(Math.random()*(n2-n1)+n1)
+					}
 					let zoom = map.getZoom()
-//					switch(zoom){
-//						case 15:
-//						//_self.c=200;
-//						_self.maxv = 10;
-//						_self.radis = 42;
-//						break;
-//						case 14:
-//						//_self.c=200;
-//						_self.maxv = 10;
-//						_self.radis = 26;
-//						break;
-//						case 13:
-//						//_self.c=150;
-//						_self.maxv = 30;
-//						_self.radis = 30;
-//						break;
-//						case 12:
-//						//_self.c=100;
-//						_self.maxv = 50;
-//						_self.radis = 36;
-//						break;
-//						case 11:
-////						_self.c=50;
-//						_self.maxv = 100;
-//						_self.radis = 36;
-//						break;
-//						case 10:
-////						_self.c=30;
-//						_self.maxv = 500;
-//						_self.radis = 20;
-//						break;
-//						case 9:
-//						//_self.c=100;
-//						_self.maxv = 100000;
-//						break;
-//						case 8:
-//						//_self.c=100;
-//						_self.maxv = 100000;
-//						break;
-//						case 7:
-//						//_self.c=100;
-//						_self.maxv = 100000;
-//						break;
-//						case 6:
-//						//_self.c=100;
-//						_self.maxv = 100000;
-//						break;
-//					}
-//					if(zoom<=10){
-//						map.setZoom(10);
-//					}
-//					if(zoom>=15){
-//						map.setZoom(15);
-//					}
-					//map.clearOverlays();
-					//_self.addIcon(map);
-					//_self.addHot(map);
-					//_self.initBoundary(map);
+					switch(zoom){
+						case 15:
+						//_self.c=200;
+						_self.maxv = r(8,15);
+						_self.radis = r(42,48);
+						break;
+						case 14:
+						//_self.c=200;
+						_self.maxv = r(8,15);
+						_self.radis = r(32,36);
+						break;
+						case 13:
+						//_self.c=150;
+						_self.maxv = 30;
+						_self.radis = 30;
+						break;
+						case 12:
+						//_self.c=100;
+						_self.maxv = 50;
+						_self.radis = 36;
+						break;
+						case 11:
+//						_self.c=50;
+						_self.maxv = 50;
+						_self.radis = 36;
+						break;
+						case 10:
+//						_self.c=30;
+						_self.maxv = 500;
+						_self.radis = 20;
+						break;
+						case 9:
+						//_self.c=100;
+						_self.maxv = 100000;
+						break;
+						case 8:
+						//_self.c=100;
+						_self.maxv = 100000;
+						break;
+						case 7:
+						//_self.c=100;
+						_self.maxv = 100000;
+						break;
+						case 6:
+						//_self.c=100;
+						_self.maxv = 100000;
+						break;
+					}
+					if(zoom<=11){
+						map.setZoom(11);
+					}
+					if(zoom>=15){
+						map.setZoom(15);
+					}
+					map.clearOverlays();
+					_self.addIcon(map);
+					_self.addHot(map);
+					_self.initBoundary(map);
 				})
                 // 初始化地图,设置中心点坐标和地图级别
                 map.centerAndZoom(new BMap.Point(113.062468,23.695613),12);
@@ -881,7 +884,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
             }
             this.$axios.get(API_URL+'/qy/api/v2/command/getCommandScenicHot',{params:paramsObj}).then(r => {
                 if(r.data.code ===200 && r.data.code === "200"){
-                	//console.log(r.data.data)
+                	console.log(r.data.data)
                     //this.arrHotPoint = r.data.data
                     this.addScript("全部",true);
                 }

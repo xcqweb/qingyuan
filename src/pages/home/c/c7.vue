@@ -57,12 +57,14 @@
                 <span class='footerRise' :class='item.rise'></span>
             </div>
         </li>
-        <li>
-            <div class="cell1">
-                {{items.length+1}}
+        <ul class="totals">
+        	<li>
+        		<div class="cell1">
+                <!--{{items.length+1}}-->
+                总计
             </div>
             <div class="cell1">
-                               总计
+                               
             </div>
             <div class="cell1">
                 {{totalNum}}
@@ -80,7 +82,8 @@
                 <span class='footerCotext'></span>
                 <span class='footerRise'></span>
             </div>
-        </li>
+        	</li>
+        </ul>
     </ul>
   </div>
 </template>
@@ -351,7 +354,7 @@ export default {
 
 
 ul{
-    height:79.2%;
+    height:72%;
     width:100%;
     overflow-y: scroll;
     cursor: all-scroll;
@@ -368,6 +371,15 @@ ul{
             clear: both;
             visibility: hidden;
           }
+    }
+    .totals{
+    	height:60/798*100%;
+    	position: absolute;
+    	bottom: 0;
+    	li{
+    		height: 100%;
+    		font-weight: bolder;
+    	}
     }
 }
 
