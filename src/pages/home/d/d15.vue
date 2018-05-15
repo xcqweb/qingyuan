@@ -183,7 +183,7 @@
 				                   reData.forEach( (item,index) => {
 				                   		if(item.grade>=4){
 				                   			item.grade = '好评'
-				                   		}else if(item.grade>2 && item.grade<=3.9){
+				                   		}else if(item.grade>=2 && item.grade<=3.9){
 				                   			item.grade = '中评'
 				                   		}else{
 				                   			item.grade = '差评'
@@ -287,12 +287,12 @@
     		
     		//关联景区客提升度
     		Bus.$on('isRise',(data) => {
-    			this.comType = 2
+    			this.comType = 3
     			this.num = 2;
     			
     			var paramsObj = {}
-	       		 if(data!=='其他'){
-	       		 	this.name = data
+	       		 if(data!=='其他' && this.updatePlace.turist!=='全部'){
+	       		 	this.name = data;
 	       		 	paramsObj = {
 		                area:this.updatePlace.place,
 		                name:data,
@@ -305,11 +305,41 @@
 	       		 	
 	       		 	this.items = []
 	       			this.getResponseRise(paramsObj);
-	       		 }else{
-	       		 	this.comType = 1
+	       		 }else if(data==='其他' && this.updatePlace.turist!=='全部'){
+	       		 	this.comType = 1;
+	       		 	paramsObj = {
+		                area:this.updatePlace.place,
+		                name:this.updatePlace.turist,
+		                pageId:1,
+		                source:'全部',
+		                type:["day","month","year"][this.type],
+		                category:this.slectType+1,
+		                commentType:this.comType,
+		                key:""
+		            }
+	       		 	this.items = []
+	       		 	this.getResponse(paramsObj,true);
+	       		 }else if(data==='其他' && this.updatePlace.turist==='全部'){
+	       		 	this.comType = 3;
+	       		 	this.name = '全部';
 	       		 	paramsObj = {
 		                area:this.updatePlace.place,
 		                name:'全部',
+		                pageId:1,
+		                source:'全部',
+		                type:["day","month","year"][this.type],
+		                category:this.slectType+1,
+		                commentType:this.comType,
+		                key:""
+		            }
+	       		 	this.items = []
+	       		 	this.getResponse(paramsObj,true);
+	       		 }else if(data!=='其他' && this.updatePlace.turist==='全部'){
+	       		 	this.comType = 3;
+	       		 	this.name = data;
+	       		 	paramsObj = {
+		                area:this.updatePlace.place,
+		                name:data,
 		                pageId:1,
 		                source:'全部',
 		                type:["day","month","year"][this.type],
