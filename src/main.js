@@ -17,10 +17,8 @@ Vue.config.devtools = true
 //旅游局
 // var API_URL = "http://125.91.215.236:81"
 //测试
-var API_URL = "http://120.55.190.57:8081"
-//var API_URL = "http://localhost:8081"
 //var API_URL1 = "http://localhost"
-window.API_URL = API_URL
+window.API_URL = "http://120.55.190.57:8081"
 if( API_URL === "http://120.55.190.57"){
 //window.API_LOGIN =  `${API_URL}/login`;
 } else{

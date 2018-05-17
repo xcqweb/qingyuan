@@ -10,7 +10,7 @@
 				<li>用户昵称</li>
 				<li>评论时间</li>
 			</ul>
-			<div class="con" @scroll="loadMore($event)">
+			<div class="con" @scroll="loadMore($event)" :class="comStyle">
 				<div class="boxCon">
 					<ul v-for="(item,index) in items">
 						<li><span>{{index+1}}</span></li>
@@ -44,7 +44,15 @@
 				num:2,
 				keyW:"",
 				name:"",
-				items:[],
+				items:[{
+			"con":"再次来到飞霞山看禾雀花，果然很美，禾雀花王是紫色的，野生的是黄色的，野生的长得很高很好看，禾雀花王藤蔓很多，花很多，厉害厉害",
+			"uid":"M257145****",
+			"source":"携程网",
+			"name":"飞霞风景名胜区",
+			"grade":5,
+			"date":"2018-03-14 15:37:00"
+		}
+],
 				beginTime:'',
 				endTime:'',
 				active:true
@@ -235,6 +243,12 @@
 	        	}
 		       },300)
 	  },
+	  computed:{
+	  	comStyle(){
+	  		let isIE = window.navigator.userAgent.indexOf('Trident')
+	  		return isIE>-1?'ieTitle':''
+	  	}
+	  },
 	  created () {
 	        var paramsObj = {
 	                area:"全部",
@@ -409,7 +423,7 @@
 			.con{
 				height: (823-66)/823*100%;
 				cursor: all-scroll;
-				overflow-y: scroll;
+				overflow-y: auto;
 				ul:nth-child(2n+1){
 					background-color: #1C357E;
 				}
@@ -429,16 +443,16 @@
 						flex-basis: 100px;
 					}
 					li:nth-child(2){
-						flex-basis: 300px;
+						flex-basis: 301px;
 					}
 					li:nth-child(3){
-						flex-basis: 102px;
+						flex-basis: 100px;
 					}
 					li:nth-child(4){
-						flex-basis: 120px;
+						flex-basis: 121px;
 					}
 					li:nth-child(5){
-						flex-basis: 684px;
+						flex-basis: 683px;
 						text-align: left !important;
 						padding: 0 10px 0 10px;
 						box-sizing: border-box;
@@ -451,6 +465,17 @@
 						text-indent: 1em;
 					}
 					
+					
+					li:nth-child(5){  
+				        scrollbar-arrow-color: #fff; /**//*三角箭头的颜色*/   
+				        scrollbar-face-color: #333; /**//*立体滚动条的颜色*/   
+				        scrollbar-3dlight-color: #666; /**//*立体滚动条亮边的颜色*/   
+				        scrollbar-highlight-color: #666; /**//*滚动条空白部分的颜色*/   
+				        scrollbar-shadow-color: #999; /**//*立体滚动条阴影的颜色*/   
+				        scrollbar-darkshadow-color: #666; /**//*立体滚动条强阴影的颜色*/   
+				        scrollbar-track-color: #666; /**//*立体滚动条背景颜色*/   
+				        scrollbar-base-color:#f8f8f8; /**//*滚动条的基本颜色*/   
+				    } 
 					li:nth-child(5)::-webkit-scrollbar{
 					    width: 0px;
 					    height: 3rem;
@@ -470,7 +495,7 @@
 					}
 					
 					li:nth-child(5)::scrollbar{
-					    width: 1px;
+					    width: 0px;
 					    height: 3rem;
 					}
 					/*定义滚动条的轨道，内阴影及圆角*/
@@ -488,7 +513,7 @@
 					 
 					/*定义滑块，内阴影及圆角*/
 					li:nth-child(5)::scrollbar-thumb{
-					    width: 1px;
+					    width: 0px;
 					    height: 10rem;
 					    border-radius: 10px;
 					    -webkit-box-shadow: inset 0 0 6px #02275A;
@@ -500,8 +525,33 @@
 						overflow: hidden;
 					}
 					li:nth-child(7){
-						flex-basis: 300px;
+						flex-basis: 301px;
 						border-right-color: transparent;
+					}
+				}
+			}
+			.ieTitle{
+				ul{
+					li:nth-child(1){
+						flex-basis: 101px !important;
+					}
+					li:nth-child(2){
+						flex-basis: 300px !important;
+					}
+					li:nth-child(3){
+						flex-basis: 100.5px !important;
+					}
+					li:nth-child(4){
+						flex-basis: 121px !important;
+					}
+					li:nth-child(5){
+						flex-basis: 667px !important;
+					}
+					li:nth-child(6){
+						flex-basis: 300.5px !important;
+					}
+					li:nth-child(7){
+						flex-basis: 280px !important;
 					}
 				}
 			}

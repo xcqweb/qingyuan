@@ -45,7 +45,7 @@ export default {
             
         },
         methods: {
-            
+           
             getResponse(){
                 this.$axios.get(API_URL+'/qy/api/view/checkLogin').then( (r) => {
                     console.log(r)

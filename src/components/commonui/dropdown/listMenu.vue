@@ -136,8 +136,6 @@
 			}
 		},
 		props:['isDate'],
-		mounted(){
-		},
 		methods:{
 			
 			hideDate(data){

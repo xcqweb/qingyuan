@@ -91,7 +91,6 @@ import Bus from '@/common/js/bus'
                 }
             },
             hidelist(){
-            	alert(1212)
                 this.selectList.selectStatus=false;
                 if (this.upDown!='down') {
                     this.upDown='down';
