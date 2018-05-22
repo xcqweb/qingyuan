@@ -241,7 +241,7 @@
 		       			}
 			       			_self.getResponse(paramsObj,false)
 	        	}
-		       },300)
+		       },500)
 	  },
 	  computed:{
 	  	comStyle(){
@@ -335,10 +335,10 @@
 	       		 	this.getResponse(paramsObj,true);
 	       		 }else if(data==='其他' && this.updatePlace.turist==='全部'){
 	       		 	this.comType = 3;
-	       		 	this.name = '全部';
+	       		 	this.name = data;
 	       		 	paramsObj = {
 		                area:this.updatePlace.place,
-		                name:'全部',
+		                name:data,
 		                pageId:1,
 		                source:'全部',
 		                type:["day","month","year"][this.type],

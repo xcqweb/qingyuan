@@ -44,7 +44,7 @@ import Bus from '@/common/js/bus'
 
 let date = new Date()
 let year = c(date.getFullYear())
-let month = c(date.getMonth()+1)
+let month = c(date.getMonth())
 let day = c(date.getDate())
 function c(v){
 	if(v<10){
@@ -67,6 +67,7 @@ export default {
     data(){
         return {
             calendar:{
+            	
                 value:[2018,2,16], //默认日期
                 // lunar:true, //显示农历
                 weeks:['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
@@ -127,6 +128,7 @@ export default {
     			this.de = val
     		}
     	})
+    	Bus.$emit('ms',new Date().getMonth())
     },
     computed: {
         calendar1:function(){
@@ -174,6 +176,7 @@ export default {
         },
         openByDialog(){
             this.calendar4.show=true;
+            Bus.$emit('ms',new Date().getMonth())
         },
         closeByDialog(){
         	this.calendar4.show=false;

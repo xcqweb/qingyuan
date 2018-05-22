@@ -23,7 +23,7 @@
                 <div class="calendar-info">
                     <!-- {{monthString}} -->
                     <div class="month">
-                        <div class="month-inner" :style="{'top':-(monthCom*20)+'px'}">
+                        <div class="month-inner" :style="{'top':-(month*20)+'px'}">
                             <span v-for="m in months">{{m}}</span>
                         </div>
                     </div>
@@ -109,9 +109,9 @@ export default {
     },
     data() {
         return {
-        		clicked:false,
+        	clicked:false,
             year: my,
-            month: mp,
+            month: 0,
             day: 0,
             days: [],
             today: [],
@@ -153,7 +153,13 @@ export default {
     },
     computed:{
     	monthCom(){
-    		return this.month
+    		//alert(this.month)
+    		if(mp-this.month===1){
+    			return mp
+    		}else{
+    			return this.month
+    		}
+    		
     	}
     },
     mounted() {
@@ -166,8 +172,7 @@ export default {
         })
         
         Bus.$on('init',() => {
-        		this.clicked = false
-//      		this.select(3,4,)
+        	this.clicked = false
         })
         this.init()
     },

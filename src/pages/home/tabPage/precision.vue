@@ -1,4 +1,4 @@
-<template>
+ <template>
     <div class="box">
         <iframe src="http://zb.zjht100.com/LiveVideo/MapVideo/Index?id=qylyj
 "></iframe>
