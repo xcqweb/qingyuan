@@ -62,7 +62,7 @@ export default {
         return{
         active:1,
         type:0,
-        msg:'Hello Vue 来自App.vue',
+        msg:'Hello Vue!',
         items:[]
       }
     },
@@ -84,7 +84,7 @@ export default {
              	    paramsObj = {
 		                area:this.updatePlace.place,
 		                name:this.updatePlace.turist,
-		                type:["day","month","year"][val.type],
+		                type:["day","month","year"][val.type]
 		            }
              	}else{
              		let end = val.end.join("-")

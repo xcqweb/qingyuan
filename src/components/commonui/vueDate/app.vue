@@ -28,7 +28,7 @@
     <div class="calendar-dialog" v-bind:class="{ choses: !isActive}" v-show="isShow">
         <div class="calendar-dialog-mask" @click="closeByDialog"></div>
         
-        <div class="calendar-dialog-body" @mouseleave="out">
+        <div class="calendar-dialog-body">
             <calendar :range="calendar4.range" :zero="calendar4.zero" :lunar="calendar4.lunar" :value="calendar4.value"  @select="calendar4.select"></calendar>
         </div>
         
@@ -156,11 +156,6 @@ export default {
     	}
     },
     methods:{
-    	out(){
-    		this.calendar4.show=false;
-    		this.$emit('hideDate',true)
-    		Bus.$emit('ms',new Date().getMonth())
-     	},
         openByDrop(e){
             this.calendar3.show=true;
             this.calendar3.left=e.target.offsetLeft+19;
@@ -300,8 +295,10 @@ export default {
 
 .calendar-dialog-mask{
     background:rgba(0, 0, 0, 0);
+    position: fixed;
+    top: -100vw;
     width:300vw;
-    height:100vw;
+    height:300vw;
 }
 
 .calendar-dialog-body{

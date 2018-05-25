@@ -280,7 +280,6 @@ export default {
         },
         BJData:[
             [{name: this.placeName}, {name: '北京', value: 100}],
-//          [{name: this.placeName}, {name: this.placeName, value: 95}],
         ],
         GUANG:[
             [{name: this.placeName}, {name: '长春', value: 100}],

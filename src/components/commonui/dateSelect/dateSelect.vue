@@ -3,7 +3,7 @@
 		<p class="title" @click="chose" @mouseleave="titleLeave"><span>{{ctime}}</span><i :class="icon"></i></p>
 		<ul class="list" v-show="showStatus" @mouseleave="leave">
 			<li v-for="(item,index) in years" @mouseover="showMonth(item.year)">{{item.year}}
-				<ul class="subMenu">
+				<ul class="subMenu" :class="comStyle">
 					<li v-for="month in months" @click="choseDates(month)">{{month}}</li>
 				</ul>
 			</li>
@@ -53,6 +53,10 @@
 				}else{
 					return 'down'
 				}
+			},
+			comStyle(){
+				let isIE = window.navigator.userAgent.indexOf('Trident')
+				return isIE>-1?'ieScroll':''
 			}
 		},
 		methods:{
@@ -178,23 +182,26 @@
 				height: 30px;
 				line-height: 30px;
 					.subMenu{
-					position: absolute;
-					height: 210px;
-					width: 120px;
-					left: 116px;
-					top: 40px;
-					background: #193583;
-					border: 1px solid #1b44ba;
-					overflow-y: scroll;
-					display: none;
-					li{
-						height: 30px;
-						line-height: 30px;
-						cursor: pointer;
-					}
-					li:hover{
-						background-color: #3B69BE;
-					}
+						position: absolute;
+						height: 210px;
+						width: 120px;
+						left: 116px;
+						top: 40px;
+						background: #193583;
+						border: 1px solid #1b44ba;
+						overflow-y: auto;
+						display: none;
+						li{
+							height: 30px;
+							line-height: 30px;
+							cursor: pointer;
+						}
+						li:hover{
+							background-color: #3B69BE;
+						}
+				}
+				.ieScroll{
+					left: 100px !important;
 				}
 			}
 			li:hover{

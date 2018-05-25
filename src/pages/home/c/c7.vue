@@ -174,12 +174,6 @@ export default {
     		}
     	},
     	
-//  	reset(){
-//  		this.begin=[];
-//      this.end=[];
-//  		Bus.$emit('reset');
-//  	},
-    	
     	//获取数据
     	getResponse(paramsObj){
 				 this.$axios.get(API_URL+'/qy/api/v2/view/getPersonSourceData',{params:paramsObj}).then(r => {
@@ -194,7 +188,6 @@ export default {
 	                		//alert('很抱歉!您选择的时间区间无数据!')
 	                	}
 	                	this.allData = reData;
-	                	console.log(reData)
 	                	this.items = reData[this.cityTypes];
 	                }
 	            })

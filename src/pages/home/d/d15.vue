@@ -334,7 +334,7 @@
 	       		 	this.items = []
 	       		 	this.getResponse(paramsObj,true);
 	       		 }else if(data==='其他' && this.updatePlace.turist==='全部'){
-	       		 	this.comType = 3;
+	       		 	this.comType = 4;
 	       		 	this.name = data;
 	       		 	paramsObj = {
 		                area:this.updatePlace.place,
@@ -349,7 +349,7 @@
 	       		 	this.items = []
 	       		 	this.getResponse(paramsObj,true);
 	       		 }else if(data!=='其他' && this.updatePlace.turist==='全部'){
-	       		 	this.comType = 3;
+	       		 	this.comType = 4;
 	       		 	this.name = data;
 	       		 	paramsObj = {
 		                area:this.updatePlace.place,

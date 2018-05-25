@@ -23,7 +23,7 @@
                 <div class="calendar-info">
                     <!-- {{monthString}} -->
                     <div class="month">
-                        <div class="month-inner" :style="{'top':-(month*20)+'px'}">
+                        <div class="month-inner" :style="{'top':-(monthCom*20)+'px'}">
                             <span v-for="m in months">{{m}}</span>
                         </div>
                     </div>
@@ -153,12 +153,7 @@ export default {
     },
     computed:{
     	monthCom(){
-    		//alert(this.month)
-    		if(mp-this.month===1){
-    			return mp
-    		}else{
-    			return this.month
-    		}
+    		return this.month
     		
     	}
     },
