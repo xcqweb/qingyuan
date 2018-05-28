@@ -7,14 +7,14 @@
         margin-bottom:5%;
         display:block;
         color:#ffd800;
-        font-size: 48px;
+        font-size: 42px;
         margin-top: 20px;
         font-family: numberFont;
     }
     font{
         display:block;
         color:#43dbff;
-        font-size: 20px;
+        font-size: 16px;
         letter-spacing: .2rem;
     }
     .b6_top{
@@ -35,11 +35,13 @@
 <template>
     <div class="b6">
         <div class="b6_top">
-            <font>{{nowYear}}年累计接待游客(人)</font>
+            <font v-if='mowMonth!==1'>{{nowYear}}年1-{{mowMonth}}月份累计接待游客(人)</font>
+            <font v-else>{{nowYear}}年{{mowMonth}}月份累计接待游客(人)</font>
             <span>{{dataMsg.num}}</span>
         </div>
         <div class="b6_bottom">
-        	<font>{{mowMonth}}月份累计接待游客(人)</font>
+        	<font v-if='nowDay!==1'>{{mowMonth}}月1日-{{nowDay}}日累计接待游客(人)</font>
+        	<font v-else>{{mowMonth}}月{{nowDay}}日累计接待游客(人)</font>
             <span>{{dataMsg.yesterdayNum}}</span>
             
         </div>
@@ -51,6 +53,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
 let date = new Date()
 let nowYear = date.getFullYear()
 let mowMonth = date.getMonth()+1
+let nowDay = date.getDate()
 export default {
     name:'d6',
     mixins: [optionProps],
@@ -69,6 +72,7 @@ export default {
         	level_xs:true,
         	nowYear:nowYear,
             mowMonth:mowMonth,
+            nowDay:nowDay,
             dataMsg:{
                 yesterdayNum:'0',
                 num:'0',

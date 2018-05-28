@@ -161,9 +161,9 @@
 								//console.log(reData)
 				                if(r.data.code ==="200"||r.data.code ===200){
 				                   reData.forEach( (item,index) => {
-				                   		if(item.grade>=4){
+				                   		if(item.grade>3){
 				                   			item.grade = '好评'
-				                   		}else if(item.grade>=2 && item.grade<=3.9){
+				                   		}else if(item.grade>1 && item.grade<=3){
 				                   			item.grade = '中评'
 				                   		}else{
 				                   			item.grade = '差评'

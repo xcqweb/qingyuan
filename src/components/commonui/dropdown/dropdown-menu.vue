@@ -1,10 +1,10 @@
 
 <template>
     <div class="v-dropdown-menu" 
-        @click = 'showselect($event)' 
+    	v-clickOutside='hide'
         v-bind:style="{ width:selectList.width ,left:selectList.left,right:selectList.right,top:selectList.top}" 
         >
-        <p @click='triggle($event)' v-on:itemtodo2="sendMsgParent" @mouseleave="out($event)" class="dropdown-menu-p" :class="{unique1:uniqueClasso,unique2:uniqueClasst,unique3:uniqueClassth}">{{selectList.title}}</p>
+        <p @click='triggle($event)' v-on:itemtodo2="sendMsgParent" class="dropdown-menu-p" :class="{unique1:uniqueClasso,unique2:uniqueClasst,unique3:uniqueClassth}">{{selectList.title}}</p>
         <span :class="upDown"></span>
         <transition name="dropdown-fade">
             <dropdownList 
@@ -13,8 +13,7 @@
             :uniqueClasso='uniqueClasso'
             :uniqueClasst='uniqueClasst'
             v-on:itemtodo='outcrement'
-            @hideSelects='hideSelects'
-            v-if='selectList.selectStatus'>        
+            :showScienceNum='showScienceNum'
             </dropdownList>
         </transition>
         <div class="d"></div>
@@ -29,7 +28,6 @@ import Bus from '@/common/js/bus'
             return{
                 menueshow:false,
                 upDown:'down',
-                hideSelect:false,
             }
             
         },
@@ -38,6 +36,7 @@ import Bus from '@/common/js/bus'
             'uniqueClasso',
             'uniqueClasst',
             'uniqueClassth',
+            'showScienceNum'
         ],
         computed:{    
         },
@@ -51,11 +50,8 @@ import Bus from '@/common/js/bus'
             },
         },
         methods:{
-        	hideSelects(data){
-        		this.hideSelect = data
-        	},
-        	out(e){
-        		
+        	hide(){
+        		 this.menueshow=false;
         	},
             sendMsgParent:function(){
                 this.$emit('listenAtparent',selectList.title)
@@ -65,39 +61,16 @@ import Bus from '@/common/js/bus'
                 if (message) {
                     this.upDown='down'
                     this.selectList.title=message;
-                    this.selectList.selectStatus=false;
                     this.menueshow=false;
-                    this.selectList.selectStatus = true;
                     this.$emit('listenAtparent',message)
                 }else{
                     this.upDown='down'
                     this.menueshow=false;
-                    this.selectList.selectStatus = true;
-                    //this.$emit('listenAtparent',this.selectList.title)
                 }
                  
             },
             triggle:function(e){
-            	let re = e.target.offsetParent.className==='v-dropdown-menu area'
-            	if(re){
-            		//this.$emit('listenAtparent','全部')
-            	}else{
-            		//this.$emit('listenAtparent','全部')
-            	}
             	this.menueshow = !this.menueshow
-                this.selectList.selectStatus = true;
-                if (this.upDown!='up') {
-                    this.upDown='up';
-                }
-            },
-            hidelist(){
-                this.selectList.selectStatus=false;
-                if (this.upDown!='down') {
-                    this.upDown='down';
-                }
-            },
-            showselect(e){
-                this.selectList.selectStatus=true;
             },
         },
     }

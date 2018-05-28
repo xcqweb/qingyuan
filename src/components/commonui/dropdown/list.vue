@@ -1,9 +1,9 @@
 
 <template>
 	<transition name="dropdown-fade">
-		<div class='listdiv'  v-bind:style="{height: listDivHeight+'rem',maxHeight:maxHeight+'rem' }"  @mouseleave="leave" @mouseover="over" v-if="status">
+		<div class='listdiv'  v-bind:style="{height: listDivHeight+'rem',maxHeight:maxHeight+'rem' }"  v-if="status">
 	        <ul class="con" style='font-size:12px;' :class="{'centero':uniqueClasso}">
-	        	<li class="v-dropdown-menu_list" :title="item" v-for = 'item in list' v-on:click = 'increment(item)'>{{item}}</li>
+	        	<li class="v-dropdown-menu_list" :title="item" v-for = 'item in list' v-on:click = 'increment(item)'>{{item.name||item}}<span class="scienceNum" v-show="showScienceNum">({{item.num}})</span></li>
 	        </ul>
 		</div>
 	</transition>
@@ -11,7 +11,7 @@
 
 <script>
 	export default{
-		props:['list','uniqueClasso','status'],
+		props:['list','uniqueClasso','status','showScienceNum'],
         data(){
             return{
                  msg:'',
@@ -30,23 +30,11 @@
             },
         },
         methods:{
-        	leave(){
-          		this.$emit('hideSelects',false)  
-        	},
-        	over(){
-          		this.$emit('hideSelects',true) 
-        	},
-
             increment:function(item){
-                this.$emit('itemtodo',item === undefined ? this.list[0] : item);
-                this.$emit('hideSelects',false) 
+                this.$emit('itemtodo',item.name === undefined ? item : item.name);
             },
                 
         },
-        watch:{
-        },
-        mounted(){
-        }
 	}
 </script>
 
@@ -109,6 +97,9 @@
 	    text-align: center;
 	    color: white;
 	    font-size: 18px;
+	    .scienceNum{
+	    	margin-left: 10px;
+	    }
 	}
 	
 	

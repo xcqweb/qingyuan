@@ -9,7 +9,6 @@
     		<date-select class='start' :isStart=true></date-select>
     		<span class="txt">至</span>
     		<date-select class='end' :isStart=false></date-select>
-    		<!--<span class="reset" title="重置" @click="reset"></span>-->
    	 </div>
   	</div>
         <div class="title">
@@ -60,8 +59,7 @@
         <ul class="totals">
         	<li>
         		<div class="cell1">
-                <!--{{items.length+1}}-->
-                总计
+                	总计
             </div>
             <div class="cell1">
                                
@@ -162,9 +160,31 @@ export default {
     },
     methods:{
     	toggle(data,cityType){
+    		this.items=[]
     		this.active=data;
     		this.cityTypes = cityType;
     		this.items = this.allData[cityType]
+    		if(data===3){
+    			this.items.push({
+						"num":0,
+						"tongRate":0,
+						"huanRate":0,
+						"zhanRate":0,
+						"province":"香港特别行政区"
+					},{
+						"num":0,
+						"tongRate":0,
+						"huanRate":0,
+						"zhanRate":0,
+						"province":"澳门特别行政区"
+					},{
+						"num":0,
+						"tongRate":0,
+						"huanRate":0,
+						"zhanRate":0,
+						"province":"台湾地区"
+					})
+    		}
     		if(data===2){
     			this.$emit('toggleProvince',1)
     		}else if(data===1){

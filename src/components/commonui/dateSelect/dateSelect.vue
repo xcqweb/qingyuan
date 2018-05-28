@@ -1,7 +1,7 @@
 <template>
-	<div class="box">
-		<p class="title" @click="chose" @mouseleave="titleLeave"><span>{{ctime}}</span><i :class="icon"></i></p>
-		<ul class="list" v-show="showStatus" @mouseleave="leave">
+	<div class="box" v-clickOutside='hide'>
+		<p class="title" @click="chose"><span>{{ctime}}</span><i :class="icon"></i></p>
+		<ul class="list" v-show="showStatus" >
 			<li v-for="(item,index) in years" @mouseover="showMonth(item.year)">{{item.year}}
 				<ul class="subMenu" :class="comStyle">
 					<li v-for="month in months" @click="choseDates(month)">{{month}}</li>
@@ -64,19 +64,13 @@
 				this.showStatus = !this.showStatus;
 			},
 			showMonth(val){
-				window.clearTimeout(this.timer)
 				if(this.isStart){
 					this.choseDateStart[0] = val
 				}else{
 					this.choseDate[0] = val
 				}
 			},
-			titleLeave(){
-				this.timer = window.setTimeout( () => {
-					this.showStatus = false;
-				},300)
-			},
-			leave(){
+			hide(){
 				this.showStatus = false;
 			},
 			choseDates(data){
