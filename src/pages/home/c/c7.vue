@@ -1,5 +1,5 @@
 <template>
-  <div class="c7" v-show="status">
+  <div class="c7">
   	<div class="btn">
   		<div class="tabs" :class="{'active':active===1}" @click="toggle(1,'inCountryCity')" >全国(市)</div>
   		<div class="tabs" :class="{'active':active===2}" @click="toggle(2,'inProvinceCity')">省内(市)</div>
@@ -19,7 +19,7 @@
               	 地区
             </div>
             <div class="cell1">
-                	人数    ( 人 )
+                	人数    ( 人次  )
             </div>
             <div class="cell1">
               	  占比
@@ -31,7 +31,7 @@
              	  环比
             </div>
         </div>
-      <ul>
+      <ul v-show="status">
         <li v-for='(item,index) in items'>
             <div class="cell1">
                 {{index+1}}
@@ -40,7 +40,7 @@
                 {{item.city || item.province}}
             </div>
             <div class="cell1">
-                {{item.num}}
+                {{item.num.toLocaleString()}}
             </div>
             
             <div class="cell1">
@@ -104,16 +104,28 @@ export default {
         items:[],
         begin:[],
         end:[],
+        beginStr:'',
+        endStr:'',
         totalType:'inCountryCityTotalMan'
       }
     },
      watch:{
     	updatePlace:function(val){
-            var paramsObj = {
+    		let paramsObj = {}
+    		if(this.endStr||this.beginStr){
+    			paramsObj = {
+                area:val.place,
+                name:val.turist,
+                beginTime:this.beginStr,
+	              endTime:this.endStr
+            }
+    		}else{
+    			paramsObj = {
                 area:val.place,
                 name:val.turist,
                 type:["day","month","year"][this.type],
             }
+    		}
             this.getResponse(paramsObj);
         },
       	cityTypes:function(val){
@@ -129,21 +141,23 @@ export default {
              handler:function(val, oldVal){
              	var paramsObj={}
              	if(val.type===0 || val.type===1 || val.type===2){
-             		this.type = val.type
+             		this.type = val.type;
+             		this.endStr = '';
+	              this.beginStr = '';
              	    paramsObj = {
 		                area:this.updatePlace.place,
 		                name:this.updatePlace.turist,
 		                type:["day","month","year"][val.type],
-		            }
+		            };
              	}else{
-             		   let end = val.end.join("-")
-	                 let begin = val.begin.join("-")
+             		   this.endStr = val.end.join("-");
+	                 this.beginStr = val.begin.join("-");
 	                paramsObj = {
 	                    area:this.updatePlace.place,
 	                    name:this.updatePlace.turist,
-	                    beginTime:begin,
-	                    endTime:end
-									}
+	                    beginTime:this.beginStr,
+	                    endTime:this.endStr
+									};
              	}
                  this.getResponse(paramsObj);
              },
@@ -152,9 +166,9 @@ export default {
     },
     created(){
     	var paramsObj = {
-                area:"全部",
-                name:"全部",
-                type:'day'
+                area:this.updatePlace.place,
+                name:this.updatePlace.turist,
+                type:["day","month","year"][this.type]
             }
        this.getResponse(paramsObj);
     },
@@ -164,26 +178,9 @@ export default {
     		this.active=data;
     		this.cityTypes = cityType;
     		this.items = this.allData[cityType]
+    		
     		if(data===3){
-    			this.items.push({
-						"num":0,
-						"tongRate":0,
-						"huanRate":0,
-						"zhanRate":0,
-						"province":"香港特别行政区"
-					},{
-						"num":0,
-						"tongRate":0,
-						"huanRate":0,
-						"zhanRate":0,
-						"province":"澳门特别行政区"
-					},{
-						"num":0,
-						"tongRate":0,
-						"huanRate":0,
-						"zhanRate":0,
-						"province":"台湾地区"
-					})
+					this.add()
     		}
     		if(data===2){
     			this.$emit('toggleProvince',1)
@@ -193,7 +190,37 @@ export default {
     			this.$emit('toggleProvince',2)
     		}
     	},
-    	
+    	add(){
+    		let str = JSON.stringify(this.items)
+					//console.log(str.indexOf('香港'))
+					if(str.indexOf('香港')===-1){
+							this.items.push({
+							"num":0,
+							"tongRate":0,
+							"huanRate":0,
+							"zhanRate":0,
+							"province":"香港"
+						})
+					}	
+						if(str.indexOf('澳门')===-1){
+								this.items.push({
+								"num":0,
+								"tongRate":0,
+								"huanRate":0,
+								"zhanRate":0,
+								"province":"澳门"
+							})
+						}
+						if(str.indexOf('台湾')===-1){
+							this.items.push({
+							"num":0,
+							"tongRate":0,
+							"huanRate":0,
+							"zhanRate":0,
+							"province":"台湾省"
+						})
+					}
+    	},
     	//获取数据
     	getResponse(paramsObj){
 				 this.$axios.get(API_URL+'/qy/api/v2/view/getPersonSourceData',{params:paramsObj}).then(r => {
@@ -209,6 +236,10 @@ export default {
 	                	}
 	                	this.allData = reData;
 	                	this.items = reData[this.cityTypes];
+	                	if(this.cityTypes==='inCountryProvince'){
+	                		this.add()
+	                	}
+	                	
 	                }
 	            })
 	  	},
@@ -216,7 +247,7 @@ export default {
     computed: { 
     	totalNum(){
     		if(this.allData){
-    			return this.allData[this.totalType]
+    			return this.allData[this.totalType].toLocaleString()
     		}else{
     			return 0
     		}

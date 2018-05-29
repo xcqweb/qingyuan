@@ -15,7 +15,7 @@
         display:block;
         color:#43dbff;
         font-size: 16px;
-        letter-spacing: .2rem;
+        letter-spacing: 2px;
     }
     .b6_top{
         position:absolute;
@@ -35,13 +35,13 @@
 <template>
     <div class="b6">
         <div class="b6_top">
-            <font v-if='mowMonth!==1'>{{nowYear}}年1-{{mowMonth}}月份累计接待游客(人)</font>
-            <font v-else>{{nowYear}}年{{mowMonth}}月份累计接待游客(人)</font>
+            <font v-if='mowMonth!==1'>{{nowYear}}年1-{{mowMonth}}月份累计接待游客(人次)</font>
+            <font v-else>{{nowYear}}年{{mowMonth}}月份累计接待游客(人次)</font>
             <span>{{dataMsg.num}}</span>
         </div>
         <div class="b6_bottom">
-        	<font v-if='nowDay!==1'>{{mowMonth}}月1日-{{nowDay}}日累计接待游客(人)</font>
-        	<font v-else>{{mowMonth}}月{{nowDay}}日累计接待游客(人)</font>
+        	<font v-if='nowDay!==1'>{{mowMonth}}月1日-{{nowDay}}日累计接待游客(人次)</font>
+        	<font v-else>{{mowMonth}}月{{nowDay}}日累计接待游客(人次)</font>
             <span>{{dataMsg.yesterdayNum}}</span>
             
         </div>
@@ -62,7 +62,6 @@ export default {
         updatePlace:function(val){
             var paramsObj = {
                 area:val.place,
-//              name:val.turist,
             }
               this.getResponse(paramsObj);
         },
@@ -86,25 +85,13 @@ export default {
 
     },
     methods: {
-    addDot(nub){
-            var n= nub;
-            var m =n +'',
-            len= m.length
-            if (len>3) {
-            var aa=len-3
-            var bb=m.slice(aa,len)
-            var cc=m.slice(0,aa)
-            m=cc+','+bb
-            }
-            return m
-        },
         getResponse(paramsObj){
         	let _self = this
             this.$axios.get(API_URL+'/qy/api/v2/view/getAccumulativeData',{params:paramsObj}).then(r => {
                 if(r.status ===200){
                 	//console.log(r)
-                    this.dataMsg.num =_self.$Rw.string_until.addPoint(r.data.data.yearSum);
-                    this.dataMsg.yesterdayNum =_self.$Rw.string_until.addPoint(r.data.data.monthSum)
+                    this.dataMsg.num =r.data.data.yearSum.toLocaleString();
+                    this.dataMsg.yesterdayNum =r.data.data.monthSum.toLocaleString()
                 }
             })
         }
@@ -112,7 +99,6 @@ export default {
     created(){
         var paramsObj = {
                 area:"全部",
-//              name:"全部",
             }
        this.getResponse(paramsObj);
     },  

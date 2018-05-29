@@ -16,7 +16,7 @@
     </div>
 
 </template>
-<script >
+<script>
 import Vue from 'vue'
 import Bus from '@/common/js/bus'
 import list from '@/components/commonui/dropdown/list.vue'

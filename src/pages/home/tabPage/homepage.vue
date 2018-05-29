@@ -9,7 +9,7 @@
 		</div>
 			
     <div class="leftScope">
-    	<h1>游客来源及景区排行</h1>
+    	<h1>游客来源及景区排行<tips :type='tipType'></tips></h1>
         <div v-for='topItem in leftComponent' 
         :class='topItem.id' 
         class="item">
@@ -28,7 +28,7 @@
         <div v-for='topItem in rightTop' 
         :class='topItem.id' 
         class="item">
-            <h1>{{topItem.title}}</h1>
+            <h1>{{topItem.title}}<tips :type='topItem.type'></tips></h1>
             <div v-if='topItem.show'>
                 <componet
                 :is='topItem.name' 
@@ -44,7 +44,7 @@
         <div v-for='topItem in rightBottom' 
         :class='topItem.id' 
         class="item">
-            <h1>{{topItem.title}}</h1>
+            <h1>{{topItem.title}}<tips :type='topItem.type'></tips></h1>
             <div v-if='topItem.show'>
                 <componet
                 :is='topItem.name' 
@@ -64,12 +64,13 @@ import Bus from '@/common/js/bus'
 export default {
         data() {
             return {
+            tipType:'a1',
         		updatePlace:{place:"全部",turist:"全部"},
         		update:{begin:['2018','02','02'],end:['2018','02','03']},
         		isprovince:0,
                 //全国市
                 leftComponents:[
-                     {name:'D14',id:'one',index:1,time:1200,show:true,title:``,},
+                     {name:'D14',id:'one',index:1,time:1200,show:true,title:``},
                      {name:'B15',id:'two',index:2,time:1200,show:true,title:``,},
                      {name:'C11',id:'three',index:3,time:1200,show:true,title:``,},
                 ],
@@ -86,11 +87,11 @@ export default {
                      {name:'C11',id:'three',index:3,time:1200,show:true,title:``,},
                 ],
                 rightTop:[
-                     {name:'A5SS',id:'one',index:1,time:1200,show:true,title:'实时客流'},
+                     {name:'A5SS',id:'one',index:1,time:1200,show:true,title:'实时客流',type:'a2'},
                      
                 ],
                 rightBottom:[
-                		{name:'A1SS',id:'one',index:1,show:true,title:'历史客流'},
+                		{name:'A1SS',id:'one',index:1,show:true,title:'历史客流',type:'a3'},
                 ],
             }
         },

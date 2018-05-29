@@ -12,7 +12,7 @@
               	 景区名称
             </div>
             <div class="cell1">
-                	人数    ( 人 )
+                	人数    ( 人次 )
             </div>
             <div class="cell1">
               	  占比
@@ -24,7 +24,7 @@
              	  环比
             </div>
         </div>
-      <ul>
+      <ul v-show="status">
         <li v-for='(item,index) in items' v-show='item.sum'>
             <div class="cell1">
                 {{index+1}}
@@ -33,7 +33,7 @@
                 {{item.name}}
             </div>
             <div class="cell1">
-                {{item.sum}}
+                {{item.sum.toLocaleString()}}
             </div>
             
             <div class="cell1">
@@ -62,17 +62,31 @@ export default {
         return{
         active:1,
         type:0,
+        status:true,
         msg:'Hello Vue!',
-        items:[]
+        items:[],
+        end:'',
+        begin:''
       }
     },
     watch:{
     	updatePlace:function(val){
-            var paramsObj = {
+    		let paramsObj = {}
+    		if(this.begin||this.end){
+    			paramsObj = {
+                area:val.place,
+                name:val.turist,
+                beginTime:this.begin,
+	              endTime:this.end
+            }
+    		}else{
+    			paramsObj = {
                 area:val.place,
                 name:val.turist,
                 type:["day","month","year"][this.type],
             }
+    		}
+             
             this.getResponse(paramsObj);
         },
        
@@ -80,21 +94,23 @@ export default {
              handler:function(val, oldVal){
              	var paramsObj={}
              	if(val.type===0 || val.type===1 || val.type===2){
-             		this.type = val.type
+             		this.type = val.type;
+             		this.end = '';
+	              this.begin = '';
              	    paramsObj = {
 		                area:this.updatePlace.place,
 		                name:this.updatePlace.turist,
 		                type:["day","month","year"][val.type]
-		            }
+		            };
              	}else{
-             		let end = val.end.join("-")
-	                 let begin = val.begin.join("-")
+             			 this.end = val.end.join("-");
+	                 this.begin = val.begin.join("-");
 	                paramsObj = {
 	                    area:this.updatePlace.place,
 	                    name:this.updatePlace.turist,
-	                    beginTime:begin,
-	                    endTime:end
-					}
+	                    beginTime:this.begin,
+	                    endTime:this.end
+								};
              	}
                  
                  this.getResponse(paramsObj);
@@ -114,7 +130,11 @@ export default {
     	//获取数据
     	getResponse(paramsObj){
 				 this.$axios.get(API_URL+'/qy/api/v2/view/getScenicPersonSumSort',{params:paramsObj}).then(r => {
-	                if(r.status ===200||r.data.code ===200){
+	                if(r.data.code ==='200'||r.data.code ===200){
+	                	this.status =false
+	                	window.setTimeout( () => {
+	                		this.status = true
+	                	},100)
 	                	let reData = r.data.data;
 	                	this.items = reData
 	                }
@@ -267,4 +287,6 @@ li:nth-of-type(2n){
 li:nth-of-type(2n+1){
     background-color:#163387;
 }
+
+
 </style>

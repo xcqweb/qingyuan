@@ -561,7 +561,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
             	
                 let _self = this;
                 var oS=document.createElement('script');
-                oS.src='http://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js?'+Math.random();
+                oS.src='https://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js?'+Math.random();
                 this.$el.appendChild(oS)
                 oS.onload=function(){
                     _self.rodomMap(val,isTurist);

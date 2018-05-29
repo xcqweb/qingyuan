@@ -3,7 +3,7 @@
 	<transition name="dropdown-fade">
 		<div class='listdiv'  v-bind:style="{height: listDivHeight+'rem',maxHeight:maxHeight+'rem' }"  v-if="status">
 	        <ul class="con" style='font-size:12px;' :class="{'centero':uniqueClasso}">
-	        	<li class="v-dropdown-menu_list" :title="item" v-for = 'item in list' v-on:click = 'increment(item)'>{{item.name||item}}<span class="scienceNum" v-show="showScienceNum">({{item.num}})</span></li>
+	        	<li class="v-dropdown-menu_list" :title="item" v-for = '(item,index) in list' v-on:click = 'increment(item)' :key='item.name'>{{item.name||item}}<span class="scienceNum" v-show="showScienceNum">({{item.num}})</span></li>
 	        </ul>
 		</div>
 	</transition>

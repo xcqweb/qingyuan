@@ -20,7 +20,7 @@
 	            <div class="item"
 	                v-for='item in leftComponents' 
 	                :class="item.id">
-	                <h1>{{item.title}}</h1>
+	                <h1>{{item.title}}<tips :type='item.type'></tips></h1>
 	                    <componet
 	                    :is='item.name' 
 	                    :key="item.id"  
@@ -37,7 +37,7 @@
         		 <div class="item"
 	                v-for='item in AComponents' 
 	                :class="item.id">
-	                <h1>{{item.title}}</h1>
+	                <h1>{{item.title}}<tips :type='item.type'></tips></h1>
 	                    <componet
 	                    :is='item.name' 
 	                    :key="item.id"  
@@ -52,7 +52,7 @@
             <div class="item" 
                 v-for='item in rightComponents' 
                 :class="item.id">
-                <h1 v-bind:style="{ color: item.color }" >{{item.title}}</h1>
+                <h1 v-bind:style="{ color: item.color }" >{{item.title}}<tips :type='item.type'></tips></h1>
                     <componet
                     :is='item.name' 
                     :key="item.id"  
@@ -84,10 +84,10 @@ export default {
             	scienceType:false,
             	slectType:0,
                 leftComponents:[
-                	{name:'A3',id:'one',index:1,time:900,show:true,title:'游客评价'},
-                	{name:'D10',id:'two',index:2,time:900,show:true,title:'评价正负面'},
-                	{name:'D11',id:'three',index:3,time:900,show:true,title:'关键词'},
-                	{name:'D13',id:'four',index:4,time:900,show:true,title:'可提升度'},
+                	{name:'A3',id:'one',index:1,time:900,show:true,title:'游客评价',type:'d1'},
+                	{name:'D10',id:'two',index:2,time:900,show:true,title:'评价正负面',type:'d2'},
+                	{name:'D11',id:'three',index:3,time:900,show:true,title:'关键词',type:'d3'},
+                	{name:'D13',id:'four',index:4,time:900,show:true,title:'可提升度',type:'d4'},
                 ],
                 
                 //4A级以上景区
@@ -95,7 +95,7 @@ export default {
                 	{name:'A10',id:'one',index:1,time:900,show:true,title:'4A级以上景区'},
                 ],
                 rightComponents:[
-                	{name:'D15',id:'one',index:1,time:100,show:false,title:'评论详情',tip:true},
+                	{name:'D15',id:'one',index:1,time:100,show:false,title:'评论详情',tip:true,type:'d5'},
                 ]
             }
         },

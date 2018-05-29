@@ -10,6 +10,8 @@ let groupMenut = resolve => {require.ensure(['@/components/commonui/dropdown/gro
 
 let listMenu = resolve => {require.ensure(['@/components/commonui/dropdown/listMenu.vue'], () => {resolve(require('@/components/commonui/dropdown/listMenu.vue'))})}
 
+
+let tips = resolve => {require.ensure(['@/components/commonui/tips/tips.vue'], () => {resolve(require('@/components/commonui/tips/tips.vue'))})}
 //客流总数，经济分析，富民指数
 let A3 = resolve => {require.ensure(['@/pages/home/vcomponent/vtopThree.vue'], () => {resolve(require('@/pages/home/vcomponent/vtopThree.vue'))})}
 
@@ -84,6 +86,7 @@ let status =[
     'groupMenut',
     'listMenu',
     'groupMenus',
+    'tips',
     'A3',
     'A10',
     'A1SS',
