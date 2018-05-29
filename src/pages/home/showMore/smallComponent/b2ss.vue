@@ -247,7 +247,7 @@ export default {
     	height: 30px;
     	line-height: 30px;
     	top: 40px;
-    	left: 152px;
+    	left: 236px;
     	z-index: 100;
     }
     span{

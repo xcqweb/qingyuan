@@ -1,22 +1,22 @@
 
 <template>
-    <div class="v-dropdown-menu" 
-        @click = 'showselect($event)' 
+    <div class="v-dropdown-menu"
+    	 v-clickOutside='hide'
         v-bind:style="{ width:selectList.width ,left:selectList.left,right:selectList.right,top:selectList.top}" 
         >
-        <p @click='triggle($event)' v-on:itemtodo2="sendMsgParent" @mouseleave="out($event)" class="dropdown-menu-p" :class="{unique1:uniqueClasso}" :title="selectList.title">{{selectList.title}}</p>
+        <p @click='triggle($event)' v-on:itemtodo2="sendMsgParent" class="dropdown-menu-p" :class="{unique1:uniqueClasso}" :title="selectList.title">{{selectList.title}}</p>
         
             <list 
             :list='selectList.place'  
             :status='menueshow' 
             :uniqueClasso='uniqueClasso'
             v-on:itemtodo='outcrement'
-            @hideSelects='hideSelects'
+            :showScienceNum='showScienceNum'
             ></list>
     </div>
 
 </template>
-<script >
+<script>
 import Vue from 'vue'
 import Bus from '@/common/js/bus'
 import list from '@/components/commonui/dropdown/list.vue'
@@ -31,24 +31,14 @@ import list from '@/components/commonui/dropdown/list.vue'
         props: [
             'selectList',
             'uniqueClasso',
+            'showScienceNum'
         ],
-        computed:{  
-        },
-        
         components:{
         	list,
         },
         methods:{
-        	hideSelects(data){
-        		if(data){
-        			clearTimeout(this.timer)
-        		}
-                this.menueshow = data
-        	},
-        	out(e){
-        		this.timer = window.setTimeout( () => {
-        			this.menueshow=false;
-        		},100)
+        	hide(){
+        		 this.menueshow=false;
         	},
             sendMsgParent:function(){
                 this.$emit('listenAtparent',selectList.title)
@@ -65,17 +55,7 @@ import list from '@/components/commonui/dropdown/list.vue'
                  
             },
             triggle:function(e){
-            	if(this.timer){
-            		clearTimeout(this.timer)
-            	}
-            	
                 this.menueshow = !this.menueshow;
-            },
-            hidelist(){
-                this.selectList.selectStatus=false;
-            },
-            showselect(e){
-                this.selectList.selectStatus=true;
             },
         },
     }

@@ -429,8 +429,8 @@ let weekCode = new Date().getDay()
                 nowurl:"http://api.seniverse.com/v3/weather/now.json",
                 lifeurl:"https://api.seniverse.com/v3/life/suggestion.json",
                 dailyurl:"https://api.seniverse.com/v3/weather/daily.json",
-                uid:"U780C8ABAA",
-                key:"s2iqikevs0vffmvy",
+                uid:"UE435A3710",
+                key:"sgqbslepggqd6dgg",
                 location:"qingyuan",
                 curPage:1
             },
@@ -618,9 +618,9 @@ let weekCode = new Date().getDay()
                 dataType:'jsonp',
                 jsonp:'jsonpcallback',
                 data:{
-                    uid : this.apiData.uid,
-                    sig : this.apiData.key,
-                    location : this.apiData.location,
+                       uid : this.apiData.uid,
+                       sig : this.apiData.key,
+                       location : this.apiData.location,
                 },
                 success:function(res){
                     _self.$nextTick(function () {

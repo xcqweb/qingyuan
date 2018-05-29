@@ -22,7 +22,7 @@ selectlist:{
         @click = 'showselect' 
         v-bind:style="{ width:selectList.width ,left:selectList.left,top:selectList.top}" 
         >
-        <p @click='triggle' :class="{unique2:uniqueClasso}"  @mouseleave="out($event)" v-on:itemtodo2="sendMsgParent" class="dropdown-menu-p">{{selectList.title}}</p>
+        <p @click='triggle' :class="{unique2:uniqueClasso}" v-on:itemtodo2="sendMsgParent" class="dropdown-menu-p">{{selectList.title}}</p>
         <span :class="upDown"></span>
         <transition name="dropdown-fade">
             <dropdownList 
@@ -65,16 +65,9 @@ import Bus from '@/common/js/bus'
         },
         methods:{
     		hideSelects(data){
-    			//console.log(data)
     			this.hideSelect = data
         	},
-        	out(e){
-        		//150-400  350-386
-//      		if(this.menueshow && !this.hideSelect && e.screenY<286&& e.screenX>1000 && e.screenX<1500){
-//      			this.menueshow = false
-//      		}
-        		
-        	},
+        	
             sendMsgParent:function(){
                 this.$emit('listenAtparent',selectList.title)
             },
@@ -199,7 +192,6 @@ import Bus from '@/common/js/bus'
     left: 0;
     background-color: rgba(0,0,0,0);
     z-index:10000;
-    /*display: none;*/
 }
 .v-dropdown-menu {
     height:100%;

@@ -209,7 +209,7 @@
             //请求数据
 				  	getResponse(paramsObj){
 				            this.$axios.get(API_URL+'/qy/api/v2/command/getCommentEachDimension',{params:paramsObj}).then(r => {
-				            	console.log(r.data.data)
+				            	//console.log(r.data.data)
 				                  if(!r){
 				                  	this.option.series[0].data[0].value=[]
 				                  	this.option.series[0].data[1].value=[]

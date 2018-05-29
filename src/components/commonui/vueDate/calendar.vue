@@ -109,9 +109,9 @@ export default {
     },
     data() {
         return {
-        		clicked:false,
+        	clicked:false,
             year: my,
-            month: mp,
+            month: 0,
             day: 0,
             days: [],
             today: [],
@@ -154,6 +154,7 @@ export default {
     computed:{
     	monthCom(){
     		return this.month
+    		
     	}
     },
     mounted() {
@@ -166,8 +167,7 @@ export default {
         })
         
         Bus.$on('init',() => {
-        		this.clicked = false
-//      		this.select(3,4,)
+        	this.clicked = false
         })
         this.init()
     },
@@ -448,11 +448,13 @@ export default {
                            alert('所选时间不能大于当前时间')
                            this.month = new Date().getMonth()
           				   		this.rangeBegin=[]
+          				   		this.rangeEnd=[]
                     }else{
                           if(lev>950400){
 //                        if(lev<0){
                             alert('时间跨度不能大于十二天')
-							this.rangeEnd=this.rangeBegin
+							this.rangeEnd=[]
+	                        this.rangeBegin=[]
 							//console.log(this.rangeBegin,this.rangeEnd)
                         }else{
 					        this.$emit('select',begin,end)

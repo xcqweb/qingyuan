@@ -102,7 +102,7 @@ export default {
                         axisLabel: {
                             textStyle: {
                                 color: '#ffffff',//x坐标轴标签字体颜色
-                                fontSize: 17,
+                                fontSize: 16,
                             },
                             formatter: '{value}人'
                         },

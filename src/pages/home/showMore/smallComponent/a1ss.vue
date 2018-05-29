@@ -147,7 +147,7 @@ export default {
                          axisLabel: {
                              textStyle: {
                                  color: '#ffffff',//x坐标轴标签字体颜色
-                                 fontSize: 18,
+                                 fontSize: 16,
                              },
                         },
                         axisTick:{
@@ -165,7 +165,7 @@ export default {
                         }
                     ],
                     yAxis:{
-                    	name:"单位 : (人)",
+                    	name:"单位 : (人次)",
                         show:true,
                         nameTextStyle:{
                           color:'#ffffff',
@@ -238,7 +238,7 @@ export default {
                             position:'top',
                             textStyle:{
                                 color:'#2CC9E2',
-                                fontSize:16
+                                fontSize:14
                             }
                         }
                        },

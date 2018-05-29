@@ -8,7 +8,8 @@ import axios from 'axios'
 import store from './vuex/index.js'
 import Rw from '@/common/js/until/index'
 import instance from '@/http'
-
+import clickOutside from '@/common/js/directives/clickOutside'
+Vue.directive('clickOutside',clickOutside)
 Vue.directive('echarts', require('./common/js/directives/vDirechartsE.js'));
 Vue.prototype.$axios = instance; 
 Vue.prototype.$Rw = Rw;
@@ -17,15 +18,8 @@ Vue.config.devtools = true
 //旅游局
 // var API_URL = "http://125.91.215.236:81"
 //测试
-var API_URL = "http://120.55.190.57"
-//var API_URL = "http://localhost:8081"
 //var API_URL1 = "http://localhost"
-window.API_URL = API_URL
-if( API_URL === "http://120.55.190.57"){
-//window.API_LOGIN =  `${API_URL}/login`;
-} else{
-//window.API_LOGIN =  `${API_URL1}/login`;
-}
+window.API_URL = "http://120.55.190.57:8081"
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

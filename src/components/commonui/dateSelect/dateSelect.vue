@@ -1,9 +1,9 @@
 <template>
-	<div class="box">
-		<p class="title" @click="chose" @mouseleave="titleLeave"><span>{{ctime}}</span><i :class="icon"></i></p>
-		<ul class="list" v-show="showStatus" @mouseleave="leave">
+	<div class="box" v-clickOutside='hide'>
+		<p class="title" @click="chose"><span>{{ctime}}</span><i :class="icon"></i></p>
+		<ul class="list" v-show="showStatus" >
 			<li v-for="(item,index) in years" @mouseover="showMonth(item.year)">{{item.year}}
-				<ul class="subMenu">
+				<ul class="subMenu" :class="comStyle">
 					<li v-for="month in months" @click="choseDates(month)">{{month}}</li>
 				</ul>
 			</li>
@@ -37,6 +37,13 @@
 		mounted(){
 			Bus.$on('reset', () => {
 				this.ctime = '年  ~ 月';
+			}),
+			Bus.$on('swap',(data) => {
+				if(this.isStart){
+					this.ctime = data.begin[0]+" ~ "+ data.begin[1]
+				}else{
+					this.ctime = data.end[0]+" ~ "+ data.end[1]
+				}
 			})
 		},
 		computed:{
@@ -46,6 +53,10 @@
 				}else{
 					return 'down'
 				}
+			},
+			comStyle(){
+				let isIE = window.navigator.userAgent.indexOf('Trident')
+				return isIE>-1?'ieScroll':''
 			}
 		},
 		methods:{
@@ -53,19 +64,13 @@
 				this.showStatus = !this.showStatus;
 			},
 			showMonth(val){
-				window.clearTimeout(this.timer)
 				if(this.isStart){
 					this.choseDateStart[0] = val
 				}else{
 					this.choseDate[0] = val
 				}
 			},
-			titleLeave(){
-				this.timer = window.setTimeout( () => {
-					this.showStatus = false;
-				},300)
-			},
-			leave(){
+			hide(){
 				this.showStatus = false;
 			},
 			choseDates(data){
@@ -112,6 +117,11 @@
 					this.ctime = this.choseDate[0] +" ~ "+ this.choseDate[1]
 					Bus.$emit('turistDate',{end:this.choseDate})
 				}
+				
+				
+				if(this.choseDate&&this.choseDateStart){
+										
+				}
 			} 
 		}
 		
@@ -130,8 +140,9 @@
 			border-radius: 8px;
 			border: solid 2px #345bfa;
 			cursor: pointer;
+			font-size: 1rem;
 			span{
-				margin-left: -16px;
+				margin-left: -1rem;
 			}
 			.up{
 	    			display: block;
@@ -159,30 +170,32 @@
 		.list{
 			background: #193583;
 			border: 1px solid #1b44ba;
-			height: 200px;
+			height: 210px;
 			overflow-y: scroll;
 			li{
 				height: 30px;
 				line-height: 30px;
 					.subMenu{
-					position: absolute;
-					height: 200px;
-					width: 120px;
-					left: 116px;
-					top: 40px;
-					background: #193583;
-					border: 1px solid #1b44ba;
-					height: 200px;
-					overflow-y: scroll;
-					display: none;
-					li{
-						height: 30px;
-						line-height: 30px;
-						cursor: pointer;
-					}
-					li:hover{
-						background-color: #3B69BE;
-					}
+						position: absolute;
+						height: 210px;
+						width: 120px;
+						left: 116px;
+						top: 40px;
+						background: #193583;
+						border: 1px solid #1b44ba;
+						overflow-y: auto;
+						display: none;
+						li{
+							height: 30px;
+							line-height: 30px;
+							cursor: pointer;
+						}
+						li:hover{
+							background-color: #3B69BE;
+						}
+				}
+				.ieScroll{
+					left: 100px !important;
 				}
 			}
 			li:hover{

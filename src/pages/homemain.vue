@@ -45,7 +45,7 @@ export default {
             
         },
         methods: {
-            
+           
             getResponse(){
                 this.$axios.get(API_URL+'/qy/api/view/checkLogin').then( (r) => {
                     console.log(r)
@@ -76,7 +76,7 @@ export default {
   	height: 1080px;
     position: relative;
     background-color: #0d1b48;
-	  overflow: hidden;
+	overflow: hidden;
 	  
     .header{
         width: 100%;

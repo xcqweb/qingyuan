@@ -293,7 +293,7 @@ require('echarts-wordcloud');
                 tooltip: {
                 	show:true,
                 	formatter:function(params){
-                		
+                		return "关键词 :"+"<br />"+params.name
                 	}
                 },
                 series: [{

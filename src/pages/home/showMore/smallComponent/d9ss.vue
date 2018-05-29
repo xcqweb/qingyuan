@@ -207,9 +207,10 @@ export default {
     },
     data(){
         return{
-        rankItems:[],
-        isThree:false,
-        msg:'Hello Vue 来自App.vue',
+	        type:0,
+	        rankItems:[],
+	        isThree:false,
+	        msg:'Hello Vue 来自App.vue',
       }
     },
     watch:{
@@ -218,7 +219,7 @@ export default {
                 var paramsObj = {
                     area:val.place,
                     name:val.turist,
-                    //type: ["day","month","year"][this.upday]
+                    type: ["day","month","year"][this.type]
                     }
                 this.rankItems = [];
                 this.getResponse(paramsObj);

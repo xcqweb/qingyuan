@@ -1,15 +1,27 @@
 <template>
 	<div class="c11">
 		<div class="con">
-			<keep-alive>
-				<componet
+				<!--<componet
 				  :is='currentModule'
 				  :updatePlace='updatePlace'
 				  :update='update'
 				  :upday='upday'
 				  @toggleProvince='toggleProvince'
-				></componet> 
-			</keep-alive>
+				></componet> -->
+				<C7
+				  v-show='active'
+				  :updatePlace='updatePlace'
+				  :update='update'
+				  :upday='upday'
+				  @toggleProvince='toggleProvince'	
+				></C7>
+				<C8
+				  v-show='!active'
+				  :updatePlace='updatePlace'
+				  :update='update'
+				  :upday='upday'
+				  @toggleProvince='toggleProvince'
+				></C8>
 		</div>
 		<!--切换-->
 		<div class="toast">

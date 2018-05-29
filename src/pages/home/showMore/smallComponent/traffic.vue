@@ -370,7 +370,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
         	if(timer){clearTimeout(timer)}
         	let timer = setTimeout( () => {
         		this.$nextTick(this.addScript("全部",true))
-        	},300)
+        	},2000)
               
         } ,
     }
