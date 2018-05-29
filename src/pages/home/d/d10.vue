@@ -39,6 +39,8 @@
         mixins:[optionProps],
         data () {
             return {
+            	beginStr:'',
+              endStr:'',
             	hotel:'',
             	type:2,
               option :{
@@ -144,32 +146,46 @@
         },
         watch:{
         	updatePlace:function(val){
-        		var paramsObj = {
-                area:val.place,
-                name:val.turist,
-                type:["day","month","year"][this.type],
-                category:this.slectType+1,
-            }
+        		var paramsObj = {}
+        		if(this.endStr||this.beginStr){
+	        			paramsObj = {
+	                area:val.place,
+	                name:val.turist,
+	                beginTime:this.beginStr,
+	                endTime:this.endStr,
+	                category:this.slectType+1,
+	            }
+        		}else{
+        				paramsObj = {
+	                area:val.place,
+	                name:val.turist,
+	                type:["day","month","year"][this.type],
+	                category:this.slectType+1,
+	            }
+        		}
+        		  
             this.getResponse(paramsObj);
         	},
         	 update:{
 	             handler:function(val, oldVal){
 	             	var paramsObj={}
 	             	if(val.type===0 || val.type===1 || val.type===2){
-	             		this.type=val.type
+	             		this.type=val.type;
+	             		this.endStr = '';
+	                this.beginStr = '';
 	             	    paramsObj = {
 			                area:this.updatePlace.place,
 			                name:this.updatePlace.turist,
 			                type:["day","month","year"][val.type],
 			            }
 	             	}else{
-	             			 let end = val.end.join("-");
-		                 let begin = val.begin.join("-");
+	             			  this.endStr = val.end.join("-");
+	                    this.beginStr = val.begin.join("-");
 			                paramsObj = {
 		                    area:this.updatePlace.place,
 		                    name:this.updatePlace.turist,
-		                    beginTime:begin,
-		                    endTime:end
+		                    beginTime:this.beginStr,
+		                    endTime:this.endStr
 										}
 	             	}
 	                 
@@ -178,25 +194,49 @@
 	             deep:true,
 	        },
 	           hotelChose:function(val){
-	           	this.hotel = val;
-		        	var paramsObj = {
-		                area:this.updatePlace.place,
-		                name:val,
+        	this.hotel = val
+        	var paramsObj = {}
+        		if(this.endStr||this.beginStr){
+	        			paramsObj = {
+		                area:val.place,
+		                name:val.turist,
+		                beginTime:this.beginStr,
+		                endTime:this.endStr,
 		                category:this.slectType+1,
-		                type:["day","month","year"][this.type],
-		           	};
-	                this.getResponse(paramsObj);
-		        },
-		        slectType:function(val){
-		        	if(val===0){this.hotel=''}
-		        		var paramsObj = {
-			                area:this.updatePlace.place,
-			                name:this.hotel||this.updatePlace.turist,
-			                category:val+1,
+		            }
+	        		}else{
+	        				paramsObj = {
+			                area:val.place,
+			                name:val.turist,
 			                type:["day","month","year"][this.type],
-		           	 }
-		                this.getResponse(paramsObj);
-		        }
+			                category:this.slectType+1,
+			            }
+        		}
+    		this.yunData=[]
+            this.getResponse(paramsObj);
+        },
+        slectType:function(val){
+        	if(val===0){this.hotel=''}
+        	var paramsObj = {}
+        		if(this.endStr||this.beginStr){
+	        			paramsObj = {
+			                area:val.place,
+			                name:val.turist,
+			                beginTime:this.beginStr,
+			                endTime:this.endStr,
+			                category:val+1,
+			            }
+	        		}else{
+	        				paramsObj = {
+				                area:this.updatePlace.place,
+				                name:this.hotel||this.updatePlace.turist,
+				                category:val+1,
+				                type:["day","month","year"][this.type],
+			            	}
+        		}
+        		    this.yunData=[]
+                this.getResponse(paramsObj);
+        }
         },
         methods:{
             redom(id){
@@ -245,7 +285,6 @@
                 category:this.slectType+1,
             }
        		this.getResponse(paramsObj);
-       		console.log()
         },
         mounted() {
         	this.$nextTick( () => {

@@ -207,6 +207,8 @@ export default {
     },
     data(){
         return{
+        	beginStr:'',
+        	endStr:'',
 	        type:0,
 	        rankItems:[],
 	        isThree:false,
@@ -214,37 +216,45 @@ export default {
       }
     },
     watch:{
-        updatePlace:{
-            handler: function (val, oldVal) {
-                var paramsObj = {
-                    area:val.place,
-                    name:val.turist,
-                    type: ["day","month","year"][this.type]
-                    }
-                this.rankItems = [];
-                this.getResponse(paramsObj);
-            },
-            deep:true,
+        updatePlace:function(val){
+             let paramsObj = {}
+    		if(this.endStr||this.beginStr){
+    			paramsObj = {
+                area:val.place,
+                name:val.turist,
+                beginTime:this.beginStr,
+	            endTime:this.endStr
+            }
+    		}else{
+    			paramsObj = {
+                area:val.place,
+                name:val.turist,
+                type:["day","month","year"][this.type],
+            }
+    		}
+            this.getResponse(paramsObj);
         },
         
         update:{
              handler:function(val, oldVal){
              	var paramsObj={}
              	if(val.type===0 || val.type===1 || val.type===2){
-             		this.type=val.type
+             		this.type=val.type;
+             		this.endStr = '';
+	                this.beginStr = '';
              	    paramsObj = {
 		                area:this.updatePlace.place,
 		                name:this.updatePlace.turist,
 		                type:["day","month","year"][val.type],
 		            }
              	}else{
-             		let end = val.end.join("-")
-	                 let begin = val.begin.join("-")
+             		 this.endStr = val.end.join("-");
+	                 this.beginStr = val.begin.join("-");
 	                paramsObj = {
 	                    area:this.updatePlace.place,
 	                    name:this.updatePlace.turist,
-	                    beginTime:begin,
-	                    endTime:end
+	                    beginTime:this.beginStr,
+	                    endTime:this.endStr
 					}
              	}
                  
@@ -275,8 +285,5 @@ export default {
             }
         this.getResponse(paramsObj);
     },
-    mounted(){
-    },
-    components:{}
 }
 </script>

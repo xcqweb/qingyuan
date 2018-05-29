@@ -40,7 +40,7 @@
                 {{item.city || item.province}}
             </div>
             <div class="cell1">
-                {{item.num.toLocaleString()}}
+                {{item.num}}
             </div>
             
             <div class="cell1">
@@ -247,7 +247,7 @@ export default {
     computed: { 
     	totalNum(){
     		if(this.allData){
-    			return this.allData[this.totalType].toLocaleString()
+    			return this.allData[this.totalType]
     		}else{
     			return 0
     		}

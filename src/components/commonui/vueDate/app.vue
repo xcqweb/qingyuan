@@ -4,7 +4,7 @@
         <div :class="{'border':isBorder}">
             <!-- <span>弹出框</span> -->
             <input type="text"  v-bind:class="{ choses: isActive }" class="sigleDate"   @click="openByDrop($event)" v-model="calendar3.display" readonly>
-            <input type="text" v-bind:class="{ choses: !isActive,'font16':!showStatus}" @click="openByDialog" :value="calendar4display" readonly style="cursor: pointer;">
+            <input type="text" v-bind:class="{ choses: !isActive,'font16':!showStatus}" @click="openByDialog" :value="calendar4.display" readonly style="cursor: pointer;">
         </div>
 
 <!--         <div>
@@ -123,10 +123,13 @@ export default {
         }
     },
     mounted(){
-    	Bus.$on('definded',function(val){
+    	Bus.$on('definded',(val) => {
     		if(!this.showStatus && val==='自定义'){
     			this.de = val
     		}
+    	})
+    	Bus.$on('resetDate',() => {
+    		this.calendar4.display = "自定义时间";
     	})
     	Bus.$emit('ms',new Date().getMonth())
     },

@@ -61,15 +61,30 @@
 		watch:{
 			updatePlace:function(val){
 				this.num = 2;
-				var paramsObj = {
-	                area:val.place,
-	                name:val.turist,
-	                pageId:1,
-	                source:'全部',
-	                commentType:this.comType,
-	                category:this.slectType+1,
-	                type:["day","month","year"][this.type],
-	            }
+				var paramsObj = {}
+				if(this.endTime||this.beginTime){
+					 paramsObj = {
+		                area:val.place,
+		                name:val.turist,
+		                pageId:1,
+		                source:'全部',
+		                commentType:this.comType,
+		                category:this.slectType+1,
+		                beginTime:this.beginTime,
+	                    endTime:this.endTime
+		            }
+				}else{
+					 paramsObj = {
+		                area:val.place,
+		                name:val.turist,
+		                pageId:1,
+		                source:'全部',
+		                commentType:this.comType,
+		                category:this.slectType+1,
+		                type:["day","month","year"][this.type],
+		            }
+				}
+				
 					this.items = []
 					this.name= '';
 					this.getResponse(paramsObj,true);
@@ -80,6 +95,7 @@
 	         	this.num = 2;
 	         	var paramsObj={}
 	         	if(val.type===0 || val.type===1 || val.type===2){
+	         		Bus.$emit('resetDate')
 	         		this.beginTime='';
 		       		this.endTime='';
 	         		this.type = val.type
@@ -104,8 +120,8 @@
 	                    pageId:1,
 		                source:'全部',
 		                commentType:this.comType ,
-	                    beginTime:begin,
-	                    endTime:end
+	                    beginTime:this.beginTime,
+	                    endTime:this.endTime
 					}
 	         	}
 	             this.items = []
@@ -118,14 +134,30 @@
 			//酒店景区选择
 			slectType:function(val){
 				this.num = 2;
-				var paramsObj = {
+				var paramsObj = {}
+				if(this.endTime||this.beginTime){
+					 paramsObj = {
 						area:this.updatePlace.place,
 		                name:this.updatePlace.turist,
 		                pageId:1,
 		                source:'全部',
 		                commentType:this.comType,
 		                category:val+1,
+		                beginTime:this.beginTime,
+	                    endTime:this.endTime
 	               }
+				}else{
+					 paramsObj = {
+						area:this.updatePlace.place,
+		                name:this.updatePlace.turist,
+		                pageId:1,
+		                source:'全部',
+		                commentType:this.comType,
+		                category:val+1,
+		                type:["day","month","year"][val.type],
+	               }
+				}
+				
 						this.items = []
 						this.getResponse(paramsObj,true);
 			},
@@ -133,15 +165,32 @@
 			hotelChose:function(val){
 					this.num = 2;
 					this.name = val;
-					var paramsObj = {
-						area:this.updatePlace.place,
-		                name:val,
-		                pageId:1,
-		                source:'全部',
-		                commentType:this.comType,
-		                key:"",
-		                category:this.slectType+1
-	               }
+					var paramsObj = {}
+					if(this.endTime||this.beginTime){
+						paramsObj = {
+							area:this.updatePlace.place,
+			                name:val,
+			                pageId:1,
+			                source:'全部',
+			                commentType:this.comType,
+			                key:"",
+			                category:this.slectType+1,
+			                beginTime:this.beginTime,
+	                   	    endTime:this.endTime,
+		               }
+					}else{
+						paramsObj = {
+							area:this.updatePlace.place,
+			                name:val,
+			                pageId:1,
+			                source:'全部',
+			                commentType:this.comType,
+			                key:"",
+			                category:this.slectType+1,
+			                type:["day","month","year"][val.type],
+		               }
+					}
+					 
 						this.items = []
 						this.getResponse(paramsObj,true);
 			}
@@ -269,14 +318,15 @@
     			this.num = 2;
     			this.keyW='';
     			this.name='';
-	       		var paramsObj = {
+    			
+				 var paramsObj = {
 	                area:this.updatePlace.place,
 	                name:this.updatePlace.turist,
 	                pageId:1,
 	                source:'全部',
 	                commentType:data,
 	                category:this.slectType+1,
-	            }
+            	}
 	       		this.items = []
 	       		this.getResponse(paramsObj,true);
 	       	})
@@ -285,16 +335,34 @@
     		Bus.$on('keyWords',(data) => {
     			this.keyW = data;
     			this.num = 2;
-	       		var paramsObj = {
-	                area:this.updatePlace.place,
-	                name:this.updatePlace.turist,
-	                type:this.type,
-	                pageId:1,
-	                source:'全部',
-	                commentType:this.comType,
-	                category:this.slectType+1,
-	                key:data
-	            }
+    			var paramsObj = {}
+				if(this.endTime||this.beginTime){
+					 paramsObj = {
+		                area:this.updatePlace.place,
+		                name:this.updatePlace.turist,
+		                type:this.type,
+		                pageId:1,
+		                source:'全部',
+		                commentType:this.comType,
+		                category:this.slectType+1,
+		                key:data,
+		                beginTime:this.beginTime,
+                   	    endTime:this.endTime,
+		            }
+				}else{
+					 paramsObj = {
+		                area:this.updatePlace.place,
+		                name:this.updatePlace.turist,
+		                type:this.type,
+		                pageId:1,
+		                source:'全部',
+		                commentType:this.comType,
+		                category:this.slectType+1,
+		                key:data,
+		                type:["day","month","year"][val.type],
+		            }
+				}
+	       		
 	       		this.items = []
 	       		this.getResponse(paramsObj,true);
 	       	})

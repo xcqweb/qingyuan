@@ -13,6 +13,8 @@ export default {
     mixins: [optionProps],
     data(){
     return{
+    	  beginStr:'',
+        endStr:'',
     		series:[
     		 {
 		      "value": 200,
@@ -41,30 +43,43 @@ export default {
     },
     watch:{
 			updatePlace:function(val){
-				var paramsObj = {
-	                area:val.place,
-	                name:val.turist,
-	            }
-					this.getResponse(paramsObj);
-			},
-			update:{
+             let paramsObj = {}
+    		if(this.endStr||this.beginStr){
+    			paramsObj = {
+                area:val.place,
+                name:val.turist,
+                beginTime:this.beginStr,
+	              endTime:this.endStr
+            }
+    		}else{
+    			paramsObj = {
+                area:val.place,
+                name:val.turist,
+                type:["day","month","year"][this.type],
+            }
+    		}
+            this.getResponse(paramsObj);
+        },
+        update:{
              handler:function(val, oldVal){
              	var paramsObj={}
              	if(val.type===0 || val.type===1 || val.type===2){
-             		this.type=val.type
+             		this.type=val.type;
+             		this.endStr = '';
+	              this.beginStr = '';
              	    paramsObj = {
 		                area:this.updatePlace.place,
 		                name:this.updatePlace.turist,
 		                type:["day","month","year"][val.type],
 		            }
              	}else{
-             		let end = val.end.join("-")
-	                 let begin = val.begin.join("-")
+             		   this.endStr = val.end.join("-");
+	                 this.beginStr = val.begin.join("-");
 	                paramsObj = {
 	                    area:this.updatePlace.place,
 	                    name:this.updatePlace.turist,
-	                    beginTime:begin,
-	                    endTime:end
+	                    beginTime:this.beginStr,
+	                    endTime:this.endStr
 					}
              	}
                  

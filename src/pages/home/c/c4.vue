@@ -14,12 +14,14 @@ import Vue from 'vue'
 import echarts_resize from '../../../common/js/echarts_resize.js'
 import optionProps from '@/common/js/mixin/optionProps.js'
 import echarts from 'echarts'
-
+import Bus from '@/common/js/bus'
 export default {
   name: 'c4',
   mixins: [optionProps],
   data () {
     return {
+    	beginStr:'',
+        endStr:'',
         womenPercent:'40',
         menPercent:'60',
         option1:{},
@@ -39,31 +41,44 @@ export default {
   },
   watch:{
   	   updatePlace:function(val){
-            var paramsObj = {
-                area:this.updatePlace.place,
-                name:this.updatePlace.turist,
+             let paramsObj = {}
+    		if(this.endStr||this.beginStr){
+    			paramsObj = {
+                area:val.place,
+                name:val.turist,
+                beginTime:this.beginStr,
+	              endTime:this.endStr
+            }
+    		}else{
+    			paramsObj = {
+                area:val.place,
+                name:val.turist,
                 type:["day","month","year"][this.type],
             }
+    		}
             this.getResponse(paramsObj);
         },
         update:{
              handler:function(val, oldVal){
-             	var paramsObj={}
+             		var paramsObj={}
              	if(val.type===0 || val.type===1 || val.type===2){
-             		this.type=val.type
+             		Bus.$emit('resetDate')
+             		this.type=val.type;
+             		this.endStr = '';
+	                 this.beginStr = '';
              	    paramsObj = {
 		                area:this.updatePlace.place,
 		                name:this.updatePlace.turist,
 		                type:["day","month","year"][val.type],
 		            }
              	}else{
-             		let end = val.end.join("-")
-	                 let begin = val.begin.join("-")
+             		 this.endStr = val.end.join("-");
+	                 this.beginStr = val.begin.join("-");
 	                paramsObj = {
 	                    area:this.updatePlace.place,
 	                    name:this.updatePlace.turist,
-	                    beginTime:begin,
-	                    endTime:end
+	                    beginTime:this.beginStr,
+	                    endTime:this.endStr
 					}
              	}
                  
