@@ -1,5 +1,5 @@
 <template>
-  <div class="c7" v-show="status">
+  <div class="c7">
   	<div class="btn">
   		<div class="tabs" :class="{'active':active===1}" @click="toggle(1,'inCountryCity')" >全国(市)</div>
   		<div class="tabs" :class="{'active':active===2}" @click="toggle(2,'inProvinceCity')">省内(市)</div>
@@ -9,7 +9,6 @@
     		<date-select class='start' :isStart=true></date-select>
     		<span class="txt">至</span>
     		<date-select class='end' :isStart=false></date-select>
-    		<span class="reset" title="重置" @click="reset"></span>
    	 </div>
   	</div>
         <div class="title">
@@ -20,7 +19,7 @@
               	 地区
             </div>
             <div class="cell1">
-                	人数    ( 人 )
+                	人数    ( 人次  )
             </div>
             <div class="cell1">
               	  占比
@@ -32,7 +31,7 @@
              	  环比
             </div>
         </div>
-      <ul>
+      <ul v-show="status">
         <li v-for='(item,index) in items'>
             <div class="cell1">
                 {{index+1}}
@@ -41,7 +40,7 @@
                 {{item.city || item.province}}
             </div>
             <div class="cell1">
-                {{item.num}}
+                {{item.num.toLocaleString()}}
             </div>
             
             <div class="cell1">
@@ -57,6 +56,32 @@
                 <span class='footerRise' :class='item.rise'></span>
             </div>
         </li>
+        <ul class="totals">
+        	<li>
+        		<div class="cell1">
+                	总计
+            </div>
+            <div class="cell1">
+                               
+            </div>
+            <div class="cell1">
+                {{totalNum}}
+            </div>
+            
+            <div class="cell1">
+                <span class='footerCotext'></span>
+                <span class='footerRise'></span>
+            </div>
+            <div class="cell1">
+                <span class='footerCotext'></span>
+                <span class='footerRise'></span>
+            </div>
+            <div class="cell1">
+                <span class='footerCotext'></span>
+                <span class='footerRise'></span>
+            </div>
+        	</li>
+        </ul>
     </ul>
   </div>
 </template>
@@ -78,38 +103,61 @@ export default {
         allData:[],
         items:[],
         begin:[],
-        end:[]
+        end:[],
+        beginStr:'',
+        endStr:'',
+        totalType:'inCountryCityTotalMan'
       }
     },
      watch:{
     	updatePlace:function(val){
-            var paramsObj = {
+    		let paramsObj = {}
+    		if(this.endStr||this.beginStr){
+    			paramsObj = {
+                area:val.place,
+                name:val.turist,
+                beginTime:this.beginStr,
+	              endTime:this.endStr
+            }
+    		}else{
+    			paramsObj = {
                 area:val.place,
                 name:val.turist,
                 type:["day","month","year"][this.type],
             }
+    		}
             this.getResponse(paramsObj);
         },
-      	
+      	cityTypes:function(val){
+      		if(val==='inProvinceCity'){
+      			this.totalType = 'inProvinceCityTotalMan' 
+      		}else if(val==='inCountryProvince'){
+      			this.totalType = 'inCountryProvinceTotalMan' 
+      		}else{
+      			this.totalType = 'inCountryCityTotalMan'
+      		}
+      	},
          update:{
              handler:function(val, oldVal){
              	var paramsObj={}
              	if(val.type===0 || val.type===1 || val.type===2){
-             		this.type = val.type
+             		this.type = val.type;
+             		this.endStr = '';
+	              this.beginStr = '';
              	    paramsObj = {
 		                area:this.updatePlace.place,
 		                name:this.updatePlace.turist,
 		                type:["day","month","year"][val.type],
-		            }
+		            };
              	}else{
-             		   let end = val.end.join("-")
-	                 let begin = val.begin.join("-")
+             		   this.endStr = val.end.join("-");
+	                 this.beginStr = val.begin.join("-");
 	                paramsObj = {
 	                    area:this.updatePlace.place,
 	                    name:this.updatePlace.turist,
-	                    beginTime:begin,
-	                    endTime:end
-									}
+	                    beginTime:this.beginStr,
+	                    endTime:this.endStr
+									};
              	}
                  this.getResponse(paramsObj);
              },
@@ -118,17 +166,22 @@ export default {
     },
     created(){
     	var paramsObj = {
-                area:"全部",
-                name:"全部",
-                type:'day'
+                area:this.updatePlace.place,
+                name:this.updatePlace.turist,
+                type:["day","month","year"][this.type]
             }
        this.getResponse(paramsObj);
     },
     methods:{
     	toggle(data,cityType){
+    		this.items=[]
     		this.active=data;
     		this.cityTypes = cityType;
     		this.items = this.allData[cityType]
+    		
+    		if(data===3){
+					this.add()
+    		}
     		if(data===2){
     			this.$emit('toggleProvince',1)
     		}else if(data===1){
@@ -137,13 +190,37 @@ export default {
     			this.$emit('toggleProvince',2)
     		}
     	},
-    	
-    	reset(){
-    		this.begin=[];
-        this.end=[];
-    		Bus.$emit('reset');
+    	add(){
+    		let str = JSON.stringify(this.items)
+					//console.log(str.indexOf('香港'))
+					if(str.indexOf('香港')===-1){
+							this.items.push({
+							"num":0,
+							"tongRate":0,
+							"huanRate":0,
+							"zhanRate":0,
+							"province":"香港"
+						})
+					}	
+						if(str.indexOf('澳门')===-1){
+								this.items.push({
+								"num":0,
+								"tongRate":0,
+								"huanRate":0,
+								"zhanRate":0,
+								"province":"澳门"
+							})
+						}
+						if(str.indexOf('台湾')===-1){
+							this.items.push({
+							"num":0,
+							"tongRate":0,
+							"huanRate":0,
+							"zhanRate":0,
+							"province":"台湾省"
+						})
+					}
     	},
-    	
     	//获取数据
     	getResponse(paramsObj){
 				 this.$axios.get(API_URL+'/qy/api/v2/view/getPersonSourceData',{params:paramsObj}).then(r => {
@@ -159,11 +236,23 @@ export default {
 	                	}
 	                	this.allData = reData;
 	                	this.items = reData[this.cityTypes];
+	                	if(this.cityTypes==='inCountryProvince'){
+	                		this.add()
+	                	}
+	                	
 	                }
 	            })
 	  	},
     },
     computed: { 
+    	totalNum(){
+    		if(this.allData){
+    			return this.allData[this.totalType].toLocaleString()
+    		}else{
+    			return 0
+    		}
+    		
+    	}
     },
     components:{
     	dateSelect
@@ -200,6 +289,8 @@ export default {
     				  this.end = tem
     				}
     			}
+    			
+    			Bus.$emit('swap',{begin:this.begin,end:this.end})
     			let ends = this.end.join("-")
 	        let begins = this.begin.join("-")
       	 	var paramsObj = {
@@ -223,7 +314,7 @@ export default {
 .c7{
     height:100%;
     width:100%;
-    color: white;
+    color: #fff;
     font{
         font-size: 0.6rem;
     }
@@ -246,8 +337,8 @@ export default {
 	    		line-height: 36px;
 	    	}
 	    	.txt{
-	    		left:282px;
-	    		font-size: 16px;
+	    		left:286px;
+	    		font-size: 1rem;
 	    		height: 36px;
 	    		line-height: 36px;
 	    	}
@@ -255,13 +346,13 @@ export default {
 	    		left: 140px;
 	    	}
 	    	.end{
-	    		left: 320px;
+	    		right: 80px;
 	    	}
 	    	.reset{
 	    		display: block;
 	    		width: 37px;
 	    		height: 36px;
-	    		left: 460px;
+	    		left: 40px;
 	    		transform: scale(0.8);
 	    		background-image: url(../../../assets/images/shuaxin.png);
 	    		background-repeat: no-repeat;
@@ -307,7 +398,7 @@ export default {
 
 
 ul{
-    height:79.2%;
+    height:72%;
     width:100%;
     overflow-y: scroll;
     cursor: all-scroll;
@@ -325,10 +416,19 @@ ul{
             visibility: hidden;
           }
     }
+    .totals{
+    	height:60/798*100%;
+    	position: absolute;
+    	bottom: 0;
+    	li{
+    		height: 100%;
+    		font-weight: bolder;
+    	}
+    }
 }
 
 		ul::-webkit-scrollbar{
-			    width: 0.45rem;
+			    width: 0rem;
 			    height: 3rem;
 			}
 			/*定义滚动条的轨道，内阴影及圆角*/
@@ -374,7 +474,7 @@ ul{
 
 .cell1{
     float:left;
-    width: 16.6%;
+    width: 100/6%;
     text-align: center;
 }
 

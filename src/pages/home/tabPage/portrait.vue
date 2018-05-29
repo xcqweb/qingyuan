@@ -14,7 +14,7 @@
          <!--4A级景区切换-->
         <div v-show="!scienceType">
         	<div class="leftScope">
-        		<h1>游客属性</h1>
+        		<h1>游客属性<tips :type='tipType'></tips></h1>
 	            <div class="item"
 	                v-for='item in leftComponents' 
 	                :class="item.id">
@@ -33,7 +33,7 @@
         		 <div class="item"
 	                v-for='item in AComponents' 
 	                :class="item.id">
-	                <h1>{{item.title}}</h1>
+	                <h1>{{item.title}}<tips :type='item.type'></tips></h1>
 	                    <componet
 	                    :is='item.name' 
 	                    :key="item.id"  
@@ -48,7 +48,7 @@
             <div class="item" 
                 v-for='item in rightComponents' 
                 :class="item.id">
-                <h1 v-bind:style="{ color: item.color }" >{{item.title}}</h1>
+                <h1 v-bind:style="{ color: item.color }" >{{item.title}}<tips :type='item.type'></tips></h1>
                     <componet
                     :is='item.name' 
                     :key="item.id"  
@@ -72,6 +72,7 @@ export default {
     name: 'souceShow',
         data () {
             return {
+            	tipType:'c1',
             	updatePlace:{place:"全部",turist:"全部"},
         		update:{begin:['2018','02','02'],end:['2018','02','03']},
             	scienceType:false,
@@ -87,10 +88,10 @@ export default {
                 	{name:'A10',id:'one',index:1,time:900,show:true,title:'4A级以上景区'},
                 ],
                 rightComponents:[
-                	{name:'D9SS',id:'four',index:1,time:100,show:false,title:'游客路线',tip:true},
-                	{name:'A1SS',id:'three',index:2,time:100,show:false,title:'历史客流',tip:true},
-                	{name:'C12',id:'two',index:3,time:100,show:false,title:'游客来源地',tip:true},
-                	{name:'D12SS',id:'one',index:4,time:600,show:false,title:'停留时长'},
+                	{name:'D9SS',id:'four',index:1,time:100,show:false,title:'游客路线',tip:true,type:'c2'},
+                	{name:'A1SS',id:'three',index:2,time:100,show:false,title:'历史客流',tip:true,type:'c3'},
+                	{name:'C12',id:'two',index:3,time:100,show:false,title:'游客来源地',tip:true,type:'c4'},
+                	{name:'D12SS',id:'one',index:4,time:600,show:false,title:'停留时长',type:'c5'},
                 ]
             }
         },
@@ -119,10 +120,10 @@ export default {
                 this.$axios.get(API_URL+'/qy/api/view/checkLogin').then(r => {
                     
                         if(r.data.code ==="-1"||r.data.code ===-1){
-                        //测试
-						window.location.href=API_URL+":8081/qylv3.0/login"
-						//旅游局
-						//window.location.href=API_LOGIN
+	                        //测试
+							window.location.href=API_URL+":8081/qylv3.0/login"
+							//旅游局
+							//window.location.href=API_LOGIN
                         }
                 })
             },

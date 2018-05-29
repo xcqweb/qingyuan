@@ -86,6 +86,8 @@ body {
   height: 1080px;
   overflow-x: hidden;
 }
+
+
 /*a:link { text-decoration: none;color: blue}
 a:active { text-decoration:blink}
 a:hover { text-decoration:underline;color: red} 
@@ -112,6 +114,7 @@ p,h1,span,font,a,li{
 html{
   overflow-x: scroll;
   overflow-y: scroll;
+  
   background: #F2F7FA;
   font-family: "Microsoft YaHei","SF Pro SC","HanHei SC","PingFang SC",Arial,Helvetica,sans-serif,"SimSun";
 }
@@ -129,6 +132,7 @@ html{
 @media screen and (min-width: 1460px) {html{font-size:16px;}}
 @media screen and (min-width: 1599px) {html{font-size:18px;}}
 @media screen and (min-width: 1910px) {html{font-size:20px;}}
+@media screen and (min-width: 3800px) {html{overflow: hidden;}}
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

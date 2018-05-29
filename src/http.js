@@ -2,7 +2,7 @@ import axios from 'axios'
 import router from '@/router'
 
 //axios 配置
-axios.defaults.timeout = 50000;
+axios.defaults.timeout = 500000;
 axios.defaults.baseURL = window.API_URL+'/qy/api/';
 
 
@@ -35,7 +35,8 @@ axios.interceptors.request.use = instance.interceptors.request.use;
     		return response
     	}else if(response.data.code==='-1' || response.data.code===-1){
     		//console.log(response.data)
-    		window.location.href = API_URL+':8081/login'
+    		router.replace('login')
+    		//window.location.href = API_URL+':8081/login'
     	}
     },
         err => {

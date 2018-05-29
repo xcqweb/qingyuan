@@ -117,7 +117,7 @@
             },
             getResponse(paramsObj){
             let _self = this;
-              this.$axios.get('http://120.55.190.57/qy/api/command/selectCommandScenicRaiseUp',{params:paramsObj}).then(r => {
+              this.$axios.get(API_URL+'/qy/api/command/selectCommandScenicRaiseUp',{params:paramsObj}).then(r => {
             	let reData = r.data.data
             	//console.log(reData);
             	if(reData.length>5){

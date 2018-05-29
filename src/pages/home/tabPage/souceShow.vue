@@ -18,7 +18,7 @@
 	            <div class="item"
 	                v-for='item in leftComponents' 
 	                :class="item.id">
-	                <h1>{{item.title}}</h1>
+	                <h1>{{item.title}}<tips :type='item.type'></tips></h1>
 	                    <componet
 	                    :is='item.name' 
 	                    :key="item.id"  
@@ -50,7 +50,7 @@
             <div class="item" 
                 v-for='item in rightComponents' 
                 :class="item.id">
-                <h1 v-bind:style="{ color: item.color }" >{{item.title}}</h1>
+                <h1 v-bind:style="{ color: item.color }" >{{item.title}}<tips :type='item.type'></tips></h1>
                     <componet
                     :is='item.name' 
                     :key="item.id"  
@@ -73,18 +73,18 @@ export default {
         		update:{},
         		upday:0,
                 leftComponents:[
-                	{name:'D1SS',id:'one',index:1,time:900,show:true,title:'客流热力图'},
-                    {name:'A5SS',id:'two',index:2,time:100,show:true,title:'实时客流',tip:true},
-                    {name:'B2SS',id:'three',index:1,time:300,show:true,title:'预警',color:'',},
+                	{name:'D1SS',id:'one',index:1,time:900,show:true,title:'客流热力图',type:'b1'},
+                    {name:'A5SS',id:'two',index:2,time:100,show:true,title:'实时客流',tip:true,type:'b2'},
+                    {name:'B2SS',id:'three',index:1,time:300,show:true,title:'预警',color:'',type:'b3'},
                 ],
                 //4A级以上景区
                 AComponents:[
                 	{name:'A10',id:'one',index:1,time:900,show:true,title:''},
                 ],
                 rightComponents:[
-                	{name:'B4SS',id:'two',index:3,time:100,show:true,title:'实时路况',tip:true},
+                	{name:'B4SS',id:'two',index:3,time:100,show:true,title:'实时路况',tip:true,type:'b4'},
                 	
-                	{name:'B6S',id:'one',index:2,time:600,show:true,title:'实时天气'},
+                	{name:'B6S',id:'one',index:2,time:600,show:true,title:'实时天气',type:'b5'},
                 ]
             }
         },
@@ -123,10 +123,10 @@ export default {
                 this.$axios.get(API_URL+'/qy/api/view/checkLogin').then(r => {
                     
                         if(r.data.code ==="-1"||r.data.code ===-1){
-                        //测试
-						   window.location.href=API_URL+":8081/qylv/login"
-						//旅游局
-//						window.location.href=API_LOGIN
+	                        //测试
+							window.location.href=API_URL+":8081/qylv/login"
+							//旅游局
+	//						window.location.href=API_LOGIN
                         }
                 })
             },

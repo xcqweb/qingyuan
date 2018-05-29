@@ -1,7 +1,7 @@
 <template>
 <div class="content">
   <div id="c12"></div>
-  <p class="time">2018-04</p>
+  <p class="time">{{`${year}-${month}`}}</p>
   <ul class="legend">
   	<li v-for="(item,i) in series">
   		<p>{{item.percent}}%</p>
@@ -13,6 +13,9 @@
 </template>
 
 <script type="text/javascript">
+	let date = new Date()
+	let year = date.getFullYear()
+	let month = (date.getMonth()+1)<10?"0"+(date.getMonth()+1):date.getMonth()+1
 import echarts_resize from '@/common/js/echarts_resize.js'
 import echarts from 'echarts';
 import optionProps from '@/common/js/mixin/optionProps.js'
@@ -21,6 +24,9 @@ export default {
     mixins: [optionProps],
     data(){
     return{
+    	year:year,
+    	month:month,
+    	 type:0,
     		series:[
     		 {
 		      "value": 200,
@@ -73,11 +79,6 @@ export default {
 		      name: '南昌',
 		      	percent:''
 		    },
-//		     {
-//		       "value": 80,
-//		      	name: '南昌',
-//		      	percent:''
-//		    },
 		  ],
 		  
         color:['#4EBBFC','#57ABFE', '#368DF7', '#7E6AF6', '#FF8885','#FFCD38',  '#E39A50', '#75CF65','#B8E986', '#86E9E8', '#58E5E1','#4BCEDD'],
@@ -89,7 +90,7 @@ export default {
 	            var paramsObj = {
 	                area:this.updatePlace.place,
 	                name:this.updatePlace.turist,
-	                //type:["day","month","year"][this.upday],
+	                type:["day","month","year"][this.type],
 	            }
 	            this.getResponse(paramsObj);
 	        },
@@ -206,6 +207,7 @@ export default {
     	 var paramsObj = {
                 area:"全部",
                 name:"全部",
+                type:'day'
             }
        this.getResponse(paramsObj);
     },
@@ -234,7 +236,7 @@ export default {
 .time{
 	position: absolute;
 	color: #fff;
-	bottom: 80px;
+	bottom: 2rem;
 	width: 58%;
 	font-size: 14px;
 	text-align: center;

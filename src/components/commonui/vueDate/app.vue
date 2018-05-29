@@ -28,7 +28,7 @@
     <div class="calendar-dialog" v-bind:class="{ choses: !isActive}" v-show="isShow">
         <div class="calendar-dialog-mask" @click="closeByDialog"></div>
         
-        <div class="calendar-dialog-body" @mouseleave="out">
+        <div class="calendar-dialog-body">
             <calendar :range="calendar4.range" :zero="calendar4.zero" :lunar="calendar4.lunar" :value="calendar4.value"  @select="calendar4.select"></calendar>
         </div>
         
@@ -44,7 +44,7 @@ import Bus from '@/common/js/bus'
 
 let date = new Date()
 let year = c(date.getFullYear())
-let month = c(date.getMonth()+1)
+let month = c(date.getMonth())
 let day = c(date.getDate())
 function c(v){
 	if(v<10){
@@ -67,6 +67,7 @@ export default {
     data(){
         return {
             calendar:{
+            	
                 value:[2018,2,16], //默认日期
                 // lunar:true, //显示农历
                 weeks:['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
@@ -127,6 +128,7 @@ export default {
     			this.de = val
     		}
     	})
+    	Bus.$emit('ms',new Date().getMonth())
     },
     computed: {
         calendar1:function(){
@@ -154,11 +156,6 @@ export default {
     	}
     },
     methods:{
-    	out(){
-    		this.calendar4.show=false;
-    		this.$emit('hideDate',true)
-    		Bus.$emit('ms',new Date().getMonth())
-     	},
         openByDrop(e){
             this.calendar3.show=true;
             this.calendar3.left=e.target.offsetLeft+19;
@@ -174,6 +171,7 @@ export default {
         },
         openByDialog(){
             this.calendar4.show=true;
+            Bus.$emit('ms',new Date().getMonth())
         },
         closeByDialog(){
         	this.calendar4.show=false;
@@ -297,8 +295,10 @@ export default {
 
 .calendar-dialog-mask{
     background:rgba(0, 0, 0, 0);
+    position: fixed;
+    top: -100vw;
     width:300vw;
-    height:100vw;
+    height:300vw;
 }
 
 .calendar-dialog-body{
