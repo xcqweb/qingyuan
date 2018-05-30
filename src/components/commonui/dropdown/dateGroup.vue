@@ -38,7 +38,6 @@ selectlist:{
 </template>
 <script >
 import Vue from 'vue'
-import Bus from '@/common/js/bus'
     export default{
         data(){
             return{

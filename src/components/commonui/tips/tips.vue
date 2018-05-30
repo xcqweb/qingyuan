@@ -32,75 +32,75 @@
 			switchNum(type){
 				switch(type){
 					case 'a1':
-					return '空间空间框架和很高很高很高空间空间框架和很高很高很高空间空间框架和很高很高很高空间空间框架和很高很高很高空间空间框架和很高很高很高';
+					return '游客来源地人数的排行与占比；景区游客人数的排行与占比。';
 					break;
 					
 					case 'a2':
-					return '6666';
+					return '显示实时游客人数的变化。选择全部时，显示所有景区的实时客流；选择某一景区时，显示某一景区的实时客流。';
 					break;
 					
 					case 'a3':
-					return 'a3';
+					return '默认显示过去七天所有景区具体每一天的游客人数统计，可根据需要选择某一景区和任意时间段的历史客流数据。';
 					break;
 					
 					case 'b1':
-					return 'b1';
+					return '以高亮的颜色区分游客旅游密集的区域。（1人以上：蓝色；3人以上：绿色，5人以上：黄色；10人以上：红色）。';
 					break;
 					
 					case 'b2':
-					return 'b2';
+					return '显示实时游客人数的变化。选择全部时，显示所有景区的实时客流；选择某一景区时，显示某一景区的实时客流。';
 					break;
 					
 					case 'b3':
-					return 'b3';
+					return '当前景区实时客流与景区容纳人数最大值的比例。（50%以下绿色，50%-70%黄色，70%以上红色）。';
 					break;
 					
 					case 'b4':
-					return 'b4';
+					return '景区实时的路况展示。';
 					break;
 					
 					case 'b5':
-					return 'b5';
+					return '当天天气实况以及未来两天天气预测。';
 					break;
 					
 					case 'c1':
-					return 'c1';
+					return '包括游客的年龄、性别、消费水平、学历、职业。';
 					break;
 					
 					case 'c2':
-					return 'c2';
+					return '人气较高的旅游路线排名。';
 					break;
 					
 					case 'c3':
-					return 'c3';
+					return '默认显示过去七天所有景区具体每一天的游客人数统计，可根据需要选择某一景区和任意时间段的历史客流数据。';
 					break;
 					
 					case 'c4':
-					return 'c4';
+					return '当月各市级游客来源地的比例。';
 					break;
 					
 					case 'c5':
-					return 'c5';
+					return '游客在清远市旅游停留时间的平均时长。';
 					break;
 					
 					case 'd1':
-					return 'd1';
+					return '根据OTA评价获取：4星5星好评，2星3星中评，1星差评。';
 					break;
 					
 					case 'd2':
-					return 'd2';
+					return '从六个维度对评价的正负面进行对比，评分数值：1-5分，满分5分，纬度正面评分越高，正面评价越高；纬度负面评分越高，负面评价越高。';
 					break;
 					
 					case 'd3':
-					return 'd3';
+					return '对评论中出现频率较高的“关键词”予以视觉化的展现，评价关键词频次越高，文字显示越大。';
 					break;
 					
 					case 'd4':
-					return 'd4';
+					return '该景区差评除以总评价数得出占比，对频频出现差评的各景区、酒店予以直观展示。';
 					break;
 					
 					case 'd5':
-					return 'd5';
+					return '对应景区的评价内容及来源。';
 					break;
 				}
 			}
@@ -127,7 +127,7 @@
 	.con{
 		font-weight: 100;
 		font-size: 13px;
-		width: 312px;
+		width: 208px;
 		border: 1px solid @col;
 		background-color: @col;
 		padding: 5px;
@@ -137,12 +137,12 @@
 		letter-spacing: 1px;
 		font-style: italic;
 		font-family: '楷体';
-		left: -120px;
-		top: 80px;
+		left: -76px;
+		top: 76px;
 		.row{
 			position: absolute;
 			top: -20px;
-			left: 148px;
+			left: 104px;
 			width: 0;
 			height: 0;
 			border-width: 10px;

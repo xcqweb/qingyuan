@@ -111,6 +111,9 @@ export default {
         		}
         	}
         },
+		beforeDestroy(){
+			Bus.$off('reset')
+		},
         methods: {
 	        	//获取选择的景区
 		        doubleChoseVal(val){

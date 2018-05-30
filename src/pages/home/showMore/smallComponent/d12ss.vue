@@ -388,7 +388,9 @@ export default {
     methods: {
     	 getResponse(paramsObj){
             this.$axios.get(API_URL+'/qy/api/v2/view/selectCommandScenicStayHours',{params:paramsObj}).then(r => {
-                
+                if(!r){
+                	return
+                }
                 if(r.data.code ==="200"||r.data.code ===200){
                       //console.log(r.data.data)
                     this.barData = r.data.data[0].value;

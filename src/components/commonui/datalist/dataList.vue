@@ -1,7 +1,7 @@
 <template>
 	<div class="datalist">
 		<input type="text" @focus="showList" @blur="hideList" v-model="txt" placeholder="名称关键词搜索" :title="txt"/>
-		<span class="search" @click.self="clear">x</span>
+		<span class="search" @click.self="clear($event)" v-show="showStatus">x</span>
 		<List
 			:list='chooseListData'
 			:status='showStatus'
@@ -43,9 +43,11 @@
 				
 			},
 			//清除输入
-			clear(){
+			clear(e){
 				this.txt = ''
 				this.showStatus = false
+				e.stopPropagation()
+				e.preventDefault()
 			}
 			
 		},

@@ -157,8 +157,9 @@
             }
         	this.getResponse(paramsObj);
    		 },
-        mounted(){
-        }
+        beforeDestroy(){
+	    	Bus.$off('isRise')
+	    },
 	}
 </script>
 

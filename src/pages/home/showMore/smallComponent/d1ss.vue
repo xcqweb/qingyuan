@@ -173,7 +173,6 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 place:'',
                 turist:'',
                 isUpdate:true,
-                
                 radis:36,
                 maxv:30,
                 coun:50,
@@ -185,8 +184,6 @@ import optionProps from '@/common/js/mixin/optionProps.js'
         		this.place = val.place;
         		this.turist = val.turist;
           		this.radis = 36
-        		//this.maxv = 15
-        		//this.coun = 50
         	},
             place:function(val){
                 this.addScript(val,false)

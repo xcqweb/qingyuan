@@ -15,12 +15,10 @@
   </div>
 </template>
 <script type="text/javascript">
-import Vue from 'vue'
 import { mapGetters } from 'vuex'
  import echarts from 'echarts';
 import vmask from '../components/commonui/mask.vue'
 import headerBody from '@/pages/home/header.vue'
-import Bus from '@/common/js/bus'
 import config from '@/components/commonui/config/scienceConfig.vue'
 export default {
         data() {

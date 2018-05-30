@@ -50,12 +50,12 @@
                   fontSize:12
                 },
                 tooltip: {
-                	///position:[390,90],
                 	trigger:'item',
                 	backgroundColor:'rgba(100,100,100,0.8)',
                 	extraCssText: 'box-shadow: 0 0 3px rgba(0, 0, 0, 0.9)'
                 },
                 legend: {
+                	left:320,
                   label:{
                     show:true,
                   },

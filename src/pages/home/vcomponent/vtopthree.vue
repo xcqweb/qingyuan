@@ -24,31 +24,79 @@ export default {
         mainPageSelect:Object,
     },
     watch:{
-        updatePlace:{
-            handler: function (val, oldVal) {
-            		this.active =false
-			        	setTimeout( () => {
-			        		this.active =true
-			        	},100)
-            		var paramsObj = {
-                area:this.updatePlace.place,
-                name:this.updatePlace.turist,
-                category:this.slectType+1,
-           	 }
-                this.getResponse(paramsObj);
-            },
-            deep:true,
-        },
+       	updatePlace:function(val){
+        		var paramsObj = {}
+        		if(this.endStr||this.beginStr){
+	        			paramsObj = {
+	                area:val.place,
+	                name:val.turist,
+	                beginTime:this.beginStr,
+	                endTime:this.endStr,
+	                category:this.slectType+1,
+	            }
+        		}else{
+        				paramsObj = {
+	                area:val.place,
+	                name:val.turist,
+	                type:["day","month","year"][this.type],
+	                category:this.slectType+1,
+	            }
+        		}
+        		  
+            this.getResponse(paramsObj);
+        	},
+        	 update:{
+	             handler:function(val, oldVal){
+	             	var paramsObj={}
+	             	if(val.type===0 || val.type===1 || val.type===2){
+	             		this.type=val.type;
+	             		this.endStr = '';
+	                this.beginStr = '';
+	             	    paramsObj = {
+			                area:this.updatePlace.place,
+			                name:this.updatePlace.turist,
+			                type:["day","month","year"][val.type],
+			                category:this.slectType+1,
+			            }
+	             	}else{
+	             			  this.endStr = val.end.join("-");
+	                    this.beginStr = val.begin.join("-");
+			                paramsObj = {
+		                    area:this.updatePlace.place,
+		                    name:this.updatePlace.turist,
+		                    beginTime:this.beginStr,
+		                    endTime:this.endStr,
+		                    category:this.slectType+1,
+										}
+	             	}
+	                 
+	                 this.getResponse(paramsObj);
+	             },
+	             deep:true,
+	        },
         slectType:function(val){
         		this.active =false
 	        	setTimeout( () => {
 	        		this.active =true
 	        	},100)
-        		var paramsObj = {
+	        	var paramsObj = {}
+	        	if(this.endStr||this.beginStr){
+	        		 paramsObj = {
                 area:this.updatePlace.place,
                 name:this.updatePlace.turist,
                 category:val+1,
+                beginTime:this.beginStr,
+	              endTime:this.endStr,
            	 }
+	        	}else{
+	        		 paramsObj = {
+                area:this.updatePlace.place,
+                name:this.updatePlace.turist,
+                category:val+1,
+                type:["day","month","year"][val.type],
+           	 }
+	        	}
+        		
                 this.getResponse(paramsObj);
         }
     },
@@ -59,7 +107,10 @@ export default {
             {title:'',nub:'中评数',font:'',color:'#ffe86e'},
             {title:'',nub:'差评数',font:'',color:'#ff719c'},
         ],
-        active:true
+        active:true,
+        beginStr:'',
+	      endStr:'',
+	    	type:2,
     }
   },
   computed: { 
@@ -92,8 +143,12 @@ export default {
                 area:"全部",
                 name:"全部",
                 category:this.slectType+1,
+                type:'year'
             }
        this.getResponse(paramsObj);
+    },
+    beforeDestroy(){
+    	Bus.$off('comType')
     },
   components:{
   }

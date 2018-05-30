@@ -1,6 +1,6 @@
 <template>
     <div class="b2">
-    	<div class="passagerBtn">客流预警</div>
+    	<!--<div class="passagerBtn">客流预警</div>-->
         <div :id="idName" class="pieB2"></div>
         <span v-bind:class="fontColor">{{dataItem.percent}}%</span>
         <div class="text"><font>{{dataItem.currentNum}}人</font></div>

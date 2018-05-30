@@ -215,9 +215,9 @@ require('echarts-wordcloud');
             }
        this.getResponse(paramsObj);
     },
-    mounted(){
-       
-    }
+    beforeDestroy(){
+    	Bus.$off('keyWords')
+    },
   }
 </script>
 

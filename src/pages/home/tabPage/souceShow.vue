@@ -75,7 +75,7 @@ export default {
                 leftComponents:[
                 	{name:'D1SS',id:'one',index:1,time:900,show:true,title:'客流热力图',type:'b1'},
                     {name:'A5SS',id:'two',index:2,time:100,show:true,title:'实时客流',tip:true,type:'b2'},
-                    {name:'B2SS',id:'three',index:1,time:300,show:true,title:'预警',color:'',type:'b3'},
+                    {name:'B2SS',id:'three',index:1,time:300,show:true,title:'客流预警',color:'',type:'b3'},
                 ],
                 //4A级以上景区
                 AComponents:[

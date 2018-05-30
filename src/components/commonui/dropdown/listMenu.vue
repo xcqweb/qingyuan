@@ -284,6 +284,9 @@
 	            }
 	        }
 		},
+		beforeDestroy(){
+			Bus.$off('definded')
+		},
 		components:{
 			vDate,
 			dateGroup,

@@ -27,7 +27,7 @@ export default {
                 area:val.place,
                 name:val.turist,
                 beginTime:this.beginStr,
-	            endTime:this.endStr
+	              endTime:this.endStr
             }
     		}else{
     			paramsObj = {
@@ -72,6 +72,9 @@ export default {
 	  	getResponse(paramsObj){
 			let _self = this;
 	        this.$axios.get(API_URL+'/qy/api/v2/view/getVocation',{params:paramsObj}).then(r => {
+	        	if(!r){
+                	return
+                }
 						let reData = r.data.data
 						//console.log(reData)
 						_self.dataY = []

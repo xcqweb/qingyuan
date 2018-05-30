@@ -158,6 +158,10 @@ export default {
     		}
     	}
     },
+    beforeDestroy(){
+		Bus.$off('init')
+		Bus.$off('ms')
+	},
     methods:{
         openByDrop(e){
             this.calendar3.show=true;

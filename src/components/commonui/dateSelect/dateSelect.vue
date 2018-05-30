@@ -46,6 +46,11 @@
 				}
 			})
 		},
+		beforeDestroy(){
+			Bus.$off('reset')
+			Bus.$off('swap')
+			Bus.$off('turistDate')
+		},
 		computed:{
 			icon(){
 				if(this.showStatus){
