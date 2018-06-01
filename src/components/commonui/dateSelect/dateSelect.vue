@@ -18,7 +18,7 @@
 	let curMonth = date.getMonth()+1;
 	let curDay = date.getDate();
 	let yearData=[];
-	for(let i=0; i<50; i++){
+	for(let i=0,len=year-2000; i<len; i++){
 		yearData[i] = {year:year-i}
 	}
 	export default{
@@ -36,7 +36,7 @@
 		props:['isStart'], 
 		mounted(){
 			Bus.$on('reset', () => {
-				this.ctime = '年  ~ 月';
+				return this.ctime = '年  ~ 月';
 			}),
 			Bus.$on('swap',(data) => {
 				if(this.isStart){
@@ -124,9 +124,9 @@
 				}
 				
 				
-				if(this.choseDate&&this.choseDateStart){
-										
-				}
+//				if(this.choseDate&&this.choseDateStart){
+//										
+//				}
 			} 
 		}
 		
@@ -175,7 +175,7 @@
 		.list{
 			background: #193583;
 			border: 1px solid #1b44ba;
-			height: 210px;
+			max-height: 210px;
 			overflow-y: scroll;
 			li{
 				height: 30px;

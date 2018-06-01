@@ -93,7 +93,7 @@ export default {
                 area:this.updatePlace.place,
                 name:this.updatePlace.turist,
                 category:val+1,
-                type:["day","month","year"][val.type],
+                type:["day","month","year"][this.type],
            	 }
 	        	}
         		

@@ -123,6 +123,7 @@
 			    background-color: #0F2059;
 			}
 			
+			
 			.con::scrollbar{
 			    width: 10px;
 			    height: 2rem;

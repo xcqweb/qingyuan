@@ -110,7 +110,7 @@ export default {
                 show:false,
                 range:true,
                 zero:true,
-                value:[[2018,2,16],[2019,2,16]], //默认日期
+                value:[[year,month,day],[year,month,day]], //默认日期
                 lunar:true, //显示农历
                 select:(begin,end)=>{
                     this.calendar4.value=[begin,end];

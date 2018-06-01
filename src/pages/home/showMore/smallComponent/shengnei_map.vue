@@ -162,7 +162,11 @@ export default {
 	            let _self = this;
 	            var series = [];
 	            var rankItemsMap = _self.rankItems;
+	            if(rankItemsMap.length===0){
+	            	return
+	            }
 	            let scal =rankItemsMap[0].num /200 ;
+	            
 	            rankItemsMap.forEach((item)=>{item.num = Number((item.num+"").replace(/,/g,""))});
 	            
 	            var BJData =[
@@ -321,7 +325,9 @@ export default {
 	        
 	        getResponse(paramsObj){
 	            this.$axios.get(API_URL+'/qy/api/v2/view/getPersonSourceData',{params:paramsObj}).then(r => {
-	                
+	                if(!r){
+	                	return
+	                }
 	                if(r.data.code ==="200"||r.data.code ===200){
 	                    //console.log(r.data.data)
 	                    this.rankItems = r.data.data.inProvinceCity;

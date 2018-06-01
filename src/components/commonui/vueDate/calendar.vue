@@ -183,7 +183,7 @@ export default {
             if (this.value.length>0) {
                 if (this.range) {
                     this.year = parseInt(this.value[0][0])
-                    this.month = parseInt(this.value[0][1])+1
+                    this.month = parseInt(this.value[0][1])
                     this.day = parseInt(this.value[0][2]) 
 
                     let year2 = parseInt(this.value[1][0])

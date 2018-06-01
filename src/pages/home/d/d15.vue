@@ -154,7 +154,7 @@
 		                source:'全部',
 		                commentType:this.comType,
 		                category:val+1,
-		                type:["day","month","year"][val.type],
+		                type:["day","month","year"][this.type],
 	               }
 				}
 				
@@ -187,7 +187,7 @@
 			                commentType:this.comType,
 			                key:"",
 			                category:this.slectType+1,
-			                type:["day","month","year"][val.type],
+			                type:["day","month","year"][this.type],
 		               }
 					}
 					 
@@ -318,15 +318,30 @@
     			this.num = 2;
     			this.keyW='';
     			this.name='';
-    			
-				 var paramsObj = {
-	                area:this.updatePlace.place,
-	                name:this.updatePlace.turist,
-	                pageId:1,
-	                source:'全部',
-	                commentType:data,
-	                category:this.slectType+1,
-            	}
+    			var paramsObj = {}
+    			if(this.endTime||this.beginTime){
+    				 paramsObj = {
+		                area:this.updatePlace.place,
+		                name:this.updatePlace.turist,
+		                pageId:1,
+		                source:'全部',
+		                commentType:data,
+		                category:this.slectType+1,
+		                beginTime:this.beginTime,
+                   	    endTime:this.endTime,
+	            	}
+    			}else{
+    				 paramsObj = {
+		                area:this.updatePlace.place,
+		                name:this.updatePlace.turist,
+		                pageId:1,
+		                source:'全部',
+		                commentType:data,
+		                category:this.slectType+1,
+		                type:["day","month","year"][this.type],
+	            	}
+    			}
+				 
 	       		this.items = []
 	       		this.getResponse(paramsObj,true);
 	       	})
@@ -343,7 +358,6 @@
 		                type:this.type,
 		                pageId:1,
 		                source:'全部',
-		                commentType:this.comType,
 		                category:this.slectType+1,
 		                key:data,
 		                beginTime:this.beginTime,
@@ -356,10 +370,9 @@
 		                type:this.type,
 		                pageId:1,
 		                source:'全部',
-		                commentType:this.comType,
 		                category:this.slectType+1,
 		                key:data,
-		                type:["day","month","year"][val.type],
+		                type:["day","month","year"][this.type],
 		            }
 				}
 	       		

@@ -130,6 +130,9 @@ export default {
     	//获取数据
     	getResponse(paramsObj){
 				 this.$axios.get(API_URL+'/qy/api/v2/view/getScenicPersonSumSort',{params:paramsObj}).then(r => {
+				 					if(!r){
+				 						return
+				 					}
 	                if(r.data.code ==='200'||r.data.code ===200){
 	                	this.status =false
 	                	window.setTimeout( () => {
@@ -169,10 +172,12 @@ export default {
     
     .title{
     	height:80px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background-color: #1f3f9d;
+    	font-weight: bold;
+    	font-size: 20px;
+	    display:flex;
+	    align-items:center;
+	    justify-content:center;
+	    background-color: #1f3f9d;
     }
 }
 ul{

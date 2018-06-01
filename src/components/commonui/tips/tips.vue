@@ -2,7 +2,7 @@
 	<div class="tips" v-clickOutside='hide'>
 		<p class="icon" @click="showTips" title="详情"></p>
 		<transition name='fade'>
-			<p class="con" v-show='status'>{{txt}}<span class="row"></span></p>
+			<p class="cons" v-show='status'>{{txt}}<span class="rowt"></span><span class="rowo"></span></p>
 		</transition>
 	</div>
 </template>
@@ -109,7 +109,8 @@
 </script>
 
 <style scoped="scoped" lang="less">
-@col:#3d55be;
+@col:#355BFA;
+@cols:#163387;
 .tips{
 	width: 104px;
 	height: 104px !important;
@@ -126,29 +127,65 @@
 	}
 	.con{
 		font-weight: 100;
-		font-size: 13px;
-		width: 208px;
-		border: 1px solid @col;
+		font-size: 14px;
+		width: 260px;
 		background-color: @col;
-		padding: 5px;
+		text-align: left;
 		border-radius: 4px;
 		position: absolute;
-		line-height: 20px;
+		line-height: 24px;
 		letter-spacing: 1px;
-		font-style: italic;
-		font-family: '楷体';
-		left: -76px;
+		font-style:  normal;
+		font-family: '微软雅黑';
+		left: -96px;
 		top: 76px;
-		.row{
+		z-index: 10000;
+		
+	}
+	
+	.cons{
+		font-weight: 200;
+		font-size: 14px;
+		width: 260px;
+		background-color: @cols;
+		padding: 4px;
+		text-align: left;
+		padding: 8px;
+		border-radius: 4px;
+		border: 2px solid @col;
+		position: absolute;
+		line-height: 24px;
+		letter-spacing: 1px;
+		font-style:  normal;
+		font-family: '微软雅黑';
+		left: -96px;
+		top: 76px;
+		z-index: 10000;
+		.rowo{
 			position: absolute;
-			top: -20px;
-			left: 104px;
+			top: -7px;
+			left: 118px;
 			width: 0;
 			height: 0;
-			border-width: 10px;
+			border-left: 16px solid transparent;
+		    border-right: 16px solid transparent;
+		    border-bottom: 8px solid @cols;
+			border-color: transparent transparent @cols transparent;
+			border-style: solid;
+			z-index: 10000;
+		}
+		.rowt{
+			position: absolute;
+			top: -10px;
+			left: 114px;
+			width: 0;
+			height: 0;
+			border-left: 20px solid transparent;
+		    border-right: 20px solid transparent;
+		    border-bottom: 10px solid @col;
 			border-color: transparent transparent @col transparent;
 			border-style: solid;
-			z-index: 1000;
+			z-index: 10000;
 		}
 	}
 }

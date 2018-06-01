@@ -179,6 +179,7 @@ export default {
     		this.cityTypes = cityType;
     		this.items = this.allData[cityType]
     		
+    		
     		if(data===3){
 					this.add()
     		}
@@ -225,6 +226,9 @@ export default {
     	getResponse(paramsObj){
 				 this.$axios.get(API_URL+'/qy/api/v2/view/getPersonSourceData',{params:paramsObj}).then(r => {
 				        	//console.log(r)
+				        	if(!r){
+				        		return
+				        	}
 	                if(r.data.code ===200||r.data.code ==="200"){
 	                	this.status =false
 	                	window.setTimeout( () => {
@@ -257,6 +261,9 @@ export default {
     components:{
     	dateSelect
     },
+    beforeDetroy(){
+    	Bus.$off('swap')
+    },
     mounted(){
     	Bus.$on('turistDate',(val) => {
     		if(val.begin){
@@ -264,7 +271,6 @@ export default {
     		}else{
     			this.end=val.end
     		}
-    		
     		//如果开始时间大于结束时间则颠倒过来
     		if(this.begin.length && this.end.length){
     			
@@ -274,7 +280,7 @@ export default {
     				  this.end = tem
     			}
     			
-    			if(this.begin[0]===this.end[0]){
+    			if(this.begin[0]===this.end[0]){//年相同
     				if(this.begin[1]>this.end[1]){
     					let tem = this.begin;
     				  this.begin = this.end;
@@ -300,10 +306,10 @@ export default {
              endTime:ends
       	 	}
       	 	//console.log(paramsObj)
-      	 	//初始化数据
-      	  this.begin=[];
-    			this.end=[];
-    			this.getResponse(paramsObj);
+        	 	//初始化数据
+        	  this.begin=[];
+      			this.end=[];
+    			  this.getResponse(paramsObj);
     		}
     	})
     }
@@ -391,8 +397,8 @@ export default {
     	display:flex;
     	font-weight: bold;
     	font-size: 20px;
-      align-items:center;
-      justify-content:center;
+      	align-items:center;
+      	justify-content:center;
     }
 }
 
