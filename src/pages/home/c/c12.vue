@@ -28,6 +28,8 @@ export default {
       endStr:'',
     	year:year,
     	month:month,
+    	n1:0,
+    	n2:0,
     	 type:0,
     		series:[
     		 {
@@ -139,6 +141,10 @@ export default {
             this.$axios.get(API_URL+'/qy/api/v2/view/getPersonSourceCity',{params:paramsObj}).then(r => {
                 if(r.data.code ==="200"||r.data.code ===200){
                 	let reData = r.data.data.inCountryCity;
+                	if(reData.length===2){
+                		this.n1 = 30
+                		this.n2 = 10
+                	}
                 	this.series=[];
                 	reData.forEach( (item,index) => {
                 			this.series.push({name:item.city,value:item.num,percent:item.zhanRate.toFixed(1)})
@@ -191,8 +197,8 @@ export default {
                 {
                     name:'消费偏好',
                     type:'pie',
-                    radius : ['0%', '65%'],
-                    center : ['28%', '65%'],
+                    radius : ['0%', `${65-_self.n1}%`],
+                    center : ['28%', `${65-_self.n2}%`],
                     roseType : 'area',
                     label: {
 		                normal: {

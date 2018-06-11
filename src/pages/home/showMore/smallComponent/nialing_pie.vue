@@ -197,7 +197,7 @@ export default {
         	}
             this.chart = echarts.init(document.getElementById(id));
             this.option.series[0].data.forEach((item,index)=>{
-                        item.value = this.pieData[item.name].toFixed(1);
+                        item.value =Math.abs(this.pieData[item.name].toFixed(1));
                     })
             this.$nextTick(()=>{
                 this.chart.setOption(this.option);
