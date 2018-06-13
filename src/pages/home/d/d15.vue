@@ -43,7 +43,7 @@
 				comType:1,
 				num:2,
 				keyW:"",
-				name:"",
+				name:"全部",
 				items:[{
 			"con":"再次来到飞霞山看禾雀花，果然很美，禾雀花王是紫色的，野生的是黄色的，野生的长得很高很好看，禾雀花王藤蔓很多，花很多，厉害厉害",
 			"uid":"M257145****",
@@ -60,6 +60,7 @@
 		},
 		watch:{
 			updatePlace:function(val){
+				this.name=''
 				this.num = 2;
 				var paramsObj = {}
 				if(this.endTime||this.beginTime){
@@ -101,7 +102,7 @@
 	         		this.type = val.type
 	         	    paramsObj = {
 		                area:this.updatePlace.place,
-		                name:this.updatePlace.turist,
+		                name:this.name||this.updatePlace.turist,
 		                category:this.slectType+1,
 		                pageId:1,
 		                source:'全部',
@@ -115,7 +116,7 @@
 	                this.endTime=val.end.join('-'),
 	                paramsObj = {
 	                    area:this.updatePlace.place,
-	                    name:this.updatePlace.turist,
+	                    name:this.name||this.updatePlace.turist,
 	                    category:this.slectType+1,
 	                    pageId:1,
 		                source:'全部',
@@ -133,12 +134,14 @@
 			
 			//酒店景区选择
 			slectType:function(val){
+				this.updatePlace.turist = '全部'
+				if(val===1){this.name='全部'}
 				this.num = 2;
 				var paramsObj = {}
 				if(this.endTime||this.beginTime){
 					 paramsObj = {
 						area:this.updatePlace.place,
-		                name:this.updatePlace.turist,
+		                name:val===0?this.updatePlace.turist:this.name,
 		                pageId:1,
 		                source:'全部',
 		                commentType:this.comType,
@@ -149,7 +152,7 @@
 				}else{
 					 paramsObj = {
 						area:this.updatePlace.place,
-		                name:this.updatePlace.turist,
+		                name:val===0?this.updatePlace.turist:this.name,
 		                pageId:1,
 		                source:'全部',
 		                commentType:this.comType,
@@ -163,6 +166,7 @@
 			},
 			//酒店名称
 			hotelChose:function(val){
+					this.updatePlace.turist=''
 					this.num = 2;
 					this.name = val;
 					var paramsObj = {}
@@ -190,7 +194,6 @@
 			                type:["day","month","year"][this.type],
 		               }
 					}
-					 
 						this.items = []
 						this.getResponse(paramsObj,true);
 			}
@@ -317,12 +320,11 @@
     			this.comType = data;
     			this.num = 2;
     			this.keyW='';
-    			this.name='';
     			var paramsObj = {}
     			if(this.endTime||this.beginTime){
     				 paramsObj = {
 		                area:this.updatePlace.place,
-		                name:this.updatePlace.turist,
+		                name:this.updatePlace.turist||this.name,
 		                pageId:1,
 		                source:'全部',
 		                commentType:data,
@@ -333,7 +335,7 @@
     			}else{
     				 paramsObj = {
 		                area:this.updatePlace.place,
-		                name:this.updatePlace.turist,
+		                name:this.updatePlace.turist||this.name,
 		                pageId:1,
 		                source:'全部',
 		                commentType:data,
@@ -354,7 +356,7 @@
 				if(this.endTime||this.beginTime){
 					 paramsObj = {
 		                area:this.updatePlace.place,
-		                name:this.updatePlace.turist,
+		                name:this.name||this.updatePlace.turist,
 		                type:this.type,
 		                pageId:1,
 		                source:'全部',
@@ -366,7 +368,7 @@
 				}else{
 					 paramsObj = {
 		                area:this.updatePlace.place,
-		                name:this.updatePlace.turist,
+		                name:this.name||this.updatePlace.turist,
 		                type:this.type,
 		                pageId:1,
 		                source:'全部',
@@ -395,6 +397,7 @@
 		                source:'全部',
 		                category:this.slectType+1,
 		                commentType:this.comType,
+		                type:["day","month","year"][this.type],
 		                key:""
 		            }
 	       		 	
@@ -404,7 +407,7 @@
 	       		 	this.comType = 1;
 	       		 	paramsObj = {
 		                area:this.updatePlace.place,
-		                name:this.updatePlace.turist,
+		                name:this.name||this.updatePlace.turist,
 		                pageId:1,
 		                source:'全部',
 		                type:["day","month","year"][this.type],

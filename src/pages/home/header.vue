@@ -14,8 +14,6 @@
 <script>
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
-//import {setCookie,getCookie} from '@/common/js/cookie/cookie.js'
-//import api from '@/api/index.js'
 export default {
   name: '',
   data () {
@@ -108,10 +106,7 @@ export default {
         }
     },
   },
-  components:{
-  },
   mounted(){
-  	//console.log(location.hash)
     let _self= this
     window.addEventListener('hashchange', function(e) {
         _self.hash=window.location.hash;

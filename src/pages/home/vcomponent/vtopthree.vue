@@ -25,6 +25,7 @@ export default {
     },
     watch:{
        	updatePlace:function(val){
+       		this.hotel = ''
         		var paramsObj = {}
         		if(this.endStr||this.beginStr){
 	        			paramsObj = {
@@ -45,6 +46,28 @@ export default {
         		  
             this.getResponse(paramsObj);
         	},
+        	hotelChose:function(val){
+        		this.hotel=val
+        		var paramsObj = {}
+        		if(this.endStr||this.beginStr){
+	        			paramsObj = {
+	                area:this.updatePlace.place,
+	                name:val,
+	                beginTime:this.beginStr,
+	                endTime:this.endStr,
+	                category:this.slectType+1,
+	            }
+        		}else{
+        				paramsObj = {
+	                area:this.updatePlace.place,
+	                name:val,
+	                type:["day","month","year"][this.type],
+	                category:this.slectType+1,
+	            }
+        		}
+        		  
+            this.getResponse(paramsObj);
+        	},
         	 update:{
 	             handler:function(val, oldVal){
 	             	var paramsObj={}
@@ -54,7 +77,7 @@ export default {
 	                this.beginStr = '';
 	             	    paramsObj = {
 			                area:this.updatePlace.place,
-			                name:this.updatePlace.turist,
+			                name:this.hotel||this.updatePlace.turist,
 			                type:["day","month","year"][val.type],
 			                category:this.slectType+1,
 			            }
@@ -63,7 +86,7 @@ export default {
 	                    this.beginStr = val.begin.join("-");
 			                paramsObj = {
 		                    area:this.updatePlace.place,
-		                    name:this.updatePlace.turist,
+		                    name:this.hotel||this.updatePlace.turist,
 		                    beginTime:this.beginStr,
 		                    endTime:this.endStr,
 		                    category:this.slectType+1,
@@ -75,6 +98,7 @@ export default {
 	             deep:true,
 	        },
         slectType:function(val){
+        	if(val===1){this.hotel='全部'}
         		this.active =false
 	        	setTimeout( () => {
 	        		this.active =true
@@ -83,7 +107,7 @@ export default {
 	        	if(this.endStr||this.beginStr){
 	        		 paramsObj = {
                 area:this.updatePlace.place,
-                name:this.updatePlace.turist,
+                name:val===0?this.updatePlace.turist:this.hotel,
                 category:val+1,
                 beginTime:this.beginStr,
 	              endTime:this.endStr,
@@ -91,7 +115,7 @@ export default {
 	        	}else{
 	        		 paramsObj = {
                 area:this.updatePlace.place,
-                name:this.updatePlace.turist,
+                name:val===0?this.updatePlace.turist:this.hotel,
                 category:val+1,
                 type:["day","month","year"][this.type],
            	 }
@@ -111,6 +135,7 @@ export default {
         beginStr:'',
 	      endStr:'',
 	    	type:2,
+	    	hotel:'全部'
     }
   },
   computed: { 

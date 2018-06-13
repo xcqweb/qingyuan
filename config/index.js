@@ -29,11 +29,11 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
        // 匹配项
-        '/api': {
-          target: 'http://120.55.190.57/qy',
+        '/Ajax': {
+          target: 'http://www.qyqx.gov.cn/Ajax/Get7dyb',
           changeOrigin: true,
           pathRewrite: {
-            '^/api': '/'
+            '^/Ajax': '/'
         }
   }
     },

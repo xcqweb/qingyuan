@@ -31,6 +31,7 @@
 		mixins:[optionProps],
 		data(){
 			return {
+				hotel:'全部',
 				option:{
 					color:['#427EFF','#7F6AF7','#BB68F4','#FF8882','#F7C935','#FFFD37','#B1F223','#76CD66','#B7E986','#86EACD'],
 					tooltip:{
@@ -63,7 +64,11 @@
                                     formatter:function(params){
                                     	return (params.name).substr(0,12)+"\n"+(params.name).substr(12)+""+params.percent+"%"
                                     }
-                                }
+                                },
+                                 emphasis:{
+	                                show:true,
+	                                position:'outside',
+	                            }
                             },
                             itemStyle:{
                             }
@@ -75,7 +80,7 @@
 	    watch:{
 	    	updatePlace:function(val){
 	    		this.option.series[0].data=[];
-	    		
+	    		this.hotel=''
 		        	var paramsObj = {
 		                area:val.place,
 		                name:val.turist,
@@ -85,6 +90,7 @@
 	    	},
 	    	
 	    	hotelChose:function(val){
+	    		this.hotel = val
 	    		var paramsObj = {
 					area:this.updatePlace.place,
 	                name:val,
@@ -95,9 +101,10 @@
 	    		
 	    	//酒店景区选择
 			slectType:function(val){
+				if(val===1){this.hotel='全部'}
 				var paramsObj = {
 					area:this.updatePlace.place,
-	                name:this.updatePlace.turist,
+	                name:val===0?this.updatePlace.turist:this.hotel,
 	                category:val+1
 	               }
 				this.getResponse(paramsObj);
@@ -143,7 +150,7 @@
                 			name: reData[i].name
                 		})
                 	}
-                    _self.option.series[0].data[0].selected=true;
+                    //_self.option.series[0].data[0].selected=true;
                     _self.redom('d13')
                     
                 }

@@ -177,7 +177,7 @@ li:nth-of-type(2n+1){
                 路线
             </div>
             <div class="cell3">
-                人气<font>(人)</font>
+                人气
             </div>
         </div>
     <ul>

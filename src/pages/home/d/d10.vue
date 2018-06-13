@@ -41,7 +41,7 @@
             return {
             	beginStr:'',
               endStr:'',
-            	hotel:'',
+            	hotel:'全部',
             	type:2,
               option :{
                 color:['#ffe86e','#caff36'],
@@ -146,6 +146,7 @@
         },
         watch:{
         	updatePlace:function(val){
+        		this.hotel=''
         		var paramsObj = {}
         		if(this.endStr||this.beginStr){
 	        			paramsObj = {
@@ -175,7 +176,7 @@
 	                this.beginStr = '';
 	             	    paramsObj = {
 			                area:this.updatePlace.place,
-			                name:this.updatePlace.turist,
+			                name:this.hotel||this.updatePlace.turist,
 			                type:["day","month","year"][val.type],
 			            }
 	             	}else{
@@ -183,7 +184,7 @@
 	                    this.beginStr = val.begin.join("-");
 			                paramsObj = {
 		                    area:this.updatePlace.place,
-		                    name:this.updatePlace.turist,
+		                    name:this.hotel||this.updatePlace.turist,
 		                    beginTime:this.beginStr,
 		                    endTime:this.endStr
 										}
@@ -194,34 +195,34 @@
 	             deep:true,
 	        },
 	           hotelChose:function(val){
-        	this.hotel = val
-        	var paramsObj = {}
-        		if(this.endStr||this.beginStr){
-	        			paramsObj = {
-		                area:val.place,
-		                name:val.turist,
-		                beginTime:this.beginStr,
-		                endTime:this.endStr,
-		                category:this.slectType+1,
-		            }
-	        		}else{
-	        				paramsObj = {
-			                area:val.place,
-			                name:val.turist,
-			                type:["day","month","year"][this.type],
-			                category:this.slectType+1,
-			            }
-        		}
-    		this.yunData=[]
-            this.getResponse(paramsObj);
+		        	this.hotel = val
+		        	var paramsObj = {}
+		        		if(this.endStr||this.beginStr){
+			        			paramsObj = {
+				                area:this.updatePlace.place,
+				                name:val,
+				                beginTime:this.beginStr,
+				                endTime:this.endStr,
+				                category:this.slectType+1,
+				            }
+			        		}else{
+			        				paramsObj = {
+					                area:this.updatePlace.place,
+					                name:val,
+					                type:["day","month","year"][this.type],
+					                category:this.slectType+1,
+					            }
+		        		}
+		    		this.yunData=[]
+		            this.getResponse(paramsObj);
         },
         slectType:function(val){
-        	if(val===0){this.hotel=''}
+        	if(val===1){this.hotel='全部'}
         	var paramsObj = {}
         		if(this.endStr||this.beginStr){
 	        			paramsObj = {
-			                area:val.place,
-			                name:val.turist,
+			                area:this.updatePlace.place,
+				              name:val===0?this.updatePlace.turist:this.hotel,
 			                beginTime:this.beginStr,
 			                endTime:this.endStr,
 			                category:val+1,
@@ -229,7 +230,7 @@
 	        		}else{
 	        				paramsObj = {
 				                area:this.updatePlace.place,
-				                name:this.hotel||this.updatePlace.turist,
+				                name:val===0?this.updatePlace.turist:this.hotel,
 				                category:val+1,
 				                type:["day","month","year"][this.type],
 			            	}

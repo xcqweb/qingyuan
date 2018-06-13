@@ -28,6 +28,7 @@ require('echarts-wordcloud');
    watch:{
         updatePlace:{
         handler: function (val, oldVal) {
+        	this.hotel = ''
         		var paramsObj = {}
         		if(this.endStr||this.beginStr){
 	        			paramsObj = {
@@ -59,7 +60,7 @@ require('echarts-wordcloud');
 	            this.beginStr = '';
          	    paramsObj = {
 	                area:this.updatePlace.place,
-	                name:this.updatePlace.turist,
+	                name:this.hotel||this.updatePlace.turist,
 	                category:this.slectType+1,
 	                type:["day","month","year"][val.type],
 	            }
@@ -68,7 +69,7 @@ require('echarts-wordcloud');
 	            this.beginStr = val.begin.join("-");
                 paramsObj = {
                     area:this.updatePlace.place,
-                    name:this.updatePlace.turist,
+                    name:this.hotel||this.updatePlace.turist,
                     category:this.slectType+1,
                     beginTime:this.beginStr,
                     endTime:this.endStr
@@ -85,30 +86,30 @@ require('echarts-wordcloud');
         	var paramsObj = {}
         		if(this.endStr||this.beginStr){
 	        			paramsObj = {
-		                area:val.place,
-		                name:val.turist,
-		                beginTime:this.beginStr,
-		                endTime:this.endStr,
-		                category:this.slectType+1,
-		            }
-	        		}else{
-	        				paramsObj = {
-			                area:val.place,
-			                name:val.turist,
-			                type:["day","month","year"][this.type],
+			                area:this.updatePlace.place,
+			                name:val,
+			                beginTime:this.beginStr,
+			                endTime:this.endStr,
 			                category:this.slectType+1,
 			            }
+	        		}else{
+	        				paramsObj = {
+				                area:this.updatePlace.place,
+				                name:val,
+				                type:["day","month","year"][this.type],
+				                category:this.slectType+1,
+				            }
         		}
     		this.yunData=[]
             this.getResponse(paramsObj);
         },
         slectType:function(val){
-        	if(val===0){this.hotel=''}
+        	if(val===1){this.hotel='全部'}
         	var paramsObj = {}
         		if(this.endStr||this.beginStr){
 	        			paramsObj = {
-			                area:val.place,
-			                name:val.turist,
+			                area:this.updatePlace.place,
+			                name:val===0?this.updatePlace.turist:this.hotel,
 			                beginTime:this.beginStr,
 			                endTime:this.endStr,
 			                category:val+1,
@@ -116,7 +117,7 @@ require('echarts-wordcloud');
 	        		}else{
 	        				paramsObj = {
 				                area:this.updatePlace.place,
-				                name:this.hotel||this.updatePlace.turist,
+				                name:val===0?this.updatePlace.turist:this.hotel,
 				                category:val+1,
 				                type:["day","month","year"][this.type],
 			            	}
@@ -129,7 +130,7 @@ require('echarts-wordcloud');
         return {
         	beginStr:'',
             endStr:'',
-        	hotel:'',
+        	hotel:'全部',
         	type:2,
             chart:null,
             yunData:[],
@@ -167,17 +168,6 @@ require('echarts-wordcloud');
             }
         }
     },
-    // props: {
-    //     mainContent: {
-    //         type: String,
-    //         default: function () {
-    //                 return 'D2S'
-    //         }
-    //     },
-    // },
-    components: {
-
-    },
     methods:{
         redom(id){
         	if(this.chart){
@@ -190,7 +180,6 @@ require('echarts-wordcloud');
             this.option.series[0].data = JosnList;
             this.chart.setOption(this.option);
              this.chart.on('click', function (params) {
-               // window.open('https://www.baidu.com/s?wd=' + encodeURIComponent(params.name));
 				Bus.$emit('keyWords',params.name)
             });
         },

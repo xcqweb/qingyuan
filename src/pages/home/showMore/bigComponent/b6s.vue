@@ -355,14 +355,14 @@
        			<!--天气图片-->
        			<div class="wImg" :class="weatherImg"></div>
        			<div class="temp">
-       				<p>{{nowRes.temperature}}</p>
+       				<p>{{nowRes.tmp}}</p>
        				<p>
        					<font>℃</font>
-       					<font>{{nowRes.text}}</font>
+       					<font>{{nowRes.cond_txt}}</font>
        				</p>
        				<p class="clearfix"></p>
-       				<p>{{this.dailyRes[0].low}} ~ {{this.dailyRes[0].high }}℃</p>
-       				<p>{{nowRes.text}}</p>
+       				<p>{{dailyRes[0].tmp_max}} ~ {{dailyRes[0].tmp_min}}℃</p>
+       				<p>{{nowRes.cond_txt}}</p>
        			</div>
        		</div>
        		<div class="middleLine"></div>
@@ -370,16 +370,16 @@
        			<div class="oneDay">
        				<p>{{weekText1}}</p>
        				<p>{{twoDayText}}</p>
-       				<p class="wImg" :class="twoImg"></p>
-       				<p>{{this.dailyRes[1].low}} ~ {{this.dailyRes[1].high }}℃</p>
-       				<p>{{this.dailyRes[1].text_day}}</p>
+       				<p class="wImg" :class="weatherImg"></p>
+       				<p>{{dailyRes[1].tmp_max}} ~ {{dailyRes[1].tmp_min}}℃</p>
+       				<p>{{hour<=20?dailyRes[1].cond_txt_d:dailyRes[1].cond_txt_d}}</p>
        			</div>
        			<div class="twoDay">
        				<p>{{weekText2}}</p>
        				<p>{{threeDayText}}</p>
        				<p class="wImg" :class="threeImg"></p>
-       				<p>{{this.dailyRes[2].low}} ~ {{this.dailyRes[2].high }}℃</p>
-       				<p>{{this.dailyRes[2].text_day}}</p>
+       				<p>{{dailyRes[2].tmp_max}} ~ {{dailyRes[2].tmp_min}}℃</p>
+       				<p>{{hour<=20?dailyRes[2].cond_txt_d:dailyRes[2].cond_txt_d}}</p>
        			</div>
        		</div>
        </div>
@@ -388,7 +388,6 @@
 
 <script>
 import Vue from 'vue'
-// import b6ss from '@/pages/home/showMore/smallComponent/b6ss.vue'
 import showMoreData from '@/common/js/mixin/showMoreData.js'
 import vAjax from '@/common/js/v-ajax.js'
 import optionProps from '@/common/js/mixin/optionProps.js'
@@ -396,7 +395,6 @@ Vue.use(vAjax);
 
 
 let weekCode = new Date().getDay()
-
   export default {
     name:'B6S',
     mixins: [showMoreData,optionProps],
@@ -413,6 +411,7 @@ let weekCode = new Date().getDay()
     },
     data() {
       return {
+      		hour:new Date().getHours(),
             currentIndex: 0,
             showStatus:true,
             timer:[],
@@ -427,38 +426,31 @@ let weekCode = new Date().getDay()
             ],
             apiData:{
                 nowurl:"http://api.seniverse.com/v3/weather/now.json",
-                lifeurl:"https://api.seniverse.com/v3/life/suggestion.json",
                 dailyurl:"https://api.seniverse.com/v3/weather/daily.json",
-                uid:"UE435A3710",
                 key:"sgqbslepggqd6dgg",
-                location:"qingyuan",
+                location:"清远",
                 curPage:1
             },
             nowRes:{
-                    code:"13",
-                    temperature:"..",
-                    text:"..",
+            	tmp:0,
+            	cond_txt:''
             },
-            lifeRes:{
-                car_washing:{brief:"loading"},
-                dressing:{brief:"loading"},
-                flu:{brief:"loading"},
-                sport:{brief:"loading"},
-                travel:{brief:"loading"},
-                uv:{brief:"loading"}
-            },
-            dailyRes:[{"date":"2018-01-06","text_day":"loading","code_day":"13","text_night":"loading","code_night":"15","high":"14","low":"11","precip":"","wind_direction":"无持续风向","wind_direction_degree":"","wind_speed":"10","wind_scale":"2"},{"date":"2018-01-07","text_day":"中雨","code_day":"14","text_night":"大雨","code_night":"15","high":"16","low":"6","precip":"","wind_direction":"无持续风向","wind_direction_degree":"","wind_speed":"10","wind_scale":"2"},{"date":"2018-01-08","text_day":"中雨","code_day":"14","text_night":"小雨","code_night":"13","high":"15","low":"5","precip":"","wind_direction":"北","wind_direction_degree":"0","wind_speed":"15","wind_scale":"3"}]
+            dailyRes:[
+            	{tmp_max:0,tmp_min:0,cond_txt_d:'',cond_code_d:0,date:'2018-6-16'},
+            	{tmp_max:0,tmp_min:0,cond_txt_d:'',cond_code_d:0,date:'2018-6-16'},
+            	{tmp_max:0,tmp_min:0,cond_txt_d:'',cond_code_d:0,date:'2018-6-16'},
+            ]
       }
     },
     computed:{
             weatherImg:function(){
-                return  this.switchWea(this.nowRes.code);
+                return  this.switchWea(this.nowRes.cond_code);
             },
             weatherImgBg:function(){
-                return  this.switchWeaBg(this.nowRes.code);
+                return  this.switchWeaBg(this.nowRes.cond_code);
             },
             twoImg:function(){
-                return  this.switchWea(this.dailyRes[1].code_day);
+                return  this.switchWea(this.dailyRes[2].cond_code_d);
             },
             oneDayText:function(){
                 return (new Date(this.dailyRes[1].date).getMonth()+1)+'月 '+(new Date(this.dailyRes[1].date).getDate()-1)+'日'
@@ -470,7 +462,7 @@ let weekCode = new Date().getDay()
                 return (new Date(this.dailyRes[2].date).getMonth()+1)+'月  '+(new Date(this.dailyRes[2].date).getDate())+'日'
             },
             threeImg:function(){
-                return  this.switchWea(this.dailyRes[2].code_day);
+                return  this.switchWea(this.dailyRes[2].cond_code_d);
             },
             weekText1(){
             	if(weekCode===6){
@@ -498,45 +490,47 @@ let weekCode = new Date().getDay()
         switchWea(s){
             if(s==='-1'){
                     return 'redom'
-                }else if(s==='0'||s==='2'){
+                }else if(s==='100'){
                     return 'qing'
-                }else if(s==='1'||s==='3'){
+                }else if(s==='100'){
                     return 'yejianqing'
-                }else if(s==='4'){
+                }else if(s==='101'||s==='102'||s==='103'){
                     return 'duoyun'
-                }else if(s==='5'||s==='8'||s==='9'){
+                }else if(s==='104'){
                     return 'yin'
-                }else if(s=== '5'||s==='7'){
+                }else if(s==='101'||s==='102'||s==='103'){
                     return 'yejianduoyun'
-                }else if(s==='10'||s==='11'||s==='12'){
+                }else if(s==='300'||s==='302'||s==='301'||s==='303'||s==='304'){
                     return 'leizhenyu'
-                }else if(s==='13'||s==='14'){
+                }else if(s==='305'||s==='300'||s==='314'){
                     return 'xiaoyu'
-                }else if(s==='15'||s==='16'){
+                }else if(s==='306'||s==='309'||s==='315'||s==='316'||s==='319'){
                     return 'zhongyu'
-                }else if(s==='17'||s==='18'){
+                }else if(s==='307'||s==='308'||s==='310'||s==='311'||s==='312'||s==='316'||s==='317'||s==='318'){
                     return 'dayu'
-                }else if(s==='19'||s==='20'){
+                }else if(s==='404'||s==='313'||s==='406'){
                     return 'yujiaxue'
-                }else if(s==='21'||s==='22'){
+                }else if(s==='400'||s==='408'||s==='499'){
                     return 'xiaoxue'
-                }else if(s==='23'||s==='24'){
+                }else if(s==='401'||s==='409'||s==='405'){
                     return 'zhongxue'
-                }else if(s==='25'||s==='14'){
+                }else if(s==='402'||s==='410'){
                     return 'daxue'
-                }else if(s==='26'||s==='27'||s==='28'||s==='29'){
+                }else if(s==='507'||s==='508'||s==='503'||s==='504'){
                     return 'shachenbao'
-                }else if(s==='30'){
+                }else if(s==='501'||s==='500'||s==='509'||s==='510'||s==='514'||s==='515'){
                     return 'wu'
-                }else if(s==='31'){
+                }else if(s==='502'||s==='511'||s==='512'||s==='513'){
                     return 'wumai'
                 }
-                else if(s==='32'){
+                else if(s==='200'||s==='201'||s==='202'||s==='203'||s==='204'){
                     return 'weifeng'
-                }else if(s==='33'||s==='34'){
+                }else if(s==='205'||s==='206'||s==='207'||s==='208'){
                     return 'dafeng'
-                }else if(s==='35'||s==='36'){
+                }else if(s==='209'||s==='210'||s==='211'||s==='212'||s==='213'){
                     return 'taifeng'
+                }else{
+                	return ''
                 }
         },
         
@@ -544,87 +538,56 @@ let weekCode = new Date().getDay()
         switchWeaBg(s){
             if(s==='-1'){
                     return 'redomBg'
-                }else if(s==='0'||s==='2'){
-                    return 'yejianqingBg'
-                }else if(s==='1'||s==='3'){
-                    return 'yejianqingBg'
-                }else if(s==='4'){
+                }else if(s==='100'){
+                    return 'yqingBg'
+                }else if(s==='100'){
+                    return 'qingBg'
+                }else if(s==='104'){
                     return 'yinBg'
-                }else if(s==='5'||s==='8'||s==='9'){
+                }else if(s==='101'||s==='102'||s==='103'){
                     return 'yinBg'
-                }else if(s=== '5'||s==='7'){
-                    return 'yejianduoyunBg'
-                }else if(s==='10'||s==='11'||s==='12'){
-                    return 'leizhenyuBg'
-                }else if(s==='13'||s==='14'){
-                    //return 'xiaoyuBg'
+                }else if(s==='300'||s==='302'||s==='301'||s==='303'||s==='304'){
                     return 'yuBg'
-                }else if(s==='15'||s==='16'){
-                    //return 'zhongyuBg'
+                }else if(s==='101'||s==='102'||s==='103'){
                     return 'yuBg'
-                }else if(s==='17'||s==='18'){
-                    //return 'dayuBg'
+                }else if(s==='404'||s==='313'||s==='406'){
                     return 'yuBg'
-                }else if(s==='19'||s==='20'){
-                    return 'yujiaxueBg'
-                }else if(s==='21'||s==='22'){
-                    return 'xiaoxueBg'
-                }else if(s==='23'||s==='24'){
-                    return 'zhongxueBg'
-                }else if(s==='25'||s==='14'){
-                    return 'daxueBg'
-                }else if(s==='26'||s==='27'||s==='28'||s==='29'){
-                    return 'shachenbaoBg'
-                }else if(s==='30'){
-                    return 'wuBg'
-                }else if(s==='31'){
-                    return 'wumaiBg'
+                }else if(s==='400'||s==='408'||s==='499'){
+                    return 'yuBg'
+                }else if(s==='401'||s==='409'||s==='405'){
+                    return 'yuBg'
+                }else if(s==='507'||s==='508'||s==='503'||s==='504'){
+                    return 'yuBg'
+                }else if(s==='507'||s==='508'||s==='503'||s==='504'){
+                    return 'yinBg'
+                }else if(s==='501'||s==='500'||s==='509'||s==='510'||s==='514'||s==='515'){
+                    return 'yinBg'
+                }else if(s==='502'||s==='511'||s==='512'||s==='513'){
+                    return 'yinBg'
                 }
-                else if(s==='32'){
-                    return 'weifengBg'
-                }else if(s==='33'||s==='34'){
-                    return 'dafengBg'
-                }else if(s==='35'||s==='36'){
-                    return 'taifengBg'
+                else if(s==='200'||s==='201'||s==='202'||s==='203'||s==='204'||s==='205'){
+                    return 'yinBg'
+                }else if(s==='205'||s==='206'||s==='207'||s==='208'){
+                    return 'yinBg'
+                }else if(s==='209'||s==='210'||s==='211'||s==='212'||s==='213'){
+                    return 'yinBg'
+                }else{
+                	return 'yinBg'
                 }
-        },
-    getLife(){
-            var _self= this
-            this.$ajax({
-                type:'GET',
-                url:this.apiData.lifeurl,
-                dataType:'jsonp',
-                jsonp:'jsonpcallback',
-                data:{
-                    uid : this.apiData.uid,
-                    sig : this.apiData.key,
-                    location : this.apiData.location,
-                },
-                success:function(res){
-                    _self.$nextTick(function () {
-                    _self.lifeRes = res.results[0].suggestion;
-                    });
-                },
-                error:function(err){
-                    console.log(err);
-                }
-            })
         },
         getNow(){
             var _self= this
             this.$ajax({
                 type:'GET',
-                url:this.apiData.nowurl,
-                dataType:'jsonp',
-                jsonp:'jsonpcallback',
+                url:'https://free-api.heweather.com/s6/weather/now',
                 data:{
-                       uid : this.apiData.uid,
-                       sig : this.apiData.key,
-                       location : this.apiData.location,
+                       key : '24ff5bba60b442d9aa9bc39c3e096172',
+                       location : _self.updatePlace.place==='全部'?'清远':_self.updatePlace.place,
                 },
                 success:function(res){
                     _self.$nextTick(function () {
-                    _self.nowRes = res.results[0].now;
+                    _self.nowRes = res.HeWeather6[0].now;
+                    //console.log(res)
                     });
                 },
                 error:function(err){
@@ -636,17 +599,15 @@ let weekCode = new Date().getDay()
             var _self= this
             this.$ajax({
                 type:'GET',
-                url:this.apiData.dailyurl,
-                dataType:'jsonp',
-                jsonp:'jsonpcallback',
+                url:'https://free-api.heweather.com/s6/weather/forecast',
                 data:{
-                    uid : this.apiData.uid,
-                    sig : this.apiData.key,
-                    location : this.apiData.location,
+                   key : '24ff5bba60b442d9aa9bc39c3e096172',
+                   location : _self.updatePlace.place==='全部'?'清远':_self.updatePlace.place,
                 },
                 success:function(res){
                     _self.$nextTick(function () {
-                    _self.dailyRes = res.results[0].daily;
+                    _self.dailyRes = res.HeWeather6[0].daily_forecast;
+                    // console.log(res)
                     });
                 },
                 error:function(err){
@@ -657,14 +618,12 @@ let weekCode = new Date().getDay()
         sendRequest(){
             this.getDaily();
             this.getNow();
-            this.getLife();
         },
     },
     mounted(){
         this.sendRequest();
         this.$emit('hideWeeks');
         this.$emit('hideVdate')
-        // this.$emit('showDoubleSelect');
         this.$emit('showDateFormatChose',[])
     }
   }

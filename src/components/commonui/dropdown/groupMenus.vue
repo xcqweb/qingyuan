@@ -296,7 +296,7 @@
 	}
 	
 	.starList,.dateChose{
-		width: 268px;
+		width: 270px;
 		position: absolute;
 	    top: 40%;
 	    left: 10%;

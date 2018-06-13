@@ -279,7 +279,7 @@ export default {
                         		show:true
                         	},
                         	emphasis:{
-                        		show:false
+                        		show:true
                         	}
                         },
                          itemStyle:{
