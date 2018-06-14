@@ -117,6 +117,7 @@
 	position: absolute;
 	left: 98%;
 	top: -78%;
+	box-shadow: none !important;
 	.icon{
 		width: 104px;
 		height: 104px;
@@ -161,6 +162,7 @@
 		left: -96px;
 		top: 76px;
 		z-index: 10000;
+		box-shadow: 0 0 0.5rem rgba(255, 255, 255, 0.3);
 		.rowo{
 			position: absolute;
 			top: -7px;

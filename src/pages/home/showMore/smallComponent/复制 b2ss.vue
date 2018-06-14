@@ -53,10 +53,12 @@ export default {
 		       
 		            data:[
 		                {
+		                    //value:this.dataItem.currentNum,
 		                    value:0,
 		                    name:'01',
 		                },
 		                {
+		                    //value:this.dataItem.warnNum,
 		                    value:100,
 		                    name:'invisible',
 		                    itemStyle : {
@@ -65,55 +67,6 @@ export default {
 							        label: {show:false},
 							        labelLine: {show:false}
 							    },
-							    emphasis : {
-							        color: 'rgba(0,0,0,0)'
-							    }
-							}
-		                }
-		         
-		            ]
-		        }, 
-		         {
-		            name:'Line 1',
-		            type:'pie',
-		            startAngle:450,
-		            clockWise:true,
-		            radius : [0,160],
-		            itemStyle : {
-		            	normal: {
-						        label: {show:false},
-						        labelLine: {show:false},
-						        shadowBlur: 40,
-						        shadowColor: 'rgba(40, 40, 40, 0.5)',
-						    }
-		            },
-		            hoverAnimation: false,
-		       
-		            data:[
-		                {
-		                    value:0,
-		                    name:'01',
-		                },
-		                {
-		                    value:100,
-		                    name:'invisible',
-		                    itemStyle : {
-							    normal : {
-							    	color: {
-									    type: 'radial',
-									    x: 0.5,
-									    y: 0.5,
-									    r: 1,
-									    colorStops: [{
-									        offset: 0, color: 'rgba(22,51,180,1)' // 0% 处的颜色
-									    },{
-									        offset: 1, color: 'rgba(200,200,200,0.001)' // 100% 处的颜色
-									    }],
-									    globalCoord: false // 缺省为 false
-									},
-								        label: {show:false},
-								        labelLine: {show:false}
-								    },
 							    emphasis : {
 							        color: 'rgba(0,0,0,0)'
 							    }
@@ -237,7 +190,7 @@ export default {
             		this.dataItem.currentNum = this.dataItem.warnNum
             	}
             	this.option.series[0].data[0].value = this.dataItem.currentNum
-            	this.option.series[0].data[1].value = this.dataItem.warnNum-this.dataItem.currentNum
+            	this.option.series[0].data[1].value = this.dataItem.warnNum
             	if(p<=50){
             		this.option.color[0]='#80E36F'
             		this.active = 1
@@ -321,7 +274,6 @@ export default {
         font-size:.8rem;
         color: #ffe400;
         font-size: 56px;
-        text-shadow: 0 0 100px #fff;
         &.fontRed{
                 color:red;
             }

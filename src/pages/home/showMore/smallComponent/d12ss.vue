@@ -327,7 +327,6 @@ export default {
                     type:'line',
                     barMaxWidth:'50%',
                     smooth: true, //是否平滑曲线显示
-                    // data:datay,
                     areaStyle: {normal: {}},
                     itemStyle:{
                         normal: {
@@ -348,7 +347,7 @@ export default {
 		                    color: 'rgba(0, 136, 212, 0.6)'
 		                }, {
 		                    offset: 0.52,
-		                    color: 'rgba(0, 136, 212, 0.01)'
+		                    color: 'rgba(0, 136, 212, 0.08)'
 		                }], false),
 		                shadowColor: '#5ee4ff',
 		                shadowBlur: 10
@@ -356,8 +355,10 @@ export default {
        			 	},
        			 	lineStyle:{
        			 		normal:{
-                    width:6,
-                    type:'solid'
+		                    width:6,
+		                    type:'solid',
+		                    shadowBlur:20,
+		                    shadowColor:'rgba(255,255,255,0.5)'
        			 		}
                     },
                     label:{
@@ -406,7 +407,7 @@ export default {
 	      let dataY=[];
 	      let dataX=[];
 	      for (var i = 0; i < this.barData.length; i++) {
-	          dataY.push(Number(this.barData[i].avgHour===0?(this.barData[i].avgHour).toFixed(1):(this.barData[i].avgHour+3).toFixed(1)));
+	          dataY.push(Number(this.barData[i].avgHour===0?(this.barData[i].avgHour).toFixed(1):(this.barData[i].avgHour).toFixed(1)));
 	          dataX.push(this.barData[i].dayId);
 	      }
 	      let pattern = /([0-9]{3}[1-9]|[0-9]{2}[1-9][0-9]{1}|[0-9]{1}[1-9][0-9]{2}|[1-9][0-9]{3})-(((0[13578]|1[02])-(0[1-9]|[12][0-9]|3[01]))|((0[469]|11)-(0[1-9]|[12][0-9]|30))|(02-(0[1-9]|[1][0-9]|2[0-8])))/

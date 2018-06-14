@@ -70,8 +70,7 @@
 	                                position:'outside',
 	                            }
                             },
-                            itemStyle:{
-                            }
+                            itemStyle:{}
 				        }
 				    ]
 				}
@@ -112,15 +111,23 @@
 	    },
 		 methods:{
             redom(id){
+            	let _self = this;
             	if(this.chart){
 	        		this.chart.dispose()
 	        	}
                 this.chart = echarts.init(document.getElementById(id));
                 this.chart.setOption(this.option);
                 this.chart.on('click', function (params) {
-					Bus.$emit('isRise',params.name)
-            });
-                
+                	Bus.$emit('isRise',params.name)
+                	let index = params.dataIndex
+            		let datas = _self.option.series[0].data
+            		datas.forEach( (item,index) => {
+            			item.selected = false
+            		})
+					_self.option.series[0].data[index].selected=true;
+					_self.redom('d13')
+					
+            	});
             },
             getResponse(paramsObj){
             let _self = this;
@@ -150,7 +157,6 @@
                 			name: reData[i].name
                 		})
                 	}
-                    //_self.option.series[0].data[0].selected=true;
                     _self.redom('d13')
                     
                 }
