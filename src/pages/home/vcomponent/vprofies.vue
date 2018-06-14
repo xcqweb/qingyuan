@@ -144,7 +144,7 @@ export default {
 				  },
 				  itemStyle: {
 					  normal: {
-						  color: 'rgba(0,0,0,0)'
+						  color: 'rgba(0,0,0,)'
 					  },
 					  emphasis: {
 						  color: 'rgba(0,0,0,0)'

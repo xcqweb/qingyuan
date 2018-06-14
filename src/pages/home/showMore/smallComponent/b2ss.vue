@@ -3,7 +3,7 @@
     	<!--<div class="passagerBtn">客流预警</div>-->
         <div :id="idName" class="pieB2"></div>
         <span v-bind:class="fontColor">{{dataItem.percent}}%</span>
-        <div class="text"><font>{{dataItem.currentNum}}人</font></div>
+        <div class="text"><font v-bind:class="fontColor">{{dataItem.currentNum}}人</font></div>
         <div class="scenic">{{dataItem.name}}</div>
     </div>
 </template>
@@ -238,7 +238,7 @@ export default {
             	}
             	this.option.series[0].data[0].value = this.dataItem.currentNum
             	this.option.series[0].data[1].value = this.dataItem.warnNum-this.dataItem.currentNum
-            	if(p<=50){
+            	if(p<=50&&p>=0){
             		this.option.color[0]='#80E36F'
             		this.active = 1
             	}else if(p>50 && p<70){
@@ -294,6 +294,7 @@ export default {
         height: 1.2rem;
         top:200px;
         left: 434px;
+        text-shadow: 0 0 3rem #ccc;
         position: absolute;
     }
 .b2{
@@ -347,11 +348,11 @@ export default {
             text-align: center;
             top: 269px;
             left: 434px;
-            color:#ffe400;
+            color:#80E36F;
             font-size:38px;
         }
     }
-     .color1{
+     	.color1{
         	color: #80E36F !important;
         }
          .color2{

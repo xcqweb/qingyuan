@@ -133,7 +133,6 @@
             let _self = this;
               this.$axios.get(API_URL+'/qy/api/command/selectCommandScenicRaiseUp',{params:paramsObj}).then(r => {
             	let reData = r.data.data
-            	//console.log(reData);
             	if(reData.length>5){
             		var arr=[]
             		var sum=0

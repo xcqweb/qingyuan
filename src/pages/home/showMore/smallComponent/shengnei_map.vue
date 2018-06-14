@@ -104,19 +104,41 @@ export default {
 	                },
 	                roam: true,
 	                itemStyle: {
-	                        normal: {
-	                            color:'#163387',
-	                            areaColor: '#48abff',
-	                            borderColor:'white',
-	                            borderWidth:0.5,
-	                            shadowColor: 'rgba(0, 0, 0, 0.1)',
-	                            shadowBlur:10,
-	                            opacity:1,
-	                        },
-	                        emphasis: {
-	                            areaColor: '#6abccc'
-	                        }
-	                    }
+                        normal: {
+                            //areaColor: '#48abff',
+                            areaColor: {
+												    type: 'radial',
+												    x: 0.5,
+												    y: 0.5,
+												    r: 1,
+												    colorStops: [{
+												        offset: 0, color: 'rgba(72,171,255,1)' // 0% 处的颜色
+												    }, {
+												        offset: 1, color: 'rgba(72,171,255,0.8)' // 100% 处的颜色
+												    }],
+												    globalCoord: false // 缺省为 false
+												},
+					                            borderColor:'white',
+					                            borderWidth:0.5,
+					                            shadowColor: 'rgba(0, 0, 0, 0.3)',
+					                            shadowBlur:20,
+					                        },
+					                        emphasis: {
+					                            //areaColor: '#6abccc'
+					                            areaColor: {
+												    type: 'radial',
+												    x: 0.5,
+												    y: 0.5,
+												    r: 1,
+												    colorStops: [{
+												        offset: 0, color: 'rgba(106,188,204,1)' // 0% 处的颜色
+												    }, {
+												        offset: 1, color: 'rgba(106,188,204,0.2)' // 100% 处的颜色
+												    }],
+												    globalCoord: false // 缺省为 false
+												}
+                        }
+                    }
 	            },
 	        },
 	        color:['#f18790', '#75c774', '#5aa7fd','#f1c54b','#c184ff','#0055fb','#f18790', '#25c774', '#50a7fd','#a5c00b','#c184ff'],

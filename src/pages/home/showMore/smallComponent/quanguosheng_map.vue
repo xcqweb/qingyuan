@@ -104,14 +104,38 @@ export default {
                 roam: true,
                 itemStyle: {
                         normal: {
-                            areaColor: '#48abff',
+                            //areaColor: '#48abff',
+                            areaColor: {
+							    type: 'radial',
+							    x: 0.5,
+							    y: 0.5,
+							    r: 1,
+							    colorStops: [{
+							        offset: 0, color: 'rgba(72,171,255,1)' // 0% 处的颜色
+							    }, {
+							        offset: 1, color: 'rgba(72,171,255,0.9)' // 100% 处的颜色
+							    }],
+							    globalCoord: false // 缺省为 false
+							},
                             borderColor:'white',
                             borderWidth:0.5,
-                            shadowColor: 'rgba(0, 0, 0, 0.1)',
-                            shadowBlur:10,
+                            shadowColor: 'rgba(0, 0, 0, 0.3)',
+                            shadowBlur:20,
                         },
                         emphasis: {
-                            areaColor: '#6abccc'
+                            //areaColor: '#6abccc'
+                            areaColor: {
+							    type: 'radial',
+							    x: 0.5,
+							    y: 0.5,
+							    r: 1,
+							    colorStops: [{
+							        offset: 0, color: 'rgba(106,188,204,1)' // 0% 处的颜色
+							    }, {
+							        offset: 1, color: 'rgba(106,188,204,0.2)' // 100% 处的颜色
+							    }],
+							    globalCoord: false // 缺省为 false
+							}
                         }
                     }
             },
@@ -400,7 +424,6 @@ export default {
                 this.chart = echarts.init(dom);
                 if (this.optionChina && typeof this.optionChina === "object") {
                 this.chart.setOption(this.optionChina, true);
-                
                  this.chart.dispatchAction({
 			        type: 'dataZoom',
 			        startValue: dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)],
