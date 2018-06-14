@@ -170,7 +170,7 @@ export default {
                     radius : ['0%', '55%'],
                     center : ['36%', '68%'],
                     roseType : 'radius',
-                    //roseType : 'area',
+                    selectedMode: "single",
                     label: {
 		                normal: {
 		                    show: true,

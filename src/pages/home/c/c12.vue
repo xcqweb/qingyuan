@@ -199,6 +199,7 @@ export default {
                     type:'pie',
                     radius : ['0%', `${65-_self.n1}%`],
                     center : ['28%', `${65-_self.n2}%`],
+                    selectedMode: "single",
                     roseType : 'area',
                     label: {
 		                normal: {

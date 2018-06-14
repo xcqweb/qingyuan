@@ -130,10 +130,8 @@ export default {
                 name:'访问来源',
                 type:'pie',
                 radius : '70%',
+                selectedMode: "single",
                 center: ['28%', '42%'],
-                // selecteMode:'single',
-                // selectedOffset:30,
-                // roseType:"area",
                 startAngle:180,
                 labelLine: {
                     normal: {

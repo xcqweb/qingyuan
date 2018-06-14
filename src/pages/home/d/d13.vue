@@ -45,6 +45,7 @@
 				        {
 				            name: '签到比例分析',
 				            type: 'pie',
+				            selectedMode: "single",
 				            radius : '48%',
 				            center: ['54%', '55%'],
 				            data:[],
@@ -119,14 +120,6 @@
                 this.chart.setOption(this.option);
                 this.chart.on('click', function (params) {
                 	Bus.$emit('isRise',params.name)
-                	let index = params.dataIndex
-            		let datas = _self.option.series[0].data
-            		datas.forEach( (item,index) => {
-            			item.selected = false
-            		})
-					_self.option.series[0].data[index].selected=true;
-					_self.redom('d13')
-					
             	});
             },
             getResponse(paramsObj){

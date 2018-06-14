@@ -158,6 +158,7 @@ export default {
                 type:'pie',
                 radius: ['33%', '40%'],
                 center: ['39%', '55%'],
+                selectedMode: "single",
                 startAngle:90,
                 animation:true,
                 animationType:'expansion',
