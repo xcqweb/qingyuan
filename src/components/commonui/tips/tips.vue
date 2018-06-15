@@ -40,7 +40,7 @@
 					break;
 					
 					case 'a3':
-					return '游客在清远市旅游停留时间的平均时长的占比。';
+					return '游客在清远市旅游停留天数的占比。';
 					break;
 					
 					case 'b1':

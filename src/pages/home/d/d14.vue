@@ -35,12 +35,12 @@
 <template>
     <div class="b6">
         <div class="b6_top">
-            <font v-if='mowMonth!==1'>{{nowYear}}年1-{{mowMonth}}月份累计清远市游客量(人次)</font>
+            <font v-if='mowMonth!==1'>{{nowYear}}年1-{{mowMonth}}月份累计清远市{{currentArea}}游客量(人次)</font>
             <font v-else>{{nowYear}}年{{mowMonth}}月份累计接待游客(人次)</font>
             <span>{{dataMsg.num}}</span>
         </div>
         <div class="b6_bottom">
-        	<font v-if='nowDay!==1'>{{mowMonth}}月1日-{{nowDay}}日累计清远市游客量(人次)</font>
+        	<font v-if='nowDay!==1'>{{mowMonth}}月1日-{{nowDay}}日累计清远市{{currentArea}}游客量(人次)</font>
         	<font v-else>{{mowMonth}}月{{nowDay}}日累计接待游客(人次)</font>
             <span>{{dataMsg.yesterdayNum}}</span>
             
@@ -78,11 +78,10 @@ export default {
             }
         }
     },
-    components:{
-
-    },
     computed: { 
-
+		currentArea(){
+			return this.updatePlace.place==='全部'?'':this.updatePlace.place
+		}
     },
     methods: {
         getResponse(paramsObj){

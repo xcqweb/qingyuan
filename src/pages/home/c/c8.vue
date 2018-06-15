@@ -25,7 +25,7 @@
             </div>
         </div>
       <ul v-show="status">
-        <li v-for='(item,index) in items' v-show='item.sum'>
+        <li v-for='(item,index) in items'>
             <div class="cell1">
                 {{index+1}}
             </div>
@@ -63,7 +63,6 @@ export default {
         active:1,
         type:0,
         status:true,
-        msg:'Hello Vue!',
         items:[],
         end:'',
         begin:''

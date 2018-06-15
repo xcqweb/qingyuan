@@ -50,13 +50,14 @@ export default {
     },
     data() {
       return {
+      	status:true,
       	idName:'a2ss',
       	type:0,
       	beginStr:'',
         endStr:'',
         reData:[],
         option : {
-        	color:['#427DFE','#BB6AF4','#FF8785','#75CF65','#B8E986','#84E6CC','#4CBBF9'],
+        color:['#427DFE','#BB6AF4','#FF8785','#75CF65','#B8E986','#84E6CC','#4CBBF9'],
 		    calculable: true,
 		    tooltip: {
 		        trigger: 'item',
@@ -71,16 +72,15 @@ export default {
 		        itemGap:30,
 		        itemWidth:10,
 		        data: [
-		            '一天',
-		            '两天',
-		            '三天',
-		            '四天',
-		            '五天',
-		            '六天',
-		            '七天及以上',
+		            {name:'一天',textStyle:{color:'#427DFE'}},
+		            {name:'两天',textStyle:{color:'#BB6AF4'}},
+		            {name:'三天',textStyle:{color:'#FF8785'}},
+		            {name:'四天',textStyle:{color:'#75CF65'}},
+		            {name:'五天',textStyle:{color:'#B8E986'}},
+		            {name:'六天',textStyle:{color:'#84E6CC'}},
+		            {name:'七天及以上',textStyle:{color:'#4CBBF9'}},
 		        ],
 		        textStyle: {
-		            color: '#fff',
 		            fontSize:'75%'
 		        }
 		    },
@@ -267,11 +267,12 @@ export default {
                 if(r.data.code ==='200'||r.data.code ===200){
                 	let re = r.data.data
                 	if(!re.length){
+                		_self.status = false
                 		_self.option.series[0].data=[]
                 		for(let i=0; i<14; i++){
                 			if(i<7){
                 				_self.option.series[0].data[i] =  {
-					                value: 10,
+					                value: 1,
 					                name: _self.switchDay(`${i+1}`),
 					                itemStyle: {
 					                    normal: {
@@ -305,6 +306,7 @@ export default {
                 		_self.init('45%',false)
                 		 _self.redom(_self.idName)
                 	}else{
+                		_self.status = true
                 		re.forEach( (item,index) => {
 	                		_self.option.series[0].data[index] = {name:_self.switchDay(item.day),value:item.avg_percent}
 	                	})
@@ -357,11 +359,11 @@ export default {
       
       init(percent,bol){
       	this.option.series[0].center[1] = percent
-		this.option.series[0].label.normal.show = bol
-		this.option.series[0].label.emphasis.show = bol
-		this.option.series[0].labelLine.show = bol
-		this.option.series[0].labelLine.emphasis.show = bol
-		this.option.tooltip.show = bol
+				this.option.series[0].label.normal.show = bol
+				this.option.series[0].label.emphasis.show = bol
+				this.option.series[0].labelLine.show = bol
+				this.option.series[0].labelLine.emphasis.show = bol
+				this.option.tooltip.show = bol
       }
     },
     mounted() {
@@ -369,14 +371,28 @@ export default {
     	this.$nextTick( () => {
     		var _self= this;
 	        this.chart.on('legendselectchanged',function(val){
+	        	console.log(val)
 				if(Object.values(val.selected).toString().indexOf('true')===-1){
-					_self.init('65%',false)
-					_self.redom(_self.idName)
+					
+					if(!_self.status){
+						_self.init('65%',false)
+					  _self.redom(_self.idName)
+					}else{
+						_self.init('65%',true)
+					  _self.redom(_self.idName)
+					}
 					
 				}else{
-					_self.init('45%',true)
-					_self.redom(_self.idName)
+					if(_self.status){
+						_self.init('45%',true)
+						_self.redom(_self.idName)
+					}else{
+						_self.init('45%',false)
+						_self.redom(_self.idName)
+					}
 				}
+				
+				console.log(_self.status)
 			})
     	})
     }

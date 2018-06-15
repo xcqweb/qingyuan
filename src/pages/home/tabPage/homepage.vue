@@ -88,10 +88,9 @@ export default {
                 ],
                 rightTop:[
                      {name:'A5SS',id:'one',index:1,time:1200,show:true,title:'实时客流',type:'a2'},
-                     
                 ],
                 rightBottom:[
-                		{name:'A2SS',id:'one',index:1,show:true,title:'停留时长占比',type:'a3'},
+                		{name:'A2SS',id:'one',index:1,show:true,title:'停留天数',type:'a3'},
                 ],
             }
         },
