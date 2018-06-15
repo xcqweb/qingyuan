@@ -91,7 +91,7 @@ export default {
                      
                 ],
                 rightBottom:[
-                		{name:'A1SS',id:'one',index:1,show:true,title:'历史客流',type:'a3'},
+                		{name:'A2SS',id:'one',index:1,show:true,title:'停留时长占比',type:'a3'},
                 ],
             }
         },

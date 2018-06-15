@@ -106,6 +106,10 @@ export default {
                 return {}
             }
         },
+        daySeven:  {
+            type: Boolean,
+            default: false
+        },
     },
     data() {
         return {
@@ -450,7 +454,11 @@ export default {
           				   		this.rangeBegin=[]
           				   		this.rangeEnd=[]
                     }else{
-                          if(lev>950400){
+                    	
+                    	
+                    	
+                    	
+                          if(lev>950400&&!this.daySeven){
 //                        if(lev<0){
                             alert('时间跨度不能大于十二天')
 							this.rangeEnd=[]

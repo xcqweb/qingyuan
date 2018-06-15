@@ -29,7 +29,7 @@
         <div class="calendar-dialog-mask" @click="closeByDialog"></div>
         
         <div class="calendar-dialog-body">
-            <calendar :range="calendar4.range" :zero="calendar4.zero" :lunar="calendar4.lunar" :value="calendar4.value"  @select="calendar4.select"></calendar>
+            <calendar :range="calendar4.range" :zero="calendar4.zero" :lunar="calendar4.lunar" :value="calendar4.value"  @select="calendar4.select" :daySeven='daySeven'></calendar>
         </div>
         
     </div>
@@ -63,6 +63,7 @@ export default {
         isBorder:Boolean,
         vDateStatus:Boolean,
         showStatus:Boolean,
+        daySeven:Boolean,
     },
     data(){
         return {

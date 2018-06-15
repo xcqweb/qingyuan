@@ -20,6 +20,8 @@ let A5SS = resolve => {require.ensure(['@/pages/home/showMore/smallComponent/a5s
 
 let A1SS = resolve => {require.ensure(['@/pages/home/showMore/smallComponent/a1ss.vue'], () => {resolve(require('@/pages/home/showMore/smallComponent/a1ss.vue'))})}
 
+let A2SS = resolve => {require.ensure(['@/pages/home/showMore/smallComponent/a2ss.vue'], () => {resolve(require('@/pages/home/showMore/smallComponent/a2ss.vue'))})}
+
 
 
 //4A级以上景区
@@ -90,6 +92,7 @@ let status =[
     'A3',
     'A10',
     'A1SS',
+    'A2SS',
     'A5SS',
     'B6S',
     'B15',

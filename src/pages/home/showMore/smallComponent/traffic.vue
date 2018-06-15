@@ -58,23 +58,18 @@ import optionProps from '@/common/js/mixin/optionProps.js'
         watch:{
            updatePlace:function(val,oldVal){
            	if(this.timer){clearTimeout(this.timer)}
-           	console.log(val,oldVal)
            	if(val.place===oldVal.place){
            		this.turist = val.turist;
            	}else{
            		this.place = val.place;
            	}
-//      		this.place = val.place;
-//      		this.turist = val.turist;
         		
         	},
             place:function(val){
                   this.init(val,false)
-                  console.log(val)
             },
             turist:function(val,oldVal){
                   this.init(val,true)
-                  console.log(val)
             }
         },
         methods:{

@@ -362,7 +362,7 @@
        				</p>
        				<p class="clearfix"></p>
        				<p>{{dailyRes[0].tmp_max}} ~ {{dailyRes[0].tmp_min}}℃</p>
-       				<p>{{nowRes.cond_txt}}</p>
+       				<p>{{area}}</p>
        			</div>
        		</div>
        		<div class="middleLine"></div>
@@ -400,7 +400,10 @@ let weekCode = new Date().getDay()
     mixins: [showMoreData,optionProps],
     props:['updateTurist'],
     watch:{
-        updatePlace:function(val){
+        updatePlace:function(val,oldVal){
+        	if(val.place===oldVal.place){
+        		return
+        	}
             let _self = this
             _self.showStatus =false;
             setTimeout(function(){
@@ -415,6 +418,7 @@ let weekCode = new Date().getDay()
             currentIndex: 0,
             showStatus:true,
             timer:[],
+            area:'',
             weekday:['周日','周一','周二','周三','周四','周五','周六'],
             lifegroup:[
                 {part:'car_washing',text:'洗车'},
@@ -587,6 +591,7 @@ let weekCode = new Date().getDay()
                 success:function(res){
                     _self.$nextTick(function () {
                     _self.nowRes = res.HeWeather6[0].now;
+                    _self.area = res.HeWeather6[0].basic.location
                     //console.log(res)
                     });
                 },

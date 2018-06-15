@@ -145,7 +145,7 @@
 			border-radius: 8px;
 			border: solid 2px #345bfa;
 			cursor: pointer;
-			font-size: 1rem;
+			font-size: 0.8rem;
 			span{
 				margin-left: -1rem;
 			}

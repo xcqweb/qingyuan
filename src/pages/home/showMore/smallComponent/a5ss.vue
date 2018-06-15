@@ -223,18 +223,9 @@ export default {
                      average = 1 ;
                 }
 				function updateRandom() {
-					  var p = Math.random(), n = Math.random() / 5;
-//					  if( p < 0.01 )
-//					    return 0 + n;
-//					
-//					  if( p < 0.02 )
-//					    return 0.25 + n;
-//					
-//					  if( p < 0.04 )
-//					    return 0.5 + n;
-					
-					  if( p < 0.85 )
-					    return 0.85 + n;
+					  var p = Math.random(), n = Math.random() / 20;
+					  if( p < 0.9 )
+					    return 0.9 + n;
 					  if( p < 1 )
 					    return 0.95 + n;
 					}

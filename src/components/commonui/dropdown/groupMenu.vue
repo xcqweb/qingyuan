@@ -36,6 +36,7 @@
              @pageDate='getDate'
              :isActive = 'isEndDate'
              :showStatus=true
+             :daySeven=false
              ></vDate>
         </div>
         <div class="scienceChose" v-show="isScience">

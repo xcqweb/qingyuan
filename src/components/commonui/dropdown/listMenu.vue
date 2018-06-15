@@ -28,6 +28,7 @@
 	             @hideDate = 'hideDate'
 	             :vDateStatus='vDateStatus'
 	             :showStatus=false
+	             :daySeven=true
 	             ></vDate>
         	</div>
         	
