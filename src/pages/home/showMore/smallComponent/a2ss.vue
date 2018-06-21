@@ -50,6 +50,7 @@ export default {
     },
     data() {
       return {
+      	selected:false,
       	status:true,
       	idName:'a2ss',
       	type:0,
@@ -57,7 +58,7 @@ export default {
         endStr:'',
         reData:[],
         option : {
-        color:['#427DFE','#BB6AF4','#FF8785','#75CF65','#B8E986','#84E6CC','#4CBBF9'],
+        color:['#75CF65','#B8E986','#84E6CC','#4CB9FA','#BB6AF4','#FF8785','#F4D26A'],
 		    calculable: true,
 		    tooltip: {
 		        trigger: 'item',
@@ -72,13 +73,13 @@ export default {
 		        itemGap:30,
 		        itemWidth:10,
 		        data: [
-		            {name:'一天',textStyle:{color:'#427DFE'}},
-		            {name:'两天',textStyle:{color:'#BB6AF4'}},
-		            {name:'三天',textStyle:{color:'#FF8785'}},
-		            {name:'四天',textStyle:{color:'#75CF65'}},
-		            {name:'五天',textStyle:{color:'#B8E986'}},
-		            {name:'六天',textStyle:{color:'#84E6CC'}},
-		            {name:'七天及以上',textStyle:{color:'#4CBBF9'}},
+		            {name:'一天',textStyle:{color:'#75CF65'}},
+		            {name:'两天',textStyle:{color:'#B8E986'}},
+		            {name:'三天',textStyle:{color:'#84E6CC'}},
+		            {name:'四天',textStyle:{color:'#4CB9FA'}},
+		            {name:'五天',textStyle:{color:'#BB6AF4'}},
+		            {name:'六天',textStyle:{color:'#FF8785'}},
+		            {name:'七天及以上',textStyle:{color:'#F4D26A'}},
 		        ],
 		        textStyle: {
 		            fontSize:'75%'
@@ -92,6 +93,7 @@ export default {
 		        startAngle: 0,
 		        center: ['50%','45%'],
 		        roseType: 'area',
+		        clockwise:true,
 		        selectedMode: 'single',
 		        label: {
 		            normal: {
@@ -271,26 +273,47 @@ export default {
                 		_self.option.series[0].data=[]
                 		for(let i=0; i<14; i++){
                 			if(i<7){
-                				_self.option.series[0].data[i] =  {
-					                value: 1,
-					                name: _self.switchDay(`${i+1}`),
-					                itemStyle: {
-					                    normal: {
-					                        label: {
-					                            show: false
-					                        },
-					                        labelLine: {
-					                            show: false
-					                        }
-					                    }
-					                }
-					            }
+                					if(_self.selected){
+                						_self.option.series[0].data[i] =  {
+								                value: 1,
+								                name: _self.switchDay(`${i+1}`),
+								                itemStyle: {
+								                    normal: {
+								                    		color:'#163387',
+								                        label: {
+								                            show: false
+								                        },
+								                        labelLine: {
+								                            show: false
+								                        }
+								                    }
+								                }
+								            }
+                					}else{
+                						_self.option.series[0].data[i] =  {
+								                value: 1,
+								                name: _self.switchDay(`${i+1}`),
+								                itemStyle: {
+								                    normal: {
+								                    		//color:'#163387',
+								                        label: {
+								                            show: false
+								                        },
+								                        labelLine: {
+								                            show: false
+								                        }
+								                    }
+								                }
+								            }
+                					}
+                				
                 			}else{
                 				_self.option.series[0].data[i] =  {
 					                value: 0,
 					               // name: _self.switchDay(`${i+1}`),
 					                itemStyle: {
 					                    normal: {
+					                    		color:'#163387',
 					                        label: {
 					                            show: false
 					                        },
@@ -303,14 +326,24 @@ export default {
                 			}
                 			
                 		}
-                		_self.init('45%',false)
+                		 if(_self.selected){
+                		 		_self.init('65%',false)
+                		 }else{
+                		 		_self.init('45%',false)
+                		 }
                 		 _self.redom(_self.idName)
                 	}else{
                 		_self.status = true
                 		re.forEach( (item,index) => {
 	                		_self.option.series[0].data[index] = {name:_self.switchDay(item.day),value:item.avg_percent}
 	                	})
-                  		_self.init('45%',true)
+            		      	
+                  		
+                  		if(_self.selected){
+                		 		_self.init('65%',true)
+                		 }else{
+                		 		_self.init('45%',true)
+                		 }
                   		 _self.redom(_self.idName)
                 	}
                    
@@ -371,14 +404,15 @@ export default {
     	this.$nextTick( () => {
     		var _self= this;
 	        this.chart.on('legendselectchanged',function(val){
-	        	console.log(val)
+	        	//console.log(val)
+	        	_self.selected = (Object.values(val.selected).toString().indexOf('true')===-1)?true:false
 				if(Object.values(val.selected).toString().indexOf('true')===-1){
 					
 					if(!_self.status){
 						_self.init('65%',false)
 					  _self.redom(_self.idName)
 					}else{
-						_self.init('65%',true)
+						_self.init('65%',false)
 					  _self.redom(_self.idName)
 					}
 					
@@ -392,7 +426,6 @@ export default {
 					}
 				}
 				
-				console.log(_self.status)
 			})
     	})
     }

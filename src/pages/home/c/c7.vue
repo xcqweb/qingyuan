@@ -190,6 +190,10 @@ export default {
     		}else{
     			this.$emit('toggleProvince',2)
     		}
+    		
+//  		if(this.beginStr||this.endStr){
+//  			Bus.$emit('yearMonth',{begin:this.beginStr,end:this.endStr})
+//  		}
     	},
     	add(){
     		let str = JSON.stringify(this.items)
@@ -263,6 +267,7 @@ export default {
     },
     beforeDetroy(){
     	Bus.$off('swap')
+//  	Bus.$off('yearMonth')
     },
     mounted(){
     	Bus.$on('turistDate',(val) => {
@@ -297,8 +302,12 @@ export default {
     			}
     			
     			Bus.$emit('swap',{begin:this.begin,end:this.end})
-    			let ends = this.end.join("-")
-	        let begins = this.begin.join("-")
+    			
+    			let ends = this.end.join("-");
+	        let begins = this.begin.join("-");
+	        this.endStr = this.end.join("-");
+	        this.beginStr = this.begin.join("-");
+//	        Bus.$emit('yearMonth',{begin:this.beginStr,end:this.endStr})
       	 	var paramsObj = {
       	 		 area:this.updatePlace.place,
              name:this.updatePlace.turist,

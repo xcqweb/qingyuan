@@ -110,26 +110,26 @@ export default {
                     name:'0-19'
                 }, {
                     icon:'circle',
-                    name:'20-25'
+                    name:'20-29'
                 }, {
                     icon:'circle',
-                    name:'26-35'
+                    name:'30-39'
                 }, {
                     icon:'circle',
-                    name:'36-45'
+                    name:'40-49'
                 }, {
                     icon:'circle',
-                    name:'46-55'
+                    name:'50-59'
                 }, {
                     icon:'circle',
-                    name:'55以上'
+                    name:'60岁以上'
                 }],
             },
           series : [
               {
                 name:'访问来源',
                 type:'pie',
-                radius : '70%',
+                radius : '60%',
                 selectedMode: "single",
                 center: ['28%', '42%'],
                 startAngle:180,
@@ -155,11 +155,11 @@ export default {
                 },
                 data:[
 	            {"value":100, "name":"0-19"},
-	            {"value":0, "name":"20-25"},
-	            {"value":0, "name":"26-35"},
-	            {"value":0, "name":"36-45"},
-	            {"value":0, "name":"46-55"},
-	            {"value":0, "name":"55以上"}
+	            {"value":0, "name":"20-29"},
+	            {"value":0, "name":"30-39"},
+	            {"value":0, "name":"40-49"},
+	            {"value":0, "name":"50-59"},
+	            {"value":0, "name":"60岁以上"}
       	  ],
       }],
     }
@@ -170,7 +170,7 @@ export default {
     	getResponse(paramsObj){
             this.$axios.get(API_URL+'/qy/api/v2/view/getDayAgeData',{params:paramsObj}).then(r => {
             	if(!r){
-            		this.pieData={"0-19":0,"20-25":100,"26-35":0, "36-45":0,"46-55":0,"55以上":0}
+            		this.pieData={"0-19":0,"20-29":100,"30-39":0, "40-49":0,"50-59":0,"60岁以上":0}
             		this.option.series[0].label.normal.show = false
             		this.option.series[0].label.emphasis.show = false
             		this.option.tooltip.show = false
@@ -179,6 +179,7 @@ export default {
             		return
             	}
                 if(r.data.code ==="200"||r.data.code ===200){
+                	
                 	this.option.series[0].label.normal.show = true
             		this.option.series[0].label.emphasis.show = true
             		this.option.tooltip.show = true

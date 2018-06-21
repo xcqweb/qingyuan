@@ -57,19 +57,21 @@ import optionProps from '@/common/js/mixin/optionProps.js'
         },
         watch:{
            updatePlace:function(val,oldVal){
-           	if(this.timer){clearTimeout(this.timer)}
-           	if(val.place===oldVal.place){
-           		this.turist = val.turist;
-           	}else{
            		this.place = val.place;
-           	}
-        		
+           		this.turist = val.turist;
         	},
-            place:function(val){
+            place:function(val,oldVal){
                   this.init(val,false)
             },
             turist:function(val,oldVal){
-                  this.init(val,true)
+            	if(val==='全部'&&oldVal!=='全部'){
+            		window.setTimeout( () => {
+            			this.init(val,true)
+            		},0)
+            	}else{
+            		this.init(val,true)
+            	}
+                  
             }
         },
         methods:{
@@ -286,7 +288,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
 	                    "笔架山度假区":{lng:113.042358,lat:23.776528,zoom:14},
 	                    "安庆村":{lng:112.823456,lat:23.616738,zoom:14},
 	                    "清泉湾生态旅游度假区":{lng:112.928301,lat:23.764869,zoom:14},
-	                    "太和古洞风景区":{lng:112.999783,lat:23.745745,zoom:14},
+	                    "太和古洞旅游区":{lng:112.999783,lat:23.745745,zoom:14},
 	                    "金龙洞":{lng:112.884256,lat:24.083820,zoom:14},
 	                    "九牛洞村":{lng:112.778425,lat:23.622568,zoom:14},
 	                    "观音山王山寺":{lng:113.492142,lat:23.94476,zoom:14},
@@ -325,7 +327,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
 	                    "清新温矿泉旅游度假区":{lng:112.801821,lat:23.612527,zoom:14},
 	                    "黄腾峡生态旅游区":{lng:113.099852,lat:23.770316,zoom:14},
 	                    "故乡里旅游度假区":{lng:113.070196,lat:23.490003,zoom:14},
-	                    "太和古洞旅游区":{lng:112.999031,lat:23.747737,zoom:14},
+	                    "飞来峡水利枢纽风景区":{lng:113.264348,lat:23.812998,zoom:14},
 	                    "德盈新银盏温泉景区":{lng:113.137559,lat:23.557859,zoom:14},
 	                    "狮子湖国际休闲旅游度假区":{lng:113.024277,lat:23.633192,zoom:14},
 	                    "聚龙湾天然温泉度假村":{lng:113.491484,lat:23.751476,zoom:14},
@@ -397,7 +399,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
         	if(this.timer){clearTimeout(this.timer)}
         	this.timer = setTimeout( () => {
         		this.$nextTick(this.addScript("全部",true))
-        	},2000)
+        	},1500)
               
         } ,
     }

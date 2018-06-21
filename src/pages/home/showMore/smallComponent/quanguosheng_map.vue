@@ -26,6 +26,8 @@ export default {
     data () {
     return {
     	type:0,
+    	beginStr:'',
+        endStr:'',
     	num1:0,
     	num2:0,
     	isloading:true,
@@ -41,16 +43,6 @@ export default {
         color:['#f18790', '#75c774', '#5aa7fd','#f1c54b','#c184ff','6792fb', '#4BCEDD', '#FF8885','#FFCD38',  '#E39A50', '#58E5E1',],
         option : {
             backgroundColor: 'rgba(0,0,0,0)',
-            tooltip: {
-                trigger: 'item',
-                 formatter:function(params){
-                	//console.log(params)
-                	if(params.seriesType==="effectScatter"){
-                		let val = params.name+' : '+params.value[2];
-                		return val;
-                	}
-                }
-            },
         },
         geoCoordLocal:{
             '浦江县': [120.105537,29.508488],
@@ -332,12 +324,22 @@ export default {
     },
     watch:{
     	updatePlace:function(val){
-            var paramsObj = {
-                area:this.updatePlace.place,
-                name:this.updatePlace.turist,
-                type:["day","month","year"][this.type],
-            }
-            this.getResponse(paramsObj);
+            let paramsObj = {}
+	    		if(this.endStr||this.beginStr){
+				paramsObj = {
+	            area:val.place,
+	            name:val.turist,
+	            beginTime:this.beginStr,
+	            endTime:this.endStr
+	        }
+			}else{
+				paramsObj = {
+	            area:val.place,
+	            name:val.turist,
+	            type:["day","month","year"][this.type],
+	        }
+		}
+	    this.getResponse(paramsObj);
         },
         
          update:{
@@ -345,6 +347,8 @@ export default {
              	var paramsObj={}
              	if(val.type===0 || val.type===1 || val.type===2){
              		this.type = val.type
+             		this.endStr = '';
+	             	this.beginStr = '';
              	    paramsObj = {
 		                area:this.updatePlace.place,
 		                name:this.updatePlace.turist,
@@ -356,8 +360,8 @@ export default {
 	                paramsObj = {
 	                    area:this.updatePlace.place,
 	                    name:this.updatePlace.turist,
-	                    beginTime:begin,
-	                    endTime:end
+	                    beginTime:this.beginStr,
+	                    endTime:this.endStr
 					}
              	}
                  
@@ -373,6 +377,8 @@ export default {
 	            type:'day'
             }
        this.getResponse(paramsObj);
+    },
+    mounted(){
     },
     methods: {
   	

@@ -38,11 +38,21 @@ export default {
 	mixins:[optionProps],
 	   watch:{
 	    	updatePlace:function(val){
-	            var paramsObj = {
-	                area:this.updatePlace.place,
-	                name:this.updatePlace.turist,
-	                type:["day","month","year"][this.type],
-	            }
+	            let paramsObj = {}
+			    		if(this.endStr||this.beginStr){
+		    			paramsObj = {
+		                area:val.place,
+		                name:val.turist,
+		                beginTime:this.beginStr,
+			           		endTime:this.endStr
+		            }
+		    		}else{
+		    			paramsObj = {
+		                area:val.place,
+		                name:val.turist,
+		                type:["day","month","year"][this.type],
+		            }
+	    		}
 	            this.getResponse(paramsObj);
 	        },
 	        
@@ -50,7 +60,9 @@ export default {
              handler:function(val, oldVal){
              	var paramsObj={}
              	if(val.type===0 || val.type===1 || val.type===2){
-             		this.type = val.type
+             		this.type = val.type;
+             		this.endStr = '';
+	              this.beginStr = '';
              	    paramsObj = {
 		                area:this.updatePlace.place,
 		                name:this.updatePlace.turist,
@@ -62,8 +74,8 @@ export default {
 	                paramsObj = {
 	                    area:this.updatePlace.place,
 	                    name:this.updatePlace.turist,
-	                    beginTime:begin,
-	                    endTime:end
+	                    beginTime:this.beginStr,
+	                    endTime:this.endStr
 					}
              	}
                  
@@ -85,6 +97,8 @@ export default {
 	    	],
 	    		idName:'province',
 	    		type:0,
+	    		beginStr:'',
+        	endStr:'',
 	        chart:null,
 	        isActive:false,
 	        planePath:'path://M1705.06,1318.313v-89.254l-319.9-221.799l0.073-208.063c0.521-84.662-26.629-121.796-63.961-121.491c-37.332-0.305-64.482,36.829-63.961,121.491l0.073,208.063l-319.9,221.799v89.254l330.343-157.288l12.238,241.308l-134.449,92.931l0.531,42.034l175.125-42.917l175.125,42.917l0.531-42.034l-134.449-92.931l12.238-241.308L1705.06,1318.313z',
@@ -93,6 +107,10 @@ export default {
 	            tooltip: {
 	                trigger: 'item',
 	                formatter:function(params){
+	                	if(params.seriesType==="effectScatter"){
+	                		let val = params.name+' : '+params.value[2];
+	                		return val;
+	                	}
 	                }
 	            },
 	            geo: {
@@ -171,7 +189,6 @@ export default {
 	  computed: { 
 	  },
 	   created(){
-    	//console.log(this.update)
     	var paramsObj = {
                 area:this.updatePlace.place,
 	              name:this.updatePlace.turist,
@@ -187,46 +204,45 @@ export default {
 	            if(rankItemsMap.length===0){
 	            	return
 	            }
-	            let scal =rankItemsMap[0].num /200 ;
 	            
 	            rankItemsMap.forEach((item)=>{item.num = Number((item.num+"").replace(/,/g,""))});
 	            
 	            var BJData =[
-	                [{name: '清远市'}, {name:rankItemsMap[0].city , value: rankItemsMap[0].num/scal}],
+	                [{name: '清远市'}, {name:rankItemsMap[0].city , value: rankItemsMap[0].num}],
 	                
 	            ];
 	            var GUANG = [
-	                [{name: '清远市'}, {name:rankItemsMap[1].city , value: rankItemsMap[1].num/scal}],
+	                [{name: '清远市'}, {name:rankItemsMap[1].city , value: rankItemsMap[1].num}],
 	                
 	            ];
 	            var SHData = [
-	                [{name: '清远市'}, {name:rankItemsMap[2].city , value: rankItemsMap[2].num/scal}],
+	                [{name: '清远市'}, {name:rankItemsMap[2].city , value: rankItemsMap[2].num}],
 	                
 	            ];
 	            var SHENZHEN = [
-	                [{name: '清远市'}, {name:rankItemsMap[3].city , value: rankItemsMap[3].num/scal}],
+	                [{name: '清远市'}, {name:rankItemsMap[3].city , value: rankItemsMap[3].num}],
 	            ];
 	            var XIAN = [
-	                [{name: '清远市'}, {name:rankItemsMap[4].city , value: rankItemsMap[4].num/scal}],
+	                [{name: '清远市'}, {name:rankItemsMap[4].city , value: rankItemsMap[4].num}],
 	            ];
 	            var FENGD = [
-	                [{name: '清远市'}, {name:rankItemsMap[5].city , value: rankItemsMap[5].num/scal}],
+	                [{name: '清远市'}, {name:rankItemsMap[5].city , value: rankItemsMap[5].num}],
 	            ];
 	            
 	            var FENGD2 = [
-	                [{name: '清远市'}, {name:rankItemsMap[6].city , value: rankItemsMap[6].num/scal}],
+	                [{name: '清远市'}, {name:rankItemsMap[6].city , value: rankItemsMap[6].num}],
 	            ];
 	            
 	            var FENGD3 = [
-	                [{name: '清远市'}, {name:rankItemsMap[7].city , value: rankItemsMap[7].num/scal}],
+	                [{name: '清远市'}, {name:rankItemsMap[7].city , value: rankItemsMap[7].num}],
 	            ];
 	            
 	            var FENGD4 = [
-	                [{name: '清远市'}, {name:rankItemsMap[8].city , value: rankItemsMap[8].num/scal}],
+	                [{name: '清远市'}, {name:rankItemsMap[8].city , value: rankItemsMap[8].num}],
 	            ];
 	            
 	            var FENGD5 = [
-	                [{name: '清远市'}, {name:rankItemsMap[9].city , value: rankItemsMap[9].num/scal}],
+	                [{name: '清远市'}, {name:rankItemsMap[9].city , value: rankItemsMap[9].num}],
 	            ];
 	            [['清远市', BJData], ['清远市', GUANG],['清远市', SHData],['清远市', SHENZHEN],['清远市', XIAN],['清远市', FENGD],['清远市', FENGD2],['清远市', FENGD3],['清远市', FENGD4],['清远市', FENGD5]].forEach(function (item, i) {
 	                series.push(
@@ -283,11 +299,6 @@ export default {
 	                        symbolSize: function (val) {
 	                            return 12;
 	                        },
-	                        tooltip:{
-	                            formatter:function(params){
-	                                return _self.$Rw.string_until.addPoint((params.value[2]*scal).toFixed(0))+'人'
-	                            }
-	                        },
 	                        itemStyle: {
 	                            normal: {
 	                                color: _self.color[3],
@@ -321,7 +332,7 @@ export default {
 	                    res.push({
 	                        fromName: dataItem[1].name,
 	                        toName: dataItem[0].name,
-	                        coords: [fromCoord, toCoord]
+	                        coords: [fromCoord, toCoord,dataItem[1].value]
 	                    });
 	                }
 	            }
@@ -360,6 +371,8 @@ export default {
 	    },
 	   
 	    mounted(){
+	    	
+	    		
 	        echarts_resize(this.idName,this)
 	        setTimeout(()=>{
 	            this.redomData()

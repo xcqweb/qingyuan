@@ -46,7 +46,6 @@ export default {
             tooltip: {
                 trigger: 'item',
                  formatter:function(params){
-                	//console.log(params)
                 	if(params.seriesType==="effectScatter"){
                 		let val = params.name+' : '+params.value[2];
                 		return val;
@@ -688,7 +687,7 @@ export default {
 	                area:val.place,
 	                name:val.turist,
 	                beginTime:this.beginStr,
-		              endTime:this.endStr
+		            endTime:this.endStr
 	            }
 	    		}else{
 	    			paramsObj = {

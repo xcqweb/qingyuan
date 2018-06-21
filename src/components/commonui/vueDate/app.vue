@@ -3,7 +3,7 @@
     <div class="flex">
         <div :class="{'border':isBorder}">
             <!-- <span>弹出框</span> -->
-            <input type="text"  v-bind:class="{ choses: isActive }" class="sigleDate"   @click="openByDrop($event)" v-model="calendar3.display" readonly>
+            <!--<input type="text"  v-bind:class="{ choses: isActive }" class="sigleDate"   @click="openByDrop($event)" v-model="calendar3.display" readonly>-->
             <input type="text" v-bind:class="{ choses: !isActive,'font16':!showStatus}" @click="openByDialog" :value="calendar4.display" readonly style="cursor: pointer;">
         </div>
 
@@ -106,7 +106,7 @@ export default {
             },
             de:'自定义',
             calendar4:{
-                display:"自定义时间",
+                display:"自定义",
                 //display:year+"/"+month+"/"+day+" ~ "+year+"/"+month+"/"+day,
                 show:false,
                 range:true,
@@ -130,7 +130,7 @@ export default {
     		}
     	})
     	Bus.$on('resetDate',() => {
-    		this.calendar4.display = "自定义时间";
+    		this.calendar4.display = "自定义";
     	})
     	Bus.$emit('ms',new Date().getMonth())
     },
@@ -313,8 +313,8 @@ export default {
     background: #fff;
     position: absolute;
     max-height: 72%;
-    right : 41%;
-    top: 60.5%;
+    right : 42.8%;
+    top: 60%;
     transform: translateX(50%);
     padding: 6px 10px;
     border: 1px solid #eee;

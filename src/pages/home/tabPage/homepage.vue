@@ -110,9 +110,16 @@ export default {
         		}
         	}
         },
-		beforeDestroy(){
-			Bus.$off('reset')
-		},
+//      mounted(){
+//      	Bus.$on('yearMonth',(data) => {
+//      		console.log(data)
+//		        this.update = {begin:data.begin.split('-'),end:data.end.split('-')}
+//		        console.log(this.update)
+//		    	})
+//      },
+				beforeDestroy(){
+					Bus.$off('reset')
+				},
         methods: {
 	        	//获取选择的景区
 		        doubleChoseVal(val){

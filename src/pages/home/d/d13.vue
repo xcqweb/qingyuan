@@ -32,6 +32,9 @@
 		data(){
 			return {
 				hotel:'全部',
+				type:2,
+				endStr:'',
+			    beginStr:'',
 				option:{
 					color:['#427EFF','#7F6AF7','#BB68F4','#FF8882','#F7C935','#FFFD37','#B1F223','#76CD66','#B7E986','#86EACD'],
 					tooltip:{
@@ -84,17 +87,47 @@
 		        	var paramsObj = {
 		                area:val.place,
 		                name:val.turist,
-		                category:this.slectType+1
+		                category:this.slectType+1,
+		                type:["day","month","year"][this.type],
 		            }
 		            this.getResponse(paramsObj);
 	    	},
-	    	
+	    	  update:{
+		         handler:function(val, oldVal){
+		         	var paramsObj={}
+		         	if(val.type===0 || val.type===1 || val.type===2){
+		         		this.type=val.type;
+			            this.endStr = '';
+			            this.beginStr = '';
+		         	    paramsObj = {
+			                area:this.updatePlace.place,
+			                name:this.hotel||this.updatePlace.turist,
+			                category:this.slectType+1,
+			                type:["day","month","year"][val.type],
+			            }
+		         	}else{
+		         		this.endStr = val.end.join("-");
+			            this.beginStr = val.begin.join("-");
+		                paramsObj = {
+		                    area:this.updatePlace.place,
+		                    name:this.hotel||this.updatePlace.turist,
+		                    category:this.slectType+1,
+		                    beginTime:this.beginStr,
+		                    endTime:this.endStr
+						}
+		         	}
+		             
+		             this.getResponse(paramsObj);
+		         },
+		         deep:true,
+		        },
 	    	hotelChose:function(val){
 	    		this.hotel = val
 	    		var paramsObj = {
 					area:this.updatePlace.place,
 	                name:val,
-	                category:this.slectType+1
+	                category:this.slectType+1,
+	                type:["day","month","year"][this.type],
 	               }
 				this.getResponse(paramsObj);
 	    	},
@@ -105,7 +138,8 @@
 				var paramsObj = {
 					area:this.updatePlace.place,
 	                name:val===0?this.updatePlace.turist:this.hotel,
-	                category:val+1
+	                category:val+1,
+	                type:["day","month","year"][this.type],
 	               }
 				this.getResponse(paramsObj);
 			},
@@ -126,17 +160,17 @@
             let _self = this;
               this.$axios.get(API_URL+'/qy/api/command/selectCommandScenicRaiseUp',{params:paramsObj}).then(r => {
             	let reData = r.data.data
-            	if(reData.length>5){
+            	if(reData.length>6){
             		var arr=[]
             		var sum=0
             		reData.forEach( (item,index) => {
-            			if(index<=3){
+            			if(index<=4){
             				arr.push({percent:item.percent,name:item.name})
             			}else{
             				sum+=item.percent
             			}
             		})
-            		arr[4]={percent:sum,name:'其他'}
+            		arr[5]={percent:sum,name:'其他'}
             		reData = arr
             	}
             	
@@ -158,7 +192,8 @@
         created(){
         	var paramsObj = {
                 area:"全部",
-                name:"全部"
+                name:"全部",
+                type:'year'
             }
         	this.getResponse(paramsObj);
    		 },

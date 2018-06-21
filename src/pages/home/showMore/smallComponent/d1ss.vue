@@ -169,9 +169,10 @@ import optionProps from '@/common/js/mixin/optionProps.js'
             	scenics:'',
                 videoName:'摄像头1',
                 videoToast:false,
-                arrHotPoint:[],
-                place:'',
-                turist:'',
+                reData:[],
+                points:[],
+                place:'全部',
+                turist:'全部',
                 isUpdate:true,
                 radis:36,
                 maxv:30,
@@ -186,6 +187,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
           		this.radis = 36
         	},
             place:function(val){
+            	this.turist = '全部'
                 this.addScript(val,false)
             },
             turist:function(val,oldVal){
@@ -196,7 +198,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
         methods:{
         	//点击右上角图标跳转
         	jumpPage(data){
-        		this.$store.commit('hotMap/TRANSFORMA',{type:2,chain:data})
+        		this.$store.commit('hotMap/TRANSFORMA',{type:1,chain:data})
         	},
             addLineVideo(){
                 var canvas = document.getElementsByClassName('lineVideo')[0];
@@ -448,35 +450,102 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 map.addControl(ctrl);
                 ctrl.setAnchor(BMAP_ANCHOR_BOTTOM_RIGHT);  
             },
+            getResponseHot(map){
+            	let _self = this
+            	let paramsObj = {
+            		area:"全部",
+            		name:"全部"
+            	}
+            		if(!_self.reData.length){
+            			 _self.$axios.get(API_URL+'/qy/api/v2/command/selectCommandScenicWarning',{params:paramsObj}).then(r => {
+		                if(r.data.code ==="200"||r.data.code ===200){
+		                   _self.reData = r.data.data
+		                    _self.transformData(map)
+		                  }
+		                }) 
+            		}else{
+            			_self.transformData(map)
+            		}
+            },
+            transformData(map){
+            	//根据景区当前客流来模拟热力图效果
+            				let _self = this
+							for(let v of this.reData){
+								if(v.percent===0){
+									for(let n of coords){
+		                    			if(v.name===n.name){
+		                    				n.lat = 0
+		                    				n.lng = 0
+		                    			}
+		                    		}
+								}else if(v.percent>0&&v.percent<=1){
+									for(let n of coords){
+		                    			if(v.name===n.name){
+		                    				if(n.count>1){
+		                    					n.lat = 0
+		                    					n.lng = 0
+		                    				}
+		                    			}
+		                    		}
+								}else if(v.percent>1&&v.percent<=30){
+									for(let n of coords){
+		                    			if(v.name===n.name){
+		                    				if(n.count>=3){
+		                    					n.lat = 0
+		                    					n.lng = 0
+		                    				}
+		                    			}
+		                    		}
+								}else if(v.percent>30&&v.percent>=50){
+									for(let n of coords){
+		                    			if(v.name===n.name){
+		                    				if(n.count>=4){
+		                    					n.lat = 0
+		                    					n.lng = 0
+		                    				}
+		                    			}
+		                    		}
+								}else if(v.percent>50&&v.percent<70){
+									for(let n of coords){
+		                    			if(v.name===n.name){
+		                    				n.count+=2
+		                    			}
+		                    		}
+								}else if(v.percent>=70&&v.percent<80){
+									for(let n of coords){
+		                    			if(v.name===n.name){
+		                    				n.count+=4
+		                    			}
+		                    		}
+								}else if(v.percent>=80){
+									for(let n of coords){
+		                    			if(v.name===n.name){
+		                    				n.count+=5
+		                    			}
+		                    		}
+								}
+		                   }
+							
+							for(let n of traffic_points){
+                    			if(n.isHigher){
+                    				for(let v of coords){
+		                    			if(v.name===n.label){
+		                    				v.lat = 0
+		                    				v.lng = 0
+		                    			}
+		                    		}
+                    			}
+                    		}
+							
+							_self.points = coords
+		                    _self.addHot(map)
+            },
+            
+            
             addHot(map){//热力图
             		 let _self = this
-                     //var points = this.arrHotPoint;
-                     var points = coords;
-                       // 向地图添加标注
-                    	let paramsObj = {
-                    		area:"全部",
-                    		name:"全部"
-                    	}
-                    	//根据景区当前客流来模拟热力图效果
-                    	function getResponse(paramsObj){
-				            _self.$axios.get(API_URL+'/qy/api/v2/command/selectCommandScenicWarning',{params:paramsObj}).then(r => {
-				                if(r.data.code ==="200"||r.data.code ===200){
-				                   let reData = r.data.data
-				                   reData.forEach( (v,i) => {
-				                   	if(v.currentNum===0){
-				                   		points.forEach( (item,index) => {
-				                   			if(item.name===v.name){
-					                   		}
-				                   		})
-				                   	}
-				                   })
-				                }
-				            })
-				        }
+                       var points = this.points;
                     	
-                    	//getResponse(paramsObj)
-                    	
-                    		
                       map.enableScrollWheelZoom(); // 允许滚轮缩放
                    
                     if(!isSupportCanvas()){
@@ -496,14 +565,13 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                         其中 key 表示插值的位置, 0~1. 
                             value 为颜色值. 
                      */
-                    let heatmapOverlay = new BMapLib.HeatmapOverlay({
-                    	"radius":this.radis,
-//                  	"opacity":0.8,
-//                  	"gradient":{
-//                  		.2:'rgba(0, 220 , 0 ,0.01)',
-//                          .5:'rgba(220, 220, 0, 0.1)',
-//                          0.8:'rgba(255, 0, 0, 1)'
-//                  	}
+                    let heatmapOverlay = new BMapLib.HeatmapOverlay({ 
+                    		"radius":this.radis,
+//	                    	"gradient":{
+//	                    		.5:'rgba(0, 0 , 255 ,0.001)',
+//	                            .66:'rgba(163, 253, 42 ,1)',
+//	                            .88:'rgba(254, 92, 3 ,1)'
+//	                    	}
                     	});
                     
                     map.addOverlay(heatmapOverlay);
@@ -600,7 +668,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
 	                    "白庙渔村":{lng:113.146036,lat:23.711442,zoom:14},
 	                    "飞来寺":{lng:113.172823,lat:23.708263,zoom:14},
 	                    "美林湖及大家元摩天轮片区":{lng:113.043339,lat:23.50327,zoom:14},
-	                    "太和古洞风景区":{lng:112.999783,lat:23.745745,zoom:14},
+	                    "太和古洞旅游区":{lng:112.999783,lat:23.745745,zoom:14},
 	                    "笔架山度假区":{lng:113.042358,lat:23.776528,zoom:14},
 	                    "安庆村":{lng:112.823456,lat:23.616738,zoom:14},
 	                    "清泉湾生态旅游度假区":{lng:112.928301,lat:23.764869,zoom:14},
@@ -635,14 +703,13 @@ import optionProps from '@/common/js/mixin/optionProps.js'
 	                    "鱼水旅游风景区":{lng:112.690161,lat:24.369281,zoom:14},
 	                    "龙凤温泉":{lng:112.537964,lat:24.596431,zoom:14},
 	                    
-	                    
 	                    "湟川三峡":{lng:112.459065,lat:24.7076,zoom:14},
 	                    "古龙峡原生态旅游度假区":{lng:112.968498,lat:23.777931,zoom:14},
 	                    "玄真古洞生态旅游区":{lng:113.02273,lat:23.751823,zoom:14},
 	                    "清新温矿泉旅游度假区":{lng:112.801821,lat:23.612527,zoom:14},
 	                    "黄腾峡生态旅游区":{lng:113.099852,lat:23.770316,zoom:14},
 	                    "故乡里旅游度假区":{lng:113.070196,lat:23.490003,zoom:14},
-	                    "太和古洞旅游区":{lng:112.999031,lat:23.747737,zoom:14},
+	                    "飞来峡水利枢纽风景区":{lng:113.264348,lat:23.812998,zoom:14},
 	                    "德盈新银盏温泉景区":{lng:113.137559,lat:23.557859,zoom:14},
 	                    "狮子湖国际休闲旅游度假区":{lng:113.024277,lat:23.633192,zoom:14},
 	                    "聚龙湾天然温泉度假村":{lng:113.491484,lat:23.751476,zoom:14},
@@ -671,63 +738,54 @@ import optionProps from '@/common/js/mixin/optionProps.js'
 					}
 					let zoom = map.getZoom()
 					switch(zoom){
-						case 15:
-						//_self.c=200;
-						_self.maxv = r(26,42);
-						_self.radis = r(36,48);
-						break;
+//						case 15:
+//						_self.maxv = r(26,26);
+//						_self.radis = r(36,36);
+//						break;
 						case 14:
-						//_self.c=200;
-						_self.maxv = r(26,36);
-						_self.radis = r(26,36);
+						_self.maxv = 26;
+						_self.radis = 30;
 						break;
 						case 13:
-						//_self.c=150;
-						_self.maxv = r(26,36);
-						_self.radis = r(26,36);
-						break;
-						case 12:
-						//_self.c=100;
-						_self.maxv = 50;
-						_self.radis = 36;
-						break;
-						case 11:
-//						_self.c=50;
-						_self.maxv = 50;
-						_self.radis = 36;
-						break;
-						case 10:
-//						_self.c=30;
-						_self.maxv = 500;
+						_self.maxv = 16;
 						_self.radis = 20;
 						break;
-						case 9:
-						//_self.c=100;
-						_self.maxv = 100000;
-						break;
-						case 8:
-						//_self.c=100;
-						_self.maxv = 100000;
-						break;
-						case 7:
-						//_self.c=100;
-						_self.maxv = 100000;
-						break;
-						case 6:
-						//_self.c=100;
-						_self.maxv = 100000;
-						break;
+//						case 12:
+//						_self.maxv = 50;
+//						_self.radis = 36;
+//						break;
+//						case 11:
+//						_self.maxv = 50;
+//						_self.radis = 36;
+//						break;
+//						case 10:
+//						_self.maxv = 500;
+//						_self.radis = 20;
+//						break;
+//						case 9:
+//						_self.maxv = 100000;
+//						break;
+//						case 8:
+//						_self.maxv = 100000;
+//						break;
+//						case 7:
+//						_self.maxv = 100000;
+//						break;
+//						case 6:
+//						_self.maxv = 100000;
+//						break;
 					}
-					if(zoom<=11){
-						map.setZoom(11);
+					if(zoom<=13){
+						map.setZoom(13);
 					}
-					if(zoom>=15){
-						map.setZoom(15);
+					if(zoom>=14){
+						map.setZoom(14);
 					}
+					
 					map.clearOverlays();
 					_self.addIcon(map);
-					_self.addHot(map);
-					_self.initBoundary(map);
+					_self.getResponseHot(map);
+//					_self.initBoundary(map);
 				})
                 // 初始化地图,设置中心点坐标和地图级别
                 map.centerAndZoom(new BMap.Point(113.062468,23.695613),12);
@@ -738,7 +796,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 map.addControl(new BMap.MapTypeControl());  
                 // 设置地图显示的城市 此项是必须设置的
                 map.setCurrentCity("清远");   
-               //_self.addScriptForStyle(map); 
+                 _self.addScriptForStyle(map); 
                 // 开启鼠标滚轮缩放      
                 map.enableScrollWheelZoom(true);
                 // 设置定时器，对地图进行自动移动
@@ -750,14 +808,14 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 *************************************************/
                
                if(!lenObj[val]){
-               	//alert(21212)
                	return
                }
                 _self.moveTo(map,lenObj[val  ===  undefined ?"全部": val].lng,lenObj[val  ===  undefined ?"全部": val].lat,lenObj[val  ===  undefined ?"全部": val].zoom,val,lenObj);
                 var pointGZ = new BMap.Point(119.923671,29.514494);
                 var pointHK = new BMap.Point(110.35,20.02);
                 
-                _self.addHot(map);
+                //_self.addHot(map);
+                _self.getResponseHot(map);
                 _self.addControl(map);
                  _self.addIcon(map);
                 _self.addLocaPosition(map);
@@ -769,22 +827,20 @@ import optionProps from '@/common/js/mixin/optionProps.js'
 //              area:"全部",
 //          }
 //          this.$axios.get(API_URL+'/qy/api/v2/command/getCommandScenicHot',{params:paramsObj}).then(r => {
-//              if(r.data.code ===200 && r.data.code === "200"){
+//              if(r.data.code ===200 || r.data.code === "200"){
 //              	console.log(r.data.data)
-                    //this.arrHotPoint = r.data.data
+//                  this.arrHotPoint = r.data.data
                     this.addScript("全部",true);
 //              }
 //          })
         }
         },
-        created(){
-        	this.place = this.updatePlace.place;
-        	this.turist = this.updatePlace.turist;
-            this.getResponse("全部");
-        },
         mounted() {
-        },
-        update(){
+        	this.$nextTick( () => {
+        		this.place = this.updatePlace.place;
+        		this.turist = this.updatePlace.turist;
+            	this.getResponse("全部");
+        	})
         }
     }
 </script>

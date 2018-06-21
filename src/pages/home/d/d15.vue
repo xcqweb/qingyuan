@@ -384,7 +384,7 @@
     		
     		//关联景区客提升度
     		Bus.$on('isRise',(data) => {
-    			this.comType = 3
+    			this.comType = 4
     			this.num = 2;
     			
     			var paramsObj = {}

@@ -37,12 +37,12 @@
         <div class="b6_top">
             <font v-if='mowMonth!==1'>{{nowYear}}年1-{{mowMonth}}月份累计清远市{{currentArea}}游客量(人次)</font>
             <font v-else>{{nowYear}}年{{mowMonth}}月份累计接待游客(人次)</font>
-            <span>{{dataMsg.num}}</span>
+            <span>{{dataMsgCoy.toLocaleString()}}</span>
         </div>
         <div class="b6_bottom">
         	<font v-if='nowDay!==1'>{{mowMonth}}月1日-{{nowDay}}日累计清远市{{currentArea}}游客量(人次)</font>
         	<font v-else>{{mowMonth}}月{{nowDay}}日累计接待游客(人次)</font>
-            <span>{{dataMsg.yesterdayNum}}</span>
+            <span>{{dataMsgCom.toLocaleString()}}</span>
             
         </div>
     </div>
@@ -73,14 +73,20 @@ export default {
             mowMonth:mowMonth,
             nowDay:nowDay,
             dataMsg:{
-                yesterdayNum:'0',
-                num:'0',
+                yesterdayNum:0,
+                num:0,
             }
         }
     },
     computed: { 
 		currentArea(){
 			return this.updatePlace.place==='全部'?'':this.updatePlace.place
+		},
+		dataMsgCom(){
+			return this.dataMsg.yesterdayNum*2
+		},
+		dataMsgCoy(){
+			return this.dataMsg.num*2
 		}
     },
     methods: {
@@ -89,8 +95,8 @@ export default {
             this.$axios.get(API_URL+'/qy/api/v2/view/getAccumulativeData',{params:paramsObj}).then(r => {
                 if(r.status ===200){
                 	//console.log(r)
-                    this.dataMsg.num =r.data.data.yearSum.toLocaleString();
-                    this.dataMsg.yesterdayNum =r.data.data.monthSum.toLocaleString()
+                    this.dataMsg.num =r.data.data.yearSum
+                    this.dataMsg.yesterdayNum =r.data.data.monthSum
                 }
             })
         }

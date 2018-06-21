@@ -28,12 +28,11 @@ const mutations = {
 			state.chain = val.chain
 		}
 		state.isTypes = val.type
-		//console.log(val.chain)
 	},
 	
 	[SHOWTOAST] (state,val){
 		state.toast = val
-	}
+	},
 }
 
 export default{

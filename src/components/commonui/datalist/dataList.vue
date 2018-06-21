@@ -12,7 +12,7 @@
 
 <script>
 	import List from '@/components/commonui/datalist/list.vue'
-	
+	import Bus from '@/common/js/bus'
 	export default{
 		data(){
 			return{
@@ -61,6 +61,9 @@
 			}
 		},
 		mounted(){
+			Bus.$on('clearKey',() => {
+				this.txt = ''
+			})
 		},
 		components:{
 			List
