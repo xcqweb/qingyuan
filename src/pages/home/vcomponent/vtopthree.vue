@@ -17,6 +17,7 @@
 import Vue from 'vue'
 import optionProps from '@/common/js/mixin/optionProps.js'
 import Bus from '@/common/js/bus'
+import _ from 'lodash'
 export default {
     name: 'a3',
     mixins:[optionProps],
@@ -141,7 +142,7 @@ export default {
   computed: { 
   },
   methods: {
-      getResponse(paramsObj){
+      getResponse:_.debounce(function(paramsObj){
             this.$axios.get(API_URL+'/qy/api/command/getCommandComments',{params:paramsObj}).then(r => {
 
                 if(r.data.code ==="200"||r.data.code ===200){
@@ -157,7 +158,7 @@ export default {
                    
                 }
             })
-        },
+        },300),
         //点击好评差评
         commentType(data){
         	Bus.$emit('comType',data+1)

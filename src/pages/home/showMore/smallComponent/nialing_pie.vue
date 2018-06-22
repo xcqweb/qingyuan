@@ -209,7 +209,7 @@ export default {
         var paramsObj = {
                 area:"全部",
                 name:"全部",
-                type:"day",
+                type:"year",
             }
        this.getResponse(paramsObj);
     },

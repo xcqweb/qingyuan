@@ -104,6 +104,7 @@ export default {
         doubleChoseVal(val){
         	//console.log(val)
         	this.updatePlace = val
+        	this.hotelChose = '全部'
         },
         //获取选择时间
         choseDateVal(val){

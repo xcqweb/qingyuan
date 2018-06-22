@@ -15,14 +15,27 @@ export default {
     return{
     	  beginStr:'',
         endStr:'',
+        type:2,
     		series:[
     		 {
 		      "value": 200,
-		      name: '高中及以下'
+		      name: '小学'
+		    },
+		    {
+		      "value": 200,
+		      name: '初中'
+		    },
+		    {
+		      "value": 200,
+		      name: '高中'
+		    },
+		    {
+		      "value": 200,
+		      name: '中专'
 		    },
 		    {
 		      "value": 600,
-		      name: '本科/专科'
+		      name: '本科'
 		    },
 		     {
 		      "value": 160,
@@ -34,10 +47,13 @@ export default {
 		    },
 		  ],
 		  icondata:[
-			{name:'博士',icon:'roundRect'},
-			{name:'硕士',icon:'roundRect'},
-			{name:'本科/专科',icon:'roundRect'},
-			{name:'高中及以下',icon:'roundRect'},
+			{name:'博士',icon:'roundRect',textStyle:{color:'#E39A50'}},
+			{name:'硕士',icon:'roundRect',textStyle:{color:'#FFCD38'}},
+			{name:'本科',icon:'roundRect',textStyle:{color:'#ff50c3'}},
+			{name:'中专',icon:'roundRect',textStyle:{color:'#FFCD38'}},
+			{name:'高中',icon:'roundRect',textStyle:{color:'#48ff00'}},
+			{name:'初中',icon:'roundRect',textStyle:{color:'#E39A50'}},
+			{name:'小学',icon:'roundRect',textStyle:{color:'#B8E986'}},
     	],
     }
     },
@@ -97,19 +113,18 @@ export default {
 						let reData = r.data.data
 						_self.series = []
 		                if(r.data.code ==="200"||r.data.code ===200){
-		                	var num=0
-		                   reData.forEach( (item,index) => {
-		                   	
-		                   	if(index<4){
-		                   		num+=item.percent
-		                   	}else if(index===4){
-		                   		_self.series.push({name:'本科/专科',value:item.percent*100})
-		                   	}else{
-		                   		_self.series.push({name:item.description,value:item.percent*100})
-		                   	}
-		                   		
-		                   })
-		                   _self.series.push({name:"高中及以下",value:num*100})
+		                	let num=0
+		                  for(let item of reData){
+		                   	num+=item.percent
+		                   }
+		                   
+		                   for(let item of reData){
+		                   		if(item.description==='本科'){
+			                   		_self.series.push({name:item.description,value:(100-num+item.percent)})
+			                   	}else{
+			                   		_self.series.push({name:item.description,value:item.percent})
+			                   	}
+		                   }
 		                   _self.redom('c13')
 		                }
 		            })
@@ -128,8 +143,8 @@ export default {
                 top:'40%',
                 right:'5%',
                 width:'26',
-                height:'80%',
-                itemGap:28,
+                height:'60%',
+                itemGap:20,
                 itemWidth:12,
                 itemHeight:10,
                 textStyle:{
@@ -138,7 +153,6 @@ export default {
                     lineHeight:36
                     
                 },
-            		//width:'50%',
             		data:this.icondata,
             	//data:['亲子','金融','汽车服务','休闲娱乐','化妆品','珠宝手表','数码','母婴用品','生活服务','奢侈品牌','大众品牌','服饰鞋帽'],
             	 formatter:(name) => {
@@ -201,6 +215,7 @@ export default {
     	let paramsObj = {
     		area:'全部',
     		name:'全部',
+    		type:["day","month","year"][this.type]
     	}
     	this.getResponse(paramsObj)
     },

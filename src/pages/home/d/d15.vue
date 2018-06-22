@@ -200,7 +200,7 @@
 			
 		},
 		methods:{
-				getResponse(paramsObj,flag){
+				getResponse:_.debounce(function(paramsObj,flag){
 					if(flag){
 						this.active =false
 			        	setTimeout( () => {
@@ -224,9 +224,9 @@
 				                   })
 				                }
 				            })
-		       },
+		       },300),
 		       
-		       getResponseRise(paramsObj){
+		       getResponseRise:_.debounce(function(paramsObj){
 	       			this.active =false
 		        	setTimeout( () => {
 		        		this.active =true
@@ -252,7 +252,7 @@
 				                   })
 				                }
 				            })
-		       },
+		       },300),
 		       
 		       
 		       //加载更多(已用自定义指令loadMore代替)

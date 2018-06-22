@@ -1,6 +1,6 @@
 <template>
-	<div class="datalist">
-		<input type="text" @focus="showList" @blur="hideList" v-model="txt" placeholder="名称关键词搜索" :title="txt"/>
+	<div class="datalist" v-clickOutside='hide'>
+		<input type="text" @focus="showList" v-model="txt" placeholder="名称关键词搜索" :title="txt"/>
 		<span class="search" @click.self="clear($event)" v-show="showStatus">x</span>
 		<List
 			:list='chooseListData'
@@ -27,14 +27,8 @@
 			showList(){
 				this.showStatus = true
 			},
-			hideList(){
-				if(!this.txt){
-					setTimeout( () => {
-						this.showStatus = false
-					},300)
-					
-				}
-				
+			hide(){
+				this.showStatus = false
 			},
 			getChooseName(val){
 				this.$emit('getName',val)

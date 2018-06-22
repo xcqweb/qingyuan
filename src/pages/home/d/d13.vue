@@ -27,6 +27,7 @@
 	import echarts from 'echarts'
 	import optionProps from '@/common/js/mixin/optionProps.js'
 	import Bus from '@/common/js/bus'
+	import _ from 'lodash'
 	export default {
 		mixins:[optionProps],
 		data(){
@@ -131,7 +132,6 @@
 	               }
 				this.getResponse(paramsObj);
 	    	},
-	    		
 	    	//酒店景区选择
 			slectType:function(val){
 				if(val===1){this.hotel='全部'}
@@ -156,7 +156,7 @@
                 	Bus.$emit('isRise',params.name)
             	});
             },
-            getResponse(paramsObj){
+            getResponse:_.debounce(function(paramsObj){
             let _self = this;
               this.$axios.get(API_URL+'/qy/api/command/selectCommandScenicRaiseUp',{params:paramsObj}).then(r => {
             	let reData = r.data.data
@@ -187,7 +187,7 @@
                     
                 }
             })
-        }
+        },300)
         },
         created(){
         	var paramsObj = {

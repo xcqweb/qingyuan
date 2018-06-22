@@ -106,12 +106,6 @@ display:none !important;
 <template>
     <div class="d1">
         <div :id="idName" class="XSDFXPaged"></div>
-        <!--<canvas class="lineVideo" v-show='videoToast'></canvas>-->
-        <!--<div class="toast-video" v-if='videoToast'>
-            <h2>{{videoName}}</h2>
-                您的浏览器不支持 video 标签。
-            </video>
-        </div>-->
         <div class="scenic">{{scenics}}</div>
         <div class="control" style='width:660px;height:150px;background:rgba(21,51,135,0.56); border-radius:0 10px 0 20px; margin:-28px -6px 0 0'>
 		<ul style='display:flex; justify-content:center; align-items:center; color:#fff; font-size:20px; width:566px; margin:0px 0 0 38px; padding-top:30px; font-weight: bold;'>
@@ -167,8 +161,6 @@ import optionProps from '@/common/js/mixin/optionProps.js'
             return {
             	idName:'d1ss',
             	scenics:'',
-                videoName:'摄像头1',
-                videoToast:false,
                 reData:[],
                 points:[],
                 place:'全部',
@@ -176,8 +168,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 isUpdate:true,
                 radis:36,
                 maxv:30,
-                coun:50,
-                c:0
+                cords:[]
             }
         },
         watch:{
@@ -282,9 +273,6 @@ import optionProps from '@/common/js/mixin/optionProps.js'
 	                     //添加新图标的监听事件
 		                marker.addEventListener('click',function(e){
 		                    var p = e.target.getPosition();//获取位置
-		                    _self.radis = 100
-		                    _self.maxv = 8
-		                    _self.coun = 150
 		                    _self.moveTo(map,p.lng,p.lat,14)
 		                    
 		                })
@@ -467,19 +455,42 @@ import optionProps from '@/common/js/mixin/optionProps.js'
             			_self.transformData(map)
             		}
             },
+            
+            switchCount(n,num){
+            	switch(n.count){
+            		case 1:
+            		n.count = 1+num;
+            		break;
+            		case 2:
+            		n.count = 2+num;
+            		break;
+            		case 3:
+            		n.count = 3+num;
+            		break;
+            		case 4:
+            		n.count = 4+num;
+            		break;
+            		case 5:
+            		n.count = 5+num;
+            		break;
+            	}
+            	
+            },
+            
             transformData(map){
             	//根据景区当前客流来模拟热力图效果
+            				this.cords = coords 
             				let _self = this
 							for(let v of this.reData){
 								if(v.percent===0){
-									for(let n of coords){
+									for(let n of _self.cords){
 		                    			if(v.name===n.name){
 		                    				n.lat = 0
 		                    				n.lng = 0
 		                    			}
 		                    		}
 								}else if(v.percent>0&&v.percent<=1){
-									for(let n of coords){
+									for(let n of _self.cords){
 		                    			if(v.name===n.name){
 		                    				if(n.count>1){
 		                    					n.lat = 0
@@ -488,56 +499,44 @@ import optionProps from '@/common/js/mixin/optionProps.js'
 		                    			}
 		                    		}
 								}else if(v.percent>1&&v.percent<=30){
-									for(let n of coords){
+									for(let n of _self.cords){
 		                    			if(v.name===n.name){
-		                    				if(n.count>=3){
-		                    					n.lat = 0
-		                    					n.lng = 0
-		                    				}
+		                    				let n1 = (v.percent)*0.1-0.5
+		                    				_self.switchCount(n,n1)
 		                    			}
 		                    		}
-								}else if(v.percent>30&&v.percent>=50){
-									for(let n of coords){
+								}else if(v.percent>30&&v.percent<=50){
+									for(let n of _self.cords){
 		                    			if(v.name===n.name){
-		                    				if(n.count>=4){
-		                    					n.lat = 0
-		                    					n.lng = 0
-		                    				}
+		                    				let n1 = (v.percent)*0.1
+		                    				_self.switchCount(n,n1)
 		                    			}
 		                    		}
 								}else if(v.percent>50&&v.percent<70){
-									for(let n of coords){
+									for(let n of _self.cords){
 		                    			if(v.name===n.name){
-		                    				n.count+=2
+		                    				let n1 = (v.percent)*0.1+1
+		                    				_self.switchCount(n,n1)
 		                    			}
 		                    		}
 								}else if(v.percent>=70&&v.percent<80){
-									for(let n of coords){
+									for(let n of _self.cords){
 		                    			if(v.name===n.name){
-		                    				n.count+=4
+		                    				let n1 = (v.percent)*0.1+5
+		                    				_self.switchCount(n,n1)
 		                    			}
 		                    		}
 								}else if(v.percent>=80){
-									for(let n of coords){
+									for(let n of _self.cords){
 		                    			if(v.name===n.name){
-		                    				n.count+=5
+		                    				let n1 = (v.percent)*0.1+14
+		                    				_self.switchCount(n,n1)
 		                    			}
 		                    		}
 								}
 		                   }
 							
-							for(let n of traffic_points){
-                    			if(n.isHigher){
-                    				for(let v of coords){
-		                    			if(v.name===n.label){
-		                    				v.lat = 0
-		                    				v.lng = 0
-		                    			}
-		                    		}
-                    			}
-                    		}
-							
-							_self.points = coords
+							_self.points = _self.cords
 		                    _self.addHot(map)
             },
             
@@ -661,7 +660,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 	}; 
                 }else{
                 	lenObj = {
-	                    "全部":{lng:113.042358,lat:23.776528,zoom:13},
+	                    "全部":{lng:113.042358,lat:23.776528,zoom:14},
 	                    "飞霞风景名胜区":{lng:113.188758,lat:23.724641,zoom:14},
 	                    "牛鱼嘴原始生态风景区":{lng:113.153471,lat:23.774872,zoom:14},
 	                    "天子山瀑布风景区":{lng:113.146295,lat:23.849325,zoom:14},
@@ -729,51 +728,17 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 //绘制牵引线
                 //_self.addLineVideo();
                 var map = new BMap.Map(_self.idName,{enableMapClick:true});
-                map.addEventListener("mousedown",function(e){
-                    _self.videoToast=false;
-                },false)
 				map.addEventListener('zoomend',function(){
-					function r(n1,n2){
-						return Math.floor(Math.random()*(n2-n1)+n1)
-					}
 					let zoom = map.getZoom()
 					switch(zoom){
-//						case 15:
-//						_self.maxv = r(26,26);
-//						_self.radis = r(36,36);
-//						break;
 						case 14:
-						_self.maxv = 26;
-						_self.radis = 30;
+						_self.maxv = 20;
+						_self.radis = 32;
 						break;
 						case 13:
-						_self.maxv = 16;
-						_self.radis = 20;
+						_self.maxv = 26;
+						_self.radis = 26;
 						break;
-//						case 12:
-//						_self.maxv = 50;
-//						_self.radis = 36;
-//						break;
-//						case 11:
-//						_self.maxv = 50;
-//						_self.radis = 36;
-//						break;
-//						case 10:
-//						_self.maxv = 500;
-//						_self.radis = 20;
-//						break;
-//						case 9:
-//						_self.maxv = 100000;
-//						break;
-//						case 8:
-//						_self.maxv = 100000;
-//						break;
-//						case 7:
-//						_self.maxv = 100000;
-//						break;
-//						case 6:
-//						_self.maxv = 100000;
-//						break;
 					}
 					if(zoom<=13){
 						map.setZoom(13);

@@ -32,6 +32,7 @@
   import echarts_resize from '@/common/js/echarts_resize.js'
   import echarts from 'echarts'
   import optionProps from '@/common/js/mixin/optionProps.js'
+  import _ from 'lodash'
 	let img1 = 'image://static/img/rad1.png'
 	let img2 = 'image://static/img/rad2.png'
     export default {
@@ -248,7 +249,7 @@
               this.chart.setOption(this.option);
             },
             //请求数据
-				  	getResponse(paramsObj){
+				  	getResponse:_.debounce(function(paramsObj){
 				            this.$axios.get(API_URL+'/qy/api/v2/command/getCommentEachDimension',{params:paramsObj}).then(r => {
 				            	//console.log(r.data.data)
 				                  if(!r){
@@ -275,7 +276,7 @@
 				                    	this.redom("latitudeAnalyse");
 				                }
 				            })
-				       },
+				       },300),
             
         },
         created(){

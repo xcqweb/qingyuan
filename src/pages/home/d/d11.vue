@@ -21,6 +21,7 @@ import echarts_resize from '../../../common/js/echarts_resize.js'
 import optionProps from '@/common/js/mixin/optionProps.js'
 import echarts from 'echarts'
 import Bus from '@/common/js/bus'
+import _ from 'lodash'
 require('echarts-wordcloud');
   export default {
     name:'d11',
@@ -183,7 +184,7 @@ require('echarts-wordcloud');
 				Bus.$emit('keyWords',params.name)
             });
         },
-        getResponse(paramsObj){
+        getResponse:_.debounce(function(paramsObj){
             this.$axios.get(API_URL+'/qy/api/v2/command/getKeWords',{params:paramsObj}).then(r => {
 				//console.log(r)
                 if(r.data.code ==='200'||r.data.code ===200){
@@ -192,7 +193,7 @@ require('echarts-wordcloud');
                 }
                 
             })
-        }
+        },300)
     },
     created () {
         var paramsObj = {

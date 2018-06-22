@@ -13,9 +13,10 @@ export default {
     mixins: [optionProps],
     data(){
     return{
+    		type:2,
     	  beginStr:'',
         endStr:'',
-    		dataY: [254, 3254, 1654, 2454, 4757, 2011, 1211,545,4800,1243,2130,1242,1542,1245,1485],
+    		dataY: [0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0],
     		dataX:['工程师', '策划', '涉文案', '设计师', '会计', '教师', '家政','店长','收银','公关','产品经理','律师','法官','投资','供应链'],
     }
     },
@@ -160,6 +161,7 @@ export default {
     	let paramsObj = {
     		area:'全部',
     		name:'全部',
+    		type:["day","month","year"][this.type]
     	}
     	this.getResponse(paramsObj)
     },

@@ -281,7 +281,7 @@ export default {
         var paramsObj = {
                 area:this.updatePlace.place,
                 name:this.updatePlace.turist,
-                type:"day"
+                type:"year"
             }
         this.getResponse(paramsObj);
     },
