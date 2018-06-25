@@ -56,9 +56,9 @@
 				isEndDate:true,
            		vDateStatus:true,
            		dateChoseList:[
-	                {context:'日',class:''},
+	                {context:'日',class:'chose'},
 	                {context:'月',class:''},
-	                {context:'年',class:'chose'},
+	                {context:'年',class:''},
 	            ],
 				qyselectlist:{
                     width:'76.9%',

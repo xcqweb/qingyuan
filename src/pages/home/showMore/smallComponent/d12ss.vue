@@ -448,7 +448,7 @@ export default {
     	var paramsObj = {
                 area:"全部",
                 name:"全部",
-                type:"year",
+                type:"day",
             }
         this.getResponse(paramsObj);
     },

@@ -141,10 +141,7 @@
 		props:['isDate'],
 		methods:{
 			hideDate(data){
-				console.log(this.dataType,this.timeDate)
-				
-				
-				
+				//console.log(this.dataType,this.timeDate)
 				if(this.doubleclick&&this.timeDate.begin.length){
 					this.vDateStatus = data
 					this.dateList = {

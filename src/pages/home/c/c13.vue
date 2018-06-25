@@ -15,7 +15,7 @@ export default {
     return{
     	  beginStr:'',
         endStr:'',
-        type:2,
+        type:0,
     		series:[
     		 {
 		      "value": 200,
@@ -47,13 +47,13 @@ export default {
 		    },
 		  ],
 		  icondata:[
-			{name:'博士',icon:'roundRect',textStyle:{color:'#E39A50'}},
-			{name:'硕士',icon:'roundRect',textStyle:{color:'#FFCD38'}},
-			{name:'本科',icon:'roundRect',textStyle:{color:'#ff50c3'}},
-			{name:'中专',icon:'roundRect',textStyle:{color:'#FFCD38'}},
-			{name:'高中',icon:'roundRect',textStyle:{color:'#48ff00'}},
-			{name:'初中',icon:'roundRect',textStyle:{color:'#E39A50'}},
-			{name:'小学',icon:'roundRect',textStyle:{color:'#B8E986'}},
+			{name:'博士',icon:'roundRect',textStyle:{color:'#85FFAA'}},
+			{name:'硕士',icon:'roundRect',textStyle:{color:'#FFCD15'}},
+			{name:'本科',icon:'roundRect',textStyle:{color:'#F4817C'}},
+			{name:'中专',icon:'roundRect',textStyle:{color:'#F43CC1'}},
+			{name:'高中',icon:'roundRect',textStyle:{color:'#7F6FF3'}},
+			{name:'初中',icon:'roundRect',textStyle:{color:'#3C90F4'}},
+			{name:'小学',icon:'roundRect',textStyle:{color:'#5BDBFB'}},
     	],
     }
     },
@@ -135,7 +135,7 @@ export default {
         	}
             this.chart = echarts.init(document.getElementById(id));
             let option = {
-            color:['#B8E986','#E39A50', '#48ff00', '#FFCD38', '#ff50c3','#FFCD38',  '#E39A50', '#75CF65','#B8E986', '#86E9E8', '#58E5E1','#4BCEDD'],
+            color:['#5BDBFB', '#3C90F4' ,'#7F6FF3','#F43CC1','#F4817C','#FFCD15','#85FFAA'],
             calculable : true,
             legend:{
             	  show:true,

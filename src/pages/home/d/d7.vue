@@ -100,6 +100,7 @@ export default {
     return{
     	beginStr:'',
         endStr:'',
+        type:0,
         items:[{
                 name:'1000元以下',
                 color:'#368df7'
@@ -347,7 +348,7 @@ export default {
     	var paramsObj = {
                 area:"全部",
                 name:"全部",
-                type:"year",
+                type:"day",
             }
        this.getResponse(paramsObj);
    },

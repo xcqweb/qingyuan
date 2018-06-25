@@ -111,7 +111,7 @@ export default {
     data() {
       return {
       	idName:'a1ss',
-      	type:2,
+      	type:0,
       	isDate:false,
       	barData:[],
         scenics:'',

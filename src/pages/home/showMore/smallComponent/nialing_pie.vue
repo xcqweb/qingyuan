@@ -36,7 +36,7 @@ export default {
                 area:val.place,
                 name:val.turist,
                 beginTime:this.beginStr,
-	              endTime:this.endStr
+	            endTime:this.endStr
             }
     		}else{
     			paramsObj = {
@@ -89,7 +89,10 @@ export default {
           tooltip:{
           	show:true,
           	trigger:'item',
-          	formatter:'{b}  {c}%'
+          	formatter:function(params){
+          		let text = params.data.name+"<br>"+params.percent.toFixed(0)+"%";
+          		return text
+          	}
           },
           legend:{
                 show:true,
@@ -146,7 +149,7 @@ export default {
                             position: 'inner',
                             fontSize: 16,
                             formatter: function(params){
-                                return Math.round(params.percent) === 0 ? '' : Math.round(params.percent).toFixed(1)+"%"  ;
+                                return Math.round(params.percent) === 0 ? '' : Math.round(params.percent).toFixed(0)+"%"  ;
                             },
                         },
                         emphasis:{
@@ -209,7 +212,7 @@ export default {
         var paramsObj = {
                 area:"全部",
                 name:"全部",
-                type:"year",
+                type:"day",
             }
        this.getResponse(paramsObj);
     },

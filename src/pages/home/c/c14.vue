@@ -13,7 +13,7 @@ export default {
     mixins: [optionProps],
     data(){
     return{
-    		type:2,
+    		type:0,
     	  beginStr:'',
         endStr:'',
     		dataY: [0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0],

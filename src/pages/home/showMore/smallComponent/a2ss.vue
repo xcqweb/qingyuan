@@ -62,7 +62,9 @@ export default {
 		    calculable: true,
 		    tooltip: {
 		        trigger: 'item',
-		        formatter: '{a}<br/>{b} : {c}%'
+		        formatter: function(params){
+		        	return params.seriesName+'<br>'+params.data.name+' : '+params.data.value+'%'
+		        }
 		    },
 		    calculable: true,
 		    legend: {
@@ -99,7 +101,9 @@ export default {
 		            normal: {
 		                show: true,
 		                fontSize:'75%',
-		                formatter: '停留{b} : {c}%'
+		                formatter: function(params){
+						        	return params.data.name+' : '+params.data.value+'%'
+						        }
 		            },
 		            emphasis: {
 		                show: true

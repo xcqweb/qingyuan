@@ -85,12 +85,23 @@
 	    	updatePlace:function(val){
 	    		this.option.series[0].data=[];
 	    		this.hotel=''
-		        	var paramsObj = {
-		                area:val.place,
-		                name:val.turist,
-		                category:this.slectType+1,
-		                type:["day","month","year"][this.type],
-		            }
+		        	var paramsObj = {}
+        		if(this.endStr||this.beginStr){
+	        			paramsObj = {
+			                area:val.place,
+			                name:val.turist,
+			                beginTime:this.beginStr,
+			                endTime:this.endStr,
+			                category:this.slectType+1,
+			            }
+	        		}else{
+	        				paramsObj = {
+				                area:val.place,
+				                name:val.turist,
+				                type:["day","month","year"][this.type],
+				                category:this.slectType+1,
+				            }
+        		}
 		            this.getResponse(paramsObj);
 	    	},
 	    	  update:{
@@ -124,23 +135,45 @@
 		        },
 	    	hotelChose:function(val){
 	    		this.hotel = val
-	    		var paramsObj = {
-					area:this.updatePlace.place,
-	                name:val,
-	                category:this.slectType+1,
-	                type:["day","month","year"][this.type],
-	               }
+	    		var paramsObj = {}
+        		if(this.endStr||this.beginStr){
+	        			paramsObj = {
+			                area:this.updatePlace.place,
+			                name:val,
+			                beginTime:this.beginStr,
+			                endTime:this.endStr,
+			                category:this.slectType+1,
+			            }
+	        		}else{
+	        				paramsObj = {
+				                area:this.updatePlace.place,
+				                name:val,
+				                type:["day","month","year"][this.type],
+				                category:this.slectType+1,
+				            }
+        		}
 				this.getResponse(paramsObj);
 	    	},
 	    	//酒店景区选择
 			slectType:function(val){
 				if(val===1){this.hotel='全部'}
-				var paramsObj = {
-					area:this.updatePlace.place,
-	                name:val===0?this.updatePlace.turist:this.hotel,
-	                category:val+1,
-	                type:["day","month","year"][this.type],
-	               }
+				var paramsObj = {}
+        		if(this.endStr||this.beginStr){
+	        			paramsObj = {
+			                area:this.updatePlace.place,
+			                name:val===0?this.updatePlace.turist:this.hotel,
+			                beginTime:this.beginStr,
+			                endTime:this.endStr,
+			                category:val+1,
+			            }
+	        		}else{
+	        				paramsObj = {
+				                area:this.updatePlace.place,
+				                name:val===0?this.updatePlace.turist:this.hotel,
+				                category:val+1,
+				                type:["day","month","year"][this.type],
+			            	}
+        		}
 				this.getResponse(paramsObj);
 			},
 	    },

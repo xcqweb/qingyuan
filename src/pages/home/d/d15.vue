@@ -390,61 +390,117 @@
     			var paramsObj = {}
 	       		 if(data!=='其他' && this.updatePlace.turist!=='全部'){
 	       		 	this.name = data;
-	       		 	paramsObj = {
-		                area:this.updatePlace.place,
-		                name:data,
-		                pageId:1,
-		                source:'全部',
-		                category:this.slectType+1,
-		                commentType:this.comType,
-		                type:["day","month","year"][this.type],
-		                key:""
-		            }
+	       		 	if(this.endTime||this.beginTime){
+	       		 		paramsObj = {
+			                area:this.updatePlace.place,
+			                name:data,
+			                pageId:1,
+			                source:'全部',
+			                category:this.slectType+1,
+			                commentType:this.comType,
+			                beginTime:this.beginTime,
+                   	    	endTime:this.endTime,
+			                key:""
+			            }
+	       		 	}else{
+	       		 		paramsObj = {
+			                area:this.updatePlace.place,
+			                name:data,
+			                pageId:1,
+			                source:'全部',
+			                category:this.slectType+1,
+			                commentType:this.comType,
+			                type:["day","month","year"][this.type],
+			                key:""
+			            }
+	       		 	}
 	       		 	
 	       		 	this.items = []
 	       			this.getResponseRise(paramsObj);
 	       		 }else if(data==='其他' && this.updatePlace.turist!=='全部'){
 	       		 	this.comType = 1;
-	       		 	paramsObj = {
-		                area:this.updatePlace.place,
-		                name:this.name||this.updatePlace.turist,
-		                pageId:1,
-		                source:'全部',
-		                type:["day","month","year"][this.type],
-		                category:this.slectType+1,
-		                commentType:this.comType,
-		                key:""
-		            }
+	       		 	if(this.endTime||this.beginTime){
+	       		 		paramsObj = {
+			                area:this.updatePlace.place,
+			                name:data,
+			                pageId:1,
+			                source:'全部',
+			                category:this.slectType+1,
+			                commentType:this.comType,
+			                beginTime:this.beginTime,
+                   	    	endTime:this.endTime,
+			                key:""
+			            }
+	       		 	}else{
+	       		 		paramsObj = {
+			                area:this.updatePlace.place,
+			                name:data,
+			                pageId:1,
+			                source:'全部',
+			                category:this.slectType+1,
+			                commentType:this.comType,
+			                type:["day","month","year"][this.type],
+			                key:""
+			            }
+	       		 	}
 	       		 	this.items = []
 	       		 	this.getResponse(paramsObj,true);
 	       		 }else if(data==='其他' && this.updatePlace.turist==='全部'){
 	       		 	this.comType = 4;
 	       		 	this.name = data;
-	       		 	paramsObj = {
-		                area:this.updatePlace.place,
-		                name:data,
-		                pageId:1,
-		                source:'全部',
-		                type:["day","month","year"][this.type],
-		                category:this.slectType+1,
-		                commentType:this.comType,
-		                key:""
-		            }
+	       		 	if(this.endTime||this.beginTime){
+	       		 		paramsObj = {
+			                area:this.updatePlace.place,
+			                name:data,
+			                pageId:1,
+			                source:'全部',
+			                category:this.slectType+1,
+			                commentType:this.comType,
+			                beginTime:this.beginTime,
+                   	    	endTime:this.endTime,
+			                key:""
+			            }
+	       		 	}else{
+	       		 		paramsObj = {
+			                area:this.updatePlace.place,
+			                name:data,
+			                pageId:1,
+			                source:'全部',
+			                category:this.slectType+1,
+			                commentType:this.comType,
+			                type:["day","month","year"][this.type],
+			                key:""
+			            }
+	       		 	}
 	       		 	this.items = []
 	       		 	this.getResponse(paramsObj,true);
 	       		 }else if(data!=='其他' && this.updatePlace.turist==='全部'){
 	       		 	this.comType = 4;
 	       		 	this.name = data;
-	       		 	paramsObj = {
-		                area:this.updatePlace.place,
-		                name:data,
-		                pageId:1,
-		                source:'全部',
-		                type:["day","month","year"][this.type],
-		                category:this.slectType+1,
-		                commentType:this.comType,
-		                key:""
-		            }
+	       		 	if(this.endTime||this.beginTime){
+	       		 		paramsObj = {
+			                area:this.updatePlace.place,
+			                name:data,
+			                pageId:1,
+			                source:'全部',
+			                category:this.slectType+1,
+			                commentType:this.comType,
+			                beginTime:this.beginTime,
+                   	    	endTime:this.endTime,
+			                key:""
+			            }
+	       		 	}else{
+	       		 		paramsObj = {
+			                area:this.updatePlace.place,
+			                name:data,
+			                pageId:1,
+			                source:'全部',
+			                category:this.slectType+1,
+			                commentType:this.comType,
+			                type:["day","month","year"][this.type],
+			                key:""
+			            }
+	       		 	}
 	       		 	this.items = []
 	       		 	this.getResponse(paramsObj,true);
 	       		 }

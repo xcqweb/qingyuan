@@ -238,6 +238,7 @@ export default {
             	}
             	this.option.series[0].data[0].value = this.dataItem.currentNum
             	this.option.series[0].data[1].value = this.dataItem.warnNum-this.dataItem.currentNum
+            	
             	if(p<=50&&p>=0){
             		this.option.color[0]='#80E36F'
             		this.active = 1
