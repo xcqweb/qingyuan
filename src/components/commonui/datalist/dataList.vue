@@ -57,6 +57,7 @@
 		mounted(){
 			Bus.$on('clearKey',() => {
 				this.txt = ''
+				
 			})
 		},
 		components:{

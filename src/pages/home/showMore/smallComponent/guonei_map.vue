@@ -47,7 +47,7 @@ export default {
                 trigger: 'item',
                  formatter:function(params){
                 	if(params.seriesType==="effectScatter"){
-                		let val = params.name+' : '+params.value[2];
+                		let val = params.name+' : '+params.value[2]+'人次';
                 		return val;
                 	}
                 }
@@ -89,7 +89,7 @@ export default {
                 trigger: 'item',
                 formatter:function(params){
                 	if(params.seriesType==="effectScatter"){
-                		let val = params.name+' : '+params.value[2];
+                		let val = params.name+' : '+params.value[2]+'人次';
                 		return val;
                 	}
                 }

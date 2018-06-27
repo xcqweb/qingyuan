@@ -153,6 +153,7 @@ import traffic_points from '@/pages/home/showMore/bigComponent/json/traffic_poin
 import boundarys from '@/pages/home/showMore/smallComponent/boundary.json'
 import coords from '@/pages/home/showMore/smallComponent/reli.json'
 import optionProps from '@/common/js/mixin/optionProps.js'
+import _ from 'lodash'
     export default {
         name:'D1SS',
         mixins: [optionProps],
@@ -438,7 +439,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
                 map.addControl(ctrl);
                 ctrl.setAnchor(BMAP_ANCHOR_BOTTOM_RIGHT);  
             },
-            getResponseHot(map){
+            getResponseHot:_.debounce(function(map){
             	let _self = this
             	let paramsObj = {
             		area:"全部",
@@ -454,7 +455,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
             		}else{
             			_self.transformData(map)
             		}
-            },
+            },300),
             
             switchCount(n,num){
             	switch(n.count){

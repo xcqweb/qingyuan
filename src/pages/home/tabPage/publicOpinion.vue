@@ -14,7 +14,7 @@
         </div>
         
          <!--4A级景区切换-->
-        <div v-show="!scienceType">
+        <div>
         	<div class="leftScope">
         		<!--<h1>游客属性</h1>-->
 	            <div class="item"
@@ -32,21 +32,6 @@
 	            </div>
 	        </div>
         </div>
-        <!--<div>-->
-        	<div class="Ascience" v-show='scienceType'>
-        		 <div class="item"
-	                v-for='item in AComponents' 
-	                :class="item.id">
-	                <h1>{{item.title}}<tips :type='item.type'></tips></h1>
-	                    <componet
-	                    :is='item.name' 
-	                    :key="item.id"  
-	                    :updatePlace='updatePlace'
-                		:update='update'
-	                    ></componet>
-	            </div>
-        	</div>
-        <!--</div>-->
         
         <div class="rightScope">
             <div class="item" 
@@ -81,7 +66,6 @@ export default {
             	updatePlace:{place:"全部",turist:"全部"},
         		update:{begin:['2018','02','02'],end:['2018','02','03']},
             	hotelChose:'全部',
-            	scienceType:false,
             	slectType:0,
                 leftComponents:[
                 	{name:'A3',id:'one',index:1,time:900,show:true,title:'游客评价',type:'d1'},
@@ -128,6 +112,7 @@ export default {
         //获取选择类型酒店或景区
         getslectType(val){
         	this.slectType = val;
+        	this.updatePlace.turist = '全部'
         },
         getResponse(){
                 this.$axios.get(API_URL+'/qy/api/view/checkLogin').then(r => {

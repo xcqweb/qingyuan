@@ -3,7 +3,7 @@ import router from '@/router'
 
 //axios 配置
 axios.defaults.timeout = 500000;
-axios.defaults.baseURL = window.API_URL+'/qy/api/';
+axios.defaults.baseURL = 'http://120.55.190.57/qy/api/';
 
 
 let instance = axios.create()
@@ -16,8 +16,8 @@ axios.interceptors.request.use = instance.interceptors.request.use;
  //http request 拦截器
  instance.interceptors.request.use(
         config =>{
-        	if(token){
-        		//config.headers.token = token
+        	if(!config.params.name && config.params.url==='http://120.55.190.57/qy/api/v2/command/getKeWords'){
+        		return
         	}
         	return config
         },

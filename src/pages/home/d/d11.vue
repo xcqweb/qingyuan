@@ -29,7 +29,7 @@ require('echarts-wordcloud');
    watch:{
         updatePlace:{
         handler: function (val, oldVal) {
-        	this.hotel = ''
+        	this.hotel = '全部'
         		var paramsObj = {}
         		if(this.endStr||this.beginStr){
 	        			paramsObj = {
@@ -83,25 +83,28 @@ require('echarts-wordcloud');
         },
 	        
         hotelChose:function(val){
-        	this.hotel = val
-        	var paramsObj = {}
+        	this.hotel=val
+        		var paramsObj = {}
         		if(this.endStr||this.beginStr){
 	        			paramsObj = {
-			                area:this.updatePlace.place,
-			                name:val,
-			                beginTime:this.beginStr,
-			                endTime:this.endStr,
-			                category:this.slectType+1,
-			            }
-	        		}else{
-	        				paramsObj = {
 				                area:this.updatePlace.place,
 				                name:val,
-				                type:["day","month","year"][this.type],
+				                beginTime:this.beginStr,
+				                endTime:this.endStr,
 				                category:this.slectType+1,
 				            }
+		        		}else{
+		        				paramsObj = {
+			                area:this.updatePlace.place,
+			                name:val,
+			                type:["day","month","year"][this.type],
+			                category:this.slectType+1,
+			            }
         		}
-    		this.yunData=[]
+        		  
+            
+	        		
+    		this.yunData=[];
             this.getResponse(paramsObj);
         },
         slectType:function(val){
@@ -184,16 +187,17 @@ require('echarts-wordcloud');
 				Bus.$emit('keyWords',params.name)
             });
         },
-        getResponse:_.debounce(function(paramsObj){
+        getResponse:function(paramsObj){
             this.$axios.get(API_URL+'/qy/api/v2/command/getKeWords',{params:paramsObj}).then(r => {
 				//console.log(r)
+				this.yunData=[]
                 if(r.data.code ==='200'||r.data.code ===200){
                     this.yunData = r.data.data;
                     this.$nextTick(echarts_resize('chartId',this))
                 }
                 
             })
-        },300)
+        }
     },
     created () {
         var paramsObj = {

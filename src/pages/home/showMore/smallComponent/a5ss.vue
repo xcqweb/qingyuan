@@ -99,6 +99,8 @@ export default {
                 yAxis: {
                         type: 'value',
                         boundaryGap: [0, '100%'],
+                        minInterval: 1,
+                 		splitNumber:5,
                         axisLabel: {
                             textStyle: {
                                 color: '#ffffff',//x坐标轴标签字体颜色
@@ -302,7 +304,6 @@ export default {
     },
     mounted() {
         echarts_resize(this.idName,this);
-//      this.redomData(this.barNum);
     },
     components:{
 

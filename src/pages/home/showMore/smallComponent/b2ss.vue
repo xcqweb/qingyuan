@@ -190,7 +190,7 @@ export default {
             area:'全部',
             name:'全部'
         }
-  	this.getResponse();
+  	this.getResponse(paramsObj);
   },
   computed: { 
       warningText:function(){
@@ -216,7 +216,8 @@ export default {
   	getResponse(paramsObj){
         let _self = this;
         this.$axios.get(API_URL+'/qy/api/v2/command/selectCommandScenicWarning',{params:paramsObj}).then(r => {
-            if(r.data.data.length===0){
+        	
+            if(!r){
             	this.dataItem.name = this.updatePlace.turist
             	this.dataItem.percent = 0
             	this.dataItem.currentNum = 0
@@ -226,12 +227,23 @@ export default {
             }
             if(r.status ===200){
             	let reData = r.data.data
+            	let p
+            	if(!reData.length){
+            		p=0
+            		this.dataItem.name = this.updatePlace.turist
+	            	this.dataItem.percent = 0
+	            	this.dataItem.currentNum = 0
+	            	this.option.series[0].data[0].value = 0
+	            	this.transformColor(p)
+	            	this.redom(this.idName)
+	            	return
+            	}
             	reData.sort(function(a,b){
             		return b.percent-a.percent
             	})
             	
             	this.dataItem = reData[0];
-            	let p = this.dataItem.percent
+            	p = this.dataItem.percent
             	//console.log(this.option.series[0].data[0].value)
             	if(this.dataItem.currentNum/this.dataItem.warnNum>=100){
             		this.dataItem.currentNum = this.dataItem.warnNum
@@ -239,19 +251,23 @@ export default {
             	this.option.series[0].data[0].value = this.dataItem.currentNum
             	this.option.series[0].data[1].value = this.dataItem.warnNum-this.dataItem.currentNum
             	
-            	if(p<=50&&p>=0){
-            		this.option.color[0]='#80E36F'
-            		this.active = 1
-            	}else if(p>50 && p<70){
-            		this.option.color[0]='#fda925'
-            		this.active = 2
-            	}else{
-            		this.option.color[0]='#ff0600'
-            		this.active = 3
-            	}
+            	this.transformColor(p)
             	this.redom(this.idName)
             }
         })
+      },
+      
+      transformColor(p){
+      	if(p<=50&&p>=0){
+    		this.option.color[0]='#80E36F'
+    		this.active = 1
+        }else if(p>50 && p<70){
+    		this.option.color[0]='#fda925'
+    		this.active = 2
+        }else{
+    		this.option.color[0]='#ff0600'
+    		this.active = 3
+        }
       },
       redom(id){
            if(this.chart){

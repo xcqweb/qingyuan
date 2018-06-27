@@ -183,7 +183,7 @@ export default {
                     type:'pie',
                     radius : ['0%', '55%'],
                     center : ['36%', '68%'],
-                    roseType : 'radius',
+                    //roseType : 'radius',
                     selectedMode: "single",
                     label: {
 		                normal: {

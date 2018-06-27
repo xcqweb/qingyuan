@@ -83,10 +83,12 @@ export default {
 			return this.updatePlace.place==='全部'?'':this.updatePlace.place
 		},
 		dataMsgCom(){
-			return this.dataMsg.yesterdayNum*2
+			let num = this.dataMsg.yesterdayNum.toString().substr(-2)/100
+			return (this.dataMsg.yesterdayNum*(num+2)).toFixed(0)
 		},
 		dataMsgCoy(){
-			return this.dataMsg.num*2
+			let num = this.dataMsg.num.toString().substr(-2)/100
+			return (this.dataMsg.num*(num+2)).toFixed(0)
 		}
     },
     methods: {

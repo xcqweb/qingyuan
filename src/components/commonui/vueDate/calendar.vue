@@ -311,7 +311,7 @@ export default {
                     for (dow; dow < 6; dow++) {
                         // console.log("最后一行",lunarYear,lunarMonth,lunarValue,lunarInfo)
                         temp[line].push(Object.assign(
-                            {day: k,disabled: false},
+                            {day: k,disabled: false}, //false 可以跨月选
                             this.getLunarInfo(this.month+2>11?this.year+1:this.year,this.month+2>11?1:this.month+2,k),
                             this.getEvents(this.month+2>11?this.year+1:this.year,this.month+2>11?1:this.month+2,k),
                         ))

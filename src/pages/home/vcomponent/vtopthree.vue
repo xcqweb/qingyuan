@@ -136,7 +136,8 @@ export default {
         beginStr:'',
 	      endStr:'',
 	    	type:2,
-	    	hotel:'全部'
+	    	hotel:'全部',
+	    	currentIndex:0
     }
   },
   computed: { 
@@ -161,6 +162,8 @@ export default {
         },300),
         //点击好评差评
         commentType(data){
+        	this.currentIndex = data
+        	data = data===0?data+4:data
         	Bus.$emit('comType',data+1)
         }
   },
@@ -206,10 +209,6 @@ ul{
             display:table;
             height:65%;
             width:100%;
-            p:hover{
-            	font-weight: bold;
-            	font-size: 38px !important;
-            }
             p{
                 color: white;
                 height:90%;

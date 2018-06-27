@@ -193,7 +193,7 @@
 	        },
 	       	// 名称
 	        catchmsg2(data){
-	        	Bus.$emit('clearKey')
+	        	
 	        	if(this.type==='景区'){
 	        		this.updateData ={
 		                place:this.updateData.place,
@@ -205,6 +205,7 @@
 	        		//酒店选择
 	        		this.$emit('hotelChose',data)
 	        	}
+	        	Bus.$emit('clearKey')
 	        },
 	       //类型
 	        catchmsg3(type){

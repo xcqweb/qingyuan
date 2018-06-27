@@ -12,7 +12,7 @@
 			</ul>
 			<div class="con" @scroll="loadMore($event)" :class="comStyle">
 				<div class="boxCon">
-					<ul v-for="(item,index) in items">
+					<ul v-for="(item,index) in items" :key='index'>
 						<li><span>{{index+1}}</span></li>
 						<li><span>{{item.name}}</span></li>
 						<li><span>{{item.grade}}</span></li>
@@ -134,6 +134,7 @@
 			
 			//酒店景区选择
 			slectType:function(val){
+				this.comType = 1
 				this.updatePlace.turist = '全部'
 				if(val===1){this.name='全部'}
 				this.num = 2;
@@ -240,7 +241,7 @@
 				                		this.items=[]; 
 				                		return;
 				                	}
-				                   reData.forEach( (item,index) => {
+				                   	for(var item of reData){
 				                   		if(item.grade>=4){
 				                   			item.grade = '好评'
 				                   		}else if(item.grade>=2 && item.grade<=3.9){
@@ -249,7 +250,7 @@
 				                   			item.grade = '差评'
 				                   		}
 				                   		_self.items.push(item)
-				                   })
+				                   }
 				                }
 				            })
 		       },300),
@@ -263,7 +264,7 @@
 		       		var scrollT = Math.ceil(e.target.scrollTop+e.target.clientHeight),
 		       			offsetT = e.target.getElementsByClassName('boxCon')[0].offsetHeight;
 		       			//console.log(scrollT,offsetT,e.target.clientHeight,e.target.offsetHeight)
-		       		if(offsetT-scrollT<=20){
+		       		if(offsetT-scrollT<=360){
 		       			let paramsObj = {};
 		       			
 		       			if(_self.beginTime&&_self.endTime){
