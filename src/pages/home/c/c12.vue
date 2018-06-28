@@ -1,7 +1,7 @@
 <template>
 <div class="content">
   <div id="c12"></div>
-  <p class="time">{{`${year}-${month}`}}</p>
+  <!--<p class="time">{{`${year}-${month}`}}</p>-->
   <ul class="legend">
   	<li v-for="(item,i) in series">
   		<p>{{item.percent}}%</p>

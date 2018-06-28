@@ -37,13 +37,12 @@
         <div class="b6_top">
             <font v-if='mowMonth!==1'>{{nowYear}}年1-{{mowMonth}}月份累计清远市{{currentArea}}游客量(人次)</font>
             <font v-else>{{nowYear}}年{{mowMonth}}月份累计接待游客(人次)</font>
-            <span>{{dataMsgCoy.toLocaleString()}}</span>
+            <span>{{yearNum.toLocaleString()}}</span>
         </div>
         <div class="b6_bottom">
         	<font v-if='nowDay!==1'>{{mowMonth}}月1日-{{nowDay}}日累计清远市{{currentArea}}游客量(人次)</font>
         	<font v-else>{{mowMonth}}月{{nowDay}}日累计接待游客(人次)</font>
-            <span>{{dataMsgCom.toLocaleString()}}</span>
-            
+            <span>{{monthNum.toLocaleString()}}</span>
         </div>
     </div>
 </template>
@@ -59,56 +58,55 @@ export default {
     mixins: [optionProps],
      
     watch:{
-        updatePlace:function(val){
-            var paramsObj = {
-                area:val.place,
-            }
-              this.getResponse(paramsObj);
-        },
+        updatePlace:{
+        	handler:function(val){
+	            var paramsObj = {
+	                area:val.place,
+	            }
+	              this.getResponse(paramsObj);
+	        },
+	        immediate:true
+        }
     },
     data () {
         return {
-        	level_xs:true,
         	nowYear:nowYear,
             mowMonth:mowMonth,
             nowDay:nowDay,
-            dataMsg:{
-                yesterdayNum:0,
-                num:0,
-            }
+            yearNum:0,
+            monthNum:0
         }
     },
     computed: { 
 		currentArea(){
 			return this.updatePlace.place==='全部'?'':this.updatePlace.place
 		},
-		dataMsgCom(){
-			let num = this.dataMsg.yesterdayNum.toString().substr(-2)/100
-			return (this.dataMsg.yesterdayNum*(num+2)).toFixed(0)
-		},
-		dataMsgCoy(){
-			let num = this.dataMsg.num.toString().substr(-2)/100
-			return (this.dataMsg.num*(num+2)).toFixed(0)
-		}
     },
     methods: {
         getResponse(paramsObj){
-        	let _self = this
-            this.$axios.get(API_URL+'/qy/api/v2/view/getAccumulativeData',{params:paramsObj}).then(r => {
-                if(r.status ===200){
-                	//console.log(r)
-                    this.dataMsg.num =r.data.data.yearSum
-                    this.dataMsg.yesterdayNum =r.data.data.monthSum
+        	let _self = this 
+            //this.$axios.get(API_URL+'/qy/api/v2/view/getAccumulativeData',{params:paramsObj}).then(r => {
+            this.$axios.get(API_URL+'/qy/api/v2/view/getAccumulativeDataAll',{params:paramsObj}).then(r => {
+                if(r.data.code ===200 ||　r.data.code ==='200'){
+                	let reData = r.data.data
+                	if(this.updatePlace.place==='全部'){
+                		let arr = Object.values(reData)
+                		for(let item of arr){
+                			this.yearNum+=this.transformData(item[0].yearSum)
+                			this.monthNum+=this.transformData(item[0].monthSum)
+                		}
+                	}else{
+                		this.yearNum = this.transformData(reData[this.updatePlace.place][0].yearSum)
+                		this.monthNum = this.transformData(reData[this.updatePlace.place][0].monthSum)
+                	}
                 }
             })
+        },
+        transformData(n){
+        	let num = n.toString().substr(-2)/100
+			return Number((n*(num+2)).toFixed(0))
         }
-    },
-    created(){
-        var paramsObj = {
-                area:"全部",
-            }
-       this.getResponse(paramsObj);
-    },  
+    }
 }
 </script>
 
