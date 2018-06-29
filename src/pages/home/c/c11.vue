@@ -1,13 +1,6 @@
 <template>
 	<div class="c11">
 		<div class="con">
-				<!--<componet
-				  :is='currentModule'
-				  :updatePlace='updatePlace'
-				  :update='update'
-				  :upday='upday'
-				  @toggleProvince='toggleProvince'
-				></componet> -->
 				<C7
 				  v-show='active'
 				  :updatePlace='updatePlace'
@@ -50,7 +43,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
 				this.active = bol;
 			},
 			toggleProvince(data){
-				this.$emit('toggleProvince',{data:data,type:this.update})
+				this.$emit('toggleProvince',data)
 			}
 		},
 		components:{
