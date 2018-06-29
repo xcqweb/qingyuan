@@ -271,54 +271,68 @@ export default {
     },
     mounted(){
     	Bus.$on('turistDate',(val) => {
+    		let _self = this
     		if(val.begin){
-    			this.begin=val.begin
+    			_self.begin=val.begin
     		}else{
-    			this.end=val.end
+    			_self.end=val.end
     		}
+    		
     		//如果开始时间大于结束时间则颠倒过来
-    		if(this.begin.length && this.end.length){
+    		if(_self.begin.length && _self.end.length){
     			
-    			if(this.begin[0]>this.end[0]){
-    				  let tem = this.begin;
-    				  this.begin = this.end;
-    				  this.end = tem
+    			if(_self.begin[0]>_self.end[0]){
+    				  let tem = _self.begin;
+    				  _self.begin = _self.end;
+    				  _self.end = tem
     			}
-    			
-    			if(this.begin[0]===this.end[0]){//年相同
-    				if(this.begin[1]>this.end[1]){
-    					let tem = this.begin;
-    				  this.begin = this.end;
-    				  this.end = tem
+    			if(_self.begin[0]===_self.end[0]){//年相同
+    				if(_self.begin[1]>_self.end[1]){
+    					let m = Number(_self.begin[1])
+    					if(m===2){
+    						if((_self.begin[0]%4 === 0 && _self.begin[0] % 100 !== 0)  || _self.begin[0] % 400 === 0){
+    							_self.begin[2]=29
+    						}else{
+    							_self.begin[2]=28
+    						}
+    					}else if(m===4||m===6||m===9||m===11){
+								_self.begin[2] = 30
+							}else{
+								_self.begin[2] = 31
+							}
+    					_self.end[2] = '01'
+    					
+    					let tem = _self.begin;
+    				  _self.begin = _self.end;
+    				  _self.end = tem
     				}
     			}
     			
-    			if(this.begin[0]===this.end[0] && this.begin[1]===this.end[1]){
-    				if(this.begin[2]>this.end[2]){
-    					let tem = this.begin;
-    				  this.begin = this.end;
-    				  this.end = tem
+    			if(_self.begin[0]===_self.end[0] && _self.begin[1]===_self.end[1]){
+    				if(_self.begin[2]>_self.end[2]){
+    					let tem = _self.begin;
+    				  _self.begin = _self.end;
+    				  _self.end = tem
     				}
     			}
     			
-    			Bus.$emit('swap',{begin:this.begin,end:this.end})
+    			Bus.$emit('swap',{begin:_self.begin,end:_self.end})
     			
-    			let ends = this.end.join("-");
-	        let begins = this.begin.join("-");
-	        this.endStr = this.end.join("-");
-	        this.beginStr = this.begin.join("-");
-//	        Bus.$emit('yearMonth',{begin:this.beginStr,end:this.endStr})
+    			let ends = _self.end.join("-");
+	        let begins = _self.begin.join("-");
+	        _self.endStr = _self.end.join("-");
+	        _self.beginStr = _self.begin.join("-");
+//	        Bus.$emit('yearMonth',{begin:_self.beginStr,end:_self.endStr})
       	 	var paramsObj = {
-      	 		 area:this.updatePlace.place,
-             name:this.updatePlace.turist,
+      	 		 area:_self.updatePlace.place,
+             name:_self.updatePlace.turist,
              beginTime:begins,
              endTime:ends
       	 	}
-      	 	//console.log(paramsObj)
         	 	//初始化数据
-        	  this.begin=[];
-      			this.end=[];
-    			  this.getResponse(paramsObj);
+        	  _self.begin=[];
+      			_self.end=[];
+    			  _self.getResponse(paramsObj);
     		}
     	})
     }

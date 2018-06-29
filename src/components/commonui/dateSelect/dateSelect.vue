@@ -79,7 +79,6 @@
 				this.showStatus = false;
 			},
 			choseDates(data){
-				
 				this.showStatus = false;
 				if(this.isStart){//开始日期
 					if(this.choseDateStart[0]===year && data>curMonth){
@@ -87,12 +86,7 @@
 						this.ctime='年  ~ 月';
 						return;
 					}
-					if(this.choseDateStart[0]===year && data===curMonth){
-						this.choseDateStart[2] = curDay
-					}else{
-						this.choseDateStart[2] = "01"
-					}
-					 
+					 this.choseDateStart[2] = '01'
 					 this.choseDateStart[1] = data<10?"0"+data:data
 					 this.ctime = this.choseDateStart[0] +" ~ "+ this.choseDateStart[1]
 					 Bus.$emit('turistDate',{begin:this.choseDateStart})
@@ -109,7 +103,6 @@
 						}else{
 							this.choseDate[2] = 28
 						}
-						
 					}else if(data===4||data===6||data===9||data===11){
 						this.choseDate[2] = 30
 					}else{
@@ -122,11 +115,6 @@
 					this.ctime = this.choseDate[0] +" ~ "+ this.choseDate[1]
 					Bus.$emit('turistDate',{end:this.choseDate})
 				}
-				
-				
-//				if(this.choseDate&&this.choseDateStart){
-//										
-//				}
 			} 
 		}
 		

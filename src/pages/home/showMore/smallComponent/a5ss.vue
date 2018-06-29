@@ -232,16 +232,14 @@ export default {
 					    return 0.95 + n;
 					}
                 for(let xi = 9; xi >1;xi--){
-                    date.push(this.addZero(new Date(new Date().getTime() - xi*5 * 1000)));
+                    date.push(this.addZero(new Date(new Date().getTime()+10*1000 - xi*5 * 1000)));
                     data.push((val*updateRandom()).toFixed(0))
                 }
-                var j = 8;
-                var nowDate = new Date();
-                var now = +new Date(nowDate.getTime());
-                var oneDay = 2.5 * 1000;
                 
                 function randomData() {
-                    now = new Date(+now + oneDay);
+                	var nowDate = new Date();
+                	var now = +new Date(nowDate.getTime());
+                    let nows = new Date(+now);
                     if(Math.random()>0.4 && powAverage>10){
                         value =(1- (Math.random()-1)/2)*average;
                     }else{
@@ -249,19 +247,24 @@ export default {
                         
                     }
                     return {
-                            xData: _self.addZero(now),
+                            xData: _self.addZero(nows),
                             sData: (val*updateRandom()).toFixed(0)
                     }
                 }
                 _self.option.xAxis.data=date;
                 _self.option.series.data=data;
-                _self.chart.setOption(_self.option, true);
+                 _self.chart.setOption({
+                        xAxis: {
+                            data: date
+                        },
+                    series: [{
+                        data: data
+                    }]})
                 
                 if (_self.reTimer) {
                     window.clearInterval(_self.reTimer)
                 }
                 _self.reTimer=setInterval(function () {
-                    j++
                     date.shift();
                     data.shift();
                     date.push(randomData().xData);
@@ -296,18 +299,17 @@ export default {
         }
     },
     created(){
+    	
             var paramsObj = {
                 area:"全部",
                 name:"全部",
             }
         this.getResponse(paramsObj);
+        
     },
     mounted() {
         echarts_resize(this.idName,this);
     },
-    components:{
-
-    }
 }
 </script>
 

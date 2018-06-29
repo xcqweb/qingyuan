@@ -66,7 +66,7 @@ export default {
             return {
             tipType:'a1',
         		updatePlace:{place:"全部",turist:"全部"},
-        		update:{begin:['2018','02','02'],end:['2018','02','03']},
+        		update:{type:0},
         		isprovince:0,
                 //全国市
                 leftComponents:[
@@ -110,13 +110,6 @@ export default {
         		}
         	}
         },
-//      mounted(){
-//      	Bus.$on('yearMonth',(data) => {
-//      		console.log(data)
-//		        this.update = {begin:data.begin.split('-'),end:data.end.split('-')}
-//		        console.log(this.update)
-//		    	})
-//      },
 				beforeDestroy(){
 					Bus.$off('reset')
 				},
@@ -138,7 +131,8 @@ export default {
 		        },
             //游客来源联动地图
             toggleProvince(data){
-            	this.isprovince = data
+            	this.isprovince = data.data
+            	this.update = data.type
             },
             
             getResponse(){

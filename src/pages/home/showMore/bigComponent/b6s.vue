@@ -400,16 +400,27 @@ let weekCode = new Date().getDay()
     mixins: [showMoreData,optionProps],
     props:['updateTurist'],
     watch:{
-        updatePlace:function(val,oldVal){
-        	if(val.place===oldVal.place){
-        		return
-        	}
-            let _self = this
-            _self.showStatus =false;
-            setTimeout(function(){
-                _self.showStatus =true;
-                _self.sendRequest()
-            },500)
+        updatePlace:{
+        	handler:function(val,oldVal){
+	        	if(oldVal&&val.place===oldVal.place && val.place!=='全部'){
+	        		return
+	        	}
+	        	if(val.place==='全部'&&val.turist!=='全部'){
+	        		this.showStatus =false;
+	        		this.sendRequest(this.switchArea(this.updatePlace.turist))
+		            setTimeout( () => {
+		                this.showStatus =true;
+		            },0)
+	        		
+	        		return
+	        	}
+	            this.showStatus =false;
+	            this.sendRequest(val.place)
+	            setTimeout( () => {
+	                this.showStatus =true;
+	            },0)
+	        },
+	        immediate:true
         }
     },
     data() {
@@ -579,14 +590,14 @@ let weekCode = new Date().getDay()
                 	return 'yinBg'
                 }
         },
-        getNow(){
+        getNow(area){
             var _self= this
             this.$ajax({
                 type:'GET',
                 url:'https://free-api.heweather.com/s6/weather/now',
                 data:{
                        key : '24ff5bba60b442d9aa9bc39c3e096172',
-                       location : _self.updatePlace.place==='全部'?'清远':_self.updatePlace.place,
+                       location : area==='全部'?'清远':area,
                 },
                 success:function(res){
                     _self.$nextTick(function () {
@@ -600,14 +611,14 @@ let weekCode = new Date().getDay()
                 }
             })
         },
-        getDaily(){
+        getDaily(area){
             var _self= this
             this.$ajax({
                 type:'GET',
                 url:'https://free-api.heweather.com/s6/weather/forecast',
                 data:{
                    key : '24ff5bba60b442d9aa9bc39c3e096172',
-                   location : _self.updatePlace.place==='全部'?'清远':_self.updatePlace.place,
+                   location : area==='全部'?'清远':area,
                 },
                 success:function(res){
                     _self.$nextTick(function () {
@@ -620,13 +631,33 @@ let weekCode = new Date().getDay()
                 }
             })
         },
-        sendRequest(){
-            this.getDaily();
-            this.getNow();
+        sendRequest(area){
+            this.getDaily(area);
+            this.getNow(area);
         },
+        
+        switchArea(name){
+        	let curName = ''
+        	const arr=[{name:"清城",science:['飞霞风景名胜区','牛鱼嘴原始生态风景区','天子山瀑布风景区','白庙渔村','飞来寺','美林湖及大家元摩天轮片区','德盈新银盏温泉景区','狮子湖国际休闲旅游度假区','飞来峡水利枢纽风景区',
+                '黄腾峡生态旅游区','故乡里旅游度假区']},
+                {name:"清新",science:['笔架山度假区','安庆村','清泉湾生态旅游度假区','金龙洞','九牛洞村','清新温矿泉旅游度假区','玄真古洞生态旅游区','古龙峡原生态旅游度假区','太和古洞旅游区',]},
+                {name:"佛冈",science:['观音山王山寺','田野绿世界','熹乐谷','金龟泉生态度假村','上岳古民居','聚龙湾天然温泉度假村','森波拉温泉度假区']},
+                {name:"英德",science:['峰林胜境景区','英德老虎谷暗河漂流','九龙小镇','铁溪小镇','仙湖温泉旅游度假区','浈阳坊旅游小镇','大樟沙滩度假村','云水谣','彭家祠','宝晶宫生态旅游度假区','奇洞温泉度假区','洞天仙境生态旅游度假区','九州驿站英德天门沟景区']},
+                {name:"连州",science:['清远市连州福山景区','大东山温泉度假区','李屋村','潭岭天湖','连州地下河','湟川三峡']},
+                {name:"连南",science:['油岭瑶寨','瑶族舞曲实景演出','云海花谷','千年瑶寨','广东瑶族博物馆']},
+                {name: "连山",science:['大旭山瀑布群旅游景区','皇后山','鹰扬关景区','雾山梯田','清远市金子山旅游风景区']},
+                {name: "阳山",science:['北山古寺','鱼水旅游风景区','龙凤温泉','广东第一峰旅游风景区']},]
+        	
+        		for(let item of arr){
+        			
+        			if(item.science.toString().indexOf(name)>-1){
+        				curName = item.name
+        			}
+        		}
+        		return curName
+        }
     },
     mounted(){
-        this.sendRequest();
         this.$emit('hideWeeks');
         this.$emit('hideVdate')
         this.$emit('showDateFormatChose',[])

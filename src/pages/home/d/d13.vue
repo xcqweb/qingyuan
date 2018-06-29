@@ -36,6 +36,7 @@
 				type:2,
 				endStr:'',
 			    beginStr:'',
+			    oldName:'',
 				option:{
 					color:['#427EFF','#7F6AF7','#BB68F4','#FF8882','#F7C935','#FFFD37','#B1F223','#76CD66','#B7E986','#86EACD'],
 					tooltip:{
@@ -186,8 +187,23 @@
                 this.chart = echarts.init(document.getElementById(id));
                 this.chart.setOption(this.option);
                 this.chart.on('click', function (params) {
+                	let op = _self.option.series[0].data
+                	op.forEach( (item,index) => {
+                		op[index].selected = false
+                		if(item.name===params.name){
+                			op[index].selected = true
+                		}
+                	})
+                	_self.redom('d13')
+                	if(_self.oldName === params.name){
+                		return
+                	}
+                	_self.oldName = params.name
                 	Bus.$emit('isRise',params.name)
             	});
+            	
+            	
+            	
             },
             getResponse:_.debounce(function(paramsObj){
             let _self = this;

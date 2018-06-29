@@ -4,7 +4,7 @@
     <ul>
         <li v-for="(item,index) in items">
             <p>{{item.title}}</p>
-            <div><p :style="{ 'color': item.color }" @click="commentType(index)">{{item.nub}}</p></div>
+            <div><p :style="{ 'color': item.color }" @click="commentType(index)" :class="{active:currentIndex===index}">{{item.nub}}</p></div>
             <p :style="{ 'color': item.color }">{{item.font}}</p>
             <p :style="{ 'background-color': item.color }"></p>
         </li>
@@ -137,7 +137,8 @@ export default {
 	      endStr:'',
 	    	type:2,
 	    	hotel:'全部',
-	    	currentIndex:0
+	    	currentIndex:3,
+	    	oldData:3
     }
   },
   computed: { 
@@ -164,6 +165,10 @@ export default {
         commentType(data){
         	this.currentIndex = data
         	data = data===0?data+4:data
+        	if(this.oldData===data){
+        		return
+        	}
+        	this.oldData = data
         	Bus.$emit('comType',data+1)
         }
   },
@@ -219,6 +224,9 @@ ul{
                 text-align:center;
                 letter-spacing: 8px;
                 cursor: pointer;
+            }
+            .active{
+            	font-size: 48px !important;
             }
         }
         p:nth-of-type(2){

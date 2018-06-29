@@ -712,8 +712,8 @@ export default {
 		                type:["day","month","year"][val.type],
 		            }
              	}else{
-             		 this.endStr = val.end.join("-");
-	                 this.beginStr = val.begin.join("-");
+             		this.endStr = val.end.join("-")
+	                this.beginStr = val.begin.join("-")
 	                paramsObj = {
 	                    area:this.updatePlace.place,
 	                    name:this.updatePlace.turist,
@@ -725,15 +725,16 @@ export default {
                  this.getResponse(paramsObj);
              },
              deep:true,
+             immediate:true
         }
     },
     created(){
-    	var paramsObj = {
-                area:this.updatePlace.place,
-	            name:this.updatePlace.turist,
-	            type:["day","month","year"][this.type]
-            }
-       this.getResponse(paramsObj);
+//  	var paramsObj = {
+//              area:this.updatePlace.place,
+//	            name:this.updatePlace.turist,
+//	            type:["day","month","year"][this.type]
+//          }
+//     this.getResponse(paramsObj);
     },
     methods: {
   	

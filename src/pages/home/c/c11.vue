@@ -50,7 +50,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
 				this.active = bol;
 			},
 			toggleProvince(data){
-				this.$emit('toggleProvince',data)
+				this.$emit('toggleProvince',{data:data,type:this.update})
 			}
 		},
 		components:{

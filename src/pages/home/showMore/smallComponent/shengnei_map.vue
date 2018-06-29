@@ -69,8 +69,8 @@ export default {
 		                type:["day","month","year"][val.type],
 		            }
              	}else{
-             		let end = val.end.join("-")
-	                 let begin = val.begin.join("-")
+             		  this.endStr = val.end.join("-")
+	                this.beginStr = val.begin.join("-")
 	                paramsObj = {
 	                    area:this.updatePlace.place,
 	                    name:this.updatePlace.turist,
@@ -82,6 +82,7 @@ export default {
                  this.getResponse(paramsObj);
              },
              deep:true,
+             immediate:true
         }
 	    },
 	  data () {
@@ -189,12 +190,12 @@ export default {
 	  computed: { 
 	  },
 	   created(){
-    	var paramsObj = {
-                area:this.updatePlace.place,
-	              name:this.updatePlace.turist,
-	              type:'day'
-            }
-       this.getResponse(paramsObj);
+//  	var paramsObj = {
+//              area:this.updatePlace.place,
+//	              name:this.updatePlace.turist,
+//	              type:["day","month","year"][this.type],
+//          }
+//     this.getResponse(paramsObj);
     },
 	  methods: {
 	    redomData(){

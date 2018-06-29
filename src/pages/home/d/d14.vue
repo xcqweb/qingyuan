@@ -59,7 +59,7 @@ export default {
      
     watch:{
         updatePlace:{
-        	handler:function(val){
+        	handler:function(val,oldVal){
 	            var paramsObj = {
 	                area:val.place,
 	            }
@@ -88,6 +88,8 @@ export default {
             //this.$axios.get(API_URL+'/qy/api/v2/view/getAccumulativeData',{params:paramsObj}).then(r => {
             this.$axios.get(API_URL+'/qy/api/v2/view/getAccumulativeDataAll',{params:paramsObj}).then(r => {
                 if(r.data.code ===200 ||　r.data.code ==='200'){
+                	this.yearNum = 0
+                	this.monthNum = 0
                 	let reData = r.data.data
                 	if(this.updatePlace.place==='全部'){
                 		let arr = Object.values(reData)

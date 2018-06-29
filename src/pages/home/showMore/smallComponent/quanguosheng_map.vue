@@ -355,8 +355,8 @@ export default {
 		                type:["day","month","year"][val.type],
 		            }
              	}else{
-             		let end = val.end.join("-")
-	                 let begin = val.begin.join("-")
+             		this.endStr = val.end.join("-")
+	                this.beginStr = val.begin.join("-")
 	                paramsObj = {
 	                    area:this.updatePlace.place,
 	                    name:this.updatePlace.turist,
@@ -368,15 +368,16 @@ export default {
                  this.getResponse(paramsObj);
              },
              deep:true,
+             immediate:true
         }
     },
     created(){
-    	var paramsObj = {
-                area:this.updatePlace.place,
-	            name:this.updatePlace.turist,
-	            type:'day'
-            }
-       this.getResponse(paramsObj);
+//  	var paramsObj = {
+//              area:this.updatePlace.place,
+//	            name:this.updatePlace.turist,
+//	            type:["day","month","year"][this.type],
+//          }
+//     this.getResponse(paramsObj);
     },
     mounted(){
     },
@@ -388,7 +389,6 @@ export default {
                     this.rankItems = r.data.data.inCountryProvince.splice(0,9);
                     this.mapItems = r.data.data.topCity;
                     let scal = 5;
-                    //console.log(this.rankItems)
                     for(let i=0; i<this.rankItems.length; ++i){
 						this.allData[i]=["清远市", [[{name: "清远市"}, {name: this.rankItems[i].province, value: this.rankItems[i].num}]]]
 					}

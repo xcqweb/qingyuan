@@ -138,6 +138,7 @@ require('echarts-wordcloud');
         	type:2,
             chart:null,
             yunData:[],
+            oldName:'',
             option : {
                 tooltip: {
                 	show:true,
@@ -184,6 +185,10 @@ require('echarts-wordcloud');
             this.option.series[0].data = JosnList;
             this.chart.setOption(this.option);
              this.chart.on('click', function (params) {
+             	if(this.oldName === params.name){
+             		return
+             	}
+             	this.oldName = params.name
 				Bus.$emit('keyWords',params.name)
             });
         },
