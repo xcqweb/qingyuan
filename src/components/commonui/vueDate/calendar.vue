@@ -161,6 +161,9 @@ export default {
     		
     	}
     },
+    beforeDestroy(){
+		this.$off()
+	},
     mounted() {
         Bus.$on('ms',(val) => {
           	this.month = val

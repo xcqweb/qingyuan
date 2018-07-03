@@ -504,16 +504,8 @@
 	        }
 		},
 		beforeDestroy(){
-			Bus.$off('clearKey')
-		},
-		created(){
-//			let place = this.qyselectlist.place
-//			place.forEach( (v,i) => {
-//				let paramsObj = {
-//					area:v.name
-//				}
-//				this.getHotelList(paramsObj)
-//			})
+			Bus.$off()
+			this.$off()
 		},
 		components:{
 			sleckt,

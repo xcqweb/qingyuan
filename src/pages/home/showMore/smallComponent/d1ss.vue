@@ -534,7 +534,7 @@ import _ from 'lodash'
 //	                    	}
                     	});
                     
-                    map.addOverlay(heatmapOverlay);
+                     map.addOverlay(heatmapOverlay);
                       heatmapOverlay.setDataSet({data:points,max:this.maxv});
                     //是否显示热力图
                      heatmapOverlay.show();

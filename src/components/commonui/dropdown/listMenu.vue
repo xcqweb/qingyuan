@@ -303,6 +303,7 @@
 		},
 		beforeDestroy(){
 			Bus.$off('definded')
+			this.$off()
 		},
 		components:{
 			vDate,

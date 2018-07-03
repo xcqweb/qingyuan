@@ -14,6 +14,9 @@
 			return {
 			}
 		},
+		beforeDestroy(){
+			this.$off()
+		},
 		methods:{
 			choose(val){
 				this.$emit('chooseName',val)
@@ -142,4 +145,4 @@
 			    -webkit-box-shadow: inset 0 0 6px #02275A;
 			    background-color: #0F2059;
 			}
-</style>    你   
+</style>    

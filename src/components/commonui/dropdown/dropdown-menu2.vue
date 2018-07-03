@@ -32,6 +32,9 @@ import list from '@/components/commonui/dropdown/list.vue'
             'uniqueClasso',
             'showScienceNum'
         ],
+        beforeDestroy(){
+			this.$off()
+		},
         components:{
         	list,
         },

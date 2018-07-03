@@ -51,8 +51,9 @@ import Vue from 'vue'
             'uniqueClasso',
             'uniqueClasst',
         ],
-        computed:{    
-        },
+        beforeDestroy(){
+			this.$off()
+		},
         watch:{
             menueshow:function (val){
                 if (val) {
@@ -170,6 +171,9 @@ import Vue from 'vue'
         		this.$emit('hideSelects',false)
         	}
         },
+        beforeDestroy(){
+			this.$off()
+		},
         mounted(){
             if(this.list.length>6){
                 this.isMore =  true

@@ -131,8 +131,7 @@ export default {
 		        },
             //游客来源联动地图
             toggleProvince(data){
-            	this.isprovince = data.data
-            	this.update = data.type
+            	this.isprovince = data
             },
             
             getResponse(){

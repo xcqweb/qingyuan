@@ -98,8 +98,9 @@ export default {
             }
         }
     },
-    watch:{
-    },
+   beforeDestroy(){
+		this.$off()
+	},
     methods: {
             //一级下拉框下拉事件
         catchmsg1(data){

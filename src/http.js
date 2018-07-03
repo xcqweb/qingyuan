@@ -34,9 +34,9 @@ axios.interceptors.request.use = instance.interceptors.request.use;
     		//console.log(response)
     		return response
     	}else if(response.data.code==='-1' || response.data.code===-1){
-    		//console.log(response.data)
-    		router.replace('login')
-      		//window.location.href = API_URL+':8081/login'
+    		console.log(response.data)
+    		//router.replace('login')
+      		window.location.href = API_URL+':8081/login'
     	}
     },
         err => {

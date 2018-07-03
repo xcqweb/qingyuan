@@ -54,6 +54,9 @@
 				})
 			}
 		},
+		beforeDestroy(){
+			this.$off()
+		},
 		mounted(){
 			Bus.$on('clearKey',() => {
 				this.txt = ''

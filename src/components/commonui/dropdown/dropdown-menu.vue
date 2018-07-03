@@ -37,8 +37,9 @@ import Vue from 'vue'
             'uniqueClassth',
             'showScienceNum'
         ],
-        computed:{    
-        },
+        beforeDestroy(){
+			this.$off()
+		},
         watch:{
             menueshow:function (val){
                 if (val) {
@@ -137,9 +138,9 @@ import Vue from 'vue'
         		this.$emit('hideSelects',false)
         	}
         },
-        created(){
-        	
-        },
+        beforeDestroy(){
+			this.$off()
+		},
         mounted(){
             if(this.list.length>6){
                 this.isMore =  true

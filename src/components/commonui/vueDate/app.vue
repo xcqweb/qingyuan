@@ -162,6 +162,7 @@ export default {
     beforeDestroy(){
 		Bus.$off('init')
 		Bus.$off('ms')
+		this.$off()
 	},
     methods:{
         openByDrop(e){

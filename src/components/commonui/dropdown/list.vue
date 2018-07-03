@@ -1,7 +1,7 @@
 
 <template>
 	<transition name="dropdown-fade">
-		<div class='listdiv'  v-bind:style="{height: listDivHeight+'rem',maxHeight:maxHeight+'rem' }"  v-if="status">
+		<div class='listdiv'  v-bind:style="{height: listDivHeight+'rem',maxHeight:maxHeight+'rem' }"  v-show="status">
 	        <ul class="con" style='font-size:12px;' :class="{'centero':uniqueClasso}">
 	        	<li class="v-dropdown-menu_list" :title="item.name||item" v-for = '(item,index) in list' v-on:click = 'increment(item)' :key='item.name'>{{item.name||item}}<span class="scienceNum" v-show="showScienceNum">({{item.num<10?' '+item.num+' ':item.num}})</span></li>
 	        </ul>
@@ -29,6 +29,9 @@
                 return (this.list.length)*1.8
             },
         },
+        beforeDestroy(){
+			this.$off()
+		},
         methods:{
             increment:function(item){
                 this.$emit('itemtodo',item.name === undefined ? item : item.name);

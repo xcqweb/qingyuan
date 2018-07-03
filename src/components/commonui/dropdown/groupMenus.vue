@@ -208,7 +208,8 @@
 	        	}
 	        }
 		},
-		created(){
+		beforeDestroy(){
+			this.$off()
 		},
 		components:{
 			sleckte,

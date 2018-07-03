@@ -3,6 +3,9 @@
  * @authors Rico Wang
  * @date   2018-01-24 09:00:04
  */
+
+import Bus from '@/common/js/bus'
+
 let optionProps =  {
     props:{
     	updatePlace:{
@@ -30,19 +33,9 @@ let optionProps =  {
     		default:1
     	}
     },
-    data () {
-        return {
-        	
-        };
+    beforeDestroy(){
+    	this.$off()
+    	Bus.$off()
     },
-    methods:{
-        
-    },
-    created(){
-    },
-    mounted () {
-    },
-    components:{
-    }
 }
 export default optionProps
