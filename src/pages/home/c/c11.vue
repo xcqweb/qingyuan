@@ -1,13 +1,6 @@
 <template>
 	<div class="c11">
 		<div class="con">
-				<!--<componet
-				  :is='currentModule'
-				  :updatePlace='updatePlace'
-				  :update='update'
-				  :upday='upday'
-				  @toggleProvince='toggleProvince'
-				></componet> -->
 				<C7
 				  v-show='active'
 				  :updatePlace='updatePlace'
