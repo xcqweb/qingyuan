@@ -13,7 +13,7 @@ module.exports = {
     // Surge or Netlify already gzip all static assets for you.
     // Before setting to `true`, make sure to:
     // npm install --save-dev compression-webpack-plugin
-    productionGzip: false,
+    productionGzip: true,
     productionGzipExtensions: ['js', 'css'],
     // Run the build command with an extra argument to
     // View the bundle analyzer report after build finishes:
@@ -29,12 +29,12 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
        // 匹配项
-        '/Ajax': {
-          target: 'http://www.qyqx.gov.cn/Ajax/Get7dyb',
+        '/api': {
+          target: 'http://120.55.190.57:8081/qy',
           changeOrigin: true,
-          pathRewrite: {
-            '^/Ajax': '/'
-        }
+          //pathRewrite: {
+            //'^/api': '/'
+       // }
   }
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"
@@ -42,6 +42,8 @@ module.exports = {
     // (https://github.com/webpack/css-loader#sourcemaps)
     // In our experience, they generally work as expected,
     // just be aware of this issue when enabling this option.
-    cssSourceMap: false
+    cssSourceMap: false,
+	cacheBusting:true,
+	poll:true,
   }
 }

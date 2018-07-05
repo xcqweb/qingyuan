@@ -87,6 +87,11 @@ export default {
         	let _self = this 
             //this.$axios.get(API_URL+'/qy/api/v2/view/getAccumulativeData',{params:paramsObj}).then(r => {
             this.$axios.get(API_URL+'/qy/api/v2/view/getAccumulativeDataAll',{params:paramsObj}).then(r => {
+            	if(!r || !r.data.data.length){
+            		this.yearNum=0,
+            		this.monthNum=0
+            		return
+            	}
                 if(r.data.code ===200 ||　r.data.code ==='200'){
                 	this.yearNum = 0
                 	this.monthNum = 0

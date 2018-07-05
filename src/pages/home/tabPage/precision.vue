@@ -39,62 +39,17 @@ export default {
         }),
     },
     methods: {
-        update(){
-             this.barChartOption.series[0].data[3]={
-                symbolSize:15,
-                value:2114,
-                itemStyle: {
-                 normal: {
-                        color: 'white',
-                        opacity:1,
-                        borderWidth:5,
-                        borderColor:'#098DFF',
-                        shadowBlur:5,
-                        shadowColor:'#098DFF'
-                    }
-                }
-            }
-        },
                     headerEnter(){
                         this.headerStatus=true;
                     },
                     headerLeave(){
                         this.headerStatus=false;
                     },
-                    getResponse(){
-	                this.$axios.get(API_URL+'/qy/api/view/checkLogin').then(r => {
-	                    
-	                        if(r.data.code ==="-1"||r.data.code ===-1){
-	                        //测试
-							//   window.location.href=API_URL+":8081/login"
-							//旅游局
-							window.location.href=API_LOGIN
-	                        }
-                })
-            },
                     
-    },
-    created () {
-        // this.getResponse();
     },
     components:{
         ...componetstatus,
     },
-    mounted(){
-        let _self=this
-        let arr = _self.leftComponents.concat(_self.rightComponents)
-        var lentop=arr.length
-        for (var j = 0 ; j < lentop; j++) {
-            (
-                function(){
-                    let n=j
-                    window.setTimeout(() => {        
-                        arr[n].show=true
-                    }, arr[n].time); 
-                }
-            )()  
-        }
-    }
 }
 </script>
 

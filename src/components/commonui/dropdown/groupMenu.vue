@@ -48,7 +48,7 @@
 
 <script>
 	import sleckte from '@/components/commonui/dropdown/dropdown-menu2.vue'
-	import vDate from '@/components/commonui/vueDate/app.vue'
+	import vDate from '@/components/commonui/vueDate/appp.vue'
 	export default{
 		data(){
 			return{
@@ -208,9 +208,6 @@
 	        		return "";
 	        	}
 	        }
-		},
-		beforeDestroy(){
-			this.$off()
 		},
 		components:{
 			sleckte,

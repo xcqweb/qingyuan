@@ -119,17 +119,6 @@ export default {
         	//console.log(val)
         	this.$store.commit('hotMap/TRANSFORMA',val)
         },
-        getResponse(){
-                this.$axios.get(API_URL+'/qy/api/view/checkLogin').then(r => {
-                    
-                        if(r.data.code ==="-1"||r.data.code ===-1){
-	                        //测试
-							window.location.href=API_URL+":8081/qylv/login"
-							//旅游局
-	//						window.location.href=API_LOGIN
-                        }
-                })
-            },
                     
     },
     components:{

@@ -1,6 +1,7 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import 'babel-polyfill'
+
+
+
+import 'babel-polyfill'  //es6
 import Vue from 'vue'
 import App from './App'
 import router from './router'
@@ -15,10 +16,8 @@ Vue.prototype.$axios = instance;
 Vue.prototype.$Rw = Rw;
 Vue.config.productionTip = false
 Vue.config.devtools = true
-//旅游局
-// var API_URL = "http://125.91.215.236:81"
-//测试
-//var API_URL1 = "http://localhost"
+
+
 window.API_URL = "http://120.55.190.57:8081"
 /* eslint-disable no-new */
 new Vue({

@@ -94,7 +94,7 @@
                     title:'全部',
                     selectStatus:false,
                     place:[
-                        {name:'全部',num:60},{name:"清城",num:11},{name:"清新",num:9},{name:"英德",num:13},{name:"连州",num:6},{name:"佛冈",num:7},{name:"连山",num:5},{name:"连南",num:5},{name:"阳山",num:4}
+                        {name:'全市',nameSS:'全市',num:0},{name:'全部景区',nameSS:'全部',num:60},{name:"清城",num:11},{name:"清新",num:9},{name:"英德",num:13},{name:"连州",num:6},{name:"佛冈",num:7},{name:"连山",num:5},{name:"连南",num:5},{name:"阳山",num:4}
                     ]
                 },
                 
@@ -198,10 +198,17 @@
 	        },
 	        //获取区域数据并传递给父组件
 			catchmsg1(data){
-                this.updateData ={
-                    place:data,
-                    turist:"全部"
-                }
+				if(data==='全市'){
+					this.updateData ={
+	                    place:data,
+	                }
+				}else{
+					this.updateData ={
+	                    place:data,
+	                    turist:"全部"
+	                }
+				}
+                
                 this.$emit('doubleChose',this.updateData)
             	this.cityData = this.switch(data)
             
@@ -214,16 +221,6 @@
 	           this.$emit('doubleChose',this.updateData)
 	        },
 	        listenAtparent(val){
-//	        	this.dateList = {
-//                  width:'70%',
-//                  right:'6%',
-//                  top:'52%',
-//                  title: val,
-//                  selectStatus:false,
-//                  place:[
-//                      '日',"月","年","自定义"
-//                  ]
-//              }	
 	        	if(val==='自定义'){
 	        		this.vDateStatus = false
 	        		Bus.$emit('definded',val)
@@ -235,15 +232,12 @@
 	        		let re=0 
 	        		switch(val){
 	        			case '日':
-	        			//re = {begin:[`${year}`,`${month}`,`${day}`],end:[`${year}`,`${month}`,`${day}`]};
 	        			re = 0;
 	        			break;
 	        			case '月':
-	        			//re = {begin:[`${year}`,`${month}`,'01'],end:[`${year}`,`${month}`,`${days}`]};
 	        			re = 1;
 	        			break;
 	        			case '年':
-	        			//re = {begin:[`${year}`,'01','01'],end:[`${year}`,'12','31']};
 	        			re = 2;
 	        			break;
 	        		}
@@ -252,6 +246,7 @@
 	        },
 	        switch(val){
             const  cityData = {
+            	'全市':[],
                 "全部":["全部",'飞霞风景名胜区','牛鱼嘴原始生态风景区','天子山瀑布风景区','白庙渔村','飞来寺','美林湖及大家元摩天轮片区',
                             '笔架山度假区','安庆村','清泉湾生态旅游度假区','金龙洞','九牛洞村',
                             '观音山王山寺','田野绿世界','熹乐谷','金龟泉生态度假村','上岳古民居',

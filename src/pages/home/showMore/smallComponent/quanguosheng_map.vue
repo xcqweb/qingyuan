@@ -371,21 +371,15 @@ export default {
              immediate:true
         }
     },
-    created(){
-//  	var paramsObj = {
-//              area:this.updatePlace.place,
-//	            name:this.updatePlace.turist,
-//	            type:["day","month","year"][this.type],
-//          }
-//     this.getResponse(paramsObj);
-    },
-    mounted(){
-    },
     methods: {
-  	
   	getResponse(paramsObj){
 			axios.get(API_URL+'/qy/api/v2/view/getPersonSourceData',{params:paramsObj}).then(r => {
-                if(r.status ===200||r.data.code ===200){
+				if(!r || !r.data.data.inCountryProvince || !r.data.data.inCountryProvince.length){
+					this.allData=[]
+					this.redomData()
+					return
+				}
+                if(r.data.code ==='200'||r.data.code ===200){
                     this.rankItems = r.data.data.inCountryProvince.splice(0,9);
                     this.mapItems = r.data.data.topCity;
                     let scal = 5;
@@ -517,7 +511,9 @@ export default {
                     coordinateSystem: 'geo',
                     zlevel: 2,
                     rippleEffect: {
-                        brushType: 'stroke'
+                        period: 4,
+						scale: 5,
+						brushType: 'stroke',
                     },
                      label: {
 	                            normal: {

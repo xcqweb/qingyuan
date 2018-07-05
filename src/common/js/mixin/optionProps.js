@@ -33,9 +33,5 @@ let optionProps =  {
     		default:1
     	}
     },
-    beforeDestroy(){
-    	this.$off()
-    	Bus.$off()
-    },
 }
 export default optionProps

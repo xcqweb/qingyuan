@@ -187,16 +187,6 @@ export default {
 	        
 	    }
 	  },
-	  computed: { 
-	  },
-	   created(){
-//  	var paramsObj = {
-//              area:this.updatePlace.place,
-//	              name:this.updatePlace.turist,
-//	              type:["day","month","year"][this.type],
-//          }
-//     this.getResponse(paramsObj);
-    },
 	  methods: {
 	    redomData(){
 	            let _self = this;
@@ -280,7 +270,9 @@ export default {
 	                        coordinateSystem: 'geo',
 	                        zlevel: 1,
 	                        rippleEffect: {
-	                            brushType: 'stroke'
+	                            period: 4,
+															scale: 5,
+															brushType: 'stroke',
 	                        },
 	                        label: {
 	                            normal: {
@@ -359,9 +351,11 @@ export default {
 	        
 	        getResponse(paramsObj){
 	            this.$axios.get(API_URL+'/qy/api/v2/view/getPersonSourceData',{params:paramsObj}).then(r => {
-	                if(!r){
-	                	return
-	                }
+	                if(!r || !r.data.data.inProvinceCity || !r.data.data.inProvinceCity.length){
+											this.allData=[]
+											this.redomData()
+											return
+										}
 	                if(r.data.code ==="200"||r.data.code ===200){
 	                    //console.log(r.data.data)
 	                    this.rankItems = r.data.data.inProvinceCity;

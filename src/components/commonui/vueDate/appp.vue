@@ -38,7 +38,7 @@
 
 <script>
  
-import calendar from './calendar.vue'
+import calendar from './calendarp.vue'
 import Bus from '@/common/js/bus'
 
 let date = new Date()
@@ -161,7 +161,6 @@ export default {
     beforeDestroy(){
 		Bus.$off('init')
 		Bus.$off('ms')
-		this.$off()
 	},
     methods:{
         openByDrop(e){

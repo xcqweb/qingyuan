@@ -33,10 +33,13 @@ export default {
     name: 'a5ss',
     mixins:[optionProps],
     watch:{
-        updatePlace:function(){
+        updatePlace:function(val){
+        	if(val.place==='全市'){
+        		return
+        	}
         	var paramsObj = {
-                area:this.updatePlace.place,
-                name:this.updatePlace.turist,
+                area:val.place,
+                name:val.turist,
             }
             this.getResponse(paramsObj)
         }

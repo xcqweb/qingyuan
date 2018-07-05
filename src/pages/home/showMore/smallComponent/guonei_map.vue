@@ -728,21 +728,12 @@ export default {
              immediate:true
         }
     },
-    created(){
-//  	var paramsObj = {
-//              area:this.updatePlace.place,
-//	            name:this.updatePlace.turist,
-//	            type:["day","month","year"][this.type]
-//          }
-//     this.getResponse(paramsObj);
-    },
     methods: {
   	
   	getResponse(paramsObj){
-			
 			this.$axios.get(API_URL+'/qy/api/v2/view/getPersonSourceData',{params:paramsObj}).then(r => {
 				//console.log(r)
-				if(!r.data.data.inCountryCity.length){
+				if(!r || !r.data.data.inCountryCity || !r.data.data.inCountryCity.length){
 					this.allData=[]
 					this.redomData()
 					return
@@ -882,7 +873,9 @@ export default {
                     coordinateSystem: 'geo',
                     zlevel: 2,
                     rippleEffect: {
-                        brushType: 'stroke'
+                        period: 4,
+						scale: 5,
+						brushType: 'stroke',
                     },
                      label: {
 	                            normal: {

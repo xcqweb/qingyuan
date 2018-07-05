@@ -19,6 +19,7 @@ axios.interceptors.request.use = instance.interceptors.request.use;
         	if(!config.params.name && config.params.url==='http://120.55.190.57/qy/api/v2/command/getKeWords'){
         		return
         	}
+        	
         	return config
         },
         err => {
@@ -31,12 +32,10 @@ axios.interceptors.request.use = instance.interceptors.request.use;
  instance.interceptors.response.use(
     response =>{
     	if(response.data.code===200 || response.data.code==='200'){
-    		//console.log(response)
     		return response
     	}else if(response.data.code==='-1' || response.data.code===-1){
-    		console.log(response.data)
-    		//router.replace('login')
-      		window.location.href = API_URL+':8081/login'
+    		//console.log(response.data)
+      		window.location.href = 'http://120.55.190.57:8081/login'
     	}
     },
         err => {

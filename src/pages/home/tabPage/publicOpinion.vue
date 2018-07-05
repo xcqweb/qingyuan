@@ -114,17 +114,6 @@ export default {
         	this.slectType = val;
         	this.updatePlace.turist = '全部'
         },
-        getResponse(){
-                this.$axios.get(API_URL+'/qy/api/view/checkLogin').then(r => {
-                    
-                        if(r.data.code ==="-1"||r.data.code ===-1){
-                        	//测试
-							window.location.href=API_URL+":8081/qylv3.0/login"
-						//旅游局
-						//window.location.href=API_LOGIN
-                        }
-                })
-            },
     },
     components:{
         ...componetstatus,

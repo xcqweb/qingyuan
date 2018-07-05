@@ -78,7 +78,6 @@ import Vue from 'vue'
           props:['list','status','uniqueClasso','uniqueClasst'], 
         data(){
             return{
-                 msg:'jfdksjfk',
                  showstatus:true,
                  isMore:true,
                  statu:false
