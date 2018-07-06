@@ -63,7 +63,9 @@ export default {
 		    tooltip: {
 		        trigger: 'item',
 		        formatter: function(params){
-		        	return params.seriesName+'<br>'+params.data.name+' : '+params.data.value+'%'
+		        	let val = params.data.value
+            	val = val===0.0019?0:val
+		        	return params.seriesName+'<br>'+params.data.name+' : '+val+'%'
 		        }
 		    },
 		    calculable: true,
@@ -102,7 +104,9 @@ export default {
 		                show: true,
 		                fontSize:'75%',
 		                formatter: function(params){
-						        	return params.data.name+' : '+params.data.value+'%'
+		                	let val = params.data.value
+		                	val = val===0.0019?0:val
+						        	return params.data.name+' : '+val+'%'
 						        }
 		            },
 		            emphasis: {
@@ -339,7 +343,7 @@ export default {
                 	}else{
                 		_self.status = true
                 		re.forEach( (item,index) => {
-	                		_self.option.series[0].data[index] = {name:_self.switchDay(item.day),value:item.avg_percent}
+	                		_self.option.series[0].data[index] = {name:_self.switchDay(item.day),value:item.avg_percent?item.avg_percent:0.0019}
 	                	})
             		      	
                   		
