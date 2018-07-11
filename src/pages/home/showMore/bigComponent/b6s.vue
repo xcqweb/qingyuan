@@ -443,7 +443,7 @@ let weekCode = new Date().getDay()
                 nowurl:"http://api.seniverse.com/v3/weather/now.json",
                 dailyurl:"https://api.seniverse.com/v3/weather/daily.json",
                 key:"sgqbslepggqd6dgg",
-                location:"清远",
+                locations:"清远",
                 curPage:1
             },
             nowRes:{

@@ -14,6 +14,7 @@
         :class='topItem.id' 
         class="item">
             <div v-if='topItem.show'>
+            	<!--动态组件-->
                 <componet 
                 :is='topItem.name'  
                 :key="topItem.id" 
@@ -69,7 +70,7 @@ export default {
         		update:{type:0},
         		isprovince:0,
                 //全国市
-                leftComponents:[
+                leftComponents:[ //动态组件数据
                      {name:'D14',id:'one',index:1,time:1200,show:true,title:``},
                      {name:'B15',id:'two',index:2,time:1200,show:true,title:``,},
                      {name:'C11',id:'three',index:3,time:1200,show:true,title:``,},
@@ -97,10 +98,10 @@ export default {
         
         components: {
                 headerBody,
-                ...componetstatus,
+                ...componetstatus, //ES6展开运算,注册组件
         },
         computed:{
-        	leftComponent(){
+        	leftComponent(){ 
         		if(this.isprovince===0){
         			return this.leftComponents
         		}else if(this.isprovince===1){
@@ -111,7 +112,7 @@ export default {
         	}
         },
 				beforeDestroy(){
-					Bus.$off('reset')
+					Bus.$off('reset') //解除Bus Bus不会自动解除
 				},
         methods: {
 	        	//获取选择的景区
@@ -130,21 +131,9 @@ export default {
 		        	this.update = {type:val}
 		        },
             //游客来源联动地图
-            toggleProvince(data){
+            toggleProvince(data){//选择 全国,省内,全国省时 获取选择的值 type:Number
             	this.isprovince = data
-            },
-            
-            getResponse(){
-                this.$axios.get(API_URL+'/qy/api/view/checkLogin').then(r => {
-                    
-                        if(r.data.code ==="-1"||r.data.code ===-1){
-	                        //测试
-							window.location.href=API_URL+":8081/login"
-							//旅游局
-							//window.location.href=API_LOGIN
-                        }
-                })
-            },
+            }
         },
     }
 </script>

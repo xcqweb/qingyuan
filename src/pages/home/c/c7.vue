@@ -180,7 +180,7 @@ export default {
     		this.items = this.allData[cityType]
     		
     		
-    		if(data===3){
+    		if(data===3 && this.items.length){
 					this.add()
     		}
     		if(data===2){
@@ -191,9 +191,6 @@ export default {
     			this.$emit('toggleProvince',2)
     		}
     		
-//  		if(this.beginStr||this.endStr){
-//  			Bus.$emit('yearMonth',{begin:this.beginStr,end:this.endStr})
-//  		}
     	},
     	add(){
     		let str = JSON.stringify(this.items)
@@ -244,7 +241,7 @@ export default {
 	                	}
 	                	this.allData = reData;
 	                	this.items = reData[this.cityTypes];
-	                	if(this.cityTypes==='inCountryProvince'){
+	                	if(this.cityTypes==='inCountryProvince' && this.items.length){
 	                		this.add()
 	                	}
 	                	

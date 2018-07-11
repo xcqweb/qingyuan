@@ -110,22 +110,28 @@ export default {
                 },
                 data:[{
                     icon:'circle',
-                    name:'0-19'
+                    name:'0-19',
+                    textStyle:{color:'#FF8885'}
                 }, {
                     icon:'circle',
-                    name:'20-29'
+                    name:'20-29',
+                    textStyle:{color:'#57FE90'}
                 }, {
                     icon:'circle',
-                    name:'30-39'
+                    name:'30-39',
+                    textStyle:{color:'#0096ff'}
                 }, {
                     icon:'circle',
-                    name:'40-49'
+                    name:'40-49',
+                    textStyle:{color:'#7E6AF6'}
                 }, {
                     icon:'circle',
-                    name:'50-59'
+                    name:'50-59',
+                    textStyle:{color:'#E39A50'}
                 }, {
                     icon:'circle',
-                    name:'60岁以上'
+                    name:'60岁以上',
+                    textStyle:{color:'#FFCD38'}
                 }],
             },
           series : [

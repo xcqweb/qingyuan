@@ -35,7 +35,7 @@ axios.interceptors.request.use = instance.interceptors.request.use;
     		return response
     	}else if(response.data.code==='-1' || response.data.code===-1){
     		//console.log(response.data)
-      		window.location.href = 'http://120.55.190.57:8081/login'
+      		//window.location.href = 'http://120.55.190.57:8081/login'
     	}
     },
         err => {

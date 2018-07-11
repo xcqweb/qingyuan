@@ -87,7 +87,7 @@ export default {
         	let _self = this 
             //this.$axios.get(API_URL+'/qy/api/v2/view/getAccumulativeData',{params:paramsObj}).then(r => {
             this.$axios.get(API_URL+'/qy/api/v2/view/getAccumulativeDataAll',{params:paramsObj}).then(r => {
-            	if(!r || !r.data.data.length){
+            	if(!r){
             		this.yearNum=0,
             		this.monthNum=0
             		return
@@ -102,6 +102,9 @@ export default {
                 			this.yearNum+=this.transformData(item[0].yearSum)
                 			this.monthNum+=this.transformData(item[0].monthSum)
                 		}
+                	}else if(this.updatePlace.place==='全市'){
+                		this.yearNum = reData[this.updatePlace.place][0].yearSum
+                		this.monthNum = reData[this.updatePlace.place][0].monthSum
                 	}else{
                 		this.yearNum = this.transformData(reData[this.updatePlace.place][0].yearSum)
                 		this.monthNum = this.transformData(reData[this.updatePlace.place][0].monthSum)

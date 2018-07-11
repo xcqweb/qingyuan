@@ -63,7 +63,9 @@ export default {
 		    tooltip: {
 		        trigger: 'item',
 		        formatter: function(params){
-		        	return params.seriesName+'<br>'+params.data.name+' : '+params.data.value+'%'
+		        	let val = params.data.value
+            		val = val===1.00119?0:val
+			        	return params.data.name+' : '+val+'%'
 		        }
 		    },
 		    calculable: true,
@@ -102,7 +104,9 @@ export default {
 		                show: true,
 		                fontSize:'75%',
 		                formatter: function(params){
-						        	return params.data.name+' : '+params.data.value+'%'
+						        	let val = params.data.value
+		                	val = val===1.00119?0:val
+						        	return params.data.name+' : '+val+'%'
 						        }
 		            },
 		            emphasis: {
@@ -158,6 +162,9 @@ export default {
 		                        },
 		                        labelLine: {
 		                            show: false
+		                        },
+		                        emphasis:{
+		                        	show:false
 		                        }
 		                    }
 		                }
@@ -305,7 +312,8 @@ export default {
 								                        },
 								                        labelLine: {
 								                            show: false
-								                        }
+								                        },
+								                        
 								                    }
 								                }
 								            }
@@ -323,6 +331,9 @@ export default {
 					                        },
 					                        labelLine: {
 					                            show: false
+					                        },
+					                        emphasis:{
+					                        	show:false
 					                        }
 					                    }
 					                }
@@ -339,10 +350,8 @@ export default {
                 	}else{
                 		_self.status = true
                 		re.forEach( (item,index) => {
-	                		_self.option.series[0].data[index] = {name:_self.switchDay(item.day),value:item.avg_percent}
+	                		_self.option.series[0].data[index] = {name:_self.switchDay(item.day),value:item.avg_percent?item.avg_percent:1.00119}
 	                	})
-            		      	
-                  		
                   		if(_self.selected){
                 		 		_self.init('65%',true)
                 		 }else{
@@ -394,7 +403,7 @@ export default {
         this.chart.setOption(_self.option)
       },
       
-      init(percent,bol){
+      init(percent,bol){ //数据为0时 会异常显示
       	this.option.series[0].center[1] = percent
 				this.option.series[0].label.normal.show = bol
 				this.option.series[0].label.emphasis.show = bol
@@ -408,7 +417,6 @@ export default {
     	this.$nextTick( () => {
     		var _self= this;
 	        this.chart.on('legendselectchanged',function(val){
-	        	//console.log(val)
 	        	_self.selected = (Object.values(val.selected).toString().indexOf('true')===-1)?true:false
 				if(Object.values(val.selected).toString().indexOf('true')===-1){
 					

@@ -30,11 +30,9 @@ import list from '@/components/commonui/dropdown/list.vue'
         props: [
             'selectList',
             'uniqueClasso',
-            'showScienceNum'
+            'showScienceNum',
+            'isAllCity'
         ],
-        beforeDestroy(){
-			this.$off()
-		},
         components:{
         	list,
         },
@@ -46,18 +44,15 @@ import list from '@/components/commonui/dropdown/list.vue'
                 this.$emit('listenAtparent',selectList.title)
             },
             outcrement:function(message){
-                
                 if (message) {
-                    this.selectList.title=message;
+                    this.selectList.title = this.isAllCity && message==='全部' ? '全部景区':message;
                     this.$emit('listenAtparent',message)
-                }else{
-                    
                 }
                 this.menueshow = false;
-                 
             },
             triggle:function(e){
-                this.menueshow = !this.menueshow;
+            	this.menueshow = !this.menueshow;
+                
             },
         },
     }

@@ -120,7 +120,7 @@ export default {
 		                   
 		                   for(let item of reData){
 		                   		if(item.description==='本科'){
-			                   		_self.series.push({name:item.description,value:(100-num+item.percent)})
+			                   		_self.series.push({name:item.description,value:(100-num?num:100+item.percent)})
 			                   	}else{
 			                   		_self.series.push({name:item.description,value:item.percent})
 			                   	}

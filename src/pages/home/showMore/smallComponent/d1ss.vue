@@ -240,7 +240,7 @@ import _ from 'lodash'
                     }
                     
                    
-                    var label = new BMap.Label(points[i].label,{offset:new BMap.Size(20,-50)});
+                    var label = new BMap.Label(points[i].label,{offset:new BMap.Size(30,-15)});
                     label.setStyle({
                         color : "#153081",
                         border:"1px solid #153081",
@@ -611,10 +611,10 @@ import _ from 'lodash'
 	                    "全部":{lng:113.042358,lat:23.776528,zoom:13},
 	                    "清远市":{lng:113.0323,lat:23.699107,zoom:13},
 	                    "清城":{lng:113.06689,lat:23.704022,zoom:13},
-	                    "清新":{lng:112.991271,lat:23.75427,zoom:13},
+	                    "清新":{lng:113.020271,lat:23.75427,zoom:13},
 	                    "佛冈":{lng:113.539303,lat:23.886532,zoom:13},
-	                    "英德":{lng:113.418281,lat:24.192466,zoom:13},
-	                    "连州":{lng:112.38616,lat:24.786467,zoom:13},
+	                    "英德":{lng:113.314992,lat:23.925412,zoom:13},
+	                    "连州":{lng:112.38616,lat:24.700467,zoom:13},
 	                    "连南":{lng:112.290355,lat:24.732074,zoom:13},
 	                    "连山":{lng:112.102727,lat:24.582118,zoom:13},
 	                    "阳山":{lng:112.646658,lat:24.47147,zoom:13},
@@ -630,7 +630,7 @@ import _ from 'lodash'
 	                    "美林湖及大家元摩天轮片区":{lng:113.043339,lat:23.50327,zoom:13},
 	                    "太和古洞旅游区":{lng:112.999783,lat:23.745745,zoom:13},
 	                    "笔架山度假区":{lng:113.042358,lat:23.776528,zoom:13},
-	                    "安庆村":{lng:112.823456,lat:23.616738,zoom:13},
+	                    "安庆村":{lng:112.823456,lat:23.620738,zoom:13},
 	                    "清泉湾生态旅游度假区":{lng:112.928301,lat:23.764869,zoom:13},
 	                    "金龙洞":{lng:112.884256,lat:24.083820,zoom:13},
 	                    "九牛洞村":{lng:112.778425,lat:23.622568,zoom:13},

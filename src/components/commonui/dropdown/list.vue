@@ -1,7 +1,7 @@
 
 <template>
 	<transition name="dropdown-fade">
-		<div class='listdiv'  v-bind:style="{height: listDivHeight+'rem',maxHeight:maxHeight+'rem' }"  v-show="status">
+		<div class='listdiv'  v-bind:style="{height: listDivHeight+'rem',maxHeight:maxHeight+'rem' }"  v-show="statusCom" v-if='cityShow'>
 	        <ul class="con" style='font-size:12px;' :class="{'centero':uniqueClasso}">
 	        	<li class="v-dropdown-menu_list" :title="item.name||item" v-for = '(item,index) in list' v-on:click = 'increment(item)' :key='item.name'>{{item.name||item}}<span class="scienceNum" v-show="showScienceNum && item.num">({{item.num<10?' '+item.num+' ':item.num}})</span></li>
 	        </ul>
@@ -15,9 +15,10 @@
         data(){
             return{
                  msg:'',
+                 cityShow:true
             }
         },
-           computed:{
+        computed:{
             maxHeight:function(){
                 if(this.list.length>5){
                     return 10.8
@@ -28,6 +29,18 @@
             listDivHeight:function(){
                 return (this.list.length)*1.8
             },
+            statusCom(){
+            	return this.status
+            }
+        },
+        watch:{
+        	list:function(){
+        		if(this.list.length===1){
+            		this.cityShow = false
+            	}else{
+            		this.cityShow = true
+            	}
+        	}
         },
         beforeDestroy(){
 			this.$off()

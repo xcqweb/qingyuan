@@ -15,6 +15,7 @@
         :selectList="qyselectlist" 
         v-on:listenAtparent="catchmsg1"
         :showScienceNum=true
+        :isAllCity=true
         ></slecktet>
         
         	<!-- 时间下拉框组件 -->
@@ -91,7 +92,7 @@
 				qyselectlist:{
                     width:'70%',
                     left:'6%',
-                    title:'全部',
+                    title:'全部景区',
                     selectStatus:false,
                     place:[
                         {name:'全市',nameSS:'全市',num:0},{name:'全部景区',nameSS:'全部',num:60},{name:"清城",num:11},{name:"清新",num:9},{name:"英德",num:13},{name:"连州",num:6},{name:"佛冈",num:7},{name:"连山",num:5},{name:"连南",num:5},{name:"阳山",num:4}
@@ -226,6 +227,7 @@
 	        		Bus.$emit('definded',val)
 	        		this.dataType = val
 	        	}else{
+	        		Bus.$emit('resetDate')
 	        		this.timeDate={begin:[],end:[]}
 	        		this.dataType = val
 	        		this.vDateStatus = true
@@ -246,7 +248,7 @@
 	        },
 	        switch(val){
             const  cityData = {
-            	'全市':[],
+            	'全市':['全部'],
                 "全部":["全部",'飞霞风景名胜区','牛鱼嘴原始生态风景区','天子山瀑布风景区','白庙渔村','飞来寺','美林湖及大家元摩天轮片区',
                             '笔架山度假区','安庆村','清泉湾生态旅游度假区','金龙洞','九牛洞村',
                             '观音山王山寺','田野绿世界','熹乐谷','金龟泉生态度假村','上岳古民居',
@@ -298,7 +300,6 @@
 		},
 		beforeDestroy(){
 			Bus.$off('definded')
-			this.$off()
 		},
 		components:{
 			vDate,

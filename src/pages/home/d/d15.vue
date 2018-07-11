@@ -30,10 +30,8 @@
 <script>
 	import Vue from 'vue'
 	import optionProps from '@/common/js/mixin/optionProps.js'
-//	import loadMore from '@/common/js/directives/loadMore'
 	import Bus from '@/common/js/bus'
 	import _ from 'lodash'
-//	Vue.directive('loadMore',loadMore)//注册自定义指令
 	export default{
 		name:'d15',
 		mixins:[optionProps],
@@ -59,7 +57,7 @@
 			}
 		},
 		watch:{
-			updatePlace:function(val){
+			updatePlace:function(val){ //地区景区 {place:'',name:''}
 				this.name=''
 				this.num = 2;
 				var paramsObj = {}
@@ -91,11 +89,11 @@
 					this.getResponse(paramsObj,true);
 			},
 						
-			update:{
+			update:{ //监听时间 日0,月1,年2,自定义时间{begin:[],end:[]}
 	         handler:function(val, oldVal){
 	         	this.num = 2;
 	         	var paramsObj={}
-	         	if(val.type===0 || val.type===1 || val.type===2){
+	         	if(val.type===0 || val.type===1 || val.type===2){ //选择 日,月,年
 	         		Bus.$emit('resetDate')
 	         		this.beginTime='';
 		       		this.endTime='';
@@ -109,7 +107,7 @@
 		                commentType:this.comType,
 		                type:["day","month","year"][val.type],
 		            }
-	         	}else{
+	         	}else{ //选择自定义时间
 	         		let end = val.end.join("-")
 	                let begin = val.begin.join("-")
 	                this.beginTime=val.begin.join('-'),
@@ -201,7 +199,7 @@
 			
 		},
 		methods:{
-				getResponse:_.debounce(function(paramsObj,flag){
+				getResponse:_.debounce(function(paramsObj,flag){ //去抖函数
 					if(flag){
 						this.active =false
 			        	setTimeout( () => {
@@ -227,7 +225,7 @@
 				            })
 		       },300),
 		       
-		       getResponseRise:_.debounce(function(paramsObj){
+		       getResponseRise:_.debounce(function(paramsObj){ //关联可提升度数据请求
 	       			this.active =false
 		        	setTimeout( () => {
 		        		this.active =true
@@ -257,7 +255,7 @@
 		       
 		       
 		       //加载更多(已用自定义指令loadMore代替)
-		       loadMore:_.debounce( function(e){ //去抖函数
+		       loadMore:_.debounce( function(e){ //loadMore 时需使用当前选择的条件,所以每次选择时,都必须保存选择值
 		       		let _self = this;
 		       		scrollT = 0;
 		       		offsetT = 0;
@@ -389,7 +387,7 @@
     			this.num = 2;
     			
     			var paramsObj = {}
-	       		 if(data!=='其他' && this.updatePlace.turist!=='全部'){
+	       		 if(data!=='其他' && this.updatePlace.turist!=='全部'){//可提升度点击单个景区或者酒店
 	       		 	this.name = data;
 	       		 	if(this.endTime||this.beginTime){
 	       		 		paramsObj = {
@@ -418,7 +416,7 @@
 	       		 	
 	       		 	this.items = []
 	       			this.getResponseRise(paramsObj);
-	       		 }else if(data==='其他' && this.updatePlace.turist!=='全部'){
+	       		 }else if(data==='其他' && this.updatePlace.turist!=='全部'){//可提升度点击其他
 	       		 	this.comType = 1;
 	       		 	if(this.endTime||this.beginTime){
 	       		 		paramsObj = {
@@ -446,7 +444,7 @@
 	       		 	}
 	       		 	this.items = []
 	       		 	this.getResponse(paramsObj,true);
-	       		 }else if(data==='其他' && this.updatePlace.turist==='全部'){
+	       		 }else if(data==='其他' && this.updatePlace.turist==='全部'){//可提升度点击其他且景区或酒店条件为全部时
 	       		 	this.comType = 4;
 	       		 	this.name = data;
 	       		 	if(this.endTime||this.beginTime){
@@ -475,10 +473,10 @@
 	       		 	}
 	       		 	this.items = []
 	       		 	this.getResponse(paramsObj,true);
-	       		 }else if(data!=='其他' && this.updatePlace.turist==='全部'){
+	       		 }else if(data!=='其他' && this.updatePlace.turist==='全部'){//可提升度点击单个景点或者单个酒店且景区或酒店条件为全部时
 	       		 	this.comType = 4;
 	       		 	this.name = data;
-	       		 	if(this.endTime||this.beginTime){
+	       		 	if(this.endTime||this.beginTime){ //为自定义时间
 	       		 		paramsObj = {
 			                area:this.updatePlace.place,
 			                name:data,
