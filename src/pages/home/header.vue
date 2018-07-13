@@ -2,18 +2,19 @@
   <div class="headertext">
     <ul>
         <li v-for='(item, index) in items' :class='item.status' @click='toggle(item,index)'>
-            <router-link v-bind:to={path:item.link}>
+            <!--<router-link v-bind:to={path:item.link}>-->
+            	<a>
                 <span :class='item.status'></span>
                 <font>{{item.name}}</font>
-            </router-link>          
+                </a>
+            <!--</router-link>-->          
         </li>
     </ul>
   </div>
 </template>
 
 <script>
-import Vue from 'vue'
-import { mapGetters } from 'vuex'
+	import router from '@/router'
 export default {
   name: '',
   data () {
@@ -35,10 +36,6 @@ export default {
           },
   },
   computed: { 
-    ...mapGetters({
-        title: 'version/title',
-      }),
-      
       //手机屏幕时去掉标题
       showTitle(){
       	let wid = this.wid;
@@ -50,11 +47,15 @@ export default {
       }
   },
   methods: {
+  	changeLink(data){
+  		alert(data)
+  	},
     toggle(item,index){
-        for (var i = 0; i < this.items.length; i++) {
-            this.items[i].status='chose'
-        }
-        item.status='unchose'
+	        	for (var i = 0; i < this.items.length; i++) {
+		            this.items[i].status='chose'
+		        }
+	          item.status='unchose'
+	        	router.push(item.link)
     },
     logout(){
     	api.loginOut(api.params).then( (re) => {
@@ -107,10 +108,6 @@ export default {
     },
   },
   mounted(){
-    let _self= this
-    window.addEventListener('hashchange', function(e) {
-        _self.hash=window.location.hash;
-    }, false);
     this.keepStatus()
   }
 }
@@ -156,6 +153,11 @@ a:visited { text-decoration: none;}
                 margin-top: 10px;
                 font-weight: bold;
                 letter-spacing: 1px;
+                -webkit-user-select: none;
+                -ms-user-select: none;
+                -moz-user-select: none;
+                -o-user-select: none;
+                user-select: none;
             }
             &.chose{
             		background-repeat: no-repeat;

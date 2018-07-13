@@ -12,7 +12,7 @@ let token='213345dsdsddfdgdyyrtsdsdwew32335t';
 
 instance.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 axios.interceptors.request.use = instance.interceptors.request.use;
-
+  
  //http request 拦截器
  instance.interceptors.request.use(
         config =>{

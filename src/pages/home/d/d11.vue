@@ -29,7 +29,7 @@ require('echarts-wordcloud');
    watch:{
         updatePlace:{
         handler: function (val, oldVal) {
-        	this.hotel = '全部'
+        	this.hotel = ''
         		var paramsObj = {}
         		if(this.endStr||this.beginStr){
 	        			paramsObj = {

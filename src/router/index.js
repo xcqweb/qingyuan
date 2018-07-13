@@ -27,7 +27,7 @@ Vue.use(Router)
 const router= new Router({
   routes: [
     {
-        path: '/404',
+        path: '*',
         component: NotFound,
         name: '',
         hidden: true
