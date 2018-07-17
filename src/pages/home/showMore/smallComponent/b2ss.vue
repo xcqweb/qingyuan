@@ -1,7 +1,7 @@
 <template>
     <div class="b2">
     	<!--<div class="passagerBtn">客流预警</div>-->
-        <div :id="idName" class="pieB2"></div>
+        <div id="b2ss" class="pieB2"></div>
         <span v-bind:class="fontColor">{{dataItem.percent}}%</span>
         <div class="text"><font v-bind:class="fontColor">{{dataItem.currentNum}}人</font></div>
         <div class="scenic">{{dataItem.name}}</div>
@@ -16,12 +16,15 @@ export default {
   name: 'b2',
    mixins: [optionProps],
     watch:{
-        updatePlace:function(val){
-            var paramsObj = {
-                area:val.place,
-                name:val.turist,
-            }
-       		this.getResponse(paramsObj);
+        updatePlace:{
+        	handler:function(val){
+	            var paramsObj = {
+	                area:this.updatePlace.place,
+			    	name:this.updatePlace.turist,
+	            }
+	       		this.getResponse(paramsObj);
+	        },
+	        immediate:true
         }
     },
   data () {
@@ -175,7 +178,6 @@ export default {
 		        },
 		    ]
 		},
-    	idName:'String',
     	dataItem:{
 			"percent":0,
 			"name":"笔架山度假区",
@@ -186,11 +188,11 @@ export default {
     }
   },
   created(){
-  	var paramsObj = {
-            area:'全部',
-            name:'全部'
-        }
-  	this.getResponse(paramsObj);
+//	var paramsObj = {
+//          area:this.updatePlace.place,
+//		    name:this.updatePlace.turist,
+//      }
+//	this.getResponse(paramsObj);
   },
   computed: { 
       warningText:function(){
@@ -222,7 +224,7 @@ export default {
             	this.dataItem.percent = 0
             	this.dataItem.currentNum = 0
             	this.option.series[0].data[0].value = 0
-            	this.redom(this.idName)
+            	this.redom('b2ss')
             	return
             }
             if(r.status ===200){
@@ -235,7 +237,7 @@ export default {
 	            	this.dataItem.currentNum = 0
 	            	this.option.series[0].data[0].value = 0
 	            	this.transformColor(p)
-	            	this.redom(this.idName)
+	            	this.redom('b2ss')
 	            	return
             	}
             	reData.sort(function(a,b){
@@ -252,7 +254,7 @@ export default {
             	this.option.series[0].data[1].value = this.dataItem.warnNum-this.dataItem.currentNum
             	
             	this.transformColor(p)
-            	this.redom(this.idName)
+            	this.redom('b2ss')
             }
         })
       },
@@ -273,7 +275,7 @@ export default {
            if(this.chart){
                 this.chart.dispose();
             }
-          this.chart = echarts.init(document.getElementById(id));
+          this.chart = echarts.init(document.getElementById('b2ss'));
           var dataStyle = { 
 			    normal: {
 			        label: {show:false},
@@ -297,7 +299,7 @@ export default {
       
   },
   mounted() {
-        this.$nextTick(echarts_resize(this.idName,this))
+        this.$nextTick(echarts_resize('b2ss',this))
   },
 }
 </script>

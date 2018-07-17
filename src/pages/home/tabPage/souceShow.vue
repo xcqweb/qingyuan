@@ -13,18 +13,20 @@
         </div>
         
          <!--4A级景区切换-->
-        <div v-show="!scienceType">
+        <div v-if="!scienceType">
         	<div class="leftScope">
 	            <div class="item"
 	                v-for='item in leftComponents' 
 	                :class="item.id">
 	                <h1>{{item.title}}<tips :type='item.type'></tips></h1>
+	                <keep-alive>
 	                    <componet
 	                    :is='item.name' 
 	                    :key="item.id"  
 	                    :updatePlace='updatePlace'
                 		:update='update'
 	                    ></componet>
+	                </keep-alive>
 	            </div>
 	        </div>
         </div>
@@ -111,8 +113,6 @@ export default {
         choseDayVal(val){
         	//console.log(val)
         	this.upday = val
-        	
-        	
         },
         //获取4A级景区
         getScienceType(val){

@@ -27,9 +27,8 @@ require('echarts-wordcloud');
     name:'d11',
     mixins:[optionProps],
    watch:{
-        updatePlace:{
-        handler: function (val, oldVal) {
-        	this.hotel = ''
+       	updatePlace:function(val){
+       		this.hotel = ''
         		var paramsObj = {}
         		if(this.endStr||this.beginStr){
 	        			paramsObj = {
@@ -39,94 +38,88 @@ require('echarts-wordcloud');
 			                endTime:this.endStr,
 			                category:this.slectType+1,
 			            }
-	        		}else{
-	        				paramsObj = {
-				                area:val.place,
-				                name:val.turist,
-				                type:["day","month","year"][this.type],
-				                category:this.slectType+1,
-				            }
+        		}else{
+        				paramsObj = {
+			                area:val.place,
+			                name:val.turist,
+			                type:["day","month","year"][this.type],
+			                category:this.slectType+1,
+			            }
         		}
-        	this.yunData=[]
-     		this.getResponse(paramsObj);
-        },
-        deep:true,
-        },
-        update:{
-         handler:function(val, oldVal){
-         	var paramsObj={}
-         	if(val.type===0 || val.type===1 || val.type===2){
-         		this.type=val.type;
-	            this.endStr = '';
-	            this.beginStr = '';
-         	    paramsObj = {
-	                area:this.updatePlace.place,
-	                name:this.hotel||this.updatePlace.turist,
-	                category:this.slectType+1,
-	                type:["day","month","year"][val.type],
-	            }
-         	}else{
-         		this.endStr = val.end.join("-");
-	            this.beginStr = val.begin.join("-");
-                paramsObj = {
-                    area:this.updatePlace.place,
-                    name:this.hotel||this.updatePlace.turist,
-                    category:this.slectType+1,
-                    beginTime:this.beginStr,
-                    endTime:this.endStr
-				}
-         	}
-             
-             this.getResponse(paramsObj);
-         },
-         deep:true,
-        },
-	        
-        hotelChose:function(val){
-        	this.hotel=val
+        		  
+            this.getResponse(paramsObj);
+        	},
+        	hotelChose:function(val){
+        		this.hotel=val
         		var paramsObj = {}
         		if(this.endStr||this.beginStr){
 	        			paramsObj = {
-				                area:this.updatePlace.place,
-				                name:val,
-				                beginTime:this.beginStr,
-				                endTime:this.endStr,
-				                category:this.slectType+1,
-				            }
-		        		}else{
-		        				paramsObj = {
+			                area:this.updatePlace.place,
+			                name:val,
+			                beginTime:this.beginStr,
+			                endTime:this.endStr,
+			                category:this.slectType+1,
+			            }
+        		}else{
+        				paramsObj = {
 			                area:this.updatePlace.place,
 			                name:val,
 			                type:["day","month","year"][this.type],
 			                category:this.slectType+1,
 			            }
         		}
-        		  
+        		 this.getResponse(paramsObj);
             
-	        		
-    		this.yunData=[];
-            this.getResponse(paramsObj);
-        },
+        	},
+        	 update:{
+	             handler:function(val, oldVal){
+	             	var paramsObj={}
+	             	if(val.type===0 || val.type===1 || val.type===2){
+	             		this.type=val.type;
+	             		this.endStr = '';
+	                	this.beginStr = '';
+	             	    paramsObj = {
+			                area:this.updatePlace.place,
+			                name:this.hotel||this.updatePlace.turist,
+			                type:["day","month","year"][val.type],
+			                category:this.slectType+1,
+			            }
+	             	}else{
+	             			this.endStr = val.end.join("-");
+	                    	this.beginStr = val.begin.join("-");
+			                paramsObj = {
+			                    area:this.updatePlace.place,
+			                    name:this.hotel||this.updatePlace.turist,
+			                    beginTime:this.beginStr,
+			                    endTime:this.endStr,
+			                    category:this.slectType+1,
+							}
+	             	}
+	                 
+	                 this.getResponse(paramsObj);
+	             },
+	             deep:true,
+	        },
         slectType:function(val){
         	if(val===1){this.hotel='全部'}
-        	var paramsObj = {}
-        		if(this.endStr||this.beginStr){
-	        			paramsObj = {
-			                area:this.updatePlace.place,
-			                name:val===0?this.updatePlace.turist:this.hotel,
-			                beginTime:this.beginStr,
-			                endTime:this.endStr,
-			                category:val+1,
-			            }
-	        		}else{
-	        				paramsObj = {
-				                area:this.updatePlace.place,
-				                name:val===0?this.updatePlace.turist:this.hotel,
-				                category:val+1,
-				                type:["day","month","year"][this.type],
-			            	}
-        		}
-        		this.yunData=[]
+	        	var paramsObj = {}
+	        	if(this.endStr||this.beginStr){
+	        		 paramsObj = {
+		                area:this.updatePlace.place,
+		                name:val===0?this.updatePlace.turist:this.hotel,
+		                category:val+1,
+		                beginTime:this.beginStr,
+			            endTime:this.endStr,
+		           	 }
+	        	}else{
+	        		 paramsObj = {
+		                area:this.updatePlace.place,
+		                name:val===0?this.updatePlace.turist:this.hotel,
+		                category:val+1,
+		                type:["day","month","year"][this.type],
+		           	 }
+	        	}
+        		
                 this.getResponse(paramsObj);
         }
     },
@@ -192,7 +185,7 @@ require('echarts-wordcloud');
 				Bus.$emit('keyWords',params.name)
             });
         },
-        getResponse:function(paramsObj){
+        getResponse:_.debounce(function(paramsObj){
             this.$axios.get(API_URL+'/qy/api/v2/command/getKeWords',{params:paramsObj}).then(r => {
 				//console.log(r)
 				this.yunData=[]
@@ -202,7 +195,7 @@ require('echarts-wordcloud');
                 }
                 
             })
-        }
+        },300)
     },
     created () {
         var paramsObj = {

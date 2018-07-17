@@ -66,8 +66,8 @@ export default {
 	                category:this.slectType+1,
 	            }
         		}
-        		  
-            this.getResponse(paramsObj);
+        		 this.getResponse(paramsObj);
+            
         	},
         	 update:{
 	             handler:function(val, oldVal){

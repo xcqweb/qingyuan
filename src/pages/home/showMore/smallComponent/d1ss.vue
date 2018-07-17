@@ -184,6 +184,10 @@ import _ from 'lodash'
             },
             turist:function(val,oldVal){
             	if(val==='全部'&&oldVal==="全部"){return}
+            	if(val==='全部'){ //地区条件不变时,选择某一景区后,在选择全部,即选择当前地区
+            		this.addScript(this.updatePlace.place,false)
+            		return
+            	}
                   this.addScript(val,true)
             }
         },
@@ -453,10 +457,6 @@ import _ from 'lodash'
 								}else if(v.percent>0&&v.percent<=1){
 									for(let n of _self.cords){
 		                    			if(v.name===n.name){
-		                    				if(n.count>1){
-		                    					n.lat = 0
-		                    					n.lng = 0
-		                    				}
 		                    			}
 		                    		}
 								}else if(v.percent>1&&v.percent<=30){
@@ -610,14 +610,14 @@ import _ from 'lodash'
                 	lenObj = {
 	                    "全部":{lng:113.042358,lat:23.776528,zoom:13},
 	                    "清远市":{lng:113.0323,lat:23.699107,zoom:13},
-	                    "清城":{lng:113.06689,lat:23.704022,zoom:13},
-	                    "清新":{lng:113.020271,lat:23.75427,zoom:13},
+	                    "清城":{lng:113.282483,lat:23.781956,zoom:13}, 
+	                    "清新":{lng:112.863606,lat:23.713646,zoom:13},
 	                    "佛冈":{lng:113.539303,lat:23.886532,zoom:13},
 	                    "英德":{lng:113.314992,lat:23.925412,zoom:13},
-	                    "连州":{lng:112.38616,lat:24.700467,zoom:13},
+	                    "连州":{lng:112.58853,lat:24.879054,zoom:13},
 	                    "连南":{lng:112.290355,lat:24.732074,zoom:13},
-	                    "连山":{lng:112.102727,lat:24.582118,zoom:13},
-	                    "阳山":{lng:112.646658,lat:24.47147,zoom:13},
+	                    "连山":{lng:112.038624,lat:24.691033,zoom:13}, 
+	                    "阳山":{lng:112.681728,lat:24.527369,zoom:13}, 
                 	}; 
                 }else{
                 	lenObj = {
@@ -715,7 +715,9 @@ import _ from 'lodash'
 				})
                 // 初始化地图,设置中心点坐标和地图级别
                 map.centerAndZoom(new BMap.Point(113.062468,23.695613),12);
-                
+                map.addEventListener('click',function(e){
+                	console.log(e.point.lat,e.point.lng)
+                })
                 this.initBoundary(map)
                 
                 // 添加地图类型控件
