@@ -223,9 +223,11 @@ export default {
                 if(val>1440){
                      powAverage = val/2000 ;
                      average = val/1440 ;
-                }else{
+                }else if(val>0 && val<=1400){
                      powAverage = 2 ;
                      average = 1 ;
+                }else{
+                	powAverage = 0 ;
                 }
 				function updateRandom() {
 					  var p = Math.random(), n = Math.random() / 20;
@@ -245,9 +247,11 @@ export default {
                     let nows = new Date(+now);
                     if(Math.random()>0.4 && powAverage>10){
                         value =(1- (Math.random()-1)/2)*average;
-                    }else{
+                    }else if(powAverage>0 && powAverage<=10){
                         var value = Math.pow(Math.random()*powAverage,2);
                         
+                    }else{
+                    	var value = 0
                     }
                     return {
                             xData: _self.addZero(nows),
@@ -295,7 +299,7 @@ export default {
         getResponse(paramsObj){
             this.$axios.get(API_URL+'/qy/api/v2/command/getCommandPassengerData',{params:paramsObj}).then(r => {
                 if(r.data.code ==="200"||r.data.code ===200){
-                    this.barNum = r.data.data.num+Math.random();
+                    this.barNum = r.data.data.num;
                     this.redomData(this.barNum)
                 }
             })
@@ -307,11 +311,14 @@ export default {
                 area:"全部",
                 name:"全部",
             }
-        this.getResponse(paramsObj);
+          this.getResponse(paramsObj);
         
     },
     mounted() {
-        echarts_resize(this.idName,this);
+    	this.$nextTick( () => {
+    		echarts_resize(this.idName,this);
+    	})
+        
     },
 }
 </script>
