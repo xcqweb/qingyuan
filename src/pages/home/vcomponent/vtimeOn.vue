@@ -22,7 +22,6 @@
 
 <script>
 import a5ss from '@/pages/home/showMore/smallComponent/a5ss.vue'
-import showMoreData from '@/common/js/mixin/showMoreData.js'
 import optionProps from '@/common/js/mixin/optionProps.js'
   export default {
     name:'a5',

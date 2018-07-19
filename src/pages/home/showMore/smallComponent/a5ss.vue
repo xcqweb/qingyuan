@@ -306,13 +306,16 @@ export default {
         }
     },
     created(){
-    	
             var paramsObj = {
                 area:"全部",
                 name:"全部",
             }
           this.getResponse(paramsObj);
         
+    },
+    beforeDestroy(){
+    	
+    	window.clearInterval(this.reTimer)
     },
     mounted() {
     	this.$nextTick( () => {
