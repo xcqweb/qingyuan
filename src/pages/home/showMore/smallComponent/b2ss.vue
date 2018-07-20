@@ -56,7 +56,7 @@ export default {
 		       
 		            data:[
 		                {
-		                    value:0,
+		                    value:100,
 		                    name:'01',
 		                },
 		                {
@@ -246,7 +246,6 @@ export default {
             	
             	this.dataItem = reData[0];
             	p = this.dataItem.percent
-            	//console.log(this.option.series[0].data[0].value)
             	if(this.dataItem.currentNum/this.dataItem.warnNum>=100){
             		this.dataItem.currentNum = this.dataItem.warnNum
             	}
