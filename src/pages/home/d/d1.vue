@@ -66,30 +66,17 @@ display:none !important;
 </style>
 <template>
     <div class="d1">
-        <!-- <h1>{{place}}</h1> -->
         <div id="XSDFXPaged" class="XSDFXPaged"></div>
-        <canvas class="lineVideo" v-show='videoToast'></canvas>
-        <div class="toast-video" v-if='videoToast'>
-            <h2>{{videoName}}</h2>
-            <video  src="../../../assets/video/kaiyuan.mp4"  autoplay="autoplay"  loop="loop" style="">
-                您的浏览器不支持 video 标签。
-            </video>
-        </div>
     </div>
-    
 </template>
 
 
 <script>
-// import BMapLib from '../../../common/js/baidumap/heatmap.js?fdwe'
-// require('../../../common/js/baidumap/heatmap.js?fdwe')
 
     export default {
         name:'d1',
         data () {
             return {
-                videoName:'摄像头1',
-                videoToast:false,
             }
         },
         props:[
@@ -104,38 +91,7 @@ display:none !important;
             }
         },
         methods:{
-            addLineVideo(){
-                var canvas = document.getElementsByClassName('lineVideo')[0];
-                //简单地检测当前浏览器是否支持Canvas对象，以免在一些不支持html5的浏览器中提示语法错误
-                const width = canvas.width;
-                const height = canvas.height;
-                
-                if(canvas.getContext){  
-                    //获取对应的CanvasRenderingContext2D对象(画笔)
-                        var ctx = canvas.getContext("2d");  
-                        ctx.imageSmoothingEnabled = true;
-                        //开始一个新的绘制路径
-                        ctx.beginPath();
-                        //设置线条颜色为蓝色
-                        ctx.strokeStyle = "#363eaa";
-                        ctx.lineWidth = 2.5;
-                        ctx.shadowOffsetX = 0;
-                        ctx.shadowOffsetY = 10;
-                        ctx.shadowBlur    = 4;
-                        ctx.shadowColor   = "rgba(14,32,113,0.4)";  //or use rgb(red, green, blue)
-                        //设置路径起点坐标
-                        ctx.moveTo(122.5, 100.5);
-                        //定义中间点坐标1
-                        ctx.lineTo(140.5, 50.5);
-                        //定义中间点坐标2
-                        ctx.lineTo(180, 30);
-                        //定义中间点坐标3(这是最后一个中间点，也就是终点)
-                        //按照绘制路径顺序连接各个坐标点
-                        ctx.stroke();
-                        //关闭绘制路径
-                        ctx.closePath();
-                }
-            },
+           
             mapMoveSelf(map){
       
                 setTimeout(function(){
@@ -477,14 +433,5 @@ display:none !important;
         created(){
             this.getResponse("全部");
         },
-        mounted() {
-            
-            // 百度地图API功能
-            // 创建Map实例
-        
-        } ,
-        update(){
-     
-        }
     }
 </script>

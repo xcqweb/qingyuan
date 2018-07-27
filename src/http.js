@@ -7,7 +7,7 @@ axios.defaults.baseURL = 'http://120.55.190.57/qy/api/';
 
 
 let instance = axios.create()
-let token='213345dsdsddfdgdyyrtsdsdwew32335t';
+//let token='213345dsdsddfdgdyyrtsdsdwew32335t';
 //let token=window.localStorage.getItem('token');
 
 instance.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';

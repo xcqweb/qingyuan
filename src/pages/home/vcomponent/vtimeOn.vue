@@ -73,7 +73,7 @@ import optionProps from '@/common/js/mixin/optionProps.js'
         this.getResponse();
     },
     mounted(){
-
+		console.log(WebSocket in window)
     }
   }
 </script>
